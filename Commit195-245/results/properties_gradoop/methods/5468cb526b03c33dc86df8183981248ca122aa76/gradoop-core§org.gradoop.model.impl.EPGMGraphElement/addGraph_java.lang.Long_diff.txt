@@ -1,0 +1,10 @@
+/**                                                                                                  |                                                                                                     
+* {@inheritDoc}                                                                                      |                                                                                                     
+*/                                                                                                   |                                                                                                     
+@Override                                                                                            |                                                                                                     
+public void addGraph(Long graph) {                                                                   |                                                                                                     
+if (graphs == null) {                                                                                |                                                                                                     
+graphs = Sets.newHashSet();                                                                          |                                                                                                     
+}                                                                                                    |                                                                                                     
+graphs.add(graph);                                                                                   |                                                                                                     
+}                                                                                                    |                                                                                                     

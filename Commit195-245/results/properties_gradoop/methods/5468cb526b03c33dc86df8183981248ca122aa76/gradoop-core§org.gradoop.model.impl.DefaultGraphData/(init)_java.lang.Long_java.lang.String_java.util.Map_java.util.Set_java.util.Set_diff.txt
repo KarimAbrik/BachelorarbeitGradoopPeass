@@ -1,0 +1,14 @@
+/**                                                                                                  |                                                                                                     
+* Creates a graph based on the given parameters.                                                     |                                                                                                     
+*                                                                                                    |                                                                                                     
+* @param id         graph identifier                                                                 |                                                                                                     
+* @param label      labels of that graph                                                             |                                                                                                     
+* @param properties key-value-map                                                                    |                                                                                                     
+* @param vertices   vertices contained in that graph                                                 |                                                                                                     
+* @param edges      edges contains in that graph                                                     |                                                                                                     
+*/                                                                                                   |                                                                                                     
+DefaultGraphData(final Long id, final String label, final Map&lt;String, Object&gt; properties, fina |                                                                                                     
+super(id, label, properties);                                                                        |                                                                                                     
+this.vertices = (vertices != null) ? Sets.newHashSet(vertices) : null;                               |                                                                                                     
+this.edges = (edges != null) ? Sets.newHashSet(edges) : null;                                        |                                                                                                     
+}                                                                                                    |                                                                                                     
