@@ -1,0 +1,16 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public boolean filter(Edge<Long, ED> e) throws Exception {
+    boolean vertexInGraph = false;
+    if (e.getValue().getGraphCount() > 0) {
+        for (Long graph : e.getValue().getGraphs()) {
+            if (identifiers.contains(graph)) {
+                vertexInGraph = true;
+                break;
+            }
+        }
+    }
+    return vertexInGraph;
+}

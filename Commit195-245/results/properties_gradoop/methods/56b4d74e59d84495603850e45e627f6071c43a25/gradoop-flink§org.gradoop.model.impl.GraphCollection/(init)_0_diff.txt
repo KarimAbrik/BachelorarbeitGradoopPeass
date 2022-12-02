@@ -1,0 +1,19 @@
+/**                                                                                                    /**                                                                                                 
+* Creates a graph collection from the given arguments.                                                 * Creates a graph collection from the given arguments.                                              
+*                                                                                                      *                                                                                                   
+* @param graph             Flink Gelly graph                                                           * @param graph             Flink Gelly graph                                                        
+* @param subgraphs         graph data associated with logical graphs in that                           * @param subgraphs         graph data associated with logical graphs in that                        
+*                          collection                                                                  *                          collection                                                               
+* @param vertexDataFactory vertex data factory                                                         * @param vertexDataFactory vertex data factory                                                      
+* @param edgeDataFactory   edge data factory                                                           * @param edgeDataFactory   edge data factory                                                        
+* @param graphDataFactory  graph data factory                                                          * @param graphDataFactory  graph data factory                                                       
+* @param env               Flink execution environment                                                 * @param env               Flink execution environment                                              
+*/                                                                                                     */                                                                                                  
+public GraphCollection(Graph&lt;Long, VD, ED&gt; graph, DataSet&lt;Subgraph&lt;Long, GD&gt;&gt; subg   public GraphCollection(Graph&lt;Long, VD, ED&gt; graph, DataSet&lt;Subgraph&lt;Long, GD&gt;&gt; subg
+this.graph = graph;                                                                                  | super(graph, vertexDataFactory, edgeDataFactory, graphDataFactory, env);                            
+this.subgraphs = subgraphs;                                                                            this.subgraphs = subgraphs;                                                                         
+this.vertexDataFactory = vertexDataFactory;                                                          |                                                                                                     
+this.edgeDataFactory = edgeDataFactory;                                                              |                                                                                                     
+this.graphDataFactory = graphDataFactory;                                                            |                                                                                                     
+this.env = env;                                                                                      |                                                                                                     
+}                                                                                                      }                                                                                                   

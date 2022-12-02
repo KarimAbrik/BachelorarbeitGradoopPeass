@@ -1,0 +1,12 @@
+@Test
+public void testWriteAsJsonFile() throws Exception {
+    String tmpDir = temporaryFolder.getRoot().toString();
+    final String vertexFile = tmpDir + "/nodes.json";
+    final String edgeFile = tmpDir + "/edges.json";
+    final String graphFile = tmpDir + "/graphs.json";
+    getGraphStore().writeAsJson(vertexFile, edgeFile, graphFile);
+    EPGMDatabase<DefaultVertexData, DefaultEdgeData, DefaultGraphData> newGraphStore = EPGMDatabase.fromJsonFile(vertexFile, edgeFile, graphFile, ExecutionEnvironment.getExecutionEnvironment());
+    assertEquals(getGraphStore().getDatabaseGraph().getVertexCount(), newGraphStore.getDatabaseGraph().getVertexCount());
+    assertEquals(getGraphStore().getDatabaseGraph().getEdgeCount(), newGraphStore.getDatabaseGraph().getEdgeCount());
+    assertEquals(getGraphStore().getCollection().getGraphCount(), newGraphStore.getCollection().getGraphCount());
+}

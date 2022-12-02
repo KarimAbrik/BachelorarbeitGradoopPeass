@@ -1,0 +1,9 @@
+@Test                                                                                                  @Test                                                                                               
+public void testGetGraphs() throws Exception {                                                         public void testGetGraphs() throws Exception {                                                      
+GraphCollection&lt;DefaultVertexData, DefaultEdgeData, DefaultGraphData&gt; graphColl = getGraphStor   GraphCollection&lt;DefaultVertexData, DefaultEdgeData, DefaultGraphData&gt; graphColl = getGraphStor
+GraphCollection&lt;DefaultVertexData, DefaultEdgeData, DefaultGraphData&gt; graphs = graphColl.getGr   GraphCollection&lt;DefaultVertexData, DefaultEdgeData, DefaultGraphData&gt; graphs = graphColl.getGr
+assertNotNull("graph collection is null", graphs);                                                     assertNotNull("graph collection is null", graphs);                                                  
+assertEquals("wrong number of graphs", 3L, graphs.size());                                             assertEquals("wrong number of graphs", 3L, graphs.size());                                          
+assertEquals("wrong number of vertices", 6L, graphs.getTotalVertexCount());                          | assertEquals("wrong number of vertices", 6L, graphs.getVertexCount());                              
+assertEquals("wrong number of edges", 10L, graphs.getTotalEdgeCount());                              | assertEquals("wrong number of edges", 10L, graphs.getEdgeCount());                                  
+}                                                                                                      }                                                                                                   

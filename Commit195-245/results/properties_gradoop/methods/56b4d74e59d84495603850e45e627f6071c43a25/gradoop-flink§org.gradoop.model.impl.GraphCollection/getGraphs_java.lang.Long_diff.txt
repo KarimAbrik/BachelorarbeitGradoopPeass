@@ -1,0 +1,7 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public GraphCollection<VD, ED, GD> getGraphs(final Long... identifiers) throws Exception {
+    return getGraphs(Arrays.asList(identifiers));
+}

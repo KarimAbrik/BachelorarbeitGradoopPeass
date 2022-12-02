@@ -1,0 +1,18 @@
+/**                                                                                                    /**                                                                                                 
+* {@inheritDoc}                                                                                        * {@inheritDoc}                                                                                     
+*/                                                                                                     */                                                                                                  
+@Override                                                                                              @Override                                                                                           
+public GraphCollection&lt;VD, ED, GD&gt; getGraphs(final List&lt;Long&gt; identifiers) throws Except   public GraphCollection&lt;VD, ED, GD&gt; getGraphs(final List&lt;Long&gt; identifiers) throws Except
+DataSet&lt;Subgraph&lt;Long, GD&gt;&gt; newSubGraphs = this.subgraphs.filter(new FilterFunction&lt;S   DataSet&lt;Subgraph&lt;Long, GD&gt;&gt; newSubGraphs = this.subgraphs.filter(new FilterFunction&lt;S
+                                                                                                                                                                                                           
+@Override                                                                                              @Override                                                                                           
+public boolean filter(Subgraph&lt;Long, GD&gt; subgraph) throws Exception {                            public boolean filter(Subgraph&lt;Long, GD&gt; subgraph) throws Exception {                         
+return identifiers.contains(subgraph.getId());                                                         return identifiers.contains(subgraph.getId());                                                      
+}                                                                                                      }                                                                                                   
+});                                                                                                    });                                                                                                 
+// build new vertex set                                                                                // build new vertex set                                                                             
+DataSet&lt;Vertex&lt;Long, VD&gt;&gt; vertices = this.graph.getVertices().filter(new VertexInGraphsF | DataSet&lt;Vertex&lt;Long, VD&gt;&gt; vertices = getVertices().filter(new VertexInGraphsFilter&lt;VD
+// build new edge set                                                                                  // build new edge set                                                                               
+DataSet&lt;Edge&lt;Long, ED&gt;&gt; edges = this.graph.getEdges().filter(new EdgeInGraphsFilter&lt;E | DataSet&lt;Edge&lt;Long, ED&gt;&gt; edges = getEdges().filter(new EdgeInGraphsFilter&lt;ED&gt;(ident
+return new GraphCollection&lt;&gt;(Graph.fromDataSet(vertices, edges, env), newSubGraphs, vertexData | return new GraphCollection&lt;&gt;(Graph.fromDataSet(vertices, edges, getExecutionEnvironment()), ne
+}                                                                                                      }                                                                                                   

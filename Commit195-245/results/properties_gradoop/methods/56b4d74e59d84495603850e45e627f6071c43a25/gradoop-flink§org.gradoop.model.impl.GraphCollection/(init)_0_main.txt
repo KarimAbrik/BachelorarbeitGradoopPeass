@@ -1,0 +1,15 @@
+/**
+ * Creates a graph collection from the given arguments.
+ *
+ * @param graph             Flink Gelly graph
+ * @param subgraphs         graph data associated with logical graphs in that
+ *                          collection
+ * @param vertexDataFactory vertex data factory
+ * @param edgeDataFactory   edge data factory
+ * @param graphDataFactory  graph data factory
+ * @param env               Flink execution environment
+ */
+public GraphCollection(Graph<Long, VD, ED> graph, DataSet<Subgraph<Long, GD>> subgraphs, VertexDataFactory<VD> vertexDataFactory, EdgeDataFactory<ED> edgeDataFactory, GraphDataFactory<GD> graphDataFactory, ExecutionEnvironment env) {
+    super(graph, vertexDataFactory, edgeDataFactory, graphDataFactory, env);
+    this.subgraphs = subgraphs;
+}

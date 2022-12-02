@@ -1,0 +1,11 @@
+@Test
+public void testFromJsonFile() throws Exception {
+    String vertexFile = EPGMDatabaseJSONTest.class.getResource("/data/sna_nodes").getFile();
+    String edgeFile = EPGMDatabaseJSONTest.class.getResource("/data/sna_edges").getFile();
+    String graphFile = EPGMDatabaseJSONTest.class.getResource("/data/sna_graphs").getFile();
+    EPGMDatabase<DefaultVertexData, DefaultEdgeData, DefaultGraphData> graphStore = EPGMDatabase.fromJsonFile(vertexFile, edgeFile, graphFile, ExecutionEnvironment.getExecutionEnvironment());
+    LogicalGraph<DefaultVertexData, DefaultEdgeData, DefaultGraphData> databaseGraph = graphStore.getDatabaseGraph();
+    assertEquals("Wrong vertex count", 11, databaseGraph.getVertexCount());
+    assertEquals("Wrong edge count", 24, databaseGraph.getEdgeCount());
+    assertEquals("Wrong graph count", 4, graphStore.getCollection().getGraphCount());
+}

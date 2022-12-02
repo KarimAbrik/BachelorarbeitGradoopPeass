@@ -1,0 +1,14 @@
+@Test
+public void testTotalOverlappingCollections() throws Exception {
+    // "0 1, 0 1, 0, 0, 0"
+    long expectedCollectionSize = 0L;
+    long expectedVertexCount = 0L;
+    long expectedEdgeCount = 0L;
+    GraphCollection<DefaultVertexData, DefaultEdgeData, DefaultGraphData> graphColl = getGraphStore().getCollection();
+    GraphCollection<DefaultVertexData, DefaultEdgeData, DefaultGraphData> collection1 = graphColl.getGraphs(0L, 1L);
+    GraphCollection<DefaultVertexData, DefaultEdgeData, DefaultGraphData> collection2 = graphColl.getGraphs(0L, 1L);
+    GraphCollection differenceColl = collection1.difference(collection2);
+    performTest(expectedCollectionSize, expectedVertexCount, expectedEdgeCount, differenceColl);
+    differenceColl = collection1.differenceWithSmallResult(collection2);
+    performTest(expectedCollectionSize, expectedVertexCount, expectedEdgeCount, differenceColl);
+}

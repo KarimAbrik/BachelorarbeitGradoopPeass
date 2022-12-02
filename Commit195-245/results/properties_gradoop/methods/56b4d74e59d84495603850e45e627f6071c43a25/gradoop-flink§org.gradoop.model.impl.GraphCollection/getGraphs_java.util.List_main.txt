@@ -1,0 +1,18 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public GraphCollection<VD, ED, GD> getGraphs(final List<Long> identifiers) throws Exception {
+    DataSet<Subgraph<Long, GD>> newSubGraphs = this.subgraphs.filter(new FilterFunction<Subgraph<Long, GD>>() {
+
+        @Override
+        public boolean filter(Subgraph<Long, GD> subgraph) throws Exception {
+            return identifiers.contains(subgraph.getId());
+        }
+    });
+    // build new vertex set
+    DataSet<Vertex<Long, VD>> vertices = getVertices().filter(new VertexInGraphsFilter<VD>(identifiers));
+    // build new edge set
+    DataSet<Edge<Long, ED>> edges = getEdges().filter(new EdgeInGraphsFilter<ED>(identifiers));
+    return new GraphCollection<>(Graph.fromDataSet(vertices, edges, getExecutionEnvironment()), newSubGraphs, getVertexDataFactory(), getEdgeDataFactory(), getGraphDataFactory(), getExecutionEnvironment());
+}

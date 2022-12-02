@@ -1,0 +1,19 @@
+/**                                                                                                    /**                                                                                                 
+* {@inheritDoc}                                                                                        * {@inheritDoc}                                                                                     
+*/                                                                                                     */                                                                                                  
+@SuppressWarnings("unchecked")                                                                         @SuppressWarnings("unchecked")                                                                      
+@Override                                                                                              @Override                                                                                           
+public LogicalGraph&lt;VD, ED, GD&gt; getGraph(final Long graphID) throws Exception {                  public LogicalGraph&lt;VD, ED, GD&gt; getGraph(final Long graphID) throws Exception {               
+// filter vertices and edges based on given graph id                                                   // filter vertices and edges based on given graph id                                                
+Graph&lt;Long, VD, ED&gt; subGraph = this.graph.subgraph(new VertexInGraphFilter&lt;VD&gt;(graphID), | Graph&lt;Long, VD, ED&gt; subGraph = getGellyGraph().subgraph(new VertexInGraphFilter&lt;VD&gt;(grap
+DataSet&lt;Tuple1&lt;Long&gt;&gt; graphIDDataSet = env.fromCollection(Lists.newArrayList(new Tuple1& | DataSet&lt;Tuple1&lt;Long&gt;&gt; graphIDDataSet = getExecutionEnvironment().fromCollection(Lists.ne
+// get graph data based on graph id                                                                    // get graph data based on graph id                                                                 
+List&lt;GD&gt; graphData = this.subgraphs.joinWithTiny(graphIDDataSet).where(new KeySelectors.GraphK   List&lt;GD&gt; graphData = this.subgraphs.joinWithTiny(graphIDDataSet).where(new KeySelectors.GraphK
+                                                                                                                                                                                                           
+@Override                                                                                              @Override                                                                                           
+public GD join(Subgraph&lt;Long, GD&gt; g, Tuple1&lt;Long&gt; gID) throws Exception {                  public GD join(Subgraph&lt;Long, GD&gt; g, Tuple1&lt;Long&gt; gID) throws Exception {               
+return g.getValue();                                                                                   return g.getValue();                                                                                
+}                                                                                                      }                                                                                                   
+}).first(1).collect();                                                                                 }).first(1).collect();                                                                              
+return (graphData.size() &gt; 0) ? LogicalGraph.fromGraph(subGraph, graphData.get(0), vertexDataFact | return (graphData.size() &gt; 0) ? LogicalGraph.fromGellyGraph(subGraph, graphData.get(0), getVertex
+}                                                                                                      }                                                                                                   

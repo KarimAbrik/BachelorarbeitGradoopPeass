@@ -1,0 +1,18 @@
+@Test                                                                                                  @Test                                                                                               
+public void testLabelPropagationWithCallByPropertyKey() throws Exception {                             public void testLabelPropagationWithCallByPropertyKey() throws Exception {                          
+LogicalGraph&lt;DefaultVertexData, DefaultEdgeData, DefaultGraphData&gt; inputGraph = getGraphStore(   LogicalGraph&lt;DefaultVertexData, DefaultEdgeData, DefaultGraphData&gt; inputGraph = getGraphStore(
+GraphCollection&lt;DefaultVertexData, DefaultEdgeData, DefaultGraphData&gt; labeledGraphCollection =   GraphCollection&lt;DefaultVertexData, DefaultEdgeData, DefaultGraphData&gt; labeledGraphCollection =
+LogicalGraph&lt;DefaultVertexData, DefaultEdgeData, DefaultGraphData&gt; sub1 = labeledGraphCollecti   LogicalGraph&lt;DefaultVertexData, DefaultEdgeData, DefaultGraphData&gt; sub1 = labeledGraphCollecti
+assertEquals("Sub graph has no edge", 0L, sub1.getEdgeCount());                                        assertEquals("Sub graph has no edge", 0L, sub1.getEdgeCount());                                     
+assertEquals("sub graph has two vertices", 2L, sub1.getVertexCount());                                 assertEquals("sub graph has two vertices", 2L, sub1.getVertexCount());                              
+LogicalGraph&lt;DefaultVertexData, DefaultEdgeData, DefaultGraphData&gt; sub2 = labeledGraphCollecti   LogicalGraph&lt;DefaultVertexData, DefaultEdgeData, DefaultGraphData&gt; sub2 = labeledGraphCollecti
+assertEquals("Sub graph has no edge", 0L, sub2.getEdgeCount());                                        assertEquals("Sub graph has no edge", 0L, sub2.getEdgeCount());                                     
+assertEquals("sub graph has two vertices", 1L, sub2.getVertexCount());                                 assertEquals("sub graph has two vertices", 1L, sub2.getVertexCount());                              
+LogicalGraph&lt;DefaultVertexData, DefaultEdgeData, DefaultGraphData&gt; sub3 = labeledGraphCollecti   LogicalGraph&lt;DefaultVertexData, DefaultEdgeData, DefaultGraphData&gt; sub3 = labeledGraphCollecti
+assertEquals("Sub graph has no edge", 0L, sub3.getEdgeCount());                                        assertEquals("Sub graph has no edge", 0L, sub3.getEdgeCount());                                     
+assertEquals("sub graph has two vertices", 1L, sub3.getVertexCount());                                 assertEquals("sub graph has two vertices", 1L, sub3.getVertexCount());                              
+assertNotNull("graph collection is null", labeledGraphCollection);                                     assertNotNull("graph collection is null", labeledGraphCollection);                                  
+assertEquals("wrong number of graphs", 3l, labeledGraphCollection.size());                             assertEquals("wrong number of graphs", 3l, labeledGraphCollection.size());                          
+assertEquals("wrong number of vertices", 4l, labeledGraphCollection.getTotalVertexCount());          | assertEquals("wrong number of vertices", 4l, labeledGraphCollection.getVertexCount());              
+assertEquals("wrong number of edges", 0l, labeledGraphCollection.getTotalEdgeCount());               | assertEquals("wrong number of edges", 0l, labeledGraphCollection.getEdgeCount());                   
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,7 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public GraphCollection<VD, ED, GD> differenceWithSmallResult(GraphCollection<VD, ED, GD> otherCollection) throws Exception {
+    return callForCollection(new DifferenceUsingList<VD, ED, GD>(), otherCollection);
+}

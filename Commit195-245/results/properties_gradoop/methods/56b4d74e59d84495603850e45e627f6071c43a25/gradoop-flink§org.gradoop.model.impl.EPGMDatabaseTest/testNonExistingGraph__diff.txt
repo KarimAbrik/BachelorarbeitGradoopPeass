@@ -1,0 +1,4 @@
+@Test
+public void testNonExistingGraph() throws Exception {
+    assertNull("graph was not null", getGraphStore().getGraph(4L));
+}

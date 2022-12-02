@@ -1,0 +1,8 @@
+@Test
+public void testGetExistingGraph() throws Exception {
+    LogicalGraph<DefaultVertexData, DefaultEdgeData, DefaultGraphData> g = getGraphStore().getGraph(0L);
+    assertNotNull("graph was null", g);
+    assertEquals("vertex set has the wrong size", 3L, g.getVertices().size());
+    assertEquals("edge set has the wrong size", 4L, g.getEdges().size());
+    assertEquals("wrong label", LABEL_COMMUNITY, g.getLabel());
+}

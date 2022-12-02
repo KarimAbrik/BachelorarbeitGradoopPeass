@@ -1,0 +1,7 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public GraphCollection<VD, ED, GD> callForCollection(BinaryCollectionToCollectionOperator<VD, ED, GD> op, GraphCollection<VD, ED, GD> otherCollection) throws Exception {
+    return op.execute(this, otherCollection);
+}

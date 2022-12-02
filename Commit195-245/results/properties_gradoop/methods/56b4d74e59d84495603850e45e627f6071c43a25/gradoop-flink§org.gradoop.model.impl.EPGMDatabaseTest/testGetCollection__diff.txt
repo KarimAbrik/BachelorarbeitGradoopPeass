@@ -1,0 +1,8 @@
+@Test                                                                                                  @Test                                                                                               
+public void testGetCollection() throws Exception {                                                     public void testGetCollection() throws Exception {                                                  
+GraphCollection&lt;DefaultVertexData, DefaultEdgeData, DefaultGraphData&gt; graphColl = getGraphStor   GraphCollection&lt;DefaultVertexData, DefaultEdgeData, DefaultGraphData&gt; graphColl = getGraphStor
+assertNotNull("graph collection was null", graphColl);                                                 assertNotNull("graph collection was null", graphColl);                                              
+assertEquals("graph collection has wrong size", 4L, graphColl.getGraphCount());                        assertEquals("graph collection has wrong size", 4L, graphColl.getGraphCount());                     
+assertEquals("graph collection has wrong vertex count", 7L, graphColl.getTotalVertexCount());        | assertEquals("graph collection has wrong vertex count", 7L, graphColl.getVertexCount());            
+assertEquals("graph collection has wrong edge count", 13L, graphColl.getTotalEdgeCount());           | assertEquals("graph collection has wrong edge count", 13L, graphColl.getEdgeCount());               
+}                                                                                                      }                                                                                                   

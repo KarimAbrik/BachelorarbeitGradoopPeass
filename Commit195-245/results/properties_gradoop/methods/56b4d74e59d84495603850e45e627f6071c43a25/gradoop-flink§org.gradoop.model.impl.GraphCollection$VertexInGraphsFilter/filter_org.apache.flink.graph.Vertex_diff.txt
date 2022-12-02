@@ -1,0 +1,16 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public boolean filter(Vertex<Long, VD> vertex) throws Exception {
+    boolean vertexInGraph = false;
+    if (vertex.getValue().getGraphCount() > 0) {
+        for (Long graph : vertex.getValue().getGraphs()) {
+            if (identifiers.contains(graph)) {
+                vertexInGraph = true;
+                break;
+            }
+        }
+    }
+    return vertexInGraph;
+}

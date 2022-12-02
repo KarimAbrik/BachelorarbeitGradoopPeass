@@ -1,0 +1,7 @@
+@Test                                                                                                  @Test                                                                                               
+public void testGetDatabaseGraph() throws Exception {                                                  public void testGetDatabaseGraph() throws Exception {                                               
+LogicalGraph dbGraph = getGraphStore().getDatabaseGraph();                                             LogicalGraph dbGraph = getGraphStore().getDatabaseGraph();                                          
+assertNotNull("database graph was null", dbGraph);                                                     assertNotNull("database graph was null", dbGraph);                                                  
+assertEquals("vertex set has the wrong size", 11, dbGraph.getVertices().size());                     | assertEquals("vertex set has the wrong size", 11, dbGraph.getVertices().count());                   
+assertEquals("edge set has the wrong size", 24, dbGraph.getEdges().size());                          | assertEquals("edge set has the wrong size", 24, dbGraph.getEdges().count());                        
+}                                                                                                      }                                                                                                   
