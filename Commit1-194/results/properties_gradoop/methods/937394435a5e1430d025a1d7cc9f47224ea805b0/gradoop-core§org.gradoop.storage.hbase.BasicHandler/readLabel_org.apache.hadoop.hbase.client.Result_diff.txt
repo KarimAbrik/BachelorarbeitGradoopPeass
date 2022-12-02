@@ -1,0 +1,7 @@
+                                                                                                     | /**                                                                                                 
+                                                                                                     | * {@inheritDoc}                                                                                     
+                                                                                                     | */                                                                                                  
+                                                                                                     | @Override                                                                                           
+                                                                                                     | public String readLabel(final Result res) {                                                         
+                                                                                                     | return Bytes.toString(res.getValue(CF_META_BYTES, COL_LABEL_BYTES));                                
+                                                                                                     | }                                                                                                   

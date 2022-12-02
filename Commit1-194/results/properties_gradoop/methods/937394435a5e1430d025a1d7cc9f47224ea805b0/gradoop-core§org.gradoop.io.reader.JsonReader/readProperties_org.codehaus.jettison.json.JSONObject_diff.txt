@@ -1,0 +1,17 @@
+/**
+ * Reads key value pairs from the given json object.
+ *
+ * @param propertiesObject property key value pairs
+ * @return properties
+ * @throws JSONException
+ */
+private Map<String, Object> readProperties(final JSONObject propertiesObject) throws JSONException {
+    Map<String, Object> properties = Maps.newHashMapWithExpectedSize(propertiesObject.length());
+    Iterator<?> keys = propertiesObject.keys();
+    while (keys.hasNext()) {
+        String key = keys.next().toString();
+        Object o = propertiesObject.get(key);
+        properties.put(key, o);
+    }
+    return properties;
+}

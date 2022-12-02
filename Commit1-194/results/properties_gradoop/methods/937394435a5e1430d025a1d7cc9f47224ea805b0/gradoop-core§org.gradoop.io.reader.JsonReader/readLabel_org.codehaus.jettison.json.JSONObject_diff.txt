@@ -1,0 +1,10 @@
+                                                                                                     | /**                                                                                                 
+                                                                                                     | * Reads the vertex label from the json object.                                                      
+                                                                                                     | *                                                                                                   
+                                                                                                     | * @param json json object                                                                           
+                                                                                                     | * @return vertex label                                                                              
+                                                                                                     | * @throws JSONException                                                                             
+                                                                                                     | */                                                                                                  
+                                                                                                     | private String readLabel(final JSONObject json) throws JSONException {                              
+                                                                                                     | return json.getString(JsonWriter.LABEL);                                                            
+                                                                                                     | }                                                                                                   

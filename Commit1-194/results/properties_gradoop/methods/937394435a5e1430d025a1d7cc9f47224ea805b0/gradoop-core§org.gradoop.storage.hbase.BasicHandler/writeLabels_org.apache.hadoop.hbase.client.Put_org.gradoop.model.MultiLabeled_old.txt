@@ -1,0 +1,13 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public Put writeLabels(final Put put, final MultiLabeled entity) {
+    int internalLabelID = 0;
+    if (entity.getLabelCount() > 0) {
+        for (String label : entity.getLabels()) {
+            put.add(CF_LABELS_BYTES, Bytes.toBytes(internalLabelID++), Bytes.toBytes(label));
+        }
+    }
+    return put;
+}

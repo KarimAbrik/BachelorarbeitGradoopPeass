@@ -1,0 +1,11 @@
+/**                                                                                                  |                                                                                                     
+* {@inheritDoc}                                                                                      |                                                                                                     
+*/                                                                                                   |                                                                                                     
+@Override                                                                                            |                                                                                                     
+public Iterable&lt;String&gt; readLabels(final Result res) {                                         |                                                                                                     
+List&lt;String&gt; labels = new ArrayList&lt;&gt;();                                                 |                                                                                                     
+for (Map.Entry&lt;byte[], byte[]&gt; labelColumn : res.getFamilyMap(CF_LABELS_BYTES).entrySet()) {   |                                                                                                     
+labels.add(Bytes.toString(labelColumn.getValue()));                                                  |                                                                                                     
+}                                                                                                    |                                                                                                     
+return labels;                                                                                       |                                                                                                     
+}                                                                                                    |                                                                                                     

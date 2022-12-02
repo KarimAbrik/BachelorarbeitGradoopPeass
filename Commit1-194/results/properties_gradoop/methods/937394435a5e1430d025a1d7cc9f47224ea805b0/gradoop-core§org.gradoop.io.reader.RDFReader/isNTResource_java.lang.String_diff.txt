@@ -1,0 +1,9 @@
+/**
+ * Checks token for starting '<' and ending '>'
+ *
+ * @param token part of a RDF triple
+ * @return token without '<' and '>'
+ */
+private boolean isNTResource(String token) {
+    return RESOURCE.matcher(token).matches();
+}

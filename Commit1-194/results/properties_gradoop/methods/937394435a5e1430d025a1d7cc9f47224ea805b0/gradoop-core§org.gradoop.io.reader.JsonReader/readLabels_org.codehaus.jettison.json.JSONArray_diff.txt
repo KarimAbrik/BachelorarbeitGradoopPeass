@@ -1,0 +1,14 @@
+/**                                                                                                  |                                                                                                     
+* Reads the vertex labels from the json object.                                                      |                                                                                                     
+*                                                                                                    |                                                                                                     
+* @param labelArray json object                                                                      |                                                                                                     
+* @return vertex labels                                                                              |                                                                                                     
+* @throws JSONException                                                                              |                                                                                                     
+*/                                                                                                   |                                                                                                     
+private Iterable&lt;String&gt; readLabels(final JSONArray labelArray) throws JSONException {         |                                                                                                     
+List&lt;String&gt; result = Lists.newArrayListWithCapacity(labelArray.length());                     |                                                                                                     
+for (int i = 0; i &lt; labelArray.length(); i++) {                                                   |                                                                                                     
+result.add(labelArray.getString(i));                                                                 |                                                                                                     
+}                                                                                                    |                                                                                                     
+return result;                                                                                       |                                                                                                     
+}                                                                                                    |                                                                                                     

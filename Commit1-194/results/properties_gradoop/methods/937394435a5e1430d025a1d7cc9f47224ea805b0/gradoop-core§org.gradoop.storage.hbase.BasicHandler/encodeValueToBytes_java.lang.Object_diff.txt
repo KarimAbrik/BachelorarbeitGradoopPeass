@@ -1,0 +1,26 @@
+/**
+ * Encodes a given value to a byte array with integrated type information.
+ *
+ * @param value value do encode
+ * @return encoded value as byte array
+ */
+protected byte[] encodeValueToBytes(final Object value) throws UnsupportedTypeException {
+    Class<?> valueClass = value.getClass();
+    byte[] decodedValue;
+    if (valueClass.equals(Boolean.class)) {
+        decodedValue = Bytes.add(new byte[] { GConstants.TYPE_BOOLEAN }, Bytes.toBytes((Boolean) value));
+    } else if (valueClass.equals(Integer.class)) {
+        decodedValue = Bytes.add(new byte[] { GConstants.TYPE_INTEGER }, Bytes.toBytes((Integer) value));
+    } else if (valueClass.equals(Long.class)) {
+        decodedValue = Bytes.add(new byte[] { GConstants.TYPE_LONG }, Bytes.toBytes((Long) value));
+    } else if (valueClass.equals(Float.class)) {
+        decodedValue = Bytes.add(new byte[] { GConstants.TYPE_FLOAT }, Bytes.toBytes((Float) value));
+    } else if (valueClass.equals(Double.class)) {
+        decodedValue = Bytes.add(new byte[] { GConstants.TYPE_DOUBLE }, Bytes.toBytes((Double) value));
+    } else if (valueClass.equals(String.class)) {
+        decodedValue = Bytes.add(new byte[] { GConstants.TYPE_STRING }, Bytes.toBytes((String) value));
+    } else {
+        throw new UnsupportedTypeException(valueClass + " not supported");
+    }
+    return decodedValue;
+}

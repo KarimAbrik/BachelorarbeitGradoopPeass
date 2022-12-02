@@ -1,0 +1,14 @@
+/**
+ * Reads graphs from a given json array.
+ *
+ * @param graphArray json array with graphs
+ * @return graphs
+ * @throws JSONException
+ */
+private Iterable<Long> readGraphs(final JSONArray graphArray) throws JSONException {
+    List<Long> graphs = Lists.newArrayListWithCapacity(graphArray.length());
+    for (int i = 0; i < graphArray.length(); i++) {
+        graphs.add(graphArray.getLong(i));
+    }
+    return graphs;
+}

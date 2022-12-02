@@ -1,0 +1,9 @@
+@Test
+public void testReader() {
+    List<Vertex> vertices = Lists.newArrayListWithCapacity(EXTENDED_GRAPH.length);
+    VertexLineReader reader = new JsonReader();
+    for (String line : EXTENDED_GRAPH_JSON) {
+        vertices.add(reader.readVertex(line));
+    }
+    validateExtendedGraphVertices(vertices);
+}

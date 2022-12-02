@@ -1,0 +1,13 @@
+/**
+ * Retrieves plain string from i.e., <www.example.net>
+ *
+ * @param token part of a RDF triple
+ * @return token without '<' and '>'
+ */
+private String getPlainResource(String token) {
+    Matcher m = RESOURCE.matcher(token);
+    if (m.matches()) {
+        return m.group(1);
+    }
+    return "";
+}
