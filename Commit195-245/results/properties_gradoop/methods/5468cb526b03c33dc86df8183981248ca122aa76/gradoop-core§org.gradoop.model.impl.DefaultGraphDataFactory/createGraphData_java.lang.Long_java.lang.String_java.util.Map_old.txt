@@ -1,0 +1,7 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public DefaultGraphData createGraphData(final Long id, final String label, Map<String, Object> properties) {
+    return createGraphData(id, label, properties, null, null);
+}

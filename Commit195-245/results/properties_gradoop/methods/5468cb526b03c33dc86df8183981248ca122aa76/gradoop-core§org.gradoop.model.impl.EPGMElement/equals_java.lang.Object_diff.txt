@@ -1,0 +1,14 @@
+/**                                                                                                  |                                                                                                     
+* {@inheritDoc}                                                                                      |                                                                                                     
+*/                                                                                                   |                                                                                                     
+@Override                                                                                            |                                                                                                     
+public boolean equals(Object o) {                                                                    |                                                                                                     
+if (this == o) {                                                                                     |                                                                                                     
+return true;                                                                                         |                                                                                                     
+}                                                                                                    |                                                                                                     
+if (o == null || getClass() != o.getClass()) {                                                       |                                                                                                     
+return false;                                                                                        |                                                                                                     
+}                                                                                                    |                                                                                                     
+EPGMElement that = (EPGMElement) o;                                                                  |                                                                                                     
+return !(id != null ? !id.equals(that.id) : that.id != null);                                        |                                                                                                     
+}                                                                                                    |                                                                                                     

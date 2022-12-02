@@ -1,0 +1,9 @@
+/**                                                                                                    /**                                                                                                 
+* {@inheritDoc}                                                                                        * {@inheritDoc}                                                                                     
+*/                                                                                                     */                                                                                                  
+@Override                                                                                              @Override                                                                                           
+public DefaultGraphData createGraphData(final Long id, final String label, Map&lt;String, Object&gt;   public DefaultGraphData createGraphData(final Long id, final String label, Map&lt;String, Object&gt;
+return createGraphData(id, label, properties, null, null);                                           | checkId(id);                                                                                        
+                                                                                                     | checkLabel(label);                                                                                  
+                                                                                                     | return new DefaultGraphData(id, label, properties);                                                 
+}                                                                                                      }                                                                                                   
