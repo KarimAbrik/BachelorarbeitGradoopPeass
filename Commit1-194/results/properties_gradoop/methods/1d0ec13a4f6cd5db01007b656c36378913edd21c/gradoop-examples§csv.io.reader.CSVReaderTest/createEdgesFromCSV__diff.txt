@@ -1,0 +1,15 @@
+private List&lt;Vertex&gt; createEdgesFromCSV() {                                                      private List&lt;Vertex&gt; createEdgesFromCSV() {                                                   
+ConfigurableVertexLineReader reader = new CSVReader();                                                 ConfigurableVertexLineReader reader = new CSVReader();                                              
+Configuration conf = new Configuration();                                                              Configuration conf = new Configuration();                                                           
+conf.set(CSVReader.META_DATA, EDGE_META);                                                              conf.set(CSVReader.META_DATA, EDGE_META);                                                           
+conf.set(CSVReader.LABEL, "knows");                                                                  | conf.set(CSVReader.LABEL, "workedAt");                                                              
+conf.set(CSVReader.TYPE, "edge");                                                                      conf.set(CSVReader.TYPE, "edge");                                                                   
+reader.setConf(conf);                                                                                  reader.setConf(conf);                                                                               
+List&lt;Vertex&gt; vertices = Lists.newArrayList();                                                    List&lt;Vertex&gt; vertices = Lists.newArrayList();                                                 
+for (String line : KNOWS_CSV) {                                                                        for (String line : KNOWS_CSV) {                                                                     
+for (Vertex v : reader.readVertexList(line)) {                                                         for (Vertex v : reader.readVertexList(line)) {                                                      
+vertices.add(v);                                                                                       vertices.add(v);                                                                                    
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+return vertices;                                                                                       return vertices;                                                                                    
+}                                                                                                      }                                                                                                   

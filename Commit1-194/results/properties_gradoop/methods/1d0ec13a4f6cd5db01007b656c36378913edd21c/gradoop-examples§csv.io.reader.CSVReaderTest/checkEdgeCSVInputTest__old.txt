@@ -1,0 +1,8 @@
+@Test
+public void checkEdgeCSVInputTest() {
+    for (Vertex v : createEdgesFromCSV()) {
+        Log.info("####ID: " + v.getID());
+        Log.info("#####imcomingDegree: " + v.getIncomingDegree());
+        Log.info("#####outgoingdegree: " + v.getOutgoingDegree());
+    }
+}

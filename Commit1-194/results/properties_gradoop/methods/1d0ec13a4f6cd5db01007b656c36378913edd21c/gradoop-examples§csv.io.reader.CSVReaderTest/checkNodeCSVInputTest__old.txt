@@ -1,0 +1,18 @@
+@Test
+public void checkNodeCSVInputTest() {
+    for (Vertex v : createVerticesFromCSV()) {
+        long id = v.getID();
+        if (id == lgid) {
+            checkLabel(v, label_node);
+            for (String propertyKey : v.getPropertyKeys()) {
+                if (propertyKey.equals(firstName)) {
+                    String value = (String) v.getProperty(propertyKey);
+                    assertEquals(value, firstName0);
+                } else if (propertyKey.equals(lastName)) {
+                    String value = (String) v.getProperty(lastName);
+                    assertEquals(value, lastName0);
+                }
+            }
+        }
+    }
+}

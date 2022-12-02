@@ -1,0 +1,5 @@
+protected void checkOutgoingEdge(List&lt;Edge&gt; edges) {                                             protected void checkOutgoingEdge(List&lt;Edge&gt; edges) {                                          
+for (Edge edge : edges) {                                                                              for (Edge edge : edges) {                                                                           
+assertEquals(edge.getOtherID(), "1");                                                                | assertEquals(edge.getLabel(), edgeLabel);                                                           
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

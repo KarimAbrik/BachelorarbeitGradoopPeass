@@ -1,0 +1,16 @@
+private List&lt;Vertex&gt; createVerticesFromCSV() {                                                   private List&lt;Vertex&gt; createVerticesFromCSV() {                                                
+ConfigurableVertexLineReader reader = new CSVReader();                                                 ConfigurableVertexLineReader reader = new CSVReader();                                              
+Configuration conf = new Configuration();                                                              Configuration conf = new Configuration();                                                           
+conf.set(CSVReader.META_DATA, NODE_META);                                                              conf.set(CSVReader.META_DATA, NODE_META);                                                           
+conf.set(CSVReader.LABEL, "Person");                                                                   conf.set(CSVReader.LABEL, "Person");                                                                
+conf.set(CSVReader.TYPE, "node");                                                                      conf.set(CSVReader.TYPE, "node");                                                                   
+reader.setConf(conf);                                                                                  reader.setConf(conf);                                                                               
+List&lt;Vertex&gt; vertices = Lists.newArrayList();                                                    List&lt;Vertex&gt; vertices = Lists.newArrayList();                                                 
+for (String line : PERSON_CSV) {                                                                       for (String line : PERSON_CSV) {                                                                    
+for (Vertex v : reader.readVertexList(line)) {                                                       | List&lt;Vertex&gt; verticesPerLine = reader.readVertexList(line);                                   
+                                                                                                     | for (Vertex v : verticesPerLine) {                                                                  
+vertices.add(v);                                                                                       vertices.add(v);                                                                                    
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+return vertices;                                                                                       return vertices;                                                                                    
+}                                                                                                      }                                                                                                   

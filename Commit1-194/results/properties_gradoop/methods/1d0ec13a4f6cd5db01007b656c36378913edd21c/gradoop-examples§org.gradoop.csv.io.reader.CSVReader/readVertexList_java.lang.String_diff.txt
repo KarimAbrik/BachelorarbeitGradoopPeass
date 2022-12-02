@@ -1,0 +1,17 @@
+                                                                                                     | /**                                                                                                 
+                                                                                                     | * {@inheritDoc}                                                                                     
+                                                                                                     | */                                                                                                  
+@Override                                                                                              @Override                                                                                           
+public List&lt;Vertex&gt; readVertexList(String line) {                                                public List&lt;Vertex&gt; readVertexList(String line) {                                             
+if (once) {                                                                                          | List&lt;Vertex&gt; vList = setVList();                                                              
+initializeAndReadFirstLine(line);                                                                    | if (initialStep) {                                                                                  
+                                                                                                     | initialStep(line);                                                                                  
+} else {                                                                                               } else {                                                                                            
+vList.add(readRemainingLines(line));                                                                 | if (isNodeCSV) {                                                                                    
+                                                                                                     | vList.add(readVertex(line));                                                                        
+                                                                                                     | } else {                                                                                            
+                                                                                                     | readEdges(vList, line);                                                                             
+}                                                                                                      }                                                                                                   
+                                                                                                     | }                                                                                                   
+return vList;                                                                                          return vList;                                                                                       
+}                                                                                                      }                                                                                                   
