@@ -1,0 +1,8 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public void setAutoFlush(boolean autoFlush) {
+    this.verticesTable.setAutoFlush(autoFlush, true);
+    this.graphsTable.setAutoFlush(autoFlush, true);
+}

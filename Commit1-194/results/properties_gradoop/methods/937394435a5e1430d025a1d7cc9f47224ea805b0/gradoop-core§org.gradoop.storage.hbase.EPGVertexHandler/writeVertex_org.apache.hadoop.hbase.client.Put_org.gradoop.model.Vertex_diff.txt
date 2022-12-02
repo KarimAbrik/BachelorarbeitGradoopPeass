@@ -1,0 +1,12 @@
+/**                                                                                                    /**                                                                                                 
+* {@inheritDoc}                                                                                        * {@inheritDoc}                                                                                     
+*/                                                                                                     */                                                                                                  
+@Override                                                                                              @Override                                                                                           
+public Put writeVertex(final Put put, final Vertex vertex) {                                           public Put writeVertex(final Put put, final Vertex vertex) {                                        
+writeLabels(put, vertex);                                                                            | writeLabel(put, vertex);                                                                            
+writeProperties(put, vertex);                                                                          writeProperties(put, vertex);                                                                       
+writeOutgoingEdges(put, vertex.getOutgoingEdges());                                                    writeOutgoingEdges(put, vertex.getOutgoingEdges());                                                 
+writeIncomingEdges(put, vertex.getIncomingEdges());                                                    writeIncomingEdges(put, vertex.getIncomingEdges());                                                 
+writeGraphs(put, vertex);                                                                              writeGraphs(put, vertex);                                                                           
+return put;                                                                                            return put;                                                                                         
+}                                                                                                      }                                                                                                   

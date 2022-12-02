@@ -1,0 +1,10 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public byte[] getRowKey(final Long graphID) {
+    if (graphID == null) {
+        throw new IllegalArgumentException("graphID must not be null");
+    }
+    return Bytes.toBytes(graphID.toString());
+}

@@ -1,0 +1,18 @@
+@Test
+public void writeFlushReadTest() {
+    GraphStore graphStore = createEmptyGraphStore();
+    graphStore.setAutoFlush(false);
+    // store some data
+    for (Vertex v : createExtendedGraphVertices()) {
+        graphStore.writeVertex(v);
+    }
+    for (Graph g : createGraphs()) {
+        graphStore.writeGraph(g);
+    }
+    // flush changes
+    graphStore.flush();
+    // validate
+    validateGraphs(graphStore);
+    validateVertices(graphStore);
+    graphStore.close();
+}

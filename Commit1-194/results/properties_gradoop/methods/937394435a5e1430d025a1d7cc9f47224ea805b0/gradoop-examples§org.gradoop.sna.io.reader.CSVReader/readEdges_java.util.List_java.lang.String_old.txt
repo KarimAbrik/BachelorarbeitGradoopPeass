@@ -1,0 +1,46 @@
+/**
+ * Creates vertices and edges
+ *
+ * @param vertices vertex list
+ * @param line     line of sna input
+ */
+private void readEdges(List<Vertex> vertices, String line) {
+    List<String> nodeLabel0 = Lists.newArrayListWithExpectedSize(1);
+    List<String> nodeLabel1 = Lists.newArrayListWithExpectedSize(1);
+    String[] tokens = getTokens(line);
+    long id0 = Long.parseLong(tokens[0]);
+    long id1 = Long.parseLong(tokens[1]);
+    String edgeLabel = conf.get(LABEL);
+    nodeLabel0.add(properties[0].replace(".id", ""));
+    nodeLabel1.add(properties[1].replace(".id", ""));
+    Edge outgoing = EdgeFactory.createDefaultEdgeWithLabel(id1, edgeLabel, random.nextLong());
+    Edge incoming = EdgeFactory.createDefaultEdgeWithLabel(id0, edgeLabel, random.nextLong());
+    for (int i = 2; i < properties.length; i++) {
+        switch(types[i]) {
+            case "long":
+                outgoing.addProperty(properties[i], Long.parseLong(tokens[i]));
+                incoming.addProperty(properties[i], Long.parseLong(tokens[i]));
+                break;
+            case "string":
+                outgoing.addProperty(properties[i], tokens[i]);
+                incoming.addProperty(properties[i], tokens[i]);
+                break;
+            case "integer":
+                outgoing.addProperty(properties[i], Integer.parseInt(tokens[i]));
+                incoming.addProperty(properties[i], Integer.parseInt(tokens[i]));
+                break;
+            default:
+                outgoing.addProperty(properties[i], tokens[i]);
+                incoming.addProperty(properties[i], tokens[i]);
+                break;
+        }
+    }
+    List<Edge> outgoingEdgeList = Lists.newArrayListWithExpectedSize(1);
+    outgoingEdgeList.add(outgoing);
+    List<Edge> incomingEdgeList = Lists.newArrayListWithCapacity(1);
+    incomingEdgeList.add(incoming);
+    Vertex vex0 = VertexFactory.createDefaultVertex(id0, nodeLabel0, null, outgoingEdgeList, null, null);
+    Vertex vex1 = VertexFactory.createDefaultVertex(id1, nodeLabel1, null, null, incomingEdgeList, null);
+    vertices.add(vex0);
+    vertices.add(vex1);
+}

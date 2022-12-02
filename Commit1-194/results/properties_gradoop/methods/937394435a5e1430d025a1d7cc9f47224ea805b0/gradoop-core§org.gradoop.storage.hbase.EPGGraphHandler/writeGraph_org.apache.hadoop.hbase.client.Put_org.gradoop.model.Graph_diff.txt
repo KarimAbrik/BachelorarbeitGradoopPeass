@@ -1,0 +1,10 @@
+/**                                                                                                    /**                                                                                                 
+* {@inheritDoc}                                                                                        * {@inheritDoc}                                                                                     
+*/                                                                                                     */                                                                                                  
+@Override                                                                                              @Override                                                                                           
+public Put writeGraph(final Put put, final Graph graph) {                                              public Put writeGraph(final Put put, final Graph graph) {                                           
+writeLabels(put, graph);                                                                             | writeLabel(put, graph);                                                                             
+writeProperties(put, graph);                                                                           writeProperties(put, graph);                                                                        
+writeVertices(put, graph);                                                                             writeVertices(put, graph);                                                                          
+return put;                                                                                            return put;                                                                                         
+}                                                                                                      }                                                                                                   

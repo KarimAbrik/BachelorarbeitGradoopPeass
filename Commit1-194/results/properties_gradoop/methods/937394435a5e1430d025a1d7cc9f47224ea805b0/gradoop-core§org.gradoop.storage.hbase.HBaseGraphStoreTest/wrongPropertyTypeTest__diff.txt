@@ -1,0 +1,15 @@
+@Test(expected = UnsupportedTypeException.class)                                                       @Test(expected = UnsupportedTypeException.class)                                                    
+public void wrongPropertyTypeTest() {                                                                  public void wrongPropertyTypeTest() {                                                               
+GraphStore graphStore = createEmptyGraphStore();                                                       GraphStore graphStore = createEmptyGraphStore();                                                    
+// list is not supported                                                                               // list is not supported                                                                            
+final List&lt;String&gt; value = Lists.newArrayList();                                                 final List&lt;String&gt; value = Lists.newArrayList();                                              
+Long vertexID = 0L;                                                                                    Long vertexID = 0L;                                                                                 
+final Iterable&lt;String&gt; labels = Lists.newArrayList("A");                                       | final String label = "A";                                                                           
+final Map&lt;String, Object&gt; properties = new HashMap&lt;&gt;();                                    final Map&lt;String, Object&gt; properties = new HashMap&lt;&gt;();                                 
+properties.put(KEY_1, value);                                                                          properties.put(KEY_1, value);                                                                       
+final Iterable&lt;Edge&gt; outEdges = Lists.newArrayListWithCapacity(0);                               final Iterable&lt;Edge&gt; outEdges = Lists.newArrayListWithCapacity(0);                            
+final Iterable&lt;Edge&gt; inEdges = Lists.newArrayListWithCapacity(0);                                final Iterable&lt;Edge&gt; inEdges = Lists.newArrayListWithCapacity(0);                             
+final Iterable&lt;Long&gt; graphs = Lists.newArrayList();                                              final Iterable&lt;Long&gt; graphs = Lists.newArrayList();                                           
+Vertex v = VertexFactory.createDefaultVertex(vertexID, labels, properties, outEdges, inEdges, graphs | Vertex v = VertexFactory.createDefaultVertex(vertexID, label, properties, outEdges, inEdges, graphs)
+graphStore.writeVertex(v);                                                                             graphStore.writeVertex(v);                                                                          
+}                                                                                                      }                                                                                                   

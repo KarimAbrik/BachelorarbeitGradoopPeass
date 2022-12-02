@@ -1,0 +1,15 @@
+private List<Vertex> createEdgesFromCSV() {
+    ConfigurableVertexLineReader reader = new CSVReader();
+    Configuration conf = new Configuration();
+    conf.set(CSVReader.META_DATA, EDGE_META);
+    conf.set(CSVReader.LABEL, "workedAt");
+    conf.set(CSVReader.TYPE, "edge");
+    reader.setConf(conf);
+    List<Vertex> vertices = Lists.newArrayList();
+    for (String line : KNOWS_CSV) {
+        for (Vertex v : reader.readVertexList(line)) {
+            vertices.add(v);
+        }
+    }
+    return vertices;
+}

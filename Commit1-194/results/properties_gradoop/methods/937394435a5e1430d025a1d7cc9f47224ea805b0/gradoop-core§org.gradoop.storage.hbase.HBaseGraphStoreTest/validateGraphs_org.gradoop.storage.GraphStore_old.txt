@@ -1,0 +1,35 @@
+private void validateGraphs(GraphStore graphStore) {
+    // g0
+    Graph g = graphStore.readGraph(0L);
+    assertNotNull(g);
+    List<String> labels = Lists.newArrayList(g.getLabels());
+    assertEquals(1, labels.size());
+    assertTrue(labels.contains("A"));
+    List<Long> vertices = Lists.newArrayList(g.getVertices());
+    assertEquals(2, vertices.size());
+    assertTrue(vertices.contains(0L));
+    assertTrue(vertices.contains(1L));
+    List<String> propertyKeys = Lists.newArrayList(g.getPropertyKeys());
+    assertEquals(2, propertyKeys.size());
+    for (String key : propertyKeys) {
+        if (key.equals("k1")) {
+            assertEquals("v1", g.getProperty("k1"));
+        } else if (key.equals("v2")) {
+            assertEquals("v2", g.getProperty("k2"));
+        }
+    }
+    // g1
+    g = graphStore.readGraph(1L);
+    assertNotNull(g);
+    labels = Lists.newArrayList(g.getLabels());
+    assertEquals(2, labels.size());
+    assertTrue(labels.contains("A"));
+    assertTrue(labels.contains("B"));
+    vertices = Lists.newArrayList(g.getVertices());
+    assertEquals(2, vertices.size());
+    assertTrue(vertices.contains(1L));
+    assertTrue(vertices.contains(2L));
+    propertyKeys = Lists.newArrayList(g.getPropertyKeys());
+    assertEquals(1, propertyKeys.size());
+    assertEquals("v1", g.getProperty("k1"));
+}

@@ -1,0 +1,11 @@
+/**                                                                                                    /**                                                                                                 
+* {@inheritDoc}                                                                                        * {@inheritDoc}                                                                                     
+*/                                                                                                     */                                                                                                  
+@Override                                                                                              @Override                                                                                           
+public void createTable(final HBaseAdmin admin, final HTableDescriptor tableDescriptor) throws IOExc   public void createTable(final HBaseAdmin admin, final HTableDescriptor tableDescriptor) throws IOExc
+LOG.info("creating table " + tableDescriptor.getNameAsString());                                       LOG.info("creating table " + tableDescriptor.getNameAsString());                                    
+tableDescriptor.addFamily(new HColumnDescriptor(GConstants.CF_LABELS));                              | tableDescriptor.addFamily(new HColumnDescriptor(GConstants.CF_META));                               
+tableDescriptor.addFamily(new HColumnDescriptor(GConstants.CF_PROPERTIES));                            tableDescriptor.addFamily(new HColumnDescriptor(GConstants.CF_PROPERTIES));                         
+tableDescriptor.addFamily(new HColumnDescriptor(GConstants.CF_VERTICES));                              tableDescriptor.addFamily(new HColumnDescriptor(GConstants.CF_VERTICES));                           
+admin.createTable(tableDescriptor);                                                                    admin.createTable(tableDescriptor);                                                                 
+}                                                                                                      }                                                                                                   

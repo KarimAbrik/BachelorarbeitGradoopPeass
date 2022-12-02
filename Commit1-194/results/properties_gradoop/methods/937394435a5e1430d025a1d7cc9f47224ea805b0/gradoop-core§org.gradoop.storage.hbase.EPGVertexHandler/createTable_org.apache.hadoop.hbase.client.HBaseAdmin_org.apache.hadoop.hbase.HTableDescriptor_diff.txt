@@ -1,0 +1,13 @@
+/**                                                                                                    /**                                                                                                 
+* {@inheritDoc}                                                                                        * {@inheritDoc}                                                                                     
+*/                                                                                                     */                                                                                                  
+@Override                                                                                              @Override                                                                                           
+public void createTable(final HBaseAdmin admin, final HTableDescriptor tableDescriptor) throws IOExc   public void createTable(final HBaseAdmin admin, final HTableDescriptor tableDescriptor) throws IOExc
+LOG.info("creating table " + tableDescriptor.getNameAsString());                                       LOG.info("creating table " + tableDescriptor.getNameAsString());                                    
+tableDescriptor.addFamily(new HColumnDescriptor(GConstants.CF_LABELS));                              | tableDescriptor.addFamily(new HColumnDescriptor(GConstants.CF_META));                               
+tableDescriptor.addFamily(new HColumnDescriptor(GConstants.CF_PROPERTIES));                            tableDescriptor.addFamily(new HColumnDescriptor(GConstants.CF_PROPERTIES));                         
+tableDescriptor.addFamily(new HColumnDescriptor(GConstants.CF_OUT_EDGES));                             tableDescriptor.addFamily(new HColumnDescriptor(GConstants.CF_OUT_EDGES));                          
+tableDescriptor.addFamily(new HColumnDescriptor(GConstants.CF_IN_EDGES));                              tableDescriptor.addFamily(new HColumnDescriptor(GConstants.CF_IN_EDGES));                           
+tableDescriptor.addFamily(new HColumnDescriptor(GConstants.CF_GRAPHS));                                tableDescriptor.addFamily(new HColumnDescriptor(GConstants.CF_GRAPHS));                             
+admin.createTable(tableDescriptor);                                                                    admin.createTable(tableDescriptor);                                                                 
+}                                                                                                      }                                                                                                   

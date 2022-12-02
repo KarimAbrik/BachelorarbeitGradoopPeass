@@ -1,0 +1,7 @@
+/**                                                                                                    /**                                                                                                 
+* {@inheritDoc}                                                                                        * {@inheritDoc}                                                                                     
+*/                                                                                                     */                                                                                                  
+@Override                                                                                              @Override                                                                                           
+public Graph readGraph(final Result res) {                                                             public Graph readGraph(final Result res) {                                                          
+return GraphFactory.createDefaultGraph(Long.valueOf(Bytes.toString(res.getRow())), readLabels(res),  | return GraphFactory.createDefaultGraph(Long.valueOf(Bytes.toString(res.getRow())), readLabel(res), r
+}                                                                                                      }                                                                                                   

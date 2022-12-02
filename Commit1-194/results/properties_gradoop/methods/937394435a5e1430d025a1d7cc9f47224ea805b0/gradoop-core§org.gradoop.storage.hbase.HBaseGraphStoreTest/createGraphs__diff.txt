@@ -1,0 +1,23 @@
+private Iterable&lt;Graph&gt; createGraphs() {                                                         private Iterable&lt;Graph&gt; createGraphs() {                                                      
+List&lt;Graph&gt; graphs = new ArrayList&lt;&gt;();                                                    List&lt;Graph&gt; graphs = new ArrayList&lt;&gt;();                                                 
+// graph 0                                                                                             // graph 0                                                                                          
+Long graphID = 0L;                                                                                     Long graphID = 0L;                                                                                  
+List&lt;String&gt; graphLabels = Arrays.asList("A");                                                 | String graphLabel = "A";                                                                            
+Map&lt;String, Object&gt; graphProperties = new HashMap&lt;&gt;();                                     Map&lt;String, Object&gt; graphProperties = new HashMap&lt;&gt;();                                  
+graphProperties.put("k1", "v1");                                                                       graphProperties.put("k1", "v1");                                                                    
+graphProperties.put("k2", "v2");                                                                       graphProperties.put("k2", "v2");                                                                    
+List&lt;Long&gt; vertices = new ArrayList&lt;&gt;();                                                   List&lt;Long&gt; vertices = new ArrayList&lt;&gt;();                                                
+vertices.add(0L);                                                                                      vertices.add(0L);                                                                                   
+vertices.add(1L);                                                                                      vertices.add(1L);                                                                                   
+graphs.add(GraphFactory.createDefaultGraph(graphID, graphLabels, graphProperties, vertices));        | graphs.add(GraphFactory.createDefaultGraph(graphID, graphLabel, graphProperties, vertices));        
+// graph 1                                                                                             // graph 1                                                                                          
+graphID = 1L;                                                                                          graphID = 1L;                                                                                       
+graphLabels = Arrays.asList("A", "B");                                                               | graphLabel = "A";                                                                                   
+graphProperties = new HashMap&lt;&gt;();                                                               graphProperties = new HashMap&lt;&gt;();                                                            
+graphProperties.put("k1", "v1");                                                                       graphProperties.put("k1", "v1");                                                                    
+vertices = new ArrayList&lt;&gt;();                                                                    vertices = new ArrayList&lt;&gt;();                                                                 
+vertices.add(1L);                                                                                      vertices.add(1L);                                                                                   
+vertices.add(2L);                                                                                      vertices.add(2L);                                                                                   
+graphs.add(GraphFactory.createDefaultGraph(graphID, graphLabels, graphProperties, vertices));        | graphs.add(GraphFactory.createDefaultGraph(graphID, graphLabel, graphProperties, vertices));        
+return graphs;                                                                                         return graphs;                                                                                      
+}                                                                                                      }                                                                                                   

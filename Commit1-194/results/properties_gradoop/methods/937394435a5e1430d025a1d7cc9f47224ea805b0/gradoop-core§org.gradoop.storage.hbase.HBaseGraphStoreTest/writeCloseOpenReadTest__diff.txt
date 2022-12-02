@@ -1,0 +1,18 @@
+@Test
+public void writeCloseOpenReadTest() {
+    GraphStore graphStore = createEmptyGraphStore();
+    // storage some data
+    for (Vertex v : createExtendedGraphVertices()) {
+        graphStore.writeVertex(v);
+    }
+    for (Graph g : createGraphs()) {
+        graphStore.writeGraph(g);
+    }
+    // re-open
+    graphStore.close();
+    graphStore = openGraphStore();
+    // validate
+    validateGraphs(graphStore);
+    validateVertices(graphStore);
+    graphStore.close();
+}
