@@ -1,0 +1,40 @@
+/**
+ * Creates a HBaseEPGMStore based on the given parameters. All parameters
+ * are mandatory and must not be {@code null}.
+ *
+ * @param vertexDataTable   HBase table to store vertex data
+ * @param edgeDataTable     HBase table to store edge data
+ * @param graphDataTable    HBase table to store graph data
+ * @param vertexDataHandler handles reading/writing of vertex data
+ * @param edgeDataHandler   handles reading/writing of edge data
+ * @param graphDataHandler  handles reading/writing of graph data
+ */
+HBaseEPGMStore(final HTable vertexDataTable, final HTable edgeDataTable, final HTable graphDataTable, final VertexDataHandler<VD, ED> vertexDataHandler, final EdgeDataHandler<ED, VD> edgeDataHandler, final GraphDataHandler<GD> graphDataHandler) {
+    if (vertexDataTable == null) {
+        throw new IllegalArgumentException("vertexDataTable must not be null");
+    }
+    if (edgeDataTable == null) {
+        throw new IllegalArgumentException("edgeDataTable must not be null");
+    }
+    if (graphDataTable == null) {
+        throw new IllegalArgumentException("graphDataTable must not be null");
+    }
+    if (vertexDataHandler == null) {
+        throw new IllegalArgumentException("vertexDataHandler must not be null");
+    }
+    if (edgeDataHandler == null) {
+        throw new IllegalArgumentException("edgeDataHandler must not be null");
+    }
+    if (graphDataHandler == null) {
+        throw new IllegalArgumentException("graphDataHandler must not be null");
+    }
+    this.vertexDataTable = vertexDataTable;
+    this.edgeDataTable = edgeDataTable;
+    this.graphDataTable = graphDataTable;
+    this.vertexDataHandler = vertexDataHandler;
+    this.edgeDataHandler = edgeDataHandler;
+    this.graphDataHandler = graphDataHandler;
+    this.vertexDataTable.setAutoFlush(DEFAULT_ENABLE_AUTO_FLUSH, DEFAULT_CLEAR_BUFFER_ON_FAIL);
+    this.edgeDataTable.setAutoFlush(DEFAULT_ENABLE_AUTO_FLUSH, DEFAULT_CLEAR_BUFFER_ON_FAIL);
+    this.graphDataTable.setAutoFlush(DEFAULT_ENABLE_AUTO_FLUSH, DEFAULT_CLEAR_BUFFER_ON_FAIL);
+}

@@ -1,0 +1,28 @@
+/**
+ * Creates the tables used by the graph store.
+ *
+ * @param config              Hadoop configuration
+ * @param vertexDataHandler   vertex storage handler
+ * @param edgeDataHandler     edge storage handler
+ * @param graphDataHandler    graph storage handler
+ * @param vertexDataTableName vertex data table name
+ * @param edgeTableName       edge data table name
+ * @param graphDataTableName  graph data table name
+ * @throws IOException
+ */
+private static void createTablesIfNotExists(final Configuration config, final VertexDataHandler vertexDataHandler, final EdgeDataHandler edgeDataHandler, final GraphDataHandler graphDataHandler, final String vertexDataTableName, final String edgeTableName, final String graphDataTableName) throws IOException {
+    HTableDescriptor vertexDataTableDescriptor = new HTableDescriptor(TableName.valueOf(vertexDataTableName));
+    HTableDescriptor edgeDataTableDescriptor = new HTableDescriptor(TableName.valueOf(edgeTableName));
+    HTableDescriptor graphDataTableDescriptor = new HTableDescriptor(TableName.valueOf(graphDataTableName));
+    HBaseAdmin admin = new HBaseAdmin(config);
+    if (!admin.tableExists(vertexDataTableDescriptor.getName())) {
+        vertexDataHandler.createTable(admin, vertexDataTableDescriptor);
+    }
+    if (!admin.tableExists(edgeDataTableDescriptor.getName())) {
+        edgeDataHandler.createTable(admin, edgeDataTableDescriptor);
+    }
+    if (!admin.tableExists(graphDataTableDescriptor.getName())) {
+        graphDataHandler.createTable(admin, graphDataTableDescriptor);
+    }
+    admin.close();
+}

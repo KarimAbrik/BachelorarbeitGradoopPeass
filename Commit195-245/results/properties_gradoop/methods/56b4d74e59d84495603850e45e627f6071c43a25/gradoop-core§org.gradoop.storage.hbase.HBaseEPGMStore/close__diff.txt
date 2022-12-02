@@ -1,0 +1,13 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public void close() {
+    try {
+        vertexDataTable.close();
+        edgeDataTable.close();
+        graphDataTable.close();
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}

@@ -1,0 +1,10 @@
+/**
+ * Creates an graph table input format.
+ *
+ * @param graphDataHandler   graph data handler
+ * @param graphDataTableName graph data table name
+ */
+public GraphDataTableInputFormat(GraphDataHandler<GD> graphDataHandler, String graphDataTableName) {
+    this.graphDataHandler = graphDataHandler;
+    this.graphDataTableName = graphDataTableName;
+}

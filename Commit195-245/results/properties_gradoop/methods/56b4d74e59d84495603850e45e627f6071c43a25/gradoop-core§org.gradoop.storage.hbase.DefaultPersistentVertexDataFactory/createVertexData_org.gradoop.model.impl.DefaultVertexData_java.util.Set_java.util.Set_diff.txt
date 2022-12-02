@@ -1,0 +1,9 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public DefaultPersistentVertexData createVertexData(DefaultVertexData inputVertexData, Set<DefaultEdgeData> outgoingEdgeIds, Set<DefaultEdgeData> incomingEdgeIds) {
+    DefaultPersistentVertexData defaultPersistentVertexData = new DefaultPersistentVertexData(inputVertexData, outgoingEdgeIds, incomingEdgeIds);
+    LOG.info("Created persistent vertex data: " + defaultPersistentVertexData);
+    return defaultPersistentVertexData;
+}

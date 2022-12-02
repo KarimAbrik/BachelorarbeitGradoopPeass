@@ -1,0 +1,7 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public Iterator<VD> getVertexSpace() throws IOException {
+    return getVertexSpace(GConstants.HBASE_DEFAULT_SCAN_CACHE_SIZE);
+}

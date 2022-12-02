@@ -1,0 +1,8 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+protected Subgraph<Long, GD> mapResultToTuple(Result result) {
+    GD graphData = graphDataHandler.readGraphData(result);
+    return new Subgraph<>(graphData.getId(), graphData);
+}

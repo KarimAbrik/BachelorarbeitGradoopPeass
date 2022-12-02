@@ -1,0 +1,8 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+protected Edge<Long, ED> mapResultToTuple(Result result) {
+    ED edgeData = edgeDataHandler.readEdgeData(result);
+    return new Edge<>(edgeData.getSourceVertexId(), edgeData.getTargetVertexId(), edgeData);
+}

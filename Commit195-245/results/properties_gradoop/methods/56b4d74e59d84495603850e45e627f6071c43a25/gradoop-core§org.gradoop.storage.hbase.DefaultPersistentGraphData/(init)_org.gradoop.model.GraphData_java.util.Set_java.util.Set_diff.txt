@@ -1,0 +1,12 @@
+/**
+ * Creates  persistent graph data.
+ *
+ * @param graphData encapsulated graph data
+ * @param vertices  vertices contained in that graph
+ * @param edges     edges contained in that graph
+ */
+public DefaultPersistentGraphData(GraphData graphData, Set<Long> vertices, Set<Long> edges) {
+    super(graphData);
+    this.vertices = vertices;
+    this.edges = edges;
+}

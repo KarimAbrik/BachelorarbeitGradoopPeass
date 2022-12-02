@@ -1,0 +1,10 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public Iterator<VD> getVertexSpace(int cacheSize) throws IOException {
+    Scan scan = new Scan();
+    scan.setCaching(cacheSize);
+    scan.setMaxVersions(1);
+    return new VertexDataIterator(vertexDataTable.getScanner(scan));
+}

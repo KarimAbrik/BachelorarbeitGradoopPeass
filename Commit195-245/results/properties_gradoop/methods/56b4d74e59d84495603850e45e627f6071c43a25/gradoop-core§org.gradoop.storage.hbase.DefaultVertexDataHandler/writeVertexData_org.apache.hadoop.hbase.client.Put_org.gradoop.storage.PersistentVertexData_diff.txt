@@ -1,0 +1,13 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public Put writeVertexData(final Put put, final PersistentVertexData<ED> vertexData) {
+    LOG.info("Creating Put from: " + vertexData);
+    writeLabel(put, vertexData);
+    writeProperties(put, vertexData);
+    writeOutgoingEdges(put, vertexData.getOutgoingEdgeData());
+    writeIncomingEdges(put, vertexData.getIncomingEdgeData());
+    writeGraphs(put, vertexData);
+    return put;
+}

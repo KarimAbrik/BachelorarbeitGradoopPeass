@@ -1,0 +1,9 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public DefaultPersistentGraphData createGraphData(DefaultGraphData inputGraphData, Set<Long> vertices, Set<Long> edges) {
+    DefaultPersistentGraphData defaultPersistentGraphData = new DefaultPersistentGraphData(inputGraphData, vertices, edges);
+    LOG.info("Created persistent graph data: " + defaultPersistentGraphData);
+    return defaultPersistentGraphData;
+}

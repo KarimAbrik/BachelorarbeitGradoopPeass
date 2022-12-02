@@ -1,0 +1,28 @@
+/**
+ * Creates a graph store or opens an existing one based on the given
+ * parameters. If something goes wrong, {@code null} is returned.
+ *
+ * @param config            cluster configuration
+ * @param vertexDataHandler vertex storage handler
+ * @param edgeDataHandler   edge storage handler
+ * @param graphDataHandler  graph graph storage handler
+ * @param vertexTableName   vertex data table name
+ * @param edgeTableName     edge data table name
+ * @param graphTableName    graph data table name
+ * @param <VD>              vertex data type
+ * @param <ED>              edge data type
+ * @param <GD>              graph data type
+ * @return EPGM store instance or {@code null in the case of errors}
+ */
+public static <VD extends VertexData, ED extends EdgeData, GD extends GraphData> EPGMStore<VD, ED, GD> createOrOpenEPGMStore(final Configuration config, final VertexDataHandler<VD, ED> vertexDataHandler, final EdgeDataHandler<ED, VD> edgeDataHandler, final GraphDataHandler<GD> graphDataHandler, final String vertexTableName, final String edgeTableName, final String graphTableName) {
+    try {
+        createTablesIfNotExists(config, vertexDataHandler, edgeDataHandler, graphDataHandler, vertexTableName, edgeTableName, graphTableName);
+        HTable vertexDataTable = new HTable(config, vertexTableName);
+        HTable edgeDataTable = new HTable(config, edgeTableName);
+        HTable graphDataTable = new HTable(config, graphTableName);
+        return new HBaseEPGMStore<>(vertexDataTable, edgeDataTable, graphDataTable, vertexDataHandler, edgeDataHandler, graphDataHandler);
+    } catch (IOException e) {
+        e.printStackTrace();
+        return null;
+    }
+}

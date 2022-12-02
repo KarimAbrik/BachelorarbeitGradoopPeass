@@ -1,0 +1,17 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public void writeGraphData(final PersistentGraphData graphData) {
+    LOG.info("Writing graph data: " + graphData);
+    try {
+        // graph id
+        Put put = new Put(graphDataHandler.getRowKey(graphData.getId()));
+        // write graph to Put
+        put = graphDataHandler.writeGraphData(put, graphData);
+        // write to table
+        graphDataTable.put(put);
+    } catch (RetriesExhaustedWithDetailsException | InterruptedIOException e) {
+        e.printStackTrace();
+    }
+}

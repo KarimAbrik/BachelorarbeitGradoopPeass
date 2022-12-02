@@ -1,0 +1,12 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public String toString() {
+    final StringBuilder sb = new StringBuilder("DefaultPersistentGraphData{");
+    sb.append("super=").append(super.toString());
+    sb.append(", vertices=").append(vertices);
+    sb.append(", edges=").append(edges);
+    sb.append('}');
+    return sb.toString();
+}
