@@ -1,0 +1,11 @@
+@Override                                                                                              @Override                                                                                           
+public Edge&lt;Long, EdgeData&gt; map(String s) throws Exception {                                   | public Edge&lt;Long, ED&gt; map(String s) throws Exception {                                        
+JSONObject jsonEdge = new JSONObject(s);                                                               JSONObject jsonEdge = new JSONObject(s);                                                            
+Long edgeID = getID(jsonEdge);                                                                         Long edgeID = getID(jsonEdge);                                                                      
+String edgeLabel = getLabel(jsonEdge);                                                                 String edgeLabel = getLabel(jsonEdge);                                                              
+Long sourceID = getSourceVertexID(jsonEdge);                                                           Long sourceID = getSourceVertexID(jsonEdge);                                                        
+Long targetID = getTargetVertexID(jsonEdge);                                                           Long targetID = getTargetVertexID(jsonEdge);                                                        
+Map&lt;String, Object&gt; properties = getProperties(jsonEdge);                                        Map&lt;String, Object&gt; properties = getProperties(jsonEdge);                                     
+Set&lt;Long&gt; graphs = getGraphs(jsonEdge);                                                          Set&lt;Long&gt; graphs = getGraphs(jsonEdge);                                                       
+return new Edge&lt;&gt;(sourceID, targetID, EdgeDataFactory.createDefaultEdge(edgeID, edgeLabel, sou | return new Edge&lt;&gt;(sourceID, targetID, edgeDataFactory.createEdgeData(edgeID, edgeLabel, source
+}                                                                                                      }                                                                                                   

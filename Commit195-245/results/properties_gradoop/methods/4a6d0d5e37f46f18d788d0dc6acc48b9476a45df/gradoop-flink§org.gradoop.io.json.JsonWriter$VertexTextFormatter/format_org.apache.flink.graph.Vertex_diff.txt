@@ -1,0 +1,12 @@
+@Override                                                                                              @Override                                                                                           
+public String format(Vertex&lt;Long, VertexData&gt; v) {                                             | public String format(Vertex&lt;Long, VD&gt; v) {                                                    
+JSONObject json = new JSONObject();                                                                    JSONObject json = new JSONObject();                                                                 
+try {                                                                                                  try {                                                                                               
+json.put(IDENTIFIER, v.getId());                                                                       json.put(IDENTIFIER, v.getId());                                                                    
+json.put(DATA, writeProperties(v.getValue()));                                                         json.put(DATA, writeProperties(v.getValue()));                                                      
+json.put(META, writeGraphElementMeta(v.getValue()));                                                   json.put(META, writeGraphElementMeta(v.getValue()));                                                
+} catch (JSONException e) {                                                                            } catch (JSONException e) {                                                                         
+e.printStackTrace();                                                                                   e.printStackTrace();                                                                                
+}                                                                                                      }                                                                                                   
+return json.toString();                                                                                return json.toString();                                                                             
+}                                                                                                      }                                                                                                   

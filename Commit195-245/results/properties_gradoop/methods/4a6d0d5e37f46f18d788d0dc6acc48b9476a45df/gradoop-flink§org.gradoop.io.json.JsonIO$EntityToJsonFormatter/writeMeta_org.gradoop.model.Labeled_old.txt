@@ -1,0 +1,5 @@
+protected JSONObject writeMeta(Labeled entity) throws JSONException {
+    JSONObject meta = new JSONObject();
+    meta.put(LABEL, entity.getLabel());
+    return meta;
+}

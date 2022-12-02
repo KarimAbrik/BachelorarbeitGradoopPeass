@@ -1,0 +1,14 @@
+@Override                                                                                              @Override                                                                                           
+public String format(Edge&lt;Long, EdgeData&gt; e) {                                                 | public String format(Edge&lt;Long, ED&gt; e) {                                                      
+JSONObject json = new JSONObject();                                                                    JSONObject json = new JSONObject();                                                                 
+try {                                                                                                  try {                                                                                               
+json.put(IDENTIFIER, e.getValue().getId());                                                            json.put(IDENTIFIER, e.getValue().getId());                                                         
+json.put(EDGE_SOURCE, e.getSource());                                                                  json.put(EDGE_SOURCE, e.getSource());                                                               
+json.put(EDGE_TARGET, e.getTarget());                                                                  json.put(EDGE_TARGET, e.getTarget());                                                               
+json.put(DATA, writeProperties(e.getValue()));                                                         json.put(DATA, writeProperties(e.getValue()));                                                      
+json.put(META, writeGraphElementMeta(e.getValue()));                                                   json.put(META, writeGraphElementMeta(e.getValue()));                                                
+} catch (JSONException ex) {                                                                           } catch (JSONException ex) {                                                                        
+ex.printStackTrace();                                                                                  ex.printStackTrace();                                                                               
+}                                                                                                      }                                                                                                   
+return json.toString();                                                                                return json.toString();                                                                             
+}                                                                                                      }                                                                                                   

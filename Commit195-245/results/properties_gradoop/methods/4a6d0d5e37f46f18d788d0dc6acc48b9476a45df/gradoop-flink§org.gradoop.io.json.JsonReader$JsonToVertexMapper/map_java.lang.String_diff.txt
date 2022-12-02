@@ -1,0 +1,9 @@
+@Override                                                                                              @Override                                                                                           
+public Vertex&lt;Long, VertexData&gt; map(String s) throws Exception {                               | public Vertex&lt;Long, VD&gt; map(String s) throws Exception {                                      
+JSONObject jsonVertex = new JSONObject(s);                                                             JSONObject jsonVertex = new JSONObject(s);                                                          
+Long vertexID = getID(jsonVertex);                                                                     Long vertexID = getID(jsonVertex);                                                                  
+String label = getLabel(jsonVertex);                                                                   String label = getLabel(jsonVertex);                                                                
+Map&lt;String, Object&gt; properties = getProperties(jsonVertex);                                      Map&lt;String, Object&gt; properties = getProperties(jsonVertex);                                   
+Set&lt;Long&gt; graphs = getGraphs(jsonVertex);                                                        Set&lt;Long&gt; graphs = getGraphs(jsonVertex);                                                     
+return new Vertex(vertexID, VertexDataFactory.createDefaultVertex(vertexID, label, properties, graph | return new Vertex&lt;&gt;(vertexID, vertexDataFactory.createVertexData(vertexID, label, properties, 
+}                                                                                                      }                                                                                                   

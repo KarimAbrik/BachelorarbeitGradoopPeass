@@ -1,0 +1,10 @@
+@Override
+public Subgraph<Long, GraphData> map(String s) throws Exception {
+    JSONObject jsonGraph = new JSONObject(s);
+    Long graphID = getID(jsonGraph);
+    String label = getLabel(jsonGraph);
+    Map<String, Object> properties = getProperties(jsonGraph);
+    Set<Long> vertices = getArrayValues(jsonGraph.getJSONObject(META).getJSONArray(VERTICES));
+    Set<Long> edges = getArrayValues(jsonGraph.getJSONObject(META).getJSONArray(EDGES));
+    return new Subgraph<>(graphID, GraphDataFactory.createDefaultGraph(graphID, label, properties, vertices, edges));
+}

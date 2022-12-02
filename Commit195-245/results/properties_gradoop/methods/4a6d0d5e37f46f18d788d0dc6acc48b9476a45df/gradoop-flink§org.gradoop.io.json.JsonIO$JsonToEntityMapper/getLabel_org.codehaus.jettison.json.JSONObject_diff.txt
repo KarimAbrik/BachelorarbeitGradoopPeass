@@ -1,0 +1,3 @@
+protected String getLabel(JSONObject object) throws JSONException {
+    return object.getJSONObject(META).getString(LABEL);
+}

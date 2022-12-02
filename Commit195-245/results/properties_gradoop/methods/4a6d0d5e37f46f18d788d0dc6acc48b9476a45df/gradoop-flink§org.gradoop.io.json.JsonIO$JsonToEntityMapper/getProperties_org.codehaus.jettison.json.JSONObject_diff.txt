@@ -1,0 +1,11 @@
+protected Map<String, Object> getProperties(JSONObject object) throws JSONException {
+    Map<String, Object> props = Maps.newHashMapWithExpectedSize(object.length() * 2);
+    object = object.getJSONObject(DATA);
+    Iterator<?> keys = object.keys();
+    while (keys.hasNext()) {
+        String key = keys.next().toString();
+        Object o = object.get(key);
+        props.put(key, o);
+    }
+    return props;
+}

@@ -1,0 +1,6 @@
+protected <T extends GraphData> JSONObject writeGraphMeta(T entity) throws JSONException {
+    JSONObject meta = writeMeta(entity);
+    meta.put(VERTICES, getJSONArray(entity.getVertices()));
+    meta.put(EDGES, getJSONArray(entity.getEdges()));
+    return meta;
+}

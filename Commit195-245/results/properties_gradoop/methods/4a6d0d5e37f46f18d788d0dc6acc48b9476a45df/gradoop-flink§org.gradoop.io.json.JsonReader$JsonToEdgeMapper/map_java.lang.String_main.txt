@@ -1,0 +1,11 @@
+@Override
+public Edge<Long, ED> map(String s) throws Exception {
+    JSONObject jsonEdge = new JSONObject(s);
+    Long edgeID = getID(jsonEdge);
+    String edgeLabel = getLabel(jsonEdge);
+    Long sourceID = getSourceVertexID(jsonEdge);
+    Long targetID = getTargetVertexID(jsonEdge);
+    Map<String, Object> properties = getProperties(jsonEdge);
+    Set<Long> graphs = getGraphs(jsonEdge);
+    return new Edge<>(sourceID, targetID, edgeDataFactory.createEdgeData(edgeID, edgeLabel, sourceID, targetID, properties, graphs));
+}

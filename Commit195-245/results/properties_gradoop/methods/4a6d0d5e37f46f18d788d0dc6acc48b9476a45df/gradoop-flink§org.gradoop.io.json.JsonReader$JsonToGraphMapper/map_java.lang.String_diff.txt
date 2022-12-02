@@ -1,0 +1,10 @@
+@Override                                                                                              @Override                                                                                           
+public Subgraph&lt;Long, GraphData&gt; map(String s) throws Exception {                              | public Subgraph&lt;Long, GD&gt; map(String s) throws Exception {                                    
+JSONObject jsonGraph = new JSONObject(s);                                                              JSONObject jsonGraph = new JSONObject(s);                                                           
+Long graphID = getID(jsonGraph);                                                                       Long graphID = getID(jsonGraph);                                                                    
+String label = getLabel(jsonGraph);                                                                    String label = getLabel(jsonGraph);                                                                 
+Map&lt;String, Object&gt; properties = getProperties(jsonGraph);                                       Map&lt;String, Object&gt; properties = getProperties(jsonGraph);                                    
+Set&lt;Long&gt; vertices = getArrayValues(jsonGraph.getJSONObject(META).getJSONArray(VERTICES));       Set&lt;Long&gt; vertices = getArrayValues(jsonGraph.getJSONObject(META).getJSONArray(VERTICES));    
+Set&lt;Long&gt; edges = getArrayValues(jsonGraph.getJSONObject(META).getJSONArray(EDGES));             Set&lt;Long&gt; edges = getArrayValues(jsonGraph.getJSONObject(META).getJSONArray(EDGES));          
+return new Subgraph&lt;&gt;(graphID, GraphDataFactory.createDefaultGraph(graphID, label, properties, | return new Subgraph&lt;&gt;(graphID, graphDataFactory.createGraphData(graphID, label, properties, ve
+}                                                                                                      }                                                                                                   
