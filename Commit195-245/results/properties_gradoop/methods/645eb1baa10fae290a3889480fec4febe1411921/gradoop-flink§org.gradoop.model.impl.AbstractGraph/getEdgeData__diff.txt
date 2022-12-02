@@ -1,0 +1,13 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public DataSet<ED> getEdgeData() {
+    return getEdges().map(new MapFunction<Edge<Long, ED>, ED>() {
+
+        @Override
+        public ED map(Edge<Long, ED> longEDEdge) throws Exception {
+            return longEDEdge.getValue();
+        }
+    }).withForwardedFields("f2->*");
+}

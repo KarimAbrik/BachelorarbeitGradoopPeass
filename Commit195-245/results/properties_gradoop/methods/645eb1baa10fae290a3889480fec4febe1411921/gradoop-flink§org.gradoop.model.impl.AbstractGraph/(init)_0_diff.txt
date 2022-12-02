@@ -1,0 +1,16 @@
+/**
+ * Creates a new graph instance.
+ *
+ * @param graph               Gelly graph
+ * @param vertexDataFactory   vertex data factory
+ * @param edgeDataFactory     edge data factory
+ * @param graphDataFactory    graph data factory
+ * @param env                 Flink execution environment
+ */
+protected AbstractGraph(Graph<Long, VD, ED> graph, VertexDataFactory<VD> vertexDataFactory, EdgeDataFactory<ED> edgeDataFactory, GraphDataFactory<GD> graphDataFactory, ExecutionEnvironment env) {
+    this.vertexDataFactory = vertexDataFactory;
+    this.edgeDataFactory = edgeDataFactory;
+    this.graphDataFactory = graphDataFactory;
+    this.env = env;
+    this.graph = graph;
+}

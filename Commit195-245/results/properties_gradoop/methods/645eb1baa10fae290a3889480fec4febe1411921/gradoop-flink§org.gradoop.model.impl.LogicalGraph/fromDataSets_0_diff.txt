@@ -1,0 +1,18 @@
+/**
+ * Creates a logical graph from the given arguments.
+ *
+ * @param vertices          Vertex DataSet
+ * @param edges             Edge DataSet
+ * @param graphData         graph data associated with the logical graph
+ * @param vertexDataFactory vertex data factory
+ * @param edgeDataFactory   edge data factory
+ * @param graphDataFactory  graph data factory
+ * @param <VD>              vertex data type
+ * @param <ED>              edge data type
+ * @param <GD>              graph data type
+ * @return logical graph
+ */
+public static <VD extends VertexData, ED extends EdgeData, GD extends GraphData> LogicalGraph<VD, ED, GD> fromDataSets(DataSet<Vertex<Long, VD>> vertices, DataSet<Edge<Long, ED>> edges, GD graphData, VertexDataFactory<VD> vertexDataFactory, EdgeDataFactory<ED> edgeDataFactory, GraphDataFactory<GD> graphDataFactory) {
+    Graph<Long, VD, ED> gellyGraph = Graph.fromDataSet(vertices, edges, vertices.getExecutionEnvironment());
+    return fromGellyGraph(gellyGraph, graphData, vertexDataFactory, edgeDataFactory, graphDataFactory);
+}

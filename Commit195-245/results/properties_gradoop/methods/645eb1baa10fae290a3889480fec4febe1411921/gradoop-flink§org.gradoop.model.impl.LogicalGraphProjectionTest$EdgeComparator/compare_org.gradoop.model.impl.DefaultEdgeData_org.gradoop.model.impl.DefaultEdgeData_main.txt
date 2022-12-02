@@ -1,0 +1,4 @@
+@Override
+public int compare(DefaultEdgeData edge1, DefaultEdgeData edge2) {
+    return Long.compare(edge1.getId(), edge2.getId());
+}

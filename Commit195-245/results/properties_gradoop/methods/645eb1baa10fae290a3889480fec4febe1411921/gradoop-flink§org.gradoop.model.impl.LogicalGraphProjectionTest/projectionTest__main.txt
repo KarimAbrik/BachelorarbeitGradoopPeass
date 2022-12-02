@@ -1,0 +1,38 @@
+@Test
+public void projectionTest() throws Exception {
+    LogicalGraph<DefaultVertexData, DefaultEdgeData, DefaultGraphData> forumGraph = getGraphStore().getGraph(3L);
+    LogicalGraph<DefaultVertexData, DefaultEdgeData, DefaultGraphData> newGraph = forumGraph.project(new VertexLabelProjectionFunction(), new EdgePropertyProjectionFunction());
+    List<DefaultVertexData> oldVertices = Lists.newArrayList();
+    List<DefaultEdgeData> oldEdges = Lists.newArrayList();
+    List<DefaultVertexData> newVertices = Lists.newArrayList();
+    List<DefaultEdgeData> newEdges = Lists.newArrayList();
+    forumGraph.getVertexData().output(new LocalCollectionOutputFormat<>(oldVertices));
+    forumGraph.getEdgeData().output(new LocalCollectionOutputFormat<>(oldEdges));
+    newGraph.getVertexData().output(new LocalCollectionOutputFormat<>(newVertices));
+    newGraph.getEdgeData().output(new LocalCollectionOutputFormat<>(newEdges));
+    getExecutionEnvironment().execute();
+    Collections.sort(oldVertices, new VertexComparator());
+    Collections.sort(newVertices, new VertexComparator());
+    Collections.sort(oldEdges, new EdgeComparator());
+    Collections.sort(newEdges, new EdgeComparator());
+    assertNotNull("graph was null", newGraph);
+    assertEquals(oldVertices.size(), newVertices.size());
+    assertEquals(oldEdges.size(), newEdges.size());
+    assertEquals(forumGraph.getLabel(), newGraph.getLabel());
+    assertEquals(forumGraph.getProperties(), newGraph.getProperties());
+    for (int i = 0; i < newVertices.size(); i++) {
+        DefaultVertexData oldVertex = oldVertices.get(i);
+        DefaultVertexData newVertex = newVertices.get(i);
+        assertEquals(oldVertex.getId(), newVertex.getId());
+        assertEquals(oldVertex.getProperties(), newVertex.getProperties());
+        assertEquals(newVertex.getLabel(), "test_label");
+    }
+    for (int i = 0; i < newEdges.size(); i++) {
+        DefaultEdgeData oldEdge = oldEdges.get(i);
+        DefaultEdgeData newEdge = newEdges.get(i);
+        assertEquals(oldEdge.getId(), newEdge.getId());
+        assertEquals(oldEdge.getLabel(), newEdge.getLabel());
+        assertEquals(newEdge.getProperties().get("test_property"), "test_value");
+        assertNull(newEdge.getProperties().get(PROPERTY_KEY_SINCE));
+    }
+}

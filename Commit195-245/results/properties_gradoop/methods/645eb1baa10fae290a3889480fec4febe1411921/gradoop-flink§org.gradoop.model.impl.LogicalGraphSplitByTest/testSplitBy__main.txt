@@ -1,0 +1,23 @@
+@Test
+public void testSplitBy() throws Exception {
+    LogicalGraph<DefaultVertexData, DefaultEdgeData, DefaultGraphData> inputGraph = getGraphStore().getGraph(0L);
+    UnaryFunction<DefaultVertexData, Long> function = new SplitByIdOddOrEven();
+    GraphCollection<DefaultVertexData, DefaultEdgeData, DefaultGraphData> labeledGraphCollection = inputGraph.callForCollection(new SplitBy<DefaultVertexData, DefaultEdgeData, DefaultGraphData>(new SplitByIdOddOrEven(), getExecutionEnvironment()));
+    List<DefaultVertexData> oldVertices = Lists.newArrayList();
+    inputGraph.getVertexData().output(new LocalCollectionOutputFormat<>(oldVertices));
+    List<DefaultVertexData> newVertices = Lists.newArrayList();
+    labeledGraphCollection.getVertexData().output(new LocalCollectionOutputFormat<>(newVertices));
+    List<DefaultEdgeData> newEdges = Lists.newArrayList();
+    labeledGraphCollection.getEdgeData().output(new LocalCollectionOutputFormat<>(newEdges));
+    assertNotNull("graph collection is null", labeledGraphCollection);
+    assertEquals("wrong number of graphs", 2L, labeledGraphCollection.size());
+    assertEquals("wrong number of vertices", 3L, newVertices.size());
+    assertEquals("wrong number of edges", 1L, newEdges.size());
+    for (int i = 0; i < newVertices.size(); i++) {
+        DefaultVertexData oldVertex = oldVertices.get(i);
+        DefaultVertexData newVertex = newVertices.get(i);
+        assertTrue((oldVertex.getGraphCount() + 1) == newVertex.getGraphCount());
+        assertTrue(newVertex.getGraphs().containsAll(oldVertex.getGraphs()));
+        assertTrue(newVertex.getGraphs().contains(function.execute(newVertex)));
+    }
+}

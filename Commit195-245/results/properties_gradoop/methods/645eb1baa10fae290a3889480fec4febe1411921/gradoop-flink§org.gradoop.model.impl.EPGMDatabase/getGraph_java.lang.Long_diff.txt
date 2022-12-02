@@ -1,0 +1,10 @@
+/**
+ * Returns a logical graph by its identifier.
+ *
+ * @param graphID graph identifier
+ * @return logical graph or {@code null} if graph does not exist
+ * @throws Exception
+ */
+public LogicalGraph<VD, ED, GD> getGraph(Long graphID) throws Exception {
+    return database.getGraph(graphID);
+}

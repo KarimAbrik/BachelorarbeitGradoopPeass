@@ -1,0 +1,7 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public GraphCollection<VD, ED, GD> callForCollection(UnaryGraphToCollectionOperator<VD, ED, GD> operator) throws Exception {
+    return operator.execute(this);
+}

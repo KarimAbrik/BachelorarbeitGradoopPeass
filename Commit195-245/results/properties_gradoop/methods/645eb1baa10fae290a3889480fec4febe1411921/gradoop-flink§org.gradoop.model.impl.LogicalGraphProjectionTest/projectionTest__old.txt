@@ -1,0 +1,47 @@
+@Test
+public void projectionTest() throws Exception {
+    LogicalGraph<DefaultVertexData, DefaultEdgeData, DefaultGraphData> forumGraph = getGraphStore().getGraph(3L);
+    LogicalGraph<DefaultVertexData, DefaultEdgeData, DefaultGraphData> newGraph = forumGraph.project(new VertexLabelProjectionFunction(), new EdgePropertyProjectionFunction());
+    Comparator<Vertex<Long, DefaultVertexData>> vertexComp = new Comparator<Vertex<Long, DefaultVertexData>>() {
+
+        @Override
+        public int compare(Vertex<Long, DefaultVertexData> vertex1, Vertex<Long, DefaultVertexData> vertex2) {
+            return Long.compare(vertex1.getId(), vertex2.getId());
+        }
+    };
+    Comparator<Edge<Long, DefaultEdgeData>> edgeComp = new Comparator<Edge<Long, DefaultEdgeData>>() {
+
+        @Override
+        public int compare(Edge<Long, DefaultEdgeData> edge1, Edge<Long, DefaultEdgeData> edge2) {
+            return Long.compare(edge1.getValue().getId(), edge2.getValue().getId());
+        }
+    };
+    List<Vertex<Long, DefaultVertexData>> oldVertices = forumGraph.getGellyGraph().getVertices().collect();
+    Collections.sort(oldVertices, vertexComp);
+    List<Edge<Long, DefaultEdgeData>> oldEdges = forumGraph.getGellyGraph().getEdges().collect();
+    Collections.sort(oldEdges, edgeComp);
+    List<Vertex<Long, DefaultVertexData>> newVertices = newGraph.getGellyGraph().getVertices().collect();
+    Collections.sort(newVertices, vertexComp);
+    List<Edge<Long, DefaultEdgeData>> newEdges = newGraph.getGellyGraph().getEdges().collect();
+    Collections.sort(newEdges, edgeComp);
+    assertNotNull("graph was null", newGraph);
+    assertEquals(forumGraph.getVertexCount(), newGraph.getVertexCount());
+    assertEquals(forumGraph.getEdgeCount(), newGraph.getEdgeCount());
+    assertEquals(forumGraph.getLabel(), newGraph.getLabel());
+    assertEquals(forumGraph.getProperties(), newGraph.getProperties());
+    for (int i = 0; i < newVertices.size(); i++) {
+        Vertex<Long, DefaultVertexData> oldVertex = oldVertices.get(i);
+        Vertex<Long, DefaultVertexData> newVertex = newVertices.get(i);
+        assertEquals(oldVertex.getId(), newVertex.getId());
+        assertEquals(oldVertex.getValue().getProperties(), newVertex.getValue().getProperties());
+        assertEquals(newVertex.getValue().getLabel(), "test_label");
+    }
+    for (int i = 0; i < newEdges.size(); i++) {
+        Edge<Long, DefaultEdgeData> oldEdge = oldEdges.get(i);
+        Edge<Long, DefaultEdgeData> newEdge = newEdges.get(i);
+        assertEquals(oldEdge.getValue().getId(), newEdge.getValue().getId());
+        assertEquals(oldEdge.getValue().getLabel(), newEdge.getValue().getLabel());
+        assertEquals(newEdge.getValue().getProperties().get("test_property"), "test_value");
+        assertNull(newEdge.getValue().getProperties().get(PROPERTY_KEY_SINCE));
+    }
+}

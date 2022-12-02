@@ -1,0 +1,4 @@
+@Override
+public int compare(DefaultVertexData vertex1, DefaultVertexData vertex2) {
+    return Long.compare(vertex1.getId(), vertex2.getId());
+}

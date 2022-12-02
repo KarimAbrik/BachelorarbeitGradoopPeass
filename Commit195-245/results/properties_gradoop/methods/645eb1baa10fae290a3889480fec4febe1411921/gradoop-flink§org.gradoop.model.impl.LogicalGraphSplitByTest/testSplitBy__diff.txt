@@ -1,0 +1,25 @@
+@Test                                                                                                  @Test                                                                                               
+public void testSplitBy() throws Exception {                                                           public void testSplitBy() throws Exception {                                                        
+LogicalGraph&lt;DefaultVertexData, DefaultEdgeData, DefaultGraphData&gt; inputGraph = getGraphStore(   LogicalGraph&lt;DefaultVertexData, DefaultEdgeData, DefaultGraphData&gt; inputGraph = getGraphStore(
+UnaryFunction&lt;Vertex&lt;Long, DefaultVertexData&gt;, Long&gt; function = new SplitByIdOddOrEven() | UnaryFunction&lt;DefaultVertexData, Long&gt; function = new SplitByIdOddOrEven();                   
+GraphCollection&lt;DefaultVertexData, DefaultEdgeData, DefaultGraphData&gt; labeledGraphCollection = | GraphCollection&lt;DefaultVertexData, DefaultEdgeData, DefaultGraphData&gt; labeledGraphCollection =
+                                                                                                     | List&lt;DefaultVertexData&gt; oldVertices = Lists.newArrayList();                                   
+                                                                                                     | inputGraph.getVertexData().output(new LocalCollectionOutputFormat&lt;&gt;(oldVertices));            
+                                                                                                     | List&lt;DefaultVertexData&gt; newVertices = Lists.newArrayList();                                   
+                                                                                                     | labeledGraphCollection.getVertexData().output(new LocalCollectionOutputFormat&lt;&gt;(newVertices));
+                                                                                                     | List&lt;DefaultEdgeData&gt; newEdges = Lists.newArrayList();                                        
+                                                                                                     | labeledGraphCollection.getEdgeData().output(new LocalCollectionOutputFormat&lt;&gt;(newEdges));     
+assertNotNull("graph collection is null", labeledGraphCollection);                                     assertNotNull("graph collection is null", labeledGraphCollection);                                  
+assertEquals("wrong number of graphs", 2L, labeledGraphCollection.size());                             assertEquals("wrong number of graphs", 2L, labeledGraphCollection.size());                          
+assertEquals("wrong number of vertices", 3L, labeledGraphCollection.getVertexCount());               | assertEquals("wrong number of vertices", 3L, newVertices.size());                                   
+List&lt;Vertex&lt;Long, DefaultVertexData&gt;&gt; oldVertices = inputGraph.getGellyGraph().getVertic | assertEquals("wrong number of edges", 1L, newEdges.size());                                         
+List&lt;Vertex&lt;Long, DefaultVertexData&gt;&gt; newVertices = labeledGraphCollection.getGellyGraph |                                                                                                     
+for (int i = 0; i &lt; newVertices.size(); i++) {                                                      for (int i = 0; i &lt; newVertices.size(); i++) {                                                   
+Vertex&lt;Long, DefaultVertexData&gt; oldVertex = oldVertices.get(i);                                | DefaultVertexData oldVertex = oldVertices.get(i);                                                   
+Vertex&lt;Long, DefaultVertexData&gt; newVertex = newVertices.get(i);                                | DefaultVertexData newVertex = newVertices.get(i);                                                   
+assertTrue((oldVertex.getValue().getGraphCount() + 1) == newVertex.getValue().getGraphCount());      | assertTrue((oldVertex.getGraphCount() + 1) == newVertex.getGraphCount());                           
+assertTrue(newVertex.getValue().getGraphs().containsAll(oldVertex.getValue().getGraphs()));          | assertTrue(newVertex.getGraphs().containsAll(oldVertex.getGraphs()));                               
+assertTrue(newVertex.getValue().getGraphs().contains(function.execute(newVertex)));                  | assertTrue(newVertex.getGraphs().contains(function.execute(newVertex)));                            
+}                                                                                                      }                                                                                                   
+assertEquals("wrong number of edges", 1L, labeledGraphCollection.getEdgeCount());                    |                                                                                                     
+}                                                                                                      }                                                                                                   

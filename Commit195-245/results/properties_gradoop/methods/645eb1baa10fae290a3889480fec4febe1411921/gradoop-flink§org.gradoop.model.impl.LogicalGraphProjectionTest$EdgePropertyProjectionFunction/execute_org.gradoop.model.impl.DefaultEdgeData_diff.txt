@@ -1,0 +1,6 @@
+@Override
+public DefaultEdgeData execute(DefaultEdgeData edgeData) throws Exception {
+    edgeData.setProperty("test_property", "test_value");
+    edgeData.getProperties().remove(PROPERTY_KEY_SINCE);
+    return edgeData;
+}
