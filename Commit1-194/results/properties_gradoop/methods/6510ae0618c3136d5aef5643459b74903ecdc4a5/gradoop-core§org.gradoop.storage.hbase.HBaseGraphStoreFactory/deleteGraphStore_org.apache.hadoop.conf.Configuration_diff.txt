@@ -1,0 +1,12 @@
+/**                                                                                                    /**                                                                                                 
+* Deletes the graph store based on the given config.                                                 | * Deletes the default graph store.                                                                  
+*                                                                                                      *                                                                                                   
+* @param config Hadoop configuration                                                                   * @param config Hadoop configuration                                                                
+*/                                                                                                     */                                                                                                  
+public static void deleteGraphStore(final Configuration config) {                                      public static void deleteGraphStore(final Configuration config) {                                   
+try {                                                                                                | deleteGraphStore(config, GConstants.DEFAULT_TABLE_VERTICES, GConstants.DEFAULT_TABLE_GRAPHS);       
+deleteTablesIfExists(config);                                                                        |                                                                                                     
+} catch (IOException e) {                                                                            |                                                                                                     
+e.printStackTrace();                                                                                 |                                                                                                     
+}                                                                                                      }                                                                                                   
+}                                                                                                    |                                                                                                     

@@ -1,0 +1,23 @@
+private Iterable<Graph> createGraphs() {
+    List<Graph> graphs = new ArrayList<>();
+    // graph 0
+    Long graphID = 0L;
+    List<String> graphLabels = Arrays.asList("A");
+    Map<String, Object> graphProperties = new HashMap<>();
+    graphProperties.put("k1", "v1");
+    graphProperties.put("k2", "v2");
+    List<Long> vertices = new ArrayList<>();
+    vertices.add(0L);
+    vertices.add(1L);
+    graphs.add(GraphFactory.createDefaultGraph(graphID, graphLabels, graphProperties, vertices));
+    // graph 1
+    graphID = 1L;
+    graphLabels = Arrays.asList("A", "B");
+    graphProperties = new HashMap<>();
+    graphProperties.put("k1", "v1");
+    vertices = new ArrayList<>();
+    vertices.add(1L);
+    vertices.add(2L);
+    graphs.add(GraphFactory.createDefaultGraph(graphID, graphLabels, graphProperties, vertices));
+    return graphs;
+}

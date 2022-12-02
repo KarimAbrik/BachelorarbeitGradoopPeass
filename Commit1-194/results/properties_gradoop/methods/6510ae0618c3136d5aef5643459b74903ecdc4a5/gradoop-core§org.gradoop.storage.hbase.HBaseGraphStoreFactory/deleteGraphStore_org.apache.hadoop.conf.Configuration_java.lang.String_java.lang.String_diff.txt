@@ -1,0 +1,14 @@
+                                                                                                     | /**                                                                                                 
+                                                                                                     | * Deletes the graph store based on the given table names.                                           
+                                                                                                     | *                                                                                                   
+                                                                                                     | * @param config          Hadoop configuration                                                       
+                                                                                                     | * @param vertexTableName vertex table name                                                          
+                                                                                                     | * @param graphTableName  graph table name                                                           
+                                                                                                     | */                                                                                                  
+                                                                                                     | public static void deleteGraphStore(final Configuration config, final String vertexTableName, final 
+                                                                                                     | try {                                                                                               
+                                                                                                     | deleteTablesIfExists(config, vertexTableName, graphTableName);                                      
+                                                                                                     | } catch (IOException e) {                                                                           
+                                                                                                     | e.printStackTrace();                                                                                
+                                                                                                     | }                                                                                                   
+                                                                                                     | }                                                                                                   

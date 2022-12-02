@@ -1,0 +1,7 @@
+private List<Vertex> createVertices(String[] graph, VertexLineReader vertexLineReader) {
+    List<Vertex> vertices = Lists.newArrayListWithCapacity(graph.length);
+    for (String line : graph) {
+        vertices.add(vertexLineReader.readVertex(line));
+    }
+    return vertices;
+}

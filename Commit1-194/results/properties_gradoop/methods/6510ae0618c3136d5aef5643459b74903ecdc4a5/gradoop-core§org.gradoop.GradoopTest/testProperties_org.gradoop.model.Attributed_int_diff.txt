@@ -1,0 +1,22 @@
+private void testProperties(Attributed v, int expectedSize) {
+    int count = 0;
+    if (expectedSize == 0) {
+        assertNull(v.getPropertyKeys());
+    } else {
+        for (String propertyKey : v.getPropertyKeys()) {
+            switch(propertyKey) {
+                case KEY_1:
+                    assertEquals(VALUE_1, v.getProperty(KEY_1));
+                    break;
+                case KEY_2:
+                    assertEquals(VALUE_2, v.getProperty(KEY_2));
+                    break;
+                case KEY_3:
+                    assertEquals(VALUE_3, v.getProperty(KEY_3));
+                    break;
+            }
+            count++;
+        }
+        assertEquals(expectedSize, count);
+    }
+}

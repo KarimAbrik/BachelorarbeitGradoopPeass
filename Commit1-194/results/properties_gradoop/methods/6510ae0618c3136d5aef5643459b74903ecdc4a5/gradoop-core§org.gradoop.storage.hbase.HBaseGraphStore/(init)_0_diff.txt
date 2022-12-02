@@ -1,0 +1,29 @@
+/**
+ * Creates a HBaseGraphStore based on the given parameters. All parameters
+ * are mandatory and must not be {@code null}.
+ *
+ * @param graphsTable   HBase table to store graphs
+ * @param verticesTable HBase table to store vertices
+ * @param vertexHandler handles reading/writing of vertices
+ * @param graphHandler  handles reading/writing of graphs
+ */
+HBaseGraphStore(final HTable graphsTable, final HTable verticesTable, final VertexHandler vertexHandler, final GraphHandler graphHandler) {
+    if (graphsTable == null) {
+        throw new IllegalArgumentException("graphsTable must not be null");
+    }
+    if (verticesTable == null) {
+        throw new IllegalArgumentException("verticesTable must not be null");
+    }
+    if (vertexHandler == null) {
+        throw new IllegalArgumentException("vertexHandler must not be null");
+    }
+    if (graphHandler == null) {
+        throw new IllegalArgumentException("graphHandler must not be null");
+    }
+    this.graphsTable = graphsTable;
+    this.verticesTable = verticesTable;
+    this.vertexHandler = vertexHandler;
+    this.graphHandler = graphHandler;
+    this.verticesTable.setAutoFlush(DEFAULT_ENABLE_AUTO_FLUSH, DEFAULT_CLEAR_BUFFER_ON_FAIL);
+    this.graphsTable.setAutoFlush(DEFAULT_ENABLE_AUTO_FLUSH, DEFAULT_CLEAR_BUFFER_ON_FAIL);
+}
