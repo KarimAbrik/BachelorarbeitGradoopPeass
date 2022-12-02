@@ -1,0 +1,27 @@
+/**
+ * Computes new vertices based on the new subgraphs. For each vertex, each
+ * graph is collected in a flatMap function and then joined with the new
+ * subgraph dataset.
+ *
+ * @param newSubgraphs graph dataset of the resulting graph collection
+ * @return vertex set of the resulting graph collection
+ */
+@Override
+protected DataSet<Vertex<Long, VD>> computeNewVertices(DataSet<Subgraph<Long, GD>> newSubgraphs) throws Exception {
+    DataSet<Tuple2<Vertex<Long, VD>, Long>> verticesWithGraphs = firstGraph.getVertices().flatMap(new FlatMapFunction<Vertex<Long, VD>, Tuple2<Vertex<Long, VD>, Long>>() {
+
+        @Override
+        public void flatMap(Vertex<Long, VD> v, Collector<Tuple2<Vertex<Long, VD>, Long>> collector) throws Exception {
+            for (Long graph : v.getValue().getGraphs()) {
+                collector.collect(new Tuple2<>(v, graph));
+            }
+        }
+    });
+    return verticesWithGraphs.join(newSubgraphs).where(1).equalTo(new KeySelectors.GraphKeySelector<GD>()).with(new JoinFunction<Tuple2<Vertex<Long, VD>, Long>, Subgraph<Long, GD>, Vertex<Long, VD>>() {
+
+        @Override
+        public Vertex<Long, VD> join(Tuple2<Vertex<Long, VD>, Long> vertices, Subgraph<Long, GD> subgraph) throws Exception {
+            return vertices.f0;
+        }
+    }).distinct(new KeySelectors.VertexKeySelector<VD>());
+}

@@ -1,0 +1,7 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+protected DataSet<Vertex<Long, VD>> computeNewVertices(DataSet<Subgraph<Long, GD>> newSubgraphs) throws Exception {
+    return firstGraph.getVertices().union(secondGraph.getVertices()).distinct(new KeySelectors.VertexKeySelector<VD>());
+}

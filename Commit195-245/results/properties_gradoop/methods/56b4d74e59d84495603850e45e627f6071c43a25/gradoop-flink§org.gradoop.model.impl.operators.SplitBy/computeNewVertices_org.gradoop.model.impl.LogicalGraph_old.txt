@@ -1,0 +1,15 @@
+/**
+ * Computes the vertices in the new graphs created by the SplitBy and add
+ * these graphs to the graph sets of the vertices.
+ *
+ * @param logicalGraph input graph
+ * @return a DataSet containing all vertices, each vertex has one new graph
+ * in its graph set
+ */
+private DataSet<Vertex<Long, VD>> computeNewVertices(LogicalGraph<VD, ED, GD> logicalGraph) {
+    // get the Gelly graph and vertices
+    final Graph<Long, VD, ED> graph = logicalGraph.getGellyGraph();
+    DataSet<Vertex<Long, VD>> vertices = graph.getVertices();
+    // add the new graphs to the vertices graph lists
+    return vertices.map(new AddNewGraphsToVertexMapper<>(vertexToLongFunc));
+}

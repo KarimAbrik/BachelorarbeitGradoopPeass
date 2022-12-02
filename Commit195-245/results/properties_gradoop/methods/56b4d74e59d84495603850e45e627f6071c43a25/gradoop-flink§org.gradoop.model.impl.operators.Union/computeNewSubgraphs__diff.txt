@@ -1,0 +1,7 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+protected DataSet<Subgraph<Long, GD>> computeNewSubgraphs() {
+    return firstSubgraphs.union(secondSubgraphs).distinct(new KeySelectors.GraphKeySelector<GD>());
+}

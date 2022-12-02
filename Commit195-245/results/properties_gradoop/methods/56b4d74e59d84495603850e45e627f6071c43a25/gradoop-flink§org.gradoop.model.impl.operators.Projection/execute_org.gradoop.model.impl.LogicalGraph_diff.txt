@@ -1,0 +1,11 @@
+/**                                                                                                    /**                                                                                                 
+* {@inheritDoc}                                                                                        * {@inheritDoc}                                                                                     
+*/                                                                                                     */                                                                                                  
+@Override                                                                                              @Override                                                                                           
+public LogicalGraph&lt;VD, ED, GD&gt; execute(LogicalGraph&lt;VD, ED, GD&gt; graph) {                  public LogicalGraph&lt;VD, ED, GD&gt; execute(LogicalGraph&lt;VD, ED, GD&gt; graph) {               
+DataSet&lt;Vertex&lt;Long, VD&gt;&gt; vertices = graph.getGellyGraph().getVertices();                | DataSet&lt;Vertex&lt;Long, VD&gt;&gt; vertices = graph.getVertices();                               
+vertices = vertices.map(new ProjectionVerticesMapper&lt;&gt;(getVertexFunc()));                        vertices = vertices.map(new ProjectionVerticesMapper&lt;&gt;(getVertexFunc()));                     
+DataSet&lt;Edge&lt;Long, ED&gt;&gt; edges = graph.getGellyGraph().getEdges();                        | DataSet&lt;Edge&lt;Long, ED&gt;&gt; edges = graph.getEdges();                                       
+edges = edges.map(new ProjectionEdgesMapper&lt;&gt;(getEdgeFunc()));                                   edges = edges.map(new ProjectionEdgesMapper&lt;&gt;(getEdgeFunc()));                                
+return LogicalGraph.fromGraph(Graph.fromDataSet(vertices, edges, graph.getGellyGraph().getContext()) | return LogicalGraph.fromDataSets(vertices, edges, graph.getGraphDataFactory().createGraphData(graph.
+}                                                                                                      }                                                                                                   

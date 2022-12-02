@@ -1,0 +1,10 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public Tuple3<Long, Set<Long>, Set<Long>> join(Tuple3<Long, Set<Long>, Long> tuple3, Vertex<Long, VD> vertex) throws Exception {
+    reuseTuple.f0 = tuple3.f0;
+    reuseTuple.f1 = tuple3.f1;
+    reuseTuple.f2 = vertex.getValue().getGraphs();
+    return reuseTuple;
+}

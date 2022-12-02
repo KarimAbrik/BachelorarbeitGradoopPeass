@@ -1,0 +1,10 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public Tuple3<Long, Long, Long> map(Edge<Long, ED> edge) throws Exception {
+    reuseTuple.f0 = edge.getValue().getId();
+    reuseTuple.f1 = edge.getSource();
+    reuseTuple.f2 = edge.getTarget();
+    return reuseTuple;
+}

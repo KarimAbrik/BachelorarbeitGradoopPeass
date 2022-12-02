@@ -1,0 +1,8 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public Subgraph<Long, GD> map(Tuple1<Long> idTuple) throws Exception {
+    Long id = idTuple.f0;
+    return new Subgraph<>(id, graphDataFactory.createGraphData(id, "split graph " + id));
+}

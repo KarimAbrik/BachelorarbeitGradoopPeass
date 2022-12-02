@@ -1,0 +1,11 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public GraphCollection<VD, ED, GD> execute(LogicalGraph<VD, ED, GD> logicalGraph) {
+    DataSet<Vertex<Long, VD>> vertices = computeNewVertices(logicalGraph);
+    DataSet<Subgraph<Long, GD>> subgraphs = computeNewSubgraphs(logicalGraph, vertices);
+    DataSet<Edge<Long, ED>> edges = computeNewEdges(logicalGraph, vertices, subgraphs);
+    Graph<Long, VD, ED> newGraph = Graph.fromDataSet(vertices, edges, env);
+    return new GraphCollection<>(newGraph, subgraphs, logicalGraph.getVertexDataFactory(), logicalGraph.getEdgeDataFactory(), logicalGraph.getGraphDataFactory(), env);
+}

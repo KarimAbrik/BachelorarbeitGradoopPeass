@@ -1,0 +1,7 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+protected DataSet<Edge<Long, ED>> computeNewEdges(DataSet<Vertex<Long, VD>> newVertices) {
+    return firstGraph.getEdges().union(secondGraph.getEdges()).distinct(new KeySelectors.EdgeKeySelector<ED>());
+}

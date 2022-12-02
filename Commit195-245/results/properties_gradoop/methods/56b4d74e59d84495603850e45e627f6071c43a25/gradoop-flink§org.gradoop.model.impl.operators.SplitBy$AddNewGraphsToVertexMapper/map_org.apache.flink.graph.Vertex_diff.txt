@@ -1,0 +1,13 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public Vertex<Long, VD> map(Vertex<Long, VD> vertex) throws Exception {
+    Long labelPropIndex = function.execute(vertex);
+    if (vertex.getValue().getGraphs() == null) {
+        vertex.getValue().setGraphs(Sets.newHashSet(labelPropIndex));
+    } else {
+        vertex.getValue().getGraphs().add(labelPropIndex);
+    }
+    return vertex;
+}

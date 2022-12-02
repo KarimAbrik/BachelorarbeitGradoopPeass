@@ -1,0 +1,10 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public void flatMap(Vertex<Long, VD> vertex, Collector<Tuple1<Long>> collector) throws Exception {
+    List<Long> graphIDSet = function.execute(vertex);
+    for (Long id : graphIDSet) {
+        collector.collect(new Tuple1<>(id));
+    }
+}

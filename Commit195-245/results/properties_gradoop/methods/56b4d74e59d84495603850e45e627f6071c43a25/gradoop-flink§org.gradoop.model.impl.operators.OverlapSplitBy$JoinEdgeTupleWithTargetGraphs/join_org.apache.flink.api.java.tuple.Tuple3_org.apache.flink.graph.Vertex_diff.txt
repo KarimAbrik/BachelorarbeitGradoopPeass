@@ -1,0 +1,7 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public Tuple3<Long, List<Long>, List<Long>> join(Tuple3<Long, List<Long>, Long> tuple3, Vertex<Long, VD> vertex) throws Exception {
+    return new Tuple3<>(tuple3.f0, tuple3.f1, (List<Long>) Lists.newArrayList(vertex.getValue().getGraphs()));
+}

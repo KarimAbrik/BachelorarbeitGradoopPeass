@@ -1,0 +1,14 @@
+/**
+ * Computes the new subgraphs created by the SplitBy.
+ *
+ * @param logicalGraph the input graph
+ * @param vertices     the computed vertices with their graphs
+ * @return a DataSet containing all newly created subgraphs
+ */
+private DataSet<Subgraph<Long, GD>> computeNewSubgraphs(LogicalGraph<VD, ED, GD> logicalGraph, DataSet<Vertex<Long, VD>> vertices) {
+    // construct a KeySelector using the LongFromVertexFunction
+    KeySelector<Vertex<Long, VD>, Long> propertySelector = new LongFromVertexSelector<>(vertexToLongFunc);
+    // construct the list of subgraphs
+    GraphDataFactory<GD> gdFactory = logicalGraph.getGraphDataFactory();
+    return vertices.groupBy(propertySelector).reduceGroup(new SubgraphsFromGroupsReducer<>(vertexToLongFunc, gdFactory));
+}

@@ -1,0 +1,6 @@
+@Override
+public List<Long> map(Subgraph<Long, GD> subgraph) throws Exception {
+    List<Long> id = new ArrayList<>();
+    id.add(subgraph.getId());
+    return id;
+}

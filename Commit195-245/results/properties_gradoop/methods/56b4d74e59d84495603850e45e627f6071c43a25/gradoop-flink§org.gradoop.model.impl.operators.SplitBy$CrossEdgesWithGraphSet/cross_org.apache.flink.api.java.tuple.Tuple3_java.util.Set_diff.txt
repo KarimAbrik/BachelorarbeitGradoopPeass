@@ -1,0 +1,11 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public Tuple4<Long, Set<Long>, Set<Long>, Set<Long>> cross(Tuple3<Long, Set<Long>, Set<Long>> tuple3, Set<Long> subgraphs) throws Exception {
+    reuseTuple.f0 = tuple3.f0;
+    reuseTuple.f1 = tuple3.f1;
+    reuseTuple.f2 = tuple3.f2;
+    reuseTuple.f3 = subgraphs;
+    return reuseTuple;
+}
