@@ -1,0 +1,10 @@
+/**
+ * Checks if the given vertexID is valid.
+ *
+ * @param vertexID vertex identifier
+ */
+private void checkVertexID(final Long vertexID) {
+    if (vertexID == null) {
+        throw new IllegalArgumentException("vertexID must not be null");
+    }
+}

@@ -1,0 +1,6 @@
+@Override
+public DefaultGraphData createGraphData(final Long id, final String label, final Map<String, Object> properties, final Set<Long> vertices, final Set<Long> edges) {
+    checkGraphID(id);
+    checkLabel(label);
+    return new DefaultGraphData(id, label, properties, vertices, edges);
+}

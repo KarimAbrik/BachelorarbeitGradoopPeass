@@ -1,0 +1,10 @@
+                                                                                                     | /**                                                                                                 
+                                                                                                     | * Checks if the given graphID is valid.                                                             
+                                                                                                     | *                                                                                                   
+                                                                                                     | * @param graphID graph identifier                                                                   
+                                                                                                     | */                                                                                                  
+                                                                                                     | private static void checkGraphID(final Long graphID) {                                              
+                                                                                                     | if (graphID == null) {                                                                              
+                                                                                                     | throw new IllegalArgumentException("graphID must not be null");                                     
+                                                                                                     | }                                                                                                   
+                                                                                                     | }                                                                                                   

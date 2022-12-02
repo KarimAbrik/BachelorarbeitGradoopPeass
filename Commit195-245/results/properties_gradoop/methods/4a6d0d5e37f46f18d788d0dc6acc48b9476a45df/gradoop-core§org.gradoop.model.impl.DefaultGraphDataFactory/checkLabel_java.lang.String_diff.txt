@@ -1,0 +1,10 @@
+                                                                                                     | /**                                                                                                 
+                                                                                                     | * Checks if {@code label} is valid (not null or empty).                                             
+                                                                                                     | *                                                                                                   
+                                                                                                     | * @param label edge label                                                                           
+                                                                                                     | */                                                                                                  
+                                                                                                     | private static void checkLabel(String label) {                                                      
+                                                                                                     | if (label == null || "".equals(label)) {                                                            
+                                                                                                     | throw new IllegalArgumentException("label must not be null or empty");                              
+                                                                                                     | }                                                                                                   
+                                                                                                     | }                                                                                                   

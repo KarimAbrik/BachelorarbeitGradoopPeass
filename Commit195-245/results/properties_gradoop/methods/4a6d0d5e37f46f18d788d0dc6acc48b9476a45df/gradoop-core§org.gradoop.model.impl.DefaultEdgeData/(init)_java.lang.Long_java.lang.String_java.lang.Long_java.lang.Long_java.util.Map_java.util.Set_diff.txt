@@ -1,0 +1,16 @@
+/**                                                                                                    /**                                                                                                 
+* Creates an edge instance based on the given parameters.                                              * Creates an edge instance based on the given parameters.                                           
+*                                                                                                      *                                                                                                   
+* @param id             the unique id of the edge                                                      * @param id             the unique id of the edge                                                   
+* @param label          edge label                                                                     * @param label          edge label                                                                  
+* @param sourceVertexId source vertex id                                                               * @param sourceVertexId source vertex id                                                            
+* @param targetVertexId target vertex id                                                               * @param targetVertexId target vertex id                                                            
+* @param properties     edge properties                                                                * @param properties     edge properties                                                             
+* @param graphs         graphs that edge is contained in                                               * @param graphs         graphs that edge is contained in                                            
+*/                                                                                                     */                                                                                                  
+DefaultEdgeData(final Long id, final String label, final Long sourceVertexId, final Long targetVerte   DefaultEdgeData(final Long id, final String label, final Long sourceVertexId, final Long targetVerte
+super(id, label, properties);                                                                        | super(id, label, properties, graphs);                                                               
+this.graphs = graphs;                                                                                |                                                                                                     
+this.sourceVertexId = sourceVertexId;                                                                  this.sourceVertexId = sourceVertexId;                                                               
+this.targetVertexId = targetVertexId;                                                                  this.targetVertexId = targetVertexId;                                                               
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,6 @@
+@Override
+public DefaultVertexData createVertexData(final Long id, final String label, final Map<String, Object> properties, final Set<Long> graphs) {
+    checkVertexID(id);
+    checkLabel(label);
+    return new DefaultVertexData(id, label, properties, graphs);
+}

@@ -1,0 +1,10 @@
+                                                                                                     | /**                                                                                                 
+                                                                                                     | * Checks if {@code otherID} is valid.                                                               
+                                                                                                     | *                                                                                                   
+                                                                                                     | * @param otherID id of entity that edge points to                                                   
+                                                                                                     | */                                                                                                  
+                                                                                                     | private static void checkID(Long otherID) {                                                         
+                                                                                                     | if (otherID == null) {                                                                              
+                                                                                                     | throw new IllegalArgumentException("edge-, source-, target-id must not be null");                   
+                                                                                                     | }                                                                                                   
+                                                                                                     | }                                                                                                   
