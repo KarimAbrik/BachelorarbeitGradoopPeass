@@ -1,0 +1,18 @@
+/**
+ * Creates a JSON string representation of a given graph data object.
+ *
+ * @param g graph data object
+ * @return JSON string representation
+ */
+@Override
+public String format(Subgraph<Long, GD> g) {
+    JSONObject json = new JSONObject();
+    try {
+        json.put(IDENTIFIER, g.getId());
+        json.put(DATA, writeProperties(g.getValue()));
+        json.put(META, writeGraphMeta(g.getValue()));
+    } catch (JSONException ex) {
+        ex.printStackTrace();
+    }
+    return json.toString();
+}

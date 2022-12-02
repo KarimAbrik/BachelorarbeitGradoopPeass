@@ -1,0 +1,12 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public Tuple2<LongWritable, Mutation> map(PGD persistentGraphData) throws Exception {
+    LongWritable key = new LongWritable(persistentGraphData.getId());
+    Put put = new Put(graphDataHandler.getRowKey(persistentGraphData.getId()));
+    put = graphDataHandler.writeGraphData(put, persistentGraphData);
+    reuseTuple.f0 = key;
+    reuseTuple.f1 = put;
+    return reuseTuple;
+}

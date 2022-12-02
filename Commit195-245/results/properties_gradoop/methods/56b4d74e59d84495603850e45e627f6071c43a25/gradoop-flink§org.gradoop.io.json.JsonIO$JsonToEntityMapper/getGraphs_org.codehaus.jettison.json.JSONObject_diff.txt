@@ -1,0 +1,16 @@
+/**
+ * Reads a set of graph identifiers from the json object.
+ *
+ * @param object json object
+ * @return graph identifiers
+ * @throws JSONException
+ */
+protected Set<Long> getGraphs(JSONObject object) throws JSONException {
+    Set<Long> result;
+    if (!object.getJSONObject(META).has(GRAPHS)) {
+        result = Sets.newHashSetWithExpectedSize(0);
+    } else {
+        result = getArrayValues(object.getJSONObject(META).getJSONArray(GRAPHS));
+    }
+    return result;
+}

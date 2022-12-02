@@ -1,0 +1,22 @@
+/**                                                                                                    /**                                                                                                 
+* Converts runtime edge data to persistent edge data (includes                                         * Converts runtime edge data to persistent edge data (includes                                      
+* source/target vertex data) and writes it to HBase.                                                   * source/target vertex data) and writes it to HBase.                                                
+*                                                                                                      *                                                                                                   
+* @param epgmDatabase              EPGM database instance                                              * @param epgmDatabase              EPGM database instance                                           
+* @param edgeDataHandler           edge data handler                                                   * @param edgeDataHandler           edge data handler                                                
+* @param persistentEdgeDataFactory persistent edge data factory                                        * @param persistentEdgeDataFactory persistent edge data factory                                     
+* @param edgeDataTableName         HBase edge data table name                                          * @param edgeDataTableName         HBase edge data table name                                       
+* @param &lt;PED&gt;                     persistent edge data type                                     * @param &lt;PED&gt;                     persistent edge data type                                  
+* @throws IOException                                                                                  * @throws IOException                                                                               
+*/                                                                                                     */                                                                                                  
+public &lt;PED extends PersistentEdgeData&lt;VD&gt;&gt; void writeEdgeData(final EPGMDatabase&lt;VD,   public &lt;PED extends PersistentEdgeData&lt;VD&gt;&gt; void writeEdgeData(final EPGMDatabase&lt;VD,
+Graph&lt;Long, VD, ED&gt; graph = epgmDatabase.getDatabaseGraph().getGellyGraph();                   | LogicalGraph&lt;VD, ED, GD&gt; graph = epgmDatabase.getDatabaseGraph();                             
+DataSet&lt;PersistentEdgeData&lt;VD&gt;&gt; persistentEdgeDataSet = graph.getVertices().// join vert   DataSet&lt;PersistentEdgeData&lt;VD&gt;&gt; persistentEdgeDataSet = graph.getVertices().// join vert
+join(graph.getEdges()).where(0).equalTo(1).// join result with vertices on edge target vertex id       join(graph.getEdges()).where(0).equalTo(1).// join result with vertices on edge target vertex id    
+join(graph.getVertices()).where("1.1").equalTo(0).// ((source-vertex-data, edge-data), target-vertex   join(graph.getVertices()).where("1.1").equalTo(0).// ((source-vertex-data, edge-data), target-vertex
+with(new PersistentEdgeDataJoinFunction&lt;&gt;(persistentEdgeDataFactory));                           with(new PersistentEdgeDataJoinFunction&lt;&gt;(persistentEdgeDataFactory));                        
+// write (persistent-edge-data) to HBase table                                                         // write (persistent-edge-data) to HBase table                                                      
+Job job = Job.getInstance();                                                                           Job job = Job.getInstance();                                                                        
+job.getConfiguration().set(TableOutputFormat.OUTPUT_TABLE, edgeDataTableName);                         job.getConfiguration().set(TableOutputFormat.OUTPUT_TABLE, edgeDataTableName);                      
+persistentEdgeDataSet.map(new HBaseWriter.EdgeDataToHBaseMapper&lt;&gt;(edgeDataHandler)).output(new   persistentEdgeDataSet.map(new HBaseWriter.EdgeDataToHBaseMapper&lt;&gt;(edgeDataHandler)).output(new
+}                                                                                                      }                                                                                                   

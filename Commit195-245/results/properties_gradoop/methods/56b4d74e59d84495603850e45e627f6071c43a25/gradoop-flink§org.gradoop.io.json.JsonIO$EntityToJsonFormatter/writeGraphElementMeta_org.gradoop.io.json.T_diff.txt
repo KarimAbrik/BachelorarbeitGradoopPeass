@@ -1,0 +1,16 @@
+/**
+ * Writes all meta data regarding a labeled graph element to a json
+ * object and returns it.
+ *
+ * @param entity labeled graph element (e.g., vertex and edge)
+ * @param <T>    input element type
+ * @return json object containing meta information
+ * @throws JSONException
+ */
+protected <T extends Labeled & GraphElement> JSONObject writeGraphElementMeta(T entity) throws JSONException {
+    JSONObject meta = writeMeta(entity);
+    if (entity.getGraphCount() > 0) {
+        meta.put(GRAPHS, writeJsonArray(entity.getGraphs()));
+    }
+    return meta;
+}

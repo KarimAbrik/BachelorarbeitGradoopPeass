@@ -1,0 +1,18 @@
+/**
+ * Creates a JSON string representation of a vertex data object.
+ *
+ * @param v vertex data
+ * @return JSON string representation
+ */
+@Override
+public String format(Vertex<Long, VD> v) {
+    JSONObject json = new JSONObject();
+    try {
+        json.put(IDENTIFIER, v.getId());
+        json.put(DATA, writeProperties(v.getValue()));
+        json.put(META, writeGraphElementMeta(v.getValue()));
+    } catch (JSONException e) {
+        e.printStackTrace();
+    }
+    return json.toString();
+}

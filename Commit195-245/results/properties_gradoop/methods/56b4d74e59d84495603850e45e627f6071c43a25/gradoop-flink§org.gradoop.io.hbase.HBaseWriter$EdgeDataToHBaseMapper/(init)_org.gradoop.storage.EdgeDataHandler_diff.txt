@@ -1,0 +1,8 @@
+/**
+ * Creates rich map function.
+ *
+ * @param edgeDataHandler edge data handler
+ */
+public EdgeDataToHBaseMapper(EdgeDataHandler<ED, VD> edgeDataHandler) {
+    this.edgeDataHandler = edgeDataHandler;
+}

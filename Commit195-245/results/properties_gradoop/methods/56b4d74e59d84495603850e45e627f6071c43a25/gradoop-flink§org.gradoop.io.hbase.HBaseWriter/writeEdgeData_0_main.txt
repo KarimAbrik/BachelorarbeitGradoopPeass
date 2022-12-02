@@ -1,0 +1,22 @@
+/**
+ * Converts runtime edge data to persistent edge data (includes
+ * source/target vertex data) and writes it to HBase.
+ *
+ * @param epgmDatabase              EPGM database instance
+ * @param edgeDataHandler           edge data handler
+ * @param persistentEdgeDataFactory persistent edge data factory
+ * @param edgeDataTableName         HBase edge data table name
+ * @param <PED>                     persistent edge data type
+ * @throws IOException
+ */
+public <PED extends PersistentEdgeData<VD>> void writeEdgeData(final EPGMDatabase<VD, ED, GD> epgmDatabase, final EdgeDataHandler<ED, VD> edgeDataHandler, final PersistentEdgeDataFactory<ED, VD, PED> persistentEdgeDataFactory, final String edgeDataTableName) throws IOException {
+    LogicalGraph<VD, ED, GD> graph = epgmDatabase.getDatabaseGraph();
+    DataSet<PersistentEdgeData<VD>> persistentEdgeDataSet = graph.getVertices().// join vertex with edges on edge source vertex id
+    join(graph.getEdges()).where(0).equalTo(1).// join result with vertices on edge target vertex id
+    join(graph.getVertices()).where("1.1").equalTo(0).// ((source-vertex-data, edge-data), target-vertex-data)
+    with(new PersistentEdgeDataJoinFunction<>(persistentEdgeDataFactory));
+    // write (persistent-edge-data) to HBase table
+    Job job = Job.getInstance();
+    job.getConfiguration().set(TableOutputFormat.OUTPUT_TABLE, edgeDataTableName);
+    persistentEdgeDataSet.map(new HBaseWriter.EdgeDataToHBaseMapper<>(edgeDataHandler)).output(new HadoopOutputFormat<>(new TableOutputFormat<LongWritable>(), job));
+}

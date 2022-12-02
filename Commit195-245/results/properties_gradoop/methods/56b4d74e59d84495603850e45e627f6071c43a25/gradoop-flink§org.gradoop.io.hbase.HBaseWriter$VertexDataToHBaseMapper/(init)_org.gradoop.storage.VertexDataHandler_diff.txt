@@ -1,0 +1,8 @@
+/**
+ * Creates rich map function.
+ *
+ * @param vertexDataHandler vertex data handler
+ */
+public VertexDataToHBaseMapper(VertexDataHandler<VD, ED> vertexDataHandler) {
+    this.vertexDataHandler = vertexDataHandler;
+}

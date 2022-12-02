@@ -1,0 +1,12 @@
+/**
+ * Writes all meta data regarding a logical graph to a json object and
+ * returns it.
+ *
+ * @param entity logical graph data
+ * @param <T>    graph data type
+ * @return json object with graph meta data
+ * @throws JSONException
+ */
+protected <T extends GraphData> JSONObject writeGraphMeta(T entity) throws JSONException {
+    return writeMeta(entity);
+}

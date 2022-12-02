@@ -1,0 +1,10 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public PersistentEdgeData<VD> join(Tuple2<Vertex<Long, VD>, Edge<Long, ED>> vertexEdgeTuple2, Vertex<Long, VD> longVDVertex) throws Exception {
+    VD sourceVertexData = vertexEdgeTuple2.f0.getValue();
+    ED edgeData = vertexEdgeTuple2.f1.getValue();
+    VD targetVertexData = longVDVertex.f1;
+    return edgeDataFactory.createEdgeData(edgeData, sourceVertexData, targetVertexData);
+}
