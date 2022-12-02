@@ -1,0 +1,7 @@
+protected GraphStore createEmptyGraphStore() {                                                         protected GraphStore createEmptyGraphStore() {                                                      
+Configuration config = utility.getConfiguration();                                                     Configuration config = utility.getConfiguration();                                                  
+VertexHandler verticesHandler = new EPGVertexHandler();                                                VertexHandler verticesHandler = new EPGVertexHandler();                                             
+GraphHandler graphsHandler = new EPGGraphHandler();                                                    GraphHandler graphsHandler = new EPGGraphHandler();                                                 
+HBaseGraphStoreFactory.deleteGraphStore(config);                                                       HBaseGraphStoreFactory.deleteGraphStore(config);                                                    
+return HBaseGraphStoreFactory.createGraphStore(config, verticesHandler, graphsHandler);              | return HBaseGraphStoreFactory.createOrOpenGraphStore(config, verticesHandler, graphsHandler);       
+}                                                                                                      }                                                                                                   

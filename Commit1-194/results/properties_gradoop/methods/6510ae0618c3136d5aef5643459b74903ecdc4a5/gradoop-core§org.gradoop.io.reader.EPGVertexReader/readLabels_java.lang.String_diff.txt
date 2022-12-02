@@ -1,0 +1,10 @@
+/**
+ * Reads the labels by splitting the token using {@code
+ * VALUE_TOKEN_SEPARATOR}.
+ *
+ * @param token string including labels
+ * @return label list
+ */
+private Iterable<String> readLabels(final String token) {
+    return Arrays.asList(VALUE_TOKEN_SEPARATOR.split(token));
+}

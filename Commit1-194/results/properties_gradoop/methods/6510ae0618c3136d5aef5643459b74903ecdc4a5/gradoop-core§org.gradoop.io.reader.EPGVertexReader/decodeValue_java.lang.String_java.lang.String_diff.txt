@@ -1,0 +1,33 @@
+/**
+ * Parses a property-value by using its property-type.
+ *
+ * @param type  property-type
+ * @param value property-value
+ * @return parsed value
+ */
+private Object decodeValue(String type, String value) {
+    Object o;
+    switch(Byte.parseByte(type)) {
+        case GConstants.TYPE_BOOLEAN:
+            o = Boolean.valueOf(value);
+            break;
+        case GConstants.TYPE_INTEGER:
+            o = Integer.valueOf(value);
+            break;
+        case GConstants.TYPE_LONG:
+            o = Long.valueOf(value);
+            break;
+        case GConstants.TYPE_FLOAT:
+            o = Long.valueOf(value);
+            break;
+        case GConstants.TYPE_DOUBLE:
+            o = Double.valueOf(value);
+            break;
+        case GConstants.TYPE_STRING:
+            o = value;
+            break;
+        default:
+            throw new UnsupportedTypeException(type + " not supported by this reader");
+    }
+    return o;
+}

@@ -1,0 +1,10 @@
+/**
+ * Returns the type property which is needed for edge labels.
+ *
+ * @param object json encoded edge
+ * @return edge type (label)
+ * @throws JSONException
+ */
+private String getType(JSONObject object) throws JSONException {
+    return object.getJSONObject(META).getString(TYPE_PROPERTY);
+}
