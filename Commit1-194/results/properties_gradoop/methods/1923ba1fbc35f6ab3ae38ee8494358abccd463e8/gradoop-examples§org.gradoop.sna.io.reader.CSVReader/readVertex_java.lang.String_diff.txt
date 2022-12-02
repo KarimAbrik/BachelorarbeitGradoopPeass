@@ -1,0 +1,26 @@
+/**                                                                                                    /**                                                                                                 
+* {@inheritDoc}                                                                                        * {@inheritDoc}                                                                                     
+*/                                                                                                     */                                                                                                  
+@Override                                                                                              @Override                                                                                           
+public Vertex readVertex(String line) {                                                                public Vertex readVertex(String line) {                                                             
+String[] tokens = getTokens(line);                                                                     String[] tokens = getTokens(line);                                                                  
+long id = Long.parseLong(tokens[0]);                                                                   long id = Long.parseLong(tokens[0]);                                                                
+Vertex vex = VertexFactory.createDefaultVertexWithLabel(id, label, null);                              Vertex vex = VertexFactory.createDefaultVertexWithLabel(id, label, null);                           
+for (int i = 1; i &lt; properties.length; i++) {                                                       for (int i = 1; i &lt; properties.length; i++) {                                                    
+switch(types[i]) {                                                                                     switch(types[i]) {                                                                                  
+case "long":                                                                                           case "long":                                                                                        
+vex.addProperty(properties[i], Long.parseLong(tokens[i]));                                           | vex.setProperty(properties[i], Long.parseLong(tokens[i]));                                          
+break;                                                                                                 break;                                                                                              
+case "string":                                                                                         case "string":                                                                                      
+vex.addProperty(properties[i], tokens[i]);                                                           | vex.setProperty(properties[i], tokens[i]);                                                          
+break;                                                                                                 break;                                                                                              
+case "integer":                                                                                        case "integer":                                                                                     
+vex.addProperty(properties[i], Integer.parseInt(tokens[i]));                                         | vex.setProperty(properties[i], Integer.parseInt(tokens[i]));                                        
+break;                                                                                                 break;                                                                                              
+default:                                                                                               default:                                                                                            
+vex.addProperty(properties[i], tokens[i]);                                                           | vex.setProperty(properties[i], tokens[i]);                                                          
+break;                                                                                                 break;                                                                                              
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+return vex;                                                                                            return vex;                                                                                         
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,15 @@
+/**
+ * Creates an edge object based on the given key and properties. The given
+ * edge key is deserialized and used to create a new {@link
+ * org.gradoop.model.impl.DefaultEdge} instance.
+ *
+ * @param edgeKey    string representation of edge key
+ * @param properties key-value-map
+ * @return Edge object
+ */
+private Edge readEdge(final byte[] edgeKey, final Map<String, Object> properties) {
+    Long otherID = Bytes.toLong(edgeKey);
+    Long edgeIndex = Bytes.toLong(edgeKey, Bytes.SIZEOF_LONG);
+    String edgeLabel = Bytes.toString(edgeKey, 2 * Bytes.SIZEOF_LONG, edgeKey.length - (2 * Bytes.SIZEOF_LONG));
+    return EdgeFactory.createDefaultEdge(otherID, edgeLabel, edgeIndex, properties);
+}

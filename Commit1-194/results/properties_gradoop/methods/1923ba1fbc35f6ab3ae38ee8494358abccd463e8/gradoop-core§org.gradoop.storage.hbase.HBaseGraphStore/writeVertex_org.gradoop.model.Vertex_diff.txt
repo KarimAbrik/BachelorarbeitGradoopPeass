@@ -1,0 +1,17 @@
+/**                                                                                                    /**                                                                                                 
+* {@inheritDoc}                                                                                        * {@inheritDoc}                                                                                     
+*/                                                                                                     */                                                                                                  
+@Override                                                                                              @Override                                                                                           
+public void writeVertex(final Vertex vertex) {                                                         public void writeVertex(final Vertex vertex) {                                                      
+LOG.info("writing: " + vertex);                                                                        LOG.info("writing: " + vertex);                                                                     
+try {                                                                                                  try {                                                                                               
+// vertex id                                                                                           // vertex id                                                                                        
+Put put = new Put(vertexHandler.getRowKey(vertex.getID()));                                          | Put put = new Put(vertexHandler.getRowKey(vertex.getId()));                                         
+// write vertex to Put                                                                                 // write vertex to Put                                                                              
+put = vertexHandler.writeVertex(put, vertex);                                                          put = vertexHandler.writeVertex(put, vertex);                                                       
+// write to table                                                                                      // write to table                                                                                   
+verticesTable.put(put);                                                                                verticesTable.put(put);                                                                             
+} catch (IOException e) {                                                                              } catch (IOException e) {                                                                           
+e.printStackTrace();                                                                                   e.printStackTrace();                                                                                
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

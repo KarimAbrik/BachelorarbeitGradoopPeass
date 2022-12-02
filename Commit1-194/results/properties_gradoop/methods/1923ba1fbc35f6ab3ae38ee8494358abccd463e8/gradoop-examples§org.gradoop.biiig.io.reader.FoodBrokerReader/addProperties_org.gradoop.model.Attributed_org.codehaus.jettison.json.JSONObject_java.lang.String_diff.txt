@@ -1,0 +1,18 @@
+/**                                                                                                    /**                                                                                                 
+* Adds the META and DATA entries to the entity properties.                                             * Adds the META and DATA entries to the entity properties.                                          
+*                                                                                                      *                                                                                                   
+* @param attributed an entity with attributes                                                          * @param attributed an entity with attributes                                                       
+* @param object     json encoded vertex or edge                                                        * @param object     json encoded vertex or edge                                                     
+* @param prefix     prefix for meta property keys                                                      * @param prefix     prefix for meta property keys                                                   
+* @throws JSONException                                                                                * @throws JSONException                                                                             
+*/                                                                                                     */                                                                                                  
+private void addProperties(final Attributed attributed, final JSONObject object, final String prefix   private void addProperties(final Attributed attributed, final JSONObject object, final String prefix
+boolean addPrefix = !EMPTY_PREFIX.equals(prefix);                                                      boolean addPrefix = !EMPTY_PREFIX.equals(prefix);                                                   
+Iterator&lt;?&gt; keys = object.keys();                                                                Iterator&lt;?&gt; keys = object.keys();                                                             
+while (keys.hasNext()) {                                                                               while (keys.hasNext()) {                                                                            
+String key = keys.next().toString();                                                                   String key = keys.next().toString();                                                                
+Object o = object.get(key);                                                                            Object o = object.get(key);                                                                         
+key = addPrefix ? prefix + key : key;                                                                  key = addPrefix ? prefix + key : key;                                                               
+attributed.addProperty(key, o);                                                                      | attributed.setProperty(key, o);                                                                     
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

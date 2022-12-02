@@ -1,0 +1,17 @@
+/**                                                                                                    /**                                                                                                 
+* {@inheritDoc}                                                                                        * {@inheritDoc}                                                                                     
+*/                                                                                                     */                                                                                                  
+@Override                                                                                              @Override                                                                                           
+public void writeGraph(final Graph graph) {                                                            public void writeGraph(final Graph graph) {                                                         
+LOG.info("writing: " + graph);                                                                         LOG.info("writing: " + graph);                                                                      
+try {                                                                                                  try {                                                                                               
+// graph id                                                                                            // graph id                                                                                         
+Put put = new Put(graphHandler.getRowKey(graph.getID()));                                            | Put put = new Put(graphHandler.getRowKey(graph.getId()));                                           
+// write graph to Put                                                                                  // write graph to Put                                                                               
+put = graphHandler.writeGraph(put, graph);                                                             put = graphHandler.writeGraph(put, graph);                                                          
+// write to table                                                                                      // write to table                                                                                   
+graphsTable.put(put);                                                                                  graphsTable.put(put);                                                                               
+} catch (RetriesExhaustedWithDetailsException | InterruptedIOException e) {                            } catch (RetriesExhaustedWithDetailsException | InterruptedIOException e) {                         
+e.printStackTrace();                                                                                   e.printStackTrace();                                                                                
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

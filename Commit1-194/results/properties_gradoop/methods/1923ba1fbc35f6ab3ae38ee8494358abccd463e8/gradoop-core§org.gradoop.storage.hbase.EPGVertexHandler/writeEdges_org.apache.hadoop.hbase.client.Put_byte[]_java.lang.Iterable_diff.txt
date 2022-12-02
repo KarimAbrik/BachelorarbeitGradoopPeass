@@ -1,0 +1,18 @@
+/**
+ * Adds edges to the the given HBase put.
+ *
+ * @param put          {@link org.apache.hadoop.hbase.client.Put} to
+ *                     write the
+ *                     edges to
+ * @param columnFamily CF where the edges shall be stored
+ * @param edges        edges to store
+ * @return the updated put
+ */
+private Put writeEdges(Put put, final byte[] columnFamily, final Iterable<? extends Edge> edges) {
+    if (edges != null) {
+        for (Edge edge : edges) {
+            put = writeEdge(put, columnFamily, edge);
+        }
+    }
+    return put;
+}

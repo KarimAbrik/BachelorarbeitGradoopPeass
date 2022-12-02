@@ -1,0 +1,12 @@
+@Test
+public void loadJsonToHBaseTest() throws IOException {
+    GraphStore graphStore = createEmptyGraphStore();
+    VertexLineReader foodbrokerReader = new FoodBrokerReader();
+    for (String line : FOODBROKER_SAMPLE) {
+        for (Vertex v : foodbrokerReader.readVertexList(line)) {
+            graphStore.writeVertex(v);
+        }
+    }
+    validateFoodbrokerGraph(graphStore);
+    graphStore.close();
+}

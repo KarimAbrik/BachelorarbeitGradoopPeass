@@ -1,0 +1,8 @@
+private void validateFoodbrokerGraph(GraphStore graphStore) {
+    validateVertex(graphStore.readVertex(1L), 7, 2, 0);
+    validateVertex(graphStore.readVertex(2L), 7, 1, 1);
+    validateVertex(graphStore.readVertex(3L), 7, 0, 1);
+    validateVertex(graphStore.readVertex(41L), 8, 2, 1);
+    validateVertex(graphStore.readVertex(42L), 8, 0, 2);
+    validateVertex(graphStore.readVertex(43L), 8, 0, 0);
+}

@@ -1,0 +1,9 @@
+/**
+ * Splits a line into tokens
+ *
+ * @param line line of sna input
+ * @return tokens as array
+ */
+private String[] getTokens(String line) {
+    return LINE_TOKEN_SEPARATOR.split(line);
+}

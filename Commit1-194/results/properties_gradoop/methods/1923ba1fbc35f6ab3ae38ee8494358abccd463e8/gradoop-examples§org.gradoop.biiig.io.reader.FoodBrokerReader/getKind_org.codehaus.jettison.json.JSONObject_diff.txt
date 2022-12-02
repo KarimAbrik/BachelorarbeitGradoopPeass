@@ -1,0 +1,12 @@
+/**
+ * Returns the kind property which is needed for vertex labels. Can be
+ * MasterData or TransData.
+ *
+ * @param object json encoded vertex
+ * @return vertex type
+ * @throws JSONException
+ */
+private int getKind(JSONObject object) throws JSONException {
+    String kindValue = object.getJSONObject(META).getString(KIND_PROPERTY);
+    return (kindValue.equals(BTGVertexType.MASTER.toString())) ? BTGVertexType.MASTER.ordinal() : BTGVertexType.TRANSACTIONAL.ordinal();
+}

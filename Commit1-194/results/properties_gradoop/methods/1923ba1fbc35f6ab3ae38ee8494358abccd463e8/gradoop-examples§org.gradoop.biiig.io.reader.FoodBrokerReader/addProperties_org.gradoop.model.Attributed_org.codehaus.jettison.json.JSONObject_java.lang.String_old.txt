@@ -1,0 +1,18 @@
+/**
+ * Adds the META and DATA entries to the entity properties.
+ *
+ * @param attributed an entity with attributes
+ * @param object     json encoded vertex or edge
+ * @param prefix     prefix for meta property keys
+ * @throws JSONException
+ */
+private void addProperties(final Attributed attributed, final JSONObject object, final String prefix) throws JSONException {
+    boolean addPrefix = !EMPTY_PREFIX.equals(prefix);
+    Iterator<?> keys = object.keys();
+    while (keys.hasNext()) {
+        String key = keys.next().toString();
+        Object o = object.get(key);
+        key = addPrefix ? prefix + key : key;
+        attributed.addProperty(key, o);
+    }
+}

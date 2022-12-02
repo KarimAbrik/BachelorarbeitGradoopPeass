@@ -1,0 +1,21 @@
+/**
+ * Creates a string representation of edge properties which are stored as
+ * column value for the edge identifier.
+ *
+ * @param edge edge to create property string for
+ * @return string representation of the edge properties
+ */
+private String createEdgePropertiesString(final Edge edge) {
+    String result = "";
+    Iterable<String> propertyKeys = edge.getPropertyKeys();
+    if (propertyKeys != null) {
+        final List<String> propertyStrings = Lists.newArrayList();
+        for (String propertyKey : propertyKeys) {
+            Object propertyValue = edge.getProperty(propertyKey);
+            String propertyString = String.format("%s%s%d%s%s", propertyKey, PROPERTY_TOKEN_SEPARATOR_STRING, getType(propertyValue), PROPERTY_TOKEN_SEPARATOR_STRING, propertyValue);
+            propertyStrings.add(propertyString);
+        }
+        result = Joiner.on(PROPERTY_TOKEN_SEPARATOR_STRING).join(propertyStrings);
+    }
+    return result;
+}

@@ -1,0 +1,18 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public List<Vertex> readVertexList(String line) {
+    List<Vertex> vList = null;
+    try {
+        JSONObject jsonObject = new JSONObject(line);
+        if (jsonObject.has(EDGE_SOURCE)) {
+            vList = createFromEdgeLine(jsonObject);
+        } else {
+            vList = createFromVertexLine(jsonObject);
+        }
+    } catch (JSONException e) {
+        e.printStackTrace();
+    }
+    return vList;
+}
