@@ -1,0 +1,4 @@
+@Override
+public <O extends Number> EPGraph<VD, ED, GD> aggregate(String propertyKey, UnaryFunction<EPGraph<VD, ED, GD>, O> aggregateFunc) throws Exception {
+    return callForGraph(new Aggregation<>(propertyKey, aggregateFunc));
+}

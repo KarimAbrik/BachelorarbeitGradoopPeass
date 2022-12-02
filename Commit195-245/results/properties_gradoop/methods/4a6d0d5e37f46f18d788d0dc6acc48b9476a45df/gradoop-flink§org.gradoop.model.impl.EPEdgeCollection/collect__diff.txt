@@ -1,0 +1,10 @@
+@Override                                                                                              @Override                                                                                           
+public Collection&lt;EdgeData&gt; collect() throws Exception {                                       | public Collection&lt;ED&gt; collect() throws Exception {                                            
+return edges.map(new MapFunction&lt;Edge&lt;Long, EdgeData&gt;, EdgeData&gt;() {                     | return edges.map(new MapFunction&lt;Edge&lt;Long, ED&gt;, ED&gt;() {                                
+                                                                                                                                                                                                           
+@Override                                                                                              @Override                                                                                           
+public EdgeData map(Edge&lt;Long, EdgeData&gt; e) throws Exception {                                 | public ED map(Edge&lt;Long, ED&gt; e) throws Exception {                                            
+return e.getValue();                                                                                   return e.getValue();                                                                                
+}                                                                                                      }                                                                                                   
+}).collect();                                                                                          }).collect();                                                                                       
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,4 @@
+@Override                                                                                              @Override                                                                                           
+public EPEdgeCollection getEdges() {                                                                 | public EPEdgeCollection&lt;ED&gt; getEdges() {                                                      
+return new EPEdgeCollection(graph.getEdges());                                                       | return new EPEdgeCollection&lt;&gt;(graph.getEdges());                                              
+}                                                                                                      }                                                                                                   

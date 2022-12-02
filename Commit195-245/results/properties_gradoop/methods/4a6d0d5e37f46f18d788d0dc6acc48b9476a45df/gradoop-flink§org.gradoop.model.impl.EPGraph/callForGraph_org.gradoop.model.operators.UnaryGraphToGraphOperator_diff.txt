@@ -1,0 +1,4 @@
+@Override                                                                                              @Override                                                                                           
+public EPGraph callForGraph(UnaryGraphToGraphOperator operator) throws Exception {                   | public EPGraph&lt;VD, ED, GD&gt; callForGraph(UnaryGraphToGraphOperator&lt;VD, ED, GD&gt; operator) 
+return operator.execute(this);                                                                         return operator.execute(this);                                                                      
+}                                                                                                      }                                                                                                   

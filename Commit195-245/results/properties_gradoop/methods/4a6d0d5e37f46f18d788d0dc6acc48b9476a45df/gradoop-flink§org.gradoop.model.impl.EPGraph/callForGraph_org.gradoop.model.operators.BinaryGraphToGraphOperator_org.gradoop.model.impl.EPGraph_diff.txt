@@ -1,0 +1,4 @@
+@Override                                                                                              @Override                                                                                           
+public EPGraph callForGraph(BinaryGraphToGraphOperator operator, EPGraph otherGraph) {               | public EPGraph&lt;VD, ED, GD&gt; callForGraph(BinaryGraphToGraphOperator&lt;VD, ED, GD&gt; operator,
+return operator.execute(this, otherGraph);                                                             return operator.execute(this, otherGraph);                                                          
+}                                                                                                      }                                                                                                   

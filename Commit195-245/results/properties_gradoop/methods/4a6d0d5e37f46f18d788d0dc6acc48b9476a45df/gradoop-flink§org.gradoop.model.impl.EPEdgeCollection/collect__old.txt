@@ -1,0 +1,10 @@
+@Override
+public Collection<EdgeData> collect() throws Exception {
+    return edges.map(new MapFunction<Edge<Long, EdgeData>, EdgeData>() {
+
+        @Override
+        public EdgeData map(Edge<Long, EdgeData> e) throws Exception {
+            return e.getValue();
+        }
+    }).collect();
+}

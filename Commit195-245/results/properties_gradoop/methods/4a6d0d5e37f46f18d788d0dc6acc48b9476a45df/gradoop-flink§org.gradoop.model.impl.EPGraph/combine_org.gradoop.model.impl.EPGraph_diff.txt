@@ -1,0 +1,4 @@
+@Override                                                                                              @Override                                                                                           
+public EPGraph combine(EPGraph otherGraph) {                                                         | public EPGraph&lt;VD, ED, GD&gt; combine(EPGraph&lt;VD, ED, GD&gt; otherGraph) {                    
+return callForGraph(new Combination(), otherGraph);                                                  | return callForGraph(new Combination&lt;VD, ED, GD&gt;(), otherGraph);                               
+}                                                                                                      }                                                                                                   

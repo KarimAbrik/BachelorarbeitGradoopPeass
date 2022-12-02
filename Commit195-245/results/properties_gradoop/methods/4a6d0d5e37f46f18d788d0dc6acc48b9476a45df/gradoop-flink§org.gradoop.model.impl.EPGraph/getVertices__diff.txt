@@ -1,0 +1,4 @@
+@Override                                                                                              @Override                                                                                           
+public EPVertexCollection getVertices() {                                                            | public EPVertexCollection&lt;VD&gt; getVertices() {                                                 
+return new EPVertexCollection(graph.getVertices());                                                  | return new EPVertexCollection&lt;&gt;(graph.getVertices());                                         
+}                                                                                                      }                                                                                                   

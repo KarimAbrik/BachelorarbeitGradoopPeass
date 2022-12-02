@@ -1,0 +1,4 @@
+@Override
+public Long getKey(Edge<Long, EdgeData> longEPFlinkEdgeDataEdge) throws Exception {
+    return longEPFlinkEdgeDataEdge.f2.getId();
+}

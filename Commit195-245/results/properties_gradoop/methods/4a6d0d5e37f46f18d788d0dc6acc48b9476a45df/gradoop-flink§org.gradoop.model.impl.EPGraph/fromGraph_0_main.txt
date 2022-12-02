@@ -1,0 +1,3 @@
+public static <VD extends VertexData, ED extends EdgeData, GD extends GraphData> EPGraph<VD, ED, GD> fromGraph(Graph<Long, VD, ED> graph, GD graphData, VertexDataFactory<VD> vertexDataFactory, EdgeDataFactory<ED> edgeDataFactory, GraphDataFactory<GD> graphDataFactory) {
+    return new EPGraph<>(graph, graphData, vertexDataFactory, edgeDataFactory, graphDataFactory, graph.getContext());
+}

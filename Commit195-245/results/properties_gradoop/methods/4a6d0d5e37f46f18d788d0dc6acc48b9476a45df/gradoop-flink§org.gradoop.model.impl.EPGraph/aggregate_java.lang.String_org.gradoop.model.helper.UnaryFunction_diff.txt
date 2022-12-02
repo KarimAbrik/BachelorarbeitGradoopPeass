@@ -1,0 +1,4 @@
+@Override                                                                                              @Override                                                                                           
+public &lt;O extends Number&gt; EPGraph aggregate(String propertyKey, UnaryFunction&lt;EPGraph, O&gt | public &lt;O extends Number&gt; EPGraph&lt;VD, ED, GD&gt; aggregate(String propertyKey, UnaryFunctio
+return callForGraph(new Aggregation&lt;&gt;(propertyKey, aggregateFunc));                              return callForGraph(new Aggregation&lt;&gt;(propertyKey, aggregateFunc));                           
+}                                                                                                      }                                                                                                   

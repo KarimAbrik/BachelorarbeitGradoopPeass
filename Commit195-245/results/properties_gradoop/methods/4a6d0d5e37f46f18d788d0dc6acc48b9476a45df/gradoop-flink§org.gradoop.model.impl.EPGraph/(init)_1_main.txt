@@ -1,0 +1,8 @@
+private EPGraph(Graph<Long, VD, ED> graph, GD graphData, VertexDataFactory<VD> vertexDataFactory, EdgeDataFactory<ED> edgeDataFactory, GraphDataFactory<GD> graphDataFactory, ExecutionEnvironment env) {
+    this.graph = graph;
+    this.graphData = graphData;
+    this.vertexDataFactory = vertexDataFactory;
+    this.edgeDataFactory = edgeDataFactory;
+    this.graphDataFactory = graphDataFactory;
+    this.env = env;
+}

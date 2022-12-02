@@ -1,0 +1,4 @@
+@Override
+public EPGraph<VD, ED, GD> combine(EPGraph<VD, ED, GD> otherGraph) {
+    return callForGraph(new Combination<VD, ED, GD>(), otherGraph);
+}
