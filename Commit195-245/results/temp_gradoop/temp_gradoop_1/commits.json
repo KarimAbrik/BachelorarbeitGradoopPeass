@@ -1,0 +1,133 @@
+{
+  "commits" : [ {
+    "tag" : "d5bc5baeb00b670f64e09071bfaab76b4377c278",
+    "comitter" : "Martin Junghanns <martin.junghanns@gmx.net>",
+    "date" : "2015-08-04 17:30:39 +0200",
+    "message" : "     updated README, #65, #64 "
+  }, {
+    "tag" : "c7b7778c3e9d9a36b9d9be77bb8ecbf7efe738cc",
+    "comitter" : "Martin Junghanns <martin.junghanns@gmx.net>",
+    "date" : "2015-08-04 17:30:53 +0200",
+    "message" : "     Merge remote-tracking branch 'origin/#65_refactor_gradoop' into #65_refactor_gradoop "
+  }, {
+    "tag" : "d787db4c7ed78f9e64477fe053cb4832a44eba76",
+    "comitter" : "Martin Junghanns <martin.junghanns@gmx.net>",
+    "date" : "2015-08-04 17:39:42 +0200",
+    "message" : "     Update README.md, #64, #65 "
+  }, {
+    "tag" : "92d80bf2b850b75293ea134466c78230b0a64ff0",
+    "comitter" : "Martin Junghanns <martin.junghanns@gmx.net>",
+    "date" : "2015-08-06 10:21:48 +0200",
+    "message" : "     wip flink refactoring, #65 "
+  }, {
+    "tag" : "4a6d0d5e37f46f18d788d0dc6acc48b9476a45df",
+    "comitter" : "Martin Junghanns <martin.junghanns@gmx.net>",
+    "date" : "2015-08-07 13:58:39 +0200",
+    "message" : "     introduced generic vertex, edge and graph values, #65 "
+  }, {
+    "tag" : "b07a249b553b376afcebf4da4f0fcb49149aaf59",
+    "comitter" : "Martin Junghanns <martin.junghanns@gmx.net>",
+    "date" : "2015-08-07 16:21:40 +0200",
+    "message" : "     class and interface renaming, #65          updated documentation, minor code refactoring #65          * passed checkstyle     * reorganized binary collection operator (violated DRY)     * updated README.md     * cleanup pom files "
+  }, {
+    "tag" : "3778a722f9a0cd1cb99caac12ec4ea726d4e4ce1",
+    "comitter" : "Martin Junghanns <martin.junghanns@gmx.net>",
+    "date" : "2015-08-09 17:48:37 +0200",
+    "message" : "     updated documentation, minor code refactoring, #65          * passing checkstyle     * reorganized binary collection operator (violated DRY)     * updated README.md     * cleanup pom files "
+  }, {
+    "tag" : "5468cb526b03c33dc86df8183981248ca122aa76",
+    "comitter" : "Martin Junghanns <martin.junghanns@gmx.net>",
+    "date" : "2015-08-09 17:53:42 +0200",
+    "message" : "     refactoring of hbase storage layer, #65          * added persistent data objects as proxies for runtime data     * added factories for persistent data objects     * added new edge data handler     * updated HBaseEPGMStoreFactory     * EPGM Database can read from and write to HBase using EPGM store     * moved social network test case to core, can be used in HBase tests     * added simple tests for reading/writing from/to HBase     * updated documentation     * removed legacy code "
+  }, {
+    "tag" : "7621d724f4da1bdc97c5c9e2387f9fc19cf1461c",
+    "comitter" : "Niklas Teichmann <niklasteichmann42@gmail.com>",
+    "date" : "2015-08-12 13:26:57 +0200",
+    "message" : "     implemented projection in Projection class, #57          * changed method project() in LogicalGraph class to use callForGraph with Projection     * added LogicalGraphProjectionTest class     * minor codestyle changes in UnaryFunction and LogicalGraph     * changed method project() in LogicalGraph class to use callForGraph with Projection "
+  }, {
+    "tag" : "797fa7af24b3ec7811d596a80d1c6c91395e3d4e",
+    "comitter" : "Niklas Teichmann <niklasteichmann42@gmail.com>",
+    "date" : "2015-08-13 15:59:35 +0200",
+    "message" : "     initial commit, #57          * implemented projection operator     * added Projection class, Projection uses UnaryFunctions "
+  }, {
+    "tag" : "2d06b66cc681a2af19635fd666948b17ce716153",
+    "comitter" : "Martin Junghanns <martin.junghanns@gmx.net>",
+    "date" : "2015-08-14 08:31:54 +0200",
+    "message" : "     updated README, fixes #57 "
+  }, {
+    "tag" : "a7e7e392804af135958cfa8ae3489653b196ffcb",
+    "comitter" : "Martin Junghanns <martin.junghanns@gmx.net>",
+    "date" : "2015-08-14 20:18:36 +0200",
+    "message" : "     added .travis.yml with default java settings "
+  }, {
+    "tag" : "01e10be480429be9c88c939e90b4d833fcf4a41d",
+    "comitter" : "Martin Junghanns <martin.junghanns@gmx.net>",
+    "date" : "2015-08-14 20:18:50 +0200",
+    "message" : "     Merge remote-tracking branch 'origin/master' "
+  }, {
+    "tag" : "dcf00faf6918dd9a1436a29acfac76961ae65996",
+    "comitter" : "Martin Junghanns <martin.junghanns@gmx.net>",
+    "date" : "2015-08-14 20:21:04 +0200",
+    "message" : "     Update README.md "
+  }, {
+    "tag" : "fe5d2f00d532e10566890fe9d3bc404b233ede14",
+    "comitter" : "Martin Junghanns <martin.junghanns@gmx.net>",
+    "date" : "2015-08-14 20:29:42 +0200",
+    "message" : "     Update README.md "
+  }, {
+    "tag" : "d3d0ee5d21458378b8afa00ce0d278d500827baa",
+    "comitter" : "BeeOh <herbian4>",
+    "date" : "2015-08-18 16:08:55 +0200",
+    "message" : "     Typo correction "
+  }, {
+    "tag" : "35fb6edbee66231f6cb37a1bb90d57ac453cf1eb",
+    "comitter" : "Martin Junghanns <martin.junghanns@gmx.net>",
+    "date" : "2015-08-18 17:34:45 +0200",
+    "message" : "     Merge pull request #71 from BeeOh/master          Typo correction "
+  }, {
+    "tag" : "a52d9946b137f2758464576665f7c129c59a2d05",
+    "comitter" : "galpha <k.gomez@freenet.de>",
+    "date" : "2015-08-27 10:27:45 +0200",
+    "message" : "     Merge branch 'master' into #60_BTG_Flink          Conflicts:             gradoop-flink/src/test/java/org/gradoop/model/EPFlinkTest.java "
+  }, {
+    "tag" : "8efd8cec528961f6d8f30043c8415741a8d469eb",
+    "comitter" : "galpha <k.gomez@freenet.de>",
+    "date" : "2015-08-28 13:15:35 +0200",
+    "message" : "     (#60)     Merged Master to BTG_Flink     BTG Tests now use Flink-Test-Base     Todo: OverlapSplitBy (bugfix), OverlapSplitBy test case "
+  }, {
+    "tag" : "2365766bdb8980de7dad6b8307f784ccfb776b8f",
+    "comitter" : "Niklas Teichmann <niklasteichmann42@gmail.com>",
+    "date" : "2015-09-02 00:06:13 +0200",
+    "message" : "     #60 added test class for OverlapSplitBy, fixed bug when graph set of a vertex was null "
+  }, {
+    "tag" : "a2e6d003d105d13dce8bc12cae53b24a527baf06",
+    "comitter" : "galpha <k.gomez@freenet.de>",
+    "date" : "2015-09-08 12:12:43 +0200",
+    "message" : "     ready for merge (#60)     - specify btg test case     - code style checked "
+  }, {
+    "tag" : "c0b1f3067536b651acc47c7647ade8040a1c098c",
+    "comitter" : "Martin Junghanns <martin.junghanns@gmx.net>",
+    "date" : "2015-09-28 14:50:39 +0200",
+    "message" : "     moved OverlapSplitBy into correct package, #60 "
+  }, {
+    "tag" : "df5744de982e166781531afa89b34ba6358be9e4",
+    "comitter" : "Martin Junghanns <martin.junghanns@gmx.net>",
+    "date" : "2015-09-28 14:50:54 +0200",
+    "message" : "     Merge branch '#60_BTG_Flink' "
+  }, {
+    "tag" : "c1d962c13c43b3856c4a4ecbc74c93a3881026c2",
+    "comitter" : "Martin Junghanns <martin.junghanns@gmx.net>",
+    "date" : "2015-09-28 15:35:20 +0200",
+    "message" : "     minor renaming, #60, #49 "
+  }, {
+    "tag" : "c6257301dbe75ac97497463a4ecedddc773c9e5e",
+    "comitter" : "Martin Junghanns <martin.junghanns@gmx.net>",
+    "date" : "2015-09-29 10:39:47 +0200",
+    "message" : "     upgrade flink dependency to 0.10-SNAPSHOT, fixes #78 "
+  }, {
+    "tag" : "b39d0cebc16067647235ebf3cc4d7fedbaae61b9",
+    "comitter" : "Martin Junghanns <martin.junghanns@gmx.net>",
+    "date" : "2015-10-06 11:43:11 +0200",
+    "message" : "     upgraded findbugs version to 3.0.1          * fixed minor bug which was found by findbugs "
+  } ]
+}

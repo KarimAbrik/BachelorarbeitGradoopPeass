@@ -1,0 +1,53 @@
+{
+  "url" : "https://github.com/dbs-leipzig/gradoop.git",
+  "commits" : {
+    "d5bc5baeb00b670f64e09071bfaab76b4377c278" : { },
+    "c7b7778c3e9d9a36b9d9be77bb8ecbf7efe738cc" : { },
+    "d787db4c7ed78f9e64477fe053cb4832a44eba76" : { },
+    "92d80bf2b850b75293ea134466c78230b0a64ff0" : {
+      "predecessor" : "d787db4c7ed78f9e64477fe053cb4832a44eba76"
+    },
+    "4a6d0d5e37f46f18d788d0dc6acc48b9476a45df" : {
+      "testcases" : {
+        "gradoop-flink§org.gradoop.model.impl.EPGraphAggregateTest" : [ "aggregateEdgeCountTest" ],
+        "gradoop-flink§org.gradoop.model.impl.EPGraphCombineTest" : [ "testAssignment" ],
+        "gradoop-flink§org.gradoop.model.impl.FlinkGraphStoreTest" : [ "testWriteAsJsonFile" ]
+      },
+      "predecessor" : "92d80bf2b850b75293ea134466c78230b0a64ff0"
+    },
+    "b07a249b553b376afcebf4da4f0fcb49149aaf59" : {
+      "predecessor" : "4a6d0d5e37f46f18d788d0dc6acc48b9476a45df"
+    },
+    "3778a722f9a0cd1cb99caac12ec4ea726d4e4ce1" : {
+      "testcases" : {
+        "gradoop-flink§org.gradoop.model.impl.EPGMDatabaseTest" : [ "testWriteAsJsonFile" ]
+      },
+      "predecessor" : "b07a249b553b376afcebf4da4f0fcb49149aaf59"
+    },
+    "5468cb526b03c33dc86df8183981248ca122aa76" : {
+      "testcases" : {
+        "gradoop-flink§org.gradoop.model.impl.LogicalGraphAggregateTest" : [ "aggregateEdgeCountTest" ],
+        "gradoop-flink§org.gradoop.model.impl.LogicalGraphCombineTest" : [ "testAssignment" ]
+      },
+      "predecessor" : "3778a722f9a0cd1cb99caac12ec4ea726d4e4ce1"
+    },
+    "797fa7af24b3ec7811d596a80d1c6c91395e3d4e" : {
+      "testcases" : {
+        "gradoop-flink§org.gradoop.model.impl.EPGMDatabaseHBaseTest" : [ "writeToHBaseTest" ],
+        "gradoop-flink§org.gradoop.model.impl.EPGMDatabaseJSONTest" : [ "testWriteAsJsonFile" ],
+        "gradoop-flink§org.gradoop.model.impl.LogicalGraphAggregateTest" : [ "aggregateEdgeCountTest" ],
+        "gradoop-flink§org.gradoop.model.impl.LogicalGraphCombineTest" : [ "testAssignment" ]
+      },
+      "predecessor" : "5468cb526b03c33dc86df8183981248ca122aa76"
+    },
+    "2d06b66cc681a2af19635fd666948b17ce716153" : {
+      "predecessor" : "797fa7af24b3ec7811d596a80d1c6c91395e3d4e"
+    },
+    "a7e7e392804af135958cfa8ae3489653b196ffcb" : { },
+    "01e10be480429be9c88c939e90b4d833fcf4a41d" : { },
+    "dcf00faf6918dd9a1436a29acfac76961ae65996" : { },
+    "fe5d2f00d532e10566890fe9d3bc404b233ede14" : { },
+    "d3d0ee5d21458378b8afa00ce0d278d500827baa" : { }
+  },
+  "android" : false
+}

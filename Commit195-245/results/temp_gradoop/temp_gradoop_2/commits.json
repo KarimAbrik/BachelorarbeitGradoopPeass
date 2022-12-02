@@ -1,0 +1,133 @@
+{
+  "commits" : [ {
+    "tag" : "b39d0cebc16067647235ebf3cc4d7fedbaae61b9",
+    "comitter" : "Martin Junghanns <martin.junghanns@gmx.net>",
+    "date" : "2015-10-06 11:43:11 +0200",
+    "message" : "     upgraded findbugs version to 3.0.1          * fixed minor bug which was found by findbugs "
+  }, {
+    "tag" : "56b4d74e59d84495603850e45e627f6071c43a25",
+    "comitter" : "Martin Junghanns <martin.junghanns@gmx.net>",
+    "date" : "2015-10-06 18:07:49 +0200",
+    "message" : "     removed getGellyGraph() from LogicalGraph and GraphCollection, fixes #81          * introduced AbstractGraph class as base class for LogicalGraph and GraphCollection "
+  }, {
+    "tag" : "e56da032dc5cd886fe871f750231dd077f5ba7d6",
+    "comitter" : "Martin Junghanns <martin.junghanns@gmx.net>",
+    "date" : "2015-10-06 18:08:50 +0200",
+    "message" : "     Merge remote-tracking branch 'origin/#81_remove_getGellyGraph' into #81_remove_getGellyGraph "
+  }, {
+    "tag" : "6209595896568bded13130a7921e4584df72ce8f",
+    "comitter" : "Martin Junghanns <martin.junghanns@gmx.net>",
+    "date" : "2015-10-07 08:42:08 +0200",
+    "message" : "     removed unnecessary collect() calls in tests, fixes #83          * replaced collect() with LocalCollectionOutputFormat "
+  }, {
+    "tag" : "645eb1baa10fae290a3889480fec4febe1411921",
+    "comitter" : "Martin Junghanns <martin.junghanns@gmx.net>",
+    "date" : "2015-10-08 16:03:05 +0200",
+    "message" : "     removed unnecessary collect() calls, #83          * in LogicalGraphProjectionTest and LogicalGraphSplitByTest     * changed UnaryFunction<Vertex<Long, VD>> in SplitBy to UnaryFunction<VD, Long> "
+  }, {
+    "tag" : "717dfdd3b0e7dcfa37ddc57d345486cd9ad9e73f",
+    "comitter" : "Martin Junghanns <martin.junghanns@gmx.net>",
+    "date" : "2015-10-08 16:59:55 +0200",
+    "message" : "     aligned package structure in core and flink, #84          * upgraded checkstyle to 2.14     * set project version to 0.0.3-SNAPSHOT (was 0.0.3) "
+  }, {
+    "tag" : "edd68253991918b9f560a0e3e759d8aec959ac9b",
+    "comitter" : "Martin Junghanns <martin.junghanns@gmx.net>",
+    "date" : "2015-10-08 18:10:09 +0200",
+    "message" : "     refactored packages in BTG computation, #84 "
+  }, {
+    "tag" : "c9a0143ce926ffc294849b6e995fd9755165d004",
+    "comitter" : "Martin Junghanns <martin.junghanns@gmx.net>",
+    "date" : "2015-10-09 11:07:48 +0200",
+    "message" : "     organized key selectors in dedicated package, #84          * minor code restructuring "
+  }, {
+    "tag" : "8a42c1a651d3e1b9a40233494dd13a184af4c68f",
+    "comitter" : "Martin Junghanns <martin.junghanns@gmx.net>",
+    "date" : "2015-10-09 16:04:34 +0200",
+    "message" : "     organized key selectors in dedicated package, #84          * minor code restructuring "
+  }, {
+    "tag" : "299a8ba02fea62a3eef3b994930eff5b2608c1b7",
+    "comitter" : "Martin Junghanns <martin.junghanns@gmx.net>",
+    "date" : "2015-10-09 17:08:45 +0200",
+    "message" : "     refactored operator package structure, extracted common functions, #84 "
+  }, {
+    "tag" : "c5fd658db104afbcdb2b19b4ca111333358a53be",
+    "comitter" : "niklas <niklasteichmann42@gmail.com>",
+    "date" : "2015-10-20 14:15:13 +0200",
+    "message" : "     #85 added implementation of random node sampling     adjusted LogicalGraph class and LogicalGraphOperators interface     also implemented test class for random node sampling "
+  }, {
+    "tag" : "7696ad2bb2140e74e5c0a29a6d9c2686b9babbd3",
+    "comitter" : "niklas <niklasteichmann42@gmail.com>",
+    "date" : "2015-10-20 15:09:47 +0200",
+    "message" : "     #85 parameter sample size is now relative     added overloaded constructor of RandomNodeSampling with seed variable for the Random objects     replaced l with L in long variables     tests now use LocalCollectionOutputFormat to assure validity of results     result graph is checked for validity and completeness "
+  }, {
+    "tag" : "84fe9daedbb67443402ee2e2502fd99628680cbc",
+    "comitter" : "niklas <niklasteichmann42@gmail.com>",
+    "date" : "2015-10-20 15:54:14 +0200",
+    "message" : "     #85 adjusted documentation     code shortening     removed command line output from tests "
+  }, {
+    "tag" : "4c7875f2cf95d7eba2d02363c2fc924aa4d639e1",
+    "comitter" : "Martin Junghanns <m.junghanns@mailbox.org>",
+    "date" : "2015-10-23 16:36:22 +0200",
+    "message" : "     fixed checkstyle errors, fixes #85 "
+  }, {
+    "tag" : "a157e7f87b8664841084fd63f365677223cbd61b",
+    "comitter" : "Martin Junghanns <m.junghanns@mailbox.org>",
+    "date" : "2015-10-26 13:04:17 +0100",
+    "message" : "     replaced internal gelly graph with dedicated datasets, fixes #85 "
+  }, {
+    "tag" : "54ae6f3f866df64bb2495eadae1f51bbb756161a",
+    "comitter" : "Martin Junghanns <m.junghanns@mailbox.org>",
+    "date" : "2015-10-26 16:37:45 +0100",
+    "message" : "     using BC sets instead of collecting intermediate results, fixes #93 "
+  }, {
+    "tag" : "f3bd839734a08917c337d9cee2da98bf19037b8c",
+    "comitter" : "Martin Junghanns <martin.junghanns@gmx.net>",
+    "date" : "2015-10-29 09:05:22 +0100",
+    "message" : "     added GradoopConfiguration, #82          - splits up into GradoopFlinkConfiguration and GradoopHBaseConfiguration "
+  }, {
+    "tag" : "4af5dc78be5135bc3e8d1b5dbbece4261ffcc6ff",
+    "comitter" : "Martin Junghanns <martin.junghanns@gmx.net>",
+    "date" : "2015-11-02 15:55:13 +0100",
+    "message" : "     added CollectionCombine, fixes #87 "
+  }, {
+    "tag" : "f1a195ceec8f0f193e7690ae665baa21dc3c543b",
+    "comitter" : "niklas <niklasteichmann42@gmail.com>",
+    "date" : "2015-10-27 15:13:01 +0100",
+    "message" : "     implemented OverlapCollection operator, fixes #88 "
+  }, {
+    "tag" : "efe48cebe2c16f897246a7e46ffb73d971cddb66",
+    "comitter" : "niklas <niklasteichmann42@gmail.com>",
+    "date" : "2015-10-28 12:56:23 +0100",
+    "message" : "     implemented ExcludeCollection operator, fixes #89 "
+  }, {
+    "tag" : "bf4e2d178f2bd732b1de42cddd8fc6a2478dec70",
+    "comitter" : "p3et <petermann@informatik.uni-leipzig.de>",
+    "date" : "2015-11-03 10:55:58 +0100",
+    "message" : "     illustration of loop with intermediate result memory for flink mailing list question; #48 "
+  }, {
+    "tag" : "c85f96e276502d84953a6a01fe102afc1b1d6afc",
+    "comitter" : "Martin Junghanns <martin.junghanns@gmx.net>",
+    "date" : "2015-11-03 14:32:21 +0100",
+    "message" : "     reorganized package structure          * collection/unary & collection/binary     * logicalgraph/unary & logicalgraph/binary     * updated checkstyle to allow import, package, @see, @link statements > 80 lines     * updated checkstyle to allow import statements exclusively for javadoc "
+  }, {
+    "tag" : "830fb17ab65b6bd624c9a664a661d8a3ef22bd5e",
+    "comitter" : "p3et <petermann@informatik.uni-leipzig.de>",
+    "date" : "2015-11-03 15:34:47 +0100",
+    "message" : "     renamings, fixes #96          * graphData -> graphHead     * vertexData -> vertex     * edgeData -> edge "
+  }, {
+    "tag" : "13c23200641149af7a85fb4d02476c5f83da119e",
+    "comitter" : "p3et <petermann@informatik.uni-leipzig.de>",
+    "date" : "2015-11-04 13:34:02 +0100",
+    "message" : "     test class name fixes #96          * graph -> LogicalGraph "
+  }, {
+    "tag" : "04222f7f2475a8347b9b919043a9a238a480fc15",
+    "comitter" : "Martin Junghanns <martin.junghanns@gmx.net>",
+    "date" : "2015-11-12 10:10:13 +0100",
+    "message" : "     added GradoopId and SequenceIdGenerator, #99          * added tests "
+  }, {
+    "tag" : "104139feeab5aadbad8da05a0e6083e467e09d56",
+    "comitter" : "Martin Junghanns <martin.junghanns@gmx.net>",
+    "date" : "2015-11-12 10:10:47 +0100",
+    "message" : "     removed unused imports, #99 "
+  } ]
+}
