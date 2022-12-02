@@ -1,0 +1,19 @@
+@Test                                                                                                  @Test                                                                                               
+public void createDefaultGraphTest() {                                                                 public void createDefaultGraphTest() {                                                              
+Long graphID = 0L;                                                                                     Long graphID = 0L;                                                                                  
+String label = "A";                                                                                    String label = "A";                                                                                 
+Long vertex1 = 0L;                                                                                     Long vertex1 = 0L;                                                                                  
+Long vertex2 = 1L;                                                                                     Long vertex2 = 1L;                                                                                  
+Map&lt;String, Object&gt; props = Maps.newHashMapWithExpectedSize(2);                                  Map&lt;String, Object&gt; props = Maps.newHashMapWithExpectedSize(2);                               
+props.put("k1", "v1");                                                                                 props.put("k1", "v1");                                                                              
+props.put("k2", "v2");                                                                                 props.put("k2", "v2");                                                                              
+Graph g = GraphFactory.createDefaultGraph(graphID, label, props, Lists.newArrayList(vertex1, vertex2   Graph g = GraphFactory.createDefaultGraph(graphID, label, props, Lists.newArrayList(vertex1, vertex2
+assertThat(g.getID(), is(graphID));                                                                  | assertThat(g.getId(), is(graphID));                                                                 
+assertEquals(label, g.getLabel());                                                                     assertEquals(label, g.getLabel());                                                                  
+assertThat(g.getPropertyCount(), is(2));                                                               assertThat(g.getPropertyCount(), is(2));                                                            
+assertThat(g.getProperty("k1"), Is.&lt;Object&gt;is("v1"));                                            assertThat(g.getProperty("k1"), Is.&lt;Object&gt;is("v1"));                                         
+assertThat(g.getProperty("k2"), Is.&lt;Object&gt;is("v2"));                                            assertThat(g.getProperty("k2"), Is.&lt;Object&gt;is("v2"));                                         
+assertThat(g.getVertexCount(), is(2));                                                                 assertThat(g.getVertexCount(), is(2));                                                              
+assertTrue(Lists.newArrayList(g.getVertices()).contains(vertex1));                                     assertTrue(Lists.newArrayList(g.getVertices()).contains(vertex1));                                  
+assertTrue(Lists.newArrayList(g.getVertices()).contains(vertex2));                                     assertTrue(Lists.newArrayList(g.getVertices()).contains(vertex2));                                  
+}                                                                                                      }                                                                                                   

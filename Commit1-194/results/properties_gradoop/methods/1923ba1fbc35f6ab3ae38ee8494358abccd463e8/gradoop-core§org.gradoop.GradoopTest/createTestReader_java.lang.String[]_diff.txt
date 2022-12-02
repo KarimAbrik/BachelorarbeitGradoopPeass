@@ -1,0 +1,20 @@
+/**
+ * Takes a given graph represented by a string array, writes it to a
+ * temporary file and returns a buffered reader which can be used for
+ * testing readers.
+ *
+ * @param graph string array representing lines in a file
+ * @return reader on the input graph
+ * @throws IOException
+ */
+protected BufferedReader createTestReader(String[] graph) throws IOException {
+    File tmpFile = getTempFile();
+    BufferedWriter bw = new BufferedWriter(new FileWriter(tmpFile));
+    for (String line : graph) {
+        bw.write(line);
+        bw.newLine();
+    }
+    bw.flush();
+    bw.close();
+    return new BufferedReader(new FileReader(tmpFile));
+}

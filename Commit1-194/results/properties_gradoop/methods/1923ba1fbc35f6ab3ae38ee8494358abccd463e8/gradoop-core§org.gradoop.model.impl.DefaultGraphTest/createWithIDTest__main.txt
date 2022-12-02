@@ -1,0 +1,6 @@
+@Test
+public void createWithIDTest() {
+    Long graphID = 0L;
+    Graph g = GraphFactory.createDefaultGraphWithID(graphID);
+    assertThat(g.getId(), is(graphID));
+}

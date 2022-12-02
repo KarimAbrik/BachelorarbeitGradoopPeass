@@ -1,0 +1,12 @@
+/**
+ * Creates an edge instance based on the given parameters.
+ *
+ * @param otherID    the id of the vertex that edge is connected to
+ * @param label      edge label
+ * @param index      vertex centric edge index for parallel edges
+ * @param properties edge properties
+ */
+DefaultEdge(final Long otherID, final String label, final Long index, final Map<String, Object> properties) {
+    super(index, label, properties);
+    this.otherID = otherID;
+}

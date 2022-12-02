@@ -1,0 +1,18 @@
+/**                                                                                                    /**                                                                                                 
+* {@inheritDoc}                                                                                        * {@inheritDoc}                                                                                     
+*/                                                                                                     */                                                                                                  
+@Override                                                                                              @Override                                                                                           
+public String writeVertex(Vertex vertex) {                                                             public String writeVertex(Vertex vertex) {                                                          
+JSONObject json = new JSONObject();                                                                    JSONObject json = new JSONObject();                                                                 
+try {                                                                                                  try {                                                                                               
+json.put(VERTEX_ID, vertex.getID());                                                                 | json.put(VERTEX_ID, vertex.getId());                                                                
+json.put(LABEL, vertex.getLabel());                                                                    json.put(LABEL, vertex.getLabel());                                                                 
+json = writeProperties(json, vertex);                                                                  json = writeProperties(json, vertex);                                                               
+json = writeEdges(json, OUT_EDGES, vertex.getOutgoingEdges());                                         json = writeEdges(json, OUT_EDGES, vertex.getOutgoingEdges());                                      
+json = writeEdges(json, IN_EDGES, vertex.getIncomingEdges());                                          json = writeEdges(json, IN_EDGES, vertex.getIncomingEdges());                                       
+json = writeGraphs(json, vertex);                                                                      json = writeGraphs(json, vertex);                                                                   
+} catch (JSONException e) {                                                                            } catch (JSONException e) {                                                                         
+e.printStackTrace();                                                                                   e.printStackTrace();                                                                                
+}                                                                                                      }                                                                                                   
+return json.toString();                                                                                return json.toString();                                                                             
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,10 @@
+protected List<Vertex> createVerticesFromRDF() {
+    VertexLineReader reader = new RDFReader();
+    List<Vertex> vertices = Lists.newArrayList();
+    for (String line : RDF_NTRIPLES) {
+        for (Vertex v : reader.readVertexList(line)) {
+            vertices.add(v);
+        }
+    }
+    return vertices;
+}

@@ -1,0 +1,11 @@
+/**
+ * Initializes a new AdjacencyList reader based on the given {@code
+ * GraphStore} and a specific {@code VertexLineReader}.
+ *
+ * @param graphStore       the store where the graph shall be written to
+ * @param vertexLineReader used to read and process a single input line
+ */
+public AdjacencyListReader(final GraphStore graphStore, final VertexLineReader vertexLineReader) {
+    this.graphStore = graphStore;
+    this.vertexLineReader = vertexLineReader;
+}

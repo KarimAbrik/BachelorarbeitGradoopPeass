@@ -1,0 +1,21 @@
+/**
+ * Write either outgoing or incoming edges of to the given json object.
+ *
+ * @param json  json object to write edges to
+ * @param key   used to differ incoming and outgoing edges
+ * @param edges edges to write
+ * @return updated json object
+ * @throws JSONException
+ */
+private JSONObject writeEdges(final JSONObject json, final String key, final Iterable<Edge> edges) throws JSONException {
+    JSONArray edgeArray = new JSONArray();
+    for (Edge e : edges) {
+        JSONObject jsonEdge = new JSONObject();
+        jsonEdge.put(EDGE_OTHER_ID, e.getOtherID());
+        jsonEdge.put(EDGE_LABEL, e.getLabel());
+        jsonEdge = writeProperties(jsonEdge, e);
+        edgeArray.put(jsonEdge);
+    }
+    json.put(key, edgeArray);
+    return json;
+}
