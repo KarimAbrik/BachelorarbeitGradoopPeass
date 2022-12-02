@@ -1,0 +1,7 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public GD readGraphData(final Result res) {
+    return graphDataFactory.createGraphData(Long.valueOf(Bytes.toString(res.getRow())), readLabel(res), readProperties(res));
+}

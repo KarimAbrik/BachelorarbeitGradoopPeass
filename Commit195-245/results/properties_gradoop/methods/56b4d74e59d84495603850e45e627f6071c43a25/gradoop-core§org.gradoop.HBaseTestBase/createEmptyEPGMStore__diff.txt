@@ -1,0 +1,8 @@
+public static EPGMStore<DefaultVertexData, DefaultEdgeData, DefaultGraphData> createEmptyEPGMStore() {
+    Configuration config = utility.getConfiguration();
+    VertexDataHandler<DefaultVertexData, DefaultEdgeData> vertexDataHandler = new DefaultVertexDataHandler<>(new DefaultVertexDataFactory());
+    EdgeDataHandler<DefaultEdgeData, DefaultVertexData> edgeDataHandler = new DefaultEdgeDataHandler<>(new DefaultEdgeDataFactory());
+    GraphDataHandler<DefaultGraphData> graphDataHandler = new DefaultGraphDataHandler<>(new DefaultGraphDataFactory());
+    HBaseEPGMStoreFactory.deleteEPGMStore(config);
+    return HBaseEPGMStoreFactory.createOrOpenEPGMStore(config, vertexDataHandler, edgeDataHandler, graphDataHandler);
+}

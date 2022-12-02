@@ -1,0 +1,7 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public DefaultVertexData createVertexData(final Long vertexID, final String label, Map<String, Object> properties) {
+    return createVertexData(vertexID, label, properties, null);
+}

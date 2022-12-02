@@ -1,0 +1,13 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public Put writeEdgeData(Put put, PersistentEdgeData<VD> edgeData) {
+    LOG.info("Creating Put from: " + edgeData);
+    writeLabel(put, edgeData);
+    writeSourceVertex(put, edgeData.getSourceVertexData());
+    writeTargetVertex(put, edgeData.getTargetVertexData());
+    writeProperties(put, edgeData);
+    writeGraphs(put, edgeData);
+    return put;
+}

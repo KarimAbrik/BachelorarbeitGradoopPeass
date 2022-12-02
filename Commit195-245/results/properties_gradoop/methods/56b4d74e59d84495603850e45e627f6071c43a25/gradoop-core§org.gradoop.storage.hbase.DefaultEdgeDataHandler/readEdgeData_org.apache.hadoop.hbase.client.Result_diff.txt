@@ -1,0 +1,7 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public ED readEdgeData(Result res) {
+    return edgeDataFactory.createEdgeData(Long.valueOf(Bytes.toString(res.getRow())), readLabel(res), readSourceVertexId(res), readTargetVertexId(res), readProperties(res), readGraphs(res));
+}

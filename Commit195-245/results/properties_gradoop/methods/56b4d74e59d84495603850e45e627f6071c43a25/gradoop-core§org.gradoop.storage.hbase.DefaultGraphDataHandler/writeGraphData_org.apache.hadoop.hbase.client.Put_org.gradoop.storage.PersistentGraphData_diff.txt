@@ -1,0 +1,12 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public Put writeGraphData(final Put put, final PersistentGraphData graphData) {
+    LOG.info("Creating Put from: " + graphData);
+    writeLabel(put, graphData);
+    writeProperties(put, graphData);
+    writeVertices(put, graphData);
+    writeEdges(put, graphData);
+    return put;
+}

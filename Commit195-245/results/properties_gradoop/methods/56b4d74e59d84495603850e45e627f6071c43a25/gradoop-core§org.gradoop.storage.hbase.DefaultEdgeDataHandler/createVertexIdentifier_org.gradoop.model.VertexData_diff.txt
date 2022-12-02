@@ -1,0 +1,17 @@
+/**
+ * Serializes a vertex to a vertex identifier in the following format:
+ *
+ * <vertex-identifier> ::= <vertex-id><vertex-label>
+ *
+ * @param vertexData vertexData
+ * @return byte representation of the vertex identifier
+ */
+private byte[] createVertexIdentifier(final VertexData vertexData) {
+    byte[] labelBytes = Bytes.toBytes(vertexData.getLabel());
+    byte[] vertexKey = new byte[Bytes.SIZEOF_LONG + labelBytes.length];
+    // vertex identifier
+    Bytes.putLong(vertexKey, 0, vertexData.getId());
+    // vertex label
+    Bytes.putBytes(vertexKey, Bytes.SIZEOF_LONG, labelBytes, 0, labelBytes.length);
+    return vertexKey;
+}

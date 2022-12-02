@@ -1,0 +1,24 @@
+public static Collection<PersistentGraphData> createPersistentSocialGraphData() {
+    Collection<DefaultGraphData> graphDataCollection = createGraphDataCollection();
+    List<PersistentGraphData> persistentGraphData = Lists.newArrayListWithExpectedSize(graphDataCollection.size());
+    PersistentGraphDataFactory<DefaultGraphData, DefaultPersistentGraphData> graphDataFactory = new DefaultPersistentGraphDataFactory();
+    Set<Long> vertexIds = null;
+    Set<Long> edgeIds = null;
+    for (DefaultGraphData graphData : graphDataCollection) {
+        if (graphData.getId().equals(communityDatabases.getId())) {
+            vertexIds = Sets.newHashSet(VERTEX_PERSON_ALICE.getId(), VERTEX_PERSON_BOB.getId(), VERTEX_PERSON_EVE.getId());
+            edgeIds = Sets.newHashSet(EDGE_0_KNOWS.getId(), EDGE_1_KNOWS.getId(), EDGE_6_KNOWS.getId(), EDGE_21_KNOWS.getId());
+        } else if (graphData.getId().equals(communityHadoop.getId())) {
+            vertexIds = Sets.newHashSet(VERTEX_PERSON_CAROL.getId(), VERTEX_PERSON_DAVE.getId(), VERTEX_PERSON_FRANK.getId());
+            edgeIds = Sets.newHashSet(EDGE_4_KNOWS.getId(), EDGE_5_KNOWS.getId(), EDGE_22_KNOWS.getId(), EDGE_23_KNOWS.getId());
+        } else if (graphData.getId().equals(communityGraphs.getId())) {
+            vertexIds = Sets.newHashSet(VERTEX_PERSON_ALICE.getId(), VERTEX_PERSON_BOB.getId(), VERTEX_PERSON_CAROL.getId(), VERTEX_PERSON_DAVE.getId());
+            edgeIds = Sets.newHashSet(EDGE_0_KNOWS.getId(), EDGE_1_KNOWS.getId(), EDGE_2_KNOWS.getId(), EDGE_3_KNOWS.getId(), EDGE_4_KNOWS.getId(), EDGE_5_KNOWS.getId());
+        } else if (graphData.getId().equals(forumGraph.getId())) {
+            vertexIds = Sets.newHashSet(VERTEX_PERSON_CAROL.getId(), VERTEX_PERSON_DAVE.getId(), VERTEX_PERSON_FRANK.getId(), VERTEX_FORUM_GPS.getId());
+            edgeIds = Sets.newHashSet(EDGE_4_KNOWS.getId(), EDGE_16_HAS_MODERATOR.getId(), EDGE_19_HAS_MEMBER.getId(), EDGE_20_HAS_MEMBER.getId());
+        }
+        persistentGraphData.add(graphDataFactory.createGraphData(graphData, vertexIds, edgeIds));
+    }
+    return persistentGraphData;
+}
