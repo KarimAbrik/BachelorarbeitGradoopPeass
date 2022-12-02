@@ -1,0 +1,5 @@
+@Test                                                                                                  @Test                                                                                               
+public void testConnectedGraph() throws Exception {                                                    public void testConnectedGraph() throws Exception {                                                 
+String[] graph = getConnectedGraph();                                                                | String[] graph = PartitioningComputationTestHelper.getLPConnectedGraph();                           
+validateConnectedGraphResult(computeResults(graph));                                                   validateConnectedGraphResult(computeResults(graph));                                                
+}                                                                                                      }                                                                                                   

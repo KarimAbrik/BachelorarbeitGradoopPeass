@@ -1,0 +1,5 @@
+@Test
+public void testConnectedGraph() throws Exception {
+    String[] graph = getConnectedGraph();
+    validateConnectedGraphResult(computeResults(graph));
+}

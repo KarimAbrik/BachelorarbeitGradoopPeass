@@ -1,0 +1,5 @@
+@Test
+public void testBiPartitGraph() throws Exception {
+    String[] graph = PartitioningComputationTestHelper.getLPBiPartiteGraph();
+    validateBipartitGraphResult(computeResults(graph));
+}

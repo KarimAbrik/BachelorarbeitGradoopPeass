@@ -1,0 +1,36 @@
+/**                                                                                                    /**                                                                                                 
+* Returns the most frequent value based on all received messages.                                      * Returns the most frequent value based on all received messages.                                   
+*                                                                                                      *                                                                                                   
+* @param vertex      The current vertex                                                                * @param vertex      The current vertex                                                             
+* @param allMessages All messages the current vertex has received                                      * @param allMessages All messages the current vertex has received                                   
+* @return the maximal frequent number in all received messages                                         * @return the maximal frequent number in all received messages                                      
+*/                                                                                                     */                                                                                                  
+private int getMostFrequent(Vertex&lt;IntWritable, IntWritable, NullWritable&gt; vertex, List&lt;Int | private long getMostFrequent(Vertex&lt;LongWritable, LongWritable, NullWritable&gt; vertex, List&lt;
+Collections.sort(allMessages);                                                                         Collections.sort(allMessages);                                                                      
+int newValue;                                                                                        | long newValue;                                                                                      
+int currentCounter = 1;                                                                                int currentCounter = 1;                                                                             
+int currentValue = allMessages.get(0);                                                               | long currentValue = allMessages.get(0);                                                             
+int maxCounter = 1;                                                                                    int maxCounter = 1;                                                                                 
+int maxValue = 1;                                                                                    | long maxValue = 1;                                                                                  
+for (int i = 1; i &lt; allMessages.size(); i++) {                                                      for (int i = 1; i &lt; allMessages.size(); i++) {                                                   
+if (currentValue == allMessages.get(i)) {                                                              if (currentValue == allMessages.get(i)) {                                                           
+currentCounter++;                                                                                      currentCounter++;                                                                                   
+if (maxCounter &lt; currentCounter) {                                                                  if (maxCounter &lt; currentCounter) {                                                               
+maxCounter = currentCounter;                                                                           maxCounter = currentCounter;                                                                        
+maxValue = currentValue;                                                                               maxValue = currentValue;                                                                            
+}                                                                                                      }                                                                                                   
+} else {                                                                                               } else {                                                                                            
+currentCounter = 1;                                                                                    currentCounter = 1;                                                                                 
+currentValue = allMessages.get(i);                                                                     currentValue = allMessages.get(i);                                                                  
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+// if the frequent of all received messages are just one                                               // if the frequent of all received messages are just one                                            
+if (maxCounter == 1) {                                                                                 if (maxCounter == 1) {                                                                              
+// to avoid an oscillating state of the calculation we will just use                                   // to avoid an oscillating state of the calculation we will just use                                
+// the smaller value                                                                                   // the smaller value                                                                                
+newValue = Math.min(vertex.getValue().get(), allMessages.get(0));                                      newValue = Math.min(vertex.getValue().get(), allMessages.get(0));                                   
+} else {                                                                                               } else {                                                                                            
+newValue = maxValue;                                                                                   newValue = maxValue;                                                                                
+}                                                                                                      }                                                                                                   
+return newValue;                                                                                       return newValue;                                                                                    
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,5 @@
+@Test
+public void testDisconnectedGraph() throws Exception {
+    String[] graph = getDisconnectedGraph();
+    validateDisconnectedGraphResult(computeResults(graph));
+}

@@ -1,0 +1,23 @@
+/**                                                                                                    /**                                                                                                 
+* The actual LabelPropagation Computation                                                              * The actual LabelPropagation Computation                                                           
+*                                                                                                      *                                                                                                   
+* @param vertex   Vertex                                                                               * @param vertex   Vertex                                                                            
+* @param messages Messages that were sent to this vertex in the previous                               * @param messages Messages that were sent to this vertex in the previous                            
+*                 superstep.                                                                           *                 superstep.                                                                        
+* @throws IOException                                                                                  * @throws IOException                                                                               
+*/                                                                                                     */                                                                                                  
+@Override                                                                                              @Override                                                                                           
+public void compute(Vertex&lt;IntWritable, IntWritable, NullWritable&gt; vertex, Iterable&lt;IntWrit | public void compute(Vertex&lt;LongWritable, LongWritable, NullWritable&gt; vertex, Iterable&lt;LongW
+if (getSuperstep() == 0) {                                                                             if (getSuperstep() == 0) {                                                                          
+sendMessageToAllEdges(vertex, vertex.getId());                                                         sendMessageToAllEdges(vertex, vertex.getId());                                                      
+} else {                                                                                               } else {                                                                                            
+int currentMinValue = vertex.getValue().get();                                                       | long currentMinValue = vertex.getValue().get();                                                     
+int newValue = getNewValue(vertex, messages);                                                        | long newValue = getNewValue(vertex, messages);                                                      
+boolean changed = currentMinValue != newValue;                                                         boolean changed = currentMinValue != newValue;                                                      
+if (changed) {                                                                                         if (changed) {                                                                                      
+vertex.setValue(new IntWritable(newValue));                                                          | vertex.setValue(new LongWritable(newValue));                                                        
+sendMessageToAllEdges(vertex, vertex.getValue());                                                      sendMessageToAllEdges(vertex, vertex.getValue());                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+vertex.voteToHalt();                                                                                   vertex.voteToHalt();                                                                                
+}                                                                                                      }                                                                                                   

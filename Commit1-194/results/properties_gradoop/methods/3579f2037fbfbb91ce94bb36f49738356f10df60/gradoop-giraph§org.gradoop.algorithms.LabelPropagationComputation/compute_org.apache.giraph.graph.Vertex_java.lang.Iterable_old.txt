@@ -1,0 +1,23 @@
+/**
+ * The actual LabelPropagation Computation
+ *
+ * @param vertex   Vertex
+ * @param messages Messages that were sent to this vertex in the previous
+ *                 superstep.
+ * @throws IOException
+ */
+@Override
+public void compute(Vertex<IntWritable, IntWritable, NullWritable> vertex, Iterable<IntWritable> messages) throws IOException {
+    if (getSuperstep() == 0) {
+        sendMessageToAllEdges(vertex, vertex.getId());
+    } else {
+        int currentMinValue = vertex.getValue().get();
+        int newValue = getNewValue(vertex, messages);
+        boolean changed = currentMinValue != newValue;
+        if (changed) {
+            vertex.setValue(new IntWritable(newValue));
+            sendMessageToAllEdges(vertex, vertex.getValue());
+        }
+    }
+    vertex.voteToHalt();
+}

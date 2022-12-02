@@ -1,0 +1,5 @@
+private Map<Integer, Integer> computeResults(String[] graph) throws Exception {
+    GiraphConfiguration conf = getConfiguration();
+    Iterable<String> results = InternalVertexRunner.run(conf, graph);
+    return parseResults(results);
+}

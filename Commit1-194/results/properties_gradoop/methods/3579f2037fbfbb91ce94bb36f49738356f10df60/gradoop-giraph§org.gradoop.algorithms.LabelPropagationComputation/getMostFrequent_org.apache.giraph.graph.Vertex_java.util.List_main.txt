@@ -1,0 +1,36 @@
+/**
+ * Returns the most frequent value based on all received messages.
+ *
+ * @param vertex      The current vertex
+ * @param allMessages All messages the current vertex has received
+ * @return the maximal frequent number in all received messages
+ */
+private long getMostFrequent(Vertex<LongWritable, LongWritable, NullWritable> vertex, List<Long> allMessages) {
+    Collections.sort(allMessages);
+    long newValue;
+    int currentCounter = 1;
+    long currentValue = allMessages.get(0);
+    int maxCounter = 1;
+    long maxValue = 1;
+    for (int i = 1; i < allMessages.size(); i++) {
+        if (currentValue == allMessages.get(i)) {
+            currentCounter++;
+            if (maxCounter < currentCounter) {
+                maxCounter = currentCounter;
+                maxValue = currentValue;
+            }
+        } else {
+            currentCounter = 1;
+            currentValue = allMessages.get(i);
+        }
+    }
+    // if the frequent of all received messages are just one
+    if (maxCounter == 1) {
+        // to avoid an oscillating state of the calculation we will just use
+        // the smaller value
+        newValue = Math.min(vertex.getValue().get(), allMessages.get(0));
+    } else {
+        newValue = maxValue;
+    }
+    return newValue;
+}

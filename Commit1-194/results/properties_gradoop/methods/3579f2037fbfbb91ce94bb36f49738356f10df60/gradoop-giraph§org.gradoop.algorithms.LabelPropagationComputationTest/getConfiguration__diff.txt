@@ -1,0 +1,7 @@
+private GiraphConfiguration getConfiguration() {                                                       private GiraphConfiguration getConfiguration() {                                                    
+GiraphConfiguration conf = new GiraphConfiguration();                                                  GiraphConfiguration conf = new GiraphConfiguration();                                               
+conf.setComputationClass(LabelPropagationComputation.class);                                           conf.setComputationClass(LabelPropagationComputation.class);                                        
+conf.setVertexInputFormatClass(IntIntNullTextVertexInputFormat.class);                               | conf.setVertexInputFormatClass(LongLongNullTextInputFormat.class);                                  
+conf.setVertexOutputFormatClass(IdWithValueTextOutputFormat.class);                                    conf.setVertexOutputFormatClass(IdWithValueTextOutputFormat.class);                                 
+return conf;                                                                                           return conf;                                                                                        
+}                                                                                                      }                                                                                                   

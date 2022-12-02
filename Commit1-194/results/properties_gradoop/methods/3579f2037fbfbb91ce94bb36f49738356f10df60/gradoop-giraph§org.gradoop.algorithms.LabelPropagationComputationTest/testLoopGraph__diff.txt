@@ -1,0 +1,5 @@
+@Test                                                                                                  @Test                                                                                               
+public void testLoopGraph() throws Exception {                                                         public void testLoopGraph() throws Exception {                                                      
+String[] graph = getLoopGraph();                                                                     | String[] graph = PartitioningComputationTestHelper.getLPLoopGraph();                                
+validateLoopGraphResult(computeResults(graph));                                                        validateLoopGraphResult(computeResults(graph));                                                     
+}                                                                                                      }                                                                                                   

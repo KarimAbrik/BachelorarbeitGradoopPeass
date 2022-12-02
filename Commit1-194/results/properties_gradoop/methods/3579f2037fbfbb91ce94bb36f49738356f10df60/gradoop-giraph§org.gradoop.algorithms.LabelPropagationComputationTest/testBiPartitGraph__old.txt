@@ -1,0 +1,5 @@
+@Test
+public void testBiPartitGraph() throws Exception {
+    String[] graph = getBiPartiteGraph();
+    validateBipartitGraphResult(computeResults(graph));
+}
