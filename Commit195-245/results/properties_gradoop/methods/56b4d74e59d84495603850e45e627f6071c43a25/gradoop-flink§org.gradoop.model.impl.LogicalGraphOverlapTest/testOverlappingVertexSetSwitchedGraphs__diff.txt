@@ -1,0 +1,11 @@
+@Test
+public void testOverlappingVertexSetSwitchedGraphs() throws Exception {
+    Long firstGraph = 1L;
+    Long secondGraph = 3L;
+    long expectedVertexCount = 2L;
+    long expectedEdgeCount = 1L;
+    LogicalGraph<DefaultVertexData, DefaultEdgeData, DefaultGraphData> first = getGraphStore().getGraph(firstGraph);
+    LogicalGraph<DefaultVertexData, DefaultEdgeData, DefaultGraphData> second = getGraphStore().getGraph(secondGraph);
+    LogicalGraph<DefaultVertexData, DefaultEdgeData, DefaultGraphData> result = first.overlap(second);
+    performTest(result, expectedVertexCount, expectedEdgeCount);
+}

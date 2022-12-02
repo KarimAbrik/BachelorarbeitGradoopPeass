@@ -1,0 +1,19 @@
+/**
+ * Checks incoming messages for smaller values than the current smallest
+ * value.
+ *
+ * @param messages        All incoming messages
+ * @param currentMinValue The current minimum value
+ * @return The new (maybe unchanged) minimum value
+ */
+private long getNewMinValue(MessageIterator<org.gradoop.model.impl.operators.btg.BTGMessage> messages, long currentMinValue) {
+    long newMinValue = currentMinValue;
+    if (getSuperstepNumber() > 1) {
+        for (org.gradoop.model.impl.operators.btg.BTGMessage message : messages) {
+            if (message.getBtgID() < newMinValue) {
+                newMinValue = message.getBtgID();
+            }
+        }
+    }
+    return newMinValue;
+}

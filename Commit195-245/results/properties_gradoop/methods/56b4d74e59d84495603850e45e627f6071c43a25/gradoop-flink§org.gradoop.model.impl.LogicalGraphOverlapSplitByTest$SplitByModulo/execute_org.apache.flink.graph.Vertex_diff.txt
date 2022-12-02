@@ -1,0 +1,17 @@
+@Override
+public List<Long> execute(Vertex<Long, DefaultVertexData> vertex) throws Exception {
+    List<Long> list = new ArrayList<>();
+    boolean inNewGraph = false;
+    if (vertex.getId() % 2 == 0) {
+        list.add(-2l);
+        inNewGraph = true;
+    }
+    if (vertex.getId() % 3 == 0) {
+        list.add(-3l);
+        inNewGraph = true;
+    }
+    if (!inNewGraph) {
+        list.add(-1l);
+    }
+    return list;
+}

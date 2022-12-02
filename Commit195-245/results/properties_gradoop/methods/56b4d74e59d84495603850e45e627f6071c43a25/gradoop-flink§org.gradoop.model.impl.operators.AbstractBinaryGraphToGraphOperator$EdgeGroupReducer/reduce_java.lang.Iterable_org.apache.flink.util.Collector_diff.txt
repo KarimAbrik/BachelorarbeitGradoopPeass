@@ -1,0 +1,16 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public void reduce(Iterable<Edge<Long, ED>> iterable, Collector<Edge<Long, ED>> collector) throws Exception {
+    Iterator<Edge<Long, ED>> iterator = iterable.iterator();
+    long count = 0L;
+    Edge<Long, ED> e = null;
+    while (iterator.hasNext()) {
+        e = iterator.next();
+        count++;
+    }
+    if (count == amount) {
+        collector.collect(e);
+    }
+}

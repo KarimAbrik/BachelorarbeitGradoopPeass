@@ -1,0 +1,7 @@
+@Override
+public Vertex<Long, VD> join(Vertex<Long, BTGVertexValue> btgVertex, Vertex<Long, VD> epVertex) throws Exception {
+    epVertex.getValue().setProperty(VERTEX_TYPE_PROPERTYKEY, btgVertex.getValue().getVertexType());
+    epVertex.getValue().setProperty(VERTEX_VALUE_PROPERTYKEY, btgVertex.getValue().getVertexValue());
+    epVertex.getValue().setProperty(VERTEX_BTGIDS_PROPERTYKEY, btgVertex.getValue().getGraphs());
+    return epVertex;
+}

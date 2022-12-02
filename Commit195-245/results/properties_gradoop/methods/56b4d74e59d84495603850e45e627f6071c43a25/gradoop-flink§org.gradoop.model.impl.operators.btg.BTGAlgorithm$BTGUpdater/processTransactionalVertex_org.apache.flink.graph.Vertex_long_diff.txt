@@ -1,0 +1,11 @@
+/**
+ * Processes vertices of type Transactional.
+ *
+ * @param vertex   The current vertex
+ * @param minValue All incoming messages
+ */
+private void processTransactionalVertex(Vertex<Long, BTGVertexValue> vertex, long minValue) {
+    vertex.getValue().removeLastBtgID();
+    vertex.getValue().addGraph(minValue);
+    setNewVertexValue(vertex.getValue());
+}

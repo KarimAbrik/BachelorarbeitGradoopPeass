@@ -1,0 +1,12 @@
+/**                                                                                                    /**                                                                                                 
+* {@inheritDoc}                                                                                        * {@inheritDoc}                                                                                     
+*/                                                                                                     */                                                                                                  
+@Override                                                                                              @Override                                                                                           
+public LogicalGraph&lt;VD, ED, GD&gt; execute(LogicalGraph&lt;VD, ED, GD&gt; graph) throws Exception   public LogicalGraph&lt;VD, ED, GD&gt; execute(LogicalGraph&lt;VD, ED, GD&gt; graph) throws Exception
+O result = aggregationFunc.execute(graph);                                                             O result = aggregationFunc.execute(graph);                                                          
+// copy graph data before updating properties                                                          // copy graph data before updating properties                                                       
+GD newGraphData = graph.getGraphDataFactory().createGraphData(graph.getId(), graph.getLabel());        GD newGraphData = graph.getGraphDataFactory().createGraphData(graph.getId(), graph.getLabel());     
+newGraphData.setProperties(graph.getProperties());                                                     newGraphData.setProperties(graph.getProperties());                                                  
+newGraphData.setProperty(aggregatePropertyKey, result);                                                newGraphData.setProperty(aggregatePropertyKey, result);                                             
+return LogicalGraph.fromGraph(graph.getGellyGraph(), newGraphData, graph.getVertexDataFactory(), gra | return LogicalGraph.fromDataSets(graph.getVertices(), graph.getEdges(), newGraphData, graph.getVerte
+}                                                                                                      }                                                                                                   

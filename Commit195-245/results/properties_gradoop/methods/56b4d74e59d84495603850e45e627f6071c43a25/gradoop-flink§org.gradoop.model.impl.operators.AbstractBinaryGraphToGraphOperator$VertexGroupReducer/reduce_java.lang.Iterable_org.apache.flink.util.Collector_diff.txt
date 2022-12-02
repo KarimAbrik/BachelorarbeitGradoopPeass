@@ -1,0 +1,23 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public void reduce(Iterable<Vertex<Long, VD>> iterable, Collector<Vertex<Long, VD>> collector) throws Exception {
+    Iterator<Vertex<Long, VD>> iterator = iterable.iterator();
+    long count = 0L;
+    Vertex<Long, VD> v = null;
+    while (iterator.hasNext()) {
+        v = iterator.next();
+        count++;
+    }
+    if (count == amount) {
+        if (includedGraphID != null && precludedGraphID != null) {
+            assert v != null;
+            if (v.getValue().getGraphs().contains(includedGraphID) && !v.getValue().getGraphs().contains(precludedGraphID)) {
+                collector.collect(v);
+            }
+        } else {
+            collector.collect(v);
+        }
+    }
+}

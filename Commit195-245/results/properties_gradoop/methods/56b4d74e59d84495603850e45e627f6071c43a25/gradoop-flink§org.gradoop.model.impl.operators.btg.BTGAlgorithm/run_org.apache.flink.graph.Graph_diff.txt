@@ -1,0 +1,9 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public Graph<Long, BTGVertexValue, NullValue> run(Graph<Long, BTGVertexValue, NullValue> graph) throws Exception {
+    Graph<Long, BTGVertexValue, NullValue> undirectedGraph = graph.getUndirected();
+    // initialize vertex values and run the Vertex Centric Iteration
+    return undirectedGraph.runVertexCentricIteration(new BTGUpdater(), new BTGMessage(), maxIterations);
+}

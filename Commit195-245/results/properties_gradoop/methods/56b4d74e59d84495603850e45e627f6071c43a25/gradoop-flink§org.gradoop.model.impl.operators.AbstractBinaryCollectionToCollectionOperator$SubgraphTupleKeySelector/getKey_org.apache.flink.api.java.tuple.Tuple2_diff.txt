@@ -1,0 +1,7 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public Long getKey(Tuple2<Subgraph<Long, GD>, C> subgraph) throws Exception {
+    return subgraph.f0.getId();
+}

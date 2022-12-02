@@ -1,0 +1,12 @@
+/**
+ * Returns the current minimum value. This is always the last value in the
+ * list of BTG ids stored at this vertex. Initially the minimum value is the
+ * vertex id.
+ *
+ * @param vertex The current vertex
+ * @return The minimum BTG ID that vertex knows.
+ */
+private long getCurrentMinValue(Vertex<Long, BTGVertexValue> vertex) {
+    List<Long> btgIDs = Lists.newArrayList(vertex.getValue().getGraphs());
+    return (btgIDs.size() > 0) ? btgIDs.get(btgIDs.size() - 1) : vertex.getId();
+}

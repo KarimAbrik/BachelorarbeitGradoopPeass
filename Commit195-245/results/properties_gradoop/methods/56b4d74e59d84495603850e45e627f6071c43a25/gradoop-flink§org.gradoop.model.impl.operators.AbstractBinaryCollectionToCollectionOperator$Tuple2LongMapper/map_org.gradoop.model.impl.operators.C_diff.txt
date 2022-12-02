@@ -1,0 +1,7 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public Tuple2<C, Long> map(C c) throws Exception {
+    return new Tuple2<>(c, secondField);
+}

@@ -1,0 +1,16 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public GraphCollection<VD, ED, GD> execute(GraphCollection<VD, ED, GD> firstCollection, GraphCollection<VD, ED, GD> secondCollection) throws Exception {
+    // do some init stuff for the actual operator
+    firstGraph = firstCollection.getGellyGraph();
+    firstSubgraphs = firstCollection.getSubgraphs();
+    secondGraph = secondCollection.getGellyGraph();
+    secondSubgraphs = secondCollection.getSubgraphs();
+    env = firstGraph.getContext();
+    final DataSet<Subgraph<Long, GD>> newSubgraphs = computeNewSubgraphs();
+    final DataSet<Vertex<Long, VD>> newVertices = computeNewVertices(newSubgraphs);
+    final DataSet<Edge<Long, ED>> newEdges = computeNewEdges(newVertices);
+    return new GraphCollection<>(Graph.fromDataSet(newVertices, newEdges, env), newSubgraphs, firstCollection.getVertexDataFactory(), firstCollection.getEdgeDataFactory(), firstCollection.getGraphDataFactory(), env);
+}

@@ -1,0 +1,16 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public void updateVertex(Vertex<Long, BTGVertexValue> vertex, MessageIterator<org.gradoop.model.impl.operators.btg.BTGMessage> messages) throws Exception {
+    if (vertex.getValue().getVertexType() == BTGVertexType.MASTER) {
+        processMasterVertex(vertex, messages);
+    } else if (vertex.getValue().getVertexType() == BTGVertexType.TRANSACTIONAL) {
+        long currentMinValue = getCurrentMinValue(vertex);
+        long newMinValue = getNewMinValue(messages, currentMinValue);
+        boolean changed = currentMinValue != newMinValue;
+        if (getSuperstepNumber() == 1 || changed) {
+            processTransactionalVertex(vertex, newMinValue);
+        }
+    }
+}

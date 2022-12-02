@@ -1,0 +1,12 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public LogicalGraph<VD, ED, GD> execute(LogicalGraph<VD, ED, GD> graph) throws Exception {
+    O result = aggregationFunc.execute(graph);
+    // copy graph data before updating properties
+    GD newGraphData = graph.getGraphDataFactory().createGraphData(graph.getId(), graph.getLabel());
+    newGraphData.setProperties(graph.getProperties());
+    newGraphData.setProperty(aggregatePropertyKey, result);
+    return LogicalGraph.fromDataSets(graph.getVertices(), graph.getEdges(), newGraphData, graph.getVertexDataFactory(), graph.getEdgeDataFactory(), graph.getGraphDataFactory());
+}

@@ -1,0 +1,19 @@
+@Test                                                                                                  @Test                                                                                               
+public void testSplitBy() throws Exception {                                                           public void testSplitBy() throws Exception {                                                        
+LogicalGraph&lt;DefaultVertexData, DefaultEdgeData, DefaultGraphData&gt; inputGraph = getGraphStore(   LogicalGraph&lt;DefaultVertexData, DefaultEdgeData, DefaultGraphData&gt; inputGraph = getGraphStore(
+UnaryFunction&lt;Vertex&lt;Long, DefaultVertexData&gt;, Long&gt; function = new SplitByIdOddOrEven()   UnaryFunction&lt;Vertex&lt;Long, DefaultVertexData&gt;, Long&gt; function = new SplitByIdOddOrEven()
+GraphCollection&lt;DefaultVertexData, DefaultEdgeData, DefaultGraphData&gt; labeledGraphCollection =   GraphCollection&lt;DefaultVertexData, DefaultEdgeData, DefaultGraphData&gt; labeledGraphCollection =
+assertNotNull("graph collection is null", labeledGraphCollection);                                     assertNotNull("graph collection is null", labeledGraphCollection);                                  
+assertEquals("wrong number of graphs", 2L, labeledGraphCollection.size());                             assertEquals("wrong number of graphs", 2L, labeledGraphCollection.size());                          
+assertEquals("wrong number of vertices", 3L, labeledGraphCollection.getTotalVertexCount());          | assertEquals("wrong number of vertices", 3L, labeledGraphCollection.getVertexCount());              
+List&lt;Vertex&lt;Long, DefaultVertexData&gt;&gt; oldVertices = inputGraph.getGellyGraph().getVertic   List&lt;Vertex&lt;Long, DefaultVertexData&gt;&gt; oldVertices = inputGraph.getGellyGraph().getVertic
+List&lt;Vertex&lt;Long, DefaultVertexData&gt;&gt; newVertices = labeledGraphCollection.getGellyGraph   List&lt;Vertex&lt;Long, DefaultVertexData&gt;&gt; newVertices = labeledGraphCollection.getGellyGraph
+for (int i = 0; i &lt; newVertices.size(); i++) {                                                      for (int i = 0; i &lt; newVertices.size(); i++) {                                                   
+Vertex&lt;Long, DefaultVertexData&gt; oldVertex = oldVertices.get(i);                                  Vertex&lt;Long, DefaultVertexData&gt; oldVertex = oldVertices.get(i);                               
+Vertex&lt;Long, DefaultVertexData&gt; newVertex = newVertices.get(i);                                  Vertex&lt;Long, DefaultVertexData&gt; newVertex = newVertices.get(i);                               
+assertTrue((oldVertex.getValue().getGraphCount() + 1) == newVertex.getValue().getGraphCount());        assertTrue((oldVertex.getValue().getGraphCount() + 1) == newVertex.getValue().getGraphCount());     
+assertTrue(newVertex.getValue().getGraphs().containsAll(oldVertex.getValue().getGraphs()));            assertTrue(newVertex.getValue().getGraphs().containsAll(oldVertex.getValue().getGraphs()));         
+assertTrue(newVertex.getValue().getGraphs().contains(function.execute(newVertex)));                    assertTrue(newVertex.getValue().getGraphs().contains(function.execute(newVertex)));                 
+}                                                                                                      }                                                                                                   
+assertEquals("wrong number of edges", 1L, labeledGraphCollection.getTotalEdgeCount());               | assertEquals("wrong number of edges", 1L, labeledGraphCollection.getEdgeCount());                   
+}                                                                                                      }                                                                                                   

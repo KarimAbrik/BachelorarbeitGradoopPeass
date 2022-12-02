@@ -1,0 +1,9 @@
+/**
+ * use negative values
+ * {@inheritDoc}
+ */
+@SuppressWarnings("unchecked")
+@Override
+public List<Long> execute(Vertex<Long, VD> vertex) throws Exception {
+    return (List<Long>) vertex.getValue().getProperty(propertyKey);
+}

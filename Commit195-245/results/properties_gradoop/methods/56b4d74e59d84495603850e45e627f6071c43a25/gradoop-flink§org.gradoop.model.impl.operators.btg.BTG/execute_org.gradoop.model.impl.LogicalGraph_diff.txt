@@ -1,0 +1,16 @@
+/**                                                                                                    /**                                                                                                 
+* {@inheritDoc}                                                                                        * {@inheritDoc}                                                                                     
+*/                                                                                                     */                                                                                                  
+@Override                                                                                              @Override                                                                                           
+public GraphCollection&lt;VD, ED, GD&gt; execute(final LogicalGraph&lt;VD, ED, GD&gt; logicalGraph)    public GraphCollection&lt;VD, ED, GD&gt; execute(final LogicalGraph&lt;VD, ED, GD&gt; logicalGraph) 
+DataSet&lt;Vertex&lt;Long, BTGVertexValue&gt;&gt; vertices = logicalGraph.getGellyGraph().getVertice | DataSet&lt;Vertex&lt;Long, BTGVertexValue&gt;&gt; vertices = logicalGraph.getVertices().map(new Crea
+DataSet&lt;Edge&lt;Long, NullValue&gt;&gt; edges = logicalGraph.getGellyGraph().getEdges().map(new C | DataSet&lt;Edge&lt;Long, NullValue&gt;&gt; edges = logicalGraph.getEdges().map(new CreateEdgesMapFun
+Graph&lt;Long, BTGVertexValue, NullValue&gt; btgGraph = Graph.fromDataSet(vertices, edges, env);       Graph&lt;Long, BTGVertexValue, NullValue&gt; btgGraph = Graph.fromDataSet(vertices, edges, env);    
+btgGraph = btgGraph.run(new BTGAlgorithm(this.maxIterations));                                         btgGraph = btgGraph.run(new BTGAlgorithm(this.maxIterations));                                      
+DataSet&lt;Vertex&lt;Long, VD&gt;&gt; btgLabeledVertices = btgGraph.getVertices().join(logicalGraph. | DataSet&lt;Vertex&lt;Long, VD&gt;&gt; btgLabeledVertices = btgGraph.getVertices().join(logicalGraph.
+Graph&lt;Long, VD, ED&gt; gellyBTGGraph = Graph.fromDataSet(btgLabeledVertices, logicalGraph.getGell | // create new graph                                                                                 
+LogicalGraph&lt;VD, ED, GD&gt; btgEPGraph = LogicalGraph.fromGraph(gellyBTGGraph, null, logicalGraph | LogicalGraph&lt;VD, ED, GD&gt; btgEPGraph = LogicalGraph.fromDataSets(btgLabeledVertices, logicalGra
+LongListFromProperty&lt;VD&gt; lsfp = new LongListFromProperty&lt;&gt;(VERTEX_BTGIDS_PROPERTYKEY);     LongListFromProperty&lt;VD&gt; lsfp = new LongListFromProperty&lt;&gt;(VERTEX_BTGIDS_PROPERTYKEY);  
+OverlapSplitBy&lt;VD, ED, GD&gt; callByBtgIds = new OverlapSplitBy&lt;&gt;(lsfp, env);                 OverlapSplitBy&lt;VD, ED, GD&gt; callByBtgIds = new OverlapSplitBy&lt;&gt;(lsfp, env);              
+return callByBtgIds.execute(btgEPGraph);                                                               return callByBtgIds.execute(btgEPGraph);                                                            
+}                                                                                                      }                                                                                                   

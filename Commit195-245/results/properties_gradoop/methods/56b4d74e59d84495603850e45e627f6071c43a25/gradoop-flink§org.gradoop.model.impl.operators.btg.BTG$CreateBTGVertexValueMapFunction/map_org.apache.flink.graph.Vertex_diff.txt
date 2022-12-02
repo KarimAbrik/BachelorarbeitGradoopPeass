@@ -1,0 +1,8 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public Vertex<Long, BTGVertexValue> map(Vertex<Long, VD> logicalVertex) throws Exception {
+    BTGVertexValue btgValue = createNewVertexValue(logicalVertex);
+    return new Vertex<>(logicalVertex.getId(), btgValue);
+}

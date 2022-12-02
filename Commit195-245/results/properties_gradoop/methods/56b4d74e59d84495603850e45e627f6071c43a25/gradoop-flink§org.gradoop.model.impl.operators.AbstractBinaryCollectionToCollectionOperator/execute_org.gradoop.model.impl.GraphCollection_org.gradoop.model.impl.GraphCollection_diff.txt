@@ -1,0 +1,17 @@
+/**                                                                                                    /**                                                                                                 
+* {@inheritDoc}                                                                                        * {@inheritDoc}                                                                                     
+*/                                                                                                     */                                                                                                  
+@Override                                                                                              @Override                                                                                           
+public GraphCollection&lt;VD, ED, GD&gt; execute(GraphCollection&lt;VD, ED, GD&gt; firstCollection,    public GraphCollection&lt;VD, ED, GD&gt; execute(GraphCollection&lt;VD, ED, GD&gt; firstCollection, 
+// do some init stuff for the actual operator                                                          // do some init stuff for the actual operator                                                       
+firstGraph = firstCollection.getGellyGraph();                                                        | env = firstCollection.getVertices().getExecutionEnvironment();                                      
+                                                                                                     | firstGraph = Graph.fromDataSet(firstCollection.getVertices(), firstCollection.getEdges(), env);     
+firstSubgraphs = firstCollection.getSubgraphs();                                                       firstSubgraphs = firstCollection.getSubgraphs();                                                    
+secondGraph = secondCollection.getGellyGraph();                                                      | secondGraph = Graph.fromDataSet(secondCollection.getVertices(), secondCollection.getEdges(), env);  
+secondSubgraphs = secondCollection.getSubgraphs();                                                     secondSubgraphs = secondCollection.getSubgraphs();                                                  
+env = firstGraph.getContext();                                                                       |                                                                                                     
+final DataSet&lt;Subgraph&lt;Long, GD&gt;&gt; newSubgraphs = computeNewSubgraphs();                    final DataSet&lt;Subgraph&lt;Long, GD&gt;&gt; newSubgraphs = computeNewSubgraphs();                 
+final DataSet&lt;Vertex&lt;Long, VD&gt;&gt; newVertices = computeNewVertices(newSubgraphs);            final DataSet&lt;Vertex&lt;Long, VD&gt;&gt; newVertices = computeNewVertices(newSubgraphs);         
+final DataSet&lt;Edge&lt;Long, ED&gt;&gt; newEdges = computeNewEdges(newVertices);                     final DataSet&lt;Edge&lt;Long, ED&gt;&gt; newEdges = computeNewEdges(newVertices);                  
+return new GraphCollection&lt;&gt;(Graph.fromDataSet(newVertices, newEdges, env), newSubgraphs, firs   return new GraphCollection&lt;&gt;(Graph.fromDataSet(newVertices, newEdges, env), newSubgraphs, firs
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,12 @@
+/**
+ * Returns only the left tuple of the join result.
+ *
+ * @param leftTuple  edge
+ * @param rightTuple vertex
+ * @return edge
+ * @throws Exception
+ */
+@Override
+public Edge<Long, ED> join(Edge<Long, ED> leftTuple, Vertex<Long, VD> rightTuple) throws Exception {
+    return leftTuple;
+}

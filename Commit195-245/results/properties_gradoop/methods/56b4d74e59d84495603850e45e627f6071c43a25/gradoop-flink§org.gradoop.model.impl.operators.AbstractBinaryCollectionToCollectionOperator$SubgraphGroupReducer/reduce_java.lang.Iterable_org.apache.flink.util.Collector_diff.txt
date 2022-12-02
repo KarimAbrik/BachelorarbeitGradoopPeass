@@ -1,0 +1,21 @@
+/**
+ * If the number of elements in the group is equal to the user expected
+ * group size, the subgraph will be returned.
+ *
+ * @param iterable  graph data
+ * @param collector output collector (contains 0 or 1 graph)
+ * @throws Exception
+ */
+@Override
+public void reduce(Iterable<Subgraph<Long, GD>> iterable, Collector<Subgraph<Long, GD>> collector) throws Exception {
+    Iterator<Subgraph<Long, GD>> iterator = iterable.iterator();
+    long count = 0L;
+    Subgraph<Long, GD> s = null;
+    while (iterator.hasNext()) {
+        s = iterator.next();
+        count++;
+    }
+    if (count == expectedGroupSize) {
+        collector.collect(s);
+    }
+}

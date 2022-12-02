@@ -1,0 +1,12 @@
+/**
+ * Method to create a new BTG vertex value from a given vertex
+ *
+ * @param logicalVertex actual vertex
+ * @return BTGVertexValue
+ */
+private BTGVertexValue createNewVertexValue(Vertex<Long, VD> logicalVertex) {
+    BTGVertexType type = BTGVertexType.values()[Integer.parseInt((String) logicalVertex.getValue().getProperty(VERTEX_TYPE_PROPERTYKEY))];
+    double value = Double.parseDouble((String) logicalVertex.getValue().getProperty(VERTEX_VALUE_PROPERTYKEY));
+    List<Long> btgIDs = getBTGIDs((String) logicalVertex.getValue().getProperty(VERTEX_BTGIDS_PROPERTYKEY));
+    return new BTGVertexValue(type, value, btgIDs);
+}

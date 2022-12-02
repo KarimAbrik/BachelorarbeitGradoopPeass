@@ -1,0 +1,14 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public void sendMessages(Vertex<Long, BTGVertexValue> vertex) throws Exception {
+    if (vertex.getValue().getVertexType() == BTGVertexType.TRANSACTIONAL) {
+        org.gradoop.model.impl.operators.btg.BTGMessage message = new org.gradoop.model.impl.operators.btg.BTGMessage();
+        message.setSenderID(vertex.getId());
+        if (vertex.getValue().getLastGraph() != null) {
+            message.setBtgID(vertex.getValue().getLastGraph());
+        }
+        sendMessageToAllNeighbors(message);
+    }
+}
