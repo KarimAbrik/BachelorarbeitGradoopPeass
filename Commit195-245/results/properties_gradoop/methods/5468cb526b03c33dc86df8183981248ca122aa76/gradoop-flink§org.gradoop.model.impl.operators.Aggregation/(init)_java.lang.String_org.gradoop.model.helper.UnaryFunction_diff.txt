@@ -1,0 +1,12 @@
+/**
+ * Creates new aggregation.
+ *
+ * @param aggregatePropertyKey property key to store result of {@code
+ *                             aggregationFunc}
+ * @param aggregationFunc      user defined aggregation function which gets
+ *                             called on the input graph
+ */
+public Aggregation(final String aggregatePropertyKey, UnaryFunction<LogicalGraph<VD, ED, GD>, O> aggregationFunc) {
+    this.aggregatePropertyKey = aggregatePropertyKey;
+    this.aggregationFunc = aggregationFunc;
+}

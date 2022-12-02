@@ -1,0 +1,7 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public <O extends Number> LogicalGraph<VD, ED, GD> aggregate(String propertyKey, UnaryFunction<LogicalGraph<VD, ED, GD>, O> aggregateFunc) throws Exception {
+    return callForGraph(new Aggregation<>(propertyKey, aggregateFunc));
+}

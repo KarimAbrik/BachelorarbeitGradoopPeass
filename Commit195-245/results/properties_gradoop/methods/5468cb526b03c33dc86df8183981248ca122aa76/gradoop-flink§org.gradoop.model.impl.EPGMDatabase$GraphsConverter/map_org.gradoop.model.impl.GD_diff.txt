@@ -1,0 +1,7 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public Subgraph<Long, GD> map(GD value) throws Exception {
+    return new Subgraph<>(value.getId(), value);
+}
