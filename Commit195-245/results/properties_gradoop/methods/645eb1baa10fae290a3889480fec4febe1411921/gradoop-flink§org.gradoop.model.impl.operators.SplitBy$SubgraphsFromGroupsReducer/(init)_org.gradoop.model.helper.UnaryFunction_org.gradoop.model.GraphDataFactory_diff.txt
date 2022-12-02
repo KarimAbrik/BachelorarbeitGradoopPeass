@@ -1,0 +1,11 @@
+/**                                                                                                    /**                                                                                                 
+* Creates GroupReduceFunction instance.                                                                * Creates GroupReduceFunction instance.                                                             
+*                                                                                                      *                                                                                                   
+* @param function         Mapping from vertex to long value                                            * @param function         Mapping from vertex to long value                                         
+* @param graphDataFactory GraphDataFactory to build new GraphData                                      * @param graphDataFactory GraphDataFactory to build new GraphData                                   
+*/                                                                                                     */                                                                                                  
+public SubgraphsFromGroupsReducer(UnaryFunction&lt;Vertex&lt;Long, VD&gt;, Long&gt; function, GraphD | public SubgraphsFromGroupsReducer(UnaryFunction&lt;VD, Long&gt; function, GraphDataFactory&lt;GD&gt;
+this.function = function;                                                                              this.function = function;                                                                           
+this.graphDataFactory = graphDataFactory;                                                              this.graphDataFactory = graphDataFactory;                                                           
+reuseSubgraph = new Subgraph&lt;&gt;();                                                                reuseSubgraph = new Subgraph&lt;&gt;();                                                             
+}                                                                                                      }                                                                                                   

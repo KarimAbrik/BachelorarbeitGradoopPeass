@@ -1,0 +1,8 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public Set<Long> reduce(Set<Long> set1, Set<Long> set2) throws Exception {
+    set1.addAll(set2);
+    return set1;
+}

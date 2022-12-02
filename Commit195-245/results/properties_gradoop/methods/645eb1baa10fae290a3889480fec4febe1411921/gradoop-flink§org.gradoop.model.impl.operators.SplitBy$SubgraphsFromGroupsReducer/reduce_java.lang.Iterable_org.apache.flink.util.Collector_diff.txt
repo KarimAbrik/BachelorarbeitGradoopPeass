@@ -1,0 +1,12 @@
+/**                                                                                                    /**                                                                                                 
+* {@inheritDoc}                                                                                        * {@inheritDoc}                                                                                     
+*/                                                                                                     */                                                                                                  
+@Override                                                                                              @Override                                                                                           
+public void reduce(Iterable&lt;Vertex&lt;Long, VD&gt;&gt; iterable, Collector&lt;Subgraph&lt;Long, G   public void reduce(Iterable&lt;Vertex&lt;Long, VD&gt;&gt; iterable, Collector&lt;Subgraph&lt;Long, G
+Iterator&lt;Vertex&lt;Long, VD&gt;&gt; it = iterable.iterator();                                       Iterator&lt;Vertex&lt;Long, VD&gt;&gt; it = iterable.iterator();                                    
+Vertex&lt;Long, VD&gt; vertex = it.next();                                                             Vertex&lt;Long, VD&gt; vertex = it.next();                                                          
+Long labelPropIndex = function.execute(vertex);                                                      | Long labelPropIndex = function.execute(vertex.getValue());                                          
+reuseSubgraph.setId(labelPropIndex);                                                                   reuseSubgraph.setId(labelPropIndex);                                                                
+reuseSubgraph.setValue(graphDataFactory.createGraphData(labelPropIndex, GConstants.DEFAULT_GRAPH_LAB   reuseSubgraph.setValue(graphDataFactory.createGraphData(labelPropIndex, GConstants.DEFAULT_GRAPH_LAB
+collector.collect(reuseSubgraph);                                                                      collector.collect(reuseSubgraph);                                                                   
+}                                                                                                      }                                                                                                   

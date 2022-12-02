@@ -1,0 +1,11 @@
+/**
+ * Creates GroupReduceFunction instance.
+ *
+ * @param function         Mapping from vertex to long value
+ * @param graphDataFactory GraphDataFactory to build new GraphData
+ */
+public SubgraphsFromGroupsReducer(UnaryFunction<VD, Long> function, GraphDataFactory<GD> graphDataFactory) {
+    this.function = function;
+    this.graphDataFactory = graphDataFactory;
+    reuseSubgraph = new Subgraph<>();
+}

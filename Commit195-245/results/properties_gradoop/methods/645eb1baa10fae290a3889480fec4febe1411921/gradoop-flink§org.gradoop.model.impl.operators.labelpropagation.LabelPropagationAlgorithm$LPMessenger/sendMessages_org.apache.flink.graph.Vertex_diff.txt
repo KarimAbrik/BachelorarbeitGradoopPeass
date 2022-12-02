@@ -1,0 +1,8 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public void sendMessages(Vertex<Long, LabelPropagationValue> vertex) throws Exception {
+    // send current minimum to neighbors
+    sendMessageToAllNeighbors(vertex.getValue().getCurrentCommunity());
+}

@@ -1,0 +1,8 @@
+/**                                                                                                    /**                                                                                                 
+* Creates a KeySelector instance.                                                                      * Creates a KeySelector instance.                                                                   
+*                                                                                                      *                                                                                                   
+* @param function Mapping from vertex to long value                                                    * @param function Mapping from vertex to long value                                                 
+*/                                                                                                     */                                                                                                  
+public LongFromVertexSelector(UnaryFunction&lt;Vertex&lt;Long, VD&gt;, Long&gt; function) {          | public LongFromVertexSelector(UnaryFunction&lt;VD, Long&gt; function) {                             
+this.function = function;                                                                              this.function = function;                                                                           
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,8 @@
+/**
+ * Create a new ProjectEdgesMapper
+ *
+ * @param edgeFunc the edge projection function
+ */
+public ProjectionEdgesMapper(UnaryFunction<ED, ED> edgeFunc) {
+    this.edgeFunc = edgeFunc;
+}

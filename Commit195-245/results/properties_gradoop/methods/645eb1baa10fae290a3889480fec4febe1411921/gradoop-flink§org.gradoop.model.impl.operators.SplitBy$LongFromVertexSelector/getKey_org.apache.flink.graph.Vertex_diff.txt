@@ -1,0 +1,7 @@
+/**                                                                                                    /**                                                                                                 
+* {@inheritDoc}                                                                                        * {@inheritDoc}                                                                                     
+*/                                                                                                     */                                                                                                  
+@Override                                                                                              @Override                                                                                           
+public Long getKey(Vertex&lt;Long, VD&gt; vertex) throws Exception {                                   public Long getKey(Vertex&lt;Long, VD&gt; vertex) throws Exception {                                
+return function.execute(vertex);                                                                     | return function.execute(vertex.getValue());                                                         
+}                                                                                                      }                                                                                                   

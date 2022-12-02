@@ -1,0 +1,9 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public Set<Long> map(Subgraph<Long, GD> subgraph) throws Exception {
+    Set<Long> idSet = Sets.newHashSet();
+    idSet.add(subgraph.getId());
+    return idSet;
+}

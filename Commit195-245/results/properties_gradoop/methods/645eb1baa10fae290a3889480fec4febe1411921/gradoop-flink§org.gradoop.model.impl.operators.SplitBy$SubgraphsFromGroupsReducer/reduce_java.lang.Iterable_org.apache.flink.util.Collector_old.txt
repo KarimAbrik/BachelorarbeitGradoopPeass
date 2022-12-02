@@ -1,0 +1,12 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public void reduce(Iterable<Vertex<Long, VD>> iterable, Collector<Subgraph<Long, GD>> collector) throws Exception {
+    Iterator<Vertex<Long, VD>> it = iterable.iterator();
+    Vertex<Long, VD> vertex = it.next();
+    Long labelPropIndex = function.execute(vertex);
+    reuseSubgraph.setId(labelPropIndex);
+    reuseSubgraph.setValue(graphDataFactory.createGraphData(labelPropIndex, GConstants.DEFAULT_GRAPH_LABEL));
+    collector.collect(reuseSubgraph);
+}

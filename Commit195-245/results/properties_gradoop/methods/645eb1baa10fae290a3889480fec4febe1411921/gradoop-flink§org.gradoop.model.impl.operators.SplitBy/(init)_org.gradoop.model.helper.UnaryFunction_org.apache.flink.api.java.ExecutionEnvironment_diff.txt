@@ -1,0 +1,10 @@
+/**                                                                                                    /**                                                                                                 
+* Creates a split by instance.                                                                         * Creates a split by instance.                                                                      
+*                                                                                                      *                                                                                                   
+* @param env              Flink Execution Environment                                                  * @param env              Flink Execution Environment                                               
+* @param vertexToLongFunc Function to select a graph id from a vertex                                  * @param vertexToLongFunc Function to select a graph id from a vertex                               
+*/                                                                                                     */                                                                                                  
+public SplitBy(UnaryFunction&lt;Vertex&lt;Long, VD&gt;, Long&gt; vertexToLongFunc, final ExecutionEn | public SplitBy(UnaryFunction&lt;VD, Long&gt; vertexToLongFunc, final ExecutionEnvironment env) {    
+this.env = env;                                                                                        this.env = env;                                                                                     
+this.vertexToLongFunc = vertexToLongFunc;                                                              this.vertexToLongFunc = vertexToLongFunc;                                                           
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,12 @@
+/**
+ * Constructor
+ *
+ * @param maxIterations Counter to define maximal Iteration for the Algorithm
+ * @param propertyKey   PropertyKey of the EPVertex value
+ * @param env           ExecutionEnvironment
+ */
+public LabelPropagation(int maxIterations, String propertyKey, ExecutionEnvironment env) {
+    this.maxIterations = maxIterations;
+    this.propertyKey = propertyKey;
+    this.env = env;
+}

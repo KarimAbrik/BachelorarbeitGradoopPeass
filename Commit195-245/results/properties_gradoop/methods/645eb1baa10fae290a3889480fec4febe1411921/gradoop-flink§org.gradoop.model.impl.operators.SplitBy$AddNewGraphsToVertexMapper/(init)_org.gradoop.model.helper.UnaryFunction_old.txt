@@ -1,0 +1,8 @@
+/**
+ * Creates MapFunction instance.
+ *
+ * @param function Mapping from vertex to long value
+ */
+public AddNewGraphsToVertexMapper(UnaryFunction<Vertex<Long, VD>, Long> function) {
+    this.function = function;
+}

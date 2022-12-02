@@ -1,0 +1,10 @@
+/**
+ * Creates a split by instance.
+ *
+ * @param env              Flink Execution Environment
+ * @param vertexToLongFunc Function to select a graph id from a vertex
+ */
+public SplitBy(UnaryFunction<Vertex<Long, VD>, Long> vertexToLongFunc, final ExecutionEnvironment env) {
+    this.env = env;
+    this.vertexToLongFunc = vertexToLongFunc;
+}

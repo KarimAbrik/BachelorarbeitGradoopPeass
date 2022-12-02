@@ -1,0 +1,8 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public Edge<Long, ED> join(Edge<Long, ED> edge, Tuple2<Long, Set<Long>> tuple2) throws Exception {
+    edge.getValue().getGraphs().addAll(tuple2.f1);
+    return edge;
+}

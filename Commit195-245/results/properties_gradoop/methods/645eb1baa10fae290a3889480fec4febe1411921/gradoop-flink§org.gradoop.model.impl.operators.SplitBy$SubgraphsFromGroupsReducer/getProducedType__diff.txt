@@ -1,0 +1,8 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+@SuppressWarnings("unchecked")
+public TypeInformation<Vertex<Long, VD>> getProducedType() {
+    return new TupleTypeInfo(Subgraph.class, BasicTypeInfo.LONG_TYPE_INFO, TypeExtractor.createTypeInfo(graphDataFactory.getType()));
+}

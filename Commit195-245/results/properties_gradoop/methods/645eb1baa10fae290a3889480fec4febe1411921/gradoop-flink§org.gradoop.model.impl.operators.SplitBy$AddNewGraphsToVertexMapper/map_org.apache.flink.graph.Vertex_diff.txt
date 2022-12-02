@@ -1,0 +1,13 @@
+/**                                                                                                    /**                                                                                                 
+* {@inheritDoc}                                                                                        * {@inheritDoc}                                                                                     
+*/                                                                                                     */                                                                                                  
+@Override                                                                                              @Override                                                                                           
+public Vertex&lt;Long, VD&gt; map(Vertex&lt;Long, VD&gt; vertex) throws Exception {                    public Vertex&lt;Long, VD&gt; map(Vertex&lt;Long, VD&gt; vertex) throws Exception {                 
+Long labelPropIndex = function.execute(vertex);                                                      | Long labelPropIndex = function.execute(vertex.getValue());                                          
+if (vertex.getValue().getGraphs() == null) {                                                           if (vertex.getValue().getGraphs() == null) {                                                        
+vertex.getValue().setGraphs(Sets.newHashSet(labelPropIndex));                                          vertex.getValue().setGraphs(Sets.newHashSet(labelPropIndex));                                       
+} else {                                                                                               } else {                                                                                            
+vertex.getValue().getGraphs().add(labelPropIndex);                                                     vertex.getValue().getGraphs().add(labelPropIndex);                                                  
+}                                                                                                      }                                                                                                   
+return vertex;                                                                                         return vertex;                                                                                      
+}                                                                                                      }                                                                                                   
