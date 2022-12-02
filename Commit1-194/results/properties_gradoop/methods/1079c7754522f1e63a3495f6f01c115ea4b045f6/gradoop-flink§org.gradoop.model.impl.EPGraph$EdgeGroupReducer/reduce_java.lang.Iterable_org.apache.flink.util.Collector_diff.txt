@@ -1,0 +1,13 @@
+@Override
+public void reduce(Iterable<Edge<Long, EPFlinkEdgeData>> iterable, Collector<Edge<Long, EPFlinkEdgeData>> collector) throws Exception {
+    Iterator<Edge<Long, EPFlinkEdgeData>> iterator = iterable.iterator();
+    long count = 0L;
+    Edge<Long, EPFlinkEdgeData> e = null;
+    while (iterator.hasNext()) {
+        e = iterator.next();
+        count++;
+    }
+    if (count == amount) {
+        collector.collect(e);
+    }
+}

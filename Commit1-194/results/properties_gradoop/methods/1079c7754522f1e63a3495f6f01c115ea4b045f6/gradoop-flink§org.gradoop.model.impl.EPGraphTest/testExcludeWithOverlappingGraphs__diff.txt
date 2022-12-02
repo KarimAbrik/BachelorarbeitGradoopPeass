@@ -1,0 +1,23 @@
+@Test
+public void testExcludeWithOverlappingGraphs() throws Exception {
+    EPGraphStore graphStore = createSocialGraph();
+    EPGraph databaseCommunity = graphStore.getGraph(0L);
+    EPGraph graphCommunity = graphStore.getGraph(2L);
+    EPGraph newGraph = databaseCommunity.exclude(graphCommunity);
+    assertEquals("wrong number of vertices", 1L, newGraph.getVertexCount());
+    newGraph.getEdges().print();
+    assertEquals("wrong number of edges", 0L, newGraph.getEdgeCount());
+    Collection<EPVertexData> vertexData = newGraph.getVertices().collect();
+    Collection<EPEdgeData> edgeData = newGraph.getEdges().collect();
+    assertEquals("wrong number of vertex values", 1, vertexData.size());
+    assertEquals("wrong number of edge values", 0, edgeData.size());
+    // check if vertices are assigned to the new and the old graphs
+    Long newGraphID = newGraph.getId();
+    for (EPVertexData v : vertexData) {
+        Set<Long> gIDs = v.getGraphs();
+        assertTrue("vertex was not in new graph", gIDs.contains(newGraphID));
+        if (v.equals(eve)) {
+            assertEquals("wrong number of graphs", 2, gIDs.size());
+        }
+    }
+}

@@ -1,0 +1,3 @@
+public static EPGraph fromGraph(Graph<Long, EPFlinkVertexData, EPFlinkEdgeData> graph, EPFlinkGraphData graphData, ExecutionEnvironment env) {
+    return new EPGraph(graph, graphData, env);
+}

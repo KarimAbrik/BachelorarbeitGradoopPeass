@@ -1,0 +1,9 @@
+@Override
+public EPGraph overlap(EPGraph otherGraph) {
+    final Long newGraphID = FlinkConstants.OVERLAP_GRAPH_ID;
+    // union vertex sets, group by vertex id, filter vertices where
+    // the group contains two vertices and update them with the new graph id
+    DataSet<Vertex<Long, EPFlinkVertexData>> newVertexSet = this.graph.getVertices().union(otherGraph.graph.getVertices()).groupBy(new VertexKeySelector()).reduceGroup(new VertexGroupReducer(2L)).map(new VertexToGraphUpdater(newGraphID));
+    DataSet<Edge<Long, EPFlinkEdgeData>> newEdgeSet = this.graph.getEdges().union(otherGraph.graph.getEdges()).groupBy(new EdgeKeySelector()).reduceGroup(new EdgeGroupReducer(2L));
+    return EPGraph.fromGraph(Graph.fromDataSet(newVertexSet, newEdgeSet, env), new EPFlinkGraphData(newGraphID, FlinkConstants.DEFAULT_GRAPH_LABEL), env);
+}

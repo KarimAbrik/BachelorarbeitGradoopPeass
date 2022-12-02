@@ -1,0 +1,14 @@
+public static EPGraphStore fromCollection(Collection<EPFlinkVertexData> vertexData, Collection<EPFlinkEdgeData> edgeData, Collection<EPFlinkGraphData> graphData, ExecutionEnvironment env) {
+    DataSet<EPFlinkVertexData> epgmVertexSet = env.fromCollection(vertexData);
+    DataSet<EPFlinkEdgeData> epgmEdgeSet = env.fromCollection(edgeData);
+    DataSet<EPFlinkGraphData> epgmGraphSet = env.fromCollection(graphData);
+    DataSet<Vertex<Long, EPFlinkVertexData>> vertexDataSet = null;
+    DataSet<Edge<Long, EPFlinkEdgeData>> edgeDataSet = null;
+    DataSet<Subgraph<Long, EPFlinkGraphData>> graphDataSet = null;
+    if (epgmVertexSet != null) {
+        vertexDataSet = epgmVertexSet.map(new VerticesConverter());
+        edgeDataSet = epgmEdgeSet.map(new EdgesConverter());
+        graphDataSet = epgmGraphSet.map(new GraphsConverter());
+    }
+    return new FlinkGraphStore(vertexDataSet, edgeDataSet, graphDataSet, env);
+}

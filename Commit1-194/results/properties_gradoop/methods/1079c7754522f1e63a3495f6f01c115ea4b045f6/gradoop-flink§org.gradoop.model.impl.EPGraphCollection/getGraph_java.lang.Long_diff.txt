@@ -1,0 +1,20 @@
+@Override
+public EPGraph getGraph(final Long graphID) throws Exception {
+    // filter vertices and edges based on given graph id
+    Graph<Long, EPFlinkVertexData, EPFlinkEdgeData> subGraph = this.graph.filterOnVertices(new FilterFunction<Vertex<Long, EPFlinkVertexData>>() {
+
+        @Override
+        public boolean filter(Vertex<Long, EPFlinkVertexData> vertex) throws Exception {
+            return vertex.getValue().getGraphs().contains(graphID);
+        }
+    });
+    // get graph data based on graph id
+    EPFlinkGraphData graphData = subgraphs.filter(new FilterFunction<Subgraph<Long, EPFlinkGraphData>>() {
+
+        @Override
+        public boolean filter(Subgraph<Long, EPFlinkGraphData> graph) throws Exception {
+            return graph.getId().equals(graphID);
+        }
+    }).collect().get(0).getValue();
+    return EPGraph.fromGraph(subGraph, graphData, env);
+}

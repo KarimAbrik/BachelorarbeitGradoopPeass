@@ -1,0 +1,4 @@
+@Override
+public Vertex<Long, EPFlinkVertexData> map(EPFlinkVertexData value) throws Exception {
+    return new Vertex<>(value.getId(), value);
+}

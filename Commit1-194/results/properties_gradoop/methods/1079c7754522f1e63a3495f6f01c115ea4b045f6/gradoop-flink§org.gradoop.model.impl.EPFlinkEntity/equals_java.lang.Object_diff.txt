@@ -1,0 +1,11 @@
+@Override
+public boolean equals(Object o) {
+    if (this == o) {
+        return true;
+    }
+    if (!(o instanceof EPFlinkEntity)) {
+        return false;
+    }
+    EPFlinkEntity that = (EPFlinkEntity) o;
+    return Objects.equals(id, that.id);
+}

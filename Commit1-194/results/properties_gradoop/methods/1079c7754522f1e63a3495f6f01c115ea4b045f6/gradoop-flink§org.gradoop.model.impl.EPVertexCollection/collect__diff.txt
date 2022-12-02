@@ -1,0 +1,10 @@
+@Override
+public Collection<EPVertexData> collect() throws Exception {
+    return vertices.map(new MapFunction<Vertex<Long, EPFlinkVertexData>, EPVertexData>() {
+
+        @Override
+        public EPFlinkVertexData map(Vertex<Long, EPFlinkVertexData> v) throws Exception {
+            return v.getValue();
+        }
+    }).collect();
+}

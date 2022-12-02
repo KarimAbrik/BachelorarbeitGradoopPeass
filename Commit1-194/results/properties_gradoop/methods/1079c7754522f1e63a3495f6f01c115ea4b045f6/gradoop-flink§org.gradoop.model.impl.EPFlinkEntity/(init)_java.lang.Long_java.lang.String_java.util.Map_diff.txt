@@ -1,0 +1,9 @@
+public EPFlinkEntity(Long id, String label, Map<String, Object> properties) {
+    this.id = id;
+    this.label = label;
+    if (properties != null) {
+        this.properties = properties;
+    } else {
+        this.properties = Maps.newHashMap();
+    }
+}

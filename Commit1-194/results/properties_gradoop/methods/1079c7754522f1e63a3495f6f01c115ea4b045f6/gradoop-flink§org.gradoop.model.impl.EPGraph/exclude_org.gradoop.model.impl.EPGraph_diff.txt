@@ -1,0 +1,20 @@
+@Override
+public EPGraph exclude(EPGraph otherGraph) {
+    final Long newGraphID = FlinkConstants.EXCLUDE_GRAPH_ID;
+    // union vertex sets, group by vertex id, filter vertices where the group
+    // contains exactly one vertex which belongs to the graph, the operator is
+    // called on
+    DataSet<Vertex<Long, EPFlinkVertexData>> newVertexSet = this.graph.getVertices().union(otherGraph.graph.getVertices()).groupBy(new VertexKeySelector()).reduceGroup(new VertexGroupReducer(1L, this.getId(), otherGraph.getId())).map(new VertexToGraphUpdater(newGraphID));
+    JoinFunction<Edge<Long, EPFlinkEdgeData>, Vertex<Long, EPFlinkVertexData>, Edge<Long, EPFlinkEdgeData>> joinFunc = new JoinFunction<Edge<Long, EPFlinkEdgeData>, Vertex<Long, EPFlinkVertexData>, Edge<Long, EPFlinkEdgeData>>() {
+
+        @Override
+        public Edge<Long, EPFlinkEdgeData> join(Edge<Long, EPFlinkEdgeData> leftTuple, Vertex<Long, EPFlinkVertexData> rightTuple) throws Exception {
+            return leftTuple;
+        }
+    };
+    // In exclude(), we are only interested in edges that connect vertices
+    // that are in the exclusion of the vertex sets. Thus, we join the edges
+    // from the left graph with the new vertex set using source and target ids.
+    DataSet<Edge<Long, EPFlinkEdgeData>> newEdgeSet = this.graph.getEdges().join(newVertexSet).where(new EdgeSourceVertexKeySelector()).equalTo(new VertexKeySelector()).with(joinFunc).join(newVertexSet).where(new EdgeTargetVertexKeySelector()).equalTo(new VertexKeySelector()).with(joinFunc);
+    return EPGraph.fromGraph(Graph.fromDataSet(newVertexSet, newEdgeSet, env), new EPFlinkGraphData(newGraphID, FlinkConstants.DEFAULT_GRAPH_LABEL), env);
+}

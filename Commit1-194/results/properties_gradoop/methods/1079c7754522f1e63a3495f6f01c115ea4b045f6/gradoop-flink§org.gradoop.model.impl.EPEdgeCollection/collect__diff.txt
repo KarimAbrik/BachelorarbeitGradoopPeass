@@ -1,0 +1,11 @@
+@Override
+public Collection<EPEdgeData> collect() throws Exception {
+    List<EPEdgeData> result = Lists.newArrayList();
+    return edges.map(new MapFunction<Edge<Long, EPFlinkEdgeData>, EPEdgeData>() {
+
+        @Override
+        public EPEdgeData map(Edge<Long, EPFlinkEdgeData> longEPFlinkEdgeDataEdge) throws Exception {
+            return longEPFlinkEdgeDataEdge.getValue();
+        }
+    }).collect();
+}

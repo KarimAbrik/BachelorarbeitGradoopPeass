@@ -1,0 +1,13 @@
+@Test
+public void testExcludeWithSameGraphs() throws Exception {
+    EPGraphStore graphStore = createSocialGraph();
+    EPGraph databaseCommunity = graphStore.getGraph(0L);
+    EPGraph newGraph = databaseCommunity.exclude(databaseCommunity);
+    assertEquals("wrong number of vertices", 0L, newGraph.getVertexCount());
+    newGraph.getEdges().print();
+    assertEquals("wrong number of edges", 0L, newGraph.getEdgeCount());
+    Collection<EPVertexData> vertexData = newGraph.getVertices().collect();
+    Collection<EPEdgeData> edgeData = newGraph.getEdges().collect();
+    assertEquals("wrong number of vertex values", 0, vertexData.size());
+    assertEquals("wrong number of edge values", 0, edgeData.size());
+}

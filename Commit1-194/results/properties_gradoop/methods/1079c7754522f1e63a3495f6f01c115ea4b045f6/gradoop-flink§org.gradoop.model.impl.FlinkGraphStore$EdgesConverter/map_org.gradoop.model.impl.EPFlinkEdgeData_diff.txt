@@ -1,0 +1,4 @@
+@Override
+public Edge<Long, EPFlinkEdgeData> map(EPFlinkEdgeData value) throws Exception {
+    return new Edge<>(value.getSourceVertex(), value.getTargetVertex(), value);
+}

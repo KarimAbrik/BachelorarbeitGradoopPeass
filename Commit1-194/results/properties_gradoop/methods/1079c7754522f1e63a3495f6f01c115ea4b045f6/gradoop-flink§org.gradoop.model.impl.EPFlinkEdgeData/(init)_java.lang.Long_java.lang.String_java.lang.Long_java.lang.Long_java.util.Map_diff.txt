@@ -1,0 +1,5 @@
+public EPFlinkEdgeData(Long id, String label, Long sourceVertex, Long targetVertex, Map<String, Object> properties) {
+    super(id, label, properties);
+    this.sourceVertex = sourceVertex;
+    this.targetVertex = targetVertex;
+}

@@ -1,0 +1,19 @@
+@Override
+public void reduce(Iterable<Vertex<Long, EPFlinkVertexData>> iterable, Collector<Vertex<Long, EPFlinkVertexData>> collector) throws Exception {
+    Iterator<Vertex<Long, EPFlinkVertexData>> iterator = iterable.iterator();
+    long count = 0L;
+    Vertex<Long, EPFlinkVertexData> v = null;
+    while (iterator.hasNext()) {
+        v = iterator.next();
+        count++;
+    }
+    if (count == amount) {
+        if (includedGraphID != null && precludedGraphID != null) {
+            if (v.getValue().getGraphs().contains(includedGraphID) && !v.getValue().getGraphs().contains(precludedGraphID)) {
+                collector.collect(v);
+            }
+        } else {
+            collector.collect(v);
+        }
+    }
+}

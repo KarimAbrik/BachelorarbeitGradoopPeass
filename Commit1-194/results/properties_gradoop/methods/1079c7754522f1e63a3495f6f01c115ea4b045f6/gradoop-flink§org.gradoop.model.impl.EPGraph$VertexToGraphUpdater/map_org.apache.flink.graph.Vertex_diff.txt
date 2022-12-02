@@ -1,0 +1,5 @@
+@Override
+public Vertex<Long, EPFlinkVertexData> map(Vertex<Long, EPFlinkVertexData> v) throws Exception {
+    v.getValue().addGraph(newGraphID);
+    return v;
+}

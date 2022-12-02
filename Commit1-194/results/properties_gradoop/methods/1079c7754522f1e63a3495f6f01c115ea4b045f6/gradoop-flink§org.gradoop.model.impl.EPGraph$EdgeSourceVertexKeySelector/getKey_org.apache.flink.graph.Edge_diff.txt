@@ -1,0 +1,4 @@
+@Override
+public Long getKey(Edge<Long, EPFlinkEdgeData> e) throws Exception {
+    return e.getSource();
+}

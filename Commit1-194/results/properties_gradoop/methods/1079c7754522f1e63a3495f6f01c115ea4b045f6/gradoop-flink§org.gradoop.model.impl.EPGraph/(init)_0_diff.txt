@@ -1,0 +1,5 @@
+private EPGraph(Graph<Long, EPFlinkVertexData, EPFlinkEdgeData> graph, EPFlinkGraphData graphData, ExecutionEnvironment env) {
+    this.graph = graph;
+    this.graphData = graphData;
+    this.env = env;
+}

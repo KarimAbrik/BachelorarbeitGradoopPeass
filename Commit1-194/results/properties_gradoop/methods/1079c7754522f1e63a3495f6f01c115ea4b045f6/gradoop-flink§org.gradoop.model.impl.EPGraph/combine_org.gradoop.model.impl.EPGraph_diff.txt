@@ -1,0 +1,9 @@
+@Override
+public EPGraph combine(EPGraph otherGraph) {
+    final Long newGraphID = FlinkConstants.COMBINE_GRAPH_ID;
+    // build distinct union of vertex sets and update graph ids at vertices
+    // cannot use Gelly union here because of missing argument for KeySelector
+    DataSet<Vertex<Long, EPFlinkVertexData>> newVertexSet = this.graph.getVertices().union(otherGraph.graph.getVertices()).distinct(new VertexKeySelector()).map(new VertexToGraphUpdater(newGraphID));
+    DataSet<Edge<Long, EPFlinkEdgeData>> newEdgeSet = this.graph.getEdges().union(otherGraph.graph.getEdges()).distinct(new EdgeKeySelector());
+    return EPGraph.fromGraph(Graph.fromDataSet(newVertexSet, newEdgeSet, env), new EPFlinkGraphData(newGraphID, FlinkConstants.DEFAULT_GRAPH_LABEL), env);
+}
