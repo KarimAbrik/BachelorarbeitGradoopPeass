@@ -1,0 +1,15 @@
+private void validateBasicGraphEdges(List<Edge> edgeList, int expectedCount, long... otherIDs) {
+    assertThat(edgeList.size(), is(expectedCount));
+    for (int i = 0; i < otherIDs.length; i++) {
+        boolean match = false;
+        for (Edge e : edgeList) {
+            if (e.getOtherID() == otherIDs[i]) {
+                match = true;
+                assertThat(e.getIndex(), is((long) i));
+            }
+        }
+        if (!match) {
+            assertTrue("edge list contains wrong edges", false);
+        }
+    }
+}

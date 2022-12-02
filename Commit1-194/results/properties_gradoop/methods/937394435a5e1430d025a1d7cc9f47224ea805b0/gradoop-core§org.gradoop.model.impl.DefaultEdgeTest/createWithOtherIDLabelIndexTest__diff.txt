@@ -1,0 +1,10 @@
+@Test
+public void createWithOtherIDLabelIndexTest() {
+    Long otherID = 0L;
+    String label = "label";
+    Long index = 0L;
+    Edge e = EdgeFactory.createDefaultEdgeWithLabel(otherID, label, index);
+    assertThat(e.getOtherID(), is(otherID));
+    assertThat(e.getLabel(), is(label));
+    assertThat(e.getIndex(), is(index));
+}

@@ -1,0 +1,18 @@
+/**                                                                                                  |                                                                                                     
+* Adds vertex labels to the given json object.                                                       |                                                                                                     
+*                                                                                                    |                                                                                                     
+* @param json json object to write to                                                                |                                                                                                     
+* @param v    vertex                                                                                 |                                                                                                     
+* @return updated json object                                                                        |                                                                                                     
+* @throws JSONException                                                                              |                                                                                                     
+*/                                                                                                   |                                                                                                     
+private JSONObject writeLabels(final JSONObject json, final Vertex v) throws JSONException {         |                                                                                                     
+JSONArray labelArray = new JSONArray();                                                              |                                                                                                     
+if (v.getLabelCount() &gt; 0) {                                                                      |                                                                                                     
+for (String label : v.getLabels()) {                                                                 |                                                                                                     
+labelArray.put(label);                                                                               |                                                                                                     
+}                                                                                                    |                                                                                                     
+json.put(LABELS, labelArray);                                                                        |                                                                                                     
+}                                                                                                    |                                                                                                     
+return json;                                                                                         |                                                                                                     
+}                                                                                                    |                                                                                                     

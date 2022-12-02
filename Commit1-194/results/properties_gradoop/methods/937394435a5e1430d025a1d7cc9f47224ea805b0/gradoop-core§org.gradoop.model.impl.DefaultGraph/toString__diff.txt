@@ -1,0 +1,7 @@
+/**                                                                                                    /**                                                                                                 
+* {@inheritDoc}                                                                                        * {@inheritDoc}                                                                                     
+*/                                                                                                     */                                                                                                  
+@Override                                                                                              @Override                                                                                           
+public String toString() {                                                                             public String toString() {                                                                          
+return "DefaultGraph{" + "id=" + getID() + ", labels=" + getLabels() + ", vertices=" + vertices + '} | return "DefaultGraph{" + "id=" + getID() + ", label=" + getLabel() + ", vertices=" + vertices + '}';
+}                                                                                                      }                                                                                                   

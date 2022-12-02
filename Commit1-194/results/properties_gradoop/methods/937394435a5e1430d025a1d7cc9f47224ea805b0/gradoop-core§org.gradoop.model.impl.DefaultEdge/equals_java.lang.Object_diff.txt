@@ -1,0 +1,18 @@
+/**                                                                                                    /**                                                                                                 
+* Equality of edges is only valid in the context of a single vertex. Two                               * Equality of edges is only valid in the context of a single vertex. Two                            
+* edges are equal if they have the same otherID, label and index.                                      * edges are equal if they have the same otherID, label and index.                                   
+*                                                                                                      *                                                                                                   
+* @param o edge to check equality to                                                                   * @param o edge to check equality to                                                                
+* @return true if the edge is equal to the given object, false otherwise                               * @return true if the edge is equal to the given object, false otherwise                            
+*/                                                                                                     */                                                                                                  
+@Override                                                                                              @Override                                                                                           
+public boolean equals(Object o) {                                                                      public boolean equals(Object o) {                                                                   
+if (this == o) {                                                                                       if (this == o) {                                                                                    
+return true;                                                                                           return true;                                                                                        
+}                                                                                                      }                                                                                                   
+if (o == null || getClass() != o.getClass()) {                                                         if (o == null || getClass() != o.getClass()) {                                                      
+return false;                                                                                          return false;                                                                                       
+}                                                                                                      }                                                                                                   
+DefaultEdge that = (DefaultEdge) o;                                                                    DefaultEdge that = (DefaultEdge) o;                                                                 
+return index.equals(that.index) && otherID.equals(that.otherID) && getLabel().equals(that.getLabel() | return id.equals(that.id) && otherID.equals(that.otherID) && getLabel().equals(that.getLabel());    
+}                                                                                                      }                                                                                                   

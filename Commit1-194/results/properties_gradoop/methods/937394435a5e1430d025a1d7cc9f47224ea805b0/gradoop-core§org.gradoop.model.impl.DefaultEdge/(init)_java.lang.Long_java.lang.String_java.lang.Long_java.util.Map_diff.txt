@@ -1,0 +1,13 @@
+/**                                                                                                    /**                                                                                                 
+* Creates an edge instance based on the given parameters.                                              * Creates an edge instance based on the given parameters.                                           
+*                                                                                                      *                                                                                                   
+* @param otherID    the id of the vertex that edge is connected to                                     * @param otherID    the id of the vertex that edge is connected to                                  
+* @param label      edge label                                                                         * @param label      edge label                                                                      
+* @param index      vertex centric edge index for parallel edges                                       * @param index      vertex centric edge index for parallel edges                                    
+* @param properties edge properties                                                                    * @param properties edge properties                                                                 
+*/                                                                                                     */                                                                                                  
+DefaultEdge(final Long otherID, final String label, final Long index, final Map&lt;String, Object&gt   DefaultEdge(final Long otherID, final String label, final Long index, final Map&lt;String, Object&gt
+super(label, properties);                                                                            | super(index, label, properties);                                                                    
+this.otherID = otherID;                                                                                this.otherID = otherID;                                                                             
+this.index = index;                                                                                  |                                                                                                     
+}                                                                                                      }                                                                                                   

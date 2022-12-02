@@ -1,0 +1,6 @@
+private void validateRDFGraph(GraphStore graphStore) {                                                 private void validateRDFGraph(GraphStore graphStore) {                                              
+validateVertex(graphStore.readVertex(lgdID), 0, 1, 1, 0);                                            | validateVertex(graphStore.readVertex(lgdID), 0, 1, 0);                                              
+validateVertex(graphStore.readVertex(geoID), 0, 1, 0, 2);                                            | validateVertex(graphStore.readVertex(geoID), 0, 0, 2);                                              
+validateVertex(graphStore.readVertex(dbpID), 2, 1, 2, 0);                                            | validateVertex(graphStore.readVertex(dbpID), 2, 2, 0);                                              
+validateVertex(graphStore.readVertex(hedbpID), 0, 1, 0, 1);                                          | validateVertex(graphStore.readVertex(hedbpID), 0, 0, 1);                                            
+}                                                                                                      }                                                                                                   

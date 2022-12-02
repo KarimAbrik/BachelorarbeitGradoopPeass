@@ -1,0 +1,12 @@
+/**                                                                                                  |                                                                                                     
+* Creates a graph based on the given parameters.                                                     |                                                                                                     
+*                                                                                                    |                                                                                                     
+* @param id         graph identifier                                                                 |                                                                                                     
+* @param labels     labels of that graph                                                             |                                                                                                     
+* @param properties key-value-map                                                                    |                                                                                                     
+* @param vertices   vertices contained in that graph                                                 |                                                                                                     
+*/                                                                                                   |                                                                                                     
+DefaultGraph(final Long id, final Iterable&lt;String&gt; labels, final Map&lt;String, Object&gt; pro |                                                                                                     
+super(id, labels, properties);                                                                       |                                                                                                     
+this.vertices = (vertices != null) ? Lists.newArrayList(vertices) : null;                            |                                                                                                     
+}                                                                                                    |                                                                                                     

@@ -1,0 +1,4 @@
+@Test(expected = IllegalArgumentException.class)
+public void createWithMissingIDTest() {
+    GraphFactory.createDefaultGraphWithID(null);
+}

@@ -1,0 +1,8 @@
+private void validateVertex(Vertex vertex, int expectedPropertyCount, int expectedLabelCount, int ex |                                                                                                     
+assertEquals(expectedPropertyCount, vertex.getPropertyCount());                                      |                                                                                                     
+assertEquals(expectedLabelCount, vertex.getLabelCount());                                            |                                                                                                     
+List&lt;Edge&gt; outgoingEdges = Lists.newArrayList(vertex.getOutgoingEdges());                      |                                                                                                     
+assertEquals(expectedOutEdgesCount, outgoingEdges.size());                                           |                                                                                                     
+List&lt;Edge&gt; incomingEdges = Lists.newArrayList(vertex.getIncomingEdges());                      |                                                                                                     
+assertEquals(expectedInEdgesCount, incomingEdges.size());                                            |                                                                                                     
+}                                                                                                    |                                                                                                     
