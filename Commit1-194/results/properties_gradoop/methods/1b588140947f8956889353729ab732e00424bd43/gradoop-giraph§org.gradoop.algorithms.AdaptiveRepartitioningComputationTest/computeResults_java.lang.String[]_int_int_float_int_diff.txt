@@ -1,0 +1,10 @@
+private Map<Integer, Integer> computeResults(String[] graph, int partitionCount, int maxIterations, float capacityTreshold, int maxStabilization) throws Exception {
+    GiraphConfiguration conf = getConfiguration();
+    conf.setInt(AdaptiveRepartitioningComputation.NUMBER_OF_PARTITIONS, partitionCount);
+    conf.setInt(AdaptiveRepartitioningComputation.NUMBER_OF_ITERATIONS, maxIterations);
+    conf.setFloat(AdaptiveRepartitioningComputation.CAPACITY_THRESHOLD, capacityTreshold);
+    conf.setInt(AdaptiveRepartitioningComputation.NUMBER_OF_STABILIZATION_ROUNDS, maxStabilization);
+    conf.setBoolean(AdaptiveRepartitioningInputFormat.PARTITIONED_INPUT, true);
+    Iterable<String> results = InternalVertexRunner.run(conf, graph);
+    return parseResults(results);
+}

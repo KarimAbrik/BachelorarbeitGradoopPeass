@@ -1,0 +1,15 @@
+/**
+ * Calculates the partition frequencies among neighbour vertices.
+ * Returns a field where element i represents the number of neighbours in
+ * partition i.
+ *
+ * @param messages messages sent to the vertex
+ * @return partition frequency
+ */
+private int[] getPartitionFrequencies(final Iterable<IntWritable> messages) {
+    int[] result = new int[k];
+    for (IntWritable message : messages) {
+        result[message.get()]++;
+    }
+    return result;
+}

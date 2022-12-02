@@ -1,0 +1,11 @@
+/**
+ * @param context the information about the task
+ * @return the text vertex writer to be used
+ * @throws IOException
+ * @throws InterruptedException
+ */
+@Override
+public TextVertexWriter createVertexWriter(TaskAttemptContext context) throws IOException, InterruptedException {
+    this.historyOutput = getConf().getBoolean(PARTITIONING_OUTPUT, DEFAULT_PARTITIONING_OUTPUT);
+    return new AdaptiveRepartitioningTextVertexLineWriter();
+}

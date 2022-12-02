@@ -1,0 +1,14 @@
+/**
+ * Returns the new KwayPartitioning vertex
+ *
+ * @param tokens line tokens
+ * @return vertex with set params
+ * @throws IOException
+ */
+@Override
+protected PartitioningVertex getValue(String[] tokens) throws IOException {
+    PartitioningVertex vertex = new PartitioningVertex();
+    vertex.setCurrentPartition(new IntWritable(currentPartition));
+    vertex.setDesiredPartition(new IntWritable(desiredPartition));
+    return vertex;
+}

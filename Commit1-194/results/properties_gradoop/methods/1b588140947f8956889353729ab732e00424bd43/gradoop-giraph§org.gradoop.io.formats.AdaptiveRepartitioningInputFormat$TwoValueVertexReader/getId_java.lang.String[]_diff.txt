@@ -1,0 +1,11 @@
+/**
+ * Returns the vertex ID
+ *
+ * @param tokens line tokens
+ * @return the vertex ID as Writable
+ * @throws IOException
+ */
+@Override
+protected IntWritable getId(String[] tokens) throws IOException {
+    return new IntWritable(id);
+}

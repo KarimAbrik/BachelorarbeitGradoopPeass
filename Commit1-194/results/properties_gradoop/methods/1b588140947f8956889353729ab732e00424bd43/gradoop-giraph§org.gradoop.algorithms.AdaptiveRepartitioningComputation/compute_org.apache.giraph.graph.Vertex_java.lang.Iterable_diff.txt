@@ -1,0 +1,46 @@
+/**
+ * The actual ADP computation.
+ *
+ * @param vertex   Vertex
+ * @param messages Messages that were sent to this vertex in the previous
+ *                 superstep.
+ * @throws IOException
+ */
+@Override
+public void compute(Vertex<IntWritable, PartitioningVertex, NullWritable> vertex, Iterable<IntWritable> messages) throws IOException {
+    if (getSuperstep() == 0) {
+        if (isPartitioned) {
+            setVertexStartValue(vertex);
+        }
+        String aggregator = CAPACITY_AGGREGATOR_PREFIX + vertex.getValue().getCurrentPartition().get();
+        notifyAggregator(aggregator, POSITIVE_ONE);
+        sendMessageToAllEdges(vertex, vertex.getValue().getCurrentPartition());
+    } else {
+        // even superstep: migrate phase
+        if ((getSuperstep() % 2) == 0) {
+            int desiredPartition = vertex.getValue().getDesiredPartition().get();
+            int currentPartition = vertex.getValue().getCurrentPartition().get();
+            if (desiredPartition != currentPartition) {
+                boolean migrate = doMigrate(desiredPartition);
+                if (migrate) {
+                    migrateVertex(vertex, desiredPartition);
+                    sendMessageToAllEdges(vertex, vertex.getValue().getCurrentPartition());
+                }
+            }
+            vertex.voteToHalt();
+        } else {
+            // odd supersteps: demand phase
+            if (vertex.getValue().getPartitionHistoryCount() >= stabilizationRoundMax) {
+                vertex.voteToHalt();
+            } else {
+                int desiredPartition = getDesiredPartition(vertex, messages);
+                vertex.getValue().setDesiredPartition(new IntWritable(desiredPartition));
+                int currentValue = vertex.getValue().getCurrentPartition().get();
+                boolean changed = currentValue != desiredPartition;
+                if (changed) {
+                    notifyAggregator(DEMAND_AGGREGATOR_PREFIX + desiredPartition, POSITIVE_ONE);
+                }
+            }
+        }
+    }
+}

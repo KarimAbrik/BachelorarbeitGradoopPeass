@@ -1,0 +1,15 @@
+/**
+ * Returns all edges of the vertex
+ *
+ * @param tokens line tokens
+ * @return edges of the vertex
+ * @throws IOException
+ */
+@Override
+protected Iterable<Edge<IntWritable, NullWritable>> getEdges(String[] tokens) throws IOException {
+    List<Edge<IntWritable, NullWritable>> edges = Lists.newArrayListWithCapacity(tokens.length - this.edgeOffset);
+    for (int n = this.edgeOffset; n < tokens.length; n++) {
+        edges.add(EdgeFactory.create(new IntWritable(Integer.parseInt(tokens[n]))));
+    }
+    return edges;
+}

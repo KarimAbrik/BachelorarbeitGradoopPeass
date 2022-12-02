@@ -1,0 +1,10 @@
+/**
+ * Returns the current load of the given partition.
+ *
+ * @param partition partition id
+ * @return load of partition
+ */
+private int getPartitionLoad(int partition) {
+    IntWritable loadWritable = getAggregatedValue(CAPACITY_AGGREGATOR_PREFIX + partition);
+    return loadWritable.get();
+}
