@@ -1,0 +1,18 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public void coGroup(Iterable<Tuple2<Vertex<Long, VD>, Set<ED>>> iterable, Iterable<Tuple2<Long, Set<ED>>> iterable1, Collector<PersistentVertexData<ED>> collector) throws Exception {
+    Vertex<Long, VD> vertex = null;
+    Set<ED> outgoingEdgeData = null;
+    Set<ED> incomingEdgeData = null;
+    for (Tuple2<Vertex<Long, VD>, Set<ED>> left : iterable) {
+        vertex = left.f0;
+        outgoingEdgeData = left.f1;
+    }
+    for (Tuple2<Long, Set<ED>> right : iterable1) {
+        incomingEdgeData = right.f1;
+    }
+    assert vertex != null;
+    collector.collect(vertexDataFactory.createVertexData(vertex.f1, outgoingEdgeData, incomingEdgeData));
+}

@@ -1,0 +1,12 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public Tuple2<LongWritable, Mutation> map(PED persistentEdgeData) throws Exception {
+    LongWritable key = new LongWritable(persistentEdgeData.getId());
+    Put put = new Put(edgeDataHandler.getRowKey(persistentEdgeData.getId()));
+    put = edgeDataHandler.writeEdgeData(put, persistentEdgeData);
+    reuseTuple.f0 = key;
+    reuseTuple.f1 = put;
+    return reuseTuple;
+}

@@ -1,0 +1,13 @@
+/**
+ * Creates a json array from a given set of identifiers.
+ *
+ * @param values identifier set
+ * @return json array containing the identifiers
+ */
+private JSONArray writeJsonArray(final Set<Long> values) {
+    JSONArray jsonArray = new JSONArray();
+    for (Long val : values) {
+        jsonArray.put(val);
+    }
+    return jsonArray;
+}

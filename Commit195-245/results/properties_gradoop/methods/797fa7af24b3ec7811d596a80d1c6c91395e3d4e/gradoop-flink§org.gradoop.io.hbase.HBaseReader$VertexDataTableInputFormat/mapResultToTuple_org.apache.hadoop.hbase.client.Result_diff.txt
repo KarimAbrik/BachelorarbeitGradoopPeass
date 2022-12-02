@@ -1,0 +1,8 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+protected Vertex<Long, VD> mapResultToTuple(Result result) {
+    VD vertexData = vertexDataHandler.readVertexData(result);
+    return new Vertex<>(vertexData.getId(), vertexData);
+}

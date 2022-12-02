@@ -1,0 +1,8 @@
+/**
+ * Creates co group function.
+ *
+ * @param vertexDataFactory persistent vertex data factory
+ */
+public PersistentVertexDataCoGroupFunction(PersistentVertexDataFactory<VD, ED, PVD> vertexDataFactory) {
+    this.vertexDataFactory = vertexDataFactory;
+}

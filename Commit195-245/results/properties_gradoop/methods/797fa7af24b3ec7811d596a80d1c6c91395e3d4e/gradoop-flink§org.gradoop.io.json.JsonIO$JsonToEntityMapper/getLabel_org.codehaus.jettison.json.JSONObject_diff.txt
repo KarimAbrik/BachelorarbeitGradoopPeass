@@ -1,0 +1,10 @@
+/**
+ * Reads the entity label from the json object.
+ *
+ * @param object json object
+ * @return entity label
+ * @throws JSONException
+ */
+protected String getLabel(JSONObject object) throws JSONException {
+    return object.getJSONObject(META).getString(LABEL);
+}

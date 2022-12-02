@@ -1,0 +1,10 @@
+/**
+ * Creates an vertex table input format.
+ *
+ * @param vertexDataHandler   vertex data handler
+ * @param vertexDataTableName vertex data table name
+ */
+public VertexDataTableInputFormat(VertexDataHandler<VD, ED> vertexDataHandler, String vertexDataTableName) {
+    this.vertexDataHandler = vertexDataHandler;
+    this.vertexDataTableName = vertexDataTableName;
+}

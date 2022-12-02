@@ -1,0 +1,10 @@
+/**
+ * Creates an edge table input format.
+ *
+ * @param edgeDataHandler   edge data handler
+ * @param edgeDataTableName edge data table name
+ */
+public EdgeDataTableInputFormat(EdgeDataHandler<ED, VD> edgeDataHandler, String edgeDataTableName) {
+    this.edgeDataHandler = edgeDataHandler;
+    this.edgeDataTableName = edgeDataTableName;
+}

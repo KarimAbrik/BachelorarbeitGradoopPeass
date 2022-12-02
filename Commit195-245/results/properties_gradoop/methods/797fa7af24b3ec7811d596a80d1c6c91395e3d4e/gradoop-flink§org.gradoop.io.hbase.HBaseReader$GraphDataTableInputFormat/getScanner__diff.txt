@@ -1,0 +1,9 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+protected Scan getScanner() {
+    Scan scan = new Scan();
+    scan.setCaching(GConstants.HBASE_DEFAULT_SCAN_CACHE_SIZE);
+    return scan;
+}

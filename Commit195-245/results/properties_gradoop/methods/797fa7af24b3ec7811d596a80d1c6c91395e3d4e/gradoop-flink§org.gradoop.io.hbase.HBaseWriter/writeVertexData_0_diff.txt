@@ -1,0 +1,78 @@
+/**
+ * Converts runtime vertex data to persistent vertex data (includes
+ * incoming and outgoing edge data) and writes it to HBase.
+ *
+ * @param epgmDatabase                EPGM database instance
+ * @param vertexDataHandler           vertex data handler
+ * @param persistentVertexDataFactory persistent vertex data factory
+ * @param vertexDataTableName         HBase vertex data table name
+ * @param <PVD>                       persistent vertex data type
+ * @throws Exception
+ */
+public <PVD extends PersistentVertexData<ED>> void writeVertexData(final EPGMDatabase<VD, ED, GD> epgmDatabase, final VertexDataHandler<VD, ED> vertexDataHandler, final PersistentVertexDataFactory<VD, ED, PVD> persistentVertexDataFactory, final String vertexDataTableName) throws Exception {
+    final Graph<Long, VD, ED> graph = epgmDatabase.getDatabaseGraph().getGellyGraph();
+    // group edges by source vertex id (vertex-id, [out-edge-data])
+    GroupReduceOperator<Edge<Long, ED>, Tuple2<Long, Set<ED>>> vertexToOutgoingEdges = // group by source vertex id
+    graph.getEdges().groupBy(0).reduceGroup(new GroupReduceFunction<Edge<Long, ED>, Tuple2<Long, Set<ED>>>() {
+
+        @Override
+        public void reduce(Iterable<Edge<Long, ED>> edgeIterable, Collector<Tuple2<Long, Set<ED>>> collector) throws Exception {
+            Set<ED> outgoingEdgeData = Sets.newHashSet();
+            Long vertexId = null;
+            boolean initialized = false;
+            for (Edge<Long, ED> edgeData : edgeIterable) {
+                if (!initialized) {
+                    vertexId = edgeData.getSource();
+                    initialized = true;
+                }
+                outgoingEdgeData.add(edgeData.getValue());
+            }
+            collector.collect(new Tuple2<>(vertexId, outgoingEdgeData));
+        }
+    });
+    // group edges by target vertex id (vertex-id, [in-edge-data])
+    GroupReduceOperator<Edge<Long, ED>, Tuple2<Long, Set<ED>>> vertexToIncomingEdges = // group by target vertex id
+    graph.getEdges().groupBy(1).reduceGroup(new GroupReduceFunction<Edge<Long, ED>, Tuple2<Long, Set<ED>>>() {
+
+        @Override
+        public void reduce(Iterable<Edge<Long, ED>> edgeIterable, Collector<Tuple2<Long, Set<ED>>> collector) throws Exception {
+            Set<ED> outgoingEdgeData = Sets.newHashSet();
+            Long vertexId = null;
+            boolean initialized = false;
+            for (Edge<Long, ED> edgeData : edgeIterable) {
+                if (!initialized) {
+                    vertexId = edgeData.getTarget();
+                    initialized = true;
+                }
+                outgoingEdgeData.add(edgeData.getValue());
+            }
+            collector.collect(new Tuple2<>(vertexId, outgoingEdgeData));
+        }
+    });
+    // co-group (vertex-data) with (vertex-id, [out-edge-data]) to simulate left
+    // outer join
+    DataSet<Tuple2<Vertex<Long, VD>, Set<ED>>> vertexDataWithOutgoingEdges = graph.getVertices().coGroup(vertexToOutgoingEdges).where(0).equalTo(0).with(new CoGroupFunction<Vertex<Long, VD>, Tuple2<Long, Set<ED>>, Tuple2<Vertex<Long, VD>, Set<ED>>>() {
+
+        @Override
+        public void coGroup(Iterable<Vertex<Long, VD>> vertexIterable, Iterable<Tuple2<Long, Set<ED>>> outEdgesIterable, Collector<Tuple2<Vertex<Long, VD>, Set<ED>>> collector) throws Exception {
+            Vertex<Long, VD> vertex = null;
+            Set<ED> outgoingEdgeData = null;
+            // read vertex data from left group
+            for (Vertex<Long, VD> v : vertexIterable) {
+                vertex = v;
+            }
+            // read outgoing edge from right group (may be empty)
+            for (Tuple2<Long, Set<ED>> oEdges : outEdgesIterable) {
+                outgoingEdgeData = oEdges.f1;
+            }
+            collector.collect(new Tuple2<>(vertex, outgoingEdgeData));
+        }
+    });
+    // co-group (vertex-data, (vertex-id, [out-edge-data])) with (vertex-id,
+    // [in-edge-data]) to simulate left outer join
+    DataSet<PersistentVertexData<ED>> persistentVertexDataSet = vertexDataWithOutgoingEdges.coGroup(vertexToIncomingEdges).where("0.0").equalTo(0).with(new PersistentVertexDataCoGroupFunction<>(persistentVertexDataFactory));
+    // write (persistent-vertex-data) to HBase table
+    Job job = Job.getInstance();
+    job.getConfiguration().set(TableOutputFormat.OUTPUT_TABLE, vertexDataTableName);
+    persistentVertexDataSet.map(new HBaseWriter.VertexDataToHBaseMapper<>(vertexDataHandler)).output(new HadoopOutputFormat<>(new TableOutputFormat<LongWritable>(), job));
+}
