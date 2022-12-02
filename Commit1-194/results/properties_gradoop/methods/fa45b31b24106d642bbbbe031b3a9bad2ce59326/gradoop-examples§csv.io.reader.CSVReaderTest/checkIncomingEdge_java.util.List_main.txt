@@ -1,0 +1,5 @@
+protected void checkIncomingEdge(List<Edge> edges) {
+    for (Edge edge : edges) {
+        assertEquals(edge.getLabel(), EDGELABEL);
+    }
+}

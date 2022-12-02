@@ -1,0 +1,13 @@
+/**
+ * Sets the size of the initial vertex list
+ *
+ * @return vertex list
+ */
+private List<Vertex> setVList() {
+    int size = conf.getInt(EXPECTED_SIZE, DEFAULT_EXPECTED_SIZE);
+    if (size == 0) {
+        return Lists.newArrayList();
+    } else {
+        return Lists.newArrayListWithExpectedSize(size);
+    }
+}

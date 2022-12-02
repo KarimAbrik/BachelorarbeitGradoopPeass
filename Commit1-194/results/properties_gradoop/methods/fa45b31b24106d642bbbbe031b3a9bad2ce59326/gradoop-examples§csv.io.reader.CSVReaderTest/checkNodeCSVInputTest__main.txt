@@ -1,0 +1,43 @@
+@Test
+public void checkNodeCSVInputTest() {
+    List<Vertex> vlist = createVerticesFromCSV();
+    assertTrue(vlist.size() == 2);
+    for (Vertex v : vlist) {
+        long id = v.getID();
+        if (id == person0) {
+            checkLabel(v, LABEL_NODE);
+            for (String propertyKey : v.getPropertyKeys()) {
+                if (propertyKey.equals(FIRSTNAMEPROPERTY)) {
+                    String value = (String) v.getProperty(propertyKey);
+                    assertEquals(value, FIRSTNAMEVALUE0);
+                } else if (propertyKey.equals(LASTNAMEPROPERTY)) {
+                    String value = (String) v.getProperty(LASTNAMEPROPERTY);
+                    assertEquals(value, LASTNAMEVALUE0);
+                } else if (propertyKey.equals(GENDERPROPERTY)) {
+                    String value = (String) v.getProperty(GENDERPROPERTY);
+                    assertEquals(value, GENDERVALUE0);
+                } else if (propertyKey.equals(BIRTHDAYPROPERTY)) {
+                    String value = (String) v.getProperty(BIRTHDAYPROPERTY);
+                    assertEquals(value, BIRTHDAYVALUE0);
+                }
+            }
+        } else if (id == person1) {
+            checkLabel(v, LABEL_NODE);
+            for (String propertyKey : v.getPropertyKeys()) {
+                if (propertyKey.equals(FIRSTNAMEPROPERTY)) {
+                    String value = (String) v.getProperty(propertyKey);
+                    assertEquals(value, FIRSTNAMEVALUE1);
+                } else if (propertyKey.equals(LASTNAMEPROPERTY)) {
+                    String value = (String) v.getProperty(LASTNAMEPROPERTY);
+                    assertEquals(value, LASTNAMEVALUE1);
+                } else if (propertyKey.equals(GENDERPROPERTY)) {
+                    String value = (String) v.getProperty(GENDERPROPERTY);
+                    assertEquals(value, GENDERVALUE1);
+                } else if (propertyKey.equals(BIRTHDAYPROPERTY)) {
+                    String value = (String) v.getProperty(BIRTHDAYPROPERTY);
+                    assertEquals(value, BIRTHDAYVALUE1);
+                }
+            }
+        }
+    }
+}
