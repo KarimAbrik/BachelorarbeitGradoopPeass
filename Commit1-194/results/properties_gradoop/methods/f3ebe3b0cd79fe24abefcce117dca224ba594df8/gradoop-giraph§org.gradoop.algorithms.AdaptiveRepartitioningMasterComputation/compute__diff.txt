@@ -1,0 +1,19 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public void compute() {
+    int partitionCount = getConf().getInt(AdaptiveRepartitioningComputation.NUMBER_OF_PARTITIONS, AdaptiveRepartitioningComputation.DEFAULT_NUMBER_OF_PARTITIONS);
+    int iterations = getConf().getInt(AdaptiveRepartitioningComputation.NUMBER_OF_ITERATIONS, AdaptiveRepartitioningComputation.DEFAULT_NUMBER_OF_ITERATIONS);
+    if (getSuperstep() == iterations) {
+        haltComputation();
+    }
+    LOG.info("=== master CAPACITY aggregators");
+    for (int i = 0; i < partitionCount; i++) {
+        LOG.info(i + ": " + getAggregatedValue(AdaptiveRepartitioningComputation.CAPACITY_AGGREGATOR_PREFIX + i));
+    }
+    LOG.info("=== master DEMAND aggregators");
+    for (int i = 0; i < partitionCount; i++) {
+        LOG.info(i + ": " + getAggregatedValue(AdaptiveRepartitioningComputation.DEMAND_AGGREGATOR_PREFIX + i));
+    }
+}

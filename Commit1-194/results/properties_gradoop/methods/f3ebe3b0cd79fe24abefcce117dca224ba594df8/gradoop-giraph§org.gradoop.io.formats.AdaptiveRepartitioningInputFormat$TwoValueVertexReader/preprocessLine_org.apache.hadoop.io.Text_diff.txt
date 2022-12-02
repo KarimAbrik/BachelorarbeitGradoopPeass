@@ -1,0 +1,16 @@
+/**
+ * Reads every single line and returns the tokens as array
+ *
+ * @param line line of input
+ * @return line tokens as array
+ * @throws IOException
+ */
+@Override
+protected String[] preprocessLine(Text line) throws IOException {
+    String[] tokens = SEPARATOR.split(line.toString());
+    id = Integer.parseInt(tokens[0]);
+    if (this.isPartitioned) {
+        currentPartition = Integer.parseInt(tokens[1]);
+    }
+    return tokens;
+}

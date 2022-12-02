@@ -1,0 +1,8 @@
+private GiraphConfiguration getConfiguration() {
+    GiraphConfiguration conf = new GiraphConfiguration();
+    conf.setComputationClass(AdaptiveRepartitioningComputation.class);
+    conf.setMasterComputeClass(AdaptiveRepartitioningMasterComputation.class);
+    conf.setVertexInputFormatClass(AdaptiveRepartitioningInputFormat.class);
+    conf.setVertexOutputFormatClass(AdaptiveRepartitioningOutputFormat.class);
+    return conf;
+}

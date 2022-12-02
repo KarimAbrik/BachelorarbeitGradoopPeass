@@ -1,0 +1,10 @@
+/**
+ * @param split   the split to be read
+ * @param context the information about the task
+ * @return the text vertex reader to be used
+ * @throws IOException
+ */
+@Override
+public TextVertexReader createVertexReader(InputSplit split, TaskAttemptContext context) throws IOException {
+    return new TwoValueVertexReader();
+}

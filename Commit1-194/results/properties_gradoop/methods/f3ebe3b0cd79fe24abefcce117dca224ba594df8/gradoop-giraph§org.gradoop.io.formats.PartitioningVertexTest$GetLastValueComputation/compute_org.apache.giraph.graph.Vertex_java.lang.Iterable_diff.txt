@@ -1,0 +1,17 @@
+@Override
+public void compute(Vertex<IntWritable, PartitioningVertex, NullWritable> vertex, Iterable<IntWritable> messages) {
+    if (getSuperstep() == 0) {
+        sendMessageToAllEdges(vertex, vertex.getValue().getDesiredPartition());
+        vertex.voteToHalt();
+    } else {
+        int currentValue = vertex.getValue().getCurrentPartition().get();
+        for (IntWritable lastValue : messages) {
+            if (currentValue < lastValue.get()) {
+                vertex.getValue().setCurrentPartition(lastValue);
+                sendMessageToAllEdges(vertex, vertex.getValue().getCurrentPartition());
+                vertex.voteToHalt();
+            }
+        }
+    }
+    vertex.voteToHalt();
+}

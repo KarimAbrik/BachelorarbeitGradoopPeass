@@ -1,0 +1,7 @@
+@Test
+public void testSmallConnectedGraph() throws Exception {
+    final int numIterations = 120;
+    final int stabilizationRounds = 5;
+    String[] graph = PartitioningComputationTestHelper.getKwaySmallConnectedGraph();
+    validateSmallConnectedGraphResult(computeResults(graph, numPartitions, numIterations, capacityThreshold, stabilizationRounds));
+}

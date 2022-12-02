@@ -1,0 +1,20 @@
+private List<Vertex> createVerticesFromCSV() {
+    ConfigurableVertexLineReader reader = new CSVReader();
+    Configuration conf = new Configuration();
+    conf.set("Meta", NODE_META);
+    conf.set("Label", "Person");
+    reader.setConf(conf);
+    List<Vertex> vertices = Lists.newArrayList();
+    try {
+        BufferedReader in = new BufferedReader(new FileReader(NODE_TEXT));
+        String line;
+        while ((line = in.readLine()) != null) {
+            for (Vertex v : reader.readVertexList(line)) {
+                vertices.add(v);
+            }
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+    return vertices;
+}

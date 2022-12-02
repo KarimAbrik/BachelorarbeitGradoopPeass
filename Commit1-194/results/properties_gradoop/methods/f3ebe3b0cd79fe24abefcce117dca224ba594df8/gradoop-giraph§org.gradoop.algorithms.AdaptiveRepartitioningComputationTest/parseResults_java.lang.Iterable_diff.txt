@@ -1,0 +1,16 @@
+private Map<Integer, Integer> parseResults(Iterable<String> results) {
+    Map<Integer, Integer> parsedResults = Maps.newHashMap();
+    String[] lineTokens;
+    int value;
+    int vertexID;
+    for (String line : results) {
+        lineTokens = LINE_TOKEN_SEPARATOR.split(line);
+        vertexID = Integer.parseInt(lineTokens[0]);
+        value = Integer.parseInt(lineTokens[1]);
+        if (value == 0) {
+            countVerticesPartitionZero++;
+        }
+        parsedResults.put(vertexID, value);
+    }
+    return parsedResults;
+}
