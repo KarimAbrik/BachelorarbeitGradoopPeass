@@ -1,0 +1,382 @@
+{
+  "measurementConfig" : {
+    "vms" : 30,
+    "earlyStop" : false,
+    "warmup" : 5,
+    "iterations" : 5,
+    "repetitions" : 2,
+    "logFullData" : true,
+    "useGC" : false,
+    "callSyncBetweenVMs" : true,
+    "waitTimeBetweenVMs" : 1000,
+    "maxLogSizeInMb" : 100,
+    "kiekerConfig" : {
+      "useKieker" : true,
+      "useSourceInstrumentation" : true,
+      "useSelectiveInstrumentation" : true,
+      "useAggregation" : true,
+      "useCircularQueue" : false,
+      "enableAdaptiveMonitoring" : false,
+      "adaptiveInstrumentation" : false,
+      "kiekerAggregationInterval" : 5000,
+      "record" : "DURATION",
+      "onlyOneCallRecording" : false,
+      "extractMethod" : false,
+      "traceSizeInMb" : 100,
+      "kiekerQueueSize" : 10000000,
+      "createDefaultConstructor" : true,
+      "kiekerWaitTime" : 5,
+      "excludeForTracing" : [ "new org.eclipse.jetty.logging.JettyLevel.<init>(..)", "* org.eclipse.jetty.logging.JettyLevel.*(..)", "*[] org.eclipse.jetty.logging.JettyLevel.*(..)", "*.* org.eclipse.jetty.logging.JettyLevel.*(..)", "*.*.* org.eclipse.jetty.logging.JettyLevel.*(..)", "*.*.*.* org.eclipse.jetty.logging.JettyLevel.*(..)", "*.*.*.*.* org.eclipse.jetty.logging.JettyLevel.*(..)", "new org.eclipse.jetty.logging.JettyLoggerConfiguration.<init>(..)", "* org.eclipse.jetty.logging.JettyLoggerConfiguration.*(..)", "*[] org.eclipse.jetty.logging.JettyLoggerConfiguration.*(..)", "*.* org.eclipse.jetty.logging.JettyLoggerConfiguration.*(..)", "*.*.* org.eclipse.jetty.logging.JettyLoggerConfiguration.*(..)", "*.*.*.* org.eclipse.jetty.logging.JettyLoggerConfiguration.*(..)", "*.*.*.*.* org.eclipse.jetty.logging.JettyLoggerConfiguration.*(..)", "new org.eclipse.jetty.logging.JettyLoggingServiceProvider.<init>(..)", "* org.eclipse.jetty.logging.JettyLoggingServiceProvider.*(..)", "*[] org.eclipse.jetty.logging.JettyLoggingServiceProvider.*(..)", "*.* org.eclipse.jetty.logging.JettyLoggingServiceProvider.*(..)", "*.*.* org.eclipse.jetty.logging.JettyLoggingServiceProvider.*(..)", "*.*.*.* org.eclipse.jetty.logging.JettyLoggingServiceProvider.*(..)", "*.*.*.*.* org.eclipse.jetty.logging.JettyLoggingServiceProvider.*(..)", "new org.eclipse.jetty.logging.JettyLoggerFactory.<init>(..)", "* org.eclipse.jetty.logging.JettyLoggerFactory.*(..)", "*[] org.eclipse.jetty.logging.JettyLoggerFactory.*(..)", "*.* org.eclipse.jetty.logging.JettyLoggerFactory.*(..)", "*.*.* org.eclipse.jetty.logging.JettyLoggerFactory.*(..)", "*.*.*.* org.eclipse.jetty.logging.JettyLoggerFactory.*(..)", "*.*.*.*.* org.eclipse.jetty.logging.JettyLoggerFactory.*(..)", "new org.eclipse.jetty.logging.StdErrAppender.<init>(..)", "* org.eclipse.jetty.logging.StdErrAppender.*(..)", "*[] org.eclipse.jetty.logging.StdErrAppender.*(..)", "*.* org.eclipse.jetty.logging.StdErrAppender.*(..)", "*.*.* org.eclipse.jetty.logging.StdErrAppender.*(..)", "*.*.*.* org.eclipse.jetty.logging.StdErrAppender.*(..)", "*.*.*.*.* org.eclipse.jetty.logging.StdErrAppender.*(..)", "new org.eclipse.jetty.logging.Timestamp.<init>(..)", "* org.eclipse.jetty.logging.Timestamp.*(..)", "*[] org.eclipse.jetty.logging.Timestamp.*(..)", "*.* org.eclipse.jetty.logging.Timestamp.*(..)", "*.*.* org.eclipse.jetty.logging.Timestamp.*(..)", "*.*.*.* org.eclipse.jetty.logging.Timestamp.*(..)", "*.*.*.*.* org.eclipse.jetty.logging.Timestamp.*(..)", "new org.eclipse.jetty.logging.Timestamp$Tick.<init>(..)", "* org.eclipse.jetty.logging.Timestamp$Tick.*(..)", "*[] org.eclipse.jetty.logging.Timestamp$Tick.*(..)", "*.* org.eclipse.jetty.logging.Timestamp$Tick.*(..)", "*.*.* org.eclipse.jetty.logging.Timestamp$Tick.*(..)", "*.*.*.* org.eclipse.jetty.logging.Timestamp$Tick.*(..)", "*.*.*.*.* org.eclipse.jetty.logging.Timestamp$Tick.*(..)", "new org.eclipse.jetty.logging.JettyLogger.<init>(..)", "* org.eclipse.jetty.logging.JettyLogger.*(..)", "*[] org.eclipse.jetty.logging.JettyLogger.*(..)", "*.* org.eclipse.jetty.logging.JettyLogger.*(..)", "*.*.* org.eclipse.jetty.logging.JettyLogger.*(..)", "*.*.*.* org.eclipse.jetty.logging.JettyLogger.*(..)", "*.*.*.*.* org.eclipse.jetty.logging.JettyLogger.*(..)" ]
+    },
+    "saveAll" : true,
+    "javaVersion" : "1.8.0_352",
+    "measurementStrategy" : "PARALLEL",
+    "statisticsConfig" : {
+      "type1error" : 0.2,
+      "type2error" : 0.1,
+      "outlierFactor" : 3.29,
+      "statisticTest" : "T_TEST"
+    },
+    "executionConfig" : {
+      "timeout" : 300000,
+      "redirectSubprocessOutputToFile" : true,
+      "useTieredCompilation" : false,
+      "removeSnapshots" : false,
+      "useAlternativeBuildfile" : false,
+      "excludeLog4jSlf4jImpl" : false,
+      "excludeLog4jToSlf4j" : false,
+      "executeBeforeClassInMeasurement" : false,
+      "onlyMeasureWorkload" : false,
+      "showStart" : false,
+      "redirectToNull" : true,
+      "createDetailDebugFiles" : true
+    },
+    "fixedCommitConfig" : {
+      "commit" : "645eb1baa10fae290a3889480fec4febe1411921",
+      "commitOld" : "6209595896568bded13130a7921e4584df72ce8f"
+    }
+  },
+  "causeConfig" : {
+    "splitAggregated" : true,
+    "minTime" : 0.1,
+    "ignoreEOIs" : true,
+    "rcaStrategy" : "UNTIL_SOURCE_CHANGE",
+    "levels" : 1,
+    "testCase" : {
+      "clazz" : "org.gradoop.model.impl.LogicalGraphSplitByTest",
+      "method" : "testSplitBy",
+      "module" : "gradoop-flink",
+      "params" : "JUNIT_PARAMETERIZED-Execution mode = CLUSTER"
+    },
+    "propertyFolder" : "/home/abrik/peass/results/properties_gradoop"
+  },
+  "nodes" : {
+    "call" : "org.gradoop.model.impl.LogicalGraphSplitByTest#testSplitBy",
+    "kiekerPattern" : "public void org.gradoop.model.impl.LogicalGraphSplitByTest.testSplitBy()",
+    "otherKiekerPattern" : "public void org.gradoop.model.impl.LogicalGraphSplitByTest.testSplitBy()",
+    "module" : "gradoop-flink",
+    "statistic" : {
+      "meanOld" : 4.511075891813333E9,
+      "meanCurrent" : 4.350449175293333E9,
+      "deviationOld" : 6.94400978483119E7,
+      "deviationCurrent" : 9.655727654969446E7,
+      "vms" : 30,
+      "callsOld" : 150,
+      "calls" : 150,
+      "tvalue" : 7.397301635254329
+    },
+    "childs" : [ {
+      "call" : "org.gradoop.model.impl.operators.SplitBy#<init>",
+      "kiekerPattern" : "public new org.gradoop.model.impl.operators.SplitBy.<init>(org.gradoop.model.helper.UnaryFunction,org.apache.flink.api.java.ExecutionEnvironment)",
+      "otherKiekerPattern" : "public new org.gradoop.model.impl.operators.SplitBy.<init>(org.gradoop.model.helper.UnaryFunction,org.apache.flink.api.java.ExecutionEnvironment)",
+      "module" : "gradoop-flink",
+      "statistic" : {
+        "meanOld" : 739.8068965517241,
+        "meanCurrent" : 370.88000000000005,
+        "deviationOld" : 80.23936480945389,
+        "deviationCurrent" : 66.26849462082524,
+        "vms" : 29,
+        "callsOld" : 150,
+        "calls" : 150,
+        "tvalue" : 19.221303661111776
+      },
+      "childs" : [ ]
+    }, {
+      "call" : "org.gradoop.model.impl.LogicalGraph#callForCollection",
+      "kiekerPattern" : "public org.gradoop.model.impl.GraphCollection org.gradoop.model.impl.LogicalGraph.callForCollection(org.gradoop.model.operators.UnaryGraphToCollectionOperator)",
+      "otherKiekerPattern" : "public org.gradoop.model.impl.GraphCollection org.gradoop.model.impl.LogicalGraph.callForCollection(org.gradoop.model.operators.UnaryGraphToCollectionOperator)",
+      "module" : "gradoop-flink",
+      "statistic" : {
+        "meanOld" : 2740011.473333333,
+        "meanCurrent" : 2705992.3,
+        "deviationOld" : 209580.98797885858,
+        "deviationCurrent" : 194764.9647580934,
+        "vms" : 30,
+        "callsOld" : 150,
+        "calls" : 150,
+        "tvalue" : 0.6512607836044959
+      },
+      "childs" : [ {
+        "call" : "org.gradoop.model.impl.operators.SplitBy#execute",
+        "kiekerPattern" : "public org.gradoop.model.impl.GraphCollection org.gradoop.model.impl.operators.SplitBy.execute(org.gradoop.model.impl.LogicalGraph)",
+        "otherKiekerPattern" : "public org.gradoop.model.impl.GraphCollection org.gradoop.model.impl.operators.SplitBy.execute(org.gradoop.model.impl.LogicalGraph)",
+        "module" : "gradoop-flink",
+        "statistic" : {
+          "meanOld" : 2731174.600000001,
+          "meanCurrent" : 2789778.5533333337,
+          "deviationOld" : 209156.59739191967,
+          "deviationCurrent" : 198598.17839590806,
+          "vms" : 30,
+          "callsOld" : 150,
+          "calls" : 150,
+          "tvalue" : -1.112904590868507
+        },
+        "childs" : [ {
+          "call" : "org.gradoop.model.impl.operators.SplitBy#computeNewVertices",
+          "kiekerPattern" : "private org.apache.flink.api.java.DataSet org.gradoop.model.impl.operators.SplitBy.computeNewVertices(org.gradoop.model.impl.LogicalGraph)",
+          "otherKiekerPattern" : "private org.apache.flink.api.java.DataSet org.gradoop.model.impl.operators.SplitBy.computeNewVertices(org.gradoop.model.impl.LogicalGraph)",
+          "module" : "gradoop-flink",
+          "statistic" : {
+            "meanOld" : 319743.3600000001,
+            "meanCurrent" : 310490.18000000005,
+            "deviationOld" : 26210.43870702848,
+            "deviationCurrent" : 23634.23821028034,
+            "vms" : 30,
+            "callsOld" : 150,
+            "calls" : 150,
+            "tvalue" : 1.436046687423882
+          },
+          "childs" : [ {
+            "call" : "org.gradoop.model.impl.operators.SplitBy$AddNewGraphsToVertexMapper#<init>",
+            "kiekerPattern" : "public new org.gradoop.model.impl.operators.SplitBy$AddNewGraphsToVertexMapper.<init>(org.gradoop.model.helper.UnaryFunction)",
+            "otherKiekerPattern" : "public new org.gradoop.model.impl.operators.SplitBy$AddNewGraphsToVertexMapper.<init>(org.gradoop.model.helper.UnaryFunction)",
+            "module" : "gradoop-flink",
+            "statistic" : {
+              "meanOld" : 606.8333333333335,
+              "meanCurrent" : 356.8933333333334,
+              "deviationOld" : 686.4442777362061,
+              "deviationCurrent" : 60.88600390290339,
+              "vms" : 30,
+              "callsOld" : 150,
+              "calls" : 150,
+              "tvalue" : 1.986503943917095
+            },
+            "childs" : [ ]
+          } ]
+        }, {
+          "call" : "org.gradoop.model.impl.operators.SplitBy#computeNewSubgraphs",
+          "kiekerPattern" : "private org.apache.flink.api.java.DataSet org.gradoop.model.impl.operators.SplitBy.computeNewSubgraphs(org.gradoop.model.impl.LogicalGraph,org.apache.flink.api.java.DataSet)",
+          "otherKiekerPattern" : "private org.apache.flink.api.java.DataSet org.gradoop.model.impl.operators.SplitBy.computeNewSubgraphs(org.gradoop.model.impl.LogicalGraph,org.apache.flink.api.java.DataSet)",
+          "module" : "gradoop-flink",
+          "statistic" : {
+            "meanOld" : 767832.8066666668,
+            "meanCurrent" : 776216.9266666668,
+            "deviationOld" : 51177.79225008694,
+            "deviationCurrent" : 52155.00191625049,
+            "vms" : 30,
+            "callsOld" : 150,
+            "calls" : 150,
+            "tvalue" : -0.628456928374199
+          },
+          "childs" : [ {
+            "call" : "org.gradoop.model.impl.operators.SplitBy$LongFromVertexSelector#<init>",
+            "kiekerPattern" : "public new org.gradoop.model.impl.operators.SplitBy$LongFromVertexSelector.<init>(org.gradoop.model.helper.UnaryFunction)",
+            "otherKiekerPattern" : "public new org.gradoop.model.impl.operators.SplitBy$LongFromVertexSelector.<init>(org.gradoop.model.helper.UnaryFunction)",
+            "module" : "gradoop-flink",
+            "statistic" : {
+              "meanOld" : 382.28666666666663,
+              "meanCurrent" : 368.77333333333337,
+              "deviationOld" : 63.68501546990704,
+              "deviationCurrent" : 87.44831353565307,
+              "vms" : 30,
+              "callsOld" : 150,
+              "calls" : 150,
+              "tvalue" : 0.6841868510326364
+            },
+            "childs" : [ ]
+          }, {
+            "call" : "org.gradoop.model.impl.operators.SplitBy$SubgraphsFromGroupsReducer#<init>",
+            "kiekerPattern" : "public new org.gradoop.model.impl.operators.SplitBy$SubgraphsFromGroupsReducer.<init>(org.gradoop.model.helper.UnaryFunction,org.gradoop.model.GraphDataFactory)",
+            "otherKiekerPattern" : "public new org.gradoop.model.impl.operators.SplitBy$SubgraphsFromGroupsReducer.<init>(org.gradoop.model.helper.UnaryFunction,org.gradoop.model.GraphDataFactory)",
+            "module" : "gradoop-flink",
+            "statistic" : {
+              "meanOld" : 2294.944827586207,
+              "meanCurrent" : 2261.972413793104,
+              "deviationOld" : 404.1341605264685,
+              "deviationCurrent" : 159.05528889700074,
+              "vms" : 29,
+              "callsOld" : 150,
+              "calls" : 150,
+              "tvalue" : 0.4088390882725416
+            },
+            "childs" : [ ]
+          } ]
+        } ]
+      } ]
+    }, {
+      "call" : "org.gradoop.model.impl.GraphCollection#size",
+      "kiekerPattern" : "public long org.gradoop.model.impl.GraphCollection.size()",
+      "otherKiekerPattern" : "public long org.gradoop.model.impl.GraphCollection.size()",
+      "module" : "gradoop-flink",
+      "statistic" : {
+        "meanOld" : 4.405837802266666E8,
+        "meanCurrent" : 3.7149424390933332E9,
+        "deviationOld" : 1.405562234080474E7,
+        "deviationCurrent" : 8.066961786531577E7,
+        "vms" : 30,
+        "callsOld" : 150,
+        "calls" : 150,
+        "tvalue" : -219.0194576416789
+      },
+      "childs" : [ {
+        "call" : "ADDED",
+        "kiekerPattern" : "ADDED",
+        "otherKiekerPattern" : "public java.lang.String org.gradoop.model.impl.DefaultEdgeData.toString()",
+        "statistic" : {
+          "meanOld" : "NaN",
+          "meanCurrent" : "NaN",
+          "deviationOld" : "NaN",
+          "deviationCurrent" : "NaN",
+          "vms" : 0,
+          "callsOld" : 0,
+          "calls" : 0,
+          "tvalue" : -1.0,
+          "change" : true
+        },
+        "childs" : [ ]
+      } ]
+    }, {
+      "call" : "org.gradoop.model.impl.AbstractGraph#getVertexCount",
+      "kiekerPattern" : "public long org.gradoop.model.impl.AbstractGraph.getVertexCount()",
+      "otherKiekerPattern" : "public org.apache.flink.api.java.DataSet org.gradoop.model.impl.AbstractGraph.getVertexData()",
+      "module" : "gradoop-flink",
+      "statistic" : {
+        "meanOld" : 1.5451803029333335E8,
+        "meanCurrent" : 1147509.6091954021,
+        "deviationOld" : 7014210.735573718,
+        "deviationCurrent" : 1123925.3066238102,
+        "vms" : 29,
+        "callsOld" : 150,
+        "calls" : 450,
+        "tvalue" : 118.2037839321444
+      },
+      "childs" : [ ]
+    }, {
+      "call" : "org.gradoop.model.impl.AbstractGraph#getGellyGraph",
+      "kiekerPattern" : "protected org.apache.flink.graph.Graph org.gradoop.model.impl.AbstractGraph.getGellyGraph()",
+      "otherKiekerPattern" : "protected org.apache.flink.api.java.ExecutionEnvironment org.gradoop.model.FlinkTestBase.getExecutionEnvironment()",
+      "module" : "gradoop-flink",
+      "statistic" : {
+        "meanOld" : 716.1319999999998,
+        "meanCurrent" : 541.0466666666667,
+        "deviationOld" : 323.93093019942086,
+        "deviationCurrent" : 125.85804464673227,
+        "vms" : 30,
+        "callsOld" : 750,
+        "calls" : 150,
+        "tvalue" : 2.75948586380562
+      },
+      "childs" : [ ]
+    }, {
+      "call" : "org.gradoop.model.impl.DefaultVertexData#toString",
+      "kiekerPattern" : "public java.lang.String org.gradoop.model.impl.DefaultVertexData.toString()",
+      "otherKiekerPattern" : "public org.apache.flink.api.java.DataSet org.gradoop.model.impl.AbstractGraph.getEdgeData()",
+      "module" : "gradoop-core",
+      "statistic" : {
+        "meanOld" : 6421.926872498671,
+        "meanCurrent" : 557466.2137931035,
+        "deviationOld" : 641.9574372621761,
+        "deviationCurrent" : 42340.982161323525,
+        "vms" : 29,
+        "callsOld" : 32850,
+        "calls" : 150,
+        "tvalue" : -70.07686492822035
+      },
+      "childs" : [ ]
+    }, {
+      "call" : "org.gradoop.model.impl.DefaultElement#<init>",
+      "kiekerPattern" : "protected new org.gradoop.model.impl.DefaultElement.<init>()",
+      "otherKiekerPattern" : "ADDED",
+      "module" : "gradoop-core",
+      "statistic" : {
+        "meanOld" : "NaN",
+        "meanCurrent" : "NaN",
+        "deviationOld" : "NaN",
+        "deviationCurrent" : "NaN",
+        "vms" : 0,
+        "callsOld" : 0,
+        "calls" : 0,
+        "tvalue" : -1.0,
+        "change" : true
+      },
+      "childs" : [ ]
+    }, {
+      "call" : "org.gradoop.model.impl.DefaultGraphElement#<init>",
+      "kiekerPattern" : "protected new org.gradoop.model.impl.DefaultGraphElement.<init>()",
+      "otherKiekerPattern" : "ADDED",
+      "module" : "gradoop-core",
+      "statistic" : {
+        "meanOld" : "NaN",
+        "meanCurrent" : "NaN",
+        "deviationOld" : "NaN",
+        "deviationCurrent" : "NaN",
+        "vms" : 0,
+        "callsOld" : 0,
+        "calls" : 0,
+        "tvalue" : -1.0,
+        "change" : true
+      },
+      "childs" : [ ]
+    }, {
+      "call" : "org.gradoop.model.impl.DefaultVertexData#<init>",
+      "kiekerPattern" : "public new org.gradoop.model.impl.DefaultVertexData.<init>()",
+      "otherKiekerPattern" : "ADDED",
+      "module" : "gradoop-core",
+      "statistic" : {
+        "meanOld" : "NaN",
+        "meanCurrent" : "NaN",
+        "deviationOld" : "NaN",
+        "deviationCurrent" : "NaN",
+        "vms" : 0,
+        "callsOld" : 0,
+        "calls" : 0,
+        "tvalue" : -1.0,
+        "change" : true
+      },
+      "childs" : [ ]
+    }, {
+      "call" : "org.gradoop.model.impl.LogicalGraphSplitByTest$SplitByIdOddOrEven#execute",
+      "kiekerPattern" : "public java.lang.Long org.gradoop.model.impl.LogicalGraphSplitByTest$SplitByIdOddOrEven.execute(org.apache.flink.graph.Vertex)",
+      "otherKiekerPattern" : "public java.lang.Long org.gradoop.model.impl.LogicalGraphSplitByTest$SplitByIdOddOrEven.execute(org.gradoop.model.impl.DefaultVertexData)",
+      "module" : "gradoop-flink",
+      "statistic" : {
+        "meanOld" : 1804.9566919787176,
+        "meanCurrent" : 4965.2936834101865,
+        "deviationOld" : 417.2555272237762,
+        "deviationCurrent" : 10839.584234394888,
+        "vms" : 29,
+        "callsOld" : 7350,
+        "calls" : 3150,
+        "tvalue" : -1.568910776674642
+      },
+      "childs" : [ ]
+    }, {
+      "call" : "org.gradoop.model.impl.AbstractGraph#getEdgeCount",
+      "kiekerPattern" : "public long org.gradoop.model.impl.AbstractGraph.getEdgeCount()",
+      "otherKiekerPattern" : "ADDED",
+      "module" : "gradoop-flink",
+      "statistic" : {
+        "meanOld" : "NaN",
+        "meanCurrent" : "NaN",
+        "deviationOld" : "NaN",
+        "deviationCurrent" : "NaN",
+        "vms" : 0,
+        "callsOld" : 0,
+        "calls" : 0,
+        "tvalue" : -1.0,
+        "change" : true
+      },
+      "childs" : [ ]
+    } ]
+  }
+}
