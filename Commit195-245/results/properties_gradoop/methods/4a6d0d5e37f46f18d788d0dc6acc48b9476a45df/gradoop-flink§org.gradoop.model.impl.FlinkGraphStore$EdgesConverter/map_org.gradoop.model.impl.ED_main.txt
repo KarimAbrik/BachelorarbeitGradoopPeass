@@ -1,0 +1,4 @@
+@Override
+public Edge<Long, ED> map(ED value) throws Exception {
+    return new Edge<>(value.getSourceVertexId(), value.getTargetVertexId(), value);
+}

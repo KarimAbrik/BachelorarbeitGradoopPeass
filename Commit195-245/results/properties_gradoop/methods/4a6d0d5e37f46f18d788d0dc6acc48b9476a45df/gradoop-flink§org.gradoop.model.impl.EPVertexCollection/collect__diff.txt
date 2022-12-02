@@ -1,0 +1,10 @@
+@Override                                                                                              @Override                                                                                           
+public Collection&lt;VertexData&gt; collect() throws Exception {                                     | public Collection&lt;VD&gt; collect() throws Exception {                                            
+return vertices.map(new MapFunction&lt;Vertex&lt;Long, VertexData&gt;, VertexData&gt;() {            | return vertices.map(new MapFunction&lt;Vertex&lt;Long, VD&gt;, VD&gt;() {                           
+                                                                                                                                                                                                           
+@Override                                                                                              @Override                                                                                           
+public VertexData map(Vertex&lt;Long, VertexData&gt; v) throws Exception {                           | public VD map(Vertex&lt;Long, VD&gt; v) throws Exception {                                          
+return v.getValue();                                                                                   return v.getValue();                                                                                
+}                                                                                                      }                                                                                                   
+}).collect();                                                                                          }).collect();                                                                                       
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,11 @@
+public static EPGraphStore fromJsonFile(String vertexFile, String edgeFile, String graphFile, ExecutionEnvironment env) {
+    DataSet<Vertex<Long, VertexData>> vertices = env.readTextFile(vertexFile).map(new JsonReader.JsonToVertexMapper());
+    DataSet<Edge<Long, EdgeData>> edges = env.readTextFile(edgeFile).map(new JsonReader.JsonToEdgeMapper());
+    DataSet<Subgraph<Long, GraphData>> graphs;
+    if (graphFile != null) {
+        graphs = env.readTextFile(graphFile).map(new JsonReader.JsonToGraphMapper());
+    } else {
+        graphs = env.fromCollection(Lists.newArrayList(DATABASE_SUBGRAPH));
+    }
+    return new FlinkGraphStore(vertices, edges, graphs, env);
+}

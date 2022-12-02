@@ -1,0 +1,11 @@
+@Override                                                                                              @Override                                                                                           
+protected EPGraph executeInternal(EPGraph firstGraph, EPGraph secondGraph) {                         | protected EPGraph&lt;VD, ED, GD&gt; executeInternal(EPGraph&lt;VD, ED, GD&gt; firstGraph, EPGraph&lt
+final Long newGraphID = FlinkConstants.COMBINE_GRAPH_ID;                                               final Long newGraphID = FlinkConstants.COMBINE_GRAPH_ID;                                            
+Graph&lt;Long, VertexData, EdgeData&gt; graph1 = firstGraph.getGellyGraph();                         | Graph&lt;Long, VD, ED&gt; graph1 = firstGraph.getGellyGraph();                                      
+Graph&lt;Long, VertexData, EdgeData&gt; graph2 = secondGraph.getGellyGraph();                        | Graph&lt;Long, VD, ED&gt; graph2 = secondGraph.getGellyGraph();                                     
+// build distinct union of vertex sets and update graph ids at vertices                                // build distinct union of vertex sets and update graph ids at vertices                             
+// cannot use Gelly union here because of missing argument for KeySelector                             // cannot use Gelly union here because of missing argument for KeySelector                          
+DataSet&lt;Vertex&lt;Long, VertexData&gt;&gt; newVertexSet = graph1.getVertices().union(graph2.getVe | DataSet&lt;Vertex&lt;Long, VD&gt;&gt; newVertexSet = graph1.getVertices().union(graph2.getVertices()
+DataSet&lt;Edge&lt;Long, EdgeData&gt;&gt; newEdgeSet = graph1.getEdges().union(graph2.getEdges()).di | DataSet&lt;Edge&lt;Long, ED&gt;&gt; newEdgeSet = graph1.getEdges().union(graph2.getEdges()).distinct
+return EPGraph.fromGraph(Graph.fromDataSet(newVertexSet, newEdgeSet, graph1.getContext()), GraphData | return EPGraph.fromGraph(Graph.fromDataSet(newVertexSet, newEdgeSet, graph1.getContext()), firstGrap
+}                                                                                                      }                                                                                                   

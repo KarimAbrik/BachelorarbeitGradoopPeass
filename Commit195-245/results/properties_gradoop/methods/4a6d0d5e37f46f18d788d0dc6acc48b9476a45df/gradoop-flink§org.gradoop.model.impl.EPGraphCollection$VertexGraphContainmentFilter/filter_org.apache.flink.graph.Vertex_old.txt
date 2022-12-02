@@ -1,0 +1,4 @@
+@Override
+public boolean filter(Vertex<Long, VertexData> v) throws Exception {
+    return v.f1.getGraphs().contains(graphID);
+}

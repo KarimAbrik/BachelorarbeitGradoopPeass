@@ -1,0 +1,5 @@
+@Override                                                                                              @Override                                                                                           
+public Vertex&lt;Long, VertexData&gt; map(Vertex&lt;Long, VertexData&gt; v) throws Exception {       | public Vertex&lt;Long, VD&gt; map(Vertex&lt;Long, VD&gt; v) throws Exception {                      
+v.getValue().addGraph(newGraphID);                                                                     v.getValue().addGraph(newGraphID);                                                                  
+return v;                                                                                              return v;                                                                                           
+}                                                                                                      }                                                                                                   

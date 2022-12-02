@@ -1,0 +1,4 @@
+@Override
+public EPGraph<VD, ED, GD> getDatabaseGraph() {
+    return EPGraph.fromGraph(database.getGraph().getGellyGraph(), databaseData, vertexDataFactory, edgeDataFactory, graphDataFactory);
+}

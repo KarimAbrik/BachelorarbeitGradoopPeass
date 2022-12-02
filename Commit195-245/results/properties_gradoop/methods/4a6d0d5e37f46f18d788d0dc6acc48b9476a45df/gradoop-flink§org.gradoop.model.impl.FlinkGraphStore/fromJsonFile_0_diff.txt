@@ -1,0 +1,15 @@
+                                                                                                     | @SuppressWarnings({ "unchecked", "rawtypes" })                                                      
+                                                                                                     | public static &lt;VD extends VertexData, ED extends EdgeData, GD extends GraphData&gt; EPGraphStore&
+                                                                                                     | TypeInformation&lt;Vertex&lt;Long, VD&gt;&gt; vertexTypeInfo = new TupleTypeInfo(Vertex.class, Basic
+                                                                                                     | TypeInformation&lt;Edge&lt;Long, ED&gt;&gt; edgeTypeInfo = new TupleTypeInfo(Edge.class, BasicTypeIn
+                                                                                                     | TypeInformation&lt;Subgraph&lt;Long, GD&gt;&gt; graphTypeInfo = new TupleTypeInfo(Subgraph.class, Ba
+                                                                                                     | DataSet&lt;Vertex&lt;Long, VD&gt;&gt; vertices = env.readTextFile(vertexFile).map(new JsonReader.Jso
+                                                                                                     | DataSet&lt;Edge&lt;Long, ED&gt;&gt; edges = env.readTextFile(edgeFile).map(new JsonReader.JsonToEdge
+                                                                                                     | DataSet&lt;Subgraph&lt;Long, GD&gt;&gt; graphs;                                                     
+                                                                                                     | if (graphFile != null) {                                                                            
+                                                                                                     | graphs = env.readTextFile(graphFile).map(new JsonReader.JsonToGraphMapper&lt;&gt;(graphDataFactory))
+                                                                                                     | } else {                                                                                            
+                                                                                                     | graphs = env.fromCollection(Lists.newArrayList(new Subgraph&lt;&gt;(FlinkConstants.DATABASE_GRAPH_ID
+                                                                                                     | }                                                                                                   
+                                                                                                     | return new FlinkGraphStore&lt;&gt;(vertices, edges, graphs, vertexDataFactory, edgeDataFactory, grap
+                                                                                                     | }                                                                                                   

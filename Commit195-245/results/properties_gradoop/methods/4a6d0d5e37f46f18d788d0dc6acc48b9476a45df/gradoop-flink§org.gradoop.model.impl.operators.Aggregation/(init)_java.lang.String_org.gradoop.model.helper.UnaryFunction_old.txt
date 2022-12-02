@@ -1,0 +1,4 @@
+public Aggregation(final String aggregatePropertyKey, UnaryFunction<EPGraph, O> aggregationFunc) {
+    this.aggregatePropertyKey = aggregatePropertyKey;
+    this.aggregationFunc = aggregationFunc;
+}

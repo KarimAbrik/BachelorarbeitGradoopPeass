@@ -1,0 +1,5 @@
+@Override                                                                                              @Override                                                                                           
+public Edge&lt;Long, EdgeData&gt; map(Edge&lt;Long, EdgeData&gt; e) throws Exception {               | public Edge&lt;Long, ED&gt; map(Edge&lt;Long, ED&gt; e) throws Exception {                          
+e.getValue().addGraph(newGraphID);                                                                     e.getValue().addGraph(newGraphID);                                                                  
+return e;                                                                                              return e;                                                                                           
+}                                                                                                      }                                                                                                   

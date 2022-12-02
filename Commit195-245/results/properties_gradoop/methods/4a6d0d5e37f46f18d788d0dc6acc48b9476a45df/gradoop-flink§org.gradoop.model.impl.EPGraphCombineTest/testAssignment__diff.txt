@@ -1,0 +1,44 @@
+@Test
+public void testAssignment() throws Exception {
+    EPGraph databaseCommunity = graphStore.getGraph(0L);
+    EPGraph graphCommunity = graphStore.getGraph(1L);
+    EPGraph newGraph = graphCommunity.combine(databaseCommunity);
+    Collection<VertexData> vertexData = newGraph.getVertices().collect();
+    Collection<EdgeData> edgeData = newGraph.getEdges().collect();
+    for (VertexData v : vertexData) {
+        Set<Long> gIDs = v.getGraphs();
+        if (v.equals(alice)) {
+            assertEquals("wrong number of graphs", 3, gIDs.size());
+        } else if (v.equals(bob)) {
+            assertEquals("wrong number of graphs", 3, gIDs.size());
+        } else if (v.equals(eve)) {
+            assertEquals("wrong number of graphs", 2, gIDs.size());
+        } else if (v.equals(carol)) {
+            assertEquals("wrong number of graphs", 4, gIDs.size());
+        } else if (v.equals(dave)) {
+            assertEquals("wrong number of graphs", 4, gIDs.size());
+        } else if (v.equals(frank)) {
+            assertEquals("wrong number of graphs", 2, gIDs.size());
+        }
+    }
+    for (EdgeData e : edgeData) {
+        Set<Long> gIDs = e.getGraphs();
+        if (e.equals(edge0)) {
+            assertEquals("wrong number of graphs", 3, gIDs.size());
+        } else if (e.equals(edge1)) {
+            assertEquals("wrong number of graphs", 3, gIDs.size());
+        } else if (e.equals(edge6)) {
+            assertEquals("wrong number of graphs", 2, gIDs.size());
+        } else if (e.equals(edge21)) {
+            assertEquals("wrong number of graphs", 2, gIDs.size());
+        } else if (e.equals(edge4)) {
+            assertEquals("wrong number of graphs", 4, gIDs.size());
+        } else if (e.equals(edge5)) {
+            assertEquals("wrong number of graphs", 3, gIDs.size());
+        } else if (e.equals(edge22)) {
+            assertEquals("wrong number of graphs", 2, gIDs.size());
+        } else if (e.equals(edge23)) {
+            assertEquals("wrong number of graphs", 2, gIDs.size());
+        }
+    }
+}

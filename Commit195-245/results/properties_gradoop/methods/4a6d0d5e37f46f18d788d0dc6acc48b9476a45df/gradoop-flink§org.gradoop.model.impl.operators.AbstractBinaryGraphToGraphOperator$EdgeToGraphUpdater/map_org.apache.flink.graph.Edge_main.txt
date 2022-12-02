@@ -1,0 +1,5 @@
+@Override
+public Edge<Long, ED> map(Edge<Long, ED> e) throws Exception {
+    e.getValue().addGraph(newGraphID);
+    return e;
+}

@@ -1,0 +1,9 @@
+@Override                                                                                              @Override                                                                                           
+public EPGraph execute(EPGraph graph) throws Exception {                                             | public EPGraph&lt;VD, ED, GD&gt; execute(EPGraph&lt;VD, ED, GD&gt; graph) throws Exception {        
+O result = aggregationFunc.execute(graph);                                                             O result = aggregationFunc.execute(graph);                                                          
+// copy graph data before updating properties                                                          // copy graph data before updating properties                                                       
+GraphData newGraphData = GraphDataFactory.createDefaultGraphWithIDAndLabel(graph.getId(), graph.getL | GD newGraphData = graph.getGraphDataFactory().createGraphData(graph.getId(), graph.getLabel());     
+newGraphData.setProperties(graph.getProperties());                                                     newGraphData.setProperties(graph.getProperties());                                                  
+newGraphData.setProperty(aggregatePropertyKey, result);                                                newGraphData.setProperty(aggregatePropertyKey, result);                                             
+return EPGraph.fromGraph(graph.getGellyGraph(), newGraphData);                                       | return EPGraph.fromGraph(graph.getGellyGraph(), newGraphData, graph.getVertexDataFactory(), graph.ge
+}                                                                                                      }                                                                                                   

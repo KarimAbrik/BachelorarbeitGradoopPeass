@@ -1,0 +1,11 @@
+@Override                                                                                              @Override                                                                                           
+public boolean filter(Vertex&lt;Long, VertexData&gt; vertex) throws Exception {                      | public boolean filter(Vertex&lt;Long, VD&gt; v) throws Exception {                                  
+boolean vertexInGraph = false;                                                                       | return (v.getValue().getGraphCount() &gt; 0) && v.getValue().getGraphs().contains(graphID);         
+for (Long graph : vertex.getValue().getGraphs()) {                                                   |                                                                                                     
+if (identifiers.contains(graph)) {                                                                   |                                                                                                     
+vertexInGraph = true;                                                                                |                                                                                                     
+break;                                                                                               |                                                                                                     
+}                                                                                                      }                                                                                                   
+}                                                                                                    |                                                                                                     
+return vertexInGraph;                                                                                |                                                                                                     
+}                                                                                                    |                                                                                                     

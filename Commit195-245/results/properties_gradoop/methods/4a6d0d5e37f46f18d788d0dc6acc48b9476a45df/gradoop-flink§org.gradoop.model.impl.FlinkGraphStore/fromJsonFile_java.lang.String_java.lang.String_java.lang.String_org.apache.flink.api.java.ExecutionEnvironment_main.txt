@@ -1,0 +1,3 @@
+public static EPGraphStore<DefaultVertexData, DefaultEdgeData, DefaultGraphData> fromJsonFile(String vertexFile, String edgeFile, String graphFile, ExecutionEnvironment env) {
+    return fromJsonFile(vertexFile, edgeFile, graphFile, new DefaultVertexDataFactory(), new DefaultEdgeDataFactory(), new DefaultGraphDataFactory(), env);
+}

@@ -1,0 +1,11 @@
+public static EPGraphStore fromJsonFile(String vertexFile, String edgeFile, String graphFile, Execut | public static EPGraphStore&lt;DefaultVertexData, DefaultEdgeData, DefaultGraphData&gt; fromJsonFile(
+DataSet&lt;Vertex&lt;Long, VertexData&gt;&gt; vertices = env.readTextFile(vertexFile).map(new JsonRe | return fromJsonFile(vertexFile, edgeFile, graphFile, new DefaultVertexDataFactory(), new DefaultEdge
+DataSet&lt;Edge&lt;Long, EdgeData&gt;&gt; edges = env.readTextFile(edgeFile).map(new JsonReader.Json |                                                                                                     
+DataSet&lt;Subgraph&lt;Long, GraphData&gt;&gt; graphs;                                               |                                                                                                     
+if (graphFile != null) {                                                                             |                                                                                                     
+graphs = env.readTextFile(graphFile).map(new JsonReader.JsonToGraphMapper());                        |                                                                                                     
+} else {                                                                                             |                                                                                                     
+graphs = env.fromCollection(Lists.newArrayList(DATABASE_SUBGRAPH));                                  |                                                                                                     
+}                                                                                                      }                                                                                                   
+return new FlinkGraphStore(vertices, edges, graphs, env);                                            |                                                                                                     
+}                                                                                                    |                                                                                                     

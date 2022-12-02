@@ -1,0 +1,11 @@
+@Test                                                                                                  @Test                                                                                               
+public void testFromJsonFile() throws Exception {                                                      public void testFromJsonFile() throws Exception {                                                   
+String vertexFile = FlinkGraphStoreTest.class.getResource("/sna_nodes").getFile();                     String vertexFile = FlinkGraphStoreTest.class.getResource("/sna_nodes").getFile();                  
+String edgeFile = FlinkGraphStoreTest.class.getResource("/sna_edges").getFile();                       String edgeFile = FlinkGraphStoreTest.class.getResource("/sna_edges").getFile();                    
+String graphFile = FlinkGraphStoreTest.class.getResource("/sna_graphs").getFile();                     String graphFile = FlinkGraphStoreTest.class.getResource("/sna_graphs").getFile();                  
+EPGraphStore graphStore = FlinkGraphStore.fromJsonFile(vertexFile, edgeFile, graphFile, env);        | EPGraphStore&lt;DefaultVertexData, DefaultEdgeData, DefaultGraphData&gt; graphStore = FlinkGraphStor
+EPGraph databaseGraph = graphStore.getDatabaseGraph();                                               | EPGraph&lt;DefaultVertexData, DefaultEdgeData, DefaultGraphData&gt; databaseGraph = graphStore.getDa
+assertEquals("Wrong vertex count", 11, databaseGraph.getVertexCount());                                assertEquals("Wrong vertex count", 11, databaseGraph.getVertexCount());                             
+assertEquals("Wrong edge count", 24, databaseGraph.getEdgeCount());                                    assertEquals("Wrong edge count", 24, databaseGraph.getEdgeCount());                                 
+assertEquals("Wrong graph count", 4, graphStore.getCollection().getGraphCount());                      assertEquals("Wrong graph count", 4, graphStore.getCollection().getGraphCount());                   
+}                                                                                                      }                                                                                                   

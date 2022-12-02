@@ -1,0 +1,11 @@
+@Override
+public boolean filter(Vertex<Long, VertexData> vertex) throws Exception {
+    boolean vertexInGraph = false;
+    for (Long graph : vertex.getValue().getGraphs()) {
+        if (identifiers.contains(graph)) {
+            vertexInGraph = true;
+            break;
+        }
+    }
+    return vertexInGraph;
+}

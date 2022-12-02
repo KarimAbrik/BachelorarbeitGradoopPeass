@@ -1,0 +1,4 @@
+private FlinkGraphStore(DataSet&lt;Vertex&lt;Long, VertexData&gt;&gt; vertices, DataSet&lt;Edge&lt;L |                                                                                                     
+this.database = new EPGraphCollection(Graph.fromDataSet(vertices, edges, env), graphData, env);      |                                                                                                     
+this.env = env;                                                                                      |                                                                                                     
+}                                                                                                    |                                                                                                     

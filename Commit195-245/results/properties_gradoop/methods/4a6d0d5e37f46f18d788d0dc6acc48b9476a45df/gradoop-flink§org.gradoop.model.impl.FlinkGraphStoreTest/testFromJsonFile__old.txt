@@ -1,0 +1,11 @@
+@Test
+public void testFromJsonFile() throws Exception {
+    String vertexFile = FlinkGraphStoreTest.class.getResource("/sna_nodes").getFile();
+    String edgeFile = FlinkGraphStoreTest.class.getResource("/sna_edges").getFile();
+    String graphFile = FlinkGraphStoreTest.class.getResource("/sna_graphs").getFile();
+    EPGraphStore graphStore = FlinkGraphStore.fromJsonFile(vertexFile, edgeFile, graphFile, env);
+    EPGraph databaseGraph = graphStore.getDatabaseGraph();
+    assertEquals("Wrong vertex count", 11, databaseGraph.getVertexCount());
+    assertEquals("Wrong edge count", 24, databaseGraph.getEdgeCount());
+    assertEquals("Wrong graph count", 4, graphStore.getCollection().getGraphCount());
+}

@@ -1,0 +1,4 @@
+@Override
+public EPGraph<VD, ED, GD> getGraph(Long graphID) throws Exception {
+    return database.getGraph(graphID);
+}

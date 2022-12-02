@@ -1,0 +1,4 @@
+@Override
+public Vertex<Long, VD> map(VD value) throws Exception {
+    return new Vertex<>(value.getId(), value);
+}

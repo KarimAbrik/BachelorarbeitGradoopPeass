@@ -1,0 +1,9 @@
+private FlinkGraphStore(DataSet<Vertex<Long, VD>> vertices, DataSet<Edge<Long, ED>> edges, DataSet<Subgraph<Long, GD>> graphs, VertexDataFactory<VD> vertexDataFactory, EdgeDataFactory<ED> edgeDataFactory, GraphDataFactory<GD> graphDataFactory, ExecutionEnvironment env) {
+    this.vertexDataFactory = vertexDataFactory;
+    this.edgeDataFactory = edgeDataFactory;
+    this.graphDataFactory = graphDataFactory;
+    this.database = new EPGraphCollection<>(Graph.fromDataSet(vertices, edges, env), graphs, vertexDataFactory, edgeDataFactory, graphDataFactory, env);
+    this.env = env;
+    this.databaseData = graphDataFactory.createGraphData(FlinkConstants.DATABASE_GRAPH_ID);
+    this.databaseSubgraph = new Subgraph<>(FlinkConstants.DATABASE_GRAPH_ID, databaseData);
+}

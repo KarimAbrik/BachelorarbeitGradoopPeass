@@ -1,0 +1,10 @@
+@Override
+public Collection<VertexData> collect() throws Exception {
+    return vertices.map(new MapFunction<Vertex<Long, VertexData>, VertexData>() {
+
+        @Override
+        public VertexData map(Vertex<Long, VertexData> v) throws Exception {
+            return v.getValue();
+        }
+    }).collect();
+}

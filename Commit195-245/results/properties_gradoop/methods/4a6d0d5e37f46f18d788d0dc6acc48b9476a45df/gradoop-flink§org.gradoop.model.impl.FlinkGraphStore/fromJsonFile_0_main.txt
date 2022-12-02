@@ -1,0 +1,15 @@
+@SuppressWarnings({ "unchecked", "rawtypes" })
+public static <VD extends VertexData, ED extends EdgeData, GD extends GraphData> EPGraphStore<VD, ED, GD> fromJsonFile(String vertexFile, String edgeFile, String graphFile, VertexDataFactory<VD> vertexDataFactory, EdgeDataFactory<ED> edgeDataFactory, GraphDataFactory<GD> graphDataFactory, ExecutionEnvironment env) {
+    TypeInformation<Vertex<Long, VD>> vertexTypeInfo = new TupleTypeInfo(Vertex.class, BasicTypeInfo.LONG_TYPE_INFO, TypeExtractor.createTypeInfo(vertexDataFactory.getType()));
+    TypeInformation<Edge<Long, ED>> edgeTypeInfo = new TupleTypeInfo(Edge.class, BasicTypeInfo.LONG_TYPE_INFO, TypeExtractor.createTypeInfo(edgeDataFactory.getType()));
+    TypeInformation<Subgraph<Long, GD>> graphTypeInfo = new TupleTypeInfo(Subgraph.class, BasicTypeInfo.LONG_TYPE_INFO, BasicTypeInfo.LONG_TYPE_INFO, TypeExtractor.createTypeInfo(graphDataFactory.getType()));
+    DataSet<Vertex<Long, VD>> vertices = env.readTextFile(vertexFile).map(new JsonReader.JsonToVertexMapper<>(vertexDataFactory)).returns(vertexTypeInfo);
+    DataSet<Edge<Long, ED>> edges = env.readTextFile(edgeFile).map(new JsonReader.JsonToEdgeMapper<>(edgeDataFactory)).returns(edgeTypeInfo);
+    DataSet<Subgraph<Long, GD>> graphs;
+    if (graphFile != null) {
+        graphs = env.readTextFile(graphFile).map(new JsonReader.JsonToGraphMapper<>(graphDataFactory)).returns(graphTypeInfo);
+    } else {
+        graphs = env.fromCollection(Lists.newArrayList(new Subgraph<>(FlinkConstants.DATABASE_GRAPH_ID, graphDataFactory.createGraphData(FlinkConstants.DATABASE_GRAPH_ID))));
+    }
+    return new FlinkGraphStore<>(vertices, edges, graphs, vertexDataFactory, edgeDataFactory, graphDataFactory, env);
+}

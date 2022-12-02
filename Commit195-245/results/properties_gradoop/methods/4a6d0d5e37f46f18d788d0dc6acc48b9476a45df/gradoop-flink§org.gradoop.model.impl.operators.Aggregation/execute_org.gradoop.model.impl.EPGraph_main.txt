@@ -1,0 +1,9 @@
+@Override
+public EPGraph<VD, ED, GD> execute(EPGraph<VD, ED, GD> graph) throws Exception {
+    O result = aggregationFunc.execute(graph);
+    // copy graph data before updating properties
+    GD newGraphData = graph.getGraphDataFactory().createGraphData(graph.getId(), graph.getLabel());
+    newGraphData.setProperties(graph.getProperties());
+    newGraphData.setProperty(aggregatePropertyKey, result);
+    return EPGraph.fromGraph(graph.getGellyGraph(), newGraphData, graph.getVertexDataFactory(), graph.getEdgeDataFactory(), graph.getGraphDataFactory());
+}
