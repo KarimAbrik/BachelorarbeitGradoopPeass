@@ -1,0 +1,21 @@
+private List&lt;Vertex&gt; createVerticesFromCSV() {                                                   private List&lt;Vertex&gt; createVerticesFromCSV() {                                                
+ConfigurableVertexLineReader reader = new CSVReader();                                                 ConfigurableVertexLineReader reader = new CSVReader();                                              
+Configuration conf = new Configuration();                                                              Configuration conf = new Configuration();                                                           
+conf.set("Meta", NODE_META);                                                                         | conf.set(CSVReader.META_DATA, NODE_META);                                                           
+conf.set("Label", "Person");                                                                         | conf.set(CSVReader.LABEL, "Person");                                                                
+                                                                                                     | conf.set(CSVReader.TYPE, "node");                                                                   
+reader.setConf(conf);                                                                                  reader.setConf(conf);                                                                               
+List&lt;Vertex&gt; vertices = Lists.newArrayList();                                                    List&lt;Vertex&gt; vertices = Lists.newArrayList();                                                 
+try {                                                                                                | for (String line : PERSON_CSV) {                                                                    
+BufferedReader in = new BufferedReader(new FileReader(NODE_TEXT));                                   |                                                                                                     
+String line;                                                                                         |                                                                                                     
+while ((line = in.readLine()) != null) {                                                             |                                                                                                     
+for (Vertex v : reader.readVertexList(line)) {                                                         for (Vertex v : reader.readVertexList(line)) {                                                      
+vertices.add(v);                                                                                       vertices.add(v);                                                                                    
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+} catch (IOException e) {                                                                            |                                                                                                     
+e.printStackTrace();                                                                                 |                                                                                                     
+}                                                                                                    |                                                                                                     
+return vertices;                                                                                       return vertices;                                                                                    
+}                                                                                                      }                                                                                                   

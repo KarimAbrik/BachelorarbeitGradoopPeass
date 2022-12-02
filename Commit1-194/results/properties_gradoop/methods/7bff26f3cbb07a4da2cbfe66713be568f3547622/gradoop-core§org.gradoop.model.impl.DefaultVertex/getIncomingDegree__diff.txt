@@ -1,0 +1,7 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public int getIncomingDegree() {
+    return (incomingEdges != null) ? Iterables.size(incomingEdges) : 0;
+}

@@ -1,0 +1,19 @@
+/**
+ * Load Metadata Types e.g. long|string|string|...
+ *
+ * @param metaData configuration parameter
+ */
+private void readTypes(String metaData) {
+    LOG.info("###readTypes");
+    LOG.info("###metaPath" + metaData);
+    try {
+        BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream(metaData), Charset.forName("UTF-8")));
+        String line;
+        while ((line = in.readLine()) != null) {
+            types = getTokens(metaData);
+        }
+        in.close();
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}

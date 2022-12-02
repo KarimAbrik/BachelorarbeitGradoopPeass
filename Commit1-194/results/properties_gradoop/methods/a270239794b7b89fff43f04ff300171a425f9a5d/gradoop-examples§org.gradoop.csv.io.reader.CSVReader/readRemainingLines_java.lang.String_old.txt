@@ -1,0 +1,22 @@
+private Vertex readRemainingLines(String line) {
+    String[] tokens = getTokens(line);
+    long id = Long.parseLong(tokens[0]);
+    Vertex vex = VertexFactory.createDefaultVertexWithLabels(id, labels, null);
+    if (edge) {
+    } else {
+        for (int i = 1; i < properties.length - 2; i++) {
+            switch(types[i]) {
+                case "long":
+                    vex.addProperty(properties[i], Long.parseLong(tokens[i]));
+                    break;
+                case "string":
+                    vex.addProperty(properties[i], tokens[i]);
+                    break;
+                default:
+                    vex.addProperty(properties[i], tokens[i]);
+                    break;
+            }
+        }
+    }
+    return vex;
+}

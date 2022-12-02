@@ -1,0 +1,12 @@
+/**
+ * Initializes the internal graph storage.
+ *
+ * @param graphs non-empty set of graphs
+ */
+private void initGraphs(Iterable<Long> graphs) {
+    if (graphs == null) {
+        this.graphs = Sets.newHashSet();
+    } else {
+        this.graphs = Sets.newHashSet(graphs);
+    }
+}

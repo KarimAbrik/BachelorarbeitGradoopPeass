@@ -1,0 +1,8 @@
+@Test                                                                                                  @Test                                                                                               
+public void checkSimpleCSVInputTest() {                                                              | public void checkSimpleCSVInputTest() throws IOException, URISyntaxException {                      
+                                                                                                     | Log.info(getClass().getResource("/node_meta.csv").getPath());                                       
+for (Vertex v : createVerticesFromCSV()) {                                                             for (Vertex v : createVerticesFromCSV()) {                                                          
+if (v.getID() == 0) {                                                                                | System.out.println(v.getID());                                                                      
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                    |                                                                                                     

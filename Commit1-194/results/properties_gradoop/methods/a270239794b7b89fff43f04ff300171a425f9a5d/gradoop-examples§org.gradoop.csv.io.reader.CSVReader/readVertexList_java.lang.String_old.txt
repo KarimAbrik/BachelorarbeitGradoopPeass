@@ -1,0 +1,8 @@
+@Override
+public List<Vertex> readVertexList(String line) {
+    initialize(line);
+    if (!once) {
+        vList.add(readRemainingLines(line));
+    }
+    return vList;
+}
