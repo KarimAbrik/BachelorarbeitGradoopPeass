@@ -1,0 +1,4 @@
+@Override
+public Tuple3<Long, Long, Long> map(Edge<Long, ED> edge) throws Exception {
+    return new Tuple3<>(edge.getValue().getId(), edge.getValue().getSourceVertexId(), edge.getValue().getTargetVertexId());
+}

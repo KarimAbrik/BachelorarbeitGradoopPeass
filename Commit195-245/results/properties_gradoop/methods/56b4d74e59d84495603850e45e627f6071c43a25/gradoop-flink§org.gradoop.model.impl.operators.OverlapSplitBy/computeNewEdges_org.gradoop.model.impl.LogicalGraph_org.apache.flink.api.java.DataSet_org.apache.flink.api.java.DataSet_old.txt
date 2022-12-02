@@ -1,0 +1,30 @@
+/**
+ * compute the new edges between all subgraphs
+ *
+ * @param logicalGraph the input graph
+ * @param vertices     the computed vertices with their edges
+ * @param subgraphs    the subgraphs of the vertices
+ * @return all edges between all subgraphs
+ */
+private DataSet<Edge<Long, ED>> computeNewEdges(LogicalGraph<VD, ED, GD> logicalGraph, DataSet<Vertex<Long, VD>> vertices, DataSet<Subgraph<Long, GD>> subgraphs) {
+    final Graph<Long, VD, ED> graph = logicalGraph.getGellyGraph();
+    // construct tuples of the edges with the ids of their source and target
+    // vertices
+    DataSet<Tuple3<Long, Long, Long>> edgeVertexVertex = graph.getEdges().map(new EdgeToTupleMapper<ED>());
+    // replace the source vertex id by the graph list of this vertex
+    DataSet<Tuple3<Long, List<Long>, Long>> edgeGraphsVertex = edgeVertexVertex.join(vertices).where(1).equalTo(0).with(new JoinEdgeTupleWithSourceGraphs<VD>());
+    // replace the target vertex id by the graph list of this vertex
+    DataSet<Tuple3<Long, List<Long>, List<Long>>> edgeGraphsGraphs = edgeGraphsVertex.join(vertices).where(2).equalTo(0).with(new JoinEdgeTupleWithTargetGraphs<VD>());
+    // transform the new subgraphs into a single set of long, containing all
+    // the identifiers
+    DataSet<List<Long>> newSubgraphIdentifiers = subgraphs.map(new MapSubgraphIdToSet<GD>()).reduce(new ReduceSets());
+    // construct new tuples containing the edge, the graphs of its source and
+    // target vertex and the list of new graphs
+    DataSet<Tuple4<Long, List<Long>, List<Long>, List<Long>>> edgesWithSubgraphs = edgeGraphsGraphs.crossWithTiny(newSubgraphIdentifiers).with(new CrossEdgesWithGraphSet());
+    // remove all edges which source and target are not in at least one common
+    // graph
+    DataSet<Tuple2<Long, List<Long>>> newSubgraphs = edgesWithSubgraphs.flatMap(new CheckEdgesSourceTargetGraphs());
+    // join the graph set tuples with the edges, add all new graphs to the
+    // edge graph sets
+    return graph.getEdges().join(newSubgraphs).where(new KeySelectors.EdgeKeySelector<ED>()).equalTo(0).with(new JoinEdgeTuplesWithEdges<ED>());
+}

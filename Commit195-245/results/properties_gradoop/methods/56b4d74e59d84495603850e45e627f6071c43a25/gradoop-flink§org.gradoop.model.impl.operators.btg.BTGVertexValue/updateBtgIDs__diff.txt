@@ -1,0 +1,14 @@
+/**
+ * Updates the set of BTG ids this vertex is involved in according to the set
+ * of minimum values stored in the mapping between neighbour nodes and BTG
+ * ids. This is only necessary for master data nodes like described in
+ */
+public void updateBtgIDs() {
+    if (this.neighborMinimumBTGIds != null) {
+        Set<Long> newBtgIDs = new HashSet<>();
+        for (Map.Entry<Long, Long> e : this.neighborMinimumBTGIds.entrySet()) {
+            newBtgIDs.add(e.getValue());
+        }
+        this.btgIDs = Lists.newArrayList(newBtgIDs);
+    }
+}

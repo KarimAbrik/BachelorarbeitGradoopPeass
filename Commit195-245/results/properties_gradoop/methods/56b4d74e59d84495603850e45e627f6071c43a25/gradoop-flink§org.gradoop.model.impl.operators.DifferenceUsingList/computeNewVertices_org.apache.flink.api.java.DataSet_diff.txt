@@ -1,0 +1,32 @@
+/**
+ * Computes the resulting vertices by collecting a list of resulting
+ * subgraphs and checking if the vertex is contained in that list.
+ *
+ * @param newSubgraphs graph dataset of the resulting graph collection
+ * @return vertex set of the resulting graph collection
+ * @throws Exception
+ */
+@Override
+protected DataSet<Vertex<Long, VD>> computeNewVertices(DataSet<Subgraph<Long, GD>> newSubgraphs) throws Exception {
+    final List<Long> identifiers = newSubgraphs.map(new MapFunction<Subgraph<Long, GD>, Long>() {
+
+        @Override
+        public Long map(Subgraph<Long, GD> subgraph) throws Exception {
+            return subgraph.getId();
+        }
+    }).collect();
+    return firstGraph.getVertices().filter(new FilterFunction<Vertex<Long, VD>>() {
+
+        @Override
+        public boolean filter(Vertex<Long, VD> vertex) throws Exception {
+            boolean vertexInGraph = false;
+            for (Long id : identifiers) {
+                if (vertex.getValue().getGraphs().contains(id)) {
+                    vertexInGraph = true;
+                    break;
+                }
+            }
+            return vertexInGraph;
+        }
+    });
+}

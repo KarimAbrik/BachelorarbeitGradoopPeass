@@ -1,0 +1,12 @@
+/**
+ * Constructor
+ *
+ * @param maxIterations int defining maximal step counter
+ * @param propertyKey   PropertyKey of the Vertex value
+ * @param env           ExecutionEnvironment
+ */
+public EPGMLabelPropagation(int maxIterations, String propertyKey, ExecutionEnvironment env) {
+    this.maxIterations = maxIterations;
+    this.propertyKey = propertyKey;
+    this.env = env;
+}

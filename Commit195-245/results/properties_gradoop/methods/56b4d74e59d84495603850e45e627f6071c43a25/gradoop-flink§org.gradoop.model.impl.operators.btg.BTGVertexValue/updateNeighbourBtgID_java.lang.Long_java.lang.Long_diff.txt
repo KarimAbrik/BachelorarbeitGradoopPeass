@@ -1,0 +1,16 @@
+/**
+ * Stores the given map between vertex id and BTG id if the pair does not
+ * exist. It it exists, the BTG id is updated iff it is smaller than the
+ * currently stored BTG id.
+ *
+ * @param vertexID vertex id of a neighbour node
+ * @param btgID    BTG id associated with the neighbour node
+ */
+public void updateNeighbourBtgID(Long vertexID, Long btgID) {
+    if (neighborMinimumBTGIds == null) {
+        initNeighbourMinimBTGIDMap();
+    }
+    if (!neighborMinimumBTGIds.containsKey(vertexID) || (neighborMinimumBTGIds.containsKey(vertexID) && neighborMinimumBTGIds.get(vertexID) > btgID)) {
+        neighborMinimumBTGIds.put(vertexID, btgID);
+    }
+}

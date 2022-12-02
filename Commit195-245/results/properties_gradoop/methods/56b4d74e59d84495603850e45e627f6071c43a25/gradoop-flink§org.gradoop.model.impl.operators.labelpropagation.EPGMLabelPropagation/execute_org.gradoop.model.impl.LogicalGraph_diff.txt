@@ -1,0 +1,12 @@
+/**                                                                                                    /**                                                                                                 
+* {@inheritDoc }                                                                                       * {@inheritDoc }                                                                                    
+*/                                                                                                     */                                                                                                  
+@Override                                                                                              @Override                                                                                           
+public GraphCollection&lt;VD, ED, GD&gt; execute(LogicalGraph&lt;VD, ED, GD&gt; epGraph) throws Exce   public GraphCollection&lt;VD, ED, GD&gt; execute(LogicalGraph&lt;VD, ED, GD&gt; epGraph) throws Exce
+Graph&lt;Long, VD, ED&gt; graph = epGraph.getGellyGraph();                                           | Graph&lt;Long, VD, ED&gt; graph = Graph.fromDataSet(epGraph.getVertices(), epGraph.getEdges(), epGra
+graph = graph.run(new EPGMLabelPropagationAlgorithm&lt;VD, ED&gt;(this.maxIterations));                graph = graph.run(new EPGMLabelPropagationAlgorithm&lt;VD, ED&gt;(this.maxIterations));             
+LogicalGraph&lt;VD, ED, GD&gt; labeledGraph = LogicalGraph.fromGraph(graph, null, epGraph.getVertexD | LogicalGraph&lt;VD, ED, GD&gt; labeledGraph = LogicalGraph.fromGellyGraph(graph, null, epGraph.getVe
+LongFromProperty&lt;VD&gt; lfp = new LongFromProperty&lt;&gt;(propertyKey);                            LongFromProperty&lt;VD&gt; lfp = new LongFromProperty&lt;&gt;(propertyKey);                         
+SplitBy&lt;VD, ED, GD&gt; callByPropertyKey = new SplitBy&lt;&gt;(lfp, env);                           SplitBy&lt;VD, ED, GD&gt; callByPropertyKey = new SplitBy&lt;&gt;(lfp, env);                        
+return callByPropertyKey.execute(labeledGraph);                                                        return callByPropertyKey.execute(labeledGraph);                                                     
+}                                                                                                      }                                                                                                   

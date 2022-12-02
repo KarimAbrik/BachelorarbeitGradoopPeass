@@ -1,0 +1,11 @@
+/**
+ * Adds a BTG to the list of BTGs. BTGs can occur multiple times.
+ *
+ * @param graph BTG ID to be added
+ */
+public void addGraph(Long graph) {
+    if (this.btgIDs.isEmpty()) {
+        resetGraphs();
+    }
+    this.btgIDs.add(graph);
+}

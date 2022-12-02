@@ -1,0 +1,12 @@
+/**
+ * Returned the last inserted BTG ID. This has become necessary for the
+ * Flink-Messaging-Function
+ *
+ * @return last added BTG ID
+ */
+public Long getLastGraph() {
+    if (this.btgIDs.size() > 0) {
+        return btgIDs.get(btgIDs.size() - 1);
+    }
+    return null;
+}

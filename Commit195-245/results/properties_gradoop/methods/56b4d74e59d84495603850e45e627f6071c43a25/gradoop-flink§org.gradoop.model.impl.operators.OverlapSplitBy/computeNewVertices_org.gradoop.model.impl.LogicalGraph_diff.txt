@@ -1,0 +1,15 @@
+/**                                                                                                    /**                                                                                                 
+* compute the vertices in the new graphs created by the SplitBy and add                                * compute the vertices in the new graphs created by the SplitBy and add                             
+* these graphs to the graph sets of the vertices                                                       * these graphs to the graph sets of the vertices                                                    
+*                                                                                                      *                                                                                                   
+* @param logicalGraph input graph                                                                      * @param logicalGraph input graph                                                                   
+* @return a DataSet containing all vertices, each vertex has one new graph                             * @return a DataSet containing all vertices, each vertex has one new graph                          
+* in its graph set                                                                                     * in its graph set                                                                                  
+*/                                                                                                     */                                                                                                  
+private DataSet&lt;Vertex&lt;Long, VD&gt;&gt; computeNewVertices(LogicalGraph&lt;VD, ED, GD&gt; logi   private DataSet&lt;Vertex&lt;Long, VD&gt;&gt; computeNewVertices(LogicalGraph&lt;VD, ED, GD&gt; logi
+// get the Gelly graph and vertices                                                                  |                                                                                                     
+final Graph&lt;Long, VD, ED&gt; graph = logicalGraph.getGellyGraph();                                |                                                                                                     
+DataSet&lt;Vertex&lt;Long, VD&gt;&gt; vertices = graph.getVertices();                                |                                                                                                     
+// add the new graphs to the vertices graph lists                                                      // add the new graphs to the vertices graph lists                                                   
+return vertices.map(new AddNewGraphsToVertexMapper&lt;&gt;(function));                               | return logicalGraph.getVertices().map(new AddNewGraphsToVertexMapper&lt;&gt;(function));            
+}                                                                                                      }                                                                                                   

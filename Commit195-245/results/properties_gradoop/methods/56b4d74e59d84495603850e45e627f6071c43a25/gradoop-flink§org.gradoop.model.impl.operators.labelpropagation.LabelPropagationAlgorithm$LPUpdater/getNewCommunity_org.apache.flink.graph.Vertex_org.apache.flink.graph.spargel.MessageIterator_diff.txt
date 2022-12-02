@@ -1,0 +1,30 @@
+/**
+ * Returns the current new value. This value is based on all incoming
+ * messages. Depending on the number of messages sent to the vertex, the
+ * method returns:
+ * <p/>
+ * 0 messages:   The current value
+ * <p/>
+ * 1 message:    The minimum of the message and the current vertex value
+ * <p/>
+ * >1 messages:  The most frequent of all message values
+ *
+ * @param vertex The current vertex
+ * @param msg    All incoming messages
+ * @return the new Value the vertex will become
+ */
+private long getNewCommunity(Vertex<Long, LabelPropagationValue> vertex, MessageIterator<Long> msg) {
+    long newCommunity;
+    List<Long> allMessages = Lists.newArrayList(msg.iterator());
+    if (allMessages.isEmpty()) {
+        // 1. if no messages are received
+        newCommunity = vertex.getValue().getCurrentCommunity();
+    } else if (allMessages.size() == 1) {
+        // 2. if just one message are received
+        newCommunity = Math.min(vertex.getValue().getCurrentCommunity(), allMessages.get(0));
+    } else {
+        // 3. if multiple messages are received
+        newCommunity = getMostFrequent(vertex, allMessages);
+    }
+    return newCommunity;
+}

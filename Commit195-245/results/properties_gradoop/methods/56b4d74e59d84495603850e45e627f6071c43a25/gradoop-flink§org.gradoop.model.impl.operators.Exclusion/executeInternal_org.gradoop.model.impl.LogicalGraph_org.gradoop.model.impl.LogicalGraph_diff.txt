@@ -1,0 +1,25 @@
+/**                                                                                                    /**                                                                                                 
+* {@inheritDoc}                                                                                        * {@inheritDoc}                                                                                     
+*/                                                                                                     */                                                                                                  
+@Override                                                                                              @Override                                                                                           
+protected LogicalGraph&lt;VD, ED, GD&gt; executeInternal(LogicalGraph&lt;VD, ED, GD&gt; firstGraph,    protected LogicalGraph&lt;VD, ED, GD&gt; executeInternal(LogicalGraph&lt;VD, ED, GD&gt; firstGraph, 
+final Long newGraphID = FlinkConstants.EXCLUDE_GRAPH_ID;                                               final Long newGraphID = FlinkConstants.EXCLUDE_GRAPH_ID;                                            
+Graph&lt;Long, VD, ED&gt; graph1 = firstGraph.getGellyGraph();                                       |                                                                                                     
+Graph&lt;Long, VD, ED&gt; graph2 = secondGraph.getGellyGraph();                                      |                                                                                                     
+// union vertex sets, group by vertex id, filter vertices where the group                              // union vertex sets, group by vertex id, filter vertices where the group                           
+// contains exactly one vertex which belongs to the graph, the operator is                             // contains exactly one vertex which belongs to the graph, the operator is                          
+// called on                                                                                           // called on                                                                                        
+DataSet&lt;Vertex&lt;Long, VD&gt;&gt; newVertexSet = graph1.getVertices().union(graph2.getVertices() | DataSet&lt;Vertex&lt;Long, VD&gt;&gt; newVertexSet = firstGraph.getVertices().union(secondGraph.getV
+JoinFunction&lt;Edge&lt;Long, ED&gt;, Vertex&lt;Long, VD&gt;, Edge&lt;Long, ED&gt;&gt; joinFunc = ne   JoinFunction&lt;Edge&lt;Long, ED&gt;, Vertex&lt;Long, VD&gt;, Edge&lt;Long, ED&gt;&gt; joinFunc = ne
+                                                                                                                                                                                                           
+@Override                                                                                              @Override                                                                                           
+public Edge&lt;Long, ED&gt; join(Edge&lt;Long, ED&gt; leftTuple, Vertex&lt;Long, VD&gt; rightTuple)    public Edge&lt;Long, ED&gt; join(Edge&lt;Long, ED&gt; leftTuple, Vertex&lt;Long, VD&gt; rightTuple) 
+return leftTuple;                                                                                      return leftTuple;                                                                                   
+}                                                                                                      }                                                                                                   
+};                                                                                                     };                                                                                                  
+// In exclude(), we are only interested in edges that connect vertices                                 // In exclude(), we are only interested in edges that connect vertices                              
+// that are in the exclusion of the vertex sets. Thus, we join the edges                               // that are in the exclusion of the vertex sets. Thus, we join the edges                            
+// from the left graph with the new vertex set using source and target ids.                            // from the left graph with the new vertex set using source and target ids.                         
+DataSet&lt;Edge&lt;Long, ED&gt;&gt; newEdgeSet = graph1.getEdges().join(newVertexSet).where(new KeyS | DataSet&lt;Edge&lt;Long, ED&gt;&gt; newEdgeSet = firstGraph.getEdges().join(newVertexSet).where(new 
+return LogicalGraph.fromGraph(Graph.fromDataSet(newVertexSet, newEdgeSet, graph1.getContext()), firs | return LogicalGraph.fromDataSets(newVertexSet, newEdgeSet, firstGraph.getGraphDataFactory().createGr
+}                                                                                                      }                                                                                                   

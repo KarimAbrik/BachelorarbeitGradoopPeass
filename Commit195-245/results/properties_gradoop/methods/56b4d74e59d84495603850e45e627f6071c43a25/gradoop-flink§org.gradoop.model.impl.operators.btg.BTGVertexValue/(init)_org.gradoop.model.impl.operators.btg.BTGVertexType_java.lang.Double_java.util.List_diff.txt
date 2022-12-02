@@ -1,0 +1,12 @@
+/**
+ * Initializes an IIGVertex based on the given parameters.
+ *
+ * @param vertexType  The type of that vertex
+ * @param vertexValue The value stored at that vertex
+ * @param btgIDs      A list of BTGs that vertex belongs to
+ */
+public BTGVertexValue(BTGVertexType vertexType, Double vertexValue, List<Long> btgIDs) {
+    this.vertexType = vertexType;
+    this.vertexValue = vertexValue;
+    this.btgIDs = btgIDs;
+}

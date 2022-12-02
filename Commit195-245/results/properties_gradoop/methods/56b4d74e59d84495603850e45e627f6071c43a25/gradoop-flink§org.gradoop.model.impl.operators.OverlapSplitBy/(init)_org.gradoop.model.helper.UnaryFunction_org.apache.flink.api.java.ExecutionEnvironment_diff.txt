@@ -1,0 +1,10 @@
+/**
+ * Constructor
+ *
+ * @param function self defined function
+ * @param env      execution environment
+ */
+public OverlapSplitBy(UnaryFunction<Vertex<Long, VD>, List<Long>> function, ExecutionEnvironment env) {
+    this.env = env;
+    this.function = function;
+}

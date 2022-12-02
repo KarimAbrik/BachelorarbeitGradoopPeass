@@ -1,0 +1,7 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public Tuple4<Long, List<Long>, List<Long>, List<Long>> cross(Tuple3<Long, List<Long>, List<Long>> tuple3, List<Long> subgraphs) throws Exception {
+    return new Tuple4<>(tuple3.f0, tuple3.f1, tuple3.f2, subgraphs);
+}

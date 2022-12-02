@@ -1,0 +1,10 @@
+/**
+ * Removes the last inserted BTG ID. This is necessary for non-master vertices
+ * as they need to store only the minimum BTG ID, because they must only occur
+ * in one BTG.
+ */
+public void removeLastBtgID() {
+    if (this.btgIDs.size() > 0) {
+        this.btgIDs.remove(this.btgIDs.size() - 1);
+    }
+}

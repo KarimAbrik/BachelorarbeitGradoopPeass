@@ -1,0 +1,20 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public void flatMap(Tuple4<Long, List<Long>, List<Long>, List<Long>> tuple4, Collector<Tuple2<Long, List<Long>>> collector) throws Exception {
+    List<Long> sourceGraphs = tuple4.f1;
+    List<Long> targetGraphs = tuple4.f2;
+    List<Long> newSubgraphs = tuple4.f3;
+    boolean newGraphAdded = false;
+    List<Long> toBeAddedGraphs = new ArrayList<>();
+    for (Long graph : newSubgraphs) {
+        if (targetGraphs.contains(graph) && sourceGraphs.contains(graph)) {
+            toBeAddedGraphs.add(graph);
+            newGraphAdded = true;
+        }
+    }
+    if (newGraphAdded) {
+        collector.collect(new Tuple2<>(tuple4.f0, toBeAddedGraphs));
+    }
+}

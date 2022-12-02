@@ -1,0 +1,5 @@
+@Override
+public Vertex<Long, VD> join(Vertex<Long, LabelPropagationValue> lpVertex, Vertex<Long, VD> epVertex) throws Exception {
+    epVertex.getValue().setProperty(EPGMLabelPropagationAlgorithm.CURRENT_VALUE, lpVertex.getValue().getCurrentCommunity());
+    return epVertex;
+}

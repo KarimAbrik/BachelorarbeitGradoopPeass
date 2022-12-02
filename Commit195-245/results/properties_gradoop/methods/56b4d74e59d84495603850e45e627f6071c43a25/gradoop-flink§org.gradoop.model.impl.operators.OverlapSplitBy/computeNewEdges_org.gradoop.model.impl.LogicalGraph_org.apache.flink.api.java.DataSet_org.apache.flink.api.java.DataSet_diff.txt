@@ -1,0 +1,30 @@
+/**                                                                                                    /**                                                                                                 
+* compute the new edges between all subgraphs                                                          * compute the new edges between all subgraphs                                                       
+*                                                                                                      *                                                                                                   
+* @param logicalGraph the input graph                                                                  * @param logicalGraph the input graph                                                               
+* @param vertices     the computed vertices with their edges                                           * @param vertices     the computed vertices with their edges                                        
+* @param subgraphs    the subgraphs of the vertices                                                    * @param subgraphs    the subgraphs of the vertices                                                 
+* @return all edges between all subgraphs                                                              * @return all edges between all subgraphs                                                           
+*/                                                                                                     */                                                                                                  
+private DataSet&lt;Edge&lt;Long, ED&gt;&gt; computeNewEdges(LogicalGraph&lt;VD, ED, GD&gt; logicalGr   private DataSet&lt;Edge&lt;Long, ED&gt;&gt; computeNewEdges(LogicalGraph&lt;VD, ED, GD&gt; logicalGr
+final Graph&lt;Long, VD, ED&gt; graph = logicalGraph.getGellyGraph();                                |                                                                                                     
+// construct tuples of the edges with the ids of their source and target                               // construct tuples of the edges with the ids of their source and target                            
+// vertices                                                                                            // vertices                                                                                         
+DataSet&lt;Tuple3&lt;Long, Long, Long&gt;&gt; edgeVertexVertex = graph.getEdges().map(new EdgeToTupl | DataSet&lt;Tuple3&lt;Long, Long, Long&gt;&gt; edgeVertexVertex = logicalGraph.getEdges().map(new Edg
+// replace the source vertex id by the graph list of this vertex                                       // replace the source vertex id by the graph list of this vertex                                    
+DataSet&lt;Tuple3&lt;Long, List&lt;Long&gt;, Long&gt;&gt; edgeGraphsVertex = edgeVertexVertex.join(v   DataSet&lt;Tuple3&lt;Long, List&lt;Long&gt;, Long&gt;&gt; edgeGraphsVertex = edgeVertexVertex.join(v
+// replace the target vertex id by the graph list of this vertex                                       // replace the target vertex id by the graph list of this vertex                                    
+DataSet&lt;Tuple3&lt;Long, List&lt;Long&gt;, List&lt;Long&gt;&gt;&gt; edgeGraphsGraphs = edgeGraphsV   DataSet&lt;Tuple3&lt;Long, List&lt;Long&gt;, List&lt;Long&gt;&gt;&gt; edgeGraphsGraphs = edgeGraphsV
+// transform the new subgraphs into a single set of long, containing all                               // transform the new subgraphs into a single set of long, containing all                            
+// the identifiers                                                                                     // the identifiers                                                                                  
+DataSet&lt;List&lt;Long&gt;&gt; newSubgraphIdentifiers = subgraphs.map(new MapSubgraphIdToSet&lt;GD&   DataSet&lt;List&lt;Long&gt;&gt; newSubgraphIdentifiers = subgraphs.map(new MapSubgraphIdToSet&lt;GD&
+// construct new tuples containing the edge, the graphs of its source and                              // construct new tuples containing the edge, the graphs of its source and                           
+// target vertex and the list of new graphs                                                            // target vertex and the list of new graphs                                                         
+DataSet&lt;Tuple4&lt;Long, List&lt;Long&gt;, List&lt;Long&gt;, List&lt;Long&gt;&gt;&gt; edgesWithSub   DataSet&lt;Tuple4&lt;Long, List&lt;Long&gt;, List&lt;Long&gt;, List&lt;Long&gt;&gt;&gt; edgesWithSub
+// remove all edges which source and target are not in at least one common                             // remove all edges which source and target are not in at least one common                          
+// graph                                                                                               // graph                                                                                            
+DataSet&lt;Tuple2&lt;Long, List&lt;Long&gt;&gt;&gt; newSubgraphs = edgesWithSubgraphs.flatMap(new Ch   DataSet&lt;Tuple2&lt;Long, List&lt;Long&gt;&gt;&gt; newSubgraphs = edgesWithSubgraphs.flatMap(new Ch
+// join the graph set tuples with the edges, add all new graphs to the                                 // join the graph set tuples with the edges, add all new graphs to the                              
+// edge graph sets                                                                                     // edge graph sets                                                                                  
+return graph.getEdges().join(newSubgraphs).where(new KeySelectors.EdgeKeySelector&lt;ED&gt;()).equal | return logicalGraph.getEdges().join(newSubgraphs).where(new KeySelectors.EdgeKeySelector&lt;ED&gt;()
+}                                                                                                      }                                                                                                   

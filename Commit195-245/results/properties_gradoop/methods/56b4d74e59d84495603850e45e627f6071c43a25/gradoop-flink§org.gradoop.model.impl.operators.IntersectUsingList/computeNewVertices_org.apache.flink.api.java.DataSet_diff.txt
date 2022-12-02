@@ -1,0 +1,24 @@
+@Override
+protected DataSet<Vertex<Long, VD>> computeNewVertices(DataSet<Subgraph<Long, GD>> newSubgraphs) throws Exception {
+    final List<Long> identifiers;
+    identifiers = secondSubgraphs.map(new MapFunction<Subgraph<Long, GD>, Long>() {
+
+        @Override
+        public Long map(Subgraph<Long, GD> subgraph) throws Exception {
+            return subgraph.getId();
+        }
+    }).collect();
+    DataSet<Vertex<Long, VD>> vertices = firstGraph.getVertices();
+    return vertices.filter(new FilterFunction<Vertex<Long, VD>>() {
+
+        @Override
+        public boolean filter(Vertex<Long, VD> vertex) throws Exception {
+            for (Long id : identifiers) {
+                if (vertex.getValue().getGraphs().contains(id)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+    });
+}

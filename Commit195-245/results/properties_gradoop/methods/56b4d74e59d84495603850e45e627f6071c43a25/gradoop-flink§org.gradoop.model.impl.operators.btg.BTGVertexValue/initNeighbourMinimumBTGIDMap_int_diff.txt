@@ -1,0 +1,13 @@
+/**
+ * Initializes the internal map with given size when needed. If size is -1 a
+ * default map will be created.
+ *
+ * @param size the expected size of the Map or -1 if unknown.
+ */
+private void initNeighbourMinimumBTGIDMap(int size) {
+    if (size == -1) {
+        this.neighborMinimumBTGIds = Maps.newHashMap();
+    } else {
+        this.neighborMinimumBTGIds = Maps.newHashMapWithExpectedSize(size);
+    }
+}

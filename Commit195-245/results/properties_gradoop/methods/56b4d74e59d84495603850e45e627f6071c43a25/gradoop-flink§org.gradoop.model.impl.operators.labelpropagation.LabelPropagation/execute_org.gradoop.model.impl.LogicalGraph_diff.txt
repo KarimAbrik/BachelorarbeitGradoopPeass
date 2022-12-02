@@ -1,0 +1,28 @@
+/**                                                                                                    /**                                                                                                 
+* {@inheritDoc}                                                                                        * {@inheritDoc}                                                                                     
+*/                                                                                                     */                                                                                                  
+@Override                                                                                              @Override                                                                                           
+public GraphCollection&lt;VD, ED, GD&gt; execute(LogicalGraph&lt;VD, ED, GD&gt; epGraph) throws Exce   public GraphCollection&lt;VD, ED, GD&gt; execute(LogicalGraph&lt;VD, ED, GD&gt; epGraph) throws Exce
+DataSet&lt;Vertex&lt;Long, LabelPropagationValue&gt;&gt; vertices = epGraph.getGellyGraph().getVerti | DataSet&lt;Vertex&lt;Long, LabelPropagationValue&gt;&gt; vertices = epGraph.getVertices().map(new Ma
+                                                                                                                                                                                                           
+@Override                                                                                              @Override                                                                                           
+public Vertex&lt;Long, LabelPropagationValue&gt; map(Vertex&lt;Long, VD&gt; vertex) throws Exception   public Vertex&lt;Long, LabelPropagationValue&gt; map(Vertex&lt;Long, VD&gt; vertex) throws Exception
+return new Vertex&lt;&gt;(vertex.getId(), new LabelPropagationValue(vertex.getId(), vertex.getId()))   return new Vertex&lt;&gt;(vertex.getId(), new LabelPropagationValue(vertex.getId(), vertex.getId()))
+}                                                                                                      }                                                                                                   
+});                                                                                                    });                                                                                                 
+DataSet&lt;Edge&lt;Long, NullValue&gt;&gt; edges = epGraph.getGellyGraph().getEdges().map(new MapFun | DataSet&lt;Edge&lt;Long, NullValue&gt;&gt; edges = epGraph.getEdges().map(new MapFunction&lt;Edge&lt
+                                                                                                                                                                                                           
+@Override                                                                                              @Override                                                                                           
+public Edge&lt;Long, NullValue&gt; map(Edge&lt;Long, ED&gt; edge) throws Exception {                   public Edge&lt;Long, NullValue&gt; map(Edge&lt;Long, ED&gt; edge) throws Exception {                
+return new Edge&lt;&gt;(edge.getSource(), edge.getTarget(), NullValue.getInstance());                  return new Edge&lt;&gt;(edge.getSource(), edge.getTarget(), NullValue.getInstance());               
+}                                                                                                      }                                                                                                   
+});                                                                                                    });                                                                                                 
+Graph&lt;Long, LabelPropagationValue, NullValue&gt; graph = Graph.fromDataSet(vertices, edges, env);   Graph&lt;Long, LabelPropagationValue, NullValue&gt; graph = Graph.fromDataSet(vertices, edges, env);
+graph = graph.run(new LabelPropagationAlgorithm(this.maxIterations));                                  graph = graph.run(new LabelPropagationAlgorithm(this.maxIterations));                               
+DataSet&lt;Vertex&lt;Long, VD&gt;&gt; labeledVertices = graph.getVertices().join(epGraph.getGellyGra | DataSet&lt;Vertex&lt;Long, VD&gt;&gt; labeledVertices = graph.getVertices().join(epGraph.getVertices
+Graph&lt;Long, VD, ED&gt; gellyGraph = Graph.fromDataSet(labeledVertices, epGraph.getGellyGraph().ge | LogicalGraph&lt;VD, ED, GD&gt; labeledGraph = LogicalGraph.fromDataSets(labeledVertices, epGraph.get
+LogicalGraph&lt;VD, ED, GD&gt; labeledGraph = LogicalGraph.fromGraph(gellyGraph, null, epGraph.getVe |                                                                                                     
+LongFromProperty&lt;VD&gt; lfp = new LongFromProperty&lt;&gt;(propertyKey);                            LongFromProperty&lt;VD&gt; lfp = new LongFromProperty&lt;&gt;(propertyKey);                         
+SplitBy&lt;VD, ED, GD&gt; callByPropertyKey = new SplitBy&lt;&gt;(lfp, env);                           SplitBy&lt;VD, ED, GD&gt; callByPropertyKey = new SplitBy&lt;&gt;(lfp, env);                        
+return callByPropertyKey.execute(labeledGraph);                                                        return callByPropertyKey.execute(labeledGraph);                                                     
+}                                                                                                      }                                                                                                   

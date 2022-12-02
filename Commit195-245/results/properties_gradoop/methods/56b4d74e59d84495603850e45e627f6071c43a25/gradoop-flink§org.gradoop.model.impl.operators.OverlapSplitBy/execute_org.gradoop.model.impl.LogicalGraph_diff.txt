@@ -1,0 +1,18 @@
+/**
+ * execute the operator, split the EPGraph into an EPGraphCollection which
+ * graphs can be overlapping
+ *
+ * @param logicalGraph the epGraph that will be split
+ * @return a GraphCollection containing the newly created EPGraphs
+ */
+@Override
+public GraphCollection<VD, ED, GD> execute(LogicalGraph<VD, ED, GD> logicalGraph) {
+    // add all new subgraphs to the graph sets of the vertices
+    DataSet<Vertex<Long, VD>> vertices = computeNewVertices(logicalGraph);
+    // construct the new subgraph objects
+    DataSet<Subgraph<Long, GD>> subgraphs = computeNewSubgraphs(logicalGraph, vertices);
+    // construct tuples containing the edge, source and target vertex ids
+    DataSet<Edge<Long, ED>> edges = computeNewEdges(logicalGraph, vertices, subgraphs);
+    Graph<Long, VD, ED> newGraph = Graph.fromDataSet(vertices, edges, env);
+    return new GraphCollection<>(newGraph, subgraphs, logicalGraph.getVertexDataFactory(), logicalGraph.getEdgeDataFactory(), logicalGraph.getGraphDataFactory(), env);
+}

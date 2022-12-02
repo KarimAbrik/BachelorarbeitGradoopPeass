@@ -1,0 +1,13 @@
+/**
+ * Constructor
+ *
+ * @param id    actual vertex id
+ * @param value actual vertex value
+ */
+public LabelPropagationValue(long id, long value) {
+    this.id = id;
+    this.currentCommunity = value;
+    this.lastCommunity = Long.MAX_VALUE;
+    this.stabilizationCounter = 0;
+    this.changeMax = 19;
+}

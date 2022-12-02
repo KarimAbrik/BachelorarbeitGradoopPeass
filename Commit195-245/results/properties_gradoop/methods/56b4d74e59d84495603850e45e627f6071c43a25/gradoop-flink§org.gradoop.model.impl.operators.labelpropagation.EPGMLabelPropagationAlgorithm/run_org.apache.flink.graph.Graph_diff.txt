@@ -1,0 +1,13 @@
+/**
+ * Graph run method to start the VertexCentricIteration
+ *
+ * @param graph graph that should be used for EPGMLabelPropagation
+ * @return gelly Graph with labeled vertices
+ * @throws Exception
+ */
+@Override
+public Graph<Long, VD, ED> run(Graph<Long, VD, ED> graph) throws Exception {
+    // initialize vertex values and run the Vertex Centric Iteration
+    Graph<Long, VD, ED> epGraph = graph.getUndirected();
+    return epGraph.runVertexCentricIteration(new LPUpdater<VD>(), new LPMessenger<VD, ED>(), maxIterations);
+}
