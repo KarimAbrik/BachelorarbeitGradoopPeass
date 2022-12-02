@@ -1,0 +1,13 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public void addLabel(String label) {
+    if (label == null || "".equals(label)) {
+        throw new IllegalArgumentException("label must not be null or empty");
+    }
+    if (this.labels == null) {
+        this.labels = Lists.newArrayList();
+    }
+    this.labels.add(label);
+}

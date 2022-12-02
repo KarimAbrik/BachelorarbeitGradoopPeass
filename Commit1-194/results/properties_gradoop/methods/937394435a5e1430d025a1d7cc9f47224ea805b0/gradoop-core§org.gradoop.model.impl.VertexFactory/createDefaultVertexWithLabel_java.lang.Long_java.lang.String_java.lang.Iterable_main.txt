@@ -1,0 +1,11 @@
+/**
+ * Creates a vertex with labels and outgoing edges.
+ *
+ * @param vertexID      vertex identifier
+ * @param label         vertex labels
+ * @param outgoingEdges edges starting at that vertex
+ * @return vertex with identifier, labels and outgoing edges
+ */
+public static Vertex createDefaultVertexWithLabel(final Long vertexID, final String label, final Iterable<Edge> outgoingEdges) {
+    return createDefaultVertex(vertexID, label, null, outgoingEdges, null, null);
+}

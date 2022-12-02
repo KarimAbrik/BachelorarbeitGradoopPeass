@@ -1,0 +1,11 @@
+/**                                                                                                  |                                                                                                     
+* Creates an object from the given parameters. Can only be called by                                 |                                                                                                     
+* inheriting classes.                                                                                |                                                                                                     
+*                                                                                                    |                                                                                                     
+* @param label      label                                                                            |                                                                                                     
+* @param properties key-value-map                                                                    |                                                                                                     
+*/                                                                                                   |                                                                                                     
+protected SingleLabeledPropertyContainer(String label, Map&lt;String, Object&gt; properties) {       |                                                                                                     
+super(properties);                                                                                   |                                                                                                     
+this.label = label;                                                                                  |                                                                                                     
+}                                                                                                    |                                                                                                     

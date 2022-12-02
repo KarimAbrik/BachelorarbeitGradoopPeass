@@ -1,0 +1,9 @@
+/**
+ * Creates a graph using the given id.
+ *
+ * @param id graph identifier
+ * @return graph with identifier
+ */
+public static Graph createDefaultGraphWithID(final Long id) {
+    return createDefaultGraph(id, null, null, null);
+}

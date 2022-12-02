@@ -1,0 +1,13 @@
+/**                                                                                                  |                                                                                                     
+* Creates a graph using the given parameters.                                                        |                                                                                                     
+*                                                                                                    |                                                                                                     
+* @param id         graph identifier                                                                 |                                                                                                     
+* @param labels     graph labels                                                                     |                                                                                                     
+* @param properties graph properties                                                                 |                                                                                                     
+* @param vertices   vertices contained in the graph                                                  |                                                                                                     
+* @return graph                                                                                      |                                                                                                     
+*/                                                                                                   |                                                                                                     
+public static Graph createDefaultGraph(final Long id, final Iterable&lt;String&gt; labels, final Map |                                                                                                     
+checkGraphID(id);                                                                                    |                                                                                                     
+return new DefaultGraph(id, labels, properties, vertices);                                           |                                                                                                     
+}                                                                                                    |                                                                                                     

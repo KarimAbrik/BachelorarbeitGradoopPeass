@@ -1,0 +1,13 @@
+/**                                                                                                  |                                                                                                     
+* Creates an object from the given parameters. Can only be called by                                 |                                                                                                     
+* inheriting classes.                                                                                |                                                                                                     
+*                                                                                                    |                                                                                                     
+* @param id         unique identifier                                                                |                                                                                                     
+* @param labels     labels                                                                           |                                                                                                     
+* @param properties key-value-map                                                                    |                                                                                                     
+*/                                                                                                   |                                                                                                     
+protected MultiLabeledPropertyContainer(Long id, Iterable&lt;String&gt; labels, Map&lt;String, Objec |                                                                                                     
+super(properties);                                                                                   |                                                                                                     
+this.id = id;                                                                                        |                                                                                                     
+this.labels = (labels != null) ? Lists.newArrayList(labels) : null;                                  |                                                                                                     
+}                                                                                                    |                                                                                                     

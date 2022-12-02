@@ -1,0 +1,19 @@
+/**
+ * Creates a vertex based on the given properties.
+ *
+ * @param id            vertex identifier
+ * @param label         vertex labels
+ * @param properties    vertex properties
+ * @param outgoingEdges edges starting at that vertex
+ * @param incomingEdges edges ending in that vertex
+ * @param graphs        graphs that vertex belongs to
+ * @return vertex
+ */
+public static Vertex createDefaultVertex(final Long id, final String label, final Map<String, Object> properties, final Iterable<Edge> outgoingEdges, final Iterable<Edge> incomingEdges, final Iterable<Long> graphs) {
+    checkVertexID(id);
+    if (label == null || "".equals(label)) {
+        return new DefaultVertex(id, GConstants.DEFAULT_VERTEX_LABEL, properties, outgoingEdges, incomingEdges, graphs);
+    } else {
+        return new DefaultVertex(id, label, properties, outgoingEdges, incomingEdges, graphs);
+    }
+}

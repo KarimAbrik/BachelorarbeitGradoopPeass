@@ -1,0 +1,8 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public void setLabel(String label) {
+    validateLabel(label);
+    this.label = label;
+}
