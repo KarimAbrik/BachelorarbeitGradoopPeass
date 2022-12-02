@@ -1,0 +1,8 @@
+/**
+ * Method to set the current partition
+ *
+ * @param currentPartition current partition
+ */
+public void setCurrentPartition(IntWritable currentPartition) {
+    this.currentPartition = currentPartition.get();
+}

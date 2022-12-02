@@ -1,0 +1,10 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public void compute() {
+    int iterations = getConf().getInt(AdaptiveRepartitioningComputation.NUMBER_OF_ITERATIONS, AdaptiveRepartitioningComputation.DEFAULT_NUMBER_OF_ITERATIONS);
+    if (getSuperstep() == iterations) {
+        haltComputation();
+    }
+}

@@ -1,0 +1,10 @@
+/**
+ * Returns the demand for the given partition.
+ *
+ * @param partition partition id
+ * @return demand for partition
+ */
+private int getPartitionDemand(int partition) {
+    IntWritable demandWritable = getAggregatedValue(DEMAND_AGGREGATOR_PREFIX + partition);
+    return demandWritable.get();
+}

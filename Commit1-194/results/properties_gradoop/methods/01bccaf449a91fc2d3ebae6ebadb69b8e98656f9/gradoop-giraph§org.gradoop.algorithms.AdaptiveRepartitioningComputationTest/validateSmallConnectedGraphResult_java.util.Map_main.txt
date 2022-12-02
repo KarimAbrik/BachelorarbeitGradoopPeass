@@ -1,0 +1,7 @@
+private void validateSmallConnectedGraphResult(Map<Integer, Integer> vertexIDwithValue) {
+    int n = vertexIDwithValue.size();
+    int optimalPartitionSize = n / numPartitions;
+    double countedOccupation = (float) countVerticesPartitionZero / n;
+    double estimatedOccupation = (optimalPartitionSize + (optimalPartitionSize * capacityThreshold)) / n;
+    assertTrue(Double.compare(countedOccupation, estimatedOccupation) <= 0);
+}

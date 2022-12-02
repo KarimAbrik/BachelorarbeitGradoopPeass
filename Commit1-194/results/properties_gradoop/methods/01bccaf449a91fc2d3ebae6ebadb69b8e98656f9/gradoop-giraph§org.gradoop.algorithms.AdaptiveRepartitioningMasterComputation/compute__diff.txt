@@ -1,0 +1,19 @@
+/**                                                                                                    /**                                                                                                 
+* {@inheritDoc}                                                                                        * {@inheritDoc}                                                                                     
+*/                                                                                                     */                                                                                                  
+@Override                                                                                              @Override                                                                                           
+public void compute() {                                                                                public void compute() {                                                                             
+int partitionCount = getConf().getInt(AdaptiveRepartitioningComputation.NUMBER_OF_PARTITIONS, Adapti |                                                                                                     
+int iterations = getConf().getInt(AdaptiveRepartitioningComputation.NUMBER_OF_ITERATIONS, AdaptiveRe   int iterations = getConf().getInt(AdaptiveRepartitioningComputation.NUMBER_OF_ITERATIONS, AdaptiveRe
+if (getSuperstep() == iterations) {                                                                    if (getSuperstep() == iterations) {                                                                 
+haltComputation();                                                                                     haltComputation();                                                                                  
+}                                                                                                      }                                                                                                   
+LOG.info("=== master CAPACITY aggregators");                                                         |                                                                                                     
+for (int i = 0; i &lt; partitionCount; i++) {                                                        |                                                                                                     
+LOG.info(i + ": " + getAggregatedValue(AdaptiveRepartitioningComputation.CAPACITY_AGGREGATOR_PREFIX  |                                                                                                     
+}                                                                                                      }                                                                                                   
+LOG.info("=== master DEMAND aggregators");                                                           |                                                                                                     
+for (int i = 0; i &lt; partitionCount; i++) {                                                        |                                                                                                     
+LOG.info(i + ": " + getAggregatedValue(AdaptiveRepartitioningComputation.DEMAND_AGGREGATOR_PREFIX +  |                                                                                                     
+}                                                                                                    |                                                                                                     
+}                                                                                                    |                                                                                                     

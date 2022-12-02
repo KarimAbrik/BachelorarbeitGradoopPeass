@@ -1,0 +1,8 @@
+/**
+ * Method to set the lastValue of the vertex
+ *
+ * @param desiredPartition the desired Partition
+ */
+public void setDesiredPartition(IntWritable desiredPartition) {
+    this.desiredPartition = desiredPartition.get();
+}

@@ -1,0 +1,17 @@
+/**                                                                                                    /**                                                                                                 
+* Decides of a vertex is allowed to migrate to a given desired partition.                              * Decides of a vertex is allowed to migrate to a given desired partition.                           
+* This is based on the free space in the partition and the demand for that                             * This is based on the free space in the partition and the demand for that                          
+* partition.                                                                                           * partition.                                                                                        
+*                                                                                                      *                                                                                                   
+* @param desiredPartition desired partition                                                            * @param desiredPartition desired partition                                                         
+* @return true if the vertex is allowed to migrate, false otherwise                                    * @return true if the vertex is allowed to migrate, false otherwise                                 
+*/                                                                                                     */                                                                                                  
+private boolean doMigrate(int desiredPartition) {                                                      private boolean doMigrate(int desiredPartition) {                                                   
+long totalCapacity = getTotalCapacity();                                                               long totalCapacity = getTotalCapacity();                                                            
+int load = getPartitionLoad(desiredPartition);                                                         int load = getPartitionLoad(desiredPartition);                                                      
+long availability = totalCapacity - load;                                                              long availability = totalCapacity - load;                                                           
+double demand = getPartitionDemand(desiredPartition);                                                  double demand = getPartitionDemand(desiredPartition);                                               
+double threshold = availability / demand;                                                              double threshold = availability / demand;                                                           
+double randomRange = Math.random();                                                                  | double randomRange = random.nextDouble();                                                           
+return Double.compare(randomRange, threshold) &lt; 0;                                                  return Double.compare(randomRange, threshold) &lt; 0;                                               
+}                                                                                                      }                                                                                                   

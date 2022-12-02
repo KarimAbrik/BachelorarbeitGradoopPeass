@@ -1,0 +1,10 @@
+private Map&lt;Integer, Integer&gt; computeResults(String[] graph, int partitionCount, int maxIterat |                                                                                                     
+GiraphConfiguration conf = getConfiguration();                                                       |                                                                                                     
+conf.setInt(AdaptiveRepartitioningComputation.NUMBER_OF_PARTITIONS, partitionCount);                 |                                                                                                     
+conf.setInt(AdaptiveRepartitioningComputation.NUMBER_OF_ITERATIONS, maxIterations);                  |                                                                                                     
+conf.setFloat(AdaptiveRepartitioningComputation.CAPACITY_THRESHOLD, capacityTreshold);               |                                                                                                     
+conf.setInt(AdaptiveRepartitioningComputation.NUMBER_OF_STABILIZATION_ROUNDS, maxStabilization);     |                                                                                                     
+conf.setBoolean(AdaptiveRepartitioningInputFormat.PARTITIONED_INPUT, true);                          |                                                                                                     
+Iterable&lt;String&gt; results = InternalVertexRunner.run(conf, graph);                              |                                                                                                     
+return parseResults(results);                                                                        |                                                                                                     
+}                                                                                                    |                                                                                                     

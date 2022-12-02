@@ -1,0 +1,8 @@
+@Test
+public void testSmallConnectedGraph() throws Exception {
+    final int numIterations = 120;
+    final int stabilizationRounds = 5;
+    final long seed = 13374242;
+    String[] graph = PartitioningComputationTestHelper.getAdaptivePartitioningConnectedGraph();
+    validateSmallConnectedGraphResult(computeResults(graph, numPartitions, numIterations, capacityThreshold, stabilizationRounds, seed));
+}
