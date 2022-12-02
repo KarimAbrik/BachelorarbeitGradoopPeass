@@ -1,0 +1,15 @@
+@Test(expected = UnsupportedTypeException.class)
+public void wrongPropertyTypeTest() {
+    GraphStore graphStore = createEmptyGraphStore();
+    // list is not supported
+    final List<String> value = Lists.newArrayList();
+    Long vertexID = 0L;
+    final String label = "A";
+    final Map<String, Object> properties = new HashMap<>();
+    properties.put(KEY_1, value);
+    final Iterable<Edge> outEdges = Lists.newArrayListWithCapacity(0);
+    final Iterable<Edge> inEdges = Lists.newArrayListWithCapacity(0);
+    final Iterable<Long> graphs = Lists.newArrayList();
+    Vertex v = VertexFactory.createDefaultVertex(vertexID, label, properties, outEdges, inEdges, graphs);
+    graphStore.writeVertex(v);
+}
