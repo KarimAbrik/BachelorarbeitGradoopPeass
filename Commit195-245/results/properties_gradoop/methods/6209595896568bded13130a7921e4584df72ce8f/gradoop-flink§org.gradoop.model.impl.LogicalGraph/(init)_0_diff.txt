@@ -1,0 +1,14 @@
+/**
+ * Creates a new logical graph based on the given parameters.
+ *
+ * @param graph             flink gelly graph holding vertex and edge set
+ * @param graphData         graph data associated with that logical graph
+ * @param vertexDataFactory used to create vertex data
+ * @param edgeDataFactory   used to create edge data
+ * @param graphDataFactory  used to create graph data
+ * @param env               Flink execution environment
+ */
+private LogicalGraph(Graph<Long, VD, ED> graph, GD graphData, VertexDataFactory<VD> vertexDataFactory, EdgeDataFactory<ED> edgeDataFactory, GraphDataFactory<GD> graphDataFactory, ExecutionEnvironment env) {
+    super(graph, vertexDataFactory, edgeDataFactory, graphDataFactory, env);
+    this.graphData = graphData;
+}

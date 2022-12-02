@@ -1,0 +1,13 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public DataSet<VD> getVertexData() {
+    return getVertices().map(new MapFunction<Vertex<Long, VD>, VD>() {
+
+        @Override
+        public VD map(Vertex<Long, VD> longVDVertex) throws Exception {
+            return longVDVertex.getValue();
+        }
+    }).withForwardedFields("f1->*");
+}

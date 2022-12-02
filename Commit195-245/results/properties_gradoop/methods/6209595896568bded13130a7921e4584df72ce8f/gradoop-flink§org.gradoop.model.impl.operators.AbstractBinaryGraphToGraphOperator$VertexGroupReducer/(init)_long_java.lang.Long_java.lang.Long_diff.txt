@@ -1,0 +1,13 @@
+/**
+ * Creates group reducer
+ *
+ * @param amount           number of number of times, a vertex must occur
+ *                         inside a group
+ * @param includedGraphID  graph, a vertex must be part of
+ * @param precludedGraphID graph, a vertex must not be part of
+ */
+public VertexGroupReducer(long amount, Long includedGraphID, Long precludedGraphID) {
+    this.amount = amount;
+    this.includedGraphID = includedGraphID;
+    this.precludedGraphID = precludedGraphID;
+}

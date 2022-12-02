@@ -1,0 +1,30 @@
+@Test
+public void testAssignment() throws Exception {
+    LogicalGraph<DefaultVertexData, DefaultEdgeData, DefaultGraphData> databaseCommunity = getGraphStore().getGraph(0L);
+    LogicalGraph<DefaultVertexData, DefaultEdgeData, DefaultGraphData> hadoopCommunity = getGraphStore().getGraph(1L);
+    LogicalGraph<DefaultVertexData, DefaultEdgeData, DefaultGraphData> newGraph = databaseCommunity.exclude(hadoopCommunity);
+    Collection<DefaultVertexData> vertexData = newGraph.getVertexData().collect();
+    Collection<DefaultEdgeData> edgeData = newGraph.getEdgeData().collect();
+    for (VertexData v : vertexData) {
+        Set<Long> gIDs = v.getGraphs();
+        if (v.equals(VERTEX_PERSON_ALICE)) {
+            assertEquals("wrong number of graphs", 3, gIDs.size());
+        } else if (v.equals(VERTEX_PERSON_BOB)) {
+            assertEquals("wrong number of graphs", 3, gIDs.size());
+        } else if (v.equals(VERTEX_PERSON_EVE)) {
+            assertEquals("wrong number of graphs", 2, gIDs.size());
+        }
+    }
+    for (EdgeData e : edgeData) {
+        Set<Long> gIDs = e.getGraphs();
+        if (e.equals(EDGE_0_KNOWS)) {
+            assertEquals("wrong number of graphs", 3, gIDs.size());
+        } else if (e.equals(EDGE_1_KNOWS)) {
+            assertEquals("wrong number of graphs", 3, gIDs.size());
+        } else if (e.equals(EDGE_6_KNOWS)) {
+            assertEquals("wrong number of graphs", 2, gIDs.size());
+        } else if (e.equals(EDGE_21_KNOWS)) {
+            assertEquals("wrong number of graphs", 2, gIDs.size());
+        }
+    }
+}

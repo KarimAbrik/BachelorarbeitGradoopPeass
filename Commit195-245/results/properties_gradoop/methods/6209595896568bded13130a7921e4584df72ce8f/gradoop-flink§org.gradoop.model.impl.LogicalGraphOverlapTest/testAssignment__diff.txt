@@ -1,0 +1,28 @@
+@Test                                                                                                  @Test                                                                                               
+public void testAssignment() throws Exception {                                                        public void testAssignment() throws Exception {                                                     
+LogicalGraph&lt;DefaultVertexData, DefaultEdgeData, DefaultGraphData&gt; databaseCommunity = getGrap   LogicalGraph&lt;DefaultVertexData, DefaultEdgeData, DefaultGraphData&gt; databaseCommunity = getGrap
+LogicalGraph&lt;DefaultVertexData, DefaultEdgeData, DefaultGraphData&gt; graphCommunity = getGraphSt   LogicalGraph&lt;DefaultVertexData, DefaultEdgeData, DefaultGraphData&gt; graphCommunity = getGraphSt
+LogicalGraph&lt;DefaultVertexData, DefaultEdgeData, DefaultGraphData&gt; newGraph = graphCommunity.o   LogicalGraph&lt;DefaultVertexData, DefaultEdgeData, DefaultGraphData&gt; newGraph = graphCommunity.o
+Collection&lt;DefaultVertexData&gt; vertexData = newGraph.getVertexData().collect();                 | // use collections as data sink                                                                     
+Collection&lt;DefaultEdgeData&gt; edgeData = newGraph.getEdgeData().collect();                       | Collection&lt;DefaultVertexData&gt; vertexData = Lists.newArrayList();                              
+                                                                                                     | Collection&lt;DefaultEdgeData&gt; edgeData = Lists.newArrayList();                                  
+                                                                                                     | newGraph.getVertexData().output(new LocalCollectionOutputFormat&lt;&gt;(vertexData));               
+                                                                                                     | newGraph.getEdgeData().output(new LocalCollectionOutputFormat&lt;&gt;(edgeData));                   
+                                                                                                     | getExecutionEnvironment().execute();                                                                
+for (DefaultVertexData v : vertexData) {                                                               for (DefaultVertexData v : vertexData) {                                                            
+Set&lt;Long&gt; gIDs = v.getGraphs();                                                                  Set&lt;Long&gt; gIDs = v.getGraphs();                                                               
+if (v.equals(GradoopTestBaseUtils.VERTEX_PERSON_ALICE)) {                                              if (v.equals(GradoopTestBaseUtils.VERTEX_PERSON_ALICE)) {                                           
+assertEquals("wrong number of graphs", 3, gIDs.size());                                                assertEquals("wrong number of graphs", 3, gIDs.size());                                             
+} else if (v.equals(GradoopTestBaseUtils.VERTEX_PERSON_BOB)) {                                         } else if (v.equals(GradoopTestBaseUtils.VERTEX_PERSON_BOB)) {                                      
+assertEquals("wrong number of graphs", 3, gIDs.size());                                                assertEquals("wrong number of graphs", 3, gIDs.size());                                             
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+for (DefaultEdgeData e : edgeData) {                                                                   for (DefaultEdgeData e : edgeData) {                                                                
+Set&lt;Long&gt; gIDs = e.getGraphs();                                                                  Set&lt;Long&gt; gIDs = e.getGraphs();                                                               
+if (e.equals(GradoopTestBaseUtils.EDGE_0_KNOWS)) {                                                     if (e.equals(GradoopTestBaseUtils.EDGE_0_KNOWS)) {                                                  
+assertEquals("wrong number of graphs", 3, gIDs.size());                                                assertEquals("wrong number of graphs", 3, gIDs.size());                                             
+} else if (e.equals(GradoopTestBaseUtils.EDGE_1_KNOWS)) {                                              } else if (e.equals(GradoopTestBaseUtils.EDGE_1_KNOWS)) {                                           
+assertEquals("wrong number of graphs", 3, gIDs.size());                                                assertEquals("wrong number of graphs", 3, gIDs.size());                                             
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,11 @@
+@Test
+public void testSameGraph() throws Exception {
+    Long firstGraph = 0L;
+    Long secondGraph = 0L;
+    long expectedVertexCount = 3L;
+    long expectedEdgeCount = 4L;
+    LogicalGraph<DefaultVertexData, DefaultEdgeData, DefaultGraphData> first = getGraphStore().getGraph(firstGraph);
+    LogicalGraph<DefaultVertexData, DefaultEdgeData, DefaultGraphData> second = getGraphStore().getGraph(secondGraph);
+    LogicalGraph<DefaultVertexData, DefaultEdgeData, DefaultGraphData> result = first.overlap(second);
+    performTest(result, expectedVertexCount, expectedEdgeCount);
+}
