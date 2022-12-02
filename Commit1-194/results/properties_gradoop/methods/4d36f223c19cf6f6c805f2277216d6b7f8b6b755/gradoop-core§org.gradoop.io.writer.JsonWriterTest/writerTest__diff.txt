@@ -1,0 +1,9 @@
+@Test
+public void writerTest() throws JSONException {
+    VertexLineWriter writer = new JsonWriter();
+    int i = 0;
+    for (Vertex v : createExtendedGraphVertices()) {
+        JSONAssert.assertEquals(EXTENDED_GRAPH_JSON[i], writer.writeVertex(v), false);
+        i++;
+    }
+}

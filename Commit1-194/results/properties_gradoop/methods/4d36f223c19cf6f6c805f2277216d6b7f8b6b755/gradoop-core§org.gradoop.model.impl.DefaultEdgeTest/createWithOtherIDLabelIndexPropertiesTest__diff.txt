@@ -1,0 +1,14 @@
+@Test
+public void createWithOtherIDLabelIndexPropertiesTest() {
+    Long otherID = 0L;
+    String label = "label";
+    Long index = 0L;
+    Map<String, Object> properties = Maps.newHashMapWithExpectedSize(1);
+    properties.put("k1", "v1");
+    Edge e = EdgeFactory.createDefaultEdge(otherID, label, index, properties);
+    assertThat(e.getOtherID(), is(otherID));
+    assertThat(e.getLabel(), is(label));
+    assertThat(e.getIndex(), is(index));
+    assertThat(e.getPropertyCount(), is(1));
+    assertThat(e.getProperty("k1"), Is.<Object>is("v1"));
+}

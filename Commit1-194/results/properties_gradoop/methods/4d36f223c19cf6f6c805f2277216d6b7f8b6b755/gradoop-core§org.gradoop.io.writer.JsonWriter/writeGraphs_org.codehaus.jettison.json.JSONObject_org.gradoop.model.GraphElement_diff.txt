@@ -1,0 +1,18 @@
+/**
+ * Write graphs to the given json object.
+ *
+ * @param json         json object to write graphs to
+ * @param graphElement entity that is part of graphs
+ * @return updated json object
+ * @throws JSONException
+ */
+private JSONObject writeGraphs(final JSONObject json, final GraphElement graphElement) throws JSONException {
+    JSONArray graphArray = new JSONArray();
+    if (graphElement.getGraphCount() > 0) {
+        for (Long graph : graphElement.getGraphs()) {
+            graphArray.put(graph);
+        }
+        json.put(GRAPHS, graphArray);
+    }
+    return json;
+}

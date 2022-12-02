@@ -1,0 +1,9 @@
+@Test
+public void createWithOtherIDIndexTest() {
+    Long otherID = 0L;
+    Long index = 0L;
+    Edge e = EdgeFactory.createDefaultEdge(otherID, index);
+    assertThat(e.getOtherID(), is(otherID));
+    assertThat(e.getLabel(), is(GConstants.DEFAULT_EDGE_LABEL));
+    assertThat(e.getIndex(), is(index));
+}

@@ -1,0 +1,9 @@
+@Test
+public void testEquals() {
+    Edge e1 = EdgeFactory.createDefaultEdgeWithLabel(0L, "a", 0L);
+    Edge e2 = EdgeFactory.createDefaultEdgeWithLabel(0L, "a", 0L);
+    Edge e3 = EdgeFactory.createDefaultEdgeWithLabel(1L, "a", 0L);
+    assertEquals(e1, e2);
+    assertNotEquals(e1, e3);
+    assertNotEquals(e2, e3);
+}
