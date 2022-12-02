@@ -1,0 +1,7 @@
+                                                                                                     | /**                                                                                                 
+                                                                                                     | * {@inheritDoc}                                                                                     
+                                                                                                     | */                                                                                                  
+                                                                                                     | @Override                                                                                           
+                                                                                                     | public Long execute(VD entity) throws Exception {                                                   
+                                                                                                     | return ((Long) entity.getProperty(propertyKey) + 1) * -1;                                           
+                                                                                                     | }                                                                                                   

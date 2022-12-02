@@ -1,0 +1,7 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public Long execute(Vertex<Long, VD> entity) throws Exception {
+    return ((Long) entity.getValue().getProperty(propertyKey) + 1) * -1;
+}

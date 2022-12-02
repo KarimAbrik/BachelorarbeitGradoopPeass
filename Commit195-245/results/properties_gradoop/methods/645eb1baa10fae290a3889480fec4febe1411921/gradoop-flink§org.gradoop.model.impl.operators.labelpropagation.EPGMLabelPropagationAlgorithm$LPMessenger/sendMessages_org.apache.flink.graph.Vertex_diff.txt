@@ -1,0 +1,9 @@
+@Override
+public void sendMessages(Vertex<Long, VD> vertex) throws Exception {
+    // send current minimum to neighbors
+    if (getSuperstepNumber() == 1) {
+        sendMessageToAllNeighbors(0L);
+    } else {
+        sendMessageToAllNeighbors((Long) vertex.getValue().getProperty(CURRENT_VALUE));
+    }
+}
