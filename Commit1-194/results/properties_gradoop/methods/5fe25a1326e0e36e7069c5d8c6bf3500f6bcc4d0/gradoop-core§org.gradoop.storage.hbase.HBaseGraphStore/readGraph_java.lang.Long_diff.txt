@@ -1,0 +1,17 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public Graph readGraph(final Long graphID) {
+    Graph g = null;
+    try {
+        byte[] rowKey = graphHandler.getRowKey(graphID);
+        Result res = graphsTable.get(new Get(rowKey));
+        if (!res.isEmpty()) {
+            g = graphHandler.readGraph(res);
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+    return g;
+}

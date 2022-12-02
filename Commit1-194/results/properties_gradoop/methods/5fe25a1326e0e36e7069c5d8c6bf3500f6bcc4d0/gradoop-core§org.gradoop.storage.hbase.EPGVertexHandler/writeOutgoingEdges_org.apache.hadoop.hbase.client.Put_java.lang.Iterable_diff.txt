@@ -1,0 +1,7 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public Put writeOutgoingEdges(final Put put, final Iterable<? extends Edge> edges) {
+    return writeEdges(put, CF_OUT_EDGES_BYTES, edges);
+}

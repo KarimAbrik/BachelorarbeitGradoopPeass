@@ -1,0 +1,17 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public void writeVertex(final Vertex vertex) {
+    LOG.info("writing: " + vertex);
+    try {
+        // vertex id
+        Put put = new Put(vertexHandler.getRowKey(vertex.getID()));
+        // write vertex to Put
+        put = vertexHandler.writeVertex(put, vertex);
+        // write to table
+        verticesTable.put(put);
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
