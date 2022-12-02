@@ -1,0 +1,5 @@
+public EPGraphCollection(Graph<Long, VertexData, EdgeData> graph, DataSet<Subgraph<Long, GraphData>> subgraphs, ExecutionEnvironment env) {
+    this.graph = graph;
+    this.subgraphs = subgraphs;
+    this.env = env;
+}

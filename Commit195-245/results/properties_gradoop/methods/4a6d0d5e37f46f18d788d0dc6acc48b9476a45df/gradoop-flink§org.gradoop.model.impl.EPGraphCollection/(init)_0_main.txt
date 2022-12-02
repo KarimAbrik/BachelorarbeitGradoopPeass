@@ -1,0 +1,8 @@
+public EPGraphCollection(Graph<Long, VD, ED> graph, DataSet<Subgraph<Long, GD>> subgraphs, VertexDataFactory<VD> vertexDataFactory, EdgeDataFactory<ED> edgeDataFactory, GraphDataFactory<GD> graphDataFactory, ExecutionEnvironment env) {
+    this.graph = graph;
+    this.subgraphs = subgraphs;
+    this.vertexDataFactory = vertexDataFactory;
+    this.edgeDataFactory = edgeDataFactory;
+    this.graphDataFactory = graphDataFactory;
+    this.env = env;
+}

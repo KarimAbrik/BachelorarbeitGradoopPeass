@@ -1,0 +1,3 @@
+EPGraph getGraph() {                                                                                 | EPGraph&lt;VD, ED, GD&gt; getGraph() {                                                              
+return EPGraph.fromGraph(this.graph, null);                                                          | return EPGraph.fromGraph(this.graph, null, vertexDataFactory, edgeDataFactory, graphDataFactory);   
+}                                                                                                      }                                                                                                   
