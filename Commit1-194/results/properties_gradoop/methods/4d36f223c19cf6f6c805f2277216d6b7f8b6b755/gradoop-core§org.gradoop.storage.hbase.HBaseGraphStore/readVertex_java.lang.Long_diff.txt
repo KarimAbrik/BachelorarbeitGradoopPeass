@@ -1,0 +1,17 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public Vertex readVertex(final Long vertexID) {
+    Vertex v = null;
+    try {
+        byte[] rowKey = vertexHandler.getRowKey(vertexID);
+        Result res = verticesTable.get(new Get(rowKey));
+        if (!res.isEmpty()) {
+            v = vertexHandler.readVertex(res);
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+    return v;
+}

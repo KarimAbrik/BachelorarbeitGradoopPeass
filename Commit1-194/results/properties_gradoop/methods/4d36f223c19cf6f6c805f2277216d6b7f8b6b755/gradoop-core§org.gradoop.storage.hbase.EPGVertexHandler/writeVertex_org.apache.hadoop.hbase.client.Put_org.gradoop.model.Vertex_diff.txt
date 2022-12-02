@@ -1,0 +1,12 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public Put writeVertex(final Put put, final Vertex vertex) {
+    writeLabel(put, vertex);
+    writeProperties(put, vertex);
+    writeOutgoingEdges(put, vertex.getOutgoingEdges());
+    writeIncomingEdges(put, vertex.getIncomingEdges());
+    writeGraphs(put, vertex);
+    return put;
+}

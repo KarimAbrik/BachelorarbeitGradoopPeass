@@ -1,0 +1,11 @@
+/**                                                                                                    /**                                                                                                 
+* Creates a vertex with outgoing and incoming edges.                                                   * Creates a vertex with outgoing and incoming edges.                                                
+*                                                                                                      *                                                                                                   
+* @param vertexID      vertex identifier                                                               * @param vertexID      vertex identifier                                                            
+* @param outgoingEdges edges starting at that vertex                                                   * @param outgoingEdges edges starting at that vertex                                                
+* @param incomingEdges edges ending in that vertex                                                     * @param incomingEdges edges ending in that vertex                                                  
+* @return vertex with identifier, outgoing and incoming edges                                          * @return vertex with identifier, outgoing and incoming edges                                       
+*/                                                                                                     */                                                                                                  
+public static Vertex createDefaultVertexWithEdges(final Long vertexID, final Iterable&lt;Edge&gt; ou   public static Vertex createDefaultVertexWithEdges(final Long vertexID, final Iterable&lt;Edge&gt; ou
+return createDefaultVertex(vertexID, GConstants.DEFAULT_VERTEX_LABEL, null, outgoingEdges, incomingE | return createDefaultVertex(vertexID, null, null, outgoingEdges, incomingEdges, null);               
+}                                                                                                      }                                                                                                   

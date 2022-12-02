@@ -1,0 +1,7 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public Iterable<Edge> readIncomingEdges(final Result res) {
+    return readEdges(res, CF_IN_EDGES_BYTES);
+}

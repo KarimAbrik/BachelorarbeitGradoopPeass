@@ -1,0 +1,14 @@
+/**                                                                                                    /**                                                                                                 
+* Creates an object from the given parameters. Can only be called by                                   * Creates an object from the given parameters. Can only be called by                                
+* inheriting classes.                                                                                  * inheriting classes.                                                                               
+*                                                                                                      *                                                                                                   
+* @param id         entity identifier                                                                  * @param id         entity identifier                                                               
+* @param label      label                                                                              * @param label      label                                                                           
+* @param properties key-value-map                                                                      * @param properties key-value-map                                                                   
+*/                                                                                                     */                                                                                                  
+protected LabeledPropertyContainer(Long id, String label, Map&lt;String, Object&gt; properties) {      protected LabeledPropertyContainer(Long id, String label, Map&lt;String, Object&gt; properties) {   
+super(properties);                                                                                     super(properties);                                                                                  
+this.id = id;                                                                                          this.id = id;                                                                                       
+validateLabel(label);                                                                                |                                                                                                     
+this.label = label;                                                                                    this.label = label;                                                                                 
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,9 @@
+/**
+ * Creates a vertex using the given identifier.
+ *
+ * @param vertexID vertex identifier
+ * @return vertex with identifier
+ */
+public static Vertex createDefaultVertexWithID(final Long vertexID) {
+    return createDefaultVertex(vertexID, GConstants.DEFAULT_VERTEX_LABEL, null, null, null, null);
+}

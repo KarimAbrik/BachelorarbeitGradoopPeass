@@ -1,0 +1,14 @@
+/**
+ * Creates an object from the given parameters. Can only be called by
+ * inheriting classes.
+ *
+ * @param id         entity identifier
+ * @param label      label
+ * @param properties key-value-map
+ */
+protected LabeledPropertyContainer(Long id, String label, Map<String, Object> properties) {
+    super(properties);
+    this.id = id;
+    validateLabel(label);
+    this.label = label;
+}
