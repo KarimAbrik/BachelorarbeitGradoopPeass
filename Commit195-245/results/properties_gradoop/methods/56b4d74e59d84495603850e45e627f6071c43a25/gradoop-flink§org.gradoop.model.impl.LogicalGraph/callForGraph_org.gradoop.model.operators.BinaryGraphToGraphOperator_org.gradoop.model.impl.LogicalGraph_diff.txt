@@ -1,0 +1,7 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public LogicalGraph<VD, ED, GD> callForGraph(BinaryGraphToGraphOperator<VD, ED, GD> operator, LogicalGraph<VD, ED, GD> otherGraph) {
+    return operator.execute(this, otherGraph);
+}

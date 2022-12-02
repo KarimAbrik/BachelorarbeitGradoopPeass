@@ -1,0 +1,16 @@
+/**
+ * Creates a logical graph from the given arguments.
+ *
+ * @param graph             Flink Gelly graph
+ * @param graphData         graph data associated with the logical graph
+ * @param vertexDataFactory vertex data factory
+ * @param edgeDataFactory   edge data factory
+ * @param graphDataFactory  graph data factory
+ * @param <VD>              vertex data type
+ * @param <ED>              edge data type
+ * @param <GD>              graph data type
+ * @return logical graph
+ */
+public static <VD extends VertexData, ED extends EdgeData, GD extends GraphData> LogicalGraph<VD, ED, GD> fromGraph(Graph<Long, VD, ED> graph, GD graphData, VertexDataFactory<VD> vertexDataFactory, EdgeDataFactory<ED> edgeDataFactory, GraphDataFactory<GD> graphDataFactory) {
+    return new LogicalGraph<>(graph, graphData, vertexDataFactory, edgeDataFactory, graphDataFactory, graph.getContext());
+}

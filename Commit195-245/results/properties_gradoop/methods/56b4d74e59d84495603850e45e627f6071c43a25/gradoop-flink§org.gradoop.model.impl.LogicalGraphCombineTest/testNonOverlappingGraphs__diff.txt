@@ -1,0 +1,11 @@
+@Test
+public void testNonOverlappingGraphs() throws Exception {
+    Long firstGraphID = 0L;
+    Long secondGraphID = 1L;
+    long expectedVertexCount = 6L;
+    long expectedEdgeCount = 8L;
+    LogicalGraph<DefaultVertexData, DefaultEdgeData, DefaultGraphData> first = getGraphStore().getGraph(firstGraphID);
+    LogicalGraph<DefaultVertexData, DefaultEdgeData, DefaultGraphData> second = getGraphStore().getGraph(secondGraphID);
+    LogicalGraph<DefaultVertexData, DefaultEdgeData, DefaultGraphData> result = first.combine(second);
+    performTest(result, expectedVertexCount, expectedEdgeCount);
+}

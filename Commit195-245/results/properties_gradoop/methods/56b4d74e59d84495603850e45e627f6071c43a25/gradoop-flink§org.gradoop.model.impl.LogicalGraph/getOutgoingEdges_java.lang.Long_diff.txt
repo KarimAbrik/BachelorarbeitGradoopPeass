@@ -1,0 +1,14 @@
+/**                                                                                                  |                                                                                                     
+* {@inheritDoc}                                                                                      |                                                                                                     
+*/                                                                                                   |                                                                                                     
+@Override                                                                                            |                                                                                                     
+public EdgeDataCollection&lt;ED&gt; getOutgoingEdges(final Long vertexID) {                          |                                                                                                     
+DataSet&lt;Edge&lt;Long, ED&gt;&gt; outgoingEdges = this.graph.getEdges().filter(new FilterFunction& |                                                                                                     
+                                                                                                                                                                                                           
+@Override                                                                                            |                                                                                                     
+public boolean filter(Edge&lt;Long, ED&gt; edgeTuple) throws Exception {                             |                                                                                                     
+return edgeTuple.getSource().equals(vertexID);                                                       |                                                                                                     
+}                                                                                                    |                                                                                                     
+});                                                                                                  |                                                                                                     
+return new EdgeDataCollection&lt;&gt;(outgoingEdges);                                                |                                                                                                     
+}                                                                                                    |                                                                                                     

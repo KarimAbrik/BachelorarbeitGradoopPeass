@@ -1,0 +1,13 @@
+/**                                                                                                  |                                                                                                     
+* {@inheritDoc}                                                                                      |                                                                                                     
+*/                                                                                                   |                                                                                                     
+@Override                                                                                            |                                                                                                     
+public EdgeDataCollection&lt;ED&gt; getIncomingEdges(final Long vertexID) {                          |                                                                                                     
+return new EdgeDataCollection&lt;&gt;(this.graph.getEdges().filter(new FilterFunction&lt;Edge&lt;Lon |                                                                                                     
+                                                                                                                                                                                                           
+@Override                                                                                            |                                                                                                     
+public boolean filter(Edge&lt;Long, ED&gt; edgeTuple) throws Exception {                             |                                                                                                     
+return edgeTuple.getTarget().equals(vertexID);                                                       |                                                                                                     
+}                                                                                                    |                                                                                                     
+}));                                                                                                 |                                                                                                     
+}                                                                                                    |                                                                                                     

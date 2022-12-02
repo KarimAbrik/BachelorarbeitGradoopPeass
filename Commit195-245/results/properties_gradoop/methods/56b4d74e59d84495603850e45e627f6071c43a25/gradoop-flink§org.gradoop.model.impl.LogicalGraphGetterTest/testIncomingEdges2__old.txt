@@ -1,0 +1,6 @@
+@Test
+public void testIncomingEdges2() throws Exception {
+    LogicalGraph g = getGraphStore().getDatabaseGraph();
+    assertNotNull("graph was null", g);
+    assertEquals("wrong number of outgoing edges", 0L, g.getIncomingEdges(GradoopTestBaseUtils.VERTEX_FORUM_GDBS.getId()).size());
+}

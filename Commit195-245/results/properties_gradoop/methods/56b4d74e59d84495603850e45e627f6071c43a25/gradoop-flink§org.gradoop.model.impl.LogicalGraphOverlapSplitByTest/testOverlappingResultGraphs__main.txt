@@ -1,0 +1,11 @@
+@Test
+public void testOverlappingResultGraphs() throws Exception {
+    LogicalGraph<DefaultVertexData, DefaultEdgeData, DefaultGraphData> inputGraph = getGraphStore().getDatabaseGraph();
+    UnaryFunction<Vertex<Long, DefaultVertexData>, List<Long>> function = new SplitByModulo();
+    GraphCollection<DefaultVertexData, DefaultEdgeData, DefaultGraphData> labeledGraphCollection = inputGraph.callForCollection(new OverlapSplitBy<DefaultVertexData, DefaultEdgeData, DefaultGraphData>(function, ExecutionEnvironment.getExecutionEnvironment()));
+    labeledGraphCollection.getSubgraphs();
+    assertNotNull("graph collection is null", labeledGraphCollection);
+    TestCase.assertEquals("wrong number of graphs", 3l, labeledGraphCollection.size());
+    TestCase.assertEquals("wrong number of vertices", 11l, labeledGraphCollection.getVertexCount());
+    TestCase.assertEquals("wrong number of edges", 8l, labeledGraphCollection.getEdgeCount());
+}

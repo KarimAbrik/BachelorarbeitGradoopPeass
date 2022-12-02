@@ -1,0 +1,7 @@
+@Test                                                                                                  @Test                                                                                               
+public void testGetVertices() throws Exception {                                                       public void testGetVertices() throws Exception {                                                    
+LogicalGraph g = getGraphStore().getDatabaseGraph();                                                   LogicalGraph g = getGraphStore().getDatabaseGraph();                                                
+assertNotNull("graph was null", g);                                                                    assertNotNull("graph was null", g);                                                                 
+assertEquals("wrong number of vertices", 11L, g.getVertices().size());                               | assertEquals("wrong number of vertices", 11L, g.getVertices().count());                             
+assertEquals("wrong number of vertices", 11L, g.getVertexCount());                                     assertEquals("wrong number of vertices", 11L, g.getVertexCount());                                  
+}                                                                                                      }                                                                                                   

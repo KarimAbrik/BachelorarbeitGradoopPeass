@@ -1,0 +1,7 @@
+@Test
+public void testGetEdges() throws Exception {
+    LogicalGraph g = getGraphStore().getDatabaseGraph();
+    assertNotNull("graph was null", g);
+    assertEquals("wrong number of edges", 24L, g.getEdges().size());
+    assertEquals("wrong number of edges", 24L, g.getEdgeCount());
+}

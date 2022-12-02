@@ -1,0 +1,11 @@
+@Test
+public void testSameGraph() throws Exception {
+    Long firstGraphID = 0L;
+    Long secondGraphID = 0L;
+    long expectedVertexCount = 3L;
+    long expectedEdgeCount = 4L;
+    LogicalGraph<DefaultVertexData, DefaultEdgeData, DefaultGraphData> first = getGraphStore().getGraph(firstGraphID);
+    LogicalGraph<DefaultVertexData, DefaultEdgeData, DefaultGraphData> second = getGraphStore().getGraph(secondGraphID);
+    LogicalGraph<DefaultVertexData, DefaultEdgeData, DefaultGraphData> result = first.combine(second);
+    performTest(result, expectedVertexCount, expectedEdgeCount);
+}

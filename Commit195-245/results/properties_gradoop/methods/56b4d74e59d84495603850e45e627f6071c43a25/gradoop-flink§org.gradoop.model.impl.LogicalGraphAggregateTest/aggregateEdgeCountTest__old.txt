@@ -1,0 +1,18 @@
+@Test
+public void aggregateEdgeCountTest() throws Exception {
+    LogicalGraph<DefaultVertexData, DefaultEdgeData, DefaultGraphData> forumGraph = getGraphStore().getGraph(3L);
+    final String aggPropertyKey = "eCount";
+    UnaryFunction<LogicalGraph<DefaultVertexData, DefaultEdgeData, DefaultGraphData>, Long> aggregateFunc = new UnaryFunction<LogicalGraph<DefaultVertexData, DefaultEdgeData, DefaultGraphData>, Long>() {
+
+        @Override
+        public Long execute(LogicalGraph<DefaultVertexData, DefaultEdgeData, DefaultGraphData> entity) throws Exception {
+            return entity.getEdges().size();
+        }
+    };
+    LogicalGraph<DefaultVertexData, DefaultEdgeData, DefaultGraphData> newGraph = forumGraph.aggregate(aggPropertyKey, aggregateFunc);
+    assertNotNull("graph was null", newGraph);
+    assertEquals("wrong property count", 1, newGraph.getPropertyCount());
+    assertEquals("wrong property value", 4L, newGraph.getProperty(aggPropertyKey));
+    // original graph needs to be unchanged
+    assertEquals("wrong property count", 0L, forumGraph.getPropertyCount());
+}

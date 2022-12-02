@@ -1,0 +1,16 @@
+                                                                                                     | /**                                                                                                 
+                                                                                                     | * Creates a logical graph from the given arguments.                                                 
+                                                                                                     | *                                                                                                   
+                                                                                                     | * @param graph             Flink Gelly graph                                                        
+                                                                                                     | * @param graphData         graph data associated with the logical graph                             
+                                                                                                     | * @param vertexDataFactory vertex data factory                                                      
+                                                                                                     | * @param edgeDataFactory   edge data factory                                                        
+                                                                                                     | * @param graphDataFactory  graph data factory                                                       
+                                                                                                     | * @param &lt;VD&gt;              vertex data type                                                   
+                                                                                                     | * @param &lt;ED&gt;              edge data type                                                     
+                                                                                                     | * @param &lt;GD&gt;              graph data type                                                    
+                                                                                                     | * @return logical graph                                                                             
+                                                                                                     | */                                                                                                  
+                                                                                                     | public static &lt;VD extends VertexData, ED extends EdgeData, GD extends GraphData&gt; LogicalGraph&
+                                                                                                     | return new LogicalGraph&lt;&gt;(graph, graphData, vertexDataFactory, edgeDataFactory, graphDataFacto
+                                                                                                     | }                                                                                                   

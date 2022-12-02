@@ -1,0 +1,12 @@
+@Test
+public void testOverlappingGraphs() throws Exception {
+    // "0, 2, 1, 0"
+    Long firstGraph = 0L;
+    Long secondGraph = 2L;
+    long expectedVertexCount = 1L;
+    long expectedEdgeCount = 0L;
+    LogicalGraph<DefaultVertexData, DefaultEdgeData, DefaultGraphData> first = getGraphStore().getGraph(firstGraph);
+    LogicalGraph<DefaultVertexData, DefaultEdgeData, DefaultGraphData> second = getGraphStore().getGraph(secondGraph);
+    LogicalGraph<DefaultVertexData, DefaultEdgeData, DefaultGraphData> result = first.exclude(second);
+    performTest(result, expectedVertexCount, expectedEdgeCount);
+}

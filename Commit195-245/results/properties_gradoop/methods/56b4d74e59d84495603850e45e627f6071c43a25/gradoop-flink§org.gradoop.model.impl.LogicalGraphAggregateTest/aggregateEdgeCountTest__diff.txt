@@ -1,0 +1,18 @@
+@Test                                                                                                  @Test                                                                                               
+public void aggregateEdgeCountTest() throws Exception {                                                public void aggregateEdgeCountTest() throws Exception {                                             
+LogicalGraph&lt;DefaultVertexData, DefaultEdgeData, DefaultGraphData&gt; forumGraph = getGraphStore(   LogicalGraph&lt;DefaultVertexData, DefaultEdgeData, DefaultGraphData&gt; forumGraph = getGraphStore(
+final String aggPropertyKey = "eCount";                                                                final String aggPropertyKey = "eCount";                                                             
+UnaryFunction&lt;LogicalGraph&lt;DefaultVertexData, DefaultEdgeData, DefaultGraphData&gt;, Long&gt;    UnaryFunction&lt;LogicalGraph&lt;DefaultVertexData, DefaultEdgeData, DefaultGraphData&gt;, Long&gt; 
+                                                                                                                                                                                                           
+@Override                                                                                              @Override                                                                                           
+public Long execute(LogicalGraph&lt;DefaultVertexData, DefaultEdgeData, DefaultGraphData&gt; entity)   public Long execute(LogicalGraph&lt;DefaultVertexData, DefaultEdgeData, DefaultGraphData&gt; entity)
+return entity.getEdges().size();                                                                     | return entity.getEdges().count();                                                                   
+}                                                                                                      }                                                                                                   
+};                                                                                                     };                                                                                                  
+LogicalGraph&lt;DefaultVertexData, DefaultEdgeData, DefaultGraphData&gt; newGraph = forumGraph.aggre   LogicalGraph&lt;DefaultVertexData, DefaultEdgeData, DefaultGraphData&gt; newGraph = forumGraph.aggre
+assertNotNull("graph was null", newGraph);                                                             assertNotNull("graph was null", newGraph);                                                          
+assertEquals("wrong property count", 1, newGraph.getPropertyCount());                                  assertEquals("wrong property count", 1, newGraph.getPropertyCount());                               
+assertEquals("wrong property value", 4L, newGraph.getProperty(aggPropertyKey));                        assertEquals("wrong property value", 4L, newGraph.getProperty(aggPropertyKey));                     
+// original graph needs to be unchanged                                                                // original graph needs to be unchanged                                                             
+assertEquals("wrong property count", 0L, forumGraph.getPropertyCount());                               assertEquals("wrong property count", 0L, forumGraph.getPropertyCount());                            
+}                                                                                                      }                                                                                                   

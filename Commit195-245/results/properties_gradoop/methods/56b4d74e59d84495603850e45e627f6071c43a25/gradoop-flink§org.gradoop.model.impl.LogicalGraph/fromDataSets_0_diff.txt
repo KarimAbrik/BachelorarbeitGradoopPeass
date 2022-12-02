@@ -1,0 +1,18 @@
+                                                                                                     | /**                                                                                                 
+                                                                                                     | * Creates a logical graph from the given arguments.                                                 
+                                                                                                     | *                                                                                                   
+                                                                                                     | * @param vertices          Vertex DataSet                                                           
+                                                                                                     | * @param edges             Edge DataSet                                                             
+                                                                                                     | * @param graphData         graph data associated with the logical graph                             
+                                                                                                     | * @param vertexDataFactory vertex data factory                                                      
+                                                                                                     | * @param edgeDataFactory   edge data factory                                                        
+                                                                                                     | * @param graphDataFactory  graph data factory                                                       
+                                                                                                     | * @param &lt;VD&gt;              vertex data type                                                   
+                                                                                                     | * @param &lt;ED&gt;              edge data type                                                     
+                                                                                                     | * @param &lt;GD&gt;              graph data type                                                    
+                                                                                                     | * @return logical graph                                                                             
+                                                                                                     | */                                                                                                  
+                                                                                                     | public static &lt;VD extends VertexData, ED extends EdgeData, GD extends GraphData&gt; LogicalGraph&
+                                                                                                     | Graph&lt;Long, VD, ED&gt; gellyGraph = Graph.fromDataSet(vertices, edges, vertices.getExecutionEnvir
+                                                                                                     | return fromGellyGraph(gellyGraph, graphData, vertexDataFactory, edgeDataFactory, graphDataFactory); 
+                                                                                                     | }                                                                                                   

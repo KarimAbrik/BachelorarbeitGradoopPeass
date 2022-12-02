@@ -1,0 +1,14 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public EdgeDataCollection<ED> getOutgoingEdges(final Long vertexID) {
+    DataSet<Edge<Long, ED>> outgoingEdges = this.graph.getEdges().filter(new FilterFunction<Edge<Long, ED>>() {
+
+        @Override
+        public boolean filter(Edge<Long, ED> edgeTuple) throws Exception {
+            return edgeTuple.getSource().equals(vertexID);
+        }
+    });
+    return new EdgeDataCollection<>(outgoingEdges);
+}

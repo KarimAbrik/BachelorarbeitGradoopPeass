@@ -1,0 +1,11 @@
+@Test                                                                                                  @Test                                                                                               
+public void testOverlappingResultGraphs() throws Exception {                                           public void testOverlappingResultGraphs() throws Exception {                                        
+LogicalGraph&lt;DefaultVertexData, DefaultEdgeData, DefaultGraphData&gt; inputGraph = getGraphStore(   LogicalGraph&lt;DefaultVertexData, DefaultEdgeData, DefaultGraphData&gt; inputGraph = getGraphStore(
+UnaryFunction&lt;Vertex&lt;Long, DefaultVertexData&gt;, List&lt;Long&gt;&gt; function = new SplitByM   UnaryFunction&lt;Vertex&lt;Long, DefaultVertexData&gt;, List&lt;Long&gt;&gt; function = new SplitByM
+GraphCollection&lt;DefaultVertexData, DefaultEdgeData, DefaultGraphData&gt; labeledGraphCollection =   GraphCollection&lt;DefaultVertexData, DefaultEdgeData, DefaultGraphData&gt; labeledGraphCollection =
+labeledGraphCollection.getSubgraphs();                                                                 labeledGraphCollection.getSubgraphs();                                                              
+assertNotNull("graph collection is null", labeledGraphCollection);                                     assertNotNull("graph collection is null", labeledGraphCollection);                                  
+TestCase.assertEquals("wrong number of graphs", 3l, labeledGraphCollection.size());                    TestCase.assertEquals("wrong number of graphs", 3l, labeledGraphCollection.size());                 
+TestCase.assertEquals("wrong number of vertices", 11l, labeledGraphCollection.getTotalVertexCount()) | TestCase.assertEquals("wrong number of vertices", 11l, labeledGraphCollection.getVertexCount());    
+TestCase.assertEquals("wrong number of edges", 8l, labeledGraphCollection.getTotalEdgeCount());      | TestCase.assertEquals("wrong number of edges", 8l, labeledGraphCollection.getEdgeCount());          
+}                                                                                                      }                                                                                                   
