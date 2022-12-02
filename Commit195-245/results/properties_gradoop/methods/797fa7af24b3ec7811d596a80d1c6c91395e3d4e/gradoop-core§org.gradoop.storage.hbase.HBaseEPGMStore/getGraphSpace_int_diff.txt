@@ -1,0 +1,10 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public Iterator<GD> getGraphSpace(int cacheSize) throws IOException {
+    Scan scan = new Scan();
+    scan.setCaching(cacheSize);
+    scan.setMaxVersions(1);
+    return new GraphDataIterator(graphDataTable.getScanner(scan));
+}

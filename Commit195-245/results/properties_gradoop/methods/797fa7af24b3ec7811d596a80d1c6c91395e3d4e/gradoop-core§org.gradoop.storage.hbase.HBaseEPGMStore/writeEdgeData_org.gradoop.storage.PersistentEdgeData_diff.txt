@@ -1,0 +1,17 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public void writeEdgeData(final PersistentEdgeData<VD> edgeData) {
+    LOG.info("Writing edge data: " + edgeData);
+    // edge id
+    Put put = new Put(edgeDataHandler.getRowKey(edgeData.getId()));
+    // write edge data to Put
+    put = edgeDataHandler.writeEdgeData(put, edgeData);
+    // write to table
+    try {
+        edgeDataTable.put(put);
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}

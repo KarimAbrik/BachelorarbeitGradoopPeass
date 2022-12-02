@@ -1,0 +1,7 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public Put writeOutgoingEdges(final Put put, final Set<ED> outgoingEdgeData) {
+    return writeEdges(put, CF_OUT_EDGES_BYTES, outgoingEdgeData, true);
+}

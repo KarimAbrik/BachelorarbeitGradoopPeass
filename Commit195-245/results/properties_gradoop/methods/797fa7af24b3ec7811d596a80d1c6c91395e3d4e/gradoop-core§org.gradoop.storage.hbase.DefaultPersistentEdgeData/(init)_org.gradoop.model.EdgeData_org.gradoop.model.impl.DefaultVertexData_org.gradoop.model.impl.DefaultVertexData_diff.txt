@@ -1,0 +1,12 @@
+/**
+ * Creates persistent edge data.
+ *
+ * @param edgeData         encapsulated edge data
+ * @param sourceVertexData source vertex data containing id and label
+ * @param targetVertexData target vertex data containing id and label
+ */
+public DefaultPersistentEdgeData(EdgeData edgeData, DefaultVertexData sourceVertexData, DefaultVertexData targetVertexData) {
+    super(edgeData);
+    this.sourceVertexData = sourceVertexData;
+    this.targetVertexData = targetVertexData;
+}

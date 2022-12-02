@@ -1,0 +1,12 @@
+/**
+ * Creates persistent vertex data.
+ *
+ * @param vertexData       encapsulated vertex data
+ * @param incomingEdgeData incoming edge data
+ * @param outgoingEdgeData outgoing edge data
+ */
+public DefaultPersistentVertexData(VertexData vertexData, Set<DefaultEdgeData> outgoingEdgeData, Set<DefaultEdgeData> incomingEdgeData) {
+    super(vertexData);
+    this.outgoingEdgeData = outgoingEdgeData;
+    this.incomingEdgeData = incomingEdgeData;
+}

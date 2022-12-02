@@ -1,0 +1,7 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public PersistentGraphData join(Tuple3<Long, Set<Long>, Set<Long>> longSetSetTuple3, Subgraph<Long, GD> longGDSubgraph) throws Exception {
+    return graphDataFactory.createGraphData(longGDSubgraph.f1, longSetSetTuple3.f1, longSetSetTuple3.f2);
+}

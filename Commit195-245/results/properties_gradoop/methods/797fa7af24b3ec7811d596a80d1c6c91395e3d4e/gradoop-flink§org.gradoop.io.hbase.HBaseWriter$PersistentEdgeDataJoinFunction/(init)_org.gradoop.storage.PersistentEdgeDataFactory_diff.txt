@@ -1,0 +1,8 @@
+/**
+ * Creates join function
+ *
+ * @param edgeDataFactory persistent edge data factory.
+ */
+public PersistentEdgeDataJoinFunction(PersistentEdgeDataFactory<ED, VD, PED> edgeDataFactory) {
+    this.edgeDataFactory = edgeDataFactory;
+}

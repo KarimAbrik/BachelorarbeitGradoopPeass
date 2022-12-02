@@ -1,0 +1,16 @@
+/**
+ * Creates a graph store or opens an existing one based on the given
+ * parameters. If something goes wrong, {@code null} is returned.
+ *
+ * @param config            cluster configuration
+ * @param vertexDataHandler vertex storage handler
+ * @param edgeDataHandler   edge storage handler
+ * @param graphDataHandler  graph storage handler
+ * @param <VD>              vertex data type
+ * @param <ED>              edge data type
+ * @param <GD>              graph data type
+ * @return a graph store instance or {@code null in the case of errors}
+ */
+public static <VD extends VertexData, ED extends EdgeData, GD extends GraphData> EPGMStore<VD, ED, GD> createOrOpenEPGMStore(final Configuration config, final VertexDataHandler<VD, ED> vertexDataHandler, final EdgeDataHandler<ED, VD> edgeDataHandler, final GraphDataHandler<GD> graphDataHandler) {
+    return createOrOpenEPGMStore(config, vertexDataHandler, edgeDataHandler, graphDataHandler, GConstants.DEFAULT_TABLE_VERTICES, GConstants.DEFAULT_TABLE_EDGES, GConstants.DEFAULT_TABLE_GRAPHS);
+}

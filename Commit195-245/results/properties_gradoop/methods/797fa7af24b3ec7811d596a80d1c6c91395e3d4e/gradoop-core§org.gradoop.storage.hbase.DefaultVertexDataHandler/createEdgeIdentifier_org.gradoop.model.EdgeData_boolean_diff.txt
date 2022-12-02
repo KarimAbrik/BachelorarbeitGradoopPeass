@@ -1,0 +1,21 @@
+/**
+ * Serializes an edge to an edge identifier in the following format:
+ * <p>
+ * <edge-identifier> ::= <edgeId><otherID><label>
+ *
+ * @param edgeData   edge to create identifier for
+ * @param isOutgoing true, if the edge is an outgoing edge, false if
+ *                   incoming
+ * @return byte representation of the edge identifier
+ */
+private byte[] createEdgeIdentifier(final EdgeData edgeData, boolean isOutgoing) {
+    byte[] labelBytes = Bytes.toBytes(edgeData.getLabel());
+    byte[] edgeKey = new byte[2 * Bytes.SIZEOF_LONG + labelBytes.length];
+    // edge identifier
+    Bytes.putLong(edgeKey, 0, edgeData.getId());
+    // source|target vertex identifier
+    Bytes.putLong(edgeKey, Bytes.SIZEOF_LONG, isOutgoing ? edgeData.getTargetVertexId() : edgeData.getSourceVertexId());
+    // edge label
+    Bytes.putBytes(edgeKey, Bytes.SIZEOF_LONG * 2, labelBytes, 0, labelBytes.length);
+    return edgeKey;
+}

@@ -1,0 +1,9 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public DefaultPersistentEdgeData createEdgeData(DefaultEdgeData inputEdgeData, DefaultVertexData sourceVertexData, DefaultVertexData targetVertexData) {
+    DefaultPersistentEdgeData defaultPersistentEdgeData = new DefaultPersistentEdgeData(inputEdgeData, sourceVertexData, targetVertexData);
+    LOG.info("Created persistent edge data: " + defaultPersistentEdgeData);
+    return defaultPersistentEdgeData;
+}

@@ -1,0 +1,18 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public Set<Long> readGraphs(Result res) {
+    byte[] graphBytes = res.getValue(CF_META_BYTES, COL_GRAPHS_BYTES);
+    Set<Long> result = null;
+    if (graphBytes != null) {
+        int graphCount = Bytes.toInt(graphBytes);
+        result = Sets.newHashSetWithExpectedSize(graphCount);
+        int offset = Bytes.SIZEOF_INT;
+        for (int i = 0; i < graphCount; i++) {
+            result.add(Bytes.toLong(graphBytes, offset));
+            offset += Bytes.SIZEOF_LONG;
+        }
+    }
+    return result;
+}

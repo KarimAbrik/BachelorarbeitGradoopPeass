@@ -1,0 +1,7 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public VD readVertexData(final Result res) {
+    return vertexDataFactory.createVertexData(Long.valueOf(Bytes.toString(res.getRow())), readLabel(res), readProperties(res), readGraphs(res));
+}

@@ -1,0 +1,8 @@
+/**
+ * Creates a vertex handler.
+ *
+ * @param vertexDataFactory used to create runtime vertex data objects
+ */
+public DefaultVertexDataHandler(VertexDataFactory<VD> vertexDataFactory) {
+    this.vertexDataFactory = vertexDataFactory;
+}

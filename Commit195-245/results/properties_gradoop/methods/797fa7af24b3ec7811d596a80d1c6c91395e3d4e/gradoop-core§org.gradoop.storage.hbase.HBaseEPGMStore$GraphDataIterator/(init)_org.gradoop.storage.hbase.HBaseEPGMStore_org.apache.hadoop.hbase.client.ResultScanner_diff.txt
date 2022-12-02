@@ -1,0 +1,9 @@
+/**
+ * Constructor
+ *
+ * @param scanner HBase result scanner
+ * @throws IOException
+ */
+public GraphDataIterator(ResultScanner scanner) throws IOException {
+    this.it = scanner.iterator();
+}

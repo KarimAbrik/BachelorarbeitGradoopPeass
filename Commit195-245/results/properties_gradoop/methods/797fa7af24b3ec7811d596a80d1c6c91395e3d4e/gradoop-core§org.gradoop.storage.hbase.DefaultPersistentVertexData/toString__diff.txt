@@ -1,0 +1,12 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public String toString() {
+    final StringBuilder sb = new StringBuilder("DefaultPersistentVertexData{");
+    sb.append("super=").append(super.toString());
+    sb.append(", outgoingEdgeData=").append(outgoingEdgeData);
+    sb.append(", incomingEdgeData=").append(incomingEdgeData);
+    sb.append('}');
+    return sb.toString();
+}

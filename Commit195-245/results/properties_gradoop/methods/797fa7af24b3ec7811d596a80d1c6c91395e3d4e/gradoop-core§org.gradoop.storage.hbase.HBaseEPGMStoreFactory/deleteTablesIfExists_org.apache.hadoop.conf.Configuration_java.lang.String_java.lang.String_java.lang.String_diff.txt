@@ -1,0 +1,25 @@
+/**
+ * Deletes the tables given tables.
+ *
+ * @param config              cluster configuration
+ * @param vertexDataTableName vertex data table name
+ * @param edgeDataTableName   edge data table name
+ * @param graphDataTableName  graph data table name
+ * @throws IOException
+ */
+private static void deleteTablesIfExists(final Configuration config, final String vertexDataTableName, final String edgeDataTableName, final String graphDataTableName) throws IOException {
+    HTableDescriptor vertexDataTableDescriptor = new HTableDescriptor(TableName.valueOf(vertexDataTableName));
+    HTableDescriptor edgeDataTableDescriptor = new HTableDescriptor(TableName.valueOf(edgeDataTableName));
+    HTableDescriptor graphsTableDescriptor = new HTableDescriptor(TableName.valueOf(graphDataTableName));
+    HBaseAdmin admin = new HBaseAdmin(config);
+    if (admin.tableExists(vertexDataTableDescriptor.getName())) {
+        deleteTable(admin, vertexDataTableDescriptor);
+    }
+    if (admin.tableExists(edgeDataTableDescriptor.getName())) {
+        deleteTable(admin, edgeDataTableDescriptor);
+    }
+    if (admin.tableExists(graphsTableDescriptor.getName())) {
+        deleteTable(admin, graphsTableDescriptor);
+    }
+    admin.close();
+}
