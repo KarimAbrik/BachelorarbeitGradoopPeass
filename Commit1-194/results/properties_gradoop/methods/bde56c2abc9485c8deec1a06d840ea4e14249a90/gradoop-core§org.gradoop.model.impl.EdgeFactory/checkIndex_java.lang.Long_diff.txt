@@ -1,0 +1,10 @@
+/**
+ * Checks if {@code index} is valid.
+ *
+ * @param index internal index of edge
+ */
+private static void checkIndex(Long index) {
+    if (index == null) {
+        throw new IllegalArgumentException("index must not be null");
+    }
+}

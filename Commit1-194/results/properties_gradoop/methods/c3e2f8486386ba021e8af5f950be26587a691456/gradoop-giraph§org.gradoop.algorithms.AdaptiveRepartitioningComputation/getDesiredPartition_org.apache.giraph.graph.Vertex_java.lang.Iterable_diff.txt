@@ -1,0 +1,42 @@
+/**
+ * Returns the desired partition of the given vertex based on the
+ * neighbours and the partitions they are in.
+ *
+ * @param vertex   current vertex
+ * @param messages messages sent to current vertex
+ * @return desired partition
+ */
+private int getDesiredPartition(final Vertex<IntWritable, PartitioningVertex, NullWritable> vertex, final Iterable<IntWritable> messages) {
+    int currentPartition = vertex.getValue().getCurrentPartition().get();
+    int desiredPartition = currentPartition;
+    // got messages?
+    if (messages.iterator().hasNext()) {
+        // partition -> neighbours in partition
+        int[] countNeighbours = getPartitionFrequencies(messages);
+        // partition -> desire to migrate
+        double[] partitionWeights = getPartitionWeights(countNeighbours, vertex.getNumEdges());
+        double firstMax = Integer.MIN_VALUE;
+        double secondMax = Integer.MIN_VALUE;
+        int firstK = -1;
+        int secondK = -1;
+        for (int i = 0; i < k; i++) {
+            if (partitionWeights[i] > firstMax) {
+                secondMax = firstMax;
+                firstMax = partitionWeights[i];
+                secondK = firstK;
+                firstK = i;
+            } else if (partitionWeights[i] > secondMax) {
+                secondMax = partitionWeights[i];
+                secondK = i;
+            }
+        }
+        if (firstMax == secondMax) {
+            if (currentPartition != firstK && currentPartition != secondK) {
+                desiredPartition = firstK;
+            }
+        } else {
+            desiredPartition = firstK;
+        }
+    }
+    return desiredPartition;
+}

@@ -1,0 +1,14 @@
+@Override
+public void initialize(GraphState graphState, WorkerClientRequestProcessor<IntWritable, PartitioningVertex, NullWritable> workerClientRequestProcessor, GraphTaskManager<IntWritable, PartitioningVertex, NullWritable> graphTaskManager, WorkerGlobalCommUsage workerGlobalCommUsage, WorkerContext workerContext) {
+    super.initialize(graphState, workerClientRequestProcessor, graphTaskManager, workerGlobalCommUsage, workerContext);
+    this.k = getConf().getInt(NUMBER_OF_PARTITIONS, DEFAULT_NUMBER_OF_PARTITIONS);
+    this.stabilizationRoundMax = getConf().getInt(NUMBER_OF_STABILIZATION_ROUNDS, DEFAULT_NUMBER_OF_STABILIZATION_ROUNDS);
+    this.capacityThreshold = getConf().getFloat(CAPACITY_THRESHOLD, DEFAULT_CAPACITY_THRESHOLD);
+    this.isPartitioned = getConf().getBoolean(AdaptiveRepartitioningInputFormat.PARTITIONED_INPUT, AdaptiveRepartitioningInputFormat.DEFAULT_PARTITIONED_INPUT);
+    this.seed = getConf().getLong(SEED, DEFAULT_SEED);
+    if (seed != 0) {
+        random = new Random(seed);
+    } else {
+        random = new Random();
+    }
+}

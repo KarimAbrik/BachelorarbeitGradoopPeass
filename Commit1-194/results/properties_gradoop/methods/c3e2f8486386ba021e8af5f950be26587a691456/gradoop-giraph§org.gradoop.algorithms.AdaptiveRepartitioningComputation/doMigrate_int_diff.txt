@@ -1,0 +1,17 @@
+/**
+ * Decides of a vertex is allowed to migrate to a given desired partition.
+ * This is based on the free space in the partition and the demand for that
+ * partition.
+ *
+ * @param desiredPartition desired partition
+ * @return true if the vertex is allowed to migrate, false otherwise
+ */
+private boolean doMigrate(int desiredPartition) {
+    long totalCapacity = getTotalCapacity();
+    int load = getPartitionLoad(desiredPartition);
+    long availability = totalCapacity - load;
+    double demand = getPartitionDemand(desiredPartition);
+    double threshold = availability / demand;
+    double randomRange = random.nextDouble();
+    return Double.compare(randomRange, threshold) < 0;
+}

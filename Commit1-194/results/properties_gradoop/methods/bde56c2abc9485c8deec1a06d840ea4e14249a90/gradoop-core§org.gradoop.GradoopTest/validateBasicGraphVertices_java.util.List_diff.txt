@@ -1,0 +1,19 @@
+protected void validateBasicGraphVertices(List&lt;Vertex&gt; vertices) {                               protected void validateBasicGraphVertices(List&lt;Vertex&gt; vertices) {                            
+assertEquals(3, vertices.size());                                                                    | assertEquals(4, vertices.size());                                                                   
+for (Vertex v : vertices) {                                                                            for (Vertex v : vertices) {                                                                         
+Long i = v.getID();                                                                                    Long i = v.getID();                                                                                 
+                                                                                                     | List&lt;Edge&gt; edgeList = Lists.newArrayList();                                                   
+                                                                                                     | if (v.getOutgoingDegree() &gt; 0) {                                                                 
+                                                                                                     | edgeList = Lists.newArrayList(v.getOutgoingEdges());                                                
+                                                                                                     | }                                                                                                   
+if (i.equals(0L)) {                                                                                    if (i.equals(0L)) {                                                                                 
+validateBasicGraphEdges(v.getOutgoingEdges(), 2, 1, 2);                                              | validateBasicGraphEdges(edgeList, 2, 1, 2);                                                         
+} else if (i.equals(1L)) {                                                                             } else if (i.equals(1L)) {                                                                          
+validateBasicGraphEdges(v.getOutgoingEdges(), 2, 0, 2);                                              | validateBasicGraphEdges(edgeList, 2, 0, 2);                                                         
+} else if (i.equals(2L)) {                                                                             } else if (i.equals(2L)) {                                                                          
+validateBasicGraphEdges(v.getOutgoingEdges(), 1, 1);                                                 | validateBasicGraphEdges(edgeList, 1, 1);                                                            
+                                                                                                     | } else if (i.equals(3L)) {                                                                          
+                                                                                                     | validateBasicGraphEdges(edgeList, 0);                                                               
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

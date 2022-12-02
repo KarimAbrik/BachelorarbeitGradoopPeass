@@ -1,0 +1,10 @@
+/**
+ * Initializes the vertex with a partition id. This is calculated using
+ * modulo (vertex-id % partition count).
+ *
+ * @param vertex vertex
+ */
+private void setVertexStartValue(final Vertex<IntWritable, PartitioningVertex, NullWritable> vertex) {
+    int startValue = vertex.getId().get() % k;
+    vertex.getValue().setCurrentPartition(new IntWritable(startValue));
+}

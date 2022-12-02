@@ -1,0 +1,13 @@
+protected void validateBasicGraphVertices(List<Vertex> vertices) {
+    assertEquals(3, vertices.size());
+    for (Vertex v : vertices) {
+        Long i = v.getID();
+        if (i.equals(0L)) {
+            validateBasicGraphEdges(v.getOutgoingEdges(), 2, 1, 2);
+        } else if (i.equals(1L)) {
+            validateBasicGraphEdges(v.getOutgoingEdges(), 2, 0, 2);
+        } else if (i.equals(2L)) {
+            validateBasicGraphEdges(v.getOutgoingEdges(), 1, 1);
+        }
+    }
+}

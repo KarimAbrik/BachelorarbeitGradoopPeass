@@ -1,0 +1,17 @@
+/**
+ * Moves a vertex from its old to its new partition.
+ *
+ * @param vertex           vertex
+ * @param desiredPartition partition to move vertex to
+ */
+private void migrateVertex(final Vertex<IntWritable, PartitioningVertex, NullWritable> vertex, int desiredPartition) {
+    // add current partition to partition history
+    vertex.getValue().addToPartitionHistory(vertex.getValue().getCurrentPartition().get());
+    // decrease capacity in old partition
+    String oldPartition = CAPACITY_AGGREGATOR_PREFIX + vertex.getValue().getCurrentPartition().get();
+    notifyAggregator(oldPartition, NEGATIVE_ONE);
+    // increase capacity in new partition
+    String newPartition = CAPACITY_AGGREGATOR_PREFIX + desiredPartition;
+    notifyAggregator(newPartition, POSITIVE_ONE);
+    vertex.getValue().setCurrentPartition(new IntWritable(desiredPartition));
+}

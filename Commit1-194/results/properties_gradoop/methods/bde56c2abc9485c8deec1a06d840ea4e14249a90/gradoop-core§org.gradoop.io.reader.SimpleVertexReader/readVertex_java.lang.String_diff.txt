@@ -1,0 +1,19 @@
+/**                                                                                                    /**                                                                                                 
+* {@inheritDoc}                                                                                        * {@inheritDoc}                                                                                     
+*/                                                                                                     */                                                                                                  
+@Override                                                                                              @Override                                                                                           
+public Vertex readVertex(String line) {                                                                public Vertex readVertex(String line) {                                                             
+String[] tokens = getTokens(line);                                                                     String[] tokens = getTokens(line);                                                                  
+Long vertexID = Long.valueOf(tokens[0]);                                                               Long vertexID = Long.valueOf(tokens[0]);                                                            
+                                                                                                     | if (tokens.length &gt; 1) {                                                                         
+List&lt;Edge&gt; edges = Lists.newArrayListWithCapacity(tokens.length - 1);                            List&lt;Edge&gt; edges = Lists.newArrayListWithCapacity(tokens.length - 1);                         
+for (int i = 1; i &lt; tokens.length; i++) {                                                           for (int i = 1; i &lt; tokens.length; i++) {                                                        
+Long otherID = Long.valueOf(tokens[i]);                                                                Long otherID = Long.valueOf(tokens[i]);                                                             
+Edge e = EdgeFactory.createDefaultEdge(otherID, (long) i - 1);                                         Edge e = EdgeFactory.createDefaultEdge(otherID, (long) i - 1);                                      
+edges.add(e);                                                                                          edges.add(e);                                                                                       
+}                                                                                                      }                                                                                                   
+return VertexFactory.createDefaultVertexWithOutgoingEdges(vertexID, edges);                            return VertexFactory.createDefaultVertexWithOutgoingEdges(vertexID, edges);                         
+                                                                                                     | } else {                                                                                            
+                                                                                                     | return VertexFactory.createDefaultVertexWithID(vertexID);                                           
+}                                                                                                      }                                                                                                   
+                                                                                                     | }                                                                                                   

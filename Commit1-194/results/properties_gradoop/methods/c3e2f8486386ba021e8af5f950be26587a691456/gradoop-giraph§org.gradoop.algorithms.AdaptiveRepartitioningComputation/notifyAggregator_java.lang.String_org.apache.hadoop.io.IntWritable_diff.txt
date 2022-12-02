@@ -1,0 +1,9 @@
+/**
+ * Sends the given value to the given aggregator.
+ *
+ * @param aggregator aggregator to send value to
+ * @param v          value to send
+ */
+private void notifyAggregator(final String aggregator, final IntWritable v) {
+    aggregate(aggregator, v);
+}

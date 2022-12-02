@@ -1,0 +1,11 @@
+/**
+ * Returns the total number of vertices a partition can store. This depends
+ * on the strict capacity and the capacity threshold.
+ *
+ * @return total capacity of a partition
+ */
+private int getTotalCapacity() {
+    double strictCapacity = getTotalNumVertices() / (double) k;
+    double buffer = strictCapacity * capacityThreshold;
+    return (int) Math.ceil(strictCapacity + buffer);
+}
