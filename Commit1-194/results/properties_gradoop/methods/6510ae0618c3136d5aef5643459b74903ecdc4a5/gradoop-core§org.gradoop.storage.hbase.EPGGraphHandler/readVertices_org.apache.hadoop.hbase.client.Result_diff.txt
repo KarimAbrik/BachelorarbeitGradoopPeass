@@ -1,0 +1,7 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public Iterable<Long> readVertices(final Result res) {
+    return getColumnKeysFromFamiliy(res, CF_VERTICES_BYTES);
+}

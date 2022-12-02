@@ -1,0 +1,11 @@
+/**
+ * Creates a default edge based on the given parameters.
+ *
+ * @param otherID the id of the vertex that edge is connected to
+ * @param label   edge label
+ * @param index   vertex centric edge index for parallel edges
+ * @return edge connected to otherID with label and index
+ */
+public static Edge createDefaultEdgeWithLabel(final Long otherID, final String label, final Long index) {
+    return createDefaultEdge(otherID, label, index, null);
+}

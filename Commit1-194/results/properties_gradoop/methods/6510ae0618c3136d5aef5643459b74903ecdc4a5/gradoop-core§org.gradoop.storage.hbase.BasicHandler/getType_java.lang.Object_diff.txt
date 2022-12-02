@@ -1,0 +1,26 @@
+/**
+ * Returns the type of a given object if it's supported.
+ *
+ * @param o object
+ * @return type of object
+ */
+protected byte getType(final Object o) {
+    Class<?> valueClass = o.getClass();
+    byte type;
+    if (valueClass.equals(Boolean.class)) {
+        type = GConstants.TYPE_BOOLEAN;
+    } else if (valueClass.equals(Integer.class)) {
+        type = GConstants.TYPE_INTEGER;
+    } else if (valueClass.equals(Long.class)) {
+        type = GConstants.TYPE_LONG;
+    } else if (valueClass.equals(Long.class)) {
+        type = GConstants.TYPE_FLOAT;
+    } else if (valueClass.equals(Double.class)) {
+        type = GConstants.TYPE_DOUBLE;
+    } else if (valueClass.equals(String.class)) {
+        type = GConstants.TYPE_STRING;
+    } else {
+        throw new UnsupportedTypeException(valueClass + " not supported");
+    }
+    return type;
+}

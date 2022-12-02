@@ -1,0 +1,11 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public Iterable<String> readLabels(final Result res) {
+    List<String> labels = new ArrayList<>();
+    for (Map.Entry<byte[], byte[]> labelColumn : res.getFamilyMap(CF_LABELS_BYTES).entrySet()) {
+        labels.add(Bytes.toString(labelColumn.getValue()));
+    }
+    return labels;
+}

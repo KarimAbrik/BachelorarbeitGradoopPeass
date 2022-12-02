@@ -1,0 +1,10 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public Put writeGraph(final Put put, final Graph graph) {
+    writeLabels(put, graph);
+    writeProperties(put, graph);
+    writeVertices(put, graph);
+    return put;
+}
