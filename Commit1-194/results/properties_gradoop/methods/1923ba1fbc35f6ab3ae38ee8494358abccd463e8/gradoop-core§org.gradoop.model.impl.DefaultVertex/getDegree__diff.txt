@@ -1,0 +1,7 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public int getDegree() {
+    return getOutgoingDegree() + getIncomingDegree();
+}

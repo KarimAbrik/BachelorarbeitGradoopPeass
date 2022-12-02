@@ -1,0 +1,27 @@
+@Test
+public void createWithIDEdgesTest() {
+    Long vertexID = 0L;
+    Long otherID1 = 1L;
+    Long otherID2 = 2L;
+    Long otherID3 = 3L;
+    Long otherID4 = 4L;
+    List<Edge> outgoingEdges = Lists.newArrayListWithCapacity(2);
+    Edge e1 = EdgeFactory.createDefaultEdge(otherID1, otherID1);
+    outgoingEdges.add(e1);
+    Edge e2 = EdgeFactory.createDefaultEdge(otherID2, otherID2);
+    outgoingEdges.add(e2);
+    List<Edge> incomingEdges = Lists.newArrayListWithCapacity(2);
+    Edge e3 = EdgeFactory.createDefaultEdge(otherID3, otherID3);
+    incomingEdges.add(e3);
+    Edge e4 = EdgeFactory.createDefaultEdge(otherID4, otherID4);
+    incomingEdges.add(e4);
+    Vertex v = VertexFactory.createDefaultVertexWithEdges(vertexID, outgoingEdges, incomingEdges);
+    assertThat(v.getID(), is(vertexID));
+    assertThat(v.getOutgoingDegree(), is(2));
+    assertTrue(Lists.newArrayList(v.getOutgoingEdges()).contains(e1));
+    assertTrue(Lists.newArrayList(v.getOutgoingEdges()).contains(e2));
+    assertThat(v.getIncomingDegree(), is(2));
+    assertTrue(Lists.newArrayList(v.getIncomingEdges()).contains(e3));
+    assertTrue(Lists.newArrayList(v.getIncomingEdges()).contains(e4));
+    assertThat(v.getDegree(), is(4));
+}

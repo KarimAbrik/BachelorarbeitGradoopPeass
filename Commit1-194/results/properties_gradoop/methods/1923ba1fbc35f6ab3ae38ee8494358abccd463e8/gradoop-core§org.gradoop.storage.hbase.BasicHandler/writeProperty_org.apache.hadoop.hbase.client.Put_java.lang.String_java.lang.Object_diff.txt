@@ -1,0 +1,8 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public Put writeProperty(final Put put, final String key, final Object value) {
+    put.add(CF_PROPERTIES_BYTES, Bytes.toBytes(key), encodeValueToBytes(value));
+    return put;
+}

@@ -1,0 +1,10 @@
+@Test
+public void createWithIDTest() {
+    Long vertexID = 0L;
+    Vertex v = VertexFactory.createDefaultVertexWithID(vertexID);
+    assertThat(v.getId(), is(vertexID));
+    assertThat(v.getGraphCount(), is(0));
+    assertThat(v.getOutgoingDegree(), is(0));
+    assertThat(v.getIncomingDegree(), is(0));
+    assertThat(v.getDegree(), is(0));
+}

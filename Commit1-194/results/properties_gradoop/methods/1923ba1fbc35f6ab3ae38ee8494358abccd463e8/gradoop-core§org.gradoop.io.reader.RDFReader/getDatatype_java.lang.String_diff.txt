@@ -1,0 +1,13 @@
+/**
+ * Get data type of RDF literal, if given
+ *
+ * @param token literal (RDF object)
+ * @return extracted data type
+ */
+private String getDatatype(String token) {
+    Matcher m = LITERAL_DATATYPE.matcher(token);
+    if (m.find()) {
+        return m.group(1);
+    }
+    return "";
+}

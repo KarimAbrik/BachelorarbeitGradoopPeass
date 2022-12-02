@@ -1,0 +1,9 @@
+@Test
+public void readExtendedGraphTest() {
+    VertexLineReader vertexLineReader = new EPGVertexReader();
+    List<Vertex> vertices = Lists.newArrayList();
+    for (String line : EXTENDED_GRAPH) {
+        vertices.add(vertexLineReader.readVertex(line));
+    }
+    validateExtendedGraphVertices(vertices);
+}

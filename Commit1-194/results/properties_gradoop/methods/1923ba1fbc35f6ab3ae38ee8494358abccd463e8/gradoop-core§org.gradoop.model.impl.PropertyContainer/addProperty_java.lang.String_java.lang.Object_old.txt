@@ -1,0 +1,16 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public void addProperty(String key, Object value) {
+    if (key == null || "".equals(key)) {
+        throw new IllegalArgumentException("key must not be null or empty");
+    }
+    if (value == null) {
+        throw new IllegalArgumentException("value must not be null");
+    }
+    if (this.properties == null) {
+        this.properties = Maps.newHashMap();
+    }
+    this.properties.put(key, value);
+}

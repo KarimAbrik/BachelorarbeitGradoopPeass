@@ -1,0 +1,36 @@
+/**
+ * Simple validation of input line, not complete.
+ *
+ * @param line single input line
+ * @return input line or null for malformed triple
+ */
+private String[] simpleValidate(String line) {
+    String[] empty = {};
+    String[] tokens = getTokens(line);
+    String s = tokens[0];
+    String p = tokens[1];
+    String o = tokens[2];
+    if (isNTResource(p)) {
+        // predicate has to be URI
+        if (isNTResource(s) || s.charAt(0) == '_') {
+            // subject has to be blank node or URI
+            if (isNTResource(o) || o.charAt(0) == '_' || o.charAt(0) == '"') {
+                s = getPlainResource(s);
+                p = getPlainResource(p);
+                if (isNTResource(o)) {
+                    o = getPlainResource(o);
+                }
+                return new String[] { s, p, o };
+            } else {
+                // malformed object
+                return empty;
+            }
+        } else {
+            // malformed subject
+            return empty;
+        }
+    } else {
+        // malformed predicate
+        return empty;
+    }
+}

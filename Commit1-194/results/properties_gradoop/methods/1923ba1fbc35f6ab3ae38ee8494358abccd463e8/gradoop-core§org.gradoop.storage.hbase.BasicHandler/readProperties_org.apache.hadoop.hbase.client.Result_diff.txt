@@ -1,0 +1,11 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public Map<String, Object> readProperties(final Result res) {
+    Map<String, Object> properties = new HashMap<>();
+    for (Map.Entry<byte[], byte[]> propertyColumn : res.getFamilyMap(CF_PROPERTIES_BYTES).entrySet()) {
+        properties.put(Bytes.toString(propertyColumn.getKey()), decodeValueFromBytes(propertyColumn.getValue()));
+    }
+    return properties;
+}
