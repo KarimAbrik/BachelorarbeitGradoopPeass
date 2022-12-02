@@ -1,0 +1,10 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public Put writeVertices(final Put put, final PersistentGraphData graphData) {
+    for (Long vertexId : graphData.getVertices()) {
+        put.add(CF_VERTICES_BYTES, Bytes.toBytes(vertexId), null);
+    }
+    return put;
+}

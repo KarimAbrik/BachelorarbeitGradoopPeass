@@ -1,0 +1,84 @@
+protected Collection<PersistentEdgeData<DefaultVertexData>> createPersistentSocialEdgeData() {
+    Collection<DefaultEdgeData> edgeDataCollection = createEdgeDataCollection();
+    List<PersistentEdgeData<DefaultVertexData>> persistentEdgeData = Lists.newArrayListWithExpectedSize(edgeDataCollection.size());
+    PersistentEdgeDataFactory<DefaultEdgeData, DefaultVertexData, DefaultPersistentEdgeData> edgeDataFactory = new DefaultPersistentEdgeDataFactory();
+    DefaultVertexData sourceVertexData = null;
+    DefaultVertexData targetVertexData = null;
+    for (DefaultEdgeData edgeData : edgeDataCollection) {
+        if (edgeData.getId().equals(edge0.getId())) {
+            sourceVertexData = alice;
+            targetVertexData = bob;
+        } else if (edgeData.getId().equals(edge1.getId())) {
+            sourceVertexData = bob;
+            targetVertexData = alice;
+        } else if (edgeData.getId().equals(edge2.getId())) {
+            sourceVertexData = bob;
+            targetVertexData = carol;
+        } else if (edgeData.getId().equals(edge3.getId())) {
+            sourceVertexData = carol;
+            targetVertexData = bob;
+        } else if (edgeData.getId().equals(edge4.getId())) {
+            sourceVertexData = carol;
+            targetVertexData = dave;
+        } else if (edgeData.getId().equals(edge5.getId())) {
+            sourceVertexData = dave;
+            targetVertexData = carol;
+        } else if (edgeData.getId().equals(edge6.getId())) {
+            sourceVertexData = eve;
+            targetVertexData = alice;
+        } else if (edgeData.getId().equals(edge7.getId())) {
+            sourceVertexData = eve;
+            targetVertexData = tagDatabases;
+        } else if (edgeData.getId().equals(edge8.getId())) {
+            sourceVertexData = alice;
+            targetVertexData = tagDatabases;
+        } else if (edgeData.getId().equals(edge9.getId())) {
+            sourceVertexData = dave;
+            targetVertexData = tagHadoop;
+        } else if (edgeData.getId().equals(edge10.getId())) {
+            sourceVertexData = frank;
+            targetVertexData = tagHadoop;
+        } else if (edgeData.getId().equals(edge11.getId())) {
+            sourceVertexData = forumGDBS;
+            targetVertexData = tagDatabases;
+        } else if (edgeData.getId().equals(edge12.getId())) {
+            sourceVertexData = forumGDBS;
+            targetVertexData = tagGraphs;
+        } else if (edgeData.getId().equals(edge13.getId())) {
+            sourceVertexData = forumGPS;
+            targetVertexData = tagGraphs;
+        } else if (edgeData.getId().equals(edge14.getId())) {
+            sourceVertexData = forumGPS;
+            targetVertexData = tagHadoop;
+        } else if (edgeData.getId().equals(edge15.getId())) {
+            sourceVertexData = forumGDBS;
+            targetVertexData = alice;
+        } else if (edgeData.getId().equals(edge16.getId())) {
+            sourceVertexData = forumGPS;
+            targetVertexData = dave;
+        } else if (edgeData.getId().equals(edge17.getId())) {
+            sourceVertexData = forumGDBS;
+            targetVertexData = alice;
+        } else if (edgeData.getId().equals(edge18.getId())) {
+            sourceVertexData = forumGDBS;
+            targetVertexData = bob;
+        } else if (edgeData.getId().equals(edge19.getId())) {
+            sourceVertexData = forumGPS;
+            targetVertexData = carol;
+        } else if (edgeData.getId().equals(edge20.getId())) {
+            sourceVertexData = forumGPS;
+            targetVertexData = dave;
+        } else if (edgeData.getId().equals(edge21.getId())) {
+            sourceVertexData = eve;
+            targetVertexData = bob;
+        } else if (edgeData.getId().equals(edge22.getId())) {
+            sourceVertexData = frank;
+            targetVertexData = carol;
+        } else if (edgeData.getId().equals(edge23.getId())) {
+            sourceVertexData = frank;
+            targetVertexData = dave;
+        }
+        persistentEdgeData.add(edgeDataFactory.createEdgeData(edgeData, sourceVertexData, targetVertexData));
+    }
+    return persistentEdgeData;
+}

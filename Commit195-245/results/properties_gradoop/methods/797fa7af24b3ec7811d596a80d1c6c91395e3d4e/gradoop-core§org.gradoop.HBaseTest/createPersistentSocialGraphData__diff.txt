@@ -1,0 +1,24 @@
+protected Collection<PersistentGraphData> createPersistentSocialGraphData() {
+    Collection<DefaultGraphData> graphDataCollection = createGraphDataCollection();
+    List<PersistentGraphData> persistentGraphData = Lists.newArrayListWithExpectedSize(graphDataCollection.size());
+    PersistentGraphDataFactory<DefaultGraphData, DefaultPersistentGraphData> graphDataFactory = new DefaultPersistentGraphDataFactory();
+    Set<Long> vertexIds = null;
+    Set<Long> edgeIds = null;
+    for (DefaultGraphData graphData : graphDataCollection) {
+        if (graphData.getId().equals(communityDatabases.getId())) {
+            vertexIds = Sets.newHashSet(alice.getId(), bob.getId(), eve.getId());
+            edgeIds = Sets.newHashSet(edge0.getId(), edge1.getId(), edge6.getId(), edge21.getId());
+        } else if (graphData.getId().equals(communityHadoop.getId())) {
+            vertexIds = Sets.newHashSet(carol.getId(), dave.getId(), frank.getId());
+            edgeIds = Sets.newHashSet(edge4.getId(), edge5.getId(), edge22.getId(), edge23.getId());
+        } else if (graphData.getId().equals(communityGraphs.getId())) {
+            vertexIds = Sets.newHashSet(alice.getId(), bob.getId(), carol.getId(), dave.getId());
+            edgeIds = Sets.newHashSet(edge0.getId(), edge1.getId(), edge2.getId(), edge3.getId(), edge4.getId(), edge5.getId());
+        } else if (graphData.getId().equals(forumGraph.getId())) {
+            vertexIds = Sets.newHashSet(carol.getId(), dave.getId(), frank.getId(), forumGPS.getId());
+            edgeIds = Sets.newHashSet(edge4.getId(), edge16.getId(), edge19.getId(), edge20.getId());
+        }
+        persistentGraphData.add(graphDataFactory.createGraphData(graphData, vertexIds, edgeIds));
+    }
+    return persistentGraphData;
+}

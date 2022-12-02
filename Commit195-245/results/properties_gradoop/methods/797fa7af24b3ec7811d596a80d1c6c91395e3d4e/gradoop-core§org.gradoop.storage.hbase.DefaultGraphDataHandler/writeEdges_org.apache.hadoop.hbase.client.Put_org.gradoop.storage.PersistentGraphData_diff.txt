@@ -1,0 +1,10 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public Put writeEdges(Put put, PersistentGraphData graphData) {
+    for (Long edgeId : graphData.getEdges()) {
+        put.add(CF_EDGES_BYTES, Bytes.toBytes(edgeId), null);
+    }
+    return put;
+}

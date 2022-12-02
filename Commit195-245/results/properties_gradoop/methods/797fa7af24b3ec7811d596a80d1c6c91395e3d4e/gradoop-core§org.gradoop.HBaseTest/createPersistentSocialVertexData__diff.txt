@@ -1,0 +1,45 @@
+protected Collection<PersistentVertexData<DefaultEdgeData>> createPersistentSocialVertexData() {
+    Collection<DefaultVertexData> vertexDataCollection = createVertexDataCollection();
+    List<PersistentVertexData<DefaultEdgeData>> persistentVertexData = Lists.newArrayListWithExpectedSize(vertexDataCollection.size());
+    PersistentVertexDataFactory<DefaultVertexData, DefaultEdgeData, DefaultPersistentVertexData> vertexDataFactory = new DefaultPersistentVertexDataFactory();
+    Set<DefaultEdgeData> outEdges = null;
+    Set<DefaultEdgeData> inEdges = null;
+    for (DefaultVertexData vertexData : vertexDataCollection) {
+        if (vertexData.getId().equals(alice.getId())) {
+            outEdges = Sets.newHashSet(edge0, edge8);
+            inEdges = Sets.newHashSet(edge1, edge6, edge15, edge17);
+        } else if (vertexData.getId().equals(bob.getId())) {
+            outEdges = Sets.newHashSet(edge1, edge2);
+            inEdges = Sets.newHashSet(edge0, edge3, edge18, edge21);
+        } else if (vertexData.getId().equals(carol.getId())) {
+            outEdges = Sets.newHashSet(edge3, edge4);
+            inEdges = Sets.newHashSet(edge2, edge5, edge19, edge22);
+        } else if (vertexData.getId().equals(dave.getId())) {
+            outEdges = Sets.newHashSet(edge5, edge9);
+            inEdges = Sets.newHashSet(edge4, edge16, edge20, edge23);
+        } else if (vertexData.getId().equals(eve.getId())) {
+            outEdges = Sets.newHashSet(edge6, edge7, edge21);
+            inEdges = Sets.newHashSet();
+        } else if (vertexData.getId().equals(frank.getId())) {
+            outEdges = Sets.newHashSet(edge10, edge22, edge23);
+            inEdges = Sets.newHashSet();
+        } else if (vertexData.getId().equals(tagDatabases.getId())) {
+            outEdges = Sets.newHashSet();
+            inEdges = Sets.newHashSet(edge7, edge8, edge11);
+        } else if (vertexData.getId().equals(tagGraphs.getId())) {
+            outEdges = Sets.newHashSet();
+            inEdges = Sets.newHashSet(edge12, edge13);
+        } else if (vertexData.getId().equals(tagHadoop.getId())) {
+            outEdges = Sets.newHashSet();
+            inEdges = Sets.newHashSet(edge9, edge10, edge14);
+        } else if (vertexData.getId().equals(forumGDBS.getId())) {
+            outEdges = Sets.newHashSet(edge11, edge12, edge15, edge17, edge18);
+            inEdges = Sets.newHashSet();
+        } else if (vertexData.getId().equals(forumGPS.getId())) {
+            outEdges = Sets.newHashSet(edge13, edge14, edge16, edge19, edge20);
+            inEdges = Sets.newHashSet();
+        }
+        persistentVertexData.add(vertexDataFactory.createVertexData(vertexData, outEdges, inEdges));
+    }
+    return persistentVertexData;
+}

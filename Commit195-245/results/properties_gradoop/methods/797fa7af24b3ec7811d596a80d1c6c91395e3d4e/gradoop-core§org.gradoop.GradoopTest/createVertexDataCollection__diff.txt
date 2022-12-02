@@ -1,0 +1,63 @@
+protected Collection<DefaultVertexData> createVertexDataCollection() {
+    // vertices
+    DefaultVertexDataFactory vertexDataFactory = new DefaultVertexDataFactory();
+    // Person:Alice (0L)
+    Map<String, Object> properties = new HashMap<>();
+    properties.put(PROPERTY_KEY_NAME, "Alice");
+    properties.put(PROPERTY_KEY_GENDER, "f");
+    properties.put(PROPERTY_KEY_CITY, "Leipzig");
+    alice = vertexDataFactory.createVertexData(0L, LABEL_PERSON, properties, Sets.newHashSet(0L, 2L));
+    // Person:Bob (1L)
+    properties = new HashMap<>();
+    properties.put(PROPERTY_KEY_NAME, "Bob");
+    properties.put(PROPERTY_KEY_GENDER, "m");
+    properties.put(PROPERTY_KEY_CITY, "Leipzig");
+    bob = vertexDataFactory.createVertexData(1L, LABEL_PERSON, properties, Sets.newHashSet(0L, 2L));
+    // Person:Carol (2L)
+    properties = new HashMap<>();
+    properties.put(PROPERTY_KEY_NAME, "Carol");
+    properties.put(PROPERTY_KEY_GENDER, "f");
+    properties.put(PROPERTY_KEY_CITY, "Dresden");
+    carol = vertexDataFactory.createVertexData(2L, LABEL_PERSON, properties, Sets.newHashSet(1L, 2L, 3L));
+    // Person:Dave (3L)
+    properties = new HashMap<>();
+    properties.put(PROPERTY_KEY_NAME, "Dave");
+    properties.put(PROPERTY_KEY_GENDER, "m");
+    properties.put(PROPERTY_KEY_CITY, "Dresden");
+    dave = vertexDataFactory.createVertexData(3L, LABEL_PERSON, properties, Sets.newHashSet(1L, 2L, 3L));
+    // Person:Eve (4L)
+    properties = new HashMap<>();
+    properties.put(PROPERTY_KEY_NAME, "Eve");
+    properties.put(PROPERTY_KEY_GENDER, "f");
+    properties.put(PROPERTY_KEY_CITY, "Dresden");
+    properties.put(PROPERTY_KEY_SPEAKS, "English");
+    eve = vertexDataFactory.createVertexData(4L, LABEL_PERSON, properties, Sets.newHashSet(0L));
+    // Person:Frank (5L)
+    properties = new HashMap<>();
+    properties.put(PROPERTY_KEY_NAME, "Frank");
+    properties.put(PROPERTY_KEY_GENDER, "m");
+    properties.put(PROPERTY_KEY_CITY, "Berlin");
+    properties.put(PROPERTY_KEY_LOC_IP, "127.0.0.1");
+    frank = vertexDataFactory.createVertexData(5L, LABEL_PERSON, properties, Sets.newHashSet(1L));
+    // Tag:Databases (6L)
+    properties = new HashMap<>();
+    properties.put(PROPERTY_KEY_NAME, "Databases");
+    tagDatabases = vertexDataFactory.createVertexData(6L, LABEL_TAG, properties);
+    // Tag:Databases (7L)
+    properties = new HashMap<>();
+    properties.put(PROPERTY_KEY_NAME, "Graphs");
+    tagGraphs = vertexDataFactory.createVertexData(7L, LABEL_TAG, properties);
+    // Tag:Databases (8L)
+    properties = new HashMap<>();
+    properties.put(PROPERTY_KEY_NAME, "Hadoop");
+    tagHadoop = vertexDataFactory.createVertexData(8L, LABEL_TAG, properties);
+    // Forum:Graph Databases (9L)
+    properties = new HashMap<>();
+    properties.put(PROPERTY_KEY_TITLE, "Graph Databases");
+    forumGDBS = vertexDataFactory.createVertexData(9L, LABEL_FORUM, properties);
+    // Forum:Graph Processing (10L)
+    properties = new HashMap<>();
+    properties.put(PROPERTY_KEY_TITLE, "Graph Processing");
+    forumGPS = vertexDataFactory.createVertexData(10L, LABEL_FORUM, properties, Sets.newHashSet(3L));
+    return Lists.newArrayList(alice, bob, carol, dave, eve, frank, tagDatabases, tagGraphs, tagHadoop, forumGDBS, forumGPS);
+}

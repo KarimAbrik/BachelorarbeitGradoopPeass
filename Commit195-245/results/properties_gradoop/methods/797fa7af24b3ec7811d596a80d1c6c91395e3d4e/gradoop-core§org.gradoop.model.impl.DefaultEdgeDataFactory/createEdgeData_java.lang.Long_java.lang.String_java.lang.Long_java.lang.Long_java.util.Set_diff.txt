@@ -1,0 +1,7 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public DefaultEdgeData createEdgeData(final Long id, final String label, final Long sourceVertexId, final Long targetVertexId, Set<Long> graphs) {
+    return createEdgeData(id, label, sourceVertexId, targetVertexId, null, graphs);
+}

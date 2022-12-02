@@ -1,0 +1,100 @@
+protected Collection<DefaultEdgeData> createEdgeDataCollection() {
+    // sna_edges
+    DefaultEdgeDataFactory edgeDataFactory = new DefaultEdgeDataFactory();
+    List<DefaultEdgeData> edges = Lists.newArrayList();
+    // Person:Alice-[knows]->Person:Bob (0L)
+    Map<String, Object> properties = new HashMap<>();
+    properties.put(PROPERTY_KEY_SINCE, 2014);
+    edge0 = edgeDataFactory.createEdgeData(0L, LABEL_KNOWS, alice.getId(), bob.getId(), properties, Sets.newHashSet(0L, 2L));
+    edges.add(edge0);
+    // Person:Bob-[knows]->Person:Alice (1L)
+    properties = new HashMap<>();
+    properties.put(PROPERTY_KEY_SINCE, 2014);
+    edge1 = edgeDataFactory.createEdgeData(1L, LABEL_KNOWS, bob.getId(), alice.getId(), properties, Sets.newHashSet(0L, 2L));
+    edges.add(edge1);
+    // Person:Bob-[knows]->Person:Carol (2L)
+    properties = new HashMap<>();
+    properties.put(PROPERTY_KEY_SINCE, 2013);
+    edge2 = edgeDataFactory.createEdgeData(2L, LABEL_KNOWS, bob.getId(), carol.getId(), properties, Sets.newHashSet(2L));
+    edges.add(edge2);
+    // Person:Carol-[knows]->Person:Bob (3L)
+    properties = new HashMap<>();
+    properties.put(PROPERTY_KEY_SINCE, 2013);
+    edge3 = edgeDataFactory.createEdgeData(3L, LABEL_KNOWS, carol.getId(), bob.getId(), properties, Sets.newHashSet(2L));
+    edges.add(edge3);
+    // Person:Carol-[knows]->Person:Dave (4L)
+    properties = new HashMap<>();
+    properties.put(PROPERTY_KEY_SINCE, 2014);
+    edge4 = edgeDataFactory.createEdgeData(4L, LABEL_KNOWS, carol.getId(), dave.getId(), properties, Sets.newHashSet(1L, 2L, 3L));
+    edges.add(edge4);
+    // Person:Dave-[knows]->Person:Carol (5L)
+    properties = new HashMap<>();
+    properties.put(PROPERTY_KEY_SINCE, 2014);
+    edge5 = edgeDataFactory.createEdgeData(5L, LABEL_KNOWS, dave.getId(), carol.getId(), properties, Sets.newHashSet(1L, 2L));
+    edges.add(edge5);
+    // Person:Eve-[knows]->Person:Alice (6L)
+    properties = new HashMap<>();
+    properties.put(PROPERTY_KEY_SINCE, 2013);
+    edge6 = edgeDataFactory.createEdgeData(6L, LABEL_KNOWS, eve.getId(), alice.getId(), properties, Sets.newHashSet(0L));
+    edges.add(edge6);
+    // Person:Eve-[knows]->Person:Bob (21L)
+    properties = new HashMap<>();
+    properties.put(PROPERTY_KEY_SINCE, 2015);
+    edge21 = edgeDataFactory.createEdgeData(21L, LABEL_KNOWS, eve.getId(), bob.getId(), properties, Sets.newHashSet(0L));
+    edges.add(edge21);
+    // Person:Frank-[knows]->Person:Carol (22L)
+    properties = new HashMap<>();
+    properties.put(PROPERTY_KEY_SINCE, 2015);
+    edge22 = edgeDataFactory.createEdgeData(22L, LABEL_KNOWS, frank.getId(), carol.getId(), properties, Sets.newHashSet(1L));
+    edges.add(edge22);
+    // Person:Frank-[knows]->Person:Dave (23L)
+    properties = new HashMap<>();
+    properties.put(PROPERTY_KEY_SINCE, 2015);
+    edge23 = edgeDataFactory.createEdgeData(23L, LABEL_KNOWS, frank.getId(), dave.getId(), properties, Sets.newHashSet(1L));
+    edges.add(edge23);
+    // Person:Eve-[hasInterest]->Tag:Databases (7L)
+    edge7 = edgeDataFactory.createEdgeData(7L, LABEL_HAS_INTEREST, eve.getId(), tagDatabases.getId());
+    edges.add(edge7);
+    // Person:Alice-[hasInterest]->Tag:Databases (8L)
+    edge8 = edgeDataFactory.createEdgeData(8L, LABEL_HAS_INTEREST, alice.getId(), tagDatabases.getId());
+    edges.add(edge8);
+    // Person:Dave-[hasInterest]->Tag:Hadoop (9L)
+    edge9 = edgeDataFactory.createEdgeData(9L, LABEL_HAS_INTEREST, dave.getId(), tagHadoop.getId());
+    edges.add(edge9);
+    // Person:Frank-[hasInterest]->Tag:Hadoop (10L)
+    edge10 = edgeDataFactory.createEdgeData(10L, LABEL_HAS_INTEREST, frank.getId(), tagHadoop.getId());
+    edges.add(edge10);
+    // Forum:Graph Databases-[hasTag]->Tag:Databases (11L)
+    edge11 = edgeDataFactory.createEdgeData(11L, LABEL_HAS_TAG, forumGDBS.getId(), tagDatabases.getId());
+    edges.add(edge11);
+    // Forum:Graph Databases-[hasTag]->Tag:Graphs (12L)
+    edge12 = edgeDataFactory.createEdgeData(12L, LABEL_HAS_TAG, forumGDBS.getId(), tagGraphs.getId());
+    edges.add(edge12);
+    // Forum:Graph Processing-[hasTag]->Tag:Graphs (13L)
+    edge13 = edgeDataFactory.createEdgeData(13L, LABEL_HAS_TAG, forumGPS.getId(), tagGraphs.getId());
+    edges.add(edge13);
+    // Forum:Graph Processing-[hasTag]->Tag:Hadoop (14L)
+    edge14 = edgeDataFactory.createEdgeData(14L, LABEL_HAS_TAG, forumGPS.getId(), tagHadoop.getId());
+    edges.add(edge14);
+    // Forum:Graph Databases-[hasModerator]->Person:Alice (15L)
+    edge15 = edgeDataFactory.createEdgeData(15L, LABEL_HAS_MODERATOR, forumGDBS.getId(), alice.getId());
+    edges.add(edge15);
+    // Forum:Graph Processing-[hasModerator]->Person:Dave (16L)
+    properties = new HashMap<>();
+    properties.put(PROPERTY_KEY_SINCE, 2013);
+    edge16 = edgeDataFactory.createEdgeData(16L, LABEL_HAS_MODERATOR, forumGPS.getId(), dave.getId(), properties, Sets.newHashSet(3L));
+    edges.add(edge16);
+    // Forum:Graph Databases-[hasMember]->Person:Alice (17L)
+    edge17 = edgeDataFactory.createEdgeData(17L, LABEL_HAS_MEMBER, forumGDBS.getId(), alice.getId());
+    edges.add(edge17);
+    // Forum:Graph Databases-[hasMember]->Person:Bob (18L)
+    edge18 = edgeDataFactory.createEdgeData(18L, LABEL_HAS_MEMBER, forumGDBS.getId(), bob.getId());
+    edges.add(edge18);
+    // Forum:Graph Processing-[hasMember]->Person:Carol (19L)
+    edge19 = edgeDataFactory.createEdgeData(19L, LABEL_HAS_MEMBER, forumGPS.getId(), carol.getId(), Sets.newHashSet(3L));
+    edges.add(edge19);
+    // Forum:Graph Processing-[hasMember]->Person:Dave (20L)
+    edge20 = edgeDataFactory.createEdgeData(20L, LABEL_HAS_MEMBER, forumGPS.getId(), dave.getId(), Sets.newHashSet(3L));
+    edges.add(edge20);
+    return edges;
+}

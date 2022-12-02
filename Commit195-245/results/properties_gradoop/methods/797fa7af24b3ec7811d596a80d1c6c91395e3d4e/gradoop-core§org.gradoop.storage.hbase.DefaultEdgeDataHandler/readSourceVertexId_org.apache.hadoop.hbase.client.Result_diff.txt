@@ -1,0 +1,7 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public Long readSourceVertexId(Result res) {
+    return Bytes.toLong(res.getValue(CF_META_BYTES, COL_SOURCE_VERTEX_BYTES));
+}
