@@ -1,0 +1,13 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public Collection<VD> collect() throws Exception {
+    return vertices.map(new MapFunction<Vertex<Long, VD>, VD>() {
+
+        @Override
+        public VD map(Vertex<Long, VD> v) throws Exception {
+            return v.getValue();
+        }
+    }).collect();
+}

@@ -1,0 +1,23 @@
+/**
+ * Creates an EPGM database from an EPGM Store using the given arguments.
+ *
+ * @param epgmStore EPGM store
+ * @param env       Flink execution environment
+ * @param <VD>      vertex data type
+ * @param <ED>      edge data type
+ * @param <GD>      graph data type
+ * @return EPGM database
+ */
+@SuppressWarnings("unchecked")
+public static <VD extends VertexData, ED extends EdgeData, GD extends GraphData> EPGMDatabase<VD, ED, GD> fromHBase(EPGMStore<VD, ED, GD> epgmStore, final ExecutionEnvironment env) {
+    // used for type hinting when loading vertex data
+    TypeInformation<Vertex<Long, VD>> vertexTypeInfo = new TupleTypeInfo(Vertex.class, BasicTypeInfo.LONG_TYPE_INFO, TypeExtractor.createTypeInfo(epgmStore.getVertexDataHandler().getVertexDataFactory().getType()));
+    // used for type hinting when loading edge data
+    TypeInformation<Edge<Long, ED>> edgeTypeInfo = new TupleTypeInfo(Edge.class, BasicTypeInfo.LONG_TYPE_INFO, BasicTypeInfo.LONG_TYPE_INFO, TypeExtractor.createTypeInfo(epgmStore.getEdgeDataHandler().getEdgeDataFactory().getType()));
+    // used for type hinting when loading graph data
+    TypeInformation<Subgraph<Long, GD>> graphTypeInfo = new TupleTypeInfo(Subgraph.class, BasicTypeInfo.LONG_TYPE_INFO, TypeExtractor.createTypeInfo(epgmStore.getGraphDataHandler().getGraphDataFactory().getType()));
+    DataSet<Vertex<Long, VD>> vertexDataSet = env.createInput(new HBaseReader.VertexDataTableInputFormat<>(epgmStore.getVertexDataHandler(), epgmStore.getVertexDataTableName()), vertexTypeInfo);
+    DataSet<Edge<Long, ED>> edgeDataSet = env.createInput(new HBaseReader.EdgeDataTableInputFormat<>(epgmStore.getEdgeDataHandler(), epgmStore.getEdgeDataTableName()), edgeTypeInfo);
+    DataSet<Subgraph<Long, GD>> subgraphDataSet = env.createInput(new HBaseReader.GraphDataTableInputFormat<>(epgmStore.getGraphDataHandler(), epgmStore.getGraphDataTableName()), graphTypeInfo);
+    return new EPGMDatabase<>(vertexDataSet, edgeDataSet, subgraphDataSet, epgmStore.getVertexDataHandler().getVertexDataFactory(), epgmStore.getEdgeDataHandler().getEdgeDataFactory(), epgmStore.getGraphDataHandler().getGraphDataFactory(), env);
+}

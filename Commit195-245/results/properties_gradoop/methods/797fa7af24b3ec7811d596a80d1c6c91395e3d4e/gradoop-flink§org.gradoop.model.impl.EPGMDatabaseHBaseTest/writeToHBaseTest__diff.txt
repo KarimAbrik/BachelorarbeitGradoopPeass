@@ -1,0 +1,38 @@
+/**
+ * Reads data from JSON to {@link EPGMDatabase}, writes it to HBase, reads
+ * it from {@link EPGMStore} and validates the counts.
+ *
+ * @throws Exception
+ */
+@Test
+public void writeToHBaseTest() throws Exception {
+    // create empty EPGM store
+    EPGMStore<DefaultVertexData, DefaultEdgeData, DefaultGraphData> epgmStore = createEmptyEPGMStore();
+    // read test data from json into EPGM database
+    String vertexFile = EPGMDatabaseJSONTest.class.getResource("/sna_nodes").getFile();
+    String edgeFile = EPGMDatabaseJSONTest.class.getResource("/sna_edges").getFile();
+    String graphFile = EPGMDatabaseJSONTest.class.getResource("/sna_graphs").getFile();
+    EPGMDatabase<DefaultVertexData, DefaultEdgeData, DefaultGraphData> graphDB = EPGMDatabase.fromJsonFile(vertexFile, edgeFile, graphFile, ExecutionEnvironment.getExecutionEnvironment());
+    // write EPGM database to HBase
+    graphDB.writeToHBase(epgmStore, new DefaultPersistentVertexDataFactory(), new DefaultPersistentEdgeDataFactory(), new DefaultPersistentGraphDataFactory());
+    epgmStore.flush();
+    // check graph count
+    int cnt = 0;
+    for (Iterator<DefaultGraphData> graphDataIterator = epgmStore.getGraphSpace(); graphDataIterator.hasNext(); ) {
+        cnt++;
+    }
+    assertEquals("wrong graph count", 4, cnt);
+    // check edge count
+    cnt = 0;
+    for (Iterator<DefaultEdgeData> edgeDataIterator = epgmStore.getEdgeSpace(); edgeDataIterator.hasNext(); ) {
+        cnt++;
+    }
+    assertEquals("wrong edge count", 24, cnt);
+    // check vertex count
+    cnt = 0;
+    for (Iterator<DefaultVertexData> vertexDataIterator = epgmStore.getVertexSpace(); vertexDataIterator.hasNext(); ) {
+        cnt++;
+    }
+    assertEquals("wrong vertex count", 11, cnt);
+    epgmStore.close();
+}

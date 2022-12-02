@@ -1,0 +1,7 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public boolean filter(Vertex<Long, VD> v) throws Exception {
+    return (v.getValue().getGraphCount() > 0) && v.getValue().getGraphs().contains(graphId);
+}

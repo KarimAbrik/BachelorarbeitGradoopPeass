@@ -1,0 +1,25 @@
+/**
+ * Writes persistent data using the {@link EPGMStore} and reads it via the
+ * {@link EPGMDatabase}.
+ *
+ * @throws Exception
+ */
+@Test
+public void readFromHBaseTest() throws Exception {
+    EPGMStore<DefaultVertexData, DefaultEdgeData, DefaultGraphData> epgmStore = createEmptyEPGMStore();
+    for (PersistentGraphData graphData : createPersistentSocialGraphData()) {
+        epgmStore.writeGraphData(graphData);
+    }
+    for (PersistentVertexData<DefaultEdgeData> vertexData : createPersistentSocialVertexData()) {
+        epgmStore.writeVertexData(vertexData);
+    }
+    for (PersistentEdgeData<DefaultVertexData> edgeData : createPersistentSocialEdgeData()) {
+        epgmStore.writeEdgeData(edgeData);
+    }
+    epgmStore.flush();
+    EPGMDatabase<DefaultVertexData, DefaultEdgeData, DefaultGraphData> epgmDatabase = EPGMDatabase.fromHBase(epgmStore, ExecutionEnvironment.getExecutionEnvironment());
+    assertEquals("wrong graph count", 4, epgmDatabase.getCollection().getGraphCount());
+    assertEquals("wrong vertex count", 11, epgmDatabase.getDatabaseGraph().getVertexCount());
+    assertEquals("wrong edge count", 24, epgmDatabase.getDatabaseGraph().getEdgeCount());
+    epgmStore.close();
+}

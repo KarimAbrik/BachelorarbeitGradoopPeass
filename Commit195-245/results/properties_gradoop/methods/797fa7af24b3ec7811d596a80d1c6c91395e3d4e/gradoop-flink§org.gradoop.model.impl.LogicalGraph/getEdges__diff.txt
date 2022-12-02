@@ -1,0 +1,7 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public EdgeDataCollection<ED> getEdges() {
+    return new EdgeDataCollection<>(graph.getEdges());
+}
