@@ -1,0 +1,13 @@
+/**
+ * Get value of RDF literal
+ *
+ * @param token literal (RDF object)
+ * @return literal value
+ */
+private String getLiteralValue(String token) {
+    Matcher m = LITERAL_VALUE.matcher(token);
+    if (m.find()) {
+        return m.group(1);
+    }
+    return "";
+}

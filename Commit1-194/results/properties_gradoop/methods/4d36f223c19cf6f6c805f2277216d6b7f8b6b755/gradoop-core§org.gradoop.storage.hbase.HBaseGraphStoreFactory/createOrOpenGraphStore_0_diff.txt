@@ -1,0 +1,22 @@
+/**
+ * Creates a graph store or opens an existing one based on the given
+ * parameters. If something goes wrong, {@code null} is returned.
+ *
+ * @param config          cluster configuration
+ * @param vertexHandler   vertex storage handler
+ * @param graphHandler    graph graph storage handler
+ * @param vertexTableName vertex table name
+ * @param graphTableName  graph graph table name
+ * @return a graph store instance or {@code null in the case of errors}
+ */
+public static GraphStore createOrOpenGraphStore(final Configuration config, final VertexHandler vertexHandler, final GraphHandler graphHandler, final String vertexTableName, final String graphTableName) {
+    try {
+        createTablesIfNotExists(config, vertexHandler, graphHandler, vertexTableName, graphTableName);
+        HTable verticesTable = new HTable(config, vertexTableName);
+        HTable graphsTable = new HTable(config, graphTableName);
+        return new HBaseGraphStore(graphsTable, verticesTable, vertexHandler, graphHandler);
+    } catch (IOException e) {
+        e.printStackTrace();
+        return null;
+    }
+}

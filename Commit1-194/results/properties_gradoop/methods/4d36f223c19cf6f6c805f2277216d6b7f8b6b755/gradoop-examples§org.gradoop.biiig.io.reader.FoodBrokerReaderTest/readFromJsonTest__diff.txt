@@ -1,0 +1,11 @@
+@Test
+public void readFromJsonTest() throws IOException {
+    FoodBrokerReader reader = new FoodBrokerReader();
+    List<Vertex> vertices = Lists.newArrayList();
+    for (String line : FOODBROKER_SAMPLE) {
+        vertices.addAll(reader.readVertexList(line));
+    }
+    // reader creates a vertex for each line in the input: 1 vertex for each
+    // vertex line and 2 vertices for each edge line (outgoing + incoming)
+    assertEquals(FOODBROKER_SAMPLE_VCOUNT + 2 * FOODBROKER_SAMPLE_ECOUNT, vertices.size());
+}

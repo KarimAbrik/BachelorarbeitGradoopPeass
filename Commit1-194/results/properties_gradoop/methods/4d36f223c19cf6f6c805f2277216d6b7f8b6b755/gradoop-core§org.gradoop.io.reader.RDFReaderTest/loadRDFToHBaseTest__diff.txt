@@ -1,0 +1,12 @@
+@Test
+public void loadRDFToHBaseTest() throws IOException {
+    GraphStore graphStore = createEmptyGraphStore();
+    VertexLineReader rdfReader = new RDFReader();
+    for (String line : RDF_NTRIPLES) {
+        for (Vertex v : rdfReader.readVertexList(line)) {
+            graphStore.writeVertex(v);
+        }
+    }
+    validateRDFGraph(graphStore);
+    graphStore.close();
+}

@@ -1,0 +1,43 @@
+@Test
+public void checkSimpleRDFNTripleInputTest() {
+    for (Vertex v : createVerticesFromRDF()) {
+        long id = v.getID();
+        if (id == lgdID) {
+            checkLabel(v, lgd);
+            for (Edge e : v.getOutgoingEdges()) {
+                assertEquals(e.getOtherID(), geoID);
+                assertEquals(e.getLabel(), eLabel);
+            }
+        } else if (id == geoID) {
+            checkLabel(v, geo);
+            for (Edge e : v.getIncomingEdges()) {
+                assertTrue((long) e.getOtherID() == lgdID || (long) e.getOtherID() == dbpID);
+                assertEquals(e.getLabel(), eLabel);
+            }
+        } else if (id == dbpID) {
+            checkLabel(v, dbp);
+            if (v.getOutgoingDegree() < 1) {
+                for (String prop : v.getPropertyKeys()) {
+                    if (prop.equals(post)) {
+                        assertEquals(v.getProperty(prop), postVal);
+                    } else if (prop.equals(pop)) {
+                        assertEquals(v.getProperty(prop), popVal);
+                    }
+                }
+            } else {
+                for (Edge e : v.getOutgoingEdges()) {
+                    assertTrue((long) e.getOtherID() == geoID || (long) e.getOtherID() == hedbpID);
+                    assertEquals(e.getLabel(), eLabel);
+                }
+            }
+        } else if (id == hedbpID) {
+            checkLabel(v, hedbp);
+            for (Edge e : v.getIncomingEdges()) {
+                assertEquals(e.getOtherID(), dbpID);
+                assertEquals(e.getLabel(), eLabel);
+            }
+        } else {
+            assertTrue("wrong triple contained", false);
+        }
+    }
+}

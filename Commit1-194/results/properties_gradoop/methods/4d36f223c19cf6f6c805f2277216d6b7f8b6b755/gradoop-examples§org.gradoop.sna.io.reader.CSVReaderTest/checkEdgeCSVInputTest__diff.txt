@@ -1,0 +1,25 @@
+@Test
+public void checkEdgeCSVInputTest() {
+    List<Vertex> vlist = createEdgesFromCSV();
+    for (Vertex v : vlist) {
+        long id = v.getID();
+        assertEquals(vlist.size(), 4);
+        if (id == person2) {
+            assertEquals(v.getOutgoingDegree(), 1);
+            assertEquals(v.getIncomingDegree(), 0);
+            checkOutgoingEdge(Lists.newArrayList(v.getOutgoingEdges()));
+        } else if (id == person3) {
+            assertEquals(v.getIncomingDegree(), 1);
+            assertEquals(v.getOutgoingDegree(), 0);
+            checkIncomingEdge(Lists.newArrayList(v.getIncomingEdges()));
+        } else if (id == person4) {
+            assertEquals(v.getIncomingDegree(), 0);
+            assertEquals(v.getOutgoingDegree(), 1);
+            checkOutgoingEdge(Lists.newArrayList(v.getOutgoingEdges()));
+        } else if (id == person5) {
+            assertEquals(v.getIncomingDegree(), 1);
+            assertEquals(v.getOutgoingDegree(), 0);
+            checkIncomingEdge(Lists.newArrayList(v.getIncomingEdges()));
+        }
+    }
+}

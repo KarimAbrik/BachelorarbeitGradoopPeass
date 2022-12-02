@@ -1,0 +1,17 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public List<Vertex> readVertexList(String line) {
+    List<Vertex> vList = setVList();
+    if (initialStep) {
+        initialStep(line);
+    } else {
+        if (isNodeCSV) {
+            vList.add(readVertex(line));
+        } else {
+            readEdges(vList, line);
+        }
+    }
+    return vList;
+}

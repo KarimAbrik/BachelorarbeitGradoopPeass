@@ -1,0 +1,41 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public Vertex readVertex(String line) {
+    Vertex v = null;
+    try {
+        JSONObject json = new JSONObject(line);
+        // vertex id
+        Long vertexID = readVertexID(json);
+        // vertex label
+        String label = null;
+        if (json.has(JsonWriter.LABEL)) {
+            label = readLabel(json);
+        }
+        // vertex properties
+        Map<String, Object> properties = null;
+        if (json.has(JsonWriter.PROPERTIES)) {
+            properties = readProperties(json.getJSONObject(JsonWriter.PROPERTIES));
+        }
+        // outgoing edges
+        Iterable<Edge> outgoingEdges = null;
+        if (json.has(JsonWriter.OUT_EDGES)) {
+            outgoingEdges = readEdges(json.getJSONArray(JsonWriter.OUT_EDGES));
+        }
+        // incoming edges
+        Iterable<Edge> incomingEdges = null;
+        if (json.has(JsonWriter.IN_EDGES)) {
+            incomingEdges = readEdges(json.getJSONArray(JsonWriter.IN_EDGES));
+        }
+        // graphs
+        Iterable<Long> graphs = null;
+        if (json.has(JsonWriter.GRAPHS)) {
+            graphs = readGraphs(json.getJSONArray(JsonWriter.GRAPHS));
+        }
+        v = VertexFactory.createDefaultVertex(vertexID, label, properties, outgoingEdges, incomingEdges, graphs);
+    } catch (JSONException e) {
+        e.printStackTrace();
+    }
+    return v;
+}

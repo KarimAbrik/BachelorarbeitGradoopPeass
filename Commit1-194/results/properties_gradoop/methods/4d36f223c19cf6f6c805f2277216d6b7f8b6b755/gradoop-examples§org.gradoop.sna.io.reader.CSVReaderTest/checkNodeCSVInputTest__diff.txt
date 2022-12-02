@@ -1,0 +1,69 @@
+@Test
+public void checkNodeCSVInputTest() {
+    List<Vertex> vlist = createVerticesFromCSV();
+    assertTrue(vlist.size() == 2);
+    for (Vertex v : vlist) {
+        long id = v.getID();
+        if (id == person0) {
+            checkLabel(v, LABEL_NODE);
+            for (String propertyKey : v.getPropertyKeys()) {
+                switch(propertyKey) {
+                    case FIRSTNAMEPROPERTY:
+                        {
+                            String value = (String) v.getProperty(propertyKey);
+                            assertEquals(value, FIRSTNAMEVALUE0);
+                            break;
+                        }
+                    case LASTNAMEPROPERTY:
+                        {
+                            String value = (String) v.getProperty(LASTNAMEPROPERTY);
+                            assertEquals(value, LASTNAMEVALUE0);
+                            break;
+                        }
+                    case GENDERPROPERTY:
+                        {
+                            String value = (String) v.getProperty(GENDERPROPERTY);
+                            assertEquals(value, GENDERVALUE0);
+                            break;
+                        }
+                    case BIRTHDAYPROPERTY:
+                        {
+                            String value = (String) v.getProperty(BIRTHDAYPROPERTY);
+                            assertEquals(value, BIRTHDAYVALUE0);
+                            break;
+                        }
+                }
+            }
+        } else if (id == person1) {
+            checkLabel(v, LABEL_NODE);
+            for (String propertyKey : v.getPropertyKeys()) {
+                switch(propertyKey) {
+                    case FIRSTNAMEPROPERTY:
+                        {
+                            String value = (String) v.getProperty(propertyKey);
+                            assertEquals(value, FIRSTNAMEVALUE1);
+                            break;
+                        }
+                    case LASTNAMEPROPERTY:
+                        {
+                            String value = (String) v.getProperty(LASTNAMEPROPERTY);
+                            assertEquals(value, LASTNAMEVALUE1);
+                            break;
+                        }
+                    case GENDERPROPERTY:
+                        {
+                            String value = (String) v.getProperty(GENDERPROPERTY);
+                            assertEquals(value, GENDERVALUE1);
+                            break;
+                        }
+                    case BIRTHDAYPROPERTY:
+                        {
+                            String value = (String) v.getProperty(BIRTHDAYPROPERTY);
+                            assertEquals(value, BIRTHDAYVALUE1);
+                            break;
+                        }
+                }
+            }
+        }
+    }
+}
