@@ -1,0 +1,16 @@
+/**
+ * Reads graph identifiers from a given string by splitting with {@code
+ * VALUE_TOKEN_SEPARATOR}.
+ *
+ * @param lineToken string including graph identifiers
+ * @return graph list
+ */
+private Iterable<Long> readGraphs(String lineToken) {
+    String[] valueTokens = VALUE_TOKEN_SEPARATOR.split(lineToken);
+    int graphCount = Integer.parseInt(valueTokens[0]);
+    List<Long> graphs = Lists.newArrayListWithCapacity(graphCount);
+    for (int i = 1; i < valueTokens.length; i++) {
+        graphs.add(Long.parseLong(valueTokens[i]));
+    }
+    return graphs;
+}

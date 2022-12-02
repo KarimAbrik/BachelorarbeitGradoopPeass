@@ -1,0 +1,15 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public Vertex readVertex(final String line) {
+    // 0|A|3 k1 5 v1 k2 5 v2 k3 5 v3|a.1.0 1 k1 5 v1|b.1.0 1 k1 5 v1|1 0
+    String[] lineTokens = getLineTokens(line);
+    Long vertexID = readVertexID(lineTokens[0]);
+    Iterable<String> labels = readLabels(lineTokens[1]);
+    Map<String, Object> properties = readProperties(lineTokens[2]);
+    Iterable<Edge> outEdges = readEdges(lineTokens[3]);
+    Iterable<Edge> inEdges = readEdges(lineTokens[4]);
+    Iterable<Long> graphs = readGraphs(lineTokens[5]);
+    return VertexFactory.createDefaultVertex(vertexID, labels, properties, outEdges, inEdges, graphs);
+}

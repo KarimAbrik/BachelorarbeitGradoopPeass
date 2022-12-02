@@ -1,0 +1,4 @@
+protected File getTempFile(String fileName) throws IOException {
+    fileName = (fileName != null) ? fileName : getCallingMethod() + "_" + new Random().nextLong();
+    return temporaryFolder.newFile(fileName);
+}
