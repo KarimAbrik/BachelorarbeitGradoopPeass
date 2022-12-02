@@ -1,0 +1,13 @@
+/**                                                                                                  |                                                                                                     
+* {@inheritDoc}                                                                                      |                                                                                                     
+*/                                                                                                   |                                                                                                     
+@Override                                                                                            |                                                                                                     
+public Collection&lt;ED&gt; collect() throws Exception {                                             |                                                                                                     
+return edges.map(new MapFunction&lt;Edge&lt;Long, ED&gt;, ED&gt;() {                                 |                                                                                                     
+                                                                                                                                                                                                           
+@Override                                                                                            |                                                                                                     
+public ED map(Edge&lt;Long, ED&gt; e) throws Exception {                                             |                                                                                                     
+return e.getValue();                                                                                 |                                                                                                     
+}                                                                                                    |                                                                                                     
+}).collect();                                                                                        |                                                                                                     
+}                                                                                                    |                                                                                                     

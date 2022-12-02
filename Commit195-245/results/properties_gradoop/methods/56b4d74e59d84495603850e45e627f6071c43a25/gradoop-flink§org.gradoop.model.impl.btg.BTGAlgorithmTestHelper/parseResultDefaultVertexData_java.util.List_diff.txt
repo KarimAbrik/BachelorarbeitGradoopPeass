@@ -1,0 +1,7 @@
+public static Map<Long, List<Long>> parseResultDefaultVertexData(List<Vertex<Long, DefaultVertexData>> graph) {
+    Map<Long, List<Long>> result = new HashMap<>();
+    for (Vertex<Long, DefaultVertexData> v : graph) {
+        result.put(v.getId(), Lists.newArrayList(v.getValue().getGraphs()));
+    }
+    return result;
+}

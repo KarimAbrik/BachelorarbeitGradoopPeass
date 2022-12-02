@@ -1,0 +1,13 @@
+                                                                                                     | /**                                                                                                 
+                                                                                                     | * {@inheritDoc}                                                                                     
+                                                                                                     | */                                                                                                  
+                                                                                                     | @Override                                                                                           
+                                                                                                     | public DataSet&lt;VD&gt; getVertexData() {                                                          
+                                                                                                     | return getVertices().map(new MapFunction&lt;Vertex&lt;Long, VD&gt;, VD&gt;() {                      
+                                                                                                                                                                                                           
+                                                                                                     | @Override                                                                                           
+                                                                                                     | public VD map(Vertex&lt;Long, VD&gt; longVDVertex) throws Exception {                               
+                                                                                                     | return longVDVertex.getValue();                                                                     
+                                                                                                     | }                                                                                                   
+                                                                                                     | }).withForwardedFields("f1-&gt;*");                                                                 
+                                                                                                     | }                                                                                                   

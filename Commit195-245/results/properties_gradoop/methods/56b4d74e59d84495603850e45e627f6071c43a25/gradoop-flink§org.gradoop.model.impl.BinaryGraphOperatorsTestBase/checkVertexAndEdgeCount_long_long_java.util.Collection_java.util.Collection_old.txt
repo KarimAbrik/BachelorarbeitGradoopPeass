@@ -1,0 +1,4 @@
+protected void checkVertexAndEdgeCount(long expectedVertexCount, long expectedEdgeCount, Collection<DefaultVertexData> vertexData, Collection<DefaultEdgeData> edgeData) {
+    assertEquals("wrong number of vertex values", expectedVertexCount, vertexData.size());
+    assertEquals("wrong number of edge values", expectedEdgeCount, edgeData.size());
+}

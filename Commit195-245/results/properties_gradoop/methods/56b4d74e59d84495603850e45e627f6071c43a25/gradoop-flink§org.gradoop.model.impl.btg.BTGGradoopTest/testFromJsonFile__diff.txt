@@ -1,0 +1,16 @@
+@Test                                                                                                  @Test                                                                                               
+public void testFromJsonFile() throws Exception {                                                      public void testFromJsonFile() throws Exception {                                                   
+String vertexFile = BTGGradoopTest.class.getResource("/btg/btg_nodes").getFile();                      String vertexFile = BTGGradoopTest.class.getResource("/btg/btg_nodes").getFile();                   
+String edgeFile = BTGGradoopTest.class.getResource("/btg/btg_edges").getFile();                        String edgeFile = BTGGradoopTest.class.getResource("/btg/btg_edges").getFile();                     
+ExecutionEnvironment env = ExecutionEnvironment.getExecutionEnvironment();                             ExecutionEnvironment env = ExecutionEnvironment.getExecutionEnvironment();                          
+EPGMDatabase&lt;DefaultVertexData, DefaultEdgeData, DefaultGraphData&gt; graphStore = EPGMDatabase.f   EPGMDatabase&lt;DefaultVertexData, DefaultEdgeData, DefaultGraphData&gt; graphStore = EPGMDatabase.f
+LogicalGraph&lt;DefaultVertexData, DefaultEdgeData, DefaultGraphData&gt; databaseGraph = graphStore.   LogicalGraph&lt;DefaultVertexData, DefaultEdgeData, DefaultGraphData&gt; databaseGraph = graphStore.
+GraphCollection&lt;DefaultVertexData, DefaultEdgeData, DefaultGraphData&gt; btgGraph = databaseGraph   GraphCollection&lt;DefaultVertexData, DefaultEdgeData, DefaultGraphData&gt; btgGraph = databaseGraph
+assertNotNull("graph collection is null", databaseGraph);                                              assertNotNull("graph collection is null", databaseGraph);                                           
+assertEquals("wrong number of graphs", 2l, btgGraph.size());                                           assertEquals("wrong number of graphs", 2l, btgGraph.size());                                        
+assertEquals("wrong number of vertices", 9l, btgGraph.getGraph(4L).getVertexCount());                  assertEquals("wrong number of vertices", 9l, btgGraph.getGraph(4L).getVertexCount());               
+assertEquals("wrong number of vertices", 11l, btgGraph.getGraph(9L).getVertexCount());                 assertEquals("wrong number of vertices", 11l, btgGraph.getGraph(9L).getVertexCount());              
+assertEquals("wrong number of edges", 0l, btgGraph.getGraph(9L).getEdgeCount());                       assertEquals("wrong number of edges", 0l, btgGraph.getGraph(9L).getEdgeCount());                    
+assertEquals("wrong number of edges", 0l, btgGraph.getGraph(4L).getEdgeCount());                       assertEquals("wrong number of edges", 0l, btgGraph.getGraph(4L).getEdgeCount());                    
+validateConnectedIIGResult(BTGAlgorithmTestHelper.parseResultDefaultVertexData(btgGraph.getGellyGrap | validateConnectedIIGResult(BTGAlgorithmTestHelper.parseResultDefaultVertexData(btgGraph.getVertices(
+}                                                                                                      }                                                                                                   

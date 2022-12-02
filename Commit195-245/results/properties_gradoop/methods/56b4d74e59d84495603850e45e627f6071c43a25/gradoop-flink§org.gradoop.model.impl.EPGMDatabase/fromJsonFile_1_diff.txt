@@ -1,0 +1,18 @@
+/**
+ * Creates a database from JSON files. Paths can be local (file://) or HDFS
+ * (hdfs://). Data POJOs are created using the given factories.
+ *
+ * @param vertexFile        path to vertex data file
+ * @param edgeFile          path to edge data file
+ * @param vertexDataFactory vertex data factory
+ * @param edgeDataFactory   edge data factory
+ * @param graphDataFactory  graph data factory
+ * @param env               Flink execution environment
+ * @param <VD>              vertex data type
+ * @param <ED>              edge data type
+ * @param <GD>              graph data type
+ * @return EPGM database
+ */
+public static <VD extends VertexData, ED extends EdgeData, GD extends GraphData> EPGMDatabase fromJsonFile(String vertexFile, String edgeFile, VertexDataFactory<VD> vertexDataFactory, EdgeDataFactory<ED> edgeDataFactory, GraphDataFactory<GD> graphDataFactory, ExecutionEnvironment env) {
+    return fromJsonFile(vertexFile, edgeFile, null, vertexDataFactory, edgeDataFactory, graphDataFactory, env);
+}

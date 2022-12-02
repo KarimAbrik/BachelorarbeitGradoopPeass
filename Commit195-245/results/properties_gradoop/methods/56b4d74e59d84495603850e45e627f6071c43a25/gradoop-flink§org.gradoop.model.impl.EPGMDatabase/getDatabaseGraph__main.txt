@@ -1,0 +1,9 @@
+/**
+ * Returns a logical graph containing the complete vertex and edge space of
+ * that EPGM database.
+ *
+ * @return logical graph of vertex and edge space
+ */
+public LogicalGraph<VD, ED, GD> getDatabaseGraph() {
+    return LogicalGraph.fromGellyGraph(database.getGellyGraph(), databaseData, vertexDataFactory, edgeDataFactory, graphDataFactory);
+}

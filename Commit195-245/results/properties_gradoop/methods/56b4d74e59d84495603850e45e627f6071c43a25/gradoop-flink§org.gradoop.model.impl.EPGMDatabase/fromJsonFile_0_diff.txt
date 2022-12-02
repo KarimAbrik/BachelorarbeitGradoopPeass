@@ -1,0 +1,35 @@
+/**
+ * Creates a database from JSON files. Paths can be local (file://) or HDFS
+ * (hdfs://).
+ *
+ * @param vertexFile        vertex data file
+ * @param edgeFile          edge data file
+ * @param graphFile         graph data file
+ * @param vertexDataFactory vertex data factory
+ * @param edgeDataFactory   edge data factory
+ * @param graphDataFactory  graph data factory
+ * @param env               Flink execution environment
+ * @param <VD>              vertex data type
+ * @param <ED>              edge data type
+ * @param <GD>              graph data type
+ * @return EPGM database
+ */
+@SuppressWarnings("unchecked")
+public static <VD extends VertexData, ED extends EdgeData, GD extends GraphData> EPGMDatabase fromJsonFile(String vertexFile, String edgeFile, String graphFile, VertexDataFactory<VD> vertexDataFactory, EdgeDataFactory<ED> edgeDataFactory, GraphDataFactory<GD> graphDataFactory, ExecutionEnvironment env) {
+    // used for type hinting when loading vertex data
+    TypeInformation<Vertex<Long, VD>> vertexTypeInfo = new TupleTypeInfo(Vertex.class, BasicTypeInfo.LONG_TYPE_INFO, TypeExtractor.createTypeInfo(vertexDataFactory.getType()));
+    // used for type hinting when loading edge data
+    TypeInformation<Edge<Long, ED>> edgeTypeInfo = new TupleTypeInfo(Edge.class, BasicTypeInfo.LONG_TYPE_INFO, BasicTypeInfo.LONG_TYPE_INFO, TypeExtractor.createTypeInfo(edgeDataFactory.getType()));
+    // used for type hinting when loading graph data
+    TypeInformation<Subgraph<Long, GD>> graphTypeInfo = new TupleTypeInfo(Subgraph.class, BasicTypeInfo.LONG_TYPE_INFO, TypeExtractor.createTypeInfo(graphDataFactory.getType()));
+    // read vertex, edge and graph data
+    DataSet<Vertex<Long, VD>> vertices = env.readTextFile(vertexFile).map(new JsonReader.JsonToVertexMapper<>(vertexDataFactory)).returns(vertexTypeInfo);
+    DataSet<Edge<Long, ED>> edges = env.readTextFile(edgeFile).map(new JsonReader.JsonToEdgeMapper<>(edgeDataFactory)).returns(edgeTypeInfo);
+    DataSet<Subgraph<Long, GD>> graphs;
+    if (graphFile != null) {
+        graphs = env.readTextFile(graphFile).map(new JsonReader.JsonToGraphMapper<>(graphDataFactory)).returns(graphTypeInfo);
+    } else {
+        graphs = env.fromCollection(Lists.newArrayList(new Subgraph<>(FlinkConstants.DATABASE_GRAPH_ID, graphDataFactory.createGraphData(FlinkConstants.DATABASE_GRAPH_ID))));
+    }
+    return new EPGMDatabase<>(vertices, edges, graphs, vertexDataFactory, edgeDataFactory, graphDataFactory, env);
+}

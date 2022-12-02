@@ -1,0 +1,13 @@
+                                                                                                     | /**                                                                                                 
+                                                                                                     | * {@inheritDoc}                                                                                     
+                                                                                                     | */                                                                                                  
+                                                                                                     | @Override                                                                                           
+                                                                                                     | public DataSet&lt;Edge&lt;Long, ED&gt;&gt; getIncomingEdges(final Long vertexID) {                  
+                                                                                                     | return this.graph.getEdges().filter(new FilterFunction&lt;Edge&lt;Long, ED&gt;&gt;() {              
+                                                                                                                                                                                                           
+                                                                                                     | @Override                                                                                           
+                                                                                                     | public boolean filter(Edge&lt;Long, ED&gt; edgeTuple) throws Exception {                            
+                                                                                                     | return edgeTuple.getTarget().equals(vertexID);                                                      
+                                                                                                     | }                                                                                                   
+                                                                                                     | });                                                                                                 
+                                                                                                     | }                                                                                                   

@@ -1,0 +1,9 @@
+/**
+ * Returns the internal Gelly graph representation. Must only be used by
+ * inheriting classes.
+ *
+ * @return Gelly graph representation
+ */
+protected Graph<Long, VD, ED> getGellyGraph() {
+    return this.graph;
+}

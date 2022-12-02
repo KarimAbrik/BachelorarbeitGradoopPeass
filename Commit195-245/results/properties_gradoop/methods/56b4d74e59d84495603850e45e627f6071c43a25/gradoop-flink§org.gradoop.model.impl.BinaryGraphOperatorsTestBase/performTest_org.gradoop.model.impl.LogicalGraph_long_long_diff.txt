@@ -1,0 +1,10 @@
+protected void performTest(LogicalGraph&lt;DefaultVertexData, DefaultEdgeData, DefaultGraphData&gt;    protected void performTest(LogicalGraph&lt;DefaultVertexData, DefaultEdgeData, DefaultGraphData&gt; 
+assertNotNull("resulting graph was null", resultGraph);                                                assertNotNull("resulting graph was null", resultGraph);                                             
+long newGraphID = resultGraph.getId();                                                                 long newGraphID = resultGraph.getId();                                                              
+assertEquals("wrong number of vertices", expectedVertexCount, resultGraph.getVertexCount());           assertEquals("wrong number of vertices", expectedVertexCount, resultGraph.getVertexCount());        
+assertEquals("wrong number of edges", expectedEdgeCount, resultGraph.getEdgeCount());                  assertEquals("wrong number of edges", expectedEdgeCount, resultGraph.getEdgeCount());               
+Collection&lt;DefaultVertexData&gt; vertexData = resultGraph.getVertices().collect();                | Collection&lt;Vertex&lt;Long, DefaultVertexData&gt;&gt; vertexData = resultGraph.getVertices().colle
+Collection&lt;DefaultEdgeData&gt; edgeData = resultGraph.getEdges().collect();                       | Collection&lt;Edge&lt;Long, DefaultEdgeData&gt;&gt; edgeData = resultGraph.getEdges().collect();    
+checkVertexAndEdgeCount(expectedVertexCount, expectedEdgeCount, vertexData, edgeData);                 checkVertexAndEdgeCount(expectedVertexCount, expectedEdgeCount, vertexData, edgeData);              
+checkGraphContainment(newGraphID, vertexData, edgeData);                                               checkGraphContainment(newGraphID, vertexData, edgeData);                                            
+}                                                                                                      }                                                                                                   

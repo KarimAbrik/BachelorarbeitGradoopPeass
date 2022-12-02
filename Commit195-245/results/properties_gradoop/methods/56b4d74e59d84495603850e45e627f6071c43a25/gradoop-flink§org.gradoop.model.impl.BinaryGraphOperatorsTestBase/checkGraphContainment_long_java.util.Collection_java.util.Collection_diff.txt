@@ -1,0 +1,8 @@
+protected void checkGraphContainment(long newGraphID, Collection&lt;DefaultVertexData&gt; vertexData | protected void checkGraphContainment(long newGraphID, Collection&lt;Vertex&lt;Long, DefaultVertexDat
+for (VertexData v : vertexData) {                                                                    | for (Vertex&lt;Long, DefaultVertexData&gt; v : vertexData) {                                        
+assertTrue("vertex is not in new graph", v.getGraphs().contains(newGraphID));                        | assertTrue("vertex is not in new graph", v.getValue().getGraphs().contains(newGraphID));            
+}                                                                                                      }                                                                                                   
+for (EdgeData e : edgeData) {                                                                        | for (Edge&lt;Long, DefaultEdgeData&gt; e : edgeData) {                                              
+assertTrue("edge is not in new graph", e.getGraphs().contains(newGraphID));                          | assertTrue("edge is not in new graph", e.getValue().getGraphs().contains(newGraphID));              
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,8 @@
+protected void checkGraphContainment(long newGraphID, Collection<DefaultVertexData> vertexData, Collection<DefaultEdgeData> edgeData) {
+    for (VertexData v : vertexData) {
+        assertTrue("vertex is not in new graph", v.getGraphs().contains(newGraphID));
+    }
+    for (EdgeData e : edgeData) {
+        assertTrue("edge is not in new graph", e.getGraphs().contains(newGraphID));
+    }
+}

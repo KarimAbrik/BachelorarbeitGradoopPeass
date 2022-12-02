@@ -1,0 +1,13 @@
+                                                                                                     | /**                                                                                                 
+                                                                                                     | * {@inheritDoc}                                                                                     
+                                                                                                     | */                                                                                                  
+                                                                                                     | @Override                                                                                           
+                                                                                                     | public DataSet&lt;ED&gt; getEdgeData() {                                                            
+                                                                                                     | return getEdges().map(new MapFunction&lt;Edge&lt;Long, ED&gt;, ED&gt;() {                           
+                                                                                                                                                                                                           
+                                                                                                     | @Override                                                                                           
+                                                                                                     | public ED map(Edge&lt;Long, ED&gt; longEDEdge) throws Exception {                                   
+                                                                                                     | return longEDEdge.getValue();                                                                       
+                                                                                                     | }                                                                                                   
+                                                                                                     | }).withForwardedFields("f2-&gt;*");                                                                 
+                                                                                                     | }                                                                                                   

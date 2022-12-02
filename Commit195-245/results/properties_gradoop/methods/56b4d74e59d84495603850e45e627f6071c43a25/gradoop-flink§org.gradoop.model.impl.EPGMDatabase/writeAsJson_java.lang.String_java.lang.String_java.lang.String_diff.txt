@@ -1,0 +1,20 @@
+/**
+ * Writes the epgm database into three separate JSON files. {@code
+ * vertexFile} contains all vertex data, {@code edgeFile} contains all edge
+ * data and {@code graphFile} contains graph data of all logical graphs.
+ * <p/>
+ * Operation uses Flink to write the internal datasets, thus writing to
+ * local file system ({@code file://}) as well as HDFS ({@code hdfs://}) is
+ * supported.
+ *
+ * @param vertexFile vertex data output file
+ * @param edgeFile   edge data output file
+ * @param graphFile  graph data output file
+ * @throws Exception
+ */
+public void writeAsJson(final String vertexFile, final String edgeFile, final String graphFile) throws Exception {
+    getDatabaseGraph().getGellyGraph().getVertices().writeAsFormattedText(vertexFile, new JsonWriter.VertexTextFormatter<VD>());
+    getDatabaseGraph().getGellyGraph().getEdges().writeAsFormattedText(edgeFile, new JsonWriter.EdgeTextFormatter<ED>());
+    getCollection().getSubgraphs().writeAsFormattedText(graphFile, new JsonWriter.GraphTextFormatter<GD>());
+    env.execute();
+}

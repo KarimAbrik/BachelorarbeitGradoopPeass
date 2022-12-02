@@ -1,0 +1,19 @@
+/**
+ * Creates a database from JSON files. Paths can be local (file://) or HDFS
+ * (hdfs://).
+ * <p/>
+ * Uses default factories for POJO creation.
+ *
+ * @param vertexFile vertex data file
+ * @param edgeFile   edge data file
+ * @param graphFile  graph data file
+ * @param env        Flink execution environment
+ * @return EPGM database
+ * @see DefaultVertexDataFactory
+ * @see DefaultEdgeDataFactory
+ * @see DefaultGraphDataFactory
+ */
+@SuppressWarnings("unchecked")
+public static EPGMDatabase<DefaultVertexData, DefaultEdgeData, DefaultGraphData> fromJsonFile(String vertexFile, String edgeFile, String graphFile, ExecutionEnvironment env) {
+    return fromJsonFile(vertexFile, edgeFile, graphFile, new DefaultVertexDataFactory(), new DefaultEdgeDataFactory(), new DefaultGraphDataFactory(), env);
+}

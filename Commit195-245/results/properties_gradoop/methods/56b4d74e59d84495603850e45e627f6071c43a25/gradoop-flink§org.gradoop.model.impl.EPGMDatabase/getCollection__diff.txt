@@ -1,0 +1,22 @@
+/**
+ * Returns a collection of all logical graph contained in that EPGM database.
+ *
+ * @return collection of all logical graphs
+ */
+public GraphCollection<VD, ED, GD> getCollection() {
+    DataSet<Vertex<Long, VD>> newVertices = database.getGellyGraph().getVertices().filter(new FilterFunction<Vertex<Long, VD>>() {
+
+        @Override
+        public boolean filter(Vertex<Long, VD> longVDVertex) throws Exception {
+            return longVDVertex.getValue().getGraphCount() > 0;
+        }
+    });
+    DataSet<Edge<Long, ED>> newEdges = database.getGellyGraph().getEdges().filter(new FilterFunction<Edge<Long, ED>>() {
+
+        @Override
+        public boolean filter(Edge<Long, ED> longEDEdge) throws Exception {
+            return longEDEdge.getValue().getGraphCount() > 0;
+        }
+    });
+    return new GraphCollection<>(Graph.fromDataSet(newVertices, newEdges, env), database.getSubgraphs(), database.getVertexDataFactory(), database.getEdgeDataFactory(), database.getGraphDataFactory(), env);
+}
