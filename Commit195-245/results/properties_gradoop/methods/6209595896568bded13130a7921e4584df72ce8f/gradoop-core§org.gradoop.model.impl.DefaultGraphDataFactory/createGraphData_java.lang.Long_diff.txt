@@ -1,0 +1,7 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public DefaultGraphData createGraphData(final Long id) {
+    return createGraphData(id, GConstants.DEFAULT_GRAPH_LABEL, null);
+}
