@@ -1,0 +1,7 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public VertexDataCollection<VD> getVertices() {
+    return new VertexDataCollection<>(graph.getVertices());
+}

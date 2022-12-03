@@ -1,0 +1,13 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public Collection<ED> collect() throws Exception {
+    return edges.map(new MapFunction<Edge<Long, ED>, ED>() {
+
+        @Override
+        public ED map(Edge<Long, ED> e) throws Exception {
+            return e.getValue();
+        }
+    }).collect();
+}

@@ -1,0 +1,20 @@
+/**
+ * Creates a JSON string representation from a given edge data object.
+ *
+ * @param e edge data object
+ * @return JSON string representation
+ */
+@Override
+public String format(Edge<Long, ED> e) {
+    JSONObject json = new JSONObject();
+    try {
+        json.put(IDENTIFIER, e.getValue().getId());
+        json.put(EDGE_SOURCE, e.getSource());
+        json.put(EDGE_TARGET, e.getTarget());
+        json.put(DATA, writeProperties(e.getValue()));
+        json.put(META, writeGraphElementMeta(e.getValue()));
+    } catch (JSONException ex) {
+        ex.printStackTrace();
+    }
+    return json.toString();
+}

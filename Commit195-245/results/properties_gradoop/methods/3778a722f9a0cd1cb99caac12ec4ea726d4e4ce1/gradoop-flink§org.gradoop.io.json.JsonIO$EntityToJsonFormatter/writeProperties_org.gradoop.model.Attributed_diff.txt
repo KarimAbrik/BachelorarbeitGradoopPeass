@@ -1,0 +1,16 @@
+/**
+ * Writes all key-value properties to a json object and returns it.
+ *
+ * @param entity entity with key-value properties
+ * @return json object containing the properties
+ * @throws JSONException
+ */
+protected JSONObject writeProperties(Attributed entity) throws JSONException {
+    JSONObject data = new JSONObject();
+    if (entity.getPropertyCount() > 0) {
+        for (String propertyKey : entity.getPropertyKeys()) {
+            data.put(propertyKey, entity.getProperty(propertyKey));
+        }
+    }
+    return data;
+}

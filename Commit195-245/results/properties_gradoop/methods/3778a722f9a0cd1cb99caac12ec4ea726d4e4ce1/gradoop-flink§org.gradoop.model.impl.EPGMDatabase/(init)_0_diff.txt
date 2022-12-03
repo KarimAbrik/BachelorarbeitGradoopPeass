@@ -1,0 +1,19 @@
+/**
+ * Creates a new EPGM database from the given arguments.
+ *
+ * @param vertices          vertex data set
+ * @param edges             edge data set
+ * @param graphs            graph data set
+ * @param vertexDataFactory vertex data factory
+ * @param edgeDataFactory   edge data factory
+ * @param graphDataFactory  graph data factory
+ * @param env               Flink execution environment
+ */
+private EPGMDatabase(DataSet<Vertex<Long, VD>> vertices, DataSet<Edge<Long, ED>> edges, DataSet<Subgraph<Long, GD>> graphs, VertexDataFactory<VD> vertexDataFactory, EdgeDataFactory<ED> edgeDataFactory, GraphDataFactory<GD> graphDataFactory, ExecutionEnvironment env) {
+    this.vertexDataFactory = vertexDataFactory;
+    this.edgeDataFactory = edgeDataFactory;
+    this.graphDataFactory = graphDataFactory;
+    this.database = new GraphCollection<>(Graph.fromDataSet(vertices, edges, env), graphs, vertexDataFactory, edgeDataFactory, graphDataFactory, env);
+    this.env = env;
+    this.databaseData = graphDataFactory.createGraphData(FlinkConstants.DATABASE_GRAPH_ID);
+}
