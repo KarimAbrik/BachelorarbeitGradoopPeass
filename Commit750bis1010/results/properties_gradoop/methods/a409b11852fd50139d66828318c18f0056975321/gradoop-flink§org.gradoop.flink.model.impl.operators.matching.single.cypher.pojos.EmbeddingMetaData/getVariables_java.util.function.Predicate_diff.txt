@@ -1,0 +1,10 @@
+/**
+ * Returns the variables that fulfil the specified predicate. The variables are ordered by
+ * their appearance in the entry mapping.
+ *
+ * @param predicate predicate for entry types
+ * @return variables that fulfil the predicate
+ */
+private List<String> getVariables(Predicate<EntryType> predicate) {
+    return entryMapping.entrySet().stream().filter(entry -> predicate.test(entry.getKey().getRight())).sorted(Comparator.comparingInt(Map.Entry::getValue)).map(entry -> entry.getKey().getLeft()).collect(Collectors.toList());
+}

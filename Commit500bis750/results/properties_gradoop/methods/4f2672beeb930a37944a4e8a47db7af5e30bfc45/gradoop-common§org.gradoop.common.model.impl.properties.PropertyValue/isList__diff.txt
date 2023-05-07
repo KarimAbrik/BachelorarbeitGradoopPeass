@@ -1,0 +1,8 @@
+/**
+ * True, if the wrapped value is of type {@code List}.
+ *
+ * @return true, if {@code List} value
+ */
+public boolean isList() {
+    return rawBytes[0] == TYPE_LIST;
+}

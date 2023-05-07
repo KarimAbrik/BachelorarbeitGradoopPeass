@@ -1,0 +1,13 @@
+/**                                                                                                    /**                                                                                                 
+* Returns all vertices that belong to the given graph variables.                                       * Returns all vertices that belong to the given graph variables.                                    
+*                                                                                                      *                                                                                                   
+* @param graphVariables graph variables used in the GDL script                                         * @param graphVariables graph variables used in the GDL script                                      
+* @return vertices that are contained in the graphs                                                    * @return vertices that are contained in the graphs                                                 
+*/                                                                                                     */                                                                                                  
+public Collection&lt;V&gt; getVerticesByGraphVariables(String... graphVariables) {                     public Collection&lt;V&gt; getVerticesByGraphVariables(String... graphVariables) {                  
+GradoopIds graphIds = new GradoopIds();                                                              | GradoopIdSet graphIds = new GradoopIdSet();                                                         
+for (G graphHead : getGraphHeadsByVariables(graphVariables)) {                                         for (G graphHead : getGraphHeadsByVariables(graphVariables)) {                                      
+graphIds.add(graphHead.getId());                                                                       graphIds.add(graphHead.getId());                                                                    
+}                                                                                                      }                                                                                                   
+return getVerticesByGraphIds(graphIds);                                                                return getVerticesByGraphIds(graphIds);                                                             
+}                                                                                                      }                                                                                                   

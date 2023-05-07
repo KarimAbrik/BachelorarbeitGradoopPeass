@@ -1,0 +1,17 @@
+@Override
+public boolean equals(Object o) {
+    if (this == o) {
+        return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+        return false;
+    }
+    Embedding that = (Embedding) o;
+    if (!Arrays.equals(idData, that.idData)) {
+        return false;
+    }
+    if (!Arrays.equals(propertyData, that.propertyData)) {
+        return false;
+    }
+    return Arrays.equals(idListData, that.idListData);
+}

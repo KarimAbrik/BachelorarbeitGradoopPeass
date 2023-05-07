@@ -1,0 +1,13 @@
+/**
+ * Produces the final operator results from the iteration results
+ *
+ * @param iterationResults the results produced by the iteration
+ * @return iteration results filtered by upper and lower bound and combined with input data
+ */
+private DataSet<Embedding> postProcess(DataSet<ExpandEmbedding> iterationResults) {
+    DataSet<Embedding> results = iterationResults.flatMap(new PostProcessExpandEmbedding(lowerBound, closingColumn)).name(getName() + " - Post Processing");
+    if (lowerBound == 0) {
+        results = results.union(input.flatMap(new AdoptEmptyPaths(expandColumn, closingColumn)).name(getName() + " - Append empty paths"));
+    }
+    return results;
+}

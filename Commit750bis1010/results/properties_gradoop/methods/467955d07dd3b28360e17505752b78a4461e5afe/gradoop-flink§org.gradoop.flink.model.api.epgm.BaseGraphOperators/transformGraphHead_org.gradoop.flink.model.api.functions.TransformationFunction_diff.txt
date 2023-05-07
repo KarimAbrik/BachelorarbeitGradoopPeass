@@ -1,0 +1,10 @@
+/**
+ * Transforms the graph head of the base graph using the given
+ * transformation function. The identity of the graph is preserved.
+ *
+ * @param graphHeadTransformationFunction graph head transformation function
+ * @return transformed base graph
+ */
+default LG transformGraphHead(TransformationFunction<G> graphHeadTransformationFunction) {
+    return transform(graphHeadTransformationFunction, null, null);
+}

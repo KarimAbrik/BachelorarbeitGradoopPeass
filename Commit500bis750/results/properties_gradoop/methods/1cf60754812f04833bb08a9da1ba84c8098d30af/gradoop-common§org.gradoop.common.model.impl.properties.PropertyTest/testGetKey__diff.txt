@@ -1,0 +1,5 @@
+@Test
+public void testGetKey() throws Exception {
+    Property property = new Property("key", PropertyValue.create(10));
+    assertEquals("key", property.getKey());
+}

@@ -1,0 +1,19 @@
+/**
+ * The aggregation logic for calculating the average.
+ * This function requires property values to have a certain format, see {@link Average}.
+ *
+ * @param aggregate previously aggregated value
+ * @param increment value that is added to the aggregate
+ * @return The new aggregate value.
+ */
+@Override
+default PropertyValue aggregate(PropertyValue aggregate, PropertyValue increment) {
+    List<PropertyValue> aggregateValue = aggregate.getList();
+    List<PropertyValue> incrementValue = increment.getList();
+    PropertyValue sum = PropertyValueUtils.Numeric.add(aggregateValue.get(0), incrementValue.get(0));
+    PropertyValue count = PropertyValueUtils.Numeric.add(aggregateValue.get(1), incrementValue.get(1));
+    aggregateValue.set(0, sum);
+    aggregateValue.set(1, count);
+    aggregate.setList(aggregateValue);
+    return aggregate;
+}

@@ -1,0 +1,6 @@
+@Nonnull
+@Override
+default HBaseElementFilter<T> and(@Nonnull HBaseElementFilter<T> another) {
+    // this will be implemented at issue #857
+    throw new NotImplementedException("Logical 'and' not implemented.");
+}

@@ -1,0 +1,5 @@
+@Override
+public Tuple1<Long> map(WithCount<GradoopId> value) throws Exception {
+    reuse.f0 = maxDegree.f1 - value.f1;
+    return reuse;
+}

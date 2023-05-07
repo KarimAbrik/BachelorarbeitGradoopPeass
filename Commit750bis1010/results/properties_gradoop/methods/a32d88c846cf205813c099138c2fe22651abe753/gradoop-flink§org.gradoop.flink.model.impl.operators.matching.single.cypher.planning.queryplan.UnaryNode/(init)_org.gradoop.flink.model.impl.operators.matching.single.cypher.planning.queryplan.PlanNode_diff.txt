@@ -1,0 +1,9 @@
+/**
+ * Creates a new unary node
+ *
+ * @param childNode input of the node
+ */
+public UnaryNode(PlanNode childNode) {
+    Objects.requireNonNull(childNode);
+    this.childNode = childNode;
+}

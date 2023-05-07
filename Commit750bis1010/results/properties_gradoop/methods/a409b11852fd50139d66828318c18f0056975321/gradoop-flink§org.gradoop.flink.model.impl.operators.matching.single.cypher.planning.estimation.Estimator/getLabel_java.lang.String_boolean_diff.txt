@@ -1,0 +1,10 @@
+/**
+ * Returns the label of the given variable.
+ *
+ * @param variable query variable
+ * @param isVertex true, iff the variable maps to a vertex
+ * @return label
+ */
+String getLabel(String variable, boolean isVertex) {
+    return isVertex ? queryHandler.getVertexByVariable(variable).getLabel() : queryHandler.getEdgeByVariable(variable).getLabel();
+}

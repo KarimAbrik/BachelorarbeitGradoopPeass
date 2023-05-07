@@ -1,0 +1,11 @@
+/**
+ * Returns the radius of the query graph.
+ *
+ * @return radius
+ */
+public int getRadius() {
+    if (radius == null) {
+        radius = GraphMetrics.getRadius(this);
+    }
+    return radius;
+}

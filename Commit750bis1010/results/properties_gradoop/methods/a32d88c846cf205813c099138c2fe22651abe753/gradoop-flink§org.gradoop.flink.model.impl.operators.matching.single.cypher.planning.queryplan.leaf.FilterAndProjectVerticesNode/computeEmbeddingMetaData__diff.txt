@@ -1,0 +1,7 @@
+@Override
+protected EmbeddingMetaData computeEmbeddingMetaData() {
+    EmbeddingMetaData embeddingMetaData = new EmbeddingMetaData();
+    embeddingMetaData.setEntryColumn(vertexVariable, EmbeddingMetaData.EntryType.VERTEX, 0);
+    embeddingMetaData = setPropertyColumns(embeddingMetaData, vertexVariable, projectionKeys);
+    return embeddingMetaData;
+}

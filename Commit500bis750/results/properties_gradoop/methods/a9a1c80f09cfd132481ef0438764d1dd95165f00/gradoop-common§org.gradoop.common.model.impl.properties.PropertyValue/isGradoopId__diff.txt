@@ -1,0 +1,8 @@
+/**
+ * True, if the wrapped value is of type {@code GradoopId}.
+ *
+ * @return true, if {@code GradoopId} value
+ */
+public boolean isGradoopId() {
+    return rawBytes[0] == TYPE_GRADOOP_ID;
+}

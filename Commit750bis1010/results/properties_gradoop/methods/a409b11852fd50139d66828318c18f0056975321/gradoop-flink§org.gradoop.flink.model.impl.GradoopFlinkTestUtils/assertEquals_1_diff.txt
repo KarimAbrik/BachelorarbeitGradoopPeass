@@ -1,0 +1,25 @@
+public static void assertEquals(AdjacencyList<GradoopId, String, GradoopId, GradoopId> a, AdjacencyList<GradoopId, String, GradoopId, GradoopId> b) {
+    assertEqualElements(a.getGraphHead(), b.getGraphHead());
+    Set<GradoopId> ids = Sets.newHashSet();
+    Map<GradoopId, AdjacencyListRow<GradoopId, GradoopId>> aRows = a.getOutgoingRows();
+    Map<GradoopId, AdjacencyListRow<GradoopId, GradoopId>> bRows = b.getOutgoingRows();
+    Assert.assertEquals(aRows.size(), bRows.size());
+    for (GradoopId vertexId : aRows.keySet()) {
+        ids.add(vertexId);
+        List<AdjacencyListCell<GradoopId, GradoopId>> aCells = Lists.newArrayList(aRows.get(vertexId).getCells());
+        List<AdjacencyListCell<GradoopId, GradoopId>> bCells = Lists.newArrayList(aRows.get(vertexId).getCells());
+        Assert.assertEquals(aCells.size(), bCells.size());
+        aCells.sort(new AdjacencyListCellComparator<>());
+        bCells.sort(new AdjacencyListCellComparator<>());
+        Assert.assertEquals(aCells, bCells);
+        for (AdjacencyListCell<GradoopId, GradoopId> cell : aCells) {
+            ids.add(cell.getVertexData());
+        }
+    }
+    for (GradoopId id : ids) {
+        Assert.assertEquals(a.getLabel(id), b.getLabel(id));
+        Properties aProperties = a.getProperties(id);
+        Properties bProperties = b.getProperties(id);
+        assertTrue(aProperties == null && bProperties == null || aProperties.equals(bProperties));
+    }
+}

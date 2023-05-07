@@ -1,0 +1,15 @@
+/**
+ * Calculates the duration of a given element depending on the given {@link TimeDimension}.
+ * Returns {@link Long#MAX_VALUE} if either the start or end time of the duration are default values.
+ *
+ * @param element the temporal element
+ * @return the duration of the time interval
+ */
+@Override
+public PropertyValue getIncrement(TemporalElement element) {
+    PropertyValue duration = getDuration(element);
+    if (duration.getLong() == -1L) {
+        return PropertyValue.create(TemporalElement.DEFAULT_TIME_TO);
+    }
+    return duration;
+}

@@ -1,0 +1,14 @@
+/**
+ * Constructor
+ *
+ * @param query       GDL query graph
+ * @param attachData  true, if original data shall be attached to the result
+ * @param log         Logger of the concrete implementation
+ */
+public PatternMatching(String query, boolean attachData, Logger log) {
+    Preconditions.checkState(!Strings.isNullOrEmpty(query), "Query must not be null or empty");
+    this.query = query;
+    this.queryHandler = new QueryHandler(query);
+    this.attachData = attachData;
+    this.log = log;
+}

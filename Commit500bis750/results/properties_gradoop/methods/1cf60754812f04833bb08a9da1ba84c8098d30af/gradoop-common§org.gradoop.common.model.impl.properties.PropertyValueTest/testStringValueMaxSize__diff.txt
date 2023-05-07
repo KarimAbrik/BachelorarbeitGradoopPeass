@@ -1,0 +1,4 @@
+@Test                                                                                                  @Test                                                                                               
+public void testStringValueMaxSize() {                                                                 public void testStringValueMaxSize() {                                                              
+create(new String(new byte[PropertyValue.MAX_BINARY_LENGTH - 1]));                                   | create(new String(new byte[PropertyValue.LARGE_PROPERTY_THRESHOLD]));                               
+}                                                                                                      }                                                                                                   

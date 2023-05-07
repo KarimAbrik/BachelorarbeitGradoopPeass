@@ -1,0 +1,6 @@
+@Test(expected = NullPointerException.class)
+public void createWithNullIDTest() {
+    GradoopId sourceId = GradoopId.get();
+    GradoopId targetId = GradoopId.get();
+    new EdgeFactory().initEdge(null, sourceId, targetId);
+}

@@ -1,0 +1,22 @@
+/**
+ * Checks if any of the specified ids is contained in the set.
+ *
+ * @param other the ids to look for
+ * @return true, iff any of the specified ids is contained in the set
+ */
+public boolean containsAny(Set<GradoopId> other) {
+    Set<GradoopId> iterate = this.ids;
+    Set<GradoopId> contains = other;
+    int thisSize = this.size();
+    int otherSize = other.size();
+    if (thisSize > otherSize) {
+        iterate = other;
+        contains = this.ids;
+    }
+    for (GradoopId id : iterate) {
+        if (contains.contains(id)) {
+            return true;
+        }
+    }
+    return false;
+}

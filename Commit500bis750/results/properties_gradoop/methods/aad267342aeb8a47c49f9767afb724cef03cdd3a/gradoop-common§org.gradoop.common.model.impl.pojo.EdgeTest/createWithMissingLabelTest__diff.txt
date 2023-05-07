@@ -1,0 +1,8 @@
+@Test
+public void createWithMissingLabelTest() {
+    GradoopId edgeId = GradoopId.get();
+    GradoopId sourceId = GradoopId.get();
+    GradoopId targetId = GradoopId.get();
+    EPGMEdge e = new EdgeFactory().initEdge(edgeId, sourceId, targetId);
+    assertThat(e.getLabel(), is(GradoopConstants.DEFAULT_EDGE_LABEL));
+}

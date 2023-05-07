@@ -1,0 +1,12 @@
+@Override
+public void reduce(Iterable<Tuple2<String, G>> iterable, Collector<G> collector) throws Exception {
+    Iterator<Tuple2<String, G>> iterator = iterable.iterator();
+    G graphHead = iterator.next().f1;
+    int count = 1;
+    while (iterator.hasNext()) {
+        iterator.next();
+        count++;
+    }
+    graphHead.setProperty(propertyKey, count);
+    collector.collect(graphHead);
+}

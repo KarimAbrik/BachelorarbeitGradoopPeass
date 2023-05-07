@@ -1,0 +1,14 @@
+/**
+ * Create a new MinimalCSVImporter instance by the given parameters.
+ * Use the UTF-8 charset as default. The first line of the file will be set as the property
+ * names for each column.
+ *
+ * @param path the path to the csv file
+ * @param tokenSeparator the token delimiter of the csv file
+ * @param config GradoopFlinkConfig configuration
+ * @param checkReoccurringHeader if each row of the file should be checked for reoccurring of
+ *                               the column property names.
+ */
+public MinimalCSVImporter(String path, String tokenSeparator, GradoopFlinkConfig config, boolean checkReoccurringHeader) {
+    this(path, tokenSeparator, config, "UTF-8", checkReoccurringHeader);
+}

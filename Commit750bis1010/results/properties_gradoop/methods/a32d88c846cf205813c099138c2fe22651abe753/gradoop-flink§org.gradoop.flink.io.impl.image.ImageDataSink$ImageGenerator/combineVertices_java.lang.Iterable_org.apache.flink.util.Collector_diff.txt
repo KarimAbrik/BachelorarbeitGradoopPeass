@@ -1,0 +1,16 @@
+/**
+ * Combine multiple vertices into one Image
+ *
+ * @param iterable  The vertices to combine
+ * @param collector The output-collector
+ */
+public void combineVertices(Iterable<EPGMVertex> iterable, Collector<byte[]> collector) {
+    BufferedImage img = new BufferedImage(plotter.imageWidth, plotter.imageHeight, BufferedImage.TYPE_INT_ARGB);
+    Graphics2D gfx = img.createGraphics();
+    gfx.setColor(plotter.vertexColor);
+    for (EPGMVertex v : iterable) {
+        drawVertex(gfx, v);
+    }
+    collector.collect(imgToArr(img));
+    gfx.dispose();
+}

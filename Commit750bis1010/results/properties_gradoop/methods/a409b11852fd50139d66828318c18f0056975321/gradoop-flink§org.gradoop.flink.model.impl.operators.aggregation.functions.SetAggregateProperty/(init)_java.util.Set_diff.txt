@@ -1,0 +1,13 @@
+/**
+ * Creates a new instance of a SetAggregateProperty rich map function.
+ *
+ * @param aggregateFunctions aggregate functions
+ */
+public SetAggregateProperty(Set<AggregateFunction> aggregateFunctions) {
+    this.aggregateFunctions = Objects.requireNonNull(aggregateFunctions);
+    defaultValues = new HashMap<>();
+    for (AggregateFunction func : aggregateFunctions) {
+        Objects.requireNonNull(func);
+        defaultValues.put(func.getAggregatePropertyKey(), AggregateUtil.getDefaultAggregate(func));
+    }
+}

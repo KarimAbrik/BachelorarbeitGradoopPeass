@@ -1,0 +1,20 @@
+/**
+ * Generic wrapper function to createFrom a given predicate
+ * @param predicate the predicate to be warpped
+ * @return the wrapped predicate
+ */
+public static QueryPredicate createFrom(Predicate predicate) {
+    if (predicate.getClass() == And.class) {
+        return new AndPredicate((And) predicate);
+    } else if (predicate.getClass() == Or.class) {
+        return new OrPredicate((Or) predicate);
+    } else if (predicate.getClass() == Xor.class) {
+        return new XorPredicate((Xor) predicate);
+    } else if (predicate.getClass() == Not.class) {
+        return new NotPredicate((Not) predicate);
+    } else if (predicate.getClass() == Comparison.class) {
+        return new ComparisonExpression((Comparison) predicate);
+    } else {
+        throw new IllegalArgumentException(predicate.getClass() + " is not a GDL Predicate");
+    }
+}

@@ -1,0 +1,9 @@
+/**
+ * Returns the offset in the IdData array of the given entry
+ * @param column the index of the embedding entry
+ * @return Offset in the IdData array of the given entry
+ */
+private int getIdOffset(int column) {
+    checkColumn(column);
+    return column * ID_ENTRY_SIZE;
+}

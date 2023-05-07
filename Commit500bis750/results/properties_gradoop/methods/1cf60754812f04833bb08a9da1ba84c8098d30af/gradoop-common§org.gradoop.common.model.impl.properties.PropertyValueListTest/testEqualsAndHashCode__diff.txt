@@ -1,0 +1,10 @@
+@Test
+public void testEqualsAndHashCode() throws IOException {
+    PropertyValueList p1 = PropertyValueList.fromPropertyValues(Lists.newArrayList(PropertyValue.create(1L), PropertyValue.create(2L)));
+    PropertyValueList p2 = PropertyValueList.fromPropertyValues(Lists.newArrayList(PropertyValue.create(1L), PropertyValue.create(2L)));
+    PropertyValueList p3 = PropertyValueList.fromPropertyValues(Lists.newArrayList(PropertyValue.create(1L), PropertyValue.create(3L)));
+    assertTrue(p1.equals(p2));
+    assertFalse(p1.equals(p3));
+    assertTrue(p1.hashCode() == p2.hashCode());
+    assertFalse(p1.hashCode() == p3.hashCode());
+}

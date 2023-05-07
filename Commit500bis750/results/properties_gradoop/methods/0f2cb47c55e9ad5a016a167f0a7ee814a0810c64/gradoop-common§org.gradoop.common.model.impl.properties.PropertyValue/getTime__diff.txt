@@ -1,0 +1,8 @@
+/**
+ * Returns the wrapped List as {@code LocalTime}.
+ *
+ * @return {@code LocalTime} value
+ */
+public LocalTime getTime() {
+    return DateTimeSerializer.deserializeTime(Arrays.copyOfRange(rawBytes, OFFSET, DateTimeSerializer.SIZEOF_TIME + OFFSET));
+}

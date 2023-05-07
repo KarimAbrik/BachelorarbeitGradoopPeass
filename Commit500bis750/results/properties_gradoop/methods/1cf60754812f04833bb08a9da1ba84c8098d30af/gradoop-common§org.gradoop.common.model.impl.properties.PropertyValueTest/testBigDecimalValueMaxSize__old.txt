@@ -1,0 +1,7 @@
+@Test
+public void testBigDecimalValueMaxSize() {
+    // internal representation of BigInteger needs 5 bytes
+    byte[] bigendian = new byte[PropertyValue.MAX_BINARY_LENGTH - 5];
+    Arrays.fill(bigendian, (byte) 121);
+    create(new BigDecimal(new BigInteger(bigendian)));
+}

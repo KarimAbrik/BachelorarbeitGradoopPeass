@@ -1,0 +1,10 @@
+/**
+ * Wrap a {@link PropertyValue} into an internal representation used by this class.
+ *
+ * @param rawValue The raw property value.
+ * @return The wrapped property value.
+ * @see #unwrap(PropertyValue)
+ */
+protected PropertyValue wrap(PropertyValue rawValue) {
+    return PropertyValue.create(Arrays.asList(identifyingValue, rawValue));
+}

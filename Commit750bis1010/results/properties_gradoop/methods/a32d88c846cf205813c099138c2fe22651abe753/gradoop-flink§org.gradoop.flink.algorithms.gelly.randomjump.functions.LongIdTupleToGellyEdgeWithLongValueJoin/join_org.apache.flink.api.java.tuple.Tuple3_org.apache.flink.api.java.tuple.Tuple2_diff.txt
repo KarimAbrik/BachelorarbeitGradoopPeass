@@ -1,0 +1,7 @@
+@Override
+public Edge<Long, Long> join(Tuple3<Long, Long, GradoopId> edgeTuple, Tuple2<Long, GradoopId> indexToEdgeId) throws Exception {
+    reuseEdge.setSource(edgeTuple.f0);
+    reuseEdge.setTarget(edgeTuple.f1);
+    reuseEdge.setValue(indexToEdgeId.f0);
+    return reuseEdge;
+}

@@ -1,0 +1,9 @@
+/**
+ * Checks if the specified variable is mapped to a column in the embedding.
+ *
+ * @param variable query variable
+ * @return true, iff the variable is mapped to a column
+ */
+public boolean containsEntryColumn(String variable) {
+    return Arrays.stream(EntryType.values()).anyMatch(entryType -> entryMapping.containsKey(Pair.of(variable, entryType)));
+}

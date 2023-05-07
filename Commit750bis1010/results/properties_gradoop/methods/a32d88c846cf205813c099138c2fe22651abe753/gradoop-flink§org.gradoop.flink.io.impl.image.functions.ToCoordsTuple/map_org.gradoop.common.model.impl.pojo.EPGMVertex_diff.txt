@@ -1,0 +1,10 @@
+@Override
+public Tuple4<Integer, Integer, Integer, Integer> map(EPGMVertex vertex) throws Exception {
+    int x = vertex.getPropertyValue(LayoutingAlgorithm.X_COORDINATE_PROPERTY).getInt();
+    int y = vertex.getPropertyValue(LayoutingAlgorithm.Y_COORDINATE_PROPERTY).getInt();
+    coordTuple.f0 = x;
+    coordTuple.f1 = y;
+    coordTuple.f2 = x;
+    coordTuple.f3 = y;
+    return coordTuple;
+}

@@ -1,0 +1,12 @@
+/**
+ * Create gelly edge.
+ *
+ * @param tuple identifier of source and target vertex id's.
+ * @return gelly edge.
+ */
+@Override
+public Edge<Long, NullValue> map(Tuple4<Long, GradoopId, Long, Long> tuple) {
+    reuse.setSource(tuple.f2);
+    reuse.setTarget(tuple.f3);
+    return reuse;
+}

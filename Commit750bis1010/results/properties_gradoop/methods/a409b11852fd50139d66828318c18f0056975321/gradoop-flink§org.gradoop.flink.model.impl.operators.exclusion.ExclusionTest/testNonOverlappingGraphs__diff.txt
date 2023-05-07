@@ -1,0 +1,8 @@
+@Test
+public void testNonOverlappingGraphs() throws Exception {
+    FlinkAsciiGraphLoader loader = getSocialNetworkLoader();
+    LogicalGraph g0 = loader.getLogicalGraphByVariable("g0");
+    LogicalGraph g1 = loader.getLogicalGraphByVariable("g1");
+    collectAndAssertTrue(g0.exclude(g1).equalsByData(g0));
+    collectAndAssertTrue(g1.exclude(g0).equalsByData(g1));
+}

@@ -1,0 +1,10 @@
+/**
+ * Returns the properties referenced by the expression for a given variable
+ * @param variable the variable
+ * @return set of referenced properties
+ */
+public Set<String> getPropertyKeys(String variable) {
+    Set<String> properties = getLhs().getPropertyKeys(variable);
+    properties.addAll(getRhs().getPropertyKeys(variable));
+    return properties;
+}

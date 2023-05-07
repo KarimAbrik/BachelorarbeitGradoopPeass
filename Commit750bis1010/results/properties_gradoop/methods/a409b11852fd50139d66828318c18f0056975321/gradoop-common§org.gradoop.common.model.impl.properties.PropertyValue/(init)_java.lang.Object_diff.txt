@@ -1,0 +1,11 @@
+/**
+ * Creates a new property value from the given value.
+ *
+ * If the given object type is not supported, an
+ * {@link UnsupportedTypeException} will be thrown.
+ *
+ * @param value value with supported type
+ */
+private PropertyValue(Object value) {
+    setObject(value);
+}

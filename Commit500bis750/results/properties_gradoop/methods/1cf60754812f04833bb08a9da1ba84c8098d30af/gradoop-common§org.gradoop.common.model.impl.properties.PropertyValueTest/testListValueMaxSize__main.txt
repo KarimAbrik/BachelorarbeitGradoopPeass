@@ -1,0 +1,9 @@
+@Test
+public void testListValueMaxSize() {
+    int n = PropertyValue.LARGE_PROPERTY_THRESHOLD / 9;
+    List<PropertyValue> list = new ArrayList<>(n);
+    while (n-- > 0) {
+        list.add(create(Math.random()));
+    }
+    create(list);
+}

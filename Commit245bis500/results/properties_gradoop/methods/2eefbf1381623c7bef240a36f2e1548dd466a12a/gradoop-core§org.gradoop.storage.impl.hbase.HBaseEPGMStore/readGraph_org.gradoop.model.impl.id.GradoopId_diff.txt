@@ -1,0 +1,17 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public GD readGraph(final GradoopId graphId) {
+    GD graphData = null;
+    try {
+        GraphHeadHandler<GD> graphHeadHandler = config.getGraphHeadHandler();
+        Result res = graphHeadTable.get(new Get(Writables.getBytes(graphId)));
+        if (!res.isEmpty()) {
+            graphData = graphHeadHandler.readGraphHead(res);
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+    return graphData;
+}

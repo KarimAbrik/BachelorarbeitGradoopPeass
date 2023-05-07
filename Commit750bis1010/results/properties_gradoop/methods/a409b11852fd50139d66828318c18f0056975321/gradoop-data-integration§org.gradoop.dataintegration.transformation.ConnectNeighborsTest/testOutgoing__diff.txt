@@ -1,0 +1,12 @@
+/**
+ * Test using outgoing edges.
+ *
+ * @throws Exception when the execution in Flink fails.
+ */
+@Test
+public void testOutgoing() throws Exception {
+    LogicalGraph input = loader.getLogicalGraphByVariable("input");
+    UnaryGraphToGraphOperator operator = new ConnectNeighbors("Center", Neighborhood.EdgeDirection.OUTGOING, "V", "neighbor");
+    LogicalGraph expected = loader.getLogicalGraphByVariable("expectedOutgoing");
+    collectAndAssertTrue(expected.equalsByData(input.callForGraph(operator)));
+}

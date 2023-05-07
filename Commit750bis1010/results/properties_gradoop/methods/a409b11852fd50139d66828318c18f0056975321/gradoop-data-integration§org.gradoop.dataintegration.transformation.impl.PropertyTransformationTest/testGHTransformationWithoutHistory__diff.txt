@@ -1,0 +1,14 @@
+/**
+ * Executes a property transformation with disabled history on graphHeads and checks if the
+ * result is correct.
+ *
+ * @throws Exception If the execution fails.
+ */
+@Test
+public void testGHTransformationWithoutHistory() throws Exception {
+    FlinkAsciiGraphLoader loader = getLoaderFromString(TEST_GRAPH);
+    LogicalGraph original = loader.getLogicalGraphByVariable("g0");
+    LogicalGraph expected = loader.getLogicalGraphByVariable("g12");
+    LogicalGraph result = original.callForGraph(new PropertyTransformation<>("a", DIVISION, null, null));
+    collectAndAssertTrue(result.equalsByData(expected));
+}

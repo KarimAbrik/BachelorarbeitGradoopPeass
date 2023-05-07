@@ -1,0 +1,9 @@
+@Test
+public void testFilterWithNoPredicates() throws Exception {
+    CNF predicates = predicateFromQuery("MATCH (a)");
+    Properties properties = Properties.create();
+    properties.set("name", "Anton");
+    DataSet<EPGMVertex> vertices = getExecutionEnvironment().fromElements(new EPGMVertexFactory().createVertex("Person", properties));
+    FilterAndProjectVertices<EPGMVertex> filter = new FilterAndProjectVertices<>(vertices, predicates, new ArrayList<>());
+    assertEquals(1, filter.evaluate().count());
+}

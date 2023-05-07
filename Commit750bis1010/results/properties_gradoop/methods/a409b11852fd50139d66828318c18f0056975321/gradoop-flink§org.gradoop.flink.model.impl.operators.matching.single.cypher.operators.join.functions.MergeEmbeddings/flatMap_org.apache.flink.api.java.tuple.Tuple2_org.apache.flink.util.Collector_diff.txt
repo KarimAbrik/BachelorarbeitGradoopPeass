@@ -1,0 +1,4 @@
+@Override
+public void flatMap(Tuple2<Embedding, Embedding> value, Collector<Embedding> out) throws Exception {
+    join(value.f0, value.f1, out);
+}

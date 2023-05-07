@@ -1,0 +1,10 @@
+@Test
+public void testNonOverlappingGraphs() throws Exception {
+    FlinkAsciiGraphLoader loader = getSocialNetworkLoader();
+    loader.appendToDatabaseFromString("expected[" + "(alice)-[akb]->(bob)" + "(bob)-[bka]->(alice)" + "(eve)-[eka]->(alice)" + "(eve)-[ekb]->(bob)" + "(carol)-[ckd]->(dave)" + "(dave)-[dkc]->(carol)" + "(frank)-[fkc]->(carol)" + "(frank)-[fkd]->(dave)]");
+    LogicalGraph g0 = loader.getLogicalGraphByVariable("g0");
+    LogicalGraph g1 = loader.getLogicalGraphByVariable("g1");
+    LogicalGraph expected = loader.getLogicalGraphByVariable("expected");
+    assertTrue("combining non overlapping graphs failed", expected.equalsByElementIds(g0.combine(g1)).collect().get(0));
+    assertTrue("combining switched non overlapping graphs failed", expected.equalsByElementIds(g1.combine(g0)).collect().get(0));
+}

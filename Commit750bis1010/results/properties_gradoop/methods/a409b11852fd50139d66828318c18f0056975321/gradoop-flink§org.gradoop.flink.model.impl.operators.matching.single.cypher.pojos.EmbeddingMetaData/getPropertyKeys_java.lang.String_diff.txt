@@ -1,0 +1,11 @@
+/**
+ * Returns a list of all property keys that are contained in the embedding regarding the
+ * specified variable.
+ * The order of the keys is determined by the position of the property value in the embedding.
+ *
+ * @param variable variable name
+ * @return a list of all property keys contained in the embedding
+ */
+public List<String> getPropertyKeys(String variable) {
+    return propertyMapping.entrySet().stream().filter(entry -> entry.getKey().getLeft().equals(variable)).sorted(Comparator.comparingInt(Map.Entry::getValue)).map(entry -> entry.getKey().getRight()).collect(Collectors.toList());
+}

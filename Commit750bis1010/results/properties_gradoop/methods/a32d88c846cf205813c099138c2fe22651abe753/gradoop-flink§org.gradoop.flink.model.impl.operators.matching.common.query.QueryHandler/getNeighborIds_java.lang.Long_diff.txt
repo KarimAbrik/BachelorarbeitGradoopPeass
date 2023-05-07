@@ -1,0 +1,14 @@
+/**
+ * Returns all vertex ids that are adjacent to the given vertex (without
+ * considering edge direction).
+ *
+ * @param vertexId vertex id
+ * @return adjacent vertex ids
+ */
+public Collection<Long> getNeighborIds(Long vertexId) {
+    Set<Long> neighbors = Sets.newHashSet();
+    for (Vertex vertex : getNeighbors(vertexId)) {
+        neighbors.add(vertex.getId());
+    }
+    return neighbors;
+}

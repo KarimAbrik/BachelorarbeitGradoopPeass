@@ -1,0 +1,32 @@
+/**
+ * Test grouping using the {@link DurationKeyFunction} key function.
+ *
+ * @throws Exception when the execution in Flink fails
+ */
+@Test
+public void testDurationKeyFunctionOnGraph() throws Exception {
+    final long testTimeFrom1 = asMillis("2019.04.20 00:00:00.000");
+    final long testTimeTo1 = asMillis("2019.07.20 00:00:00.000");
+    final long testTimeFrom2 = asMillis("2020.08.01 12:00:00.000");
+    final long testTimeTo2 = asMillis("2020.11.02 12:00:00.000");
+    final long testTimeFrom3 = asMillis("2019.01.01 12:00:00.000");
+    final long testTimeTo3 = asMillis("2019.01.01 12:30:00.000");
+    final long testTimeFrom4 = asMillis("2019.01.01 18:10:10.100");
+    final long testTimeTo4 = asMillis("2019.01.01 18:40:10.110");
+    FlinkAsciiGraphLoader loader = getLoaderFromString("input[" + "(:t {__valFrom: " + testTimeFrom1 + "L, __valTo: " + testTimeTo1 + "L, a: 1L})" + "(:t {__valFrom: " + testTimeFrom2 + "L, __valTo: " + testTimeTo2 + "L, a: 2L})" + "] expected1 [" + "({duration_VALID_TIME_Months: 3L, min_a: 1L, max_a: 2L, count: 2L})" + "] expected2 [" + "({duration_VALID_TIME_Days: 91L, min_a: 1L, max_a: 1L, count: 1L})" + "({duration_VALID_TIME_Days: 93L, min_a: 2L, max_a: 2L, count: 1L})" + "]" + "input2 [" + "(:t {__valFrom: " + testTimeFrom3 + "L, __valTo: " + testTimeTo3 + "L, a: 1L})" + "(:t {__valFrom: " + testTimeFrom4 + "L, __valTo: " + testTimeTo4 + "L, a: 2L})" + "] expected3 [" + "({duration_VALID_TIME_Minutes: 30L, min_a: 1L, max_a: 2L, count: 2L})" + "] expected4 [" + "({duration_VALID_TIME_Millis: 1800000L, min_a: 1L, max_a: 1L, count: 1L})" + "({duration_VALID_TIME_Millis: 1800010L, min_a: 2L, max_a: 2L, count: 1L})" + "]");
+    List<AggregateFunction> vertexAggregateFunctions = Arrays.asList(new MaxVertexProperty("a", "max_a"), new MinVertexProperty("a", "min_a"), new VertexCount("count"));
+    TemporalGraph input = toTemporalGraphWithDefaultExtractors(loader.getLogicalGraphByVariable("input"));
+    List<KeyFunction<TemporalVertex, ?>> vertexKeysMonths = Collections.singletonList(TemporalGroupingKeys.duration(VALID_TIME, ChronoUnit.MONTHS));
+    List<KeyFunction<TemporalVertex, ?>> vertexKeysDays = Collections.singletonList(TemporalGroupingKeys.duration(VALID_TIME, ChronoUnit.DAYS));
+    TemporalGraph byMonths = input.callForGraph(new KeyedGrouping<>(vertexKeysMonths, vertexAggregateFunctions, Collections.emptyList(), Collections.emptyList()));
+    collectAndAssertTrue(loader.getLogicalGraphByVariable("expected1").equalsByElementData(byMonths.toLogicalGraph()));
+    TemporalGraph byDays = input.callForGraph(new KeyedGrouping<>(vertexKeysDays, vertexAggregateFunctions, Collections.emptyList(), Collections.emptyList()));
+    collectAndAssertTrue(loader.getLogicalGraphByVariable("expected2").equalsByElementData(byDays.toLogicalGraph()));
+    List<KeyFunction<TemporalVertex, ?>> vertexKeysMinutes = Collections.singletonList(TemporalGroupingKeys.duration(VALID_TIME, ChronoUnit.MINUTES));
+    List<KeyFunction<TemporalVertex, ?>> vertexKeysMillis = Collections.singletonList(TemporalGroupingKeys.duration(VALID_TIME, ChronoUnit.MILLIS));
+    TemporalGraph input2 = toTemporalGraphWithDefaultExtractors(loader.getLogicalGraphByVariable("input2"));
+    TemporalGraph byMinutes = input2.callForGraph(new KeyedGrouping<>(vertexKeysMinutes, vertexAggregateFunctions, Collections.emptyList(), Collections.emptyList()));
+    collectAndAssertTrue(loader.getLogicalGraphByVariable("expected3").equalsByElementData(byMinutes.toLogicalGraph()));
+    TemporalGraph byMillis = input2.callForGraph(new KeyedGrouping<>(vertexKeysMillis, vertexAggregateFunctions, Collections.emptyList(), Collections.emptyList()));
+    collectAndAssertTrue(loader.getLogicalGraphByVariable("expected4").equalsByElementData(byMillis.toLogicalGraph()));
+}

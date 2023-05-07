@@ -1,0 +1,12 @@
+/**
+ * Test using incoming edges.
+ *
+ * @throws Exception when the execution in Flink fails.
+ */
+@Test
+public void testIncoming() throws Exception {
+    LogicalGraph input = loader.getLogicalGraphByVariable("input");
+    UnaryGraphToGraphOperator operator = new ConnectNeighbors("Center", Neighborhood.EdgeDirection.INCOMING, "V", "neighbor");
+    LogicalGraph expected = loader.getLogicalGraphByVariable("expectedIncoming");
+    collectAndAssertTrue(expected.equalsByData(input.callForGraph(operator)));
+}

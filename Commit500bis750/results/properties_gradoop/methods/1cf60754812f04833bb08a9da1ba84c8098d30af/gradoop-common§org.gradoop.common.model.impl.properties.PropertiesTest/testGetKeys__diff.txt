@@ -1,0 +1,9 @@
+@Test
+public void testGetKeys() throws Exception {
+    Properties properties = Properties.createFromMap(SUPPORTED_PROPERTIES);
+    List<String> keyList = Lists.newArrayList(properties.getKeys());
+    assertEquals(SUPPORTED_PROPERTIES.size(), keyList.size());
+    for (String expectedKey : SUPPORTED_PROPERTIES.keySet()) {
+        assertTrue("key was not in key list", keyList.contains(expectedKey));
+    }
+}

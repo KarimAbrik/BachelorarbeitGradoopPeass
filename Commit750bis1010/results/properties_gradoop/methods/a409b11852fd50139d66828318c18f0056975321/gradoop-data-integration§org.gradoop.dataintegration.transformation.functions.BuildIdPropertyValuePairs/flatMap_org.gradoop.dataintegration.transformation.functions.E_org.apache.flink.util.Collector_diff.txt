@@ -1,0 +1,9 @@
+@Override
+public void flatMap(E element, Collector<Tuple2<GradoopId, PropertyValue>> out) {
+    if (!label.equals(element.getLabel()) || !element.hasProperty(propertyKey)) {
+        return;
+    }
+    reuse.f0 = element.getId();
+    reuse.f1 = element.getPropertyValue(propertyKey);
+    out.collect(reuse);
+}

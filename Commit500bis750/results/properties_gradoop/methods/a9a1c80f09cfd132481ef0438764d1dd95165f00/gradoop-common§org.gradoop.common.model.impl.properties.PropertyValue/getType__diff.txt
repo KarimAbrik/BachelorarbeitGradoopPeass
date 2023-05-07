@@ -1,0 +1,11 @@
+//----------------------------------------------------------------------------
+// Util
+//----------------------------------------------------------------------------
+/**
+ * Get the data type as class object according to the first position of the rawBytes[] array
+ *
+ * @return Class object
+ */
+public Class<?> getType() {
+    return TYPE_MAPPING.get(rawBytes[0]);
+}

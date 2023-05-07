@@ -1,0 +1,12 @@
+/**
+ * Extracts sets of property values from tuples and combines them into one set.
+ *
+ * @param values list of {@code <K, Set<PropertyValue>>} tuples
+ * @return combined set of all PropertyValues
+ */
+private Set<PropertyValue> combineSets(List<Tuple2<K, Set<PropertyValue>>> values) {
+    return values.stream().map(triple -> triple.f1).reduce((lhs, rhs) -> {
+        lhs.addAll(rhs);
+        return lhs;
+    }).get();
+}

@@ -1,0 +1,22 @@
+/**
+ * Checks if the given byte arrays contain equal elements in specified given range.
+ *
+ * @param first first array
+ * @param second second array
+ * @param firstPos start index in the first array
+ * @param secondPos start index in the second array
+ * @param length number of bytes to compare for equality
+ *
+ * @return true, iff both arrays have equal values in the specified range
+ */
+private static boolean equalsInRange(byte[] first, byte[] second, int firstPos, int secondPos, int length) {
+    int upperBound = firstPos + length;
+    while (firstPos < upperBound) {
+        if (first[firstPos] != second[secondPos]) {
+            return false;
+        }
+        ++firstPos;
+        ++secondPos;
+    }
+    return true;
+}

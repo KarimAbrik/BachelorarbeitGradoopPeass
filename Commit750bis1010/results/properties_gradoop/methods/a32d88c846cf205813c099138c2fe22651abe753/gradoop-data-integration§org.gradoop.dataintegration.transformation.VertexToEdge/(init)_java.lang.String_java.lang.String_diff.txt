@@ -1,0 +1,10 @@
+/**
+ * The constructor of the operator to transform vertices into edges.
+ *
+ * @param centralVertexLabel The vertex label of {@code j}.
+ * @param newEdgeLabel The edge label for new edges.
+ */
+public VertexToEdge(String centralVertexLabel, String newEdgeLabel) {
+    this.centralVertexLabel = Objects.requireNonNull(centralVertexLabel);
+    this.newEdgeLabel = Objects.requireNonNull(newEdgeLabel);
+}

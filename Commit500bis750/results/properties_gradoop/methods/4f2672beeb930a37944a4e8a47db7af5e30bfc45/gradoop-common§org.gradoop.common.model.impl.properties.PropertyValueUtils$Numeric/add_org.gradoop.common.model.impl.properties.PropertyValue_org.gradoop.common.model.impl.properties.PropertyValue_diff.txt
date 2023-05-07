@@ -1,0 +1,64 @@
+/**
+ * Adds two numerical property values.
+ *
+ * @param aValue first value
+ * @param bValue second value
+ *
+ * @return first value + second value
+ */
+public static PropertyValue add(PropertyValue aValue, PropertyValue bValue) {
+    int aType = checkNumericalAndGetType(aValue);
+    int bType = checkNumericalAndGetType(bValue);
+    boolean sameType = aType == bType;
+    int returnType = maxType(aType, bType);
+    if (returnType == INT) {
+        int a = aType == INT ? aValue.getInt() : aValue.getShort();
+        int b = bType == INT ? bValue.getInt() : bValue.getShort();
+        aValue.setInt(a + b);
+    } else if (returnType == FLOAT) {
+        float a;
+        float b;
+        if (sameType) {
+            a = aValue.getFloat();
+            b = bValue.getFloat();
+        } else {
+            a = aType == FLOAT ? aValue.getFloat() : floatValue(aValue, aType);
+            b = bType == FLOAT ? bValue.getFloat() : floatValue(bValue, bType);
+        }
+        aValue.setFloat(a + b);
+    } else if (returnType == LONG) {
+        long a;
+        long b;
+        if (sameType) {
+            a = aValue.getLong();
+            b = bValue.getLong();
+        } else {
+            a = aType == LONG ? aValue.getLong() : longValue(aValue, aType);
+            b = bType == LONG ? bValue.getLong() : longValue(bValue, bType);
+        }
+        aValue.setLong(a + b);
+    } else if (returnType == DOUBLE) {
+        double a;
+        double b;
+        if (sameType) {
+            a = aValue.getDouble();
+            b = bValue.getDouble();
+        } else {
+            a = aType == DOUBLE ? aValue.getDouble() : doubleValue(aValue, aType);
+            b = bType == DOUBLE ? bValue.getDouble() : doubleValue(bValue, bType);
+        }
+        aValue.setDouble(a + b);
+    } else {
+        BigDecimal a;
+        BigDecimal b;
+        if (sameType) {
+            a = aValue.getBigDecimal();
+            b = bValue.getBigDecimal();
+        } else {
+            a = aType == BIG_DECIMAL ? aValue.getBigDecimal() : bigDecimalValue(aValue, aType);
+            b = bType == BIG_DECIMAL ? bValue.getBigDecimal() : bigDecimalValue(bValue, bType);
+        }
+        aValue.setBigDecimal(a.add(b));
+    }
+    return aValue;
+}

@@ -1,0 +1,12 @@
+/**
+ * Creates map function
+ *
+ * @param useLabel true, if label shall be considered
+ * @param vertexLabelGroups stores grouping properties for vertex labels
+ */
+public BuildVertexGroupItem(boolean useLabel, List<LabelGroup> vertexLabelGroups) {
+    super(useLabel, vertexLabelGroups);
+    this.reuseVertexGroupItem = new VertexGroupItem();
+    this.reuseVertexGroupItem.setSuperVertexId(GradoopId.NULL_VALUE);
+    this.reuseVertexGroupItem.setSuperVertex(false);
+}

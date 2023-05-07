@@ -1,0 +1,14 @@
+@Override
+public Tuple getKey(T element) {
+    Integer index = labelToIndex.get(element.getLabel());
+    for (int i = 0; i < keyFunctions.size(); i++) {
+        reuseTuple.setField(keyFunctions.get(i).getDefaultKey(), 1 + i);
+    }
+    if (index == null) {
+        index = 0;
+    }
+    // The index is used to identify the key function, the 0th position in the tuple set to that index.
+    reuseTuple.setField(keyFunctions.get(index).getKey(element), 1 + index);
+    reuseTuple.setField(index, 0);
+    return reuseTuple;
+}

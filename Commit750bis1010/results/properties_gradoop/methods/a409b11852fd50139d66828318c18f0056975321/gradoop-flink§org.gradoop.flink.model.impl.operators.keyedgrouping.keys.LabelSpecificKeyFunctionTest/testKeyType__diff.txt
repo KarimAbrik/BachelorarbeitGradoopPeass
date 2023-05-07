@@ -1,0 +1,16 @@
+/**
+ * Test if the correct key type is determined.
+ */
+@Test
+public void testKeyType() {
+    final TypeInformation<Tuple> type = testFunction.getType();
+    final TypeInformation<byte[]> propertyType = TypeInformation.of(byte[].class);
+    final TypeInformation<String> labelType = BasicTypeInfo.STRING_TYPE_INFO;
+    TypeInformation<Tuple> expectedType = new TupleTypeInfo<>(// Label identifier
+    BasicTypeInfo.INT_TYPE_INFO, // Default group
+    new TupleTypeInfo<>(propertyType, labelType), // Group for label 'a'
+    new TupleTypeInfo<>(propertyType, propertyType), // Group for label 'b'
+    new TupleTypeInfo<>(), // Group for label 'c'
+    propertyType);
+    assertEquals(expectedType, type);
+}

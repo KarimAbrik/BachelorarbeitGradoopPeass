@@ -1,0 +1,11 @@
+/**
+ * Splits an escaped string while ignoring escaped delimiters. Does not unescape the tokens.
+ *
+ * @param escapedString escaped string to be split
+ * @param delimiter delimiter string
+ * @return string array with still escaped strings split by the delimiter
+ * @throws IllegalArgumentException if the delimiter contains the escape character
+ */
+public static String[] split(String escapedString, String delimiter) throws IllegalArgumentException {
+    return split(escapedString, delimiter, 0);
+}

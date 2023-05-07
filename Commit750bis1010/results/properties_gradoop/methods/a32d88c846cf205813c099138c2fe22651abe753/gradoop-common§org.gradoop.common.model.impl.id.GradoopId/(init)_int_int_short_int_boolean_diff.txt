@@ -1,0 +1,34 @@
+/**
+ * Creates a GradoopId using the given time, machine identifier, process identifier, and counter.
+ * <p>
+ * Note: Implementation taken from org.bson.types.ObjectId
+ *
+ * @param timestamp         the time in seconds
+ * @param machineIdentifier the machine identifier
+ * @param processIdentifier the process identifier
+ * @param counter           the counter
+ * @param checkCounter      if the constructor should test if the counter is between 0 and
+ *                          16777215
+ */
+private GradoopId(final int timestamp, final int machineIdentifier, final short processIdentifier, final int counter, final boolean checkCounter) {
+    if ((machineIdentifier & HIGH_ORDER_ONE_BYTE) != 0) {
+        throw new IllegalArgumentException("The machine identifier must be between 0" + " and 16777215 (it must fit in three bytes).");
+    }
+    if (checkCounter && ((counter & HIGH_ORDER_ONE_BYTE) != 0)) {
+        throw new IllegalArgumentException("The counter must be between 0" + " and 16777215 (it must fit in three bytes).");
+    }
+    ByteBuffer buffer = ByteBuffer.allocate(12);
+    buffer.put((byte) (timestamp >> 24));
+    buffer.put((byte) (timestamp >> 16));
+    buffer.put((byte) (timestamp >> 8));
+    buffer.put((byte) timestamp);
+    buffer.put((byte) (machineIdentifier >> 16));
+    buffer.put((byte) (machineIdentifier >> 8));
+    buffer.put((byte) machineIdentifier);
+    buffer.put((byte) (processIdentifier >> 8));
+    buffer.put((byte) processIdentifier);
+    buffer.put((byte) (counter >> 16));
+    buffer.put((byte) (counter >> 8));
+    buffer.put((byte) counter);
+    this.bytes = buffer.array();
+}

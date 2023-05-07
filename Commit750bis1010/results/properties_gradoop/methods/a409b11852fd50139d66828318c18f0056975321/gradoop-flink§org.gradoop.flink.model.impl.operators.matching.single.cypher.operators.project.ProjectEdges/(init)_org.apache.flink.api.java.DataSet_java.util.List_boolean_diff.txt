@@ -1,0 +1,12 @@
+/**
+ * Creates a new edge projection operator
+ * @param input edges that should be projected
+ * @param propertyKeys List of property names that will be kept in the projection
+ * @param isLoop indicates if the edges is a loop
+ */
+public ProjectEdges(DataSet<EPGMEdge> input, List<String> propertyKeys, boolean isLoop) {
+    this.input = input;
+    this.propertyKeys = propertyKeys;
+    this.name = "ProjectEdges";
+    this.isLoop = isLoop;
+}

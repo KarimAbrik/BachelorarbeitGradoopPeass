@@ -1,0 +1,17 @@
+/**
+ * Updates the state using the information stored in the given meta data.
+ *
+ * @param metaData meta data from leaf node
+ */
+private void process(EmbeddingMetaData metaData) {
+    int entryCount = metaData.getEntryCount();
+    List<String> variables = metaData.getVariables();
+    if (entryCount == 1) {
+        processVertex(variables.get(0));
+    } else {
+        String edgeVariable = variables.get(1);
+        String sourceVariable = getQueryHandler().getVertexById(getQueryHandler().getEdgeByVariable(edgeVariable).getSourceVertexId()).getVariable();
+        String targetVariable = getQueryHandler().getVertexById(getQueryHandler().getEdgeByVariable(edgeVariable).getTargetVertexId()).getVariable();
+        processEdge(sourceVariable, variables.get(1), targetVariable);
+    }
+}

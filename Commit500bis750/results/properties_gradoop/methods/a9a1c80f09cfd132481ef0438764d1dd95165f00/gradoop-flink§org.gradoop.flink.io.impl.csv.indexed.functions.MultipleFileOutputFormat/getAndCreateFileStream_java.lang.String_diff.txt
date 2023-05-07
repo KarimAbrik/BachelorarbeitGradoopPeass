@@ -1,0 +1,18 @@
+/**
+ * Get the stream to a specific filename. If no stream for this file already exist
+ * it will create a new stream to the actual file path in the file system
+ * for a file with this filename.
+ *
+ * Output is written to: outputPath/label/data.csv
+ *
+ * @param label the name of the file
+ * @return the output stream for the path
+ * @throws IOException - Thrown, if the output could not be opened due to an I/O problem.
+ */
+public FSDataOutputStream getAndCreateFileStream(String label) throws IOException {
+    if (!streams.containsKey(label)) {
+        actualFilePath = new Path(this.outputFilePath, DIRECTORY_SEPARATOR + label + DIRECTORY_SEPARATOR + CSVConstants.SIMPLE_FILE);
+        streams.put(label, fs.create(actualFilePath, writeMode));
+    }
+    return streams.get(label);
+}

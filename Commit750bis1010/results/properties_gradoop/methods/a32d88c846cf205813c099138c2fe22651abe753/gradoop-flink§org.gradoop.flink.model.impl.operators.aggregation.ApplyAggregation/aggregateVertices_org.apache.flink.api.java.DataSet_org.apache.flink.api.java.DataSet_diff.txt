@@ -1,0 +1,10 @@
+/**
+ * Applies an aggregate function to the partitions of a vertex data set.
+ *
+ * @param vertices vertex data set
+ * @param graphIds graph ids to aggregate
+ * @return partition aggregate value
+ */
+private DataSet<Tuple2<GradoopId, Map<String, PropertyValue>>> aggregateVertices(DataSet<V> vertices, DataSet<GradoopId> graphIds) {
+    return vertices.flatMap(new ElementsOfSelectedGraphs<>()).withBroadcastSet(graphIds, ElementsOfSelectedGraphs.GRAPH_IDS).groupBy(0).combineGroup(new ApplyAggregateElements<>(aggregateFunctions.stream().filter(AggregateFunction::isVertexAggregation).collect(Collectors.toSet())));
+}

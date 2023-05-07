@@ -1,0 +1,19 @@
+/**
+ * Test the operator propagating along only certain edge labels.
+ *
+ * @throws Exception when the execution in Flink fails.
+ */
+@Test
+public void testPropagateAlongCertainEdges() throws Exception {
+    LogicalGraph input = loader.getLogicalGraphByVariable("input1");
+    UnaryGraphToGraphOperator operator = new PropagatePropertyToNeighbor("Source", "p1", "t", Collections.singleton("edge1"), null);
+    LogicalGraph expected = input.transformVertices((v, c) -> {
+        if (!v.getLabel().equals("Target") && !v.getLabel().equals("Target2")) {
+            return v;
+        }
+        v.setProperty("t", Collections.singletonList(PropertyValue.create(1L)));
+        return v;
+    });
+    LogicalGraph result = input.callForGraph(operator);
+    collectAndAssertTrue(expected.equalsByData(result));
+}

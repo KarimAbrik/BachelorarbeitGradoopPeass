@@ -1,0 +1,35 @@
+/**                                                                                                    /**                                                                                                 
+* Returns the current new value. This value is based on all incoming                                   * Returns the current new value. This value is based on all incoming                                
+* messages. Depending on the number of messages sent to the vertex, the                                * messages. Depending on the number of messages sent to the vertex, the                             
+* method returns:                                                                                      * method returns:                                                                                   
+* &lt;p/&gt;                                                                                           * &lt;p/&gt;                                                                                        
+* 0 messages:   The current value                                                                      * 0 messages:   The current value                                                                   
+* &lt;p/&gt;                                                                                           * &lt;p/&gt;                                                                                        
+* 1 message:    The minimum of the message and the current vertex value                                * 1 message:    The minimum of the message and the current vertex value                             
+* &lt;p/&gt;                                                                                           * &lt;p/&gt;                                                                                        
+* &gt;1 messages:  The most frequent of all message values                                             * &gt;1 messages:  The most frequent of all message values                                          
+*                                                                                                      *                                                                                                   
+* @param vertex   The current vertex                                                                   * @param vertex   The current vertex                                                                
+* @param messages All incoming messages                                                                * @param messages All incoming messages                                                             
+* @return the new Value the vertex will become                                                         * @return the new Value the vertex will become                                                      
+*/                                                                                                     */                                                                                                  
+private int getNewValue(Vertex&lt;IntWritable, IntWritable, NullWritable&gt; vertex, Iterable&lt;Int | private long getNewValue(Vertex&lt;LongWritable, LongWritable, NullWritable&gt; vertex, Iterable&lt;
+int newValue;                                                                                        | long newValue;                                                                                      
+//TODO: create allMessages more efficient                                                              //TODO: create allMessages more efficient                                                           
+//List&lt;IntWritable&gt; allMessages = Lists.newArrayList(messages);                                | //List&lt;LongWritable&gt; allMessages = Lists.newArrayList(messages);                              
+List&lt;Integer&gt; allMessages = new ArrayList&lt;&gt;();                                           | List&lt;Long&gt; allMessages = new ArrayList&lt;&gt;();                                             
+for (IntWritable message : messages) {                                                               | for (LongWritable message : messages) {                                                             
+allMessages.add(message.get());                                                                        allMessages.add(message.get());                                                                     
+}                                                                                                      }                                                                                                   
+if (allMessages.isEmpty()) {                                                                           if (allMessages.isEmpty()) {                                                                        
+// 1. if no messages are received                                                                      // 1. if no messages are received                                                                   
+newValue = vertex.getValue().get();                                                                    newValue = vertex.getValue().get();                                                                 
+} else if (allMessages.size() == 1) {                                                                  } else if (allMessages.size() == 1) {                                                               
+// 2. if just one message are received                                                                 // 2. if just one message are received                                                              
+newValue = Math.min(vertex.getValue().get(), allMessages.get(0));                                      newValue = Math.min(vertex.getValue().get(), allMessages.get(0));                                   
+} else {                                                                                               } else {                                                                                            
+// 3. if multiple messages are received                                                                // 3. if multiple messages are received                                                             
+newValue = getMostFrequent(vertex, allMessages);                                                       newValue = getMostFrequent(vertex, allMessages);                                                    
+}                                                                                                      }                                                                                                   
+return newValue;                                                                                       return newValue;                                                                                    
+}                                                                                                      }                                                                                                   

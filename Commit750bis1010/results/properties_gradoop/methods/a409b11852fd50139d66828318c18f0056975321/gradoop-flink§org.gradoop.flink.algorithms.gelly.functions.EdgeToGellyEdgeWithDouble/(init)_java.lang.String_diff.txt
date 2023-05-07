@@ -1,0 +1,9 @@
+/**
+ * Constructor.
+ *
+ * @param propertyKey property key to get the property value.
+ */
+public EdgeToGellyEdgeWithDouble(String propertyKey) {
+    this.propertyKey = propertyKey;
+    this.reuseEdge = new org.apache.flink.graph.Edge<>();
+}

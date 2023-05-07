@@ -1,0 +1,13 @@
+/**
+ * Returns all edges that point to the given vertex id or {@code null} if the
+ * given vertex has no incoming edges.
+ *
+ * @param vertexId vertex id
+ * @return incoming edges or {@code null}
+ */
+public Collection<Edge> getEdgesByTargetVertexId(Long vertexId) {
+    if (targetIdToEdgeCache == null) {
+        targetIdToEdgeCache = initSetCache(getEdges(), Edge::getTargetVertexId, Function.identity());
+    }
+    return targetIdToEdgeCache.get(vertexId);
+}

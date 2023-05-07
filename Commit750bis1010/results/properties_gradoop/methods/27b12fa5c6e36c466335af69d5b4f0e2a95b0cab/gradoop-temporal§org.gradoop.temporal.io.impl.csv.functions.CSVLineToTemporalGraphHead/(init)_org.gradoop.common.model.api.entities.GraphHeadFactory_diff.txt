@@ -1,0 +1,8 @@
+/**
+ * Creates a CSVLineToTemporalGraphHead converter.
+ *
+ * @param graphHeadFactory the factory that is used to create a graph head object
+ */
+public CSVLineToTemporalGraphHead(GraphHeadFactory<TemporalGraphHead> graphHeadFactory) {
+    this.graphHeadFactory = graphHeadFactory;
+}

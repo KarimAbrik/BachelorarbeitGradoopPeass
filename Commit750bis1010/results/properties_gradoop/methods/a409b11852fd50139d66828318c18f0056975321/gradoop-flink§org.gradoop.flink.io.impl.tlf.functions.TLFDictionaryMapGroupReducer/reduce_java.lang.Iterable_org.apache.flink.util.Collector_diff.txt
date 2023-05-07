@@ -1,0 +1,10 @@
+@Override
+public void reduce(Iterable<String> iterable, Collector<Map<String, Integer>> collector) throws Exception {
+    Map<String, Integer> newMap = Maps.newHashMap();
+    int id = 0;
+    for (String label : iterable) {
+        newMap.put(label, id);
+        id++;
+    }
+    collector.collect(newMap);
+}

@@ -1,0 +1,7 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public VertexPojo createVertex(final GradoopId vertexID, final String label, Map<String, Object> properties) {
+    return createVertex(vertexID, label, properties, null);
+}

@@ -1,0 +1,19 @@
+/**
+ * Groups edges based on the algorithm parameters.
+ *
+ * @param edges input graph edges
+ * @return grouped edges
+ */
+protected UnsortedGrouping<EdgeGroupItem> groupEdges(DataSet<EdgeGroupItem> edges) {
+    UnsortedGrouping<EdgeGroupItem> groupedEdges;
+    if (useEdgeProperties() && useEdgeLabels()) {
+        groupedEdges = edges.groupBy(0, 1, 2, 3);
+    } else if (useEdgeLabels()) {
+        groupedEdges = edges.groupBy(0, 1, 2);
+    } else if (useEdgeProperties()) {
+        groupedEdges = edges.groupBy(0, 1, 3);
+    } else {
+        groupedEdges = edges.groupBy(0, 1);
+    }
+    return groupedEdges;
+}

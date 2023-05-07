@@ -1,0 +1,18 @@
+/**
+ * Combine multiple edges into one Image
+ *
+ * @param iterable  The edges to combine
+ * @param collector The output-collector
+ */
+public void combineEdges(Iterable<EPGMEdge> iterable, Collector<byte[]> collector) {
+    BufferedImage img = new BufferedImage(plotter.imageWidth, plotter.imageHeight, BufferedImage.TYPE_INT_ARGB);
+    Graphics2D gfx = img.createGraphics();
+    gfx.setColor(plotter.edgeColor);
+    gfx.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+    gfx.setStroke(new BasicStroke(plotter.edgeSize));
+    for (EPGMEdge e : iterable) {
+        drawEdge(gfx, e);
+    }
+    collector.collect(imgToArr(img));
+    gfx.dispose();
+}

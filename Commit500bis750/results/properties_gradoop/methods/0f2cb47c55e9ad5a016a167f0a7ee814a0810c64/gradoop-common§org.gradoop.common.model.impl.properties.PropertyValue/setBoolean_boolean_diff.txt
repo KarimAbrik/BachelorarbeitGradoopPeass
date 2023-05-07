@@ -1,0 +1,10 @@
+/**
+ * Sets the wrapped value as {@code boolean} value.
+ *
+ * @param booleanValue value
+ */
+public void setBoolean(boolean booleanValue) {
+    rawBytes = new byte[OFFSET + Bytes.SIZEOF_BOOLEAN];
+    rawBytes[0] = TYPE_BOOLEAN;
+    Bytes.putByte(rawBytes, OFFSET, (byte) (booleanValue ? -1 : 0));
+}

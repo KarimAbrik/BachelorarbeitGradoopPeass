@@ -1,0 +1,12 @@
+/**
+ * Creates a new Property Value from the given object.
+ *
+ * If the given object type is not supported, an
+ * {@link UnsupportedTypeException} will be thrown.
+ *
+ * @param value value with supported type
+ * @return property value
+ */
+public static PropertyValue create(Object value) {
+    return new PropertyValue(value);
+}

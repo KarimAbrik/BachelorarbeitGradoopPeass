@@ -1,0 +1,10 @@
+/**
+ * Returns the edge which is identified by the given variable. If the
+ * variable cannot be found, the method returns {@code null}.
+ *
+ * @param variable edge variable
+ * @return edge or {@code null} if variable is not used
+ */
+public EPGMEdge getEdgeByVariable(String variable) {
+    return loader.getEdgeByVariable(variable);
+}

@@ -1,0 +1,35 @@
+{
+  "commitCount" : 2,
+  "changeCount" : 2,
+  "testcaseCount" : 5,
+  "statisticsConfig" : {
+    "type1error" : 0.01,
+    "type2error" : 0.01,
+    "outlierFactor" : 3.29,
+    "statisticTest" : "T_TEST"
+  },
+  "commitChanges" : {
+    "cf1a996ffc69fd1fdd94a3eb16ef40eb9843e2de" : {
+      "testcaseChanges" : {
+        "gradoop-core§org.gradoop.model.impl.pojo.EdgePojoTest" : [ {
+          "diff" : "view_cf1a996ffc69fd1fdd94a3eb16ef40eb9843e2de/diffs/EdgePojoTest#createWithEmptyLabelTest.txt",
+          "method" : "createWithEmptyLabelTest",
+          "oldTime" : 1.74262023204E9,
+          "changePercent" : -10.077734789509913,
+          "tvalue" : -8.695730387809954,
+          "mannWhitneyUStatistic" : 1.34761965448826E-9,
+          "vms" : 30
+        } ],
+        "gradoop-core§org.gradoop.model.impl.pojo.VertexPojoTest" : [ {
+          "diff" : "view_cf1a996ffc69fd1fdd94a3eb16ef40eb9843e2de/diffs/VertexPojoTest#createVertexPojoTest.txt",
+          "method" : "createVertexPojoTest",
+          "oldTime" : 1.7568539033333334E8,
+          "changePercent" : -42.14882880860909,
+          "tvalue" : -4.258797070830866,
+          "mannWhitneyUStatistic" : 7.425419738366342E-5,
+          "vms" : 30
+        } ]
+      }
+    }
+  }
+}

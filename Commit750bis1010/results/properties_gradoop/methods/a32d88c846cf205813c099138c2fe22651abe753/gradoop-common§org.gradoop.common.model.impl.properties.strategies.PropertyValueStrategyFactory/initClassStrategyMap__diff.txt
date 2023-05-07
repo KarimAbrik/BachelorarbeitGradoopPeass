@@ -1,0 +1,24 @@
+/**
+ * Initializes class-strategy mapping.
+ *
+ * @return Map of supported class-strategy associations.
+ */
+private Map<Class, PropertyValueStrategy> initClassStrategyMap() {
+    Map<Class, PropertyValueStrategy> classMapping = new HashMap<>();
+    classMapping.put(Boolean.class, new BooleanStrategy());
+    classMapping.put(Set.class, new SetStrategy());
+    classMapping.put(Integer.class, new IntegerStrategy());
+    classMapping.put(Long.class, new LongStrategy());
+    classMapping.put(Float.class, new FloatStrategy());
+    classMapping.put(Double.class, new DoubleStrategy());
+    classMapping.put(Short.class, new ShortStrategy());
+    classMapping.put(BigDecimal.class, new BigDecimalStrategy());
+    classMapping.put(LocalDate.class, new DateStrategy());
+    classMapping.put(LocalTime.class, new TimeStrategy());
+    classMapping.put(LocalDateTime.class, new DateTimeStrategy());
+    classMapping.put(GradoopId.class, new GradoopIdStrategy());
+    classMapping.put(String.class, new StringStrategy());
+    classMapping.put(List.class, new ListStrategy());
+    classMapping.put(Map.class, new MapStrategy());
+    return Collections.unmodifiableMap(classMapping);
+}

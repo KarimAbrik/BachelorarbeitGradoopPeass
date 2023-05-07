@@ -1,0 +1,4 @@
+@Override
+public DataSet<EPGMVertex> getVerticesByLabel(String label) {
+    return vertices.filter(new ByLabel<>(label));
+}

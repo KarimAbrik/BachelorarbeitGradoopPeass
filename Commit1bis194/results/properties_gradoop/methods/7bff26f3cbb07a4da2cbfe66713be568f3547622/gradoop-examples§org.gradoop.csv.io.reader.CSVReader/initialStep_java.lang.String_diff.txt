@@ -1,0 +1,21 @@
+/**
+ * Initial step: initializations and reading the headline
+ *
+ * @param line line of csv input
+ */
+private void initialStep(String line) {
+    // Initialize Lists
+    labels = Lists.newArrayList();
+    // Get properties (e.g. FirstName, LastName...)
+    properties = getTokens(line);
+    // Get MetaData (e.g. long, string, string...)
+    types = getTokens(conf.get(META_DATA));
+    //readTypes(conf.get(META_DATA));
+    // Set Labels
+    labels.add(conf.get(LABEL));
+    // getCSVType
+    isNodeCSV = isNodeCSV();
+    random = new Random();
+    // initialStep is over
+    initialStep = false;
+}

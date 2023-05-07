@@ -1,0 +1,18 @@
+@Test
+public void testIsBoolean() throws Exception {
+    PropertyValue p = PropertyValue.create(true);
+    assertFalse(p.isNull());
+    assertTrue(p.isBoolean());
+    assertFalse(p.isInt());
+    assertFalse(p.isLong());
+    assertFalse(p.isFloat());
+    assertFalse(p.isDouble());
+    assertFalse(p.isString());
+    assertFalse(p.isBigDecimal());
+    assertFalse(p.isGradoopId());
+    assertFalse(p.isMap());
+    assertFalse(p.isList());
+    assertFalse(p.isDate());
+    assertFalse(p.isTime());
+    assertFalse(p.isDateTime());
+}

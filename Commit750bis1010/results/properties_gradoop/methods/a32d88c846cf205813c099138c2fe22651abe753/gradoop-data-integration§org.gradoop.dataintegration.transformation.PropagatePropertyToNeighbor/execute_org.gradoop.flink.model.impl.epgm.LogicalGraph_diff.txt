@@ -1,0 +1,13 @@
+@Override
+public LogicalGraph execute(LogicalGraph graph) {
+    // prepare the edge set, EdgeFilter if propagating edges are given
+    DataSet<EPGMEdge> propagateAlong = graph.getEdges();
+    if (propagatingEdgeLabels != null) {
+        propagateAlong = propagateAlong.filter(new LabelIsIn<>(propagatingEdgeLabels));
+    }
+    DataSet<EPGMVertex> newVertices = graph.getVertices().// Extract properties to propagate
+    flatMap(new BuildIdPropertyValuePairs<>(vertexLabel, propertyKey)).// Propagate along edges.
+    join(propagateAlong).where(0).equalTo(new SourceId<>()).with(new BuildTargetVertexIdPropertyValuePairs<>()).// Update target vertices.
+    coGroup(graph.getVertices()).where(0).equalTo(new Id<>()).with(new AccumulatePropagatedValues<>(targetVertexPropertyKey, targetVertexLabels)).map(new AddToGraphBroadcast<>()).withBroadcastSet(graph.getGraphHead().map(new Id<>()), AddToGraphBroadcast.GRAPH_ID);
+    return graph.getFactory().fromDataSets(graph.getGraphHead(), newVertices, graph.getEdges());
+}

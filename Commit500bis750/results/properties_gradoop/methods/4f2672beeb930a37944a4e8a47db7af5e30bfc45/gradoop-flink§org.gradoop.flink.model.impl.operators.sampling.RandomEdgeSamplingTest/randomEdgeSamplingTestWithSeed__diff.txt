@@ -1,0 +1,6 @@
+@Test
+public void randomEdgeSamplingTestWithSeed() throws Exception {
+    LogicalGraph dbGraph = getSocialNetworkLoader().getDatabase().getDatabaseGraph();
+    LogicalGraph newGraph = new RandomEdgeSampling(0.272f, -4181668494294894490L).execute(dbGraph);
+    validateResult(dbGraph, newGraph);
+}

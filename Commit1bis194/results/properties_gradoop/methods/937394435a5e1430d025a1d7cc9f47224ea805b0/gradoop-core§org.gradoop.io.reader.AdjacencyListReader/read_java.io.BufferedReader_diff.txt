@@ -1,0 +1,20 @@
+/**
+ * Reads a vertex line by line from the given reader. If the vertex has
+ * associated graphs, those are also stored.
+ *
+ * @param bufferedReader buffered line reader
+ * @throws IOException
+ */
+public void read(final BufferedReader bufferedReader) throws IOException {
+    String line;
+    boolean readerHasListSupport = vertexLineReader.supportsVertexLists();
+    while ((line = bufferedReader.readLine()) != null) {
+        if (readerHasListSupport) {
+            for (Vertex v : vertexLineReader.readVertexList(line)) {
+                graphStore.writeVertex(v);
+            }
+        } else {
+            graphStore.writeVertex(vertexLineReader.readVertex(line));
+        }
+    }
+}

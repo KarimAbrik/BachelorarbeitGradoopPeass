@@ -1,0 +1,4 @@
+@Test
+public void testMatchVertex() throws Exception {
+    assertCardinalities("MATCH (n:Person)", 6, 6);
+}

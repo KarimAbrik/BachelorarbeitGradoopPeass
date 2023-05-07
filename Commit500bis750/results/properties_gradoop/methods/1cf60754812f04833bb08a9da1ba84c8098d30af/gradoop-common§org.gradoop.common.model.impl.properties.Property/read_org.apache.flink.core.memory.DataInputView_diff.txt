@@ -1,0 +1,6 @@
+@Override
+public void read(DataInputView inputView) throws IOException {
+    key = inputView.readUTF();
+    value = new PropertyValue();
+    value.read(inputView);
+}

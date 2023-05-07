@@ -1,0 +1,8 @@
+@Override
+public EPGMVertex map(TemporalVertex vertex) {
+    reuse.setId(vertex.getId());
+    reuse.setLabel(vertex.getLabel());
+    reuse.setProperties(vertex.getProperties());
+    reuse.setGraphIds(vertex.getGraphIds());
+    return reuse;
+}

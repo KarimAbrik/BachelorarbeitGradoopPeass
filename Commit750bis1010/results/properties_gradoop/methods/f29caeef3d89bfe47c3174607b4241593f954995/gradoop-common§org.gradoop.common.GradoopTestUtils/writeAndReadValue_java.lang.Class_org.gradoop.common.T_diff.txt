@@ -1,0 +1,17 @@
+public static <T extends Value> T writeAndReadValue(Class<T> clazz, T in) throws Exception {
+    // write to byte[]
+    java.io.ByteArrayOutputStream outStream = new java.io.ByteArrayOutputStream();
+    DataOutputView dataOutputView = new DataOutputViewStreamWrapper(outStream);
+    in.write(dataOutputView);
+    T out;
+    try {
+        out = clazz.newInstance();
+    } catch (Exception e) {
+        throw new IOException("Cannot initialize the class: " + clazz, e);
+    }
+    // read from byte[]
+    ByteArrayInputStream inStream = new ByteArrayInputStream(outStream.toByteArray());
+    DataInputView dataInputView = new DataInputViewStreamWrapper(inStream);
+    out.read(dataInputView);
+    return out;
+}

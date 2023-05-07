@@ -1,0 +1,4 @@
+@Override
+public Tuple2<String, G> join(GraphHeadString graphHeadString, G graphHead) throws Exception {
+    return new Tuple2<>(graphHeadString.getLabel(), graphHead);
+}

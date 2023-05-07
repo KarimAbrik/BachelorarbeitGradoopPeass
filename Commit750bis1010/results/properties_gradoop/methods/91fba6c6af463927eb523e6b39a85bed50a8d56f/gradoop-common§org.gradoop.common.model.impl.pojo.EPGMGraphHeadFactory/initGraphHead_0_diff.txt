@@ -1,0 +1,6 @@
+@Override
+public EPGMGraphHead initGraphHead(final GradoopId id, final String label, Properties properties) {
+    Preconditions.checkNotNull(id, "Identifier was null");
+    Preconditions.checkNotNull(label, "Label was null");
+    return new EPGMGraphHead(id, label, properties);
+}

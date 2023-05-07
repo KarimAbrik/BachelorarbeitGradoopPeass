@@ -1,0 +1,19 @@
+/**
+ * Extracts a {@link GraphCollection} from a set of {@link Element}.
+ *
+ * @param elements   elements
+ * @param factory    element factory
+ * @param mayOverlap elements may be contained in multiple graphs
+ * @param <G> The graph head type.
+ * @param <V> The vertex type.
+ * @param <E> The edge type.
+ * @param <LG> The graph type.
+ * @param <GC> The graph collection type.
+ * @return Graph collection
+ */
+public static <G extends GraphHead, V extends Vertex, E extends Edge, LG extends BaseGraph<G, V, E, LG, GC>, GC extends BaseGraphCollection<G, V, E, LG, GC>> GC extractGraphCollection(DataSet<Element> elements, BaseGraphCollectionFactory<G, V, E, LG, GC> factory, boolean mayOverlap) {
+    Class<G> graphHeadType = factory.getGraphHeadFactory().getType();
+    Class<V> vertexType = factory.getVertexFactory().getType();
+    Class<E> edgeType = factory.getEdgeFactory().getType();
+    return factory.fromDataSets(extractGraphHeads(elements, graphHeadType), extractVertices(elements, vertexType, mayOverlap), extractEdges(elements, edgeType, mayOverlap));
+}

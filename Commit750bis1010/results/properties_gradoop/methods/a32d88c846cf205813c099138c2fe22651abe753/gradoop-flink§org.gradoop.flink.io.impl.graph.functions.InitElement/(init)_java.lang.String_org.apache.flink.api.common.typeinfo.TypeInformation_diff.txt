@@ -1,0 +1,14 @@
+/**
+ * Constructor.
+ *
+ * If the given property key is {@code null}, no lineage info will be stored.
+ *
+ * @param lineagePropertyKey  property key to store lineage info at EPGM
+ *                            element (can be {@code null})
+ * @param keyTypeInfo         type info for import element identifier
+ */
+public InitElement(String lineagePropertyKey, TypeInformation<K> keyTypeInfo) {
+    this.keepLineage = lineagePropertyKey != null;
+    this.lineagePropertyKey = lineagePropertyKey;
+    this.keyTypeInfo = checkNotNull(keyTypeInfo, "key type was null");
+}

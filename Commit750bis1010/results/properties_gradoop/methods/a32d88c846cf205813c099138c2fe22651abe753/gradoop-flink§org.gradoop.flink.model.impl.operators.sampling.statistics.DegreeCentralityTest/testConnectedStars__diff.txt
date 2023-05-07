@@ -1,0 +1,11 @@
+/**
+ * Test connected stars graph for degree centrality
+ *
+ * @throws Exception throws any Exception
+ */
+@Test
+public void testConnectedStars() throws Exception {
+    LogicalGraph graph = getLoaderFromString(graphString).getLogicalGraphByVariable("g3");
+    DataSet<Double> dataSet = new DegreeCentrality().execute(graph);
+    assertEquals(0.583, dataSet.collect().get(0), 0.001);
+}

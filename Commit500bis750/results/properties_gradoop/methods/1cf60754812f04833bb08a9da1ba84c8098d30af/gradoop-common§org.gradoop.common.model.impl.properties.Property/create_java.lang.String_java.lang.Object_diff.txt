@@ -1,0 +1,11 @@
+/**
+ * Creates a new property from the given arguments. Note that the given
+ * value type must be supported by {@link PropertyValue}.
+ *
+ * @param key   property key
+ * @param value property value
+ * @return property
+ */
+public static Property create(String key, Object value) {
+    return new Property(key, PropertyValue.create(value));
+}

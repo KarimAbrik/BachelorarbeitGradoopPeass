@@ -1,0 +1,9 @@
+/**
+ * Returns the number of vertices with the specified label.
+ *
+ * @param vertexLabel vertex label
+ * @return number of vertices with the given label
+ */
+public long getVertexCount(String vertexLabel) {
+    return vertexCountByLabel.getOrDefault(vertexLabel, 0L);
+}

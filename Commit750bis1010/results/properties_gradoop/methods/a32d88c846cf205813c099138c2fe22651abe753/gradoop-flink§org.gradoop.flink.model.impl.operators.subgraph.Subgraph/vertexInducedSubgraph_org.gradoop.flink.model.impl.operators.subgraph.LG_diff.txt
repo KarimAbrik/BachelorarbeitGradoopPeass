@@ -1,0 +1,11 @@
+/**
+ * Returns the subgraph of the given supergraph that is induced by the
+ * vertices that fulfil the given filter function.
+ *
+ * @param superGraph supergraph
+ * @return vertex-induced subgraph
+ */
+private LG vertexInducedSubgraph(LG superGraph) {
+    DataSet<V> filteredVertices = superGraph.getVertices().filter(vertexFilterFunction);
+    return superGraph.getFactory().fromDataSets(superGraph.getGraphHead(), filteredVertices, superGraph.getEdges()).verify();
+}

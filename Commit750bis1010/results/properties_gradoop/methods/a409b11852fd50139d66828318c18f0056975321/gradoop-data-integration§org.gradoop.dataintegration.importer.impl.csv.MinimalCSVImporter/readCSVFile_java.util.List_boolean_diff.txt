@@ -1,0 +1,12 @@
+/**
+ * Reads the csv file specified by {@link MinimalCSVImporter#path} and converts each valid line
+ * to a {@link EPGMVertex}.
+ *
+ * @param propertyNames list of the property identifier names
+ * @param checkReoccurringHeader set to true if each row of the file should be checked for
+ *                               reoccurring of the column property names
+ * @return a {@link DataSet} of all vertices from one specific file
+ */
+private DataSet<EPGMVertex> readCSVFile(List<String> propertyNames, boolean checkReoccurringHeader) {
+    return config.getExecutionEnvironment().readTextFile(path).flatMap(new CsvRowToProperties(tokenSeparator, propertyNames, checkReoccurringHeader)).map(new PropertiesToVertex<>(config.getLogicalGraphFactory().getVertexFactory())).returns(config.getLogicalGraphFactory().getVertexFactory().getType());
+}

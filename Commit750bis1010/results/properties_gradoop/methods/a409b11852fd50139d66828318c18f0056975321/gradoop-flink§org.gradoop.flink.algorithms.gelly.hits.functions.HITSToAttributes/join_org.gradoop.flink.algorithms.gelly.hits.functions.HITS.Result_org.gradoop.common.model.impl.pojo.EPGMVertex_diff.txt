@@ -1,0 +1,6 @@
+@Override
+public EPGMVertex join(HITS.Result<GradoopId> result, EPGMVertex vertex) throws Exception {
+    vertex.setProperty(authorityPropertyKey, PropertyValue.create(result.getAuthorityScore().getValue()));
+    vertex.setProperty(hubPropertyKey, PropertyValue.create(result.getHubScore().getValue()));
+    return vertex;
+}

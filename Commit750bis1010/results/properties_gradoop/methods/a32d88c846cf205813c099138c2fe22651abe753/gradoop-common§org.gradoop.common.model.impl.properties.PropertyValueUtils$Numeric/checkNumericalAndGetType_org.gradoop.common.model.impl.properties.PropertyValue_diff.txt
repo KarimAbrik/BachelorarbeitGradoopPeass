@@ -1,0 +1,27 @@
+/**
+ * Checks a property value for numerical type and returns its type.
+ *
+ * @param value property value
+ *
+ * @return numerical type
+ */
+private static int checkNumericalAndGetType(PropertyValue value) {
+    checkNotNull(value);
+    int type;
+    if (value.isShort()) {
+        type = SHORT;
+    } else if (value.isInt()) {
+        type = INT;
+    } else if (value.isLong()) {
+        type = LONG;
+    } else if (value.isFloat()) {
+        type = FLOAT;
+    } else if (value.isDouble()) {
+        type = DOUBLE;
+    } else if (value.isBigDecimal()) {
+        type = BIG_DECIMAL;
+    } else {
+        throw new UnsupportedTypeException(value.getObject().getClass());
+    }
+    return type;
+}

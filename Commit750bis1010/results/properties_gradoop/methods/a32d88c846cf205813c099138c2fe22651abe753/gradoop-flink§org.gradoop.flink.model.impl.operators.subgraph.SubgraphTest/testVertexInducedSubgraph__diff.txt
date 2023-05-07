@@ -1,0 +1,9 @@
+@Test
+public void testVertexInducedSubgraph() throws Exception {
+    FlinkAsciiGraphLoader loader = getSocialNetworkLoader();
+    loader.appendToDatabaseFromString("expected:_DB[" + "(databases)<-[ghtd]-(gdbs)-[ghtg1]->(graphs)" + "(graphs)<-[ghtg2]-(gps)-[ghth]->(hadoop)" + "]");
+    LogicalGraph input = loader.getLogicalGraph();
+    LogicalGraph expected = loader.getLogicalGraphByVariable("expected");
+    LogicalGraph output = input.vertexInducedSubgraph(v -> v.getLabel().equals("Forum") || v.getLabel().equals("Tag"));
+    collectAndAssertTrue(output.equalsByData(expected));
+}

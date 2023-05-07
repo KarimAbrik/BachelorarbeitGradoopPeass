@@ -1,0 +1,5 @@
+@Override
+public EPGMVertex join(Tuple2<GradoopId, Double> resultTuple, EPGMVertex vertex) throws Exception {
+    vertex.setProperty(ClusteringCoefficientBase.PROPERTY_KEY_LOCAL, resultTuple.f1);
+    return vertex;
+}

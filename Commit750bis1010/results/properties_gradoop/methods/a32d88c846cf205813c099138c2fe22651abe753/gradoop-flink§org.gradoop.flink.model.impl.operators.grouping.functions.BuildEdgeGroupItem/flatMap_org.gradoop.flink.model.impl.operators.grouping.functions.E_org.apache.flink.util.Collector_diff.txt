@@ -1,0 +1,19 @@
+@Override
+public void flatMap(E edge, Collector<EdgeGroupItem> collector) throws Exception {
+    boolean usedEdgeLabelGroup = false;
+    reuseEdgeGroupItem.setSourceId(edge.getSourceId());
+    reuseEdgeGroupItem.setTargetId(edge.getTargetId());
+    // check if edge shall be grouped by a special set of keys
+    for (LabelGroup edgeLabelGroup : getLabelGroups()) {
+        if (edgeLabelGroup.getGroupingLabel().equals(edge.getLabel())) {
+            usedEdgeLabelGroup = true;
+            setGroupItem(reuseEdgeGroupItem, edge, edgeLabelGroup);
+            collector.collect(reuseEdgeGroupItem);
+        }
+    }
+    // standard grouping case
+    if (!usedEdgeLabelGroup) {
+        setGroupItem(reuseEdgeGroupItem, edge, getDefaultLabelGroup());
+        collector.collect(reuseEdgeGroupItem);
+    }
+}

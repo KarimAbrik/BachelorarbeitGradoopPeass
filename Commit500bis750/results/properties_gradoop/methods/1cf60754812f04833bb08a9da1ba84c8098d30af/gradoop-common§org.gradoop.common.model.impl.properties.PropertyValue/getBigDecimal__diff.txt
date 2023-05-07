@@ -1,0 +1,27 @@
+/**                                                                                                    /**                                                                                                 
+* Returns the wrapped value as {@code BigDecimal}.                                                     * Returns the wrapped value as {@code BigDecimal}.                                                  
+*                                                                                                      *                                                                                                   
+* @return {@code BigDecimal} value                                                                     * @return {@code BigDecimal} value                                                                  
+* @see BigDecimal                                                                                      * @see BigDecimal                                                                                   
+*/                                                                                                     */                                                                                                  
+public BigDecimal getBigDecimal() {                                                                    public BigDecimal getBigDecimal() {                                                                 
+BigDecimal decimal;                                                                                    BigDecimal decimal;                                                                                 
+if (isBigDecimal()) {                                                                                  if (isBigDecimal()) {                                                                               
+decimal = Bytes.toBigDecimal(rawBytes, OFFSET, rawBytes.length - OFFSET);                              decimal = Bytes.toBigDecimal(rawBytes, OFFSET, rawBytes.length - OFFSET);                           
+} else if (isFloat()) {                                                                                } else if (isFloat()) {                                                                             
+decimal = BigDecimal.valueOf(Bytes.toFloat(rawBytes, OFFSET));                                       | decimal = BigDecimal.valueOf(getFloat());                                                           
+} else if (isDouble()) {                                                                               } else if (isDouble()) {                                                                            
+decimal = BigDecimal.valueOf(Bytes.toDouble(rawBytes, OFFSET));                                      | decimal = BigDecimal.valueOf(getDouble());                                                          
+                                                                                                     | } else if (isShort()) {                                                                             
+                                                                                                     | decimal = BigDecimal.valueOf(getShort());                                                           
+} else if (isInt()) {                                                                                  } else if (isInt()) {                                                                               
+decimal = BigDecimal.valueOf(Bytes.toInt(rawBytes, OFFSET));                                         | decimal = BigDecimal.valueOf(getInt());                                                             
+} else if (isLong()) {                                                                                 } else if (isLong()) {                                                                              
+decimal = BigDecimal.valueOf(Bytes.toLong(rawBytes, OFFSET));                                        | decimal = BigDecimal.valueOf(getLong());                                                            
+} else if (isString()) {                                                                               } else if (isString()) {                                                                            
+decimal = new BigDecimal(Bytes.toString(rawBytes, OFFSET, rawBytes.length - OFFSET));                | decimal = new BigDecimal(getString());                                                              
+} else {                                                                                               } else {                                                                                            
+throw new ClassCastException("Cannot covert " + this.getType().getSimpleName() + " to " + Double.cla | throw new ClassCastException("Cannot covert " + this.getType().getSimpleName() + " to " + BigDecimal
+}                                                                                                      }                                                                                                   
+return decimal;                                                                                        return decimal;                                                                                     
+}                                                                                                      }                                                                                                   

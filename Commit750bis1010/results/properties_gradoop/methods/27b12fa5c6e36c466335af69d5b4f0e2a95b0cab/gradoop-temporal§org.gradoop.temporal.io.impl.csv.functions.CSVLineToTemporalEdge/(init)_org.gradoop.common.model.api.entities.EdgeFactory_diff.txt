@@ -1,0 +1,8 @@
+/**
+ * Creates a CSVLineToTemporalEdge converter.
+ *
+ * @param edgeFactory the factory that is used to create an edge object
+ */
+public CSVLineToTemporalEdge(EdgeFactory<TemporalEdge> edgeFactory) {
+    this.edgeFactory = edgeFactory;
+}

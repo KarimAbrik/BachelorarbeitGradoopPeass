@@ -1,0 +1,10 @@
+@Test
+public void testWriteDistinctTargetVertexCount() throws Exception {
+    String tmpPath = temporaryFolder.getRoot().getPath();
+    LogicalGraph input = getSocialNetworkLoader().getLogicalGraph(true);
+    DataSink statisticDataSink = new GraphStatisticsDataSink(tmpPath);
+    statisticDataSink.write(input, true);
+    getExecutionEnvironment().execute();
+    GraphStatistics statistics = GraphStatisticsLocalFSReader.read(tmpPath);
+    assertThat(statistics.getDistinctTargetVertexCount(), is(7L));
+}

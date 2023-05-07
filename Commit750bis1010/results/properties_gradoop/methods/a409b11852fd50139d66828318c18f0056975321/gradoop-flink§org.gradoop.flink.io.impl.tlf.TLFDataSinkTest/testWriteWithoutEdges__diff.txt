@@ -1,0 +1,16 @@
+@Test
+public void testWriteWithoutEdges() throws Exception {
+    String tmpPath = temporaryFolder.getRoot().getPath();
+    String tlfFileImport = getFilePath("/data/tlf/io_test_string_without_edges.tlf");
+    String tlfFileExport = tmpPath + "/data/tlf/io_test_output";
+    // read from inputfile
+    DataSource dataSource = new TLFDataSource(tlfFileImport, getConfig());
+    // write to ouput path
+    DataSink dataSink = new TLFDataSink(tlfFileExport, getConfig());
+    dataSink.write(dataSource.getGraphCollection(), true);
+    // read from output path
+    DataSource dataSource2 = new TLFDataSource(tlfFileExport, getConfig());
+    getExecutionEnvironment().execute();
+    // compare original graph and written one
+    collectAndAssertTrue(dataSource.getGraphCollection().equalsByGraphElementData(dataSource2.getGraphCollection()));
+}

@@ -1,0 +1,7 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public GraphHead createGraphHead(String label) {
+    return initGraphHead(GradoopId.get(), label);
+}

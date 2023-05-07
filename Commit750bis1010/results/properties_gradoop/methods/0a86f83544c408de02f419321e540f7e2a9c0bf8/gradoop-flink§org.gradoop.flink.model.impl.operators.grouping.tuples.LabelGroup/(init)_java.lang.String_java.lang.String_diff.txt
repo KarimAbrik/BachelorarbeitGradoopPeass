@@ -1,0 +1,9 @@
+/**
+ * Constructor to only define the label.
+ *
+ * @param groupingLabel label used for grouping
+ * @param groupLabel label used after grouping
+ */
+public LabelGroup(String groupingLabel, String groupLabel) {
+    this(groupingLabel, groupLabel, new ArrayList<>(), new ArrayList<>());
+}

@@ -1,0 +1,14 @@
+/**
+ * Returns the entry type of the given variable.
+ *
+ * @param variable query variable
+ * @return Entry type of the referred entry
+ * @throws NoSuchElementException if there is no column mapped to the specified variable
+ */
+public EntryType getEntryType(String variable) {
+    Optional<EntryType> result = Arrays.stream(EntryType.values()).filter(entryType -> entryMapping.containsKey(Pair.of(variable, entryType))).findFirst();
+    if (!result.isPresent()) {
+        throw new NoSuchElementException(String.format("no entry for variable %s", variable));
+    }
+    return result.get();
+}

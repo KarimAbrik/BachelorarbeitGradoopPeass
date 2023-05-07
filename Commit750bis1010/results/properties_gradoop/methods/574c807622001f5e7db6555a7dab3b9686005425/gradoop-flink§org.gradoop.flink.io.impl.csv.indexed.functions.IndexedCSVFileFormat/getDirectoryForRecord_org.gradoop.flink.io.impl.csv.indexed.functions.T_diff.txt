@@ -1,0 +1,9 @@
+@Override
+protected String getDirectoryForRecord(T record) {
+    String label = record.getLabel();
+    if (label.isEmpty()) {
+        return cleanFilename(CSVConstants.DEFAULT_DIRECTORY) + Path.SEPARATOR + CSVConstants.SIMPLE_FILE;
+    } else {
+        return cleanFilename(label) + Path.SEPARATOR + CSVConstants.SIMPLE_FILE;
+    }
+}

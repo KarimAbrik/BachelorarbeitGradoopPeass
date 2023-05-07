@@ -1,0 +1,9 @@
+/**
+ * Returns the concatenated property values of the specified element according to the meta data.
+ *
+ * @param element EPGM element
+ * @return property value string
+ */
+String getPropertyString(E element) {
+    return metaData.getPropertyMetaData(element.getLabel()).stream().map(propertyMetaData -> this.getPropertyValueString(propertyMetaData, element)).collect(Collectors.joining(CSVConstants.VALUE_DELIMITER));
+}

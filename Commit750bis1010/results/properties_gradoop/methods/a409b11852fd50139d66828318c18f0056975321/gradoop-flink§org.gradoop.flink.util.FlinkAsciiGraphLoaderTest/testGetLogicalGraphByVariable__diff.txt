@@ -1,0 +1,14 @@
+/**
+ * Test getting a logical graph by variable from the loader
+ *
+ * @throws Exception on failure
+ */
+@Test
+public void testGetLogicalGraphByVariable() throws Exception {
+    FlinkAsciiGraphLoader loader = getSocialNetworkLoader();
+    String graphVariable = "g1";
+    GradoopId graphId = loader.getGraphHeadByVariable(graphVariable).getId();
+    LogicalGraph graphFromLoader = loader.getLogicalGraphByVariable(graphVariable);
+    LogicalGraph graphFromCollection = loader.getGraphCollection().getGraph(graphId);
+    collectAndAssertTrue(graphFromLoader.equalsByElementData(graphFromCollection));
+}

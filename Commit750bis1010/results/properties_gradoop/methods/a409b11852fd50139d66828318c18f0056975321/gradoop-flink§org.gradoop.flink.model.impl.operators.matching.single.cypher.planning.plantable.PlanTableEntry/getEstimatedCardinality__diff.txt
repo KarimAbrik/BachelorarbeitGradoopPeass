@@ -1,0 +1,11 @@
+/**
+ * Returns the estimated cardinality of the query plan represented by this entry.
+ *
+ * @return estimated cardinality
+ */
+public long getEstimatedCardinality() {
+    if (estimatedCardinality == -1) {
+        estimatedCardinality = estimator.getCardinality();
+    }
+    return estimatedCardinality;
+}

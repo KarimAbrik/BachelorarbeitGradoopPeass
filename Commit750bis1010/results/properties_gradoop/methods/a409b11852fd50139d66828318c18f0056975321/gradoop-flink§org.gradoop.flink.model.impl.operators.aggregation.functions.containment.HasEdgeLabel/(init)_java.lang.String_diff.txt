@@ -1,0 +1,8 @@
+/**
+ * Creates a new instance of a HasEdgeLabel aggregate function.
+ *
+ * @param label edge label to check presence of
+ */
+public HasEdgeLabel(String label) {
+    super(label, "hasEdgeLabel_" + label);
+}

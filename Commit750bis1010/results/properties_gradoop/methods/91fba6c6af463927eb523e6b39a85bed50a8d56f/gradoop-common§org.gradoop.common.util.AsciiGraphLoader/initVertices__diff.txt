@@ -1,0 +1,11 @@
+/**
+ * Initializes vertices and their cache.
+ */
+private void initVertices() {
+    for (org.s1ck.gdl.model.Vertex v : gdlHandler.getVertices()) {
+        initVertex(v);
+    }
+    for (Map.Entry<String, org.s1ck.gdl.model.Vertex> e : gdlHandler.getVertexCache().entrySet()) {
+        updateVertexCache(e.getKey(), e.getValue());
+    }
+}

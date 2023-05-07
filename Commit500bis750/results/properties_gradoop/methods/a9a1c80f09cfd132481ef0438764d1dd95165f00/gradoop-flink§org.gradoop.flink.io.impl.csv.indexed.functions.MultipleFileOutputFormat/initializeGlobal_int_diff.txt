@@ -1,0 +1,29 @@
+/**
+ * Initialization of the distributed file system if it is used.
+ *
+ * @param parallelism The task parallelism.
+ */
+@Override
+public void initializeGlobal(int parallelism) throws IOException {
+    final Path path = getOutputFilePath();
+    final FileSystem fileSystem = path.getFileSystem();
+    // only distributed file systems can be initialized at start-up time.
+    if (fileSystem.isDistributedFS()) {
+        final WriteMode wm = getWriteMode();
+        final OutputDirectoryMode outDirMode = getOutputDirectoryMode();
+        if (parallelism == 1 && outDirMode == OutputDirectoryMode.PARONLY) {
+            // output is not written in parallel and should be written to a single file.
+            // prepare distributed output path
+            if (!fileSystem.initOutPathDistFS(path, wm, false)) {
+                // output preparation failed! Cancel task.
+                throw new IOException("Output path could not be initialized.");
+            }
+        } else {
+            // output should be written to a directory
+            // only distributed file systems can be initialized at start-up time.
+            if (!fileSystem.initOutPathDistFS(path, wm, true)) {
+                throw new IOException("Output directory could not be created.");
+            }
+        }
+    }
+}

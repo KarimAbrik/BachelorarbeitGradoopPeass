@@ -1,0 +1,7 @@
+@Test
+public void testGetIdList() {
+    Embedding embedding = new Embedding();
+    GradoopId[] ids = new GradoopId[] { GradoopId.get(), GradoopId.get(), GradoopId.get() };
+    embedding.add(ids);
+    assertEquals(Lists.newArrayList(ids), embedding.getIdList(0));
+}

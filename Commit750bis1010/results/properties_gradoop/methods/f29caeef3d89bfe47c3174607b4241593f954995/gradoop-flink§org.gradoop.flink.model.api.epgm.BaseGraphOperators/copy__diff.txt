@@ -1,0 +1,10 @@
+/**
+ * Creates a copy of the base graph.
+ * <p>
+ * Note that this method creates new graph head, vertex and edge instances.
+ *
+ * @return projected base graph
+ */
+default LG copy() {
+    return callForGraph(new Cloning<>());
+}

@@ -1,0 +1,15 @@
+/**
+ * Test getting a graph collection from the loader
+ *
+ * @throws Exception on failure
+ */
+@Test
+public void testGetGraphCollection() throws Exception {
+    FlinkAsciiGraphLoader loader = getSocialNetworkLoader();
+    GraphCollection collectionFromLoader = loader.getGraphCollectionByVariables("g0", "g1", "g2", "g3");
+    GraphCollection collectionFromDb = loader.getGraphCollection();
+    // heads <> heads
+    collectAndAssertTrue(collectionFromLoader.equalsByGraphIds(collectionFromDb));
+    // elements <> elements
+    collectAndAssertTrue(collectionFromLoader.equalsByGraphElementIds(collectionFromDb));
+}

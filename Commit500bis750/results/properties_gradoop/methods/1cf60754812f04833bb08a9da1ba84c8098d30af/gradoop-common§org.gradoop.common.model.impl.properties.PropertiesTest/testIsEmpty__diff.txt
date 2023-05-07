@@ -1,0 +1,7 @@
+@Test
+public void testIsEmpty() throws Exception {
+    Properties properties = Properties.create();
+    assertTrue("properties was not empty", properties.isEmpty());
+    properties.set(KEY_1, BOOL_VAL_1);
+    assertFalse("properties was empty", properties.isEmpty());
+}

@@ -1,0 +1,11 @@
+/**
+ * Creates a new graph reader with no lineage information stored at the
+ * resulting EPGM graph.
+ *
+ * @param importVertices  vertices to import
+ * @param importEdges     edges to import
+ * @param config          gradoop config
+ */
+public GraphDataSource(DataSet<ImportVertex<K>> importVertices, DataSet<ImportEdge<K>> importEdges, GradoopFlinkConfig config) {
+    this(importVertices, importEdges, null, config);
+}

@@ -1,0 +1,34 @@
+@Override
+public CSVMetaData fromTuples(List<Tuple3<String, String, String>> metaDataStrings) {
+    Map<String, List<PropertyMetaData>> graphMetaDataMap = new HashMap<>(metaDataStrings.size());
+    Map<String, List<PropertyMetaData>> vertexMetaDataMap = new HashMap<>(metaDataStrings.size());
+    Map<String, List<PropertyMetaData>> edgeMetaDataMap = new HashMap<>(metaDataStrings.size());
+    for (Tuple3<String, String, String> tuple : metaDataStrings) {
+        List<PropertyMetaData> propertyMetaDataList;
+        if (tuple.f2.length() > 0) {
+            String[] propertyStrings = StringEscaper.split(tuple.f2, PropertyMetaData.PROPERTY_DELIMITER);
+            propertyMetaDataList = new ArrayList<>(propertyStrings.length);
+            for (String propertyMetaData : propertyStrings) {
+                String[] propertyMetaDataTokens = StringEscaper.split(propertyMetaData, PropertyMetaData.PROPERTY_TOKEN_DELIMITER, 2);
+                propertyMetaDataList.add(new PropertyMetaData(StringEscaper.unescape(propertyMetaDataTokens[0]), propertyMetaDataTokens[1], CSVMetaDataParser.getPropertyValueParser(propertyMetaDataTokens[1])));
+            }
+        } else {
+            propertyMetaDataList = new ArrayList<>(0);
+        }
+        String label = StringEscaper.unescape(tuple.f1);
+        switch(tuple.f0) {
+            case GRAPH_TYPE:
+                graphMetaDataMap.put(label, propertyMetaDataList);
+                break;
+            case VERTEX_TYPE:
+                vertexMetaDataMap.put(label, propertyMetaDataList);
+                break;
+            case EDGE_TYPE:
+                edgeMetaDataMap.put(label, propertyMetaDataList);
+                break;
+            default:
+                throw new IllegalArgumentException("Type " + tuple.f0 + " is not a valid epgm type " + "string. Valid strings are g, v and e.");
+        }
+    }
+    return new CSVMetaData(graphMetaDataMap, vertexMetaDataMap, edgeMetaDataMap);
+}

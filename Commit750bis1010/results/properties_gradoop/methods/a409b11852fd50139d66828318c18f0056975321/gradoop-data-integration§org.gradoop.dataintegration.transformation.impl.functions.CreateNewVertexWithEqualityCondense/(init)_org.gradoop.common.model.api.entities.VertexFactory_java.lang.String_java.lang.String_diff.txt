@@ -1,0 +1,13 @@
+/**
+ * The constructor for condensation of same property values to one newly created vertex.
+ *
+ * @param factory The factory new vertices are created with.
+ * @param newVertexLabel  The new vertex label.
+ * @param newPropertyName The new property key.
+ */
+public CreateNewVertexWithEqualityCondense(VertexFactory<EPGMVertex> factory, String newVertexLabel, String newPropertyName) {
+    this.vertexFactory = factory;
+    this.newVertexLabel = newVertexLabel;
+    this.newPropertyName = newPropertyName;
+    this.reuseTuple = new Tuple2<>();
+}

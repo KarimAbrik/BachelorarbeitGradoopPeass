@@ -1,0 +1,9 @@
+@Override
+public Short read(DataInputView inputView, byte typeByte) throws IOException {
+    int length = Bytes.SIZEOF_SHORT;
+    byte[] rawBytes = new byte[length];
+    for (int i = 0; i < rawBytes.length; i++) {
+        rawBytes[i] = inputView.readByte();
+    }
+    return Bytes.toShort(rawBytes);
+}

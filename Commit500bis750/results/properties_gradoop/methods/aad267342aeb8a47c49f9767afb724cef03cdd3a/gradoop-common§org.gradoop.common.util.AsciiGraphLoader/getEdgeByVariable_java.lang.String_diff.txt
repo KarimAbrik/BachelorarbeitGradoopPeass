@@ -1,0 +1,9 @@
+/**
+ * Returns edge by its given variable.
+ *
+ * @param variable variable used in GDL script
+ * @return edge or {@code null} if not present
+ */
+public E getEdgeByVariable(String variable) {
+    return edgeCache.get(variable);
+}

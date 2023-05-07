@@ -1,0 +1,17 @@
+/**
+ * Returns hex string representation of a GradoopId.
+ *
+ * Note: Implementation is taken from {@link ObjectId#toString()} to avoid object instantiation.
+ *
+ * @return GradoopId string representation.
+ */
+@Override
+public String toString() {
+    char[] chars = new char[24];
+    int i = 0;
+    for (byte b : bytes) {
+        chars[i++] = HEX_CHARS[b >> 4 & 0xF];
+        chars[i++] = HEX_CHARS[b & 0xF];
+    }
+    return new String(chars);
+}

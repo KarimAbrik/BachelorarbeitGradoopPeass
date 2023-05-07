@@ -1,0 +1,9 @@
+/**
+ * Returns the first {@code n} arbitrary logical graphs contained in that collection.
+ *
+ * @param n number of graphs to return from collection
+ * @return subset of the graph collection
+ */
+default GC limit(int n) {
+    return callForCollection(new Limit<>(n));
+}

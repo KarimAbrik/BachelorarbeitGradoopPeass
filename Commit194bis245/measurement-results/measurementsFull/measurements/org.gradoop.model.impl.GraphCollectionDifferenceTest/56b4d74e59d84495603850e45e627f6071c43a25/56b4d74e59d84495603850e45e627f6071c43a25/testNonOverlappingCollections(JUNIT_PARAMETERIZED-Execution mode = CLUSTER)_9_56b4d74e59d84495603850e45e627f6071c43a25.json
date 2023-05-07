@@ -1,0 +1,68 @@
+{
+  "clazz" : "org.gradoop.model.impl.GraphCollectionDifferenceTest",
+  "methods" : [ {
+    "method" : "testNonOverlappingCollections",
+    "datacollectorResults" : [ {
+      "name" : "de.dagere.kopeme.datacollection.TimeDataCollectorNoGC",
+      "chunks" : [ ],
+      "results" : [ {
+        "value" : 1.0761313046000004E9,
+        "deviation" : 0.7407987197115382,
+        "min" : 6.54622829E8,
+        "max" : 3.261071739E9,
+        "warmup" : 0,
+        "iterations" : 10,
+        "repetitions" : 2,
+        "commit" : null,
+        "vmRunConfiguration" : {
+          "showStart" : false,
+          "executeBeforeClassInMeasurement" : false,
+          "redirectToTemp" : false,
+          "redirectToNull" : true,
+          "useKieker" : false
+        },
+        "parameters" : {
+          "JUNIT_PARAMETERIZED" : "Execution mode = CLUSTER"
+        },
+        "javaVersion" : "1.8.0_362",
+        "cpu" : "model name : Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz",
+        "memory" : "MemTotal: 16280544 kB",
+        "date" : 1680979052821,
+        "fulldata" : {
+          "fileName" : null,
+          "values" : [ {
+            "startTime" : 1680979041888,
+            "value" : 3261071739
+          }, {
+            "startTime" : 1680979045149,
+            "value" : 1283391124
+          }, {
+            "startTime" : 1680979046433,
+            "value" : 1135690527
+          }, {
+            "startTime" : 1680979047569,
+            "value" : 723774447
+          }, {
+            "startTime" : 1680979048292,
+            "value" : 817912634
+          }, {
+            "startTime" : 1680979049110,
+            "value" : 654622829
+          }, {
+            "startTime" : 1680979049765,
+            "value" : 655813453
+          }, {
+            "startTime" : 1680979050421,
+            "value" : 697760658
+          }, {
+            "startTime" : 1680979051119,
+            "value" : 860740342
+          }, {
+            "startTime" : 1680979051979,
+            "value" : 670535293
+          } ]
+        }
+      } ]
+    } ]
+  } ]
+}

@@ -1,0 +1,6 @@
+@Test(expected = IndexOutOfBoundsException.class)
+public void testGetPropertyThrowsIndexOutOfBoundException() {
+    Embedding embedding = new Embedding();
+    embedding.add(GradoopId.get());
+    embedding.getProperty(0);
+}

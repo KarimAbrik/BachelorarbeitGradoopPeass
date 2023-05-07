@@ -1,0 +1,13 @@
+/**
+ * Convert a graph to a {@link TemporalGraph} with time extraction functions.
+ * This will use {@link TemporalGradoopTestUtils#extractTime(Element)} to extract temporal attributes.
+ *
+ * @param graph The graph.
+ * @return The temporal graph with extracted temporal information.
+ */
+protected TemporalGraph toTemporalGraphWithDefaultExtractors(BaseGraph<?, ?, ?, ?, ?> graph) {
+    // We have to use lambda expressions instead of method references here, otherwise a
+    // ClassCastException will be thrown when those extractor functions are called.
+    // TODO: Find out why. (#1399)
+    return toTemporalGraph(graph, g -> TemporalGradoopTestUtils.extractTime(g), v -> TemporalGradoopTestUtils.extractTime(v), e -> TemporalGradoopTestUtils.extractTime(e));
+}

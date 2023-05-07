@@ -1,0 +1,10 @@
+@Override
+public CSVEdge map(EPGMEdge edge) throws Exception {
+    csvEdge.setId(edge.getId().toString());
+    csvEdge.setGradoopIds(collectionToCsvString(edge.getGraphIds()));
+    csvEdge.setSourceId(edge.getSourceId().toString());
+    csvEdge.setTargetId(edge.getTargetId().toString());
+    csvEdge.setLabel(StringEscaper.escape(edge.getLabel(), CSVConstants.ESCAPED_CHARACTERS));
+    csvEdge.setProperties(getPropertyString(edge, MetaDataSource.EDGE_TYPE));
+    return csvEdge;
+}

@@ -1,0 +1,10 @@
+/**
+ * Instantiate this base class, setting the data offset and aggregate functions.
+ *
+ * @param tupleDataOffset    The data offset for aggregate values in the tuple.
+ * @param aggregateFunctions The aggregate functions.
+ */
+ReduceElementTuples(int tupleDataOffset, List<AggregateFunction> aggregateFunctions) {
+    this.tupleDataOffset = tupleDataOffset;
+    this.aggregateFunctions = aggregateFunctions;
+}

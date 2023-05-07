@@ -1,0 +1,6 @@
+@Test
+public void testReturnNothingForFalseCircles() throws Exception {
+    List<Embedding> result = new ArrayList<>();
+    new PostProcessExpandEmbedding(0, 2).flatMap(expandEmbedding(), new ListCollector<>(result));
+    assertEquals(0, result.size());
+}

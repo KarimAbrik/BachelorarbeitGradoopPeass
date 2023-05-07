@@ -1,0 +1,5 @@
+@Override
+public Tuple2<GradoopId, T> map(Tuple2<EL, T> tuple2) {
+    reuseTuple.setFields(tuple2.f0.getId(), tuple2.f1);
+    return reuseTuple;
+}

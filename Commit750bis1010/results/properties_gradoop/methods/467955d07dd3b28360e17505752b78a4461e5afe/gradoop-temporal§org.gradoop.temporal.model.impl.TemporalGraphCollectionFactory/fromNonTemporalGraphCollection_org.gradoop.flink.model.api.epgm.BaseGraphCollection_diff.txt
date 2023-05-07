@@ -1,0 +1,12 @@
+/**
+ * Creates a {@link TemporalGraphCollection} from a (non-temporal) base graph collection.
+ *
+ * This method calls {@link #fromNonTemporalDataSets(DataSet, DataSet, DataSet)} on the graph collections
+ * element data sets.
+ *
+ * @param collection Some base graph collection.
+ * @return The resulting temporal graph collection.
+ */
+public TemporalGraphCollection fromNonTemporalGraphCollection(BaseGraphCollection<?, ?, ?, ?, ?> collection) {
+    return fromNonTemporalDataSets(collection.getGraphHeads(), collection.getVertices(), collection.getEdges());
+}

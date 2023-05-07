@@ -1,0 +1,12 @@
+/**
+ * Returns the escape sequence of a given character.
+ *
+ * @param character character to be escaped
+ * @return escape sequence
+ */
+private static CharSequence escapeCharacter(char character) {
+    if (CUSTOM_ESCAPE_SEQUENCES.containsKey(character)) {
+        return CUSTOM_ESCAPE_SEQUENCES.get(character);
+    }
+    return String.format("%c%c", ESCAPE_CHARACTER, character);
+}

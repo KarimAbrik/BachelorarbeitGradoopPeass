@@ -1,0 +1,6 @@
+@Test
+public void testGetSuccessorsWithLoop() throws Exception {
+    List<Edge> successors = Lists.newArrayList(QUERY_HANDLER.getSuccessors(GDL_HANDLER.getEdgeCache().get("e4").getId()));
+    List<Edge> expected = Lists.newArrayList(GDL_HANDLER.getEdgeCache().get("e4"));
+    assertTrue(elementsEqual(successors, expected));
+}

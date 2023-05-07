@@ -1,0 +1,47 @@
+/**
+ * Created a dataset of (graph id, canonical label) pairs.
+ *
+ * @param collection input collection
+ * @return (graph id, canonical label) pairs
+ */
+public DataSet<GraphHeadString> getGraphHeadStrings(GC collection) {
+    // 1. label graph heads
+    DataSet<GraphHeadString> graphHeadLabels = collection.getGraphHeads().map(graphHeadToString);
+    // 2. label vertices
+    DataSet<VertexString> vertexLabels = collection.getVertices().flatMap(vertexToString);
+    // 3. label edges
+    DataSet<EdgeString> edgeLabels = collection.getEdges().flatMap(egeLabelingFunction);
+    if (directed) {
+        // 4. combine labels of parallel edges
+        edgeLabels = edgeLabels.groupBy(0, 1, 2).reduceGroup(new MultiEdgeStringCombiner());
+        // 5. extend edge labels by vertex labels
+        edgeLabels = edgeLabels.join(vertexLabels).where(0, 1).equalTo(0, // graphId,sourceId = graphId,vertexId
+        1).with(new SourceStringUpdater()).join(vertexLabels).where(0, 2).equalTo(0, // graphId,targetId = graphId,vertexId
+        1).with(new TargetStringUpdater());
+        // 6. extend vertex labels by outgoing vertex+edge labels
+        DataSet<VertexString> outgoingAdjacencyListLabels = // graphId, sourceId
+        edgeLabels.groupBy(0, 1).reduceGroup(new OutgoingAdjacencyList());
+        // 7. extend vertex labels by outgoing vertex+edge labels
+        DataSet<VertexString> incomingAdjacencyListLabels = // graphId, targetId
+        edgeLabels.groupBy(0, 2).reduceGroup(new IncomingAdjacencyList());
+        // 8. combine vertex labels
+        vertexLabels = vertexLabels.leftOuterJoin(outgoingAdjacencyListLabels).where(0, 1).equalTo(0, 1).with(new LabelCombiner<VertexString>()).leftOuterJoin(incomingAdjacencyListLabels).where(0, 1).equalTo(0, 1).with(new LabelCombiner<VertexString>());
+    } else {
+        // undirected graph
+        // 4. union edges with flipped edges and combine labels of parallel edges
+        edgeLabels = edgeLabels.union(edgeLabels.map(new SwitchSourceTargetIds())).groupBy(0, 1, 2).reduceGroup(new MultiEdgeStringCombiner());
+        // 5. extend edge labels by vertex labels
+        edgeLabels = edgeLabels.join(vertexLabels).where(0, 2).equalTo(0, // graphId,targetId = graphId,vertexId
+        1).with(new TargetStringUpdater());
+        // 6/7. extend vertex labels by vertex+edge labels
+        DataSet<VertexString> adjacencyListLabels = // graphId, sourceId
+        edgeLabels.groupBy(0, 1).reduceGroup(new UndirectedAdjacencyList());
+        // 8. combine vertex labels
+        vertexLabels = vertexLabels.leftOuterJoin(adjacencyListLabels).where(0, 1).equalTo(0, 1).with(new LabelCombiner<VertexString>());
+    }
+    // 9. create adjacency matrix labels
+    DataSet<GraphHeadString> adjacencyMatrixLabels = vertexLabels.groupBy(0).reduceGroup(new AdjacencyMatrix());
+    // 10. combine graph labels
+    graphHeadLabels = graphHeadLabels.leftOuterJoin(adjacencyMatrixLabels).where(0).equalTo(0).with(new LabelCombiner<GraphHeadString>());
+    return graphHeadLabels;
+}

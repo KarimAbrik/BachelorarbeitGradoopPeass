@@ -1,0 +1,14 @@
+@Override
+public LogicalGraphLayout<EPGMGraphHead, EPGMVertex, EPGMEdge> fromCollections(EPGMGraphHead graphHead, Collection<EPGMVertex> vertices, Collection<EPGMEdge> edges) {
+    Objects.requireNonNull(vertices, "EPGMVertex collection was null");
+    List<EPGMGraphHead> graphHeads;
+    if (graphHead == null) {
+        graphHeads = Lists.newArrayListWithCapacity(0);
+    } else {
+        graphHeads = Lists.newArrayList(graphHead);
+    }
+    if (edges == null) {
+        edges = Lists.newArrayListWithCapacity(0);
+    }
+    return fromDataSets(createGraphHeadDataSet(graphHeads), createVertexDataSet(vertices), createEdgeDataSet(edges));
+}

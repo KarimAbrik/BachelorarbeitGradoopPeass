@@ -1,0 +1,4 @@
+@Override
+public EPGMGraphHead map(Tuple1<GradoopId> idTuple) {
+    return graphHeadFactory.initGraphHead(idTuple.f0);
+}

@@ -1,0 +1,35 @@
+@Test
+public void testEqualsAndHashCode() throws Exception {
+    validateEqualsAndHashCode(create(null), create(null), create(false));
+    validateEqualsAndHashCode(create(true), create(true), create(false));
+    validateEqualsAndHashCode(create(10), create(10), create(11));
+    validateEqualsAndHashCode(create(10L), create(10L), create(11L));
+    validateEqualsAndHashCode(create(10F), create(10F), create(11F));
+    validateEqualsAndHashCode(create(10.), create(10.), create(11.));
+    validateEqualsAndHashCode(create("10"), create("10"), create("11"));
+    validateEqualsAndHashCode(create(new BigDecimal(10)), create(new BigDecimal(10)), create(new BigDecimal(11)));
+    validateEqualsAndHashCode(create(GradoopId.fromString("583ff8ffbd7d222690a90999")), create(GradoopId.fromString("583ff8ffbd7d222690a90999")), create(GradoopId.fromString("583ff8ffbd7d222690a9099a")));
+    Map<PropertyValue, PropertyValue> map1 = new HashMap<>();
+    map1.put(PropertyValue.create("foo"), PropertyValue.create("bar"));
+    Map<PropertyValue, PropertyValue> map2 = new HashMap<>();
+    map2.put(PropertyValue.create("foo"), PropertyValue.create("bar"));
+    Map<PropertyValue, PropertyValue> map3 = new HashMap<>();
+    map3.put(PropertyValue.create("foo"), PropertyValue.create("baz"));
+    validateEqualsAndHashCode(create(map1), create(map2), create(map3));
+    List<PropertyValue> list1 = Lists.newArrayList(PropertyValue.create("foo"), PropertyValue.create("bar"));
+    List<PropertyValue> list2 = Lists.newArrayList(PropertyValue.create("foo"), PropertyValue.create("bar"));
+    List<PropertyValue> list3 = Lists.newArrayList(PropertyValue.create("foo"), PropertyValue.create("baz"));
+    validateEqualsAndHashCode(create(list1), create(list2), create(list3));
+    LocalDate date1 = LocalDate.MAX;
+    LocalDate date2 = LocalDate.MAX;
+    LocalDate date3 = LocalDate.now();
+    validateEqualsAndHashCode(create(date1), create(date2), create(date3));
+    LocalTime time1 = LocalTime.MAX;
+    LocalTime time2 = LocalTime.MAX;
+    LocalTime time3 = LocalTime.now();
+    validateEqualsAndHashCode(create(time1), create(time2), create(time3));
+    LocalDateTime dateTime1 = LocalDateTime.of(date1, time1);
+    LocalDateTime dateTime2 = LocalDateTime.of(date2, time2);
+    LocalDateTime dateTime3 = LocalDateTime.of(date3, time3);
+    validateEqualsAndHashCode(create(dateTime1), create(dateTime2), create(dateTime3));
+}

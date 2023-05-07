@@ -1,0 +1,19 @@
+/**
+ * Returns all query candidate ids for the given EPGM element.
+ *
+ * @param dbElement     element (vertices/edges)
+ * @param queryElements query graph elements (vertices/edges)
+ * @param <EL1>         EPGM element type
+ * @param <EL2>         GDL element type
+ * @param defaultLabel  default element label
+ * @return all candidate ids for {@code dbElement}
+ */
+public static <EL1 extends Element, EL2 extends GraphElement> List<Long> getMatches(EL1 dbElement, Collection<EL2> queryElements, String defaultLabel) {
+    List<Long> matches = Lists.newArrayListWithCapacity(queryElements.size());
+    for (GraphElement queryElement : queryElements) {
+        if (match(dbElement, queryElement, defaultLabel)) {
+            matches.add(queryElement.getId());
+        }
+    }
+    return matches;
+}

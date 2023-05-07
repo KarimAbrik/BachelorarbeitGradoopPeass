@@ -1,0 +1,12 @@
+/**
+ * Creates a new temporal layout holding the graph elements.
+ *
+ * @param temporalGraphHeads graph head dataset
+ * @param temporalVertices vertex dataset
+ * @param temporalEdges edge dataset
+ */
+TemporalGVELayout(DataSet<TemporalGraphHead> temporalGraphHeads, DataSet<TemporalVertex> temporalVertices, DataSet<TemporalEdge> temporalEdges) {
+    this.temporalGraphHeads = temporalGraphHeads;
+    this.temporalVertices = temporalVertices;
+    this.temporalEdges = temporalEdges;
+}

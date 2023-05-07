@@ -1,0 +1,8 @@
+/**
+ * True, if the wrapped value is of type {@code boolean}.
+ *
+ * @return true, if {@code boolean} value
+ */
+public boolean isBoolean() {
+    return rawBytes[0] == TYPE_BOOLEAN;
+}

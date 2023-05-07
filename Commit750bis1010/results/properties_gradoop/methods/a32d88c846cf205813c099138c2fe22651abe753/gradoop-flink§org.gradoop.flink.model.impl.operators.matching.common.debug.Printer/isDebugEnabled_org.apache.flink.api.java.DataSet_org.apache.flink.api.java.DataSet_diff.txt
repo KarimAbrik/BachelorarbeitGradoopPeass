@@ -1,0 +1,11 @@
+/**
+ * Checks if log level is debug and the mappings are initialized.
+ *
+ * @param vertexMapping mapping between vertex id and debug property value
+ * @param edgeMapping   mapping between edge id and debug property value
+ * @param <K>           key type
+ * @return true, iff logging is enabled
+ */
+private static <K> boolean isDebugEnabled(DataSet<Tuple2<K, PropertyValue>> vertexMapping, DataSet<Tuple2<K, PropertyValue>> edgeMapping) {
+    return LOG.isDebugEnabled() && vertexMapping != null && edgeMapping != null;
+}

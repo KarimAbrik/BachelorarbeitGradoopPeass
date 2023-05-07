@@ -1,0 +1,13 @@
+/**
+ * Returns the properties as a GDL formatted String.
+ *
+ * @param properties The properties to be formatted.
+ * @return A GDL formatted string that represents the properties.
+ */
+private String propertiesToGDLString(Properties properties) {
+    if (properties == null || properties.isEmpty()) {
+        return "";
+    } else {
+        return properties.toList().stream().map(this::propertyToGDLString).collect(Collectors.joining(PROPERTIES_SEPARATOR, PROPERTIES_PREFIX, PROPERTIES_SUFFIX));
+    }
+}

@@ -1,0 +1,16 @@
+/**
+ * Returns edges by their given variables.
+ *
+ * @param variables variables used in GDL script
+ * @return edges
+ */
+public Collection<E> getEdgesByVariables(String... variables) {
+    Collection<E> result = Sets.newHashSetWithExpectedSize(variables.length);
+    for (String variable : variables) {
+        E edge = edgeCache.get(variable);
+        if (edge != null) {
+            result.add(edge);
+        }
+    }
+    return result;
+}

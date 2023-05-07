@@ -1,0 +1,8 @@
+@Test
+public void testVertexOnlyTransformation() throws Exception {
+    FlinkAsciiGraphLoader loader = getLoaderFromString(testGraphString);
+    LogicalGraph original = loader.getLogicalGraphByVariable("g0");
+    LogicalGraph expected = loader.getLogicalGraphByVariable("g03");
+    LogicalGraph result = original.transformVertices(TransformationTest::transformVertex);
+    collectAndAssertTrue(result.equalsByData(expected));
+}

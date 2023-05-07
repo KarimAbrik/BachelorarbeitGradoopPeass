@@ -1,0 +1,33 @@
+/**
+ * Test if {@link GradoopId} implements {@link CopyableValue#copy(DataInputView, DataOutputView)}
+ * correctly.
+ *
+ * @throws IOException when reading or writing to and from I/O streams fails.
+ */
+@Test
+public void testCopyFromInputViewToOutputView() throws IOException {
+    GradoopId inputId = GradoopId.get();
+    // Step 1: Write the GradoopId to a DataOutputView backed by a byte-array.
+    ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+    inputId.write(new DataOutputViewStreamWrapper(outputStream));
+    outputStream.flush();
+    byte[] writtenBytes = outputStream.toByteArray();
+    outputStream.close();
+    // Step 2: Wrap the newly created byte-array in a DataInputView.
+    ByteArrayInputStream inputStream = new ByteArrayInputStream(writtenBytes);
+    DataInputViewStreamWrapper inputView = new DataInputViewStreamWrapper(inputStream);
+    // Step 3: Copy the contents from the InputView to the new OutputView.
+    ByteArrayOutputStream outputStreamForCopy = new ByteArrayOutputStream();
+    DataOutputViewStreamWrapper outputView = new DataOutputViewStreamWrapper(outputStreamForCopy);
+    inputId.copy(inputView, outputView);
+    byte[] writtenBytesOfCopy = outputStreamForCopy.toByteArray();
+    outputView.close();
+    inputView.close();
+    // Step 4: Read a GradoopId from the byte-array of the copy, verify it.
+    ByteArrayInputStream inputStreamFromCopiedData = new ByteArrayInputStream(writtenBytesOfCopy);
+    DataInputViewStreamWrapper inputViewFromCopiedData = new DataInputViewStreamWrapper(inputStreamFromCopiedData);
+    GradoopId copy = new GradoopId();
+    copy.read(inputViewFromCopiedData);
+    inputStreamFromCopiedData.close();
+    assertEquals(inputId, copy);
+}

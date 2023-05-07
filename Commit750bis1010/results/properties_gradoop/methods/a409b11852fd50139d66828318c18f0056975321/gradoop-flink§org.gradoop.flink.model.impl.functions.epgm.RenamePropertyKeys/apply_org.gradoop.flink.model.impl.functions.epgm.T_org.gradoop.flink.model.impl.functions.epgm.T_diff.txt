@@ -1,0 +1,10 @@
+@Override
+public T apply(T current, T transformed) {
+    for (Map.Entry<String, String> mapping : keyMappings.entrySet()) {
+        if (current.getPropertyValue(mapping.getKey()) != null) {
+            current.setProperty(mapping.getValue(), current.getPropertyValue(mapping.getKey()));
+            current.removeProperty(mapping.getKey());
+        }
+    }
+    return current;
+}

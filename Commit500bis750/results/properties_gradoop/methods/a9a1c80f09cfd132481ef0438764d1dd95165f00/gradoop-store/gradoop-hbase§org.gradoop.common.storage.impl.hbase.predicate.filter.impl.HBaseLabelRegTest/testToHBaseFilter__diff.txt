@@ -1,0 +1,9 @@
+/**
+ * Test the toHBaseFilter function
+ */
+@Test
+public void testToHBaseFilter() {
+    HBaseLabelReg<Vertex> vertexFilter = new HBaseLabelReg<>(PATTERN_VERTEX);
+    Filter expectedFilter = new SingleColumnValueFilter(Bytes.toBytesBinary(CF_META), Bytes.toBytesBinary(COL_LABEL), CompareFilter.CompareOp.EQUAL, new RegexStringComparator(PATTERN_VERTEX.pattern()));
+    assertEquals(expectedFilter.toString(), vertexFilter.toHBaseFilter().toString());
+}

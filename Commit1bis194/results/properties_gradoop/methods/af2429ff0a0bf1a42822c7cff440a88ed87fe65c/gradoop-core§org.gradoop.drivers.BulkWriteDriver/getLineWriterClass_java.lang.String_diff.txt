@@ -1,0 +1,10 @@
+/**
+ * Returns the class for the given class name parameter.
+ *
+ * @param writerClassName full qualified class name of the writer
+ * @return writer class instance
+ * @throws java.lang.ClassNotFoundException
+ */
+private Class<? extends VertexLineWriter> getLineWriterClass(final String writerClassName) throws ClassNotFoundException {
+    return Class.forName(writerClassName).asSubclass(VertexLineWriter.class);
+}

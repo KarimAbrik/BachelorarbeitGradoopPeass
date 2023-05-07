@@ -1,0 +1,13 @@
+/**
+ * The constructor for creating new vertices with their origin Ids.
+ *
+ * @param factory The Factory the vertices are created with.
+ * @param newVertexLabel  The new vertex Label.
+ * @param newPropertyName The new property key.
+ */
+public CreateNewVertex(VertexFactory<EPGMVertex> factory, String newVertexLabel, String newPropertyName) {
+    this.vertexFactory = factory;
+    this.newVertexLabel = newVertexLabel;
+    this.newPropertyName = newPropertyName;
+    this.reuseTuple = new Tuple2<>();
+}

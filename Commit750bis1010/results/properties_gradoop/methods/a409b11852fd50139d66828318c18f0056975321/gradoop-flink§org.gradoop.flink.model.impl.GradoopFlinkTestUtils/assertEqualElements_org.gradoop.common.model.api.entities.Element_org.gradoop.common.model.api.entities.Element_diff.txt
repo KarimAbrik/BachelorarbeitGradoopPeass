@@ -1,0 +1,5 @@
+private static void assertEqualElements(Element a, Element b) {
+    Assert.assertEquals(a.getId(), b.getId());
+    Assert.assertEquals(a.getLabel(), b.getLabel());
+    assertTrue(a.getProperties() == null && b.getProperties() == null || a.getProperties().equals(b.getProperties()));
+}

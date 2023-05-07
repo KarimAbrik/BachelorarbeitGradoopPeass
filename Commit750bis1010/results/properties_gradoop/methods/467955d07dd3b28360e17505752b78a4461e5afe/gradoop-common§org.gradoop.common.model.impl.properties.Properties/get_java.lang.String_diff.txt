@@ -1,0 +1,11 @@
+/**
+ * Returns the value to the given key of {@code null} if the value does not
+ * exist.
+ *
+ * @param key property key
+ * @return property value or {@code null} if key does not exist
+ */
+public PropertyValue get(String key) {
+    Objects.requireNonNull(key);
+    return properties.get(key);
+}

@@ -1,0 +1,28 @@
+/**
+ * Joins the query plans represented by the specified plan table entries.
+ *
+ * The method considers if the right entry is a variable length path and in that case
+ * creates an {@link ExpandEmbeddingsNode}. In any other case, a regular
+ * {@link JoinEmbeddingsNode} is used to join the query plans.
+ *
+ * @param leftEntry left entry
+ * @param rightEntry right entry
+ * @param joinVariables join variables
+ * @return an entry that represents the join of both input entries
+ */
+private PlanTableEntry joinEntries(PlanTableEntry leftEntry, PlanTableEntry rightEntry, List<String> joinVariables) {
+    PlanNode node;
+    if (rightEntry.getType() == PATH) {
+        assert joinVariables.size() == 1;
+        node = createExpandNode(leftEntry, rightEntry, joinVariables.get(0));
+    } else {
+        node = new JoinEmbeddingsNode(leftEntry.getQueryPlan().getRoot(), rightEntry.getQueryPlan().getRoot(), joinVariables, vertexStrategy, edgeStrategy);
+    }
+    // update processed variables
+    HashSet<String> processedVariables = Sets.newHashSet(leftEntry.getProcessedVariables());
+    processedVariables.addAll(rightEntry.getProcessedVariables());
+    // create resulting predicates
+    // TODO: this might be moved to the join/expand node in issue #510
+    CNF predicates = mergePredicates(leftEntry, rightEntry);
+    return new PlanTableEntry(GRAPH, processedVariables, predicates, new QueryPlanEstimator(new QueryPlan(node), queryHandler, graphStatistics));
+}

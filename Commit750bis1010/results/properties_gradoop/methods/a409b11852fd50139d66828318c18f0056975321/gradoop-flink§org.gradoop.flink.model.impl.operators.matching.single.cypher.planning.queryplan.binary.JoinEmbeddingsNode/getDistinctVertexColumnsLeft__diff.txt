@@ -1,0 +1,11 @@
+/**
+ * According to the specified {@link JoinEmbeddingsNode#vertexStrategy}, the method returns
+ * the columns that need to contain distinct entries in the left embedding.
+ * This includes the join columns
+ *
+ * @return distinct vertex columns of the left embedding
+ */
+private List<Integer> getDistinctVertexColumnsLeft() {
+    EmbeddingMetaData metaData = getLeftChild().getEmbeddingMetaData();
+    return vertexStrategy == MatchStrategy.ISOMORPHISM ? metaData.getVertexVariables().stream().map(metaData::getEntryColumn).collect(Collectors.toList()) : Collections.emptyList();
+}

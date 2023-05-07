@@ -1,0 +1,6 @@
+@Override
+public Vertex<Long, VCIVertexValue> map(Tuple2<Long, GradoopId> tuple) throws Exception {
+    reuseVertex.setId(tuple.f0);
+    reuseVertex.setValue(reuseValue);
+    return reuseVertex;
+}

@@ -1,0 +1,16 @@
+/**
+ * Creates a copy of an existing embedding.
+ *
+ * @param existing existing embedding
+ * @return copy of the existing embedding
+ */
+private Embedding<GradoopId> copyEmbedding(Embedding<GradoopId> existing) {
+    Embedding<GradoopId> newEmbedding = new Embedding<>();
+    GradoopId[] vertexCopy = new GradoopId[existing.getVertexMapping().length];
+    System.arraycopy(existing.getVertexMapping(), 0, vertexCopy, 0, existing.getVertexMapping().length);
+    GradoopId[] edgeCopy = new GradoopId[existing.getEdgeMapping().length];
+    System.arraycopy(existing.getEdgeMapping(), 0, edgeCopy, 0, existing.getEdgeMapping().length);
+    newEmbedding.setVertexMapping(vertexCopy);
+    newEmbedding.setEdgeMapping(edgeCopy);
+    return newEmbedding;
+}

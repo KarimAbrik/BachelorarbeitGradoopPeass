@@ -1,0 +1,63 @@
+public static Collection<VertexPojo> createVertexPojoCollection() {
+    // vertices
+    VertexPojoFactory vertexDataFactory = new VertexPojoFactory();
+    // Person:Alice (0L)
+    Map<String, Object> properties = new HashMap<>();
+    properties.put(PROPERTY_KEY_NAME, "Alice");
+    properties.put(PROPERTY_KEY_GENDER, "f");
+    properties.put(PROPERTY_KEY_CITY, "Leipzig");
+    VERTEX_PERSON_ALICE = vertexDataFactory.createVertex(GradoopId.fromLong(0L), LABEL_PERSON, properties, GradoopIds.fromLongs(0L, 2L));
+    // Person:Bob (1L)
+    properties = new HashMap<>();
+    properties.put(PROPERTY_KEY_NAME, "Bob");
+    properties.put(PROPERTY_KEY_GENDER, "m");
+    properties.put(PROPERTY_KEY_CITY, "Leipzig");
+    VERTEX_PERSON_BOB = vertexDataFactory.createVertex(GradoopId.fromLong(1L), LABEL_PERSON, properties, GradoopIds.fromLongs(0L, 2L));
+    // Person:Carol (2L)
+    properties = new HashMap<>();
+    properties.put(PROPERTY_KEY_NAME, "Carol");
+    properties.put(PROPERTY_KEY_GENDER, "f");
+    properties.put(PROPERTY_KEY_CITY, "Dresden");
+    VERTEX_PERSON_CAROL = vertexDataFactory.createVertex(GradoopId.fromLong(2L), LABEL_PERSON, properties, GradoopIds.fromLongs(1L, 2L, 3L));
+    // Person:Dave (3L)
+    properties = new HashMap<>();
+    properties.put(PROPERTY_KEY_NAME, "Dave");
+    properties.put(PROPERTY_KEY_GENDER, "m");
+    properties.put(PROPERTY_KEY_CITY, "Dresden");
+    VERTEX_PERSON_DAVE = vertexDataFactory.createVertex(GradoopId.fromLong(3L), LABEL_PERSON, properties, GradoopIds.fromLongs(1L, 2L, 3L));
+    // Person:Eve (4L)
+    properties = new HashMap<>();
+    properties.put(PROPERTY_KEY_NAME, "Eve");
+    properties.put(PROPERTY_KEY_GENDER, "f");
+    properties.put(PROPERTY_KEY_CITY, "Dresden");
+    properties.put(PROPERTY_KEY_SPEAKS, "English");
+    VERTEX_PERSON_EVE = vertexDataFactory.createVertex(GradoopId.fromLong(4L), LABEL_PERSON, properties, GradoopIds.fromLongs(0L));
+    // Person:Frank (5L)
+    properties = new HashMap<>();
+    properties.put(PROPERTY_KEY_NAME, "Frank");
+    properties.put(PROPERTY_KEY_GENDER, "m");
+    properties.put(PROPERTY_KEY_CITY, "Berlin");
+    properties.put(PROPERTY_KEY_LOC_IP, "127.0.0.1");
+    VERTEX_PERSON_FRANK = vertexDataFactory.createVertex(GradoopId.fromLong(5L), LABEL_PERSON, properties, GradoopIds.fromLongs(1L));
+    // Tag:Databases (6L)
+    properties = new HashMap<>();
+    properties.put(PROPERTY_KEY_NAME, "Databases");
+    VERTEX_TAG_DATABASES = vertexDataFactory.createVertex(GradoopId.fromLong(6L), LABEL_TAG, properties);
+    // Tag:Databases (7L)
+    properties = new HashMap<>();
+    properties.put(PROPERTY_KEY_NAME, "Graphs");
+    VERTEX_TAG_GRAPHS = vertexDataFactory.createVertex(GradoopId.fromLong(7L), LABEL_TAG, properties);
+    // Tag:Databases (8L)
+    properties = new HashMap<>();
+    properties.put(PROPERTY_KEY_NAME, "Hadoop");
+    VERTEX_TAG_HADOOP = vertexDataFactory.createVertex(GradoopId.fromLong(8L), LABEL_TAG, properties);
+    // Forum:Graph Databases (9L)
+    properties = new HashMap<>();
+    properties.put(PROPERTY_KEY_TITLE, "Graph Databases");
+    VERTEX_FORUM_GDBS = vertexDataFactory.createVertex(GradoopId.fromLong(9L), LABEL_FORUM, properties);
+    // Forum:Graph Processing (10L)
+    properties = new HashMap<>();
+    properties.put(PROPERTY_KEY_TITLE, "Graph Processing");
+    VERTEX_FORUM_GPS = vertexDataFactory.createVertex(GradoopId.fromLong(10L), LABEL_FORUM, properties, GradoopIds.fromLongs(3L));
+    return Lists.newArrayList(VERTEX_PERSON_ALICE, VERTEX_PERSON_BOB, VERTEX_PERSON_CAROL, VERTEX_PERSON_DAVE, VERTEX_PERSON_EVE, VERTEX_PERSON_FRANK, VERTEX_TAG_DATABASES, VERTEX_TAG_GRAPHS, VERTEX_TAG_HADOOP, VERTEX_FORUM_GDBS, VERTEX_FORUM_GPS);
+}

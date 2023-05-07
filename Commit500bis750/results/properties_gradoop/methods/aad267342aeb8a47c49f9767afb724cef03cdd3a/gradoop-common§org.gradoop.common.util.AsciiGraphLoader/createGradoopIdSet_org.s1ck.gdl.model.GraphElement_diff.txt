@@ -1,0 +1,14 @@
+/**                                                                                                    /**                                                                                                 
+* Creates a {@code GradoopIDSet} from the long identifiers stored at the                               * Creates a {@code GradoopIDSet} from the long identifiers stored at the                            
+* given graph element.                                                                                 * given graph element.                                                                              
+*                                                                                                      *                                                                                                   
+* @param e graph element                                                                               * @param e graph element                                                                            
+* @return GradoopIDSet for the given element                                                           * @return GradoopIDSet for the given element                                                        
+*/                                                                                                     */                                                                                                  
+private GradoopIdList createGradoopIdSet(GraphElement e) {                                           | private GradoopIds createGradoopIdSet(GraphElement e) {                                             
+GradoopIdList result = new GradoopIdList();                                                          | GradoopIds result = new GradoopIds();                                                               
+for (Long graphId : e.getGraphs()) {                                                                   for (Long graphId : e.getGraphs()) {                                                                
+result.add(graphHeadIds.get(graphId));                                                                 result.add(graphHeadIds.get(graphId));                                                              
+}                                                                                                      }                                                                                                   
+return result;                                                                                         return result;                                                                                      
+}                                                                                                      }                                                                                                   

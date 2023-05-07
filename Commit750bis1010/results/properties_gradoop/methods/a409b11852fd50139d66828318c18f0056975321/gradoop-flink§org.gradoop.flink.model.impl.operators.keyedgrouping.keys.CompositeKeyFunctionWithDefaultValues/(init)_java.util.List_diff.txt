@@ -1,0 +1,12 @@
+/**
+ * Create a new instance of this key function.
+ *
+ * @param groupingKeyFunctions The key functions to be combined.
+ */
+public CompositeKeyFunctionWithDefaultValues(List<KeyFunctionWithDefaultValue<T, ?>> groupingKeyFunctions) {
+    super(groupingKeyFunctions);
+    defaultValue = Tuple.newInstance(groupingKeyFunctions.size());
+    for (int index = 0; index < groupingKeyFunctions.size(); index++) {
+        defaultValue.setField(groupingKeyFunctions.get(index).getDefaultKey(), index);
+    }
+}

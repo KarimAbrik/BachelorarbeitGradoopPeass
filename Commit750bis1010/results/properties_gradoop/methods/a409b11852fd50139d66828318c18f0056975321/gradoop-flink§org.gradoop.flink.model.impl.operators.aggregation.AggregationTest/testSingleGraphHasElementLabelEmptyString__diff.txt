@@ -1,0 +1,14 @@
+/**
+ * Test HasLabel with a single graph and empty label string.
+ *
+ * @throws Exception if the execution fails.
+ */
+@Test
+public void testSingleGraphHasElementLabelEmptyString() throws Exception {
+    LogicalGraph graph = getLoaderFromString("g0[(v0)-[e0]->(v1)]").getLogicalGraphByVariable("g0");
+    HasLabel hasLabel = new HasLabel("");
+    graph = graph.aggregate(hasLabel);
+    GraphHead graphHead = graph.getGraphHead().collect().get(0);
+    assertTrue("Property hasLabel_ not set", graphHead.hasProperty(hasLabel.getAggregatePropertyKey()));
+    assertTrue("Property hasLabel_ is false, should be true", graphHead.getPropertyValue(hasLabel.getAggregatePropertyKey()).getBoolean());
+}

@@ -1,0 +1,8 @@
+/**
+ * Test the constructor without giving a valid default group.
+ */
+@Test(expected = IllegalArgumentException.class)
+public void testConstructorWithNoDefaultGroup() {
+    List<LabelGroup> groups = Arrays.asList(new LabelGroup("a", "b", Collections.emptyList(), Collections.emptyList()), new LabelGroup("b", "c", Collections.emptyList(), Collections.emptyList()));
+    KeyedGroupingUtils.asKeyFunction(false, groups);
+}

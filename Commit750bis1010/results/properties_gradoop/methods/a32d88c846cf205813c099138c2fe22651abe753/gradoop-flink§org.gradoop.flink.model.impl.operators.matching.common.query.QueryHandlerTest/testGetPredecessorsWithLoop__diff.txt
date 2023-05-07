@@ -1,0 +1,6 @@
+@Test
+public void testGetPredecessorsWithLoop() throws Exception {
+    List<Edge> predecessors = Lists.newArrayList(QUERY_HANDLER.getPredecessors(GDL_HANDLER.getEdgeCache().get("e4").getId()));
+    List<Edge> expected = Lists.newArrayList(GDL_HANDLER.getEdgeCache().get("e2"), GDL_HANDLER.getEdgeCache().get("e4"));
+    assertTrue(elementsEqual(predecessors, expected));
+}

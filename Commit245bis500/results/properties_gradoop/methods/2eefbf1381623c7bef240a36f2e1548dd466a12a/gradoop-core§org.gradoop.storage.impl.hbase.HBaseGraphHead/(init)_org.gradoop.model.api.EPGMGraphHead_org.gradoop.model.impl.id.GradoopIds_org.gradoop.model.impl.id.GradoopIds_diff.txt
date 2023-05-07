@@ -1,0 +1,12 @@
+/**
+ * Creates  persistent graph data.
+ *
+ * @param graphHead encapsulated graph data
+ * @param vertexIds  vertexIds contained in that graph
+ * @param edgeIds     edgeIds contained in that graph
+ */
+public HBaseGraphHead(EPGMGraphHead graphHead, GradoopIds vertexIds, GradoopIds edgeIds) {
+    super(graphHead);
+    this.vertexIds = vertexIds;
+    this.edgeIds = edgeIds;
+}

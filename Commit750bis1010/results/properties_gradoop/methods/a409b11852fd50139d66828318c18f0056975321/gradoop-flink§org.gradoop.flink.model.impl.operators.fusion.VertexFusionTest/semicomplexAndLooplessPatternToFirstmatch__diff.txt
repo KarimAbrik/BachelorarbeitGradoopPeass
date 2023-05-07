@@ -1,0 +1,13 @@
+@Test
+public void semicomplexAndLooplessPatternToFirstmatch() throws Exception {
+    FlinkAsciiGraphLoader loader = getLoaderFromString("semicomplex:G {semicomplex : \"graph\"}[" + "(a:A {atype : \"avalue\"})-[alpha:AlphaEdge {alphatype : \"alphavalue\"}]->(b:B {btype : " + "\"bvalue\"})  " + "(b:B {btype : \"bvalue\"})-[l:loop {ltype : \"lvalue\"}]->(b:B {btype : \"bvalue\"})  " + "(b:B {btype : \"bvalue\"})-->(c:C {ctype : \"cvalue\"})  " + "(c:C {ctype : \"cvalue\"})-->(e:E {etype : \"evalue\"})  " + "(c:C {ctype : \"cvalue\"})-[beta:BetaEdge {betatype : \"betavalue\"}]->(d:D {dtype : " + "\"dvalue\"})  " + "(d:D {dtype : \"dvalue\"})-->(e:E {etype : \"evalue\"}) " + "]" + "" + "looplessPattern:G {looplessPattern : \"graph\"}[" + "(a:A {atype : \"avalue\"})-[alpha:AlphaEdge {alphatype : \"alphavalue\"}]->(b:B {btype : " + "\"bvalue\"})  " + "(d:D {dtype : \"dvalue\"})" + "]" + "" + "firstmatch:G {semicomplex : \"graph\"}[" + "(g2:G {looplessPattern : \"graph\"})-->(c2:C {ctype : \"cvalue\"})  " + "(g2:G {looplessPattern : \"graph\"})-->(e2:E {etype : \"evalue\"})  " + "(g2:G {looplessPattern : \"graph\"})-[:loop {ltype : \"lvalue\"}]->(g2:G {looplessPattern " + ": \"graph\"})  " + "(c2:C {ctype : \"cvalue\"})-[:BetaEdge {betatype : \"betavalue\"}]->(g2:G {looplessPattern" + " : \"graph\"})  " + "(c2:C {ctype : \"cvalue\"})-->(e2:E {etype : \"evalue\"}) " + "]" + "");
+    LogicalGraph searchGraph = loader.getLogicalGraphByVariable("semicomplex");
+    LogicalGraph patternGraph = loader.getLogicalGraphByVariable("looplessPattern");
+    VertexFusion f = new VertexFusion();
+    LogicalGraph output = f.execute(searchGraph, patternGraph);
+    LogicalGraph expected = loader.getLogicalGraphByVariable("firstmatch");
+    collectAndAssertTrue(output.equalsByData(expected));
+    if (deepSearch) {
+        collectAndAssertTrue(VertexFusionUtils.myInducedEdgeSubgraphForFusion(searchGraph, expected).equalsByElementIds(VertexFusionUtils.myInducedEdgeSubgraphForFusion(expected, searchGraph)));
+    }
+}

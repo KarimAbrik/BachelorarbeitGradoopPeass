@@ -1,0 +1,21 @@
+/**
+ * Creates a new data source/sink. Paths can be local (file://) or HDFS
+ * (hdfs://).
+ *
+ * @param tlfPath tlf data file
+ * @param tlfVertexDictionaryPath tlf vertex dictionary file
+ * @param tlfEdgeDictionaryPath tlf edge dictionary file
+ * @param config Gradoop Flink configuration
+ */
+TLFBase(String tlfPath, String tlfVertexDictionaryPath, String tlfEdgeDictionaryPath, GradoopFlinkConfig config) {
+    if (config == null) {
+        throw new IllegalArgumentException("config must not be null");
+    }
+    if (tlfPath == null) {
+        throw new IllegalArgumentException("vertex file must not be null");
+    }
+    this.tlfPath = tlfPath;
+    this.tlfVertexDictionaryPath = tlfVertexDictionaryPath;
+    this.tlfEdgeDictionaryPath = tlfEdgeDictionaryPath;
+    this.config = config;
+}

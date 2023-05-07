@@ -1,0 +1,11 @@
+/**
+ * Default transformation from a Gradoop Graph to a Gelly Graph.
+ *
+ * @param graph Gradoop Graph.
+ * @return Gelly Graph.
+ */
+public Graph<GradoopId, VV, EV> transformToGelly(LogicalGraph graph) {
+    DataSet<Vertex<GradoopId, VV>> gellyVertices = graph.getVertices().map(toGellyVertex);
+    DataSet<Edge<GradoopId, EV>> gellyEdges = graph.getEdges().map(toGellyEdge);
+    return Graph.fromDataSet(gellyVertices, gellyEdges, graph.getConfig().getExecutionEnvironment());
+}

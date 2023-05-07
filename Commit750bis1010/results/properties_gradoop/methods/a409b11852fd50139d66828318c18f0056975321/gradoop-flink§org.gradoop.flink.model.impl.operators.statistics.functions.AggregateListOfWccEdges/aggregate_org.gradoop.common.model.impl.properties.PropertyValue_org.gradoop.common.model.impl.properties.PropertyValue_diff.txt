@@ -1,0 +1,7 @@
+@Override
+public PropertyValue aggregate(PropertyValue aggregate, PropertyValue increment) {
+    List<PropertyValue> aggregateList = aggregate.getList();
+    aggregateList.addAll(increment.getList());
+    aggregate.setList(aggregateList);
+    return aggregate;
+}

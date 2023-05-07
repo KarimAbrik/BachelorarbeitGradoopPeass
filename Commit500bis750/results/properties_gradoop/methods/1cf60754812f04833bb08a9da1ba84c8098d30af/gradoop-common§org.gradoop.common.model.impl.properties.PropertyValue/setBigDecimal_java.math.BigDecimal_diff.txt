@@ -1,0 +1,12 @@
+/**                                                                                                    /**                                                                                                 
+* Sets the wrapped value as {@code BigDecimal} value.                                                  * Sets the wrapped value as {@code BigDecimal} value.                                               
+*                                                                                                      *                                                                                                   
+* @param bigDecimalValue value                                                                         * @param bigDecimalValue value                                                                      
+*/                                                                                                     */                                                                                                  
+public void setBigDecimal(BigDecimal bigDecimalValue) {                                                public void setBigDecimal(BigDecimal bigDecimalValue) {                                             
+byte[] valueBytes = Bytes.toBytes(bigDecimalValue);                                                    byte[] valueBytes = Bytes.toBytes(bigDecimalValue);                                                 
+rawBytes = new byte[OFFSET + valueBytes.length];                                                       rawBytes = new byte[OFFSET + valueBytes.length];                                                    
+rawBytes[0] = TYPE_BIG_DECIMAL;                                                                        rawBytes[0] = TYPE_BIG_DECIMAL;                                                                     
+Bytes.putBytes(rawBytes, OFFSET, valueBytes, 0, valueBytes.length);                                    Bytes.putBytes(rawBytes, OFFSET, valueBytes, 0, valueBytes.length);                                 
+validateBytesLength();                                                                               |                                                                                                     
+}                                                                                                      }                                                                                                   

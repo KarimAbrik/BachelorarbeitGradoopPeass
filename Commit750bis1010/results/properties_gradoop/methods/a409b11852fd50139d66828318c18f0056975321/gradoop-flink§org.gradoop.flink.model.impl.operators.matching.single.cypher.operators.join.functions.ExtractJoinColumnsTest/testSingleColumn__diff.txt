@@ -1,0 +1,8 @@
+@Test
+public void testSingleColumn() throws Exception {
+    GradoopId v0 = GradoopId.get();
+    GradoopId v1 = GradoopId.get();
+    Embedding embedding = createEmbedding(v0, v1);
+    ExtractJoinColumns udf = new ExtractJoinColumns(Collections.singletonList(0));
+    Assert.assertEquals(ArrayUtils.toString(v0.toByteArray()), udf.getKey(embedding));
+}

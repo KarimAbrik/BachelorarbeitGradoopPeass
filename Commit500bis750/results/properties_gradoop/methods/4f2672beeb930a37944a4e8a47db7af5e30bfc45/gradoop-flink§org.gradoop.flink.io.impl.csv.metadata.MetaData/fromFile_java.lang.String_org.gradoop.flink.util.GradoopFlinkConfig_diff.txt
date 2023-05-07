@@ -1,0 +1,15 @@
+/**
+ * Reads the meta data from a specified file. Each line is spit into a (label, metadata) tuple
+ * and put into a dataset. The latter can be used to broadcast the metadata to the mappers.
+ *
+ * @param path path to metadata csv file
+ * @param config gradoop configuration
+ * @return (label, metadata) tuple dataset
+ */
+public static DataSet<Tuple3<String, String, String>> fromFile(String path, GradoopFlinkConfig config) {
+    return config.getExecutionEnvironment().readTextFile(path).map(line -> {
+        String[] tokens = line.split(CSVConstants.TOKEN_DELIMITER, 3);
+        return Tuple3.of(tokens[0], tokens[1], tokens[2]);
+    }).returns(new TypeHint<Tuple3<String, String, String>>() {
+    });
+}

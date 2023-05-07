@@ -1,0 +1,12 @@
+/**
+ * Creates a social network as a basis for tests.
+ * <p/>
+ * An image of the network can be found in
+ * gradoop/dev-support/social-network.pdf
+ *
+ * @return graph store containing a simple social network for tests.
+ */
+protected FlinkAsciiGraphLoader getSocialNetworkLoader() throws IOException {
+    InputStream inputStream = getClass().getResourceAsStream(GradoopTestUtils.SOCIAL_NETWORK_GDL_FILE);
+    return getLoaderFromStream(inputStream);
+}

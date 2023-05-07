@@ -1,0 +1,5 @@
+@Override
+public DataSet<Boolean> execute(LogicalGraph firstGraph, LogicalGraph secondGraph) {
+    GraphCollectionFactory collectionFactory = firstGraph.getConfig().getGraphCollectionFactory();
+    return collectionEquality.execute(collectionFactory.fromGraph(firstGraph), collectionFactory.fromGraph(secondGraph));
+}

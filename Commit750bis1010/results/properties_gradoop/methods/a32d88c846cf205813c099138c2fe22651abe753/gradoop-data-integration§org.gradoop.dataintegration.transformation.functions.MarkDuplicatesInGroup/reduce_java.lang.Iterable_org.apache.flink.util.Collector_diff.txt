@@ -1,0 +1,15 @@
+@Override
+public void reduce(Iterable<E> elements, Collector<E> out) {
+    boolean first = true;
+    Properties propertiesForDuplicate = Properties.create();
+    for (E element : elements) {
+        if (first) {
+            PropertyValue originalId = PropertyValue.create(element.getId());
+            propertiesForDuplicate.set(PROPERTY_KEY, originalId);
+            first = false;
+        } else {
+            element.setProperties(propertiesForDuplicate);
+        }
+        out.collect(element);
+    }
+}

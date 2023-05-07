@@ -1,0 +1,15 @@
+/**
+ * Returns value which is represented by the the provided byte array. Assumes that the value is
+ * serialized according to the {@link PropertyValue} standard.
+ *
+ * @param bytes byte array of raw bytes.
+ * @return Object which is the result of the deserialization.
+ */
+public static Object fromRawBytes(byte[] bytes) {
+    PropertyValueStrategy strategy = INSTANCE.byteStrategyMap[bytes[0]];
+    try {
+        return strategy == null ? null : strategy.get(bytes);
+    } catch (IOException e) {
+        throw new RuntimeException("Error while deserializing object.", e);
+    }
+}

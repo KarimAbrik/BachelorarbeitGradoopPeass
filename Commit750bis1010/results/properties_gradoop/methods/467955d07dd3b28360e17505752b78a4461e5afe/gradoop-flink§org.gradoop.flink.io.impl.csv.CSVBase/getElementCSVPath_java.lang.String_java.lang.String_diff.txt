@@ -1,0 +1,16 @@
+/**
+ * Returns the path to the element file containing only elements with the specified label.
+ *
+ * @param label       element label
+ * @param elementPath path of the element (e.g. "edge")
+ * @return path to csv file
+ */
+private String getElementCSVPath(String label, String elementPath) {
+    Objects.requireNonNull(label);
+    if (label.isEmpty()) {
+        label = CSVConstants.DEFAULT_DIRECTORY;
+    } else {
+        label = MultipleFileOutputFormat.cleanFilename(StringEscaper.escape(label, CSVConstants.ESCAPED_CHARACTERS));
+    }
+    return elementPath + CSVConstants.DIRECTORY_SEPARATOR + label + CSVConstants.DIRECTORY_SEPARATOR + CSVConstants.SIMPLE_FILE;
+}

@@ -1,0 +1,13 @@
+/**
+ * Sets the property columns in the specified meta data object according to the specified variable
+ * and property keys.
+ *
+ * @param metaData meta data to update
+ * @param variable variable to associate properties to
+ * @param propertyKeys properties needed for filtering and projection
+ * @return updated EmbeddingMetaData
+ */
+protected EmbeddingMetaData setPropertyColumns(EmbeddingMetaData metaData, String variable, List<String> propertyKeys) {
+    IntStream.range(0, propertyKeys.size()).forEach(i -> metaData.setPropertyColumn(variable, propertyKeys.get(i), i));
+    return metaData;
+}

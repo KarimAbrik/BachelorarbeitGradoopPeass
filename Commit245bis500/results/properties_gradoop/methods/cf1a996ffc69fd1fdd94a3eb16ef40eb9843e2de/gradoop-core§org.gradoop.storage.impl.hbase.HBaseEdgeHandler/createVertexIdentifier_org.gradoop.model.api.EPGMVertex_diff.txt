@@ -1,0 +1,18 @@
+/**                                                                                                    /**                                                                                                 
+* Serializes a vertex to a vertex identifier in the following format:                                  * Serializes a vertex to a vertex identifier in the following format:                               
+*                                                                                                      *                                                                                                   
+* &lt;vertex-identifier&gt; ::= &lt;vertex-id&gt;&lt;vertex-label&gt;                                  * &lt;vertex-identifier&gt; ::= &lt;vertex-id&gt;&lt;vertex-label&gt;                               
+*                                                                                                      *                                                                                                   
+* @param vertex vertex                                                                                 * @param vertex vertex                                                                              
+* @return byte representation of the vertex identifier                                                 * @return byte representation of the vertex identifier                                              
+*/                                                                                                     */                                                                                                  
+private byte[] createVertexIdentifier(final EPGMVertex vertex) {                                     | private byte[] createVertexIdentifier(final EPGMVertex vertex) throws IOException {                 
+                                                                                                     | byte[] vertexKeyBytes = Writables.getBytes(vertex.getId());                                         
+byte[] labelBytes = Bytes.toBytes(vertex.getLabel());                                                  byte[] labelBytes = Bytes.toBytes(vertex.getLabel());                                               
+byte[] vertexKey = new byte[Bytes.SIZEOF_LONG + labelBytes.length];                                  | ArrayUtils.addAll(vertexKeyBytes, labelBytes);                                                      
+// vertex identifier                                                                                 | return vertexKeyBytes;                                                                              
+Bytes.putLong(vertexKey, 0, vertex.getId());                                                         |                                                                                                     
+// vertex label                                                                                      |                                                                                                     
+Bytes.putBytes(vertexKey, Bytes.SIZEOF_LONG, labelBytes, 0, labelBytes.length);                      |                                                                                                     
+return vertexKey;                                                                                    |                                                                                                     
+}                                                                                                      }                                                                                                   

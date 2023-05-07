@@ -1,0 +1,5 @@
+protected GradoopId readId(Result res) throws IOException {
+    GradoopId id = new GradoopId();
+    Writables.getWritable(res.getRow(), id);
+    return id;
+}

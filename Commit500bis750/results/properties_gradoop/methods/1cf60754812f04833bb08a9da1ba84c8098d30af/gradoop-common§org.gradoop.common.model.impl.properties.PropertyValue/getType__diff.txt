@@ -1,0 +1,11 @@
+//----------------------------------------------------------------------------                         //----------------------------------------------------------------------------                      
+// Util                                                                                                // Util                                                                                             
+//----------------------------------------------------------------------------                         //----------------------------------------------------------------------------                      
+                                                                                                     | /**                                                                                                 
+                                                                                                     | * Get the data type as class object according to the first position of the rawBytes[] array         
+                                                                                                     | *                                                                                                   
+                                                                                                     | * @return Class object                                                                              
+                                                                                                     | */                                                                                                  
+public Class&lt;?&gt; getType() {                                                                      public Class&lt;?&gt; getType() {                                                                   
+return rawBytes[0] == TYPE_BOOLEAN ? Boolean.class : rawBytes[0] == TYPE_INTEGER ? Integer.class : r | return TYPE_MAPPING.get(rawBytes[0]);                                                               
+}                                                                                                      }                                                                                                   

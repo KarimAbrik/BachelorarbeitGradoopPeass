@@ -1,0 +1,12 @@
+/**
+ * Checks if the entry specified by column exists in the embedding
+ * @param column index of the entry
+ */
+private void checkColumn(int column) {
+    if (column < 0) {
+        throw new IndexOutOfBoundsException("Negative columns are not allowed");
+    }
+    if (column >= size()) {
+        throw new IndexOutOfBoundsException(column + " >= " + size());
+    }
+}

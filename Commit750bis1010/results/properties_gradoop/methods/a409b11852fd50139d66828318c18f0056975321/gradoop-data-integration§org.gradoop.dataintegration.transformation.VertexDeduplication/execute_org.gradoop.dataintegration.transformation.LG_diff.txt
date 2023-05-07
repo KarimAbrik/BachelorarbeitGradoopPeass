@@ -1,0 +1,9 @@
+@Override
+public LG execute(LG graph) {
+    DataSet<V> annotatedVertices = graph.getVerticesByLabel(label).groupBy(new GetPropertiesAsList<>(propertyKeys)).reduceGroup(new MarkDuplicatesInGroup<>());
+    DataSet<Tuple2<GradoopId, GradoopId>> vertexToDedupVertex = annotatedVertices.flatMap(new CreateMappingFromMarkedDuplicates<>());
+    DataSet<V> deduplicatedVertices = annotatedVertices.filter(new ByProperty<V>(MarkDuplicatesInGroup.PROPERTY_KEY).negate());
+    DataSet<V> otherVertices = graph.getVertices().filter(new ByLabel<V>(label).negate());
+    DataSet<E> updatesEdges = graph.getEdges().leftOuterJoin(vertexToDedupVertex).where(new SourceId<>()).equalTo(0).with(new EdgeSourceUpdateJoin<>()).leftOuterJoin(vertexToDedupVertex).where(new TargetId<>()).equalTo(0).with(new EdgeTargetUpdateJoin<>());
+    return graph.getFactory().fromDataSets(graph.getGraphHead(), otherVertices.union(deduplicatedVertices), updatesEdges);
+}

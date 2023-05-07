@@ -1,0 +1,17 @@
+/**
+ * {@inheritDoc}
+ *
+ * Reads the broadcast sets for the starting vertices and the graph vertices. Retrieves the
+ * aggregator for visited vertices and accumulates the visited vertices from the previous
+ * superstep.
+ */
+@Override
+public void preSuperstep() {
+    startIndices = (List<Long>) this.<Long>getBroadcastSet(START_INDICES_BROADCAST_SET);
+    vertexIndices = (List<Long>) this.<Long>getBroadcastSet(VERTEX_INDICES_BROADCAST_SET);
+    visitedVerticesAggregator = getIterationAggregator(VISITED_VERTICES_AGGREGATOR_NAME);
+    LongValue previousAggregate = getPreviousIterationAggregate(VISITED_VERTICES_AGGREGATOR_NAME);
+    if (previousAggregate != null) {
+        currentVisitedCount += previousAggregate.getValue();
+    }
+}

@@ -1,0 +1,7 @@
+/**                                                                                                    /**                                                                                                 
+* {@inheritDoc}                                                                                        * {@inheritDoc}                                                                                     
+*/                                                                                                     */                                                                                                  
+@Override                                                                                              @Override                                                                                           
+public Put writeTargetVertex(Put put, VD vertexData) {                                               | public Put writeTargetVertex(Put put, VD vertexData) throws IOException {                           
+return put.add(CF_META_BYTES, COL_TARGET_VERTEX_BYTES, createVertexIdentifier(vertexData));            return put.add(CF_META_BYTES, COL_TARGET_VERTEX_BYTES, createVertexIdentifier(vertexData));         
+}                                                                                                      }                                                                                                   

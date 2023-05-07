@@ -1,0 +1,12 @@
+@Test
+public void testResultingEntryForSelfLoops() throws Exception {
+    CNF predicates = predicateFromQuery("MATCH (a)-[e]->(a)");
+    EPGMVertex a = vertexFactory.createVertex("Person");
+    EPGMEdge e = edgeFactory.createEdge("loves", a.getId(), a.getId());
+    DataSet<Triple> triples = getExecutionEnvironment().fromElements(new Triple(a, e, a));
+    List<Embedding> result = new FilterAndProjectTriples(triples, "a", "e", "a", predicates, new HashMap<>(), MatchStrategy.ISOMORPHISM).evaluate().collect();
+    assertEquals(1, result.size());
+    assertEquals(2, result.get(0).size());
+    assertEquals(a.getId(), result.get(0).getId(0));
+    assertEquals(e.getId(), result.get(0).getId(1));
+}

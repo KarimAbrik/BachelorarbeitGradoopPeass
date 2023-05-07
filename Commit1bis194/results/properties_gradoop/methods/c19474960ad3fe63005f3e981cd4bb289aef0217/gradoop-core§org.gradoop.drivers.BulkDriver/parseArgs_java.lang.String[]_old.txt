@@ -1,0 +1,21 @@
+public void parseArgs(String[] args) throws ParseException {
+    conf = getConf();
+    CommandLine cmd = ConfUtils.parseArgs(args);
+    verbose = cmd.hasOption(OPTION_VERBOSE);
+    inputPath = cmd.getOptionValue(OPTION_GRAPH_INPUT_PATH);
+    outputPath = cmd.getOptionValue(OPTION_GRAPH_OUTPUT_PATH);
+    if (cmd.hasOption(OPTION_CUSTOM_ARGUMENT)) {
+        for (String caOptionValue : cmd.getOptionValues(OPTION_CUSTOM_ARGUMENT)) {
+            for (String paramValue : Splitter.on(',').split(caOptionValue)) {
+                String[] parts = Iterables.toArray(Splitter.on('=').split(paramValue), String.class);
+                if (parts.length != 2) {
+                    throw new IllegalArgumentException("Unable to parse custom " + " argument: " + paramValue);
+                }
+                //if (LOG.isInfoEnabled()) {
+                LOG.info("###Setting custom argument [" + parts[0] + "] to [" + parts[1] + "] in GiraphConfiguration");
+                //}
+                conf.set(parts[0], parts[1]);
+            }
+        }
+    }
+}

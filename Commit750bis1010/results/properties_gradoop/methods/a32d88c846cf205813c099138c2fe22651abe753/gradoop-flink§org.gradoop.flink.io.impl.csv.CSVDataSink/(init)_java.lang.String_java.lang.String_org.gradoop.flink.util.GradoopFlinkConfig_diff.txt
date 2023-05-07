@@ -1,0 +1,11 @@
+/**
+ * Creates a new CSV data sink. Uses the specified meta data to write the CSV output.
+ *
+ * @param csvPath      directory to write CSV files to
+ * @param metaDataPath path to meta data CSV file
+ * @param config       Gradoop Flink configuration
+ */
+public CSVDataSink(String csvPath, String metaDataPath, GradoopFlinkConfig config) {
+    super(csvPath, config);
+    this.metaDataPath = metaDataPath;
+}

@@ -1,0 +1,13 @@
+@Test
+public void testSourceLabelAndEdgeLabelDistribution() throws Exception {
+    LogicalGraph db = getSocialNetworkLoader().getLogicalGraph();
+    List<WithCount<Tuple2<String, String>>> result = new SourceLabelAndEdgeLabelDistribution().execute(db).collect();
+    assertThat(result.size(), is(5));
+    Map<Tuple2<String, String>, Long> cache = new HashMap<>(5);
+    result.forEach(e -> cache.put(e.getObject(), e.getCount()));
+    assertThat(cache.get(Tuple2.of("Forum", "hasModerator")), is(2L));
+    assertThat(cache.get(Tuple2.of("Forum", "hasTag")), is(4L));
+    assertThat(cache.get(Tuple2.of("Person", "hasInterest")), is(4L));
+    assertThat(cache.get(Tuple2.of("Person", "knows")), is(10L));
+    assertThat(cache.get(Tuple2.of("Forum", "hasMember")), is(4L));
+}

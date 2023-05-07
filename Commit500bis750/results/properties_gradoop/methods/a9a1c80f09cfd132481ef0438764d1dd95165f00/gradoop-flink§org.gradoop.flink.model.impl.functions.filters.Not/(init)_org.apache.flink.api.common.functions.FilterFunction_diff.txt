@@ -1,0 +1,8 @@
+/**
+ * Constructor setting the filter to invert using a logical {@code not}.
+ *
+ * @param filter The filter.
+ */
+public Not(FilterFunction<? super T> filter) {
+    super(filter);
+}

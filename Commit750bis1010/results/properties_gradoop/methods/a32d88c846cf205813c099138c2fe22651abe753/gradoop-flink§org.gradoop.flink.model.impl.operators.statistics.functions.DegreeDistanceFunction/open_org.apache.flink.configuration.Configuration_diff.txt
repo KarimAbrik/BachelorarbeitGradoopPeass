@@ -1,0 +1,11 @@
+/**
+ * Function called to store broadcasted max degree.
+ *
+ * @param parameter parameter
+ * @throws Exception throws any Exception
+ */
+@Override
+public void open(Configuration parameter) throws Exception {
+    super.open(parameter);
+    maxDegree = getRuntimeContext().<WithCount<GradoopId>>getBroadcastVariable(this.broadcastName).get(0);
+}

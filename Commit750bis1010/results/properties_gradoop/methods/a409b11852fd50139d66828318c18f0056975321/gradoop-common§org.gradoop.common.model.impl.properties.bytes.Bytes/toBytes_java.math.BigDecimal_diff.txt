@@ -1,0 +1,13 @@
+/**
+ * Convert a BigDecimal value to a byte array
+ *
+ * @param val input value
+ * @return the byte array
+ */
+public static byte[] toBytes(BigDecimal val) {
+    byte[] valueBytes = val.unscaledValue().toByteArray();
+    byte[] result = new byte[valueBytes.length + SIZEOF_INT];
+    int offset = putInt(result, 0, val.scale());
+    putBytes(result, offset, valueBytes, 0, valueBytes.length);
+    return result;
+}

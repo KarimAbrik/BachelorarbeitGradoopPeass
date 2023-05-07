@@ -1,0 +1,6 @@
+@Test
+public void testWrite() throws Exception {
+    String tmpPath = temporaryFolder.getRoot().getPath();
+    LogicalGraph input = getSocialNetworkLoader().getDatabase().getDatabaseGraph(true);
+    checkCSVWrite(tmpPath, input);
+}

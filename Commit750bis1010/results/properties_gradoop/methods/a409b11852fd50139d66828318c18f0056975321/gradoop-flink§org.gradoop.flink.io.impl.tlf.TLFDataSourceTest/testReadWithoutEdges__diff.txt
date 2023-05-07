@@ -1,0 +1,11 @@
+@Test
+public void testReadWithoutEdges() throws Exception {
+    String tlfFile = getFilePath("/data/tlf/io_test_string_without_edges.tlf");
+    // create datasource
+    DataSource dataSource = new TLFDataSource(tlfFile, getConfig());
+    // get transactions
+    DataSet<GraphTransaction> transactions = dataSource.getGraphCollection().getGraphTransactions();
+    String asciiGraphs = "" + "g1[(v1:A),(v2:B)]" + "g2[(v1:A),(v2:B)]";
+    FlinkAsciiGraphLoader loader = getLoaderFromString(asciiGraphs);
+    collectAndAssertTrue(loader.getGraphCollectionByVariables("g1", "g2").equalsByGraphData(getConfig().getGraphCollectionFactory().fromTransactions(transactions)));
+}

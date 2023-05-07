@@ -1,0 +1,14 @@
+/**
+ * Creates a new MatrixBuilder instance.
+ *
+ * @param graphHeadToString representation of graph heads
+ * @param vertexToString representation of vertices
+ * @param edgeLabelingFunction representation of edges
+ * @param directed sets mode for either directed or undirected graph
+ */
+public CanonicalAdjacencyMatrixBuilder(GraphHeadToString<G> graphHeadToString, VertexToString<V> vertexToString, EdgeToString<E> edgeLabelingFunction, boolean directed) {
+    this.graphHeadToString = graphHeadToString;
+    this.vertexToString = vertexToString;
+    this.egeLabelingFunction = edgeLabelingFunction;
+    this.directed = directed;
+}

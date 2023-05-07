@@ -1,0 +1,5 @@
+@Test
+public void testIsEdge() {
+    assertTrue(QUERY_HANDLER.isEdge("e1"));
+    assertFalse(QUERY_HANDLER.isEdge("v1"));
+}

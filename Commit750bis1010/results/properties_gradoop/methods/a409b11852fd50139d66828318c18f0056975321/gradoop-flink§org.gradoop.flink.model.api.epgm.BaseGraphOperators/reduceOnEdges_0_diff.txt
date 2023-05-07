@@ -1,0 +1,12 @@
+/**
+ * Sets the aggregation result of the given function as property for each vertex. All edges where
+ * the vertex is relevant get joined first and then grouped. The relevant edges are specified
+ * using the direction which may direct to the vertex, or from the vertex or both.
+ *
+ * @param function      aggregate function
+ * @param edgeDirection incoming, outgoing edges or both
+ * @return base graph where vertices store aggregated information about connected edges
+ */
+default LG reduceOnEdges(EdgeAggregateFunction function, Neighborhood.EdgeDirection edgeDirection) {
+    return callForGraph(new ReduceEdgeNeighborhood<>(function, edgeDirection));
+}

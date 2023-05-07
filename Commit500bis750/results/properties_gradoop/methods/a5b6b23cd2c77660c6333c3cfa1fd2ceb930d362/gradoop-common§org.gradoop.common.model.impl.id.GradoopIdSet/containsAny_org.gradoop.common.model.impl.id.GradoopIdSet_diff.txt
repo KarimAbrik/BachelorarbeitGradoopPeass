@@ -1,0 +1,25 @@
+                                                                                                     | /**                                                                                                 
+                                                                                                     | * Checks if any of the specified ids is contained in the set.                                       
+                                                                                                     | *                                                                                                   
+                                                                                                     | * @param other the ids to look for                                                                  
+                                                                                                     | * @return true, iff any of the specified ids is contained in the set                                
+                                                                                                     | */                                                                                                  
+                                                                                                     | public boolean containsAny(GradoopIdSet other) {                                                    
+                                                                                                     | // Algorithm: the sizes of both lists might be vastly different                                     
+                                                                                                     | // to prevent the case of iterating multiple times over large collections                           
+                                                                                                     | // we make sure to always iterate over the smaller one                                              
+                                                                                                     | Set&lt;GradoopId&gt; iterate = this.ids;                                                            
+                                                                                                     | Set&lt;GradoopId&gt; contains = other.ids;                                                          
+                                                                                                     | int thisSize = this.size();                                                                         
+                                                                                                     | int otherSize = other.size();                                                                       
+                                                                                                     | if (thisSize &gt; otherSize) {                                                                      
+                                                                                                     | iterate = other.ids;                                                                                
+                                                                                                     | contains = this.ids;                                                                                
+                                                                                                     | }                                                                                                   
+                                                                                                     | for (GradoopId id : iterate) {                                                                      
+                                                                                                     | if (contains.contains(id)) {                                                                        
+                                                                                                     | return true;                                                                                        
+                                                                                                     | }                                                                                                   
+                                                                                                     | }                                                                                                   
+                                                                                                     | return false;                                                                                       
+                                                                                                     | }                                                                                                   

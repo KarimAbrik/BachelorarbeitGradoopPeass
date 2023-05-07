@@ -1,0 +1,21 @@
+/**                                                                                                    /**                                                                                                 
+* Creates a new Configuration.                                                                         * Creates a new Configuration.                                                                      
+*                                                                                                      *                                                                                                   
+* @param vertexHandler     vertex handler                                                              * @param vertexHandler     vertex handler                                                           
+* @param edgeHandler       edge handler                                                                * @param edgeHandler       edge handler                                                             
+* @param graphHeadHandler  graph head handler                                                          * @param graphHeadHandler  graph head handler                                                       
+*/                                                                                                     */                                                                                                  
+public GradoopConfig(VertexHandler&lt;VD, ED&gt; vertexHandler, EdgeHandler&lt;ED, VD&gt; edgeHandle | protected GradoopConfig(VertexHandler&lt;VD, ED&gt; vertexHandler, EdgeHandler&lt;ED, VD&gt; edgeHan
+if (vertexHandler == null) {                                                                           if (vertexHandler == null) {                                                                        
+throw new IllegalArgumentException("Vertex handler must not be null");                                 throw new IllegalArgumentException("Vertex handler must not be null");                              
+}                                                                                                      }                                                                                                   
+if (edgeHandler == null) {                                                                             if (edgeHandler == null) {                                                                          
+throw new IllegalArgumentException("Edge handler must not be null");                                   throw new IllegalArgumentException("Edge handler must not be null");                                
+}                                                                                                      }                                                                                                   
+if (graphHeadHandler == null) {                                                                        if (graphHeadHandler == null) {                                                                     
+throw new IllegalArgumentException("Graph head handler must not be null");                             throw new IllegalArgumentException("Graph head handler must not be null");                          
+}                                                                                                      }                                                                                                   
+this.vertexHandler = vertexHandler;                                                                    this.vertexHandler = vertexHandler;                                                                 
+this.edgeHandler = edgeHandler;                                                                        this.edgeHandler = edgeHandler;                                                                     
+this.graphHeadHandler = graphHeadHandler;                                                              this.graphHeadHandler = graphHeadHandler;                                                           
+}                                                                                                      }                                                                                                   

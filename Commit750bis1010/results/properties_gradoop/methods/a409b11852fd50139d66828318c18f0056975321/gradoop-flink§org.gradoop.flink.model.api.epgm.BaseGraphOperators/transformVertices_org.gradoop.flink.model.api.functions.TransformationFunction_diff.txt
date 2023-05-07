@@ -1,0 +1,10 @@
+/**
+ * Transforms the vertices of the base graph using the given transformation
+ * function. The identity of the vertices is preserved.
+ *
+ * @param vertexTransformationFunction vertex transformation function
+ * @return transformed base graph
+ */
+default LG transformVertices(TransformationFunction<V> vertexTransformationFunction) {
+    return transform(null, vertexTransformationFunction, null);
+}

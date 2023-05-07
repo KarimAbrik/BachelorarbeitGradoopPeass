@@ -1,0 +1,21 @@
+//----------------------------------------------------------------------------
+// Getter
+//----------------------------------------------------------------------------
+/**
+ * Returns the value as the specified type. If it is already of the same type as requested, we
+ * just return the value. If not, an {@link UnsupportedOperationException} is thrown.
+ *
+ * @param clazz the requested value type
+ * @param <T> PropertyValue supported type
+ * @return value
+ * @throws UnsupportedOperationException when trying to get the wrong type
+ */
+@SuppressWarnings("unchecked")
+public <T> T get(Class<T> clazz) throws UnsupportedOperationException {
+    PropertyValueStrategy strategy = PropertyValueStrategyFactory.get(clazz);
+    if (strategy.is(value)) {
+        return (T) value;
+    }
+    String type = value == null ? "null" : value.getClass().getSimpleName();
+    throw new UnsupportedOperationException("Value '" + value + "' of type " + type + ", cannot be accessed as " + clazz.getSimpleName());
+}

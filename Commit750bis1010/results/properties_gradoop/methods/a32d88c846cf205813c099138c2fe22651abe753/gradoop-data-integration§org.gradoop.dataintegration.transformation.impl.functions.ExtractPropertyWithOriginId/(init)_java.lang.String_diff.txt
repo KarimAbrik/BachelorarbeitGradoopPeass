@@ -1,0 +1,9 @@
+/**
+ * The constructor for extracting property value and its origin id.
+ *
+ * @param originalPropertyName The property key of the property value.
+ */
+public ExtractPropertyWithOriginId(String originalPropertyName) {
+    this.originalPropertyName = originalPropertyName;
+    this.reuseTuple = new Tuple2<>();
+}

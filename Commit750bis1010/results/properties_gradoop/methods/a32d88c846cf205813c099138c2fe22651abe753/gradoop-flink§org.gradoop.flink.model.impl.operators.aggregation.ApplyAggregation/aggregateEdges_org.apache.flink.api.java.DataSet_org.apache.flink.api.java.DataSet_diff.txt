@@ -1,0 +1,10 @@
+/**
+ * Applies an aggregate function to the partitions of an edge data set.
+ *
+ * @param edges edge data set
+ * @param graphIds graph ids to aggregate
+ * @return partition aggregate value
+ */
+private DataSet<Tuple2<GradoopId, Map<String, PropertyValue>>> aggregateEdges(DataSet<E> edges, DataSet<GradoopId> graphIds) {
+    return edges.flatMap(new ElementsOfSelectedGraphs<>()).withBroadcastSet(graphIds, ElementsOfSelectedGraphs.GRAPH_IDS).groupBy(0).combineGroup(new ApplyAggregateElements<>(aggregateFunctions.stream().filter(AggregateFunction::isEdgeAggregation).collect(Collectors.toSet())));
+}

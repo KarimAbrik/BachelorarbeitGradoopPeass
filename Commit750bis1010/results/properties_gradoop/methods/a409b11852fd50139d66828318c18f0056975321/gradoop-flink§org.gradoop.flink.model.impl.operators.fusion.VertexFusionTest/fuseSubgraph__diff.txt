@@ -1,0 +1,17 @@
+@Test
+public void fuseSubgraph() throws Exception {
+    FlinkAsciiGraphLoader loader = getLoaderFromString("source:G {source : \"graph\"}[" + "(a:Patent {author : \"asdf\", year: 2000, title: \"P1\"})-[:cite {difference : 0}]->(b:Patent {author : \"asdf\", year: 2000, title: \"P2\"})" + "(a)-[:cite {difference : 0}]->(c:Patent {author : \"asdf\", year: 2000, title: \"P3\"})" + "(b)-[:cite {difference : 0}]->(c)\n" + "(a)-[:cite {difference : 5}]->(d:Patent {author : \"zxcv\", year: 1995, title: \"Earlier...\"})" + "(b)-[:cite {difference : 5}]->(d)" + "(e:Patent {author : \"kdkdkd\", year: 1997, title: \"Once upon a time\"})-[e_d:cite {difference : 2}]->(d)" + "]" + "expected:Combined [" + "(combined:Combined {source: \"graph\"})-[:cite {difference : 5}]->(d)" + "(combined)-[:cite {difference : 5}]->(d)" + "(e)-[e_d]->(d)" + "]");
+    GraphCollection sourceGraph = loader.getGraphCollectionByVariables("source");
+    LogicalGraph searchGraph = sourceGraph.reduce(new ReduceCombination<>());
+    GraphCollection patternGraph = sourceGraph.apply(new ApplySubgraph<>(null, edge -> edge.getPropertyValue("difference").getInt() == 0, Subgraph.Strategy.EDGE_INDUCED)).apply(new ApplyTransformation<>((gh, plain) -> {
+        gh.setLabel("Combined");
+        return gh;
+    }, null, null));
+    VertexFusion f = new VertexFusion();
+    LogicalGraph output = f.execute(searchGraph, patternGraph).transform((gh, plain) -> {
+        gh.setLabel("Combined");
+        return gh;
+    }, null, null);
+    LogicalGraph expected = loader.getLogicalGraphByVariable("expected");
+    collectAndAssertTrue(output.equalsByData(expected));
+}

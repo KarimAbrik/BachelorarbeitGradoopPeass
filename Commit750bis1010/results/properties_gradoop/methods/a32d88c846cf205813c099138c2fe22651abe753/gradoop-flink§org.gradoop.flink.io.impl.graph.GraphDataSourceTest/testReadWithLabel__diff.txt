@@ -1,0 +1,10 @@
+@Test
+public void testReadWithLabel() throws Exception {
+    ExecutionEnvironment env = getExecutionEnvironment();
+    DataSet<ImportVertex<Long>> importVertices = env.fromElements(new ImportVertex<>(0L, "A"), new ImportVertex<>(1L, "B"));
+    DataSet<ImportEdge<Long>> importEdges = env.fromElements(new ImportEdge<>(0L, 0L, 1L, "a"));
+    LogicalGraph expected = getLoaderFromString("expected[(:A)-[:a]->(:B)]").getLogicalGraphByVariable("expected");
+    GraphDataSource<Long> dataSource = new GraphDataSource<>(importVertices, importEdges, getConfig());
+    LogicalGraph output = dataSource.getLogicalGraph();
+    collectAndAssertTrue(output.equalsByElementData(expected));
+}

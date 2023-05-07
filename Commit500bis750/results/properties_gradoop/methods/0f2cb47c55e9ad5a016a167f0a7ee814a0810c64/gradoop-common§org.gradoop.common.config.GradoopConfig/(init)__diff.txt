@@ -1,0 +1,9 @@
+/**
+ * Creates a new Configuration.
+ */
+@SuppressWarnings("unchecked")
+protected GradoopConfig() {
+    this.graphHeadFactory = new GraphHeadFactory();
+    this.vertexFactory = new VertexFactory();
+    this.edgeFactory = new EdgeFactory();
+}

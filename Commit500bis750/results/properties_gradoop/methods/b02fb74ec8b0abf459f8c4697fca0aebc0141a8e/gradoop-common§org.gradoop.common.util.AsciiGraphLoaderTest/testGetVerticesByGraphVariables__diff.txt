@@ -1,0 +1,22 @@
+@Test
+public void testGetVerticesByGraphVariables() throws Exception {
+    AsciiGraphLoader<GraphHead, Vertex, Edge> asciiGraphLoader = AsciiGraphLoader.fromString("g[(a),(b)],h[(a),(c)]", config);
+    validateCollections(asciiGraphLoader, 2, 3, 0);
+    validateCaches(asciiGraphLoader, 2, 3, 0);
+    Collection<Vertex> verticesG = asciiGraphLoader.getVerticesByGraphVariables("g");
+    Collection<Vertex> verticesH = asciiGraphLoader.getVerticesByGraphVariables("h");
+    Collection<Vertex> verticesGH = asciiGraphLoader.getVerticesByGraphVariables("g", "h");
+    Vertex a = asciiGraphLoader.getVertexByVariable("a");
+    Vertex b = asciiGraphLoader.getVertexByVariable("b");
+    Vertex c = asciiGraphLoader.getVertexByVariable("c");
+    assertEquals("Wrong number of vertices", 2, verticesG.size());
+    assertEquals("Wrong number of vertices", 2, verticesH.size());
+    assertEquals("Wrong number of vertices", 3, verticesGH.size());
+    assertTrue("Vertex was not contained in graph", verticesG.contains(a));
+    assertTrue("Vertex was not contained in graph", verticesG.contains(b));
+    assertTrue("Vertex was not contained in graph", verticesH.contains(a));
+    assertTrue("Vertex was not contained in graph", verticesH.contains(c));
+    assertTrue("Vertex was not contained in graph", verticesGH.contains(a));
+    assertTrue("Vertex was not contained in graph", verticesGH.contains(b));
+    assertTrue("Vertex was not contained in graph", verticesGH.contains(c));
+}

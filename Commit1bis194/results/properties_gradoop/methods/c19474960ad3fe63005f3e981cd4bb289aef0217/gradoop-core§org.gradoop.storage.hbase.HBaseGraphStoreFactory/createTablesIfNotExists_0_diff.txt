@@ -1,0 +1,22 @@
+/**
+ * Creates the tables used by the graph store.
+ *
+ * @param config          Hadoop configuration
+ * @param verticesHandler vertex storage handler
+ * @param graphHandler    graph storage handler
+ * @param vertexTableName vertex table name
+ * @param graphTableName  graph table name
+ * @throws IOException
+ */
+private static void createTablesIfNotExists(final Configuration config, final VertexHandler verticesHandler, final GraphHandler graphHandler, final String vertexTableName, final String graphTableName) throws IOException {
+    HTableDescriptor verticesTableDescriptor = new HTableDescriptor(TableName.valueOf(vertexTableName));
+    HTableDescriptor graphsTableDescriptor = new HTableDescriptor(TableName.valueOf(graphTableName));
+    HBaseAdmin admin = new HBaseAdmin(config);
+    if (!admin.tableExists(verticesTableDescriptor.getName())) {
+        verticesHandler.createTable(admin, verticesTableDescriptor);
+    }
+    if (!admin.tableExists(graphsTableDescriptor.getName())) {
+        graphHandler.createTable(admin, graphsTableDescriptor);
+    }
+    admin.close();
+}

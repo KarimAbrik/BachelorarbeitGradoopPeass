@@ -1,0 +1,20 @@
+/**
+ * Test the content of the metadata.csv file, written locally
+ *
+ * @throws Exception if the execution or IO fails.
+ */
+@Test
+public void testWriteMetadataCsvLocal() throws Exception {
+    String tmpPath = temporaryFolder.getRoot().getPath();
+    LogicalGraph logicalGraph = getExtendedLogicalGraph();
+    List<Tuple3<String, String, String>> metaDataTuples = new CSVMetaDataSource().tuplesFromGraph(logicalGraph).collect();
+    CSVMetaData metaData = new CSVMetaDataSource().fromTuples(metaDataTuples);
+    CSVMetaDataSink metaDataSink = new CSVMetaDataSink();
+    metaDataSink.writeLocal(tmpPath + "/metadata.csv", metaData, new Configuration(), true);
+    String metadataFile = tmpPath + "/metadata.csv";
+    String line;
+    BufferedReader br = new BufferedReader(new FileReader(metadataFile));
+    while ((line = br.readLine()) != null) {
+        checkMetadataCsvLine(line);
+    }
+}

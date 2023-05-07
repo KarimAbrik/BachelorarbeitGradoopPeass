@@ -1,0 +1,10 @@
+@Override
+protected DataSet<G> computeNewGraphHeads() {
+    // assign 1L to each graph in the first collection
+    DataSet<Tuple2<G, Long>> thisGraphs = firstCollection.getGraphHeads().map(new CreateTuple2WithLong<>(1L));
+    // assign 2L to each graph in the second collection
+    DataSet<Tuple2<G, Long>> otherGraphs = secondCollection.getGraphHeads().map(new CreateTuple2WithLong<>(2L));
+    // union the graphs, group them by their identifier and check that
+    // there is no graph in the group that belongs to the second collection
+    return thisGraphs.union(otherGraphs).groupBy(new IdOf0InTuple2<>()).reduceGroup(new RemoveCut<>());
+}

@@ -1,0 +1,32 @@
+{
+  "overallScore" : 0,
+  "selected" : false,
+  "testcase" : {
+    "clazz" : "org.gradoop.drivers.BulkLoadDriverTest",
+    "method" : "testBulkLoadDriver",
+    "module" : "gradoop-core",
+    "params" : null
+  },
+  "callCounts" : {
+    "gradoop-core§org.gradoop.storage.hbase.BasicHandler#<init>" : 2,
+    "gradoop-core§org.gradoop.drivers.BulkLoadDriver#run(java.lang.String[])" : 1,
+    "gradoop-core§org.gradoop.storage.hbase.HBaseGraphStore#<init>(org.apache.hadoop.hbase.client.HTable,org.apache.hadoop.hbase.client.HTable,org.gradoop.storage.hbase.VertexHandler,org.gradoop.storage.hbase.GraphHandler)" : 1,
+    "gradoop-core§org.gradoop.drivers.BulkLoadDriver#<init>" : 1,
+    "gradoop-core§org.gradoop.storage.hbase.EPGVertexHandler#createTable(org.apache.hadoop.hbase.client.HBaseAdmin,org.apache.hadoop.hbase.HTableDescriptor)" : 1,
+    "gradoop-core§org.gradoop.drivers.BulkLoadDriver#getLineReaderClass(java.lang.String)" : 1,
+    "gradoop-core§org.gradoop.storage.hbase.EPGGraphHandler#<init>" : 1,
+    "gradoop-core§org.gradoop.GradoopClusterTest#copyFromLocal(java.lang.String)" : 1,
+    "gradoop-core§org.gradoop.storage.hbase.HBaseGraphStoreFactory#createGraphStore(org.apache.hadoop.conf.Configuration,org.gradoop.storage.hbase.VertexHandler,org.gradoop.storage.hbase.GraphHandler)" : 1,
+    "gradoop-core§org.gradoop.drivers.BulkLoadDriverTest#testBulkLoadDriver" : 1,
+    "gradoop-core§org.gradoop.storage.hbase.HBaseGraphStoreFactory#deleteTablesIfExists(org.apache.hadoop.conf.Configuration)" : 1,
+    "gradoop-core§org.gradoop.drivers.BulkLoadDriver$ConfUtils#performSanityCheck(org.apache.commons.cli.CommandLine)" : 1,
+    "gradoop-core§org.gradoop.storage.hbase.EPGVertexHandler#<init>" : 1,
+    "gradoop-core§org.gradoop.drivers.BulkLoadDriver#createGraphStore(org.apache.hadoop.conf.Configuration,boolean)" : 1,
+    "gradoop-core§org.gradoop.drivers.BulkLoadDriver#runBulkLoad(org.apache.hadoop.conf.Configuration,java.lang.Class,java.lang.String,java.lang.String,boolean)" : 1,
+    "gradoop-core§org.gradoop.drivers.BulkLoadDriver$ConfUtils#parseArgs(java.lang.String[])" : 1,
+    "gradoop-core§org.gradoop.storage.hbase.HBaseGraphStoreFactory#deleteGraphStore(org.apache.hadoop.conf.Configuration)" : 1,
+    "gradoop-core§org.gradoop.storage.hbase.HBaseGraphStoreFactory#createTablesIfNotExists(org.apache.hadoop.conf.Configuration,org.gradoop.storage.hbase.VertexHandler,org.gradoop.storage.hbase.GraphHandler)" : 1,
+    "gradoop-core§org.gradoop.storage.hbase.EPGGraphHandler#createTable(org.apache.hadoop.hbase.client.HBaseAdmin,org.apache.hadoop.hbase.HTableDescriptor)" : 1
+  },
+  "selectedChanges" : [ ]
+}

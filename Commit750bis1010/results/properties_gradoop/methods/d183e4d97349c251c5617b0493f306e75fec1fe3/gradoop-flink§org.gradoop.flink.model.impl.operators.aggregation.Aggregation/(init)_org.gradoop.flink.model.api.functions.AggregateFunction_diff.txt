@@ -1,0 +1,9 @@
+/**
+ * Creates new aggregation.
+ *
+ * @param aggregateFunction  user defined aggregation function which gets
+ *                             called on the input graph
+ */
+public Aggregation(final AggregateFunction aggregateFunction) {
+    this.aggregateFunction = checkNotNull(aggregateFunction);
+}

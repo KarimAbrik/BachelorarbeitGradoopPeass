@@ -1,0 +1,10 @@
+/**
+ * Creates a vertex with outgoing edges.
+ *
+ * @param vertexID      vertex identifier
+ * @param outgoingEdges edges starting at that vertex
+ * @return vertex with identifier and outgoing edges
+ */
+public static Vertex createDefaultVertexWithOutgoingEdges(final Long vertexID, final Iterable<Edge> outgoingEdges) {
+    return createDefaultVertexWithEdges(vertexID, outgoingEdges, null);
+}

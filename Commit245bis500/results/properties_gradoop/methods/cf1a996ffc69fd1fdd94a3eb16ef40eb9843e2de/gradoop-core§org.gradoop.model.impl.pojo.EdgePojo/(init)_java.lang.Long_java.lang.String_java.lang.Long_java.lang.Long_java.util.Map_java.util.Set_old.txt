@@ -1,0 +1,15 @@
+/**
+ * Creates an edge instance based on the given parameters.
+ *
+ * @param id             the unique id of the edge
+ * @param label          edge label
+ * @param sourceVertexId source vertex id
+ * @param targetVertexId target vertex id
+ * @param properties     edge properties
+ * @param graphs         graphs that edge is contained in
+ */
+EdgePojo(final Long id, final String label, final Long sourceVertexId, final Long targetVertexId, final Map<String, Object> properties, Set<Long> graphs) {
+    super(id, label, properties, graphs);
+    this.sourceVertexId = sourceVertexId;
+    this.targetVertexId = targetVertexId;
+}

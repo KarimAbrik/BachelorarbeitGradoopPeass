@@ -1,0 +1,12 @@
+/**
+ * Reverses the order of the entries stored in the embedding.
+ * The order of the properties will stay untouched.
+ * @return  A new Embedding with reversed entry order
+ */
+public Embedding reverse() {
+    byte[] newIdData = new byte[idData.length];
+    for (int i = size() - 1; i >= 0; i--) {
+        System.arraycopy(getRawIdEntry(i), 0, newIdData, (size() - 1 - i) * ID_ENTRY_SIZE, ID_ENTRY_SIZE);
+    }
+    return new Embedding(newIdData, propertyData, idListData);
+}

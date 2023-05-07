@@ -1,0 +1,17 @@
+/**
+ * Returns the string representation of the property value matching the given property metadata.
+ * If no matching property is found, an empty string is returned.
+ *
+ * @param propertyMetaData property metadata of the wanted property value
+ * @param element EPGM element containing the property value
+ * @return string representation of matched property value or empty string
+ */
+private String getPropertyValueString(PropertyMetaData propertyMetaData, E element) {
+    PropertyValue p = element.getPropertyValue(propertyMetaData.getKey());
+    // Only properties with matching type get returned
+    // to prevent writing values with the wrong type metadata
+    if (p != null && MetaDataParser.getTypeString(p).equals(propertyMetaData.getTypeString())) {
+        return p.toString();
+    }
+    return EMPTY_STRING;
+}

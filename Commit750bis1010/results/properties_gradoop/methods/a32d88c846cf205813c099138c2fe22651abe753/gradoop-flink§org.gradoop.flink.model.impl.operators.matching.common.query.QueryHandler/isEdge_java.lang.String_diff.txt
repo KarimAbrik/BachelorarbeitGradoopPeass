@@ -1,0 +1,9 @@
+/**
+ * Checks if the given variable points to an edge.
+ *
+ * @param variable the elements variable
+ * @return True if the variable points to an edge
+ */
+public boolean isEdge(String variable) {
+    return edgeCache.containsKey(variable);
+}

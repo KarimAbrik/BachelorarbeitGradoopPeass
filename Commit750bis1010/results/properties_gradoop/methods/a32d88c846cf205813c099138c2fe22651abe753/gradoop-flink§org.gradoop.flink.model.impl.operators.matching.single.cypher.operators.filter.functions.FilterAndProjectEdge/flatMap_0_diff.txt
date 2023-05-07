@@ -1,0 +1,6 @@
+@Override
+public void flatMap(E edge, Collector<Embedding> out) throws Exception {
+    if (predicates.evaluate(edge)) {
+        out.collect(EmbeddingFactory.fromEdge(edge, projectionPropertyKeys, isLoop));
+    }
+}

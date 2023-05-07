@@ -1,0 +1,9 @@
+/**
+ * Property accessor.
+ *
+ * @param elementId graph / vertex / edge id
+ * @return property list
+ */
+public Properties getProperties(ID elementId) {
+    return f2.get(elementId);
+}

@@ -1,0 +1,11 @@
+/**
+ * Creates a {@link TemporalGraphCollection} instance by the given graph head, vertex and edge datasets.
+ *
+ * @param graphHead graph head DataSet
+ * @param vertices vertex DataSet
+ * @param edges edge DataSet
+ * @return a temporal graph collection
+ */
+public TemporalGraphCollection fromNonTemporalDataSets(DataSet<? extends GraphHead> graphHead, DataSet<? extends Vertex> vertices, DataSet<? extends Edge> edges) {
+    return new TemporalGraphCollection(this.layoutFactory.fromDataSets(graphHead.map(new GraphHeadToTemporalGraphHead<>(getGraphHeadFactory())), vertices.map(new VertexToTemporalVertex<>(getVertexFactory())), edges.map(new EdgeToTemporalEdge<>(getEdgeFactory()))), config);
+}

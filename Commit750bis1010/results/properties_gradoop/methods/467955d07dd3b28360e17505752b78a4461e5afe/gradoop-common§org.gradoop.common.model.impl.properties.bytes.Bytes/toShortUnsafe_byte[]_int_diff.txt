@@ -1,0 +1,14 @@
+/**
+ * Converts a byte array to an short value (Unsafe version)
+ *
+ * @param bytes byte array
+ * @param offset offset into array
+ * @return the short value
+ */
+private static short toShortUnsafe(byte[] bytes, int offset) {
+    if (LexicographicalComparerHolder.UnsafeComparer.LITTLE_ENDIAN) {
+        return Short.reverseBytes(LexicographicalComparerHolder.UnsafeComparer.UNSAFE.getShort(bytes, (long) offset + LexicographicalComparerHolder.UnsafeComparer.BYTE_ARRAY_BASE_OFFSET));
+    } else {
+        return LexicographicalComparerHolder.UnsafeComparer.UNSAFE.getShort(bytes, (long) offset + LexicographicalComparerHolder.UnsafeComparer.BYTE_ARRAY_BASE_OFFSET);
+    }
+}

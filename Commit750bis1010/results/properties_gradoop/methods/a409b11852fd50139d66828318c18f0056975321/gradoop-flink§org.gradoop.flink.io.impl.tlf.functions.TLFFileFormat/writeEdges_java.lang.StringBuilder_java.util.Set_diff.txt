@@ -1,0 +1,21 @@
+/**
+ * Converts the edges into the following format and adds this to the
+ * StringBuilder:
+ * <p>
+ * e 0 1 edgeLabel
+ * e 1 2 edgeLabel
+ * e 2 1 edgeLabel
+ * </p>
+ *
+ * @param builder StringBuilder to build the whole string representation
+ * @param edges set of edges
+ * @return builder with appended edge representations
+ */
+private StringBuilder writeEdges(StringBuilder builder, Set<EPGMEdge> edges) {
+    for (EPGMEdge edge : edges) {
+        Long sourceId = vertexIdMap.get(edge.getSourceId());
+        Long targetId = vertexIdMap.get(edge.getTargetId());
+        builder.append(String.format("%s %s %s %s%n", TLFConstants.EDGE_SYMBOL, sourceId, targetId, edge.getLabel()));
+    }
+    return builder;
+}

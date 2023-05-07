@@ -1,7 +1,0 @@
-protected &lt;T extends Labeled & GraphElement&gt; JSONObject writeGraphElementMeta(T entity) throws   protected &lt;T extends Labeled & GraphElement&gt; JSONObject writeGraphElementMeta(T entity) throws
-JSONObject meta = writeMeta(entity);                                                                   JSONObject meta = writeMeta(entity);                                                                
-meta.put(GRAPHS, getGraphsArray(entity));                                                            | if (entity.getGraphCount() &gt; 0) {                                                                
-                                                                                                     | meta.put(GRAPHS, getJSONArray(entity.getGraphs()));                                                 
-                                                                                                     | }                                                                                                   
-return meta;                                                                                           return meta;                                                                                        
-}                                                                                                      }                                                                                                   

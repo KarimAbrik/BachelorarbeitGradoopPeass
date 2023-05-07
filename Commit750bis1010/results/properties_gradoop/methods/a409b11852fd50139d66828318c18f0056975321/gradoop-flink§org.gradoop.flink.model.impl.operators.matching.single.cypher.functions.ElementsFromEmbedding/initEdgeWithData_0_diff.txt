@@ -1,0 +1,20 @@
+/**
+ * Initializes an edge using the specified parameters and adds its label
+ * if the given edge was created for return pattern
+ *
+ * @param out flat map collector
+ * @param graphHead graph head to assign edge to
+ * @param edgeId edge identifier
+ * @param sourceId source vertex identifier
+ * @param targetId target vertex identifier
+ * @param label label associated with edge
+ */
+private void initEdgeWithData(Collector<Element> out, G graphHead, GradoopId edgeId, GradoopId sourceId, GradoopId targetId, String label) {
+    if (!processedIds.contains(edgeId)) {
+        E e = edgeFactory.initEdge(edgeId, sourceId, targetId);
+        e.addGraphId(graphHead.getId());
+        e.setLabel(label);
+        out.collect(e);
+        processedIds.add(edgeId);
+    }
+}

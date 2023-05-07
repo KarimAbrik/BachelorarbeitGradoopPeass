@@ -1,0 +1,46 @@
+/**
+ * Runs the HFile conversion from the given file to the output dir. Also
+ * loads the HFiles to region servers.
+ *
+ * @param conf      Cluster config
+ * @param graphFile input file in HDFS
+ * @param outDir    HFile output dir in HDFS
+ * @param verbose   print output during job
+ * @return true, if the job completed successfully, false otherwise
+ * @throws java.io.IOException
+ */
+private boolean runBulkLoad(Configuration conf, String graphFile, String outDir, boolean verbose) throws Exception {
+    Path inputFile = new Path(graphFile);
+    Path outputDir = new Path(outDir);
+    // set line reader to read lines in input splits
+    conf.setClass(BulkLoadEPG.VERTEX_LINE_READER, RDFReader.class, VertexLineReader.class);
+    // set vertex handler that creates the Puts
+    conf.setClass(BulkLoadEPG.VERTEX_HANDLER, EPGVertexHandler.class, VertexHandler.class);
+    Job job = Job.getInstance(conf, JOB_PREFIX + BulkLoadEPG.class.getName());
+    job.setJarByClass(BulkLoadEPG.class);
+    // mapper that runs the HFile conversion
+    job.setMapperClass(BulkLoadEPG.class);
+    // input format for Mapper (File)
+    job.setInputFormatClass(TextInputFormat.class);
+    // output Key class of Mapper
+    job.setMapOutputKeyClass(ImmutableBytesWritable.class);
+    // output Value class of Mapper
+    job.setMapOutputValueClass(Put.class);
+    // set input file
+    FileInputFormat.addInputPath(job, inputFile);
+    // set output directory
+    FileOutputFormat.setOutputPath(job, outputDir);
+    HTable hTable = new HTable(conf, GConstants.DEFAULT_TABLE_VERTICES);
+    // auto configure partitioner and reducer corresponding to the number of
+    // regions
+    HFileOutputFormat2.configureIncrementalLoad(job, hTable);
+    // run job
+    if (!job.waitForCompletion(verbose)) {
+        LOG.error("Error during bulk import ... stopping pipeline");
+        return false;
+    }
+    // load created HFiles to the region servers
+    LoadIncrementalHFiles loader = new LoadIncrementalHFiles(conf);
+    loader.doBulkLoad(outputDir, hTable);
+    return true;
+}

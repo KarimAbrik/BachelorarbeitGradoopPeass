@@ -1,0 +1,10 @@
+/**
+ * Constructor
+ *
+ * @param transformationFunction  edge modification function
+ * @param epgmEdgeFactory           edge factory
+ */
+public TransformEdge(TransformationFunction<E> transformationFunction, EdgeFactory<E> epgmEdgeFactory) {
+    super(transformationFunction);
+    this.edgeFactory = checkNotNull(epgmEdgeFactory);
+}

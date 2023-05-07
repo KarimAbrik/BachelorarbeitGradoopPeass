@@ -1,0 +1,10 @@
+/**
+ * Group by label.
+ *
+ * @param <T> The type of the elements to group.
+ * @return The grouping key function extracting the label.
+ * @see LabelKeyFunction
+ */
+public static <T extends Labeled> KeyFunctionWithDefaultValue<T, String> label() {
+    return new LabelKeyFunction<>();
+}

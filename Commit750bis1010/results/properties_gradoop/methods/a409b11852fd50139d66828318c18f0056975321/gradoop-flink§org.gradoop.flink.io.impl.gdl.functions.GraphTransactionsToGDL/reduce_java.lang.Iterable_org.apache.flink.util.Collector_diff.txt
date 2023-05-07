@@ -1,0 +1,14 @@
+@Override
+public void reduce(Iterable<GraphTransaction> graphTransactions, Collector<String> out) throws Exception {
+    List<EPGMGraphHead> graphHeads = new ArrayList<>();
+    List<EPGMVertex> vertices = new ArrayList<>();
+    List<EPGMEdge> edges = new ArrayList<>();
+    for (GraphTransaction gt : graphTransactions) {
+        graphHeads.add(gt.getGraphHead());
+        vertices.addAll(gt.getVertices());
+        edges.addAll(gt.getEdges());
+    }
+    GDLEncoder encoder = new GDLEncoder(graphHeads, vertices, edges);
+    String result = encoder.getGDLString();
+    out.collect(result);
+}

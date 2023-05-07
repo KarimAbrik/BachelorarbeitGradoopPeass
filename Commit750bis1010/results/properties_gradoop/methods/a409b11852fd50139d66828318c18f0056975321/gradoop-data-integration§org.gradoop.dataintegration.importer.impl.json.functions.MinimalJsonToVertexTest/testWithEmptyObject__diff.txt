@@ -1,0 +1,10 @@
+/**
+ * Test the function using an empty JSON object string.
+ *
+ * @throws Exception if the execution fails or the JSON object is invalid.
+ */
+@Test
+public void testWithEmptyObject() throws Exception {
+    Vertex vertex = function.map("{}");
+    assertVertexEquals(vertex, expectedValue);
+}

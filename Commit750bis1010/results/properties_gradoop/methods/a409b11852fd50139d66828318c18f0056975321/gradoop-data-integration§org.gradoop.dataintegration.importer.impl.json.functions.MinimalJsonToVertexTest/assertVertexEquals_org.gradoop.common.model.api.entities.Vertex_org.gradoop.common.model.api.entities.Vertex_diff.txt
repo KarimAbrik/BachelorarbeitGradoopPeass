@@ -1,0 +1,16 @@
+/**
+ * Check if two vertices are equal.
+ * Elements should be considered equal here if their properties and label are equal.
+ *
+ * @param expected The expectedValue vertex value.
+ * @param actual   The actual vertex value.
+ */
+private void assertVertexEquals(Vertex expected, Vertex actual) {
+    assertNotNull(expected);
+    assertNotNull(actual);
+    assertEquals(expected.getLabel(), actual.getLabel());
+    assertEquals(expected.getPropertyCount(), actual.getPropertyCount());
+    if (expected.getPropertyCount() > 0) {
+        assertEquals(expected.getProperties(), actual.getProperties());
+    }
+}

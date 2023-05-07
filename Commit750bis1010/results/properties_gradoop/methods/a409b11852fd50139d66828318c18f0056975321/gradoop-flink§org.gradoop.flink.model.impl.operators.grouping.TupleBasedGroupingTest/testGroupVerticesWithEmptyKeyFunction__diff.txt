@@ -1,0 +1,15 @@
+/**
+ * Test the tuple-based grouping implementation with the {@link GroupingKeys#nothing()} key function.
+ */
+@Test
+public void testGroupVerticesWithEmptyKeyFunction() throws Exception {
+    FlinkAsciiGraphLoader loader = getSocialNetworkLoader();
+    loader.appendToDatabaseFromString("expected[" + "(expectedVertex {vertexCount: 3L})-[{edgeCount: 4L}]->(expectedVertex)" + "]");
+    LogicalGraph input = loader.getLogicalGraphByVariable("g0");
+    LogicalGraph expected = loader.getLogicalGraphByVariable("expected");
+    List<KeyFunction<EPGMVertex, ?>> vertexKeys = Collections.singletonList(GroupingKeys.nothing());
+    List<AggregateFunction> vertexAggregations = Collections.singletonList(new VertexCount());
+    List<AggregateFunction> edgeAggregations = Collections.singletonList(new EdgeCount());
+    LogicalGraph result = input.callForGraph(new KeyedGrouping<>(vertexKeys, vertexAggregations, Collections.emptyList(), edgeAggregations));
+    collectAndAssertTrue(result.equalsByElementData(expected));
+}

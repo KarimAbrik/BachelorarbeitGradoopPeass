@@ -1,0 +1,11 @@
+/**
+ * Initialize the operator.
+ *
+ * @param propertyKey   Property key to temporarily store the component id.
+ * @param maxIterations Maximum number of iteration for
+ *                      {@link AnnotateWeaklyConnectedComponents}.
+ */
+public WeaklyConnectedComponentsAsCollection(String propertyKey, int maxIterations) {
+    this.propertyKey = propertyKey;
+    this.maxIterations = maxIterations;
+}

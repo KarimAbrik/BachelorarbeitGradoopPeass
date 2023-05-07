@@ -1,0 +1,8 @@
+/**
+ * Test the constructor with too many default groups.
+ */
+@Test(expected = IllegalArgumentException.class)
+public void testConstructorWithBothDefaultGroups() {
+    List<LabelGroup> groups = Arrays.asList(new LabelGroup("a", "b", Collections.emptyList(), Collections.emptyList()), new LabelGroup(Grouping.DEFAULT_VERTEX_LABEL_GROUP, "c", Collections.emptyList(), Collections.emptyList()), new LabelGroup(Grouping.DEFAULT_EDGE_LABEL_GROUP, "d", Collections.emptyList(), Collections.emptyList()));
+    KeyedGroupingUtils.asKeyFunction(false, groups);
+}

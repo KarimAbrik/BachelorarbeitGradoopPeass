@@ -1,0 +1,14 @@
+/**                                                                                                  |                                                                                                     
+* Creates grouping operator instance.                                                                |                                                                                                     
+*                                                                                                    |                                                                                                     
+* @param useVertexLabels   group on vertex label true/false                                          |                                                                                                     
+* @param useEdgeLabels     group on edge label true/false                                            |                                                                                                     
+* @param vertexLabelGroups stores grouping properties for vertex labels                              |                                                                                                     
+* @param edgeLabelGroups   stores grouping properties for edge labels                                |                                                                                                     
+*/                                                                                                   |                                                                                                     
+Grouping(boolean useVertexLabels, boolean useEdgeLabels, List&lt;LabelGroup&gt; vertexLabelGroups, L |                                                                                                     
+this.useVertexLabels = useVertexLabels;                                                              |                                                                                                     
+this.useEdgeLabels = useEdgeLabels;                                                                  |                                                                                                     
+this.vertexLabelGroups = vertexLabelGroups;                                                          |                                                                                                     
+this.edgeLabelGroups = edgeLabelGroups;                                                              |                                                                                                     
+}                                                                                                    |                                                                                                     

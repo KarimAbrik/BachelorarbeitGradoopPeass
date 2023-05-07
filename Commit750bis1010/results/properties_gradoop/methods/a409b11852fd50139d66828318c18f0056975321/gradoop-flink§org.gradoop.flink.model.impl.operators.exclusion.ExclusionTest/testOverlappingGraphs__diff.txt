@@ -1,0 +1,11 @@
+@Test
+public void testOverlappingGraphs() throws Exception {
+    FlinkAsciiGraphLoader loader = getSocialNetworkLoader();
+    loader.appendToDatabaseFromString("" + "expected1:Community {interest:\"Databases\", vertexCount:3}" + "[(eve)]" + "expected2:Community {interest : \"Graphs\", vertexCount : 4}" + "[(carol)-[ckd]->(dave)-[dkc]->(carol)]");
+    LogicalGraph g0 = loader.getLogicalGraphByVariable("g0");
+    LogicalGraph g2 = loader.getLogicalGraphByVariable("g2");
+    LogicalGraph expected1 = loader.getLogicalGraphByVariable("expected1");
+    LogicalGraph expected2 = loader.getLogicalGraphByVariable("expected2");
+    collectAndAssertTrue(g0.exclude(g2).equalsByData(expected1));
+    collectAndAssertTrue(g2.exclude(g0).equalsByData(expected2));
+}

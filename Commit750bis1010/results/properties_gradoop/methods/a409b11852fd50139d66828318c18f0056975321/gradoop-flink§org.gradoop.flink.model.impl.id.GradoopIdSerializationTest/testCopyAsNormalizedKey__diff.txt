@@ -1,0 +1,15 @@
+/**
+ * Test if {@link GradoopId}s implement
+ * {@link org.apache.flink.types.NormalizableKey#copyNormalizedKey(MemorySegment, int, int)}
+ * correctly.
+ * The normalized key representation of a {@link GradoopId} should be equal to its
+ * byte-representation.
+ */
+@Test
+public void testCopyAsNormalizedKey() {
+    GradoopId inputId = GradoopId.get();
+    byte[] byteRepresentationBuffer = new byte[GradoopId.ID_SIZE];
+    MemorySegment memorySegment = MemorySegmentFactory.wrap(byteRepresentationBuffer);
+    inputId.copyNormalizedKey(memorySegment, 0, inputId.getMaxNormalizedKeyLen());
+    assertArrayEquals(inputId.toByteArray(), byteRepresentationBuffer);
+}

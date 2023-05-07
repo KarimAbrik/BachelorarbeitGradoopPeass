@@ -1,0 +1,4 @@
+@Test
+public void testMatchWithValueJoin() throws Exception {
+    assertCardinalities("MATCH (a:Person), (b:Person) WHERE a.city = b.city", 36, 8);
+}

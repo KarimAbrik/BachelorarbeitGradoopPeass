@@ -1,0 +1,8 @@
+@Test
+public void equalsTest() {
+    GradoopId one = new GradoopId(1L);
+    GradoopId anotherOne = new GradoopId(1L);
+    GradoopId two = new GradoopId(2L);
+    Assert.assertTrue(one.equals(anotherOne));
+    Assert.assertFalse(one.equals(two));
+}

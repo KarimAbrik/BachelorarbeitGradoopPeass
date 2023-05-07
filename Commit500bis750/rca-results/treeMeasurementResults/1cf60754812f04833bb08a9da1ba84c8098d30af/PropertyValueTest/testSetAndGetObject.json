@@ -1,0 +1,707 @@
+{
+  "measurementConfig" : {
+    "vms" : 30,
+    "earlyStop" : false,
+    "warmup" : 5,
+    "iterations" : 5,
+    "repetitions" : 8000,
+    "logFullData" : true,
+    "useGC" : false,
+    "callSyncBetweenVMs" : true,
+    "waitTimeBetweenVMs" : 1000,
+    "maxLogSizeInMb" : 100,
+    "kiekerConfig" : {
+      "useKieker" : true,
+      "useSourceInstrumentation" : true,
+      "useSelectiveInstrumentation" : true,
+      "useAggregation" : true,
+      "useCircularQueue" : false,
+      "enableAdaptiveMonitoring" : false,
+      "adaptiveInstrumentation" : false,
+      "kiekerAggregationInterval" : 5000,
+      "record" : "DURATION",
+      "onlyOneCallRecording" : false,
+      "extractMethod" : false,
+      "traceSizeInMb" : 100,
+      "kiekerQueueSize" : 10000000,
+      "createDefaultConstructor" : true,
+      "kiekerWaitTime" : 5,
+      "writingType" : "BinaryAggregated",
+      "excludeForTracing" : [ "new org.eclipse.jetty.logging.JettyLevel.<init>(..)", "* org.eclipse.jetty.logging.JettyLevel.*(..)", "*[] org.eclipse.jetty.logging.JettyLevel.*(..)", "*.* org.eclipse.jetty.logging.JettyLevel.*(..)", "*.*.* org.eclipse.jetty.logging.JettyLevel.*(..)", "*.*.*.* org.eclipse.jetty.logging.JettyLevel.*(..)", "*.*.*.*.* org.eclipse.jetty.logging.JettyLevel.*(..)", "new org.eclipse.jetty.logging.JettyLoggerConfiguration.<init>(..)", "* org.eclipse.jetty.logging.JettyLoggerConfiguration.*(..)", "*[] org.eclipse.jetty.logging.JettyLoggerConfiguration.*(..)", "*.* org.eclipse.jetty.logging.JettyLoggerConfiguration.*(..)", "*.*.* org.eclipse.jetty.logging.JettyLoggerConfiguration.*(..)", "*.*.*.* org.eclipse.jetty.logging.JettyLoggerConfiguration.*(..)", "*.*.*.*.* org.eclipse.jetty.logging.JettyLoggerConfiguration.*(..)", "new org.eclipse.jetty.logging.JettyLoggingServiceProvider.<init>(..)", "* org.eclipse.jetty.logging.JettyLoggingServiceProvider.*(..)", "*[] org.eclipse.jetty.logging.JettyLoggingServiceProvider.*(..)", "*.* org.eclipse.jetty.logging.JettyLoggingServiceProvider.*(..)", "*.*.* org.eclipse.jetty.logging.JettyLoggingServiceProvider.*(..)", "*.*.*.* org.eclipse.jetty.logging.JettyLoggingServiceProvider.*(..)", "*.*.*.*.* org.eclipse.jetty.logging.JettyLoggingServiceProvider.*(..)", "new org.eclipse.jetty.logging.JettyLoggerFactory.<init>(..)", "* org.eclipse.jetty.logging.JettyLoggerFactory.*(..)", "*[] org.eclipse.jetty.logging.JettyLoggerFactory.*(..)", "*.* org.eclipse.jetty.logging.JettyLoggerFactory.*(..)", "*.*.* org.eclipse.jetty.logging.JettyLoggerFactory.*(..)", "*.*.*.* org.eclipse.jetty.logging.JettyLoggerFactory.*(..)", "*.*.*.*.* org.eclipse.jetty.logging.JettyLoggerFactory.*(..)", "new org.eclipse.jetty.logging.StdErrAppender.<init>(..)", "* org.eclipse.jetty.logging.StdErrAppender.*(..)", "*[] org.eclipse.jetty.logging.StdErrAppender.*(..)", "*.* org.eclipse.jetty.logging.StdErrAppender.*(..)", "*.*.* org.eclipse.jetty.logging.StdErrAppender.*(..)", "*.*.*.* org.eclipse.jetty.logging.StdErrAppender.*(..)", "*.*.*.*.* org.eclipse.jetty.logging.StdErrAppender.*(..)", "new org.eclipse.jetty.logging.Timestamp.<init>(..)", "* org.eclipse.jetty.logging.Timestamp.*(..)", "*[] org.eclipse.jetty.logging.Timestamp.*(..)", "*.* org.eclipse.jetty.logging.Timestamp.*(..)", "*.*.* org.eclipse.jetty.logging.Timestamp.*(..)", "*.*.*.* org.eclipse.jetty.logging.Timestamp.*(..)", "*.*.*.*.* org.eclipse.jetty.logging.Timestamp.*(..)", "new org.eclipse.jetty.logging.Timestamp$Tick.<init>(..)", "* org.eclipse.jetty.logging.Timestamp$Tick.*(..)", "*[] org.eclipse.jetty.logging.Timestamp$Tick.*(..)", "*.* org.eclipse.jetty.logging.Timestamp$Tick.*(..)", "*.*.* org.eclipse.jetty.logging.Timestamp$Tick.*(..)", "*.*.*.* org.eclipse.jetty.logging.Timestamp$Tick.*(..)", "*.*.*.*.* org.eclipse.jetty.logging.Timestamp$Tick.*(..)", "new org.eclipse.jetty.logging.JettyLogger.<init>(..)", "* org.eclipse.jetty.logging.JettyLogger.*(..)", "*[] org.eclipse.jetty.logging.JettyLogger.*(..)", "*.* org.eclipse.jetty.logging.JettyLogger.*(..)", "*.*.* org.eclipse.jetty.logging.JettyLogger.*(..)", "*.*.*.* org.eclipse.jetty.logging.JettyLogger.*(..)", "*.*.*.*.* org.eclipse.jetty.logging.JettyLogger.*(..)" ]
+    },
+    "saveAll" : true,
+    "javaVersion" : "1.8.0_362",
+    "measurementStrategy" : "PARALLEL",
+    "statisticsConfig" : {
+      "type1error" : 0.2,
+      "type2error" : 0.1,
+      "outlierFactor" : 3.29,
+      "statisticTest" : "MANN_WHITNEY_TEST"
+    },
+    "executionConfig" : {
+      "timeout" : 300000,
+      "linearizeHistory" : true,
+      "redirectSubprocessOutputToFile" : true,
+      "useTieredCompilation" : false,
+      "removeSnapshots" : false,
+      "useAlternativeBuildfile" : false,
+      "excludeLog4jSlf4jImpl" : false,
+      "excludeLog4jToSlf4j" : false,
+      "executeBeforeClassInMeasurement" : false,
+      "clearMockitoCaches" : false,
+      "onlyMeasureWorkload" : false,
+      "showStart" : false,
+      "redirectToNull" : true,
+      "createDetailDebugFiles" : true
+    },
+    "fixedCommitConfig" : {
+      "commit" : "1cf60754812f04833bb08a9da1ba84c8098d30af",
+      "commitOld" : "2a9b6520539bf600351ab66d01007c18615e082e"
+    }
+  },
+  "causeConfig" : {
+    "splitAggregated" : true,
+    "minTime" : 0.1,
+    "ignoreEOIs" : true,
+    "rcaStrategy" : "UNTIL_SOURCE_CHANGE",
+    "levels" : 1,
+    "testCase" : {
+      "clazz" : "org.gradoop.common.model.impl.properties.PropertyValueTest",
+      "method" : "testSetAndGetObject",
+      "module" : "gradoop-common",
+      "params" : null
+    },
+    "propertyFolder" : "/home/abrik/peass/results/properties_gradoop"
+  },
+  "nodes" : {
+    "call" : "org.gradoop.common.model.impl.properties.PropertyValueTest#testSetAndGetObject",
+    "kiekerPattern" : "public void org.gradoop.common.model.impl.properties.PropertyValueTest.testSetAndGetObject()",
+    "otherKiekerPattern" : "public void org.gradoop.common.model.impl.properties.PropertyValueTest.testSetAndGetObject()",
+    "module" : "gradoop-common",
+    "statistic" : {
+      "meanOld" : 1.6388946803000006E8,
+      "meanCurrent" : 1.6588296909666663E8,
+      "deviationOld" : 4298909.8030613465,
+      "deviationCurrent" : 5667019.0365975415,
+      "vms" : 30,
+      "callsOld" : 150,
+      "calls" : 150,
+      "tvalue" : -1.5350416566014604
+    },
+    "childs" : [ {
+      "call" : "org.gradoop.common.model.impl.properties.PropertyValue#create",
+      "kiekerPattern" : "public static org.gradoop.common.model.impl.properties.PropertyValue org.gradoop.common.model.impl.properties.PropertyValue.create(java.lang.Object)",
+      "otherKiekerPattern" : "public static org.gradoop.common.model.impl.properties.PropertyValue org.gradoop.common.model.impl.properties.PropertyValue.create(java.lang.Object)",
+      "module" : "gradoop-common",
+      "statistic" : {
+        "meanOld" : "NaN",
+        "meanCurrent" : "NaN",
+        "deviationOld" : "NaN",
+        "deviationCurrent" : "NaN",
+        "vms" : 0,
+        "callsOld" : 0,
+        "calls" : 0,
+        "tvalue" : -1.0
+      },
+      "childs" : [ {
+        "call" : "org.gradoop.common.model.impl.properties.PropertyValue#<init>",
+        "kiekerPattern" : "private new org.gradoop.common.model.impl.properties.PropertyValue.<init>(java.lang.Object)",
+        "otherKiekerPattern" : "private new org.gradoop.common.model.impl.properties.PropertyValue.<init>(java.lang.Object)",
+        "module" : "gradoop-common",
+        "statistic" : {
+          "meanOld" : "NaN",
+          "meanCurrent" : "NaN",
+          "deviationOld" : "NaN",
+          "deviationCurrent" : "NaN",
+          "vms" : 0,
+          "callsOld" : 0,
+          "calls" : 0,
+          "tvalue" : -1.0
+        },
+        "childs" : [ {
+          "call" : "org.gradoop.common.model.impl.properties.PropertyValue#setObject",
+          "kiekerPattern" : "public void org.gradoop.common.model.impl.properties.PropertyValue.setObject(java.lang.Object)",
+          "otherKiekerPattern" : "public void org.gradoop.common.model.impl.properties.PropertyValue.setObject(java.lang.Object)",
+          "module" : "gradoop-common",
+          "statistic" : {
+            "meanOld" : 5340358.25673759,
+            "meanCurrent" : 5096331.408388522,
+            "deviationOld" : 140894.78572438328,
+            "deviationCurrent" : 189595.22262946377,
+            "vms" : 30,
+            "callsOld" : 4080,
+            "calls" : 4380,
+            "tvalue" : 5.6583542287513
+          },
+          "childs" : [ {
+            "call" : "org.gradoop.common.model.impl.properties.PropertyValue#validateBytesLength",
+            "kiekerPattern" : "private void org.gradoop.common.model.impl.properties.PropertyValue.validateBytesLength()",
+            "otherKiekerPattern" : "public void org.gradoop.common.model.impl.properties.PropertyValue.setShort(short)",
+            "module" : "gradoop-common",
+            "statistic" : {
+              "meanOld" : 175717.1803921569,
+              "meanCurrent" : 359927.2666666668,
+              "deviationOld" : 7757.934263332505,
+              "deviationCurrent" : 35115.97096907802,
+              "vms" : 30,
+              "callsOld" : 1380,
+              "calls" : 180,
+              "tvalue" : -28.055728279779167
+            },
+            "childs" : [ ]
+          }, {
+            "call" : "org.gradoop.common.model.impl.properties.PropertyValue#setString",
+            "kiekerPattern" : "public void org.gradoop.common.model.impl.properties.PropertyValue.setString(java.lang.String)",
+            "otherKiekerPattern" : "public void org.gradoop.common.model.impl.properties.PropertyValue.setString(java.lang.String)",
+            "module" : "gradoop-common",
+            "statistic" : {
+              "meanOld" : 1746313.5579937303,
+              "meanCurrent" : 1254655.8212121215,
+              "deviationOld" : 86238.63572002447,
+              "deviationCurrent" : 145237.36246148436,
+              "vms" : 29,
+              "callsOld" : 180,
+              "calls" : 180,
+              "tvalue" : 15.871644970065981
+            },
+            "childs" : [ {
+              "call" : "org.gradoop.common.model.impl.properties.PropertyValue#validateBytesLength",
+              "kiekerPattern" : "private void org.gradoop.common.model.impl.properties.PropertyValue.validateBytesLength()",
+              "otherKiekerPattern" : "ADDED",
+              "module" : "gradoop-common",
+              "statistic" : {
+                "meanOld" : "NaN",
+                "meanCurrent" : "NaN",
+                "deviationOld" : "NaN",
+                "deviationCurrent" : "NaN",
+                "vms" : 0,
+                "callsOld" : 0,
+                "calls" : 0,
+                "tvalue" : -1.0,
+                "change" : true
+              },
+              "childs" : [ ]
+            } ]
+          }, {
+            "call" : "org.gradoop.common.model.impl.properties.PropertyValue#setBigDecimal",
+            "kiekerPattern" : "public void org.gradoop.common.model.impl.properties.PropertyValue.setBigDecimal(java.math.BigDecimal)",
+            "otherKiekerPattern" : "public void org.gradoop.common.model.impl.properties.PropertyValue.setBigDecimal(java.math.BigDecimal)",
+            "module" : "gradoop-common",
+            "statistic" : {
+              "meanOld" : 1400628.6394984326,
+              "meanCurrent" : 1022218.2606060604,
+              "deviationOld" : 67066.36740021051,
+              "deviationCurrent" : 99043.71525839598,
+              "vms" : 29,
+              "callsOld" : 180,
+              "calls" : 180,
+              "tvalue" : 17.23453825661697
+            },
+            "childs" : [ {
+              "call" : "org.gradoop.common.model.impl.properties.PropertyValue#validateBytesLength",
+              "kiekerPattern" : "private void org.gradoop.common.model.impl.properties.PropertyValue.validateBytesLength()",
+              "otherKiekerPattern" : "ADDED",
+              "module" : "gradoop-common",
+              "statistic" : {
+                "meanOld" : "NaN",
+                "meanCurrent" : "NaN",
+                "deviationOld" : "NaN",
+                "deviationCurrent" : "NaN",
+                "vms" : 0,
+                "callsOld" : 0,
+                "calls" : 0,
+                "tvalue" : -1.0,
+                "change" : true
+              },
+              "childs" : [ ]
+            } ]
+          } ]
+        } ]
+      } ]
+    }, {
+      "call" : "org.gradoop.common.model.impl.properties.PropertyValue#setObject",
+      "kiekerPattern" : "public void org.gradoop.common.model.impl.properties.PropertyValue.setObject(java.lang.Object)",
+      "otherKiekerPattern" : "public void org.gradoop.common.model.impl.properties.PropertyValue.setObject(java.lang.Object)",
+      "module" : "gradoop-common",
+      "statistic" : {
+        "meanOld" : 5340358.25673759,
+        "meanCurrent" : 5096331.408388522,
+        "deviationOld" : 140894.78572438328,
+        "deviationCurrent" : 189595.22262946377,
+        "vms" : 30,
+        "callsOld" : 4080,
+        "calls" : 4380,
+        "tvalue" : 5.6583542287513
+      },
+      "childs" : [ {
+        "call" : "org.gradoop.common.model.impl.properties.PropertyValue#validateBytesLength",
+        "kiekerPattern" : "private void org.gradoop.common.model.impl.properties.PropertyValue.validateBytesLength()",
+        "otherKiekerPattern" : "public void org.gradoop.common.model.impl.properties.PropertyValue.setShort(short)",
+        "module" : "gradoop-common",
+        "statistic" : {
+          "meanOld" : 175717.1803921569,
+          "meanCurrent" : 359927.2666666668,
+          "deviationOld" : 7757.934263332505,
+          "deviationCurrent" : 35115.97096907802,
+          "vms" : 30,
+          "callsOld" : 1380,
+          "calls" : 180,
+          "tvalue" : -28.055728279779167
+        },
+        "childs" : [ ]
+      }, {
+        "call" : "org.gradoop.common.model.impl.properties.PropertyValue#setString",
+        "kiekerPattern" : "public void org.gradoop.common.model.impl.properties.PropertyValue.setString(java.lang.String)",
+        "otherKiekerPattern" : "public void org.gradoop.common.model.impl.properties.PropertyValue.setString(java.lang.String)",
+        "module" : "gradoop-common",
+        "statistic" : {
+          "meanOld" : 1746313.5579937303,
+          "meanCurrent" : 1254655.8212121215,
+          "deviationOld" : 86238.63572002447,
+          "deviationCurrent" : 145237.36246148436,
+          "vms" : 29,
+          "callsOld" : 180,
+          "calls" : 180,
+          "tvalue" : 15.871644970065981
+        },
+        "childs" : [ {
+          "call" : "org.gradoop.common.model.impl.properties.PropertyValue#validateBytesLength",
+          "kiekerPattern" : "private void org.gradoop.common.model.impl.properties.PropertyValue.validateBytesLength()",
+          "otherKiekerPattern" : "ADDED",
+          "module" : "gradoop-common",
+          "statistic" : {
+            "meanOld" : "NaN",
+            "meanCurrent" : "NaN",
+            "deviationOld" : "NaN",
+            "deviationCurrent" : "NaN",
+            "vms" : 0,
+            "callsOld" : 0,
+            "calls" : 0,
+            "tvalue" : -1.0,
+            "change" : true
+          },
+          "childs" : [ ]
+        } ]
+      }, {
+        "call" : "org.gradoop.common.model.impl.properties.PropertyValue#setBigDecimal",
+        "kiekerPattern" : "public void org.gradoop.common.model.impl.properties.PropertyValue.setBigDecimal(java.math.BigDecimal)",
+        "otherKiekerPattern" : "public void org.gradoop.common.model.impl.properties.PropertyValue.setBigDecimal(java.math.BigDecimal)",
+        "module" : "gradoop-common",
+        "statistic" : {
+          "meanOld" : 1400628.6394984326,
+          "meanCurrent" : 1022218.2606060604,
+          "deviationOld" : 67066.36740021051,
+          "deviationCurrent" : 99043.71525839598,
+          "vms" : 29,
+          "callsOld" : 180,
+          "calls" : 180,
+          "tvalue" : 17.23453825661697
+        },
+        "childs" : [ {
+          "call" : "org.gradoop.common.model.impl.properties.PropertyValue#validateBytesLength",
+          "kiekerPattern" : "private void org.gradoop.common.model.impl.properties.PropertyValue.validateBytesLength()",
+          "otherKiekerPattern" : "ADDED",
+          "module" : "gradoop-common",
+          "statistic" : {
+            "meanOld" : "NaN",
+            "meanCurrent" : "NaN",
+            "deviationOld" : "NaN",
+            "deviationCurrent" : "NaN",
+            "vms" : 0,
+            "callsOld" : 0,
+            "calls" : 0,
+            "tvalue" : -1.0,
+            "change" : true
+          },
+          "childs" : [ ]
+        } ]
+      }, {
+        "call" : "org.gradoop.common.model.impl.properties.PropertyValue#setMap",
+        "kiekerPattern" : "public void org.gradoop.common.model.impl.properties.PropertyValue.setMap(java.util.Map)",
+        "otherKiekerPattern" : "public void org.gradoop.common.model.impl.properties.PropertyValue.setMap(java.util.Map)",
+        "module" : "gradoop-common",
+        "statistic" : {
+          "meanOld" : 3.828181636666667E7,
+          "meanCurrent" : 3.9455401026666656E7,
+          "deviationOld" : 1066487.8524908675,
+          "deviationCurrent" : 1240869.340971454,
+          "vms" : 30,
+          "callsOld" : 150,
+          "calls" : 150,
+          "tvalue" : -3.9286057742394727
+        },
+        "childs" : [ {
+          "call" : "org.gradoop.common.model.impl.properties.PropertyValue#write",
+          "kiekerPattern" : "public void org.gradoop.common.model.impl.properties.PropertyValue.write(org.apache.flink.core.memory.DataOutputView)",
+          "otherKiekerPattern" : "public void org.gradoop.common.model.impl.properties.PropertyValue.write(org.apache.flink.core.memory.DataOutputView)",
+          "module" : "gradoop-common",
+          "statistic" : {
+            "meanOld" : 1071982.679814815,
+            "meanCurrent" : 1062091.1676068373,
+            "deviationOld" : 22452.017164866393,
+            "deviationCurrent" : 23652.75015694688,
+            "vms" : 30,
+            "callsOld" : 10650,
+            "calls" : 11550,
+            "tvalue" : 1.661289223420485
+          },
+          "childs" : [ {
+            "call" : "ADDED",
+            "kiekerPattern" : "ADDED",
+            "otherKiekerPattern" : "public boolean org.gradoop.common.model.impl.properties.PropertyValue.isString()",
+            "statistic" : {
+              "meanOld" : "NaN",
+              "meanCurrent" : "NaN",
+              "deviationOld" : "NaN",
+              "deviationCurrent" : "NaN",
+              "vms" : 0,
+              "callsOld" : 0,
+              "calls" : 0,
+              "tvalue" : -1.0,
+              "change" : true
+            },
+            "childs" : [ ]
+          }, {
+            "call" : "ADDED",
+            "kiekerPattern" : "ADDED",
+            "otherKiekerPattern" : "public boolean org.gradoop.common.model.impl.properties.PropertyValue.isBigDecimal()",
+            "statistic" : {
+              "meanOld" : "NaN",
+              "meanCurrent" : "NaN",
+              "deviationOld" : "NaN",
+              "deviationCurrent" : "NaN",
+              "vms" : 0,
+              "callsOld" : 0,
+              "calls" : 0,
+              "tvalue" : -1.0,
+              "change" : true
+            },
+            "childs" : [ ]
+          }, {
+            "call" : "ADDED",
+            "kiekerPattern" : "ADDED",
+            "otherKiekerPattern" : "public boolean org.gradoop.common.model.impl.properties.PropertyValue.isMap()",
+            "statistic" : {
+              "meanOld" : "NaN",
+              "meanCurrent" : "NaN",
+              "deviationOld" : "NaN",
+              "deviationCurrent" : "NaN",
+              "vms" : 0,
+              "callsOld" : 0,
+              "calls" : 0,
+              "tvalue" : -1.0,
+              "change" : true
+            },
+            "childs" : [ ]
+          }, {
+            "call" : "ADDED",
+            "kiekerPattern" : "ADDED",
+            "otherKiekerPattern" : "public boolean org.gradoop.common.model.impl.properties.PropertyValue.isList()",
+            "statistic" : {
+              "meanOld" : "NaN",
+              "meanCurrent" : "NaN",
+              "deviationOld" : "NaN",
+              "deviationCurrent" : "NaN",
+              "vms" : 0,
+              "callsOld" : 0,
+              "calls" : 0,
+              "tvalue" : -1.0,
+              "change" : true
+            },
+            "childs" : [ ]
+          } ]
+        }, {
+          "call" : "org.gradoop.common.model.impl.properties.PropertyValue#validateBytesLength",
+          "kiekerPattern" : "private void org.gradoop.common.model.impl.properties.PropertyValue.validateBytesLength()",
+          "otherKiekerPattern" : "ADDED",
+          "module" : "gradoop-common",
+          "statistic" : {
+            "meanOld" : "NaN",
+            "meanCurrent" : "NaN",
+            "deviationOld" : "NaN",
+            "deviationCurrent" : "NaN",
+            "vms" : 0,
+            "callsOld" : 0,
+            "calls" : 0,
+            "tvalue" : -1.0,
+            "change" : true
+          },
+          "childs" : [ ]
+        } ]
+      }, {
+        "call" : "org.gradoop.common.model.impl.properties.PropertyValue#setList",
+        "kiekerPattern" : "public void org.gradoop.common.model.impl.properties.PropertyValue.setList(java.util.List)",
+        "otherKiekerPattern" : "public void org.gradoop.common.model.impl.properties.PropertyValue.setList(java.util.List)",
+        "module" : "gradoop-common",
+        "statistic" : {
+          "meanOld" : 1.6356199596666666E7,
+          "meanCurrent" : 1.6242493000000004E7,
+          "deviationOld" : 502556.73450885434,
+          "deviationCurrent" : 566283.7834047099,
+          "vms" : 30,
+          "callsOld" : 150,
+          "calls" : 150,
+          "tvalue" : 0.8225793813136483
+        },
+        "childs" : [ {
+          "call" : "org.gradoop.common.model.impl.properties.PropertyValue#write",
+          "kiekerPattern" : "public void org.gradoop.common.model.impl.properties.PropertyValue.write(org.apache.flink.core.memory.DataOutputView)",
+          "otherKiekerPattern" : "public void org.gradoop.common.model.impl.properties.PropertyValue.write(org.apache.flink.core.memory.DataOutputView)",
+          "module" : "gradoop-common",
+          "statistic" : {
+            "meanOld" : 1071982.679814815,
+            "meanCurrent" : 1062091.1676068373,
+            "deviationOld" : 22452.017164866393,
+            "deviationCurrent" : 23652.75015694688,
+            "vms" : 30,
+            "callsOld" : 10650,
+            "calls" : 11550,
+            "tvalue" : 1.661289223420485
+          },
+          "childs" : [ {
+            "call" : "ADDED",
+            "kiekerPattern" : "ADDED",
+            "otherKiekerPattern" : "public boolean org.gradoop.common.model.impl.properties.PropertyValue.isString()",
+            "statistic" : {
+              "meanOld" : "NaN",
+              "meanCurrent" : "NaN",
+              "deviationOld" : "NaN",
+              "deviationCurrent" : "NaN",
+              "vms" : 0,
+              "callsOld" : 0,
+              "calls" : 0,
+              "tvalue" : -1.0,
+              "change" : true
+            },
+            "childs" : [ ]
+          }, {
+            "call" : "ADDED",
+            "kiekerPattern" : "ADDED",
+            "otherKiekerPattern" : "public boolean org.gradoop.common.model.impl.properties.PropertyValue.isBigDecimal()",
+            "statistic" : {
+              "meanOld" : "NaN",
+              "meanCurrent" : "NaN",
+              "deviationOld" : "NaN",
+              "deviationCurrent" : "NaN",
+              "vms" : 0,
+              "callsOld" : 0,
+              "calls" : 0,
+              "tvalue" : -1.0,
+              "change" : true
+            },
+            "childs" : [ ]
+          }, {
+            "call" : "ADDED",
+            "kiekerPattern" : "ADDED",
+            "otherKiekerPattern" : "public boolean org.gradoop.common.model.impl.properties.PropertyValue.isMap()",
+            "statistic" : {
+              "meanOld" : "NaN",
+              "meanCurrent" : "NaN",
+              "deviationOld" : "NaN",
+              "deviationCurrent" : "NaN",
+              "vms" : 0,
+              "callsOld" : 0,
+              "calls" : 0,
+              "tvalue" : -1.0,
+              "change" : true
+            },
+            "childs" : [ ]
+          }, {
+            "call" : "ADDED",
+            "kiekerPattern" : "ADDED",
+            "otherKiekerPattern" : "public boolean org.gradoop.common.model.impl.properties.PropertyValue.isList()",
+            "statistic" : {
+              "meanOld" : "NaN",
+              "meanCurrent" : "NaN",
+              "deviationOld" : "NaN",
+              "deviationCurrent" : "NaN",
+              "vms" : 0,
+              "callsOld" : 0,
+              "calls" : 0,
+              "tvalue" : -1.0,
+              "change" : true
+            },
+            "childs" : [ ]
+          } ]
+        }, {
+          "call" : "org.gradoop.common.model.impl.properties.PropertyValue#validateBytesLength",
+          "kiekerPattern" : "private void org.gradoop.common.model.impl.properties.PropertyValue.validateBytesLength()",
+          "otherKiekerPattern" : "ADDED",
+          "module" : "gradoop-common",
+          "statistic" : {
+            "meanOld" : "NaN",
+            "meanCurrent" : "NaN",
+            "deviationOld" : "NaN",
+            "deviationCurrent" : "NaN",
+            "vms" : 0,
+            "callsOld" : 0,
+            "calls" : 0,
+            "tvalue" : -1.0,
+            "change" : true
+          },
+          "childs" : [ ]
+        } ]
+      } ]
+    }, {
+      "call" : "org.gradoop.common.model.impl.properties.PropertyValue#getObject",
+      "kiekerPattern" : "public java.lang.Object org.gradoop.common.model.impl.properties.PropertyValue.getObject()",
+      "otherKiekerPattern" : "public java.lang.Object org.gradoop.common.model.impl.properties.PropertyValue.getObject()",
+      "module" : "gradoop-common",
+      "statistic" : {
+        "meanOld" : 7614715.573939394,
+        "meanCurrent" : 7277345.673888889,
+        "deviationOld" : 165801.20352311016,
+        "deviationCurrent" : 219080.6678007942,
+        "vms" : 30,
+        "callsOld" : 3150,
+        "calls" : 3450,
+        "tvalue" : 6.725625264602378
+      },
+      "childs" : [ {
+        "call" : "org.gradoop.common.model.impl.properties.PropertyValue#getBigDecimal",
+        "kiekerPattern" : "public java.math.BigDecimal org.gradoop.common.model.impl.properties.PropertyValue.getBigDecimal()",
+        "otherKiekerPattern" : "public java.math.BigDecimal org.gradoop.common.model.impl.properties.PropertyValue.getBigDecimal()",
+        "module" : "gradoop-common",
+        "statistic" : {
+          "meanOld" : 970866.4033333333,
+          "meanCurrent" : 919404.9933333333,
+          "deviationOld" : 89987.97483266189,
+          "deviationCurrent" : 105148.7132963953,
+          "vms" : 30,
+          "callsOld" : 150,
+          "calls" : 150,
+          "tvalue" : 2.0366273654452742
+        },
+        "childs" : [ ]
+      }, {
+        "call" : "org.gradoop.common.model.impl.properties.PropertyValue#getMap",
+        "kiekerPattern" : "public java.util.Map org.gradoop.common.model.impl.properties.PropertyValue.getMap()",
+        "otherKiekerPattern" : "public java.util.Map org.gradoop.common.model.impl.properties.PropertyValue.getMap()",
+        "module" : "gradoop-common",
+        "statistic" : {
+          "meanOld" : 4.5052442050000004E7,
+          "meanCurrent" : 4.694610337666665E7,
+          "deviationOld" : 1079595.8354806006,
+          "deviationCurrent" : 1067715.1286657855,
+          "vms" : 30,
+          "callsOld" : 150,
+          "calls" : 150,
+          "tvalue" : -6.830875126872951
+        },
+        "childs" : [ {
+          "call" : "org.gradoop.common.model.impl.properties.PropertyValue#read",
+          "kiekerPattern" : "public void org.gradoop.common.model.impl.properties.PropertyValue.read(org.apache.flink.core.memory.DataInputView)",
+          "otherKiekerPattern" : "public void org.gradoop.common.model.impl.properties.PropertyValue.read(org.apache.flink.core.memory.DataInputView)",
+          "module" : "gradoop-common",
+          "statistic" : {
+            "meanOld" : 1658940.843425926,
+            "meanCurrent" : 1592753.717863248,
+            "deviationOld" : 27420.94521548559,
+            "deviationCurrent" : 30035.632602901813,
+            "vms" : 30,
+            "callsOld" : 10650,
+            "calls" : 11550,
+            "tvalue" : 8.913744145951727
+          },
+          "childs" : [ ]
+        } ]
+      }, {
+        "call" : "org.gradoop.common.model.impl.properties.PropertyValue#getList",
+        "kiekerPattern" : "public java.util.List org.gradoop.common.model.impl.properties.PropertyValue.getList()",
+        "otherKiekerPattern" : "public java.util.List org.gradoop.common.model.impl.properties.PropertyValue.getList()",
+        "module" : "gradoop-common",
+        "statistic" : {
+          "meanOld" : 2.5978790563333336E7,
+          "meanCurrent" : 2.6332502813333336E7,
+          "deviationOld" : 630306.9074801174,
+          "deviationCurrent" : 613506.2401882819,
+          "vms" : 30,
+          "callsOld" : 150,
+          "calls" : 150,
+          "tvalue" : -2.202576331463468
+        },
+        "childs" : [ {
+          "call" : "org.gradoop.common.model.impl.properties.PropertyValue#read",
+          "kiekerPattern" : "public void org.gradoop.common.model.impl.properties.PropertyValue.read(org.apache.flink.core.memory.DataInputView)",
+          "otherKiekerPattern" : "public void org.gradoop.common.model.impl.properties.PropertyValue.read(org.apache.flink.core.memory.DataInputView)",
+          "module" : "gradoop-common",
+          "statistic" : {
+            "meanOld" : 1658940.843425926,
+            "meanCurrent" : 1592753.717863248,
+            "deviationOld" : 27420.94521548559,
+            "deviationCurrent" : 30035.632602901813,
+            "vms" : 30,
+            "callsOld" : 10650,
+            "calls" : 11550,
+            "tvalue" : 8.913744145951727
+          },
+          "childs" : [ ]
+        } ]
+      }, {
+        "call" : "ADDED",
+        "kiekerPattern" : "ADDED",
+        "otherKiekerPattern" : "public boolean org.gradoop.common.model.impl.properties.PropertyValue.isShort()",
+        "statistic" : {
+          "meanOld" : "NaN",
+          "meanCurrent" : "NaN",
+          "deviationOld" : "NaN",
+          "deviationCurrent" : "NaN",
+          "vms" : 0,
+          "callsOld" : 0,
+          "calls" : 0,
+          "tvalue" : -1.0,
+          "change" : true
+        },
+        "childs" : [ ]
+      }, {
+        "call" : "ADDED",
+        "kiekerPattern" : "ADDED",
+        "otherKiekerPattern" : "public short org.gradoop.common.model.impl.properties.PropertyValue.getShort()",
+        "statistic" : {
+          "meanOld" : "NaN",
+          "meanCurrent" : "NaN",
+          "deviationOld" : "NaN",
+          "deviationCurrent" : "NaN",
+          "vms" : 0,
+          "callsOld" : 0,
+          "calls" : 0,
+          "tvalue" : -1.0,
+          "change" : true
+        },
+        "childs" : [ ]
+      } ]
+    }, {
+      "call" : "ADDED",
+      "kiekerPattern" : "ADDED",
+      "otherKiekerPattern" : "private static java.util.Map org.gradoop.common.model.impl.properties.PropertyValue.getTypeMap()",
+      "statistic" : {
+        "meanOld" : "NaN",
+        "meanCurrent" : "NaN",
+        "deviationOld" : "NaN",
+        "deviationCurrent" : "NaN",
+        "vms" : 0,
+        "callsOld" : 0,
+        "calls" : 0,
+        "tvalue" : -1.0,
+        "change" : true
+      },
+      "childs" : [ ]
+    }, {
+      "call" : "ADDED",
+      "kiekerPattern" : "ADDED",
+      "otherKiekerPattern" : "public boolean org.gradoop.common.model.impl.properties.PropertyValue.isShort()",
+      "statistic" : {
+        "meanOld" : "NaN",
+        "meanCurrent" : "NaN",
+        "deviationOld" : "NaN",
+        "deviationCurrent" : "NaN",
+        "vms" : 0,
+        "callsOld" : 0,
+        "calls" : 0,
+        "tvalue" : -1.0,
+        "change" : true
+      },
+      "childs" : [ ]
+    } ]
+  }
+}

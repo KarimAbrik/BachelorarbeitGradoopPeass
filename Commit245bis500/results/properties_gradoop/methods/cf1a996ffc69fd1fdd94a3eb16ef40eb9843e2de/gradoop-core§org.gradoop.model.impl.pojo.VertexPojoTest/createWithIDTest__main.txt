@@ -1,0 +1,9 @@
+@Test
+public void createWithIDTest() {
+    GradoopIdGenerator idGen = new SequenceIdGenerator();
+    GradoopId vertexID = idGen.createId();
+    EPGMVertex v = new VertexPojoFactory().createVertex(vertexID);
+    assertThat(v.getId(), is(vertexID));
+    assertThat(v.getPropertyCount(), is(0));
+    assertThat(v.getGraphCount(), is(0));
+}

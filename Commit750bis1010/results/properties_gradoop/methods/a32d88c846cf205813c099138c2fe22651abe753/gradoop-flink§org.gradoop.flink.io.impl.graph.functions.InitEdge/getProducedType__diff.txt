@@ -1,0 +1,4 @@
+@Override
+public TypeInformation<Tuple2<K, EPGMEdge>> getProducedType() {
+    return new TupleTypeInfo<>(getKeyTypeInfo(), TypeExtractor.createTypeInfo(edgeFactory.getType()));
+}

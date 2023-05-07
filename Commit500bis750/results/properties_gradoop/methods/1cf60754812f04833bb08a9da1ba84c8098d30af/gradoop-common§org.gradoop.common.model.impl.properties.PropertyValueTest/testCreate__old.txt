@@ -1,0 +1,59 @@
+@Test
+public void testCreate() throws Exception {
+    // null
+    PropertyValue p = create(null);
+    assertTrue(p.isNull());
+    assertNull(p.getObject());
+    // boolean
+    p = create(BOOL_VAL_1);
+    assertTrue(p.isBoolean());
+    assertEquals(BOOL_VAL_1, p.getBoolean());
+    // int
+    p = create(INT_VAL_2);
+    assertTrue(p.isInt());
+    assertEquals(INT_VAL_2, p.getInt());
+    // long
+    p = create(LONG_VAL_3);
+    assertTrue(p.isLong());
+    assertEquals(LONG_VAL_3, p.getLong());
+    // float
+    p = create(FLOAT_VAL_4);
+    assertTrue(p.isFloat());
+    assertEquals(FLOAT_VAL_4, p.getFloat(), 0);
+    // double
+    p = create(DOUBLE_VAL_5);
+    assertTrue(p.isDouble());
+    assertEquals(DOUBLE_VAL_5, p.getDouble(), 0);
+    // String
+    p = create(STRING_VAL_6);
+    assertTrue(p.isString());
+    assertEquals(STRING_VAL_6, p.getString());
+    // BigDecimal
+    p = create(BIG_DECIMAL_VAL_7);
+    assertTrue(p.isBigDecimal());
+    assertEquals(BIG_DECIMAL_VAL_7, p.getBigDecimal());
+    //GradoopId
+    p = create(GRADOOP_ID_VAL_8);
+    assertTrue(p.isGradoopId());
+    assertEquals(GRADOOP_ID_VAL_8, p.getGradoopId());
+    //Map
+    p = create(MAP_VAL_9);
+    assertTrue(p.isMap());
+    assertEquals(MAP_VAL_9, p.getMap());
+    //List
+    p = create(LIST_VAL_a);
+    assertTrue(p.isList());
+    assertEquals(LIST_VAL_a, p.getList());
+    //Date
+    p = create(DATE_VAL_b);
+    assertTrue(p.isDate());
+    assertEquals(DATE_VAL_b, p.getDate());
+    //Time
+    p = create(TIME_VAL_c);
+    assertTrue(p.isTime());
+    assertEquals(TIME_VAL_c, p.getTime());
+    //DateTime
+    p = create(DATETIME_VAL_d);
+    assertTrue(p.isDateTime());
+    assertEquals(DATETIME_VAL_d, p.getDateTime());
+}

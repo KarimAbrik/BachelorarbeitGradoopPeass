@@ -1,0 +1,10 @@
+/**
+ * Constructor
+ *
+ * @param oldLabel the label to be renamed
+ * @param newLabel the new label replacing the old one
+ */
+public RenameLabel(String oldLabel, String newLabel) {
+    this.oldLabel = checkNotNull(oldLabel);
+    this.newLabel = checkNotNull(newLabel);
+}

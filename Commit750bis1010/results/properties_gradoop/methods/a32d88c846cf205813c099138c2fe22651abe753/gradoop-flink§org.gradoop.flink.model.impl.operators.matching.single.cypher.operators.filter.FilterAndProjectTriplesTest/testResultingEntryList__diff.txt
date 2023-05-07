@@ -1,0 +1,14 @@
+@Test
+public void testResultingEntryList() throws Exception {
+    CNF predicates = predicateFromQuery("MATCH (a)-[e]->(b)");
+    EPGMVertex a = vertexFactory.createVertex("Person");
+    EPGMVertex b = vertexFactory.createVertex("Person");
+    EPGMEdge e = edgeFactory.createEdge("loves", a.getId(), b.getId());
+    DataSet<Triple> triples = getExecutionEnvironment().fromElements(new Triple(a, e, b));
+    List<Embedding> result = new FilterAndProjectTriples(triples, "a", "e", "b", predicates, new HashMap<>(), MatchStrategy.ISOMORPHISM).evaluate().collect();
+    assertEquals(1, result.size());
+    assertEquals(3, result.get(0).size());
+    assertEquals(a.getId(), result.get(0).getId(0));
+    assertEquals(e.getId(), result.get(0).getId(1));
+    assertEquals(b.getId(), result.get(0).getId(2));
+}

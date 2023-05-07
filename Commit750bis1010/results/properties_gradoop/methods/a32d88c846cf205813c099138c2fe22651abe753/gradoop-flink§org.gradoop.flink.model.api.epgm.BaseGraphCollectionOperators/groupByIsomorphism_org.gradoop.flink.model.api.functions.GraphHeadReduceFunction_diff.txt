@@ -1,0 +1,11 @@
+/**
+ * Groups a graph collection by isomorphism including labels and values.
+ *
+ * @param reduceFunction function to reduce all graph heads of a group into a single representative one,
+ *                       e.g., to count the number of group members
+ *
+ * @return grouped graph collection
+ */
+default GC groupByIsomorphism(GraphHeadReduceFunction<G> reduceFunction) {
+    return callForCollection(new GroupByIsomorphism<>(reduceFunction));
+}

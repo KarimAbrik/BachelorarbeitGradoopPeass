@@ -1,0 +1,12 @@
+/**
+ * Constructor to set string representations.
+ *
+ * @param graphHeadToString string representation of graph heads
+ * @param vertexToString string representation of vertices
+ * @param edgeToString string representation of edges
+ * @param directed sets mode for directed or undirected graphs
+ */
+public CollectionEquality(GraphHeadToString<G> graphHeadToString, VertexToString<V> vertexToString, EdgeToString<E> edgeToString, boolean directed) {
+    // sets mode for directed or undirected graphs
+    this.canonicalAdjacencyMatrixBuilder = new CanonicalAdjacencyMatrixBuilder<>(graphHeadToString, vertexToString, edgeToString, directed);
+}

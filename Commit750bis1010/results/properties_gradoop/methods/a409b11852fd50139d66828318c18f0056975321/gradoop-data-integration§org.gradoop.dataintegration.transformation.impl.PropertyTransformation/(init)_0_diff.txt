@@ -1,0 +1,27 @@
+/**
+ * Valued constructor.
+ *
+ * @param propertyKey                      property key
+ * @param graphHeadTransformationFunction  transformation function which shall be applied to a
+ *                                         property of a graph head
+ * @param vertexTransformationFunction     transformation function which shall be applied to a
+ *                                         property of a vertex
+ * @param edgeTransformationFunction       transformation function which shall be applied to a
+ *                                         property of an edge
+ * @param label                            label of the element whose property shall be
+ *                                         transformed (optional)
+ * @param newPropertyKey                   new property key (optional)
+ * @param keepHistory                      flag to enable versioning (false by default)
+ */
+public PropertyTransformation(String propertyKey, PropertyTransformationFunction graphHeadTransformationFunction, PropertyTransformationFunction vertexTransformationFunction, PropertyTransformationFunction edgeTransformationFunction, String label, String newPropertyKey, boolean keepHistory) {
+    if (graphHeadTransformationFunction == null && vertexTransformationFunction == null && edgeTransformationFunction == null) {
+        throw new IllegalArgumentException("Provide at least one transformation function.");
+    }
+    this.label = label;
+    this.propertyKey = propertyKey;
+    this.graphHeadTransformationFunction = graphHeadTransformationFunction;
+    this.vertexTransformationFunction = vertexTransformationFunction;
+    this.edgeTransformationFunction = edgeTransformationFunction;
+    this.newPropertyKey = newPropertyKey;
+    this.keepHistory = keepHistory;
+}

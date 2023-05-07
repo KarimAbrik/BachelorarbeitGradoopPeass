@@ -1,0 +1,9 @@
+/**
+ * Creates a base graph using the given unary graph operator.
+ *
+ * @param operator unary graph to graph operator
+ * @return result of given operator
+ */
+default LG callForGraph(UnaryBaseGraphToBaseGraphOperator<LG> operator) {
+    return callForValue(operator);
+}

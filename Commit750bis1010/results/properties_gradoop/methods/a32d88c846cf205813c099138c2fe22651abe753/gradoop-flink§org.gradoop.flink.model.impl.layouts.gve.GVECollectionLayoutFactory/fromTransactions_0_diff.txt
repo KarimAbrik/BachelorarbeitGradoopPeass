@@ -1,0 +1,7 @@
+@Override
+public GraphCollectionLayout<EPGMGraphHead, EPGMVertex, EPGMEdge> fromTransactions(DataSet<GraphTransaction> transactions, GroupReduceFunction<EPGMVertex, EPGMVertex> vertexMergeReducer, GroupReduceFunction<EPGMEdge, EPGMEdge> edgeMergeReducer) {
+    DataSet<EPGMGraphHead> graphHeads = transactions.map(new TransactionGraphHead<>());
+    DataSet<EPGMVertex> vertices = transactions.flatMap(new TransactionVertices<>()).groupBy(new Id<>()).reduceGroup(vertexMergeReducer);
+    DataSet<EPGMEdge> edges = transactions.flatMap(new TransactionEdges<>()).groupBy(new Id<>()).reduceGroup(edgeMergeReducer);
+    return fromDataSets(graphHeads, vertices, edges);
+}

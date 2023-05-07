@@ -1,0 +1,13 @@
+/**
+ * Creates a new EPGM database from the given arguments.
+ *
+ * @param vertices    vertex data set
+ * @param edges       edge data set
+ * @param graphHeads  graph data set
+ * @param config      Gradoop Flink Configuration
+ */
+private EPGMDatabase(DataSet<VD> vertices, DataSet<ED> edges, DataSet<GD> graphHeads, GradoopFlinkConfig<VD, ED, GD> config) {
+    this.config = config;
+    this.database = new GraphCollection<>(vertices, edges, graphHeads, config);
+    this.databaseData = config.getGraphHeadHandler().getGraphHeadFactory().createGraphHead(FlinkConstants.DATABASE_GRAPH_ID);
+}

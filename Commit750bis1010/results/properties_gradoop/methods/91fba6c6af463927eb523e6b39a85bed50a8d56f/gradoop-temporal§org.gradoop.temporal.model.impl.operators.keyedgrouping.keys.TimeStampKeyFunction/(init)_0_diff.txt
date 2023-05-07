@@ -1,0 +1,15 @@
+/**
+ * Create a new instance of this grouping key function.
+ *
+ * @param timeDimension      The time dimension of the temporal element to consider.
+ * @param timeDimensionField The field of that time dimension to consider.
+ * @param fieldOfTimeStamp   The time field of that field to calculate. May be {@code null},
+ *                           in that case nothing will be calculated, the time stamp will be
+ *                           returned as is.
+ */
+public TimeStampKeyFunction(TimeDimension timeDimension, TimeDimension.Field timeDimensionField, TemporalField fieldOfTimeStamp) {
+    this.timeDimension = Objects.requireNonNull(timeDimension);
+    this.timeDimensionField = Objects.requireNonNull(timeDimensionField);
+    this.fieldOfTimeStamp = fieldOfTimeStamp;
+    this.targetPropertyKey = "time_" + timeDimension + "_" + timeDimensionField + (fieldOfTimeStamp != null ? "_" + fieldOfTimeStamp : "");
+}

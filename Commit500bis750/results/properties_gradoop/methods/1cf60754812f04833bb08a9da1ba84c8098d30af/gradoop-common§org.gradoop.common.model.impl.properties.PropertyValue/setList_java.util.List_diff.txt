@@ -1,0 +1,21 @@
+/**                                                                                                    /**                                                                                                 
+* Sets the wrapped value as {@code List} value.                                                        * Sets the wrapped value as {@code List} value.                                                     
+*                                                                                                      *                                                                                                   
+* @param list value                                                                                    * @param list value                                                                                 
+*/                                                                                                     */                                                                                                  
+public void setList(List&lt;PropertyValue&gt; list) {                                                  public void setList(List&lt;PropertyValue&gt; list) {                                               
+int size = list.stream().mapToInt(PropertyValue::byteSize).sum() + OFFSET;                             int size = list.stream().mapToInt(PropertyValue::byteSize).sum() + OFFSET;                          
+ByteArrayOutputStream byteStream = new ByteArrayOutputStream(size);                                    ByteArrayOutputStream byteStream = new ByteArrayOutputStream(size);                                 
+DataOutputStream outputStream = new DataOutputStream(byteStream);                                      DataOutputStream outputStream = new DataOutputStream(byteStream);                                   
+DataOutputView outputView = new DataOutputViewStreamWrapper(outputStream);                             DataOutputView outputView = new DataOutputViewStreamWrapper(outputStream);                          
+try {                                                                                                  try {                                                                                               
+outputStream.write(TYPE_LIST);                                                                         outputStream.write(TYPE_LIST);                                                                      
+for (PropertyValue entry : list) {                                                                     for (PropertyValue entry : list) {                                                                  
+entry.write(outputView);                                                                               entry.write(outputView);                                                                            
+}                                                                                                      }                                                                                                   
+} catch (IOException e) {                                                                              } catch (IOException e) {                                                                           
+throw new RuntimeException("Error writing PropertyValue");                                             throw new RuntimeException("Error writing PropertyValue");                                          
+}                                                                                                      }                                                                                                   
+this.rawBytes = byteStream.toByteArray();                                                              this.rawBytes = byteStream.toByteArray();                                                           
+validateBytesLength();                                                                               |                                                                                                     
+}                                                                                                      }                                                                                                   

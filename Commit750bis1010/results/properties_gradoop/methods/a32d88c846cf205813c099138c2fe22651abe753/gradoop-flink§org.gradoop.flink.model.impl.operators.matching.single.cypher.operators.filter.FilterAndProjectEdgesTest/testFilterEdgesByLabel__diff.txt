@@ -1,0 +1,11 @@
+@Test
+public void testFilterEdgesByLabel() throws Exception {
+    CNF predicates = predicateFromQuery("MATCH ()-[a:likes]->()");
+    EPGMEdgeFactory edgeFactory = new EPGMEdgeFactory();
+    EPGMEdge e1 = edgeFactory.createEdge("likes", GradoopId.get(), GradoopId.get());
+    EPGMEdge e2 = edgeFactory.createEdge("knows", GradoopId.get(), GradoopId.get());
+    DataSet<EPGMEdge> edges = getExecutionEnvironment().fromElements(e1, e2);
+    List<Embedding> result = new FilterAndProjectEdges<>(edges, predicates, new ArrayList<>(), false).evaluate().collect();
+    assertEquals(1, result.size());
+    assertEquals(result.get(0).getId(1), e1.getId());
+}

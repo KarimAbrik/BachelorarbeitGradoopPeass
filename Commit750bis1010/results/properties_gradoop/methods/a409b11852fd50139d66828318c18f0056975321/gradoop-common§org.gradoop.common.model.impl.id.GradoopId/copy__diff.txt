@@ -1,0 +1,4 @@
+@Override                                                                                              @Override                                                                                           
+public GradoopId copy() {                                                                              public GradoopId copy() {                                                                           
+return new GradoopId(this.bytes);                                                                    | return new GradoopId(Arrays.copyOf(bytes, ID_SIZE));                                                
+}                                                                                                      }                                                                                                   

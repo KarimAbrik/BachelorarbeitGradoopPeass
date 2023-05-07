@@ -1,0 +1,21 @@
+/**
+ * Reads edges from json array.
+ *
+ * @param edgeArray json array with edge information.
+ * @return edges
+ * @throws JSONException
+ */
+private Iterable<Edge> readEdges(final JSONArray edgeArray) throws JSONException {
+    List<Edge> edges = Lists.newArrayListWithCapacity(edgeArray.length());
+    for (int i = 0; i < edgeArray.length(); i++) {
+        JSONObject edge = edgeArray.getJSONObject(i);
+        String label = edge.getString(JsonWriter.EDGE_LABEL);
+        Long otherID = edge.getLong(JsonWriter.EDGE_OTHER_ID);
+        if (edge.has(JsonWriter.PROPERTIES)) {
+            edges.add(EdgeFactory.createDefaultEdge(otherID, label, (long) i, readProperties(edge.getJSONObject(JsonWriter.PROPERTIES))));
+        } else {
+            edges.add(EdgeFactory.createDefaultEdgeWithLabel(otherID, label, (long) i));
+        }
+    }
+    return edges;
+}

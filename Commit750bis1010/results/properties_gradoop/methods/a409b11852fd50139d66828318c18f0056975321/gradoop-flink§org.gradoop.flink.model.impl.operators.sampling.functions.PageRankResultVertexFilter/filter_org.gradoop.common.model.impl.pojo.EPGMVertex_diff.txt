@@ -1,0 +1,13 @@
+@Override
+public boolean filter(EPGMVertex v) throws Exception {
+    if (v.hasProperty(SamplingConstants.SCALED_PAGE_RANK_SCORE_PROPERTY_KEY)) {
+        double pr = v.getPropertyValue(SamplingConstants.SCALED_PAGE_RANK_SCORE_PROPERTY_KEY).getDouble();
+        if (sampleGreaterThanThreshold) {
+            return pr > threshold;
+        } else {
+            return pr <= threshold;
+        }
+    } else {
+        return keepVerticesIfSameScore;
+    }
+}

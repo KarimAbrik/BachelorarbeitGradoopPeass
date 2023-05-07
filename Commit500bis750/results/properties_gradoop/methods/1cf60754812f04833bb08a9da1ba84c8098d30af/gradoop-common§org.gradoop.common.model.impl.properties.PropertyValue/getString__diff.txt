@@ -1,0 +1,8 @@
+/**
+ * Returns the wrapped value as {@code String}.
+ *
+ * @return {@code String} value
+ */
+public String getString() {
+    return Bytes.toString(rawBytes, OFFSET, rawBytes.length - OFFSET);
+}

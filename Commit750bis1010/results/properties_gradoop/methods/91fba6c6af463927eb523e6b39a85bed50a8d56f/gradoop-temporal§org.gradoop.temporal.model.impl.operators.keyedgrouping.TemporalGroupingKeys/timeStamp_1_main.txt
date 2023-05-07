@@ -1,0 +1,12 @@
+/**
+ * Group by a time stamp. The time stamp will be in milliseconds.
+ *
+ * @param interval      The time interval to consider.
+ * @param intervalField The field of that time interval to consider.
+ * @param <T> The type of the elements to group.
+ * @return The grouping key function extracting a time stamp.
+ * @see TimeStampKeyFunction
+ */
+public static <T extends TemporalElement> KeyFunctionWithDefaultValue<T, Long> timeStamp(TimeDimension interval, TimeDimension.Field intervalField) {
+    return timeStamp(interval, intervalField, null);
+}

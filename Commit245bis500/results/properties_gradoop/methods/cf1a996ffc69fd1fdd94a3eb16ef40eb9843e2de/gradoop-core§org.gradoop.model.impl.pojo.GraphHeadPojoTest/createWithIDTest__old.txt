@@ -1,0 +1,7 @@
+@Test
+public void createWithIDTest() {
+    Long graphID = 0L;
+    EPGMGraphHead g = new GraphHeadPojoFactory().createGraphHead(graphID);
+    assertThat(g.getId(), is(graphID));
+    assertThat(g.getPropertyCount(), is(0));
+}

@@ -1,0 +1,13 @@
+/**
+ * New vertex filter operator
+ *
+ * @param input Candidate vertices
+ * @param predicates Predicates used to filter vertices
+ * @param projectionPropertyKeys Property keys used for projection
+ */
+public FilterAndProjectVertices(DataSet<V> input, CNF predicates, List<String> projectionPropertyKeys) {
+    this.input = input;
+    this.predicates = predicates;
+    this.projectionPropertyKeys = projectionPropertyKeys;
+    this.setName("FilterAndProjectVertices");
+}

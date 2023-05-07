@@ -1,0 +1,15 @@
+/* (non-Javadoc)
+   * @see org.apache.flink.api.common.functions.GroupReduceFunction#reduce(java.lang.Iterable, org.apache.flink.util.Collector)
+   */
+@Override
+public void reduce(Iterable<EPGMEdge> values, Collector<EPGMEdge> out) {
+    boolean sawFirst = false;
+    for (EPGMEdge edge : values) {
+        if (sawFirst) {
+            edge.setId(GradoopId.get());
+        } else {
+            sawFirst = true;
+        }
+        out.collect(edge);
+    }
+}

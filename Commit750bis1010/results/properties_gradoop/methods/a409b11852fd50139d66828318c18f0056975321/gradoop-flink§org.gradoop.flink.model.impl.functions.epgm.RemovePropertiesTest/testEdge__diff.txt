@@ -1,0 +1,13 @@
+@Test
+public void testEdge() {
+    Properties props = Properties.create();
+    props.set("k1", "v1");
+    props.set("k2", "v2");
+    props.set("k3", "v3");
+    Edge edge = new EPGMEdgeFactory().initEdge(GradoopId.get(), "A", GradoopId.get(), GradoopId.get(), props);
+    TransformationFunction<Edge> removeFunction = new RemoveProperties<>("k1", "k2");
+    removeFunction.apply(edge, edge);
+    assertEquals(1, edge.getPropertyCount());
+    assertTrue(edge.hasProperty("k3"));
+    assertEquals("v3", edge.getPropertyValue("k3").getString());
+}

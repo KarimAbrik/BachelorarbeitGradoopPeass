@@ -1,0 +1,68 @@
+{
+  "clazz" : "org.gradoop.model.impl.LogicalGraphAggregateTest",
+  "methods" : [ {
+    "method" : "aggregateEdgeCountTest",
+    "datacollectorResults" : [ {
+      "name" : "de.dagere.kopeme.datacollection.TimeDataCollectorNoGC",
+      "chunks" : [ ],
+      "results" : [ {
+        "value" : 4.3923443640000004E8,
+        "deviation" : 0.6957847498736808,
+        "min" : 1.46365119E8,
+        "max" : 1.194723695E9,
+        "warmup" : 0,
+        "iterations" : 10,
+        "repetitions" : 2,
+        "commit" : null,
+        "vmRunConfiguration" : {
+          "showStart" : false,
+          "executeBeforeClassInMeasurement" : false,
+          "redirectToTemp" : false,
+          "redirectToNull" : true,
+          "useKieker" : false
+        },
+        "parameters" : {
+          "JUNIT_PARAMETERIZED" : "Execution mode = CLUSTER"
+        },
+        "javaVersion" : "1.8.0_362",
+        "cpu" : "model name : Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz",
+        "memory" : "MemTotal: 16280544 kB",
+        "date" : 1680979978532,
+        "fulldata" : {
+          "fileName" : null,
+          "values" : [ {
+            "startTime" : 1680979973990,
+            "value" : 1194723695
+          }, {
+            "startTime" : 1680979975185,
+            "value" : 512836127
+          }, {
+            "startTime" : 1680979975698,
+            "value" : 480782936
+          }, {
+            "startTime" : 1680979976178,
+            "value" : 597293950
+          }, {
+            "startTime" : 1680979976776,
+            "value" : 451010573
+          }, {
+            "startTime" : 1680979977227,
+            "value" : 329387991
+          }, {
+            "startTime" : 1680979977556,
+            "value" : 270603632
+          }, {
+            "startTime" : 1680979977827,
+            "value" : 229638799
+          }, {
+            "startTime" : 1680979978056,
+            "value" : 179701542
+          }, {
+            "startTime" : 1680979978236,
+            "value" : 146365119
+          } ]
+        }
+      } ]
+    } ]
+  } ]
+}

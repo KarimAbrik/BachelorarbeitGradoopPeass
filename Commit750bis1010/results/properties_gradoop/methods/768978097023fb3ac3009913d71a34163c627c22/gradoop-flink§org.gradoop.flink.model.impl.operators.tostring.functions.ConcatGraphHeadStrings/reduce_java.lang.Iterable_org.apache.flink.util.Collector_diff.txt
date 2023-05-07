@@ -1,0 +1,12 @@
+@Override
+public void reduce(Iterable<GraphHeadString> graphHeadLabels, Collector<String> collector) throws Exception {
+    List<String> graphLabels = new ArrayList<>();
+    for (GraphHeadString graphHeadString : graphHeadLabels) {
+        String graphLabel = graphHeadString.getLabel();
+        if (!graphLabel.equals("")) {
+            graphLabels.add(graphLabel);
+        }
+    }
+    Collections.sort(graphLabels);
+    collector.collect(StringUtils.join(graphLabels, "\n"));
+}

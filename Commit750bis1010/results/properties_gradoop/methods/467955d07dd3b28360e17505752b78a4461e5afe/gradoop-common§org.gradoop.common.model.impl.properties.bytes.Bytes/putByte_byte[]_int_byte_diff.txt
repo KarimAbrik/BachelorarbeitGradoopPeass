@@ -1,0 +1,12 @@
+/**
+ * Write a single byte out to the specified byte array position.
+ *
+ * @param bytes the byte array
+ * @param offset position in the array
+ * @param b byte to write out
+ * @return incremented offset
+ */
+public static int putByte(byte[] bytes, int offset, byte b) {
+    bytes[offset] = b;
+    return offset + 1;
+}

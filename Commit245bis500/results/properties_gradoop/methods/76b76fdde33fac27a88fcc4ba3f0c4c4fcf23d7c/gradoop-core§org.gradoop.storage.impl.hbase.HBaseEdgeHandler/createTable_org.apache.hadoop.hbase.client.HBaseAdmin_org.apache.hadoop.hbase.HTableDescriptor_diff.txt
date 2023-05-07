@@ -1,0 +1,10 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public void createTable(final HBaseAdmin admin, final HTableDescriptor tableDescriptor) throws IOException {
+    LOG.info("Creating table " + tableDescriptor.getNameAsString());
+    tableDescriptor.addFamily(new HColumnDescriptor(GConstants.CF_META));
+    tableDescriptor.addFamily(new HColumnDescriptor(GConstants.CF_PROPERTIES));
+    admin.createTable(tableDescriptor);
+}

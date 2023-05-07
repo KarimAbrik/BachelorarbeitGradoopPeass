@@ -1,0 +1,24 @@
+@Override
+public GC execute(GC collection) {
+    //--------------------------------------------------------------------------
+    // generate graph-id set witch will be used for generating mappings
+    //--------------------------------------------------------------------------
+    DataSet<GradoopId> graphIds = collection.getGraphHeads().map(new Id<>());
+    //--------------------------------------------------------------------------
+    // generate mapping from graph-id to vertex candidates
+    //--------------------------------------------------------------------------
+    DataSet<Tuple2<GradoopId, IdWithCandidates<GradoopId>>> vertexCandidatesWithGraphs = collection.getVertices().filter(new MatchingVertices<>(query)).map(new BuildIdWithCandidatesAndGraphs<>(query)).flatMap(new ExpandFirstField<>()).join(graphIds).where(0).equalTo("*").with(new LeftSide<>());
+    //--------------------------------------------------------------------------
+    // generate mapping from graph-id to edge candidates
+    //--------------------------------------------------------------------------
+    DataSet<Tuple2<GradoopId, TripleWithCandidates<GradoopId>>> edgeCandidatesWithGraphs = collection.getEdges().filter(new MatchingEdges<>(query)).map(new BuildTripleWithCandidatesAndGraphs<>(query)).flatMap(new ExpandFirstField<>()).join(graphIds).where(0).equalTo("*").with(new LeftSide<>());
+    //--------------------------------------------------------------------------
+    // generate graphs with the candidates for their elements
+    //--------------------------------------------------------------------------
+    DataSet<GraphWithCandidates> graphs = vertexCandidatesWithGraphs.coGroup(edgeCandidatesWithGraphs).where(0).equalTo(0).with(new BuildGraphWithCandidates());
+    if (findEmbeddings) {
+        return findEmbeddings(collection, graphs);
+    } else {
+        return hasEmbeddings(collection, graphs);
+    }
+}

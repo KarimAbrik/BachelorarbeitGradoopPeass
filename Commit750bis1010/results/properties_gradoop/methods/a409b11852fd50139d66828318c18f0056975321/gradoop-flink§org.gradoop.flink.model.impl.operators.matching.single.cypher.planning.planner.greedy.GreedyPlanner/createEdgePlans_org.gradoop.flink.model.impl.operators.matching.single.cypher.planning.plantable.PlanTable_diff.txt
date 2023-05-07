@@ -1,0 +1,23 @@
+/**
+ * Creates an initial {@link PlanTableEntry} for each edge in the query graph and adds it to the
+ * specified {@link PlanTable}. The entry wraps a {@link QueryPlan} that filters edges based on
+ * their predicates and projects properties that are required for further query planning.
+ *
+ * @param planTable plan table
+ */
+private void createEdgePlans(PlanTable planTable) {
+    for (Edge edge : queryHandler.getEdges()) {
+        String edgeVariable = edge.getVariable();
+        String sourceVariable = queryHandler.getVertexById(edge.getSourceVertexId()).getVariable();
+        String targetVariable = queryHandler.getVertexById(edge.getTargetVertexId()).getVariable();
+        CNF allPredicates = queryHandler.getPredicates();
+        // TODO: this might be moved the the FilterAndProject node in issue #510
+        CNF edgePredicates = allPredicates.removeSubCNF(edgeVariable);
+        Set<String> projectionKeys = allPredicates.getPropertyKeys(edgeVariable);
+        boolean isPath = edge.getUpperBound() != 1;
+        DataSet<E> edges = edge.getLabel().equals(GradoopConstants.DEFAULT_EDGE_LABEL) ? graph.getEdges() : graph.getEdgesByLabel(edge.getLabel());
+        FilterAndProjectEdgesNode<E> node = new FilterAndProjectEdgesNode<>(edges, sourceVariable, edgeVariable, targetVariable, edgePredicates, projectionKeys, isPath);
+        PlanTableEntry.Type type = edge.hasVariableLength() ? PATH : EDGE;
+        planTable.add(new PlanTableEntry(type, Sets.newHashSet(edgeVariable), allPredicates, new QueryPlanEstimator(new QueryPlan(node), queryHandler, graphStatistics)));
+    }
+}

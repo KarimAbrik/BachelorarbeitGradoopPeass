@@ -1,0 +1,12 @@
+@Test
+public void createWithIDTest() {
+    GradoopId edgeId = GradoopId.get();
+    GradoopId sourceId = GradoopId.get();
+    GradoopId targetId = GradoopId.get();
+    EPGMEdge e = new EdgeFactory().initEdge(edgeId, sourceId, targetId);
+    assertThat(e.getId(), is(edgeId));
+    assertThat(e.getSourceId(), is(sourceId));
+    assertThat(e.getTargetId(), is(targetId));
+    assertThat(e.getPropertyCount(), is(0));
+    assertThat(e.getGraphCount(), is(0));
+}

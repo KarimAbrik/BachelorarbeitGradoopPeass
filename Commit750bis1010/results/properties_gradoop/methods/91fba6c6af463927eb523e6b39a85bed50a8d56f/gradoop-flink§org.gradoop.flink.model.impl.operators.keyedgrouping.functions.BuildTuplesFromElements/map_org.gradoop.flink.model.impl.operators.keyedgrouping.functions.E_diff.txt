@@ -1,0 +1,14 @@
+@Override
+public Tuple map(E element) throws Exception {
+    int field = tupleDataOffset;
+    for (KeyFunction<? super E, ?> key : keys) {
+        reuseTuple.setField(key.getKey(element), field);
+        field++;
+    }
+    for (AggregateFunction aggregateFunction : aggregateFunctions) {
+        final PropertyValue increment = aggregateFunction.getIncrement(element);
+        reuseTuple.setField(increment == null ? NULL_VALUE : increment, field);
+        field++;
+    }
+    return reuseTuple;
+}

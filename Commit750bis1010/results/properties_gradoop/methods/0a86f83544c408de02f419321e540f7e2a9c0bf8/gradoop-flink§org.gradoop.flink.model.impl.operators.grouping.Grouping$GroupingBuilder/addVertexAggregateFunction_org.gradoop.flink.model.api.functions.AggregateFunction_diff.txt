@@ -1,0 +1,12 @@
+/**
+ * Add an aggregate function which is applied on all vertices represented by a single super
+ * vertex which do not have a specific label group.
+ *
+ * @param aggregateFunction vertex aggregate function
+ * @return this builder
+ */
+public GroupingBuilder addVertexAggregateFunction(AggregateFunction aggregateFunction) {
+    Objects.requireNonNull(aggregateFunction, "Aggregate function must not be null");
+    defaultVertexLabelGroup.addAggregateFunction(aggregateFunction);
+    return this;
+}

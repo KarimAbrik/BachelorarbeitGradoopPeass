@@ -1,0 +1,12 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public String toString() {
+    final StringBuilder sb = new StringBuilder("HBaseVertex{");
+    sb.append("super=").append(super.toString());
+    sb.append(", outgoingEdges=").append(outgoingEdges);
+    sb.append(", incomingEdges=").append(incomingEdges);
+    sb.append('}');
+    return sb.toString();
+}

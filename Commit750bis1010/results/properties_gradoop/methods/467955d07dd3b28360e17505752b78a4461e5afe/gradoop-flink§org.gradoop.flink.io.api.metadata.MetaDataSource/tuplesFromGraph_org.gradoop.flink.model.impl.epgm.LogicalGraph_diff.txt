@@ -1,0 +1,9 @@
+/**                                                                                                  |                                                                                                     
+* Creates the meta data for the given graph.                                                         |                                                                                                     
+*                                                                                                    |                                                                                                     
+* @param graph logical graph                                                                         |                                                                                                     
+* @return meta data information                                                                      |                                                                                                     
+*/                                                                                                   |                                                                                                     
+default DataSet&lt;Tuple3&lt;String, String, String&gt;&gt; tuplesFromGraph(LogicalGraph graph) {    |                                                                                                     
+return tuplesFromElements(graph.getVertices()).union(tuplesFromElements(graph.getEdges()));          |                                                                                                     
+}                                                                                                    |                                                                                                     

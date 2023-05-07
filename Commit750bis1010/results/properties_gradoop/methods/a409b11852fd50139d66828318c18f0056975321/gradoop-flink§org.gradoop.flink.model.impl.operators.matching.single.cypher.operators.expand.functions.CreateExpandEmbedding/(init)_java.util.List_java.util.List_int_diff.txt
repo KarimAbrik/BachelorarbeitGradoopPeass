@@ -1,0 +1,11 @@
+/**
+ * Create new FlatJoin Function
+ * @param distinctVertices indices of distinct vertex columns
+ * @param distinctEdges indices of distinct edge columns
+ * @param closingColumn base column that should be equal to a paths end node
+ */
+public CreateExpandEmbedding(List<Integer> distinctVertices, List<Integer> distinctEdges, int closingColumn) {
+    this.distinctVertices = distinctVertices;
+    this.distinctEdges = distinctEdges;
+    this.closingColumn = closingColumn;
+}

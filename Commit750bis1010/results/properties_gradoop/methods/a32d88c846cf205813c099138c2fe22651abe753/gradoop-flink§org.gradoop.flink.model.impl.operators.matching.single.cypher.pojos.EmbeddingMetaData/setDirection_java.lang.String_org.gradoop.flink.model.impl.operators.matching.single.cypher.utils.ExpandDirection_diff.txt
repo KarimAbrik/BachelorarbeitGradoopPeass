@@ -1,0 +1,9 @@
+/**
+ * Inserts or updates the direction for the specified path variable.
+ *
+ * @param variable variable associated with a variable length path
+ * @param direction direction in which the path is stored in the embedding
+ */
+public void setDirection(String variable, ExpandDirection direction) {
+    directionMapping.put(variable, direction);
+}

@@ -1,0 +1,41 @@
+@Override
+public List<Embedding<GradoopId>> findEmbeddings(GraphWithCandidates graph, String query) {
+    // construct a handler for the query
+    handler = new QueryHandler(query);
+    // build the plan that determines in which order vertices should added
+    int[] plan = buildQueryPlan();
+    // by using a stack (first in - last out) we implement a depth-first search
+    Stack<Embedding<GradoopId>> embeddings = new Stack<>();
+    // construct an empty embedding
+    Embedding<GradoopId> firstEmbedding = new Embedding<>();
+    firstEmbedding.setVertexMapping(new GradoopId[handler.getVertexCount()]);
+    firstEmbedding.setEdgeMapping(new GradoopId[handler.getEdgeCount()]);
+    embeddings.push(firstEmbedding);
+    // initialize the vertex, edge, source and target maps
+    initializeMaps(graph);
+    List<Embedding<GradoopId>> results = new ArrayList<>();
+    // grow the embeddings until there are none left
+    while (!embeddings.isEmpty()) {
+        Embedding<GradoopId> embedding = embeddings.pop();
+        // find the first step in the plan that has not been applied yet
+        int nextStep = -1;
+        for (int step : plan) {
+            if (embedding.getVertexMapping()[step] == null) {
+                nextStep = step;
+                break;
+            }
+        }
+        // if all steps have been applied, add the embedding to the results
+        if (nextStep == -1) {
+            results.add(embedding);
+            continue;
+        }
+        // compute new embeddings by applying the step on the current embedding
+        List<Embedding<GradoopId>> newEmbeddings = executeStep(embedding, nextStep);
+        // add the new embeddings on top of the stack
+        embeddings.addAll(newEmbeddings);
+    }
+    // reset the maps for the next graph
+    resetMaps();
+    return results;
+}

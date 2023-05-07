@@ -1,0 +1,4 @@
+@Override
+public DataSet<Boolean> execute(GC firstCollection, GC secondCollection) {
+    return Equals.cross(canonicalAdjacencyMatrixBuilder.execute(firstCollection), canonicalAdjacencyMatrixBuilder.execute(secondCollection));
+}

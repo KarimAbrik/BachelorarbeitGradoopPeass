@@ -1,0 +1,4 @@
+@Override
+public DataSet<WithCount<GradoopId>> execute(LogicalGraph graph) {
+    return new EdgeValueDistribution<>(new TargetId<>()).execute(graph).rightOuterJoin(graph.getVertices().map(new Id<>())).where(0).equalTo("*").with(new SetOrCreateWithCount());
+}

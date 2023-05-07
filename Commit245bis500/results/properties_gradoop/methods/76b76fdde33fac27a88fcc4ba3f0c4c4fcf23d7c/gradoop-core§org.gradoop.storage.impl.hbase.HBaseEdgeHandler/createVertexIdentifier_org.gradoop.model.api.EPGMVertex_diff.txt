@@ -1,0 +1,14 @@
+/**
+ * Serializes a vertex to a vertex identifier in the following format:
+ *
+ * <vertex-identifier> ::= <vertex-id><vertex-label>
+ *
+ * @param vertex vertex
+ * @return byte representation of the vertex identifier
+ */
+private byte[] createVertexIdentifier(final EPGMVertex vertex) throws IOException {
+    byte[] vertexKeyBytes = Writables.getBytes(vertex.getId());
+    byte[] labelBytes = Bytes.toBytes(vertex.getLabel());
+    ArrayUtils.addAll(vertexKeyBytes, labelBytes);
+    return vertexKeyBytes;
+}

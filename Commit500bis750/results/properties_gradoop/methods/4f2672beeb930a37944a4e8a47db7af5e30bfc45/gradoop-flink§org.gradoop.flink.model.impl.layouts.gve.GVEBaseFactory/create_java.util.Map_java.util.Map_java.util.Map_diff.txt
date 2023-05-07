@@ -1,0 +1,14 @@
+/**                                                                                                    /**                                                                                                 
+* Creates a collection layout from the given datasets indexed by label.                                * Creates a collection layout from the given datasets indexed by label.                             
+*                                                                                                      *                                                                                                   
+* @param graphHeads Mapping from label to graph head dataset                                           * @param graphHeads Mapping from label to graph head dataset                                        
+* @param vertices Mapping from label to vertex dataset                                                 * @param vertices Mapping from label to vertex dataset                                              
+* @param edges Mapping from label to edge dataset                                                      * @param edges Mapping from label to edge dataset                                                   
+* @return GVE layout                                                                                   * @return GVE layout                                                                                
+*/                                                                                                     */                                                                                                  
+GVELayout create(Map&lt;String, DataSet&lt;GraphHead&gt;&gt; graphHeads, Map&lt;String, DataSet&lt;V   GVELayout create(Map&lt;String, DataSet&lt;GraphHead&gt;&gt; graphHeads, Map&lt;String, DataSet&lt;V
+Objects.requireNonNull(graphHeads);                                                                    Objects.requireNonNull(graphHeads);                                                                 
+Objects.requireNonNull(vertices);                                                                      Objects.requireNonNull(vertices);                                                                   
+Objects.requireNonNull(edges);                                                                         Objects.requireNonNull(edges);                                                                      
+return new GVELayout(graphHeads.values().stream().reduce(DataSet::union).orElseThrow(() -&gt; new Ru | return new GVELayout(graphHeads.values().stream().reduce(DataSet::union).orElseThrow(() -&gt; new Ru
+}                                                                                                      }                                                                                                   

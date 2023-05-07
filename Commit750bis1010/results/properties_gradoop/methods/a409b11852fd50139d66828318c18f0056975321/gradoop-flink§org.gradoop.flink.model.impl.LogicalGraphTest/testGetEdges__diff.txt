@@ -1,0 +1,8 @@
+@Test
+public void testGetEdges() throws Exception {
+    FlinkAsciiGraphLoader loader = getSocialNetworkLoader();
+    Collection<EPGMEdge> inputEdges = loader.getEdges();
+    List<EPGMEdge> outputEdges = loader.getLogicalGraph(false).getEdges().collect();
+    validateElementCollections(inputEdges, outputEdges);
+    validateGraphElementCollections(inputEdges, outputEdges);
+}

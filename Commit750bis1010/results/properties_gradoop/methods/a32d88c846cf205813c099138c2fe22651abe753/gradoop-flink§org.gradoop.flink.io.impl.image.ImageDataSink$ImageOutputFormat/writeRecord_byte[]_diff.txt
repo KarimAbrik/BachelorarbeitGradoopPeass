@@ -1,0 +1,10 @@
+@Override
+public void writeRecord(byte[] img) throws IOException {
+    String outputFormat = getFileExtension(path);
+    if (!outputFormat.equals(INTERMEDIATE_ENCODING)) {
+        BufferedImage bimg = arrToImg(img);
+        ImageIO.write(bimg, outputFormat, this.stream);
+    } else {
+        this.stream.write(img);
+    }
+}

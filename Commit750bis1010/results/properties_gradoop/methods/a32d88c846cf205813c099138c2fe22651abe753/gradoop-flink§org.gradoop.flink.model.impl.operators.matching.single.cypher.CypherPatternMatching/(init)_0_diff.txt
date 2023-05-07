@@ -1,0 +1,17 @@
+/**
+ * Instantiates a new operator.
+ *
+ * @param query               Cypher query string
+ * @param constructionPattern Construction pattern
+ * @param attachData          true, if original data shall be attached to the result
+ * @param vertexStrategy      morphism strategy for vertex mappings
+ * @param edgeStrategy        morphism strategy for edge mappings
+ * @param graphStatistics     statistics about the data graph
+ */
+public CypherPatternMatching(String query, String constructionPattern, boolean attachData, MatchStrategy vertexStrategy, MatchStrategy edgeStrategy, GraphStatistics graphStatistics) {
+    super(query, attachData, LOG);
+    this.constructionPattern = constructionPattern;
+    this.vertexStrategy = vertexStrategy;
+    this.edgeStrategy = edgeStrategy;
+    this.graphStatistics = graphStatistics;
+}

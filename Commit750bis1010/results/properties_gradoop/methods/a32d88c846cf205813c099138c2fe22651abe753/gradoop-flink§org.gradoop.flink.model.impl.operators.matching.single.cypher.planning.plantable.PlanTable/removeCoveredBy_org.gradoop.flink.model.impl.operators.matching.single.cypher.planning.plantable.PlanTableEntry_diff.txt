@@ -1,0 +1,9 @@
+/**
+ * Removes all entries from the table whose query plans are covered by the query plan wrapped by
+ * the specified entry.
+ *
+ * @param planTableEntry entry
+ */
+public void removeCoveredBy(PlanTableEntry planTableEntry) {
+    planTableEntries = planTableEntries.stream().filter(e -> !planTableEntry.getProcessedVariables().containsAll(e.getProcessedVariables())).collect(Collectors.toList());
+}

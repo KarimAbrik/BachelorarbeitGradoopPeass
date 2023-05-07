@@ -1,0 +1,10 @@
+/**
+ * Tests whether edges are created properly according to New EPGMVertex to Origin direction.
+ *
+ * @throws Exception If the data could not be loaded or collected properly.
+ */
+@Test
+public void edgeCreationNewToOriginTest() throws Exception {
+    LogicalGraph social = getSocialNetworkLoader().getLogicalGraph();
+    testForEdgeDirection(social, EdgeDirection.NEWVERTEX_TO_ORIGIN);
+}

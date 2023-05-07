@@ -1,0 +1,13 @@
+//----------------------------------------------------------------------------
+// Binary Operators
+//----------------------------------------------------------------------------
+/**
+ * Creates a new base graph by combining the vertex and edge sets of
+ * this graph and the given graph. Vertex and edge equality is based on their identifiers.
+ *
+ * @param otherGraph base graph to combine this graph with
+ * @return base graph containing all vertices and edges of the input graphs
+ */
+default LG combine(LG otherGraph) {
+    return callForGraph(new Combination<>(), otherGraph);
+}

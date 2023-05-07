@@ -1,0 +1,13 @@
+/**
+ * Checks if both given embeddings contain distinct id values at all specified columns.
+ *
+ * @param columnsLeft left columns to include in check for uniqueness
+ * @param columnsRight right columns to include in check for uniqueness
+ * @param left left embedding
+ * @param right right embedding
+ * @return true, if both embeddings contain unique id values for all specified columns
+ */
+private boolean isDistinct(int[] columnsLeft, int[] columnsRight, Embedding left, Embedding right) {
+    Set<GradoopId> ids = new HashSet<>(left.size() + right.size());
+    return isDistinct(ids, columnsLeft, left) && isDistinct(ids, columnsRight, right);
+}

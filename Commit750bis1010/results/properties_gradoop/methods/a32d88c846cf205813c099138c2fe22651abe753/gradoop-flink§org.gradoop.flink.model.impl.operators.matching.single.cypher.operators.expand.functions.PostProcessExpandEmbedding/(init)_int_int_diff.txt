@@ -1,0 +1,10 @@
+/**
+ * Create a new Post-process function
+ *
+ * @param lowerBound the lower bound path length
+ * @param closingColumn the base column which should equal the paths end column
+ */
+public PostProcessExpandEmbedding(int lowerBound, int closingColumn) {
+    this.minPathLength = lowerBound * 2 - 1;
+    this.closingColumn = closingColumn;
+}

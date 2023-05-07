@@ -1,0 +1,17 @@
+/**                                                                                                    /**                                                                                                 
+* Group by a field of a time stamp. The time stamp will be converted to a date with timezone           * Group by a field of a time stamp. The time stamp will be converted to a date with timezone        
+* {@link java.time.ZoneOffset#UTC UTC} and the field will be extracted from that date.                 * {@link java.time.ZoneOffset#UTC UTC} and the field will be extracted from that date.              
+* If the field is {@code null}, nothing will be extracted and the time stamp will be                   * If the field is {@code null}, nothing will be extracted and the time stamp will be                
+* used as is.                                                                                          * used as is.                                                                                       
+*                                                                                                      *                                                                                                   
+* @param interval         The time interval to consider.                                               * @param interval         The time interval to consider.                                            
+* @param intervalField    The field of that interval to consider (i.e. the start- or end-time).        * @param intervalField    The field of that interval to consider (i.e. the start- or end-time).     
+* @param fieldOfTimeStamp The field of the date corresponding to that time stamp to consider.          * @param fieldOfTimeStamp The field of the date corresponding to that time stamp to consider.       
+*                         (May be {@code null}, in that case the time stamp will be used as is.)       *                         (May be {@code null}, in that case the time stamp will be used as is.)    
+* @param &lt;T&gt; The type of the elements to group.                                                  * @param &lt;T&gt; The type of the elements to group.                                               
+* @return The grouping key function extracting the time stamp or part of it.                           * @return The grouping key function extracting the time stamp or part of it.                        
+* @see TimeStampKeyFunction                                                                            * @see TimeStampKeyFunction                                                                         
+*/                                                                                                     */                                                                                                  
+public static &lt;T extends TemporalElement&gt; KeyFunction&lt;T, Long&gt; timeStamp(TimeDimension i | public static &lt;T extends TemporalElement&gt; KeyFunctionWithDefaultValue&lt;T, Long&gt; timeStamp
+return new TimeStampKeyFunction&lt;&gt;(interval, intervalField, fieldOfTimeStamp);                    return new TimeStampKeyFunction&lt;&gt;(interval, intervalField, fieldOfTimeStamp);                 
+}                                                                                                      }                                                                                                   

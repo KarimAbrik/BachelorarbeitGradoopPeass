@@ -1,0 +1,9 @@
+/**
+ * Returns the property meta data associated with the specified vertex label.
+ *
+ * @param label vertex label
+ * @return property meta data for the vertex label
+ */
+public List<PropertyMetaData> getVertexPropertyMetaData(String label) {
+    return vertexMetaData.getOrDefault(label, new ArrayList<>());
+}

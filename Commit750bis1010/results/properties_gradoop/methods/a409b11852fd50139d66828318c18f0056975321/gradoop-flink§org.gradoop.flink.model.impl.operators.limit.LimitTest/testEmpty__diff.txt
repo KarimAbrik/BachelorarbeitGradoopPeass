@@ -1,0 +1,8 @@
+@Test
+public void testEmpty() throws Exception {
+    GraphCollection inputCollection = getConfig().getGraphCollectionFactory().createEmptyCollection();
+    int limit = 4;
+    int expectedCount = 0;
+    GraphCollection outputCollection = inputCollection.limit(limit);
+    assertEquals(expectedCount, outputCollection.getGraphHeads().count());
+}

@@ -1,0 +1,11 @@
+/**
+ * Initializes edges and their cache.
+ */
+private void initEdges() {
+    for (Edge e : gdlHandler.getEdges()) {
+        initEdge(e);
+    }
+    for (Map.Entry<String, Edge> e : gdlHandler.getEdgeCache().entrySet()) {
+        updateEdgeCache(e.getKey(), e.getValue());
+    }
+}

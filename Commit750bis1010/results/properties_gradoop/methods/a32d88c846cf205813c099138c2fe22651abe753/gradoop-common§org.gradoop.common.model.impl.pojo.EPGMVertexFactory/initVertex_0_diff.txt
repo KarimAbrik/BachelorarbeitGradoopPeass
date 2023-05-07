@@ -1,0 +1,6 @@
+@Override
+public EPGMVertex initVertex(final GradoopId id, final String label, final Properties properties, final GradoopIdSet graphs) {
+    Preconditions.checkNotNull(id, "Identifier was null");
+    Preconditions.checkNotNull(label, "Label was null");
+    return new EPGMVertex(id, label, properties, graphs);
+}

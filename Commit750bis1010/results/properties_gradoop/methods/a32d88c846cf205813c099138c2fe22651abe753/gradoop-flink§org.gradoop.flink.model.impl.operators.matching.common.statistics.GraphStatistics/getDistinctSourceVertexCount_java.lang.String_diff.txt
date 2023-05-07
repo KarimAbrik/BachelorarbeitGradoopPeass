@@ -1,0 +1,9 @@
+/**
+ * Returns the number of distinct source vertices incident to an edge with the specified label.
+ *
+ * @param edgeLabel edge label
+ * @return number of distinct source vertices incident to the labeled edge
+ */
+public long getDistinctSourceVertexCount(String edgeLabel) {
+    return distinctSourceVertexCountByEdgeLabel.getOrDefault(edgeLabel, 0L);
+}

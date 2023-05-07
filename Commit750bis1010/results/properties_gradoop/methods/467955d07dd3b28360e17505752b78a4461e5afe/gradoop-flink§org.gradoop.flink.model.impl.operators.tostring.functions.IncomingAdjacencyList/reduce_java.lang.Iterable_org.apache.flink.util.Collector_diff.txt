@@ -1,0 +1,17 @@
+@Override
+public void reduce(Iterable<EdgeString> outgoingEdgeLabels, Collector<VertexString> collector) throws Exception {
+    boolean first = true;
+    GradoopId vertexId = null;
+    GradoopId graphId = null;
+    List<String> adjacencyListEntries = new ArrayList<>();
+    for (EdgeString edgeString : outgoingEdgeLabels) {
+        if (first) {
+            graphId = edgeString.getGraphId();
+            vertexId = edgeString.getTargetId();
+            first = false;
+        }
+        adjacencyListEntries.add("\n  <-" + edgeString.getEdgeLabel() + "-" + edgeString.getSourceLabel());
+    }
+    Collections.sort(adjacencyListEntries);
+    collector.collect(new VertexString(graphId, vertexId, StringUtils.join(adjacencyListEntries, "")));
+}

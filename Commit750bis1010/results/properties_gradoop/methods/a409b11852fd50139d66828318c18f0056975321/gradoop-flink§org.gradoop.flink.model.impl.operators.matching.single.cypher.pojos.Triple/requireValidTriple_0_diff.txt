@@ -1,0 +1,15 @@
+/**
+ * Ensures the validity of a triple. Requires that sourceVertex.id = edge.sourceId and
+ * targetVertex.id = edge.targetId
+ * @param sourceVertex source vertex
+ * @param edge edge
+ * @param targetVertex target vertex
+ */
+private static void requireValidTriple(EPGMVertex sourceVertex, EPGMEdge edge, EPGMVertex targetVertex) {
+    if (sourceVertex.getId() != edge.getSourceId()) {
+        throw new IllegalArgumentException("Source IDs do not match");
+    }
+    if (targetVertex.getId() != edge.getTargetId()) {
+        throw new IllegalArgumentException("Target IDs do not match");
+    }
+}

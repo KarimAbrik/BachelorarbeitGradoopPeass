@@ -1,0 +1,4 @@
+@Override
+public String get(byte[] bytes) {
+    return Bytes.toString(bytes, PropertyValue.OFFSET, bytes.length - PropertyValue.OFFSET);
+}

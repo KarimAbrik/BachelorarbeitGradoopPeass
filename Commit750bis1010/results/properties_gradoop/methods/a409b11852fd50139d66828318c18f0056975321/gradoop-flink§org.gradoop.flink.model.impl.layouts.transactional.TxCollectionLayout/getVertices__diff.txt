@@ -1,0 +1,4 @@
+@Override
+public DataSet<EPGMVertex> getVertices() {
+    return transactions.flatMap(new TransactionVertices<>()).distinct(new Id<>());
+}

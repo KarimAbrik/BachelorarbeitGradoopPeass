@@ -1,0 +1,12 @@
+/**
+ * Returns a property values that wraps the elements id
+ *
+ * @param embedding the embedding holding the data
+ * @param metaData meta data describing the embedding
+ * @return property value of element id
+ */
+@Override
+public PropertyValue evaluate(Embedding embedding, EmbeddingMetaData metaData) {
+    int column = metaData.getEntryColumn(elementSelector.getVariable());
+    return PropertyValue.create(embedding.getId(column));
+}

@@ -1,0 +1,25 @@
+/**
+ * Creates persistent graph, vertex and edge data. Writes data to HBase,
+ * closes the store, opens it and reads/validates the data again.
+ */
+@Test
+public void writeCloseOpenReadTest() {
+    EPGMStore<VertexPojo, EdgePojo, GraphHeadPojo> graphStore = createEmptyEPGMStore();
+    for (PersistentVertex<EdgePojo> v : createPersistentVertex()) {
+        graphStore.writeVertex(v);
+    }
+    for (PersistentEdge<VertexPojo> e : createPersistentEdge()) {
+        graphStore.writeEdge(e);
+    }
+    for (PersistentGraphHead g : createPersistentGraphHead()) {
+        graphStore.writeGraphHead(g);
+    }
+    // re-open
+    graphStore.close();
+    graphStore = openEPGMStore();
+    // validate
+    validateGraphHead(graphStore);
+    validateVertex(graphStore);
+    validateEdge(graphStore);
+    graphStore.close();
+}

@@ -1,0 +1,11 @@
+@Override
+public boolean equals(Object o) {
+    if (this == o) {
+        return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+        return false;
+    }
+    ComparisonExpression that = (ComparisonExpression) o;
+    return Objects.equals(comparison, that.comparison);
+}

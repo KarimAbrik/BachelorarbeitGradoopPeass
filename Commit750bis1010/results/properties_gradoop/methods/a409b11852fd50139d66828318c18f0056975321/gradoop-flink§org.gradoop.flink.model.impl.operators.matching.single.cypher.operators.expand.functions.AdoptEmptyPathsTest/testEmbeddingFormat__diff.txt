@@ -1,0 +1,12 @@
+@Test
+public void testEmbeddingFormat() throws Exception {
+    GradoopId a = GradoopId.get();
+    GradoopId b = GradoopId.get();
+    Embedding embedding = new Embedding();
+    embedding.add(a);
+    embedding.add(b);
+    List<Embedding> result = new ArrayList<>();
+    new AdoptEmptyPaths(1, -1).flatMap(embedding, new ListCollector<>(result));
+    assertTrue(result.get(0).getIdList(2).isEmpty());
+    assertEquals(b, result.get(0).getId(3));
+}

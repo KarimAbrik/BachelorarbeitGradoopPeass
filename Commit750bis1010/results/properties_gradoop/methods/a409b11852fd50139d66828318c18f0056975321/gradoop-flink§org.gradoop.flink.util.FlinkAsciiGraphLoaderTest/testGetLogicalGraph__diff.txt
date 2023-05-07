@@ -1,0 +1,14 @@
+/**
+ * Test getting the database graph from the loader.
+ * This test will create a loader containing a single graph and check if the database graph
+ * is equal to that graph, i.e. if the graph head label was set correctly.
+ *
+ * @throws Exception if execute fails.
+ */
+@Test
+public void testGetLogicalGraph() throws Exception {
+    FlinkAsciiGraphLoader loader = getLoaderFromString("expected:" + GradoopConstants.DB_GRAPH_LABEL + "[" + "(v1:TestVertex)-[e1:TestEdge]->(v2:TestVertex)" + "]");
+    LogicalGraph databaseGraph = loader.getLogicalGraph();
+    LogicalGraph expectedGraph = loader.getLogicalGraphByVariable("expected");
+    collectAndAssertTrue(expectedGraph.equalsByData(databaseGraph));
+}

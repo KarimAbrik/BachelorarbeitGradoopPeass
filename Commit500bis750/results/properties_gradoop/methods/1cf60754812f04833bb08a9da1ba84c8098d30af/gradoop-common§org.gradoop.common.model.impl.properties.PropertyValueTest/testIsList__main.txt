@@ -1,0 +1,19 @@
+@Test
+public void testIsList() throws Exception {
+    PropertyValue p = PropertyValue.create(LIST_VAL_a);
+    assertFalse(p.isNull());
+    assertFalse(p.isBoolean());
+    assertFalse(p.isShort());
+    assertFalse(p.isInt());
+    assertFalse(p.isLong());
+    assertFalse(p.isFloat());
+    assertFalse(p.isDouble());
+    assertFalse(p.isString());
+    assertFalse(p.isBigDecimal());
+    assertFalse(p.isGradoopId());
+    assertFalse(p.isMap());
+    assertTrue(p.isList());
+    assertFalse(p.isDate());
+    assertFalse(p.isTime());
+    assertFalse(p.isDateTime());
+}

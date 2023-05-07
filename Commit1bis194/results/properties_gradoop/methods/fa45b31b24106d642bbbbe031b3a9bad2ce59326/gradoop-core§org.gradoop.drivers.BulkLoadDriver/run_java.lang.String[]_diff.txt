@@ -1,0 +1,27 @@
+/**                                                                                                    /**                                                                                                 
+* {@inheritDoc}                                                                                        * {@inheritDoc}                                                                                     
+*/                                                                                                     */                                                                                                  
+@Override                                                                                              @Override                                                                                           
+public int run(String[] args) throws Exception {                                                       public int run(String[] args) throws Exception {                                                    
+Configuration conf = getConf();                                                                      | LOG.info("####parseArgs");                                                                          
+CommandLine cmd = ConfUtils.parseArgs(args);                                                         | LoadConfUtils.setOptions();                                                                         
+                                                                                                     | parseArgs(args);                                                                                    
+                                                                                                     | LOG.info("####inputPath: " + inputPath);                                                            
+                                                                                                     | LOG.info("####outputPath: " + outputPath);                                                          
+                                                                                                     | CommandLine cmd = LoadConfUtils.parseArgs(args);                                                    
+if (cmd == null) {                                                                                     if (cmd == null) {                                                                                  
+return 0;                                                                                              return 0;                                                                                           
+}                                                                                                      }                                                                                                   
+boolean verbose = cmd.hasOption(ConfUtils.OPTION_VERBOSE);                                           | boolean sane = performSanityCheck(cmd);                                                             
+boolean dropTables = cmd.hasOption(ConfUtils.OPTION_DROP_TABLES);                                    | if (sane) {                                                                                         
+String inputPath = cmd.getOptionValue(ConfUtils.OPTION_GRAPH_INPUT_PATH);                            | return -1;                                                                                          
+String outputPath = cmd.getOptionValue(ConfUtils.OPTION_GRAPH_OUTPUT_PATH);                          | }                                                                                                   
+String readerClassName = cmd.getOptionValue(ConfUtils.OPTION_VERTEX_LINE_READER);                    | boolean dropTables = cmd.hasOption(LoadConfUtils.OPTION_DROP_TABLES);                               
+                                                                                                     | String readerClassName = cmd.getOptionValue(LoadConfUtils.OPTION_VERTEX_LINE_READER);               
+Class&lt;? extends VertexLineReader&gt; readerClass = getLineReaderClass(readerClassName);             Class&lt;? extends VertexLineReader&gt; readerClass = getLineReaderClass(readerClassName);          
+createGraphStore(conf, dropTables);                                                                    createGraphStore(conf, dropTables);                                                                 
+if (!runBulkLoad(conf, readerClass, inputPath, outputPath, verbose)) {                                 if (!runBulkLoad(conf, readerClass, inputPath, outputPath, verbose)) {                              
+return -1;                                                                                             return -1;                                                                                          
+}                                                                                                      }                                                                                                   
+return 0;                                                                                              return 0;                                                                                           
+}                                                                                                      }                                                                                                   

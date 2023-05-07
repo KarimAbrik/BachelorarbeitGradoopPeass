@@ -1,0 +1,11 @@
+/**
+ * Creates  a new node.
+ *
+ * @param leftChild left input plan node
+ * @param rightChild right right input plan node
+ * @param vertexStrategy morphism setting for vertices
+ * @param edgeStrategy morphism setting for edges
+ */
+public CartesianProductNode(PlanNode leftChild, PlanNode rightChild, MatchStrategy vertexStrategy, MatchStrategy edgeStrategy) {
+    this(leftChild, rightChild, vertexStrategy, edgeStrategy, CrossOperatorBase.CrossHint.OPTIMIZER_CHOOSES);
+}

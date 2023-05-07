@@ -1,0 +1,8 @@
+/**
+ * Sets the property value.
+ *
+ * @param value property value  (must not be {@code null})
+ */
+public void setValue(PropertyValue value) {
+    this.value = checkNotNull(value, "Property value was null");
+}

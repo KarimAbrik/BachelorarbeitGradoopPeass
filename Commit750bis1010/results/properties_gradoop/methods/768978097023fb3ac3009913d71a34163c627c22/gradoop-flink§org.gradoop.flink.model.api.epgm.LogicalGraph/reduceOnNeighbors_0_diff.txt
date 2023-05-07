@@ -1,0 +1,7 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public LogicalGraph reduceOnNeighbors(VertexAggregateFunction function, Neighborhood.EdgeDirection edgeDirection) {
+    return callForGraph(new ReduceVertexNeighborhood(function, edgeDirection));
+}

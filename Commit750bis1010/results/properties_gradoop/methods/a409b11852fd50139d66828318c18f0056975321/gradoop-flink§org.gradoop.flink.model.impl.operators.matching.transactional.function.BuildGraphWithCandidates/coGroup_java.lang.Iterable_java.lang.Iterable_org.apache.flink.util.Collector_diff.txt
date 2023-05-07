@@ -1,0 +1,21 @@
+@Override
+public void coGroup(Iterable<Tuple2<GradoopId, IdWithCandidates<GradoopId>>> vertices, Iterable<Tuple2<GradoopId, TripleWithCandidates<GradoopId>>> edges, Collector<GraphWithCandidates> collector) throws Exception {
+    GraphWithCandidates graph = null;
+    for (Tuple2<GradoopId, IdWithCandidates<GradoopId>> vertexCandidates : vertices) {
+        if (graph == null) {
+            graph = new GraphWithCandidates(vertexCandidates.f0);
+            graph.setGraphId(vertexCandidates.f0);
+        }
+        graph.getVertexCandidates().add(vertexCandidates.f1);
+    }
+    for (Tuple2<GradoopId, TripleWithCandidates<GradoopId>> edgeCandidates : edges) {
+        if (graph == null) {
+            graph = new GraphWithCandidates(edgeCandidates.f0);
+            graph.setGraphId(edgeCandidates.f0);
+        }
+        graph.getEdgeCandidates().add(edgeCandidates.f1);
+    }
+    if (graph != null) {
+        collector.collect(graph);
+    }
+}

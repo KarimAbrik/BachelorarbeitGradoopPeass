@@ -1,0 +1,11 @@
+/**
+ * Removes the given property from the list.
+ *
+ * @param property property
+ * @return the previous value associated with <tt>key</tt>, or
+ *         <tt>null</tt> if there was no mapping for <tt>key</tt>.
+ */
+public PropertyValue remove(Property property) {
+    Objects.requireNonNull(property);
+    return remove(property.getKey());
+}

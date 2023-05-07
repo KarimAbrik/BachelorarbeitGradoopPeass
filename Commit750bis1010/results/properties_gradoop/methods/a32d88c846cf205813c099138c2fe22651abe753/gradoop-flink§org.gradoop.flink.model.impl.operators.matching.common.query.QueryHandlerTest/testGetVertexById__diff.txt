@@ -1,0 +1,5 @@
+@Test
+public void testGetVertexById() throws Exception {
+    Vertex expected = GDL_HANDLER.getVertexCache().get("v1");
+    assertTrue(QUERY_HANDLER.getVertexById(expected.getId()).equals(expected));
+}

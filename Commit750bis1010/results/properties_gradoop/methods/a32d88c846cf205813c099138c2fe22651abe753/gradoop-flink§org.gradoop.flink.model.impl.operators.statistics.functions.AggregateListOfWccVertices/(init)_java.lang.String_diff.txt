@@ -1,0 +1,9 @@
+/**
+ * Creates a new instance of a AggregateListOfWccVertices aggregate function.
+ *
+ * @param wccPropertyKey Property key to retrieve property values
+ */
+public AggregateListOfWccVertices(String wccPropertyKey) {
+    this.wccPropertyKey = wccPropertyKey;
+    this.listOfWccIDsPropertyKey = "vertices_" + this.wccPropertyKey;
+}

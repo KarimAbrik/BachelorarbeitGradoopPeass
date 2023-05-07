@@ -1,0 +1,16 @@
+/**
+ * Returns a list of all property values stored in the embedding
+ * @return List of all property values stored in the embedding
+ */
+public List<PropertyValue> getProperties() {
+    List<PropertyValue> properties = new ArrayList<>();
+    int offset = 0;
+    int entrySize;
+    while (offset < propertyData.length) {
+        entrySize = Ints.fromByteArray(ArrayUtils.subarray(propertyData, offset, offset + Integer.BYTES));
+        offset += Integer.BYTES;
+        properties.add(PropertyValue.fromRawBytes(ArrayUtils.subarray(propertyData, offset, offset + entrySize)));
+        offset += entrySize;
+    }
+    return properties;
+}

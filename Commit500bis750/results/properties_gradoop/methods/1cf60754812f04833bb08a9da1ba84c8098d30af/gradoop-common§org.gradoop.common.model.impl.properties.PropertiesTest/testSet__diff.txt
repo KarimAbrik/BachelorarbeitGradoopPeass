@@ -1,0 +1,9 @@
+@Test
+public void testSet() throws Exception {
+    Properties properties = Properties.create();
+    properties.set(Property.create(KEY_1, BOOL_VAL_1));
+    assertEquals(BOOL_VAL_1, properties.get(KEY_1).getObject());
+    // override
+    properties.set(Property.create(KEY_1, INT_VAL_2));
+    assertEquals(INT_VAL_2, properties.get(KEY_1).getObject());
+}

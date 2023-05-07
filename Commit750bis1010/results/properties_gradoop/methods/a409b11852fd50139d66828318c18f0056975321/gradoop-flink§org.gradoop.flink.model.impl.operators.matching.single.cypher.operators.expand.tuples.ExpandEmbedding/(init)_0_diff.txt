@@ -1,0 +1,9 @@
+/**
+ * Create a new expand intermediate result
+ *
+ * @param base the base part
+ * @param path the path along we expanded
+ */
+public ExpandEmbedding(Embedding base, GradoopId... path) {
+    super(base, ArrayUtils.subarray(path, 0, path.length - 1), path[path.length - 1]);
+}

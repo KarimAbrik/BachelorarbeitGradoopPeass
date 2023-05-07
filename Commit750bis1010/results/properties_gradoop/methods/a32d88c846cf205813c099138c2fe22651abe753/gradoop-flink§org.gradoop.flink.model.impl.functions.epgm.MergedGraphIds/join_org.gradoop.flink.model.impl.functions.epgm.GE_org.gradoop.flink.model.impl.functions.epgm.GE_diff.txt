@@ -1,0 +1,8 @@
+@Override
+public GE join(GE first, GE second) throws Exception {
+    if (first == null) {
+        return second;
+    }
+    first.getGraphIds().addAll(second.getGraphIds());
+    return first;
+}

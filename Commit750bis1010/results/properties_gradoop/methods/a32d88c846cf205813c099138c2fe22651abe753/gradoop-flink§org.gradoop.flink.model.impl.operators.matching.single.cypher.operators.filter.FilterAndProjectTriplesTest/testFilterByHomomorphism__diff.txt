@@ -1,0 +1,11 @@
+@Test
+public void testFilterByHomomorphism() throws Exception {
+    CNF predicates = predicateFromQuery("MATCH (a)-[e]->(b)");
+    EPGMVertex a = vertexFactory.createVertex("Person");
+    EPGMVertex b = vertexFactory.createVertex("Person");
+    EPGMEdge e1 = edgeFactory.createEdge("loves", a.getId(), a.getId());
+    EPGMEdge e2 = edgeFactory.createEdge("loves", a.getId(), b.getId());
+    DataSet<Triple> triples = getExecutionEnvironment().fromElements(new Triple(a, e1, a), new Triple(a, e2, b));
+    List<Embedding> result = new FilterAndProjectTriples(triples, "a", "e", "b", predicates, new HashMap<>(), MatchStrategy.HOMOMORPHISM).evaluate().collect();
+    assertEquals(2, result.size());
+}

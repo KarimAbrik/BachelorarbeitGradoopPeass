@@ -1,0 +1,6 @@
+@Override
+public LogicalGraph executeInGelly(Graph<GradoopId, NullValue, NullValue> graph) throws Exception {
+    DataSet<Tuple3<GradoopId, GradoopId, GradoopId>> triangles = new org.apache.flink.graph.library.TriangleEnumerator<GradoopId, NullValue, NullValue>().run(graph);
+    DataSet<EPGMGraphHead> resultHead = currentGraph.getGraphHead().map(new WritePropertyToGraphHeadMap(PROPERTY_KEY_TRIANGLES, PropertyValue.create(triangles.count())));
+    return currentGraph.getFactory().fromDataSets(resultHead, currentGraph.getVertices(), currentGraph.getEdges());
+}

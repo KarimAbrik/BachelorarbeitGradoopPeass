@@ -1,0 +1,6 @@
+@Override
+public L join(L left, L right) throws Exception {
+    String rightLabel = right == null ? "" : right.getLabel();
+    left.setLabel(left.getLabel() + rightLabel);
+    return left;
+}

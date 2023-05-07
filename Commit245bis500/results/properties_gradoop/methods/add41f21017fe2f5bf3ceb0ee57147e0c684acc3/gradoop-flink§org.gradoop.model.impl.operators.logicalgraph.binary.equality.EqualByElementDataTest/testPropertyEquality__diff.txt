@@ -1,0 +1,19 @@
+@Test                                                                                                  @Test                                                                                               
+public void testPropertyEquality() {                                                                   public void testPropertyEquality() {                                                                
+String asciiGraphs = "ref[({x=1})-[{x=2}]-&gt;({x=3})];" + "dup[({x=1})-[{x=2}]-&gt;({x=3})];" + "eD | String asciiGraphs = "ref[({x=1})-[{x=2}]-&gt;({x=3})];" + "dup[({x=1})-[{x=2}]-&gt;({x=3})];" + "eD
+FlinkAsciiGraphLoader loader = new FlinkAsciiGraphLoader();                                            FlinkAsciiGraphLoader loader = new FlinkAsciiGraphLoader();                                         
+loader.readDatabaseFromString(asciiGraphs);                                                            loader.readDatabaseFromString(asciiGraphs);                                                         
+LogicalGraph&lt;VertexPojo, EdgePojo, GraphHeadPojo&gt; ref = loader.getLogicalGraphByVariable("ref"   LogicalGraph&lt;VertexPojo, EdgePojo, GraphHeadPojo&gt; ref = loader.getLogicalGraphByVariable("ref"
+LogicalGraph&lt;VertexPojo, EdgePojo, GraphHeadPojo&gt; dup = loader.getLogicalGraphByVariable("dup"   LogicalGraph&lt;VertexPojo, EdgePojo, GraphHeadPojo&gt; dup = loader.getLogicalGraphByVariable("dup"
+LogicalGraph&lt;VertexPojo, EdgePojo, GraphHeadPojo&gt; eDir = loader.getLogicalGraphByVariable("eDi   LogicalGraph&lt;VertexPojo, EdgePojo, GraphHeadPojo&gt; eDir = loader.getLogicalGraphByVariable("eDi
+LogicalGraph&lt;VertexPojo, EdgePojo, GraphHeadPojo&gt; vLabel = loader.getLogicalGraphByVariable("v | LogicalGraph&lt;VertexPojo, EdgePojo, GraphHeadPojo&gt; vKey = loader.getLogicalGraphByVariable("vKe
+LogicalGraph&lt;VertexPojo, EdgePojo, GraphHeadPojo&gt; eLabel = loader.getLogicalGraphByVariable("e | LogicalGraph&lt;VertexPojo, EdgePojo, GraphHeadPojo&gt; eKey = loader.getLogicalGraphByVariable("eKe
+LogicalGraph&lt;VertexPojo, EdgePojo, GraphHeadPojo&gt; vValue = loader.getLogicalGraphByVariable("v   LogicalGraph&lt;VertexPojo, EdgePojo, GraphHeadPojo&gt; vValue = loader.getLogicalGraphByVariable("v
+LogicalGraph&lt;VertexPojo, EdgePojo, GraphHeadPojo&gt; eValue = loader.getLogicalGraphByVariable("e   LogicalGraph&lt;VertexPojo, EdgePojo, GraphHeadPojo&gt; eValue = loader.getLogicalGraphByVariable("e
+collectAndAssertEquals(new EqualByElementData().execute(ref, dup));                                    collectAndAssertEquals(new EqualByElementData().execute(ref, dup));                                 
+collectAndAssertNotEquals(new EqualByElementData().execute(ref, eDir));                                collectAndAssertNotEquals(new EqualByElementData().execute(ref, eDir));                             
+collectAndAssertNotEquals(new EqualByElementData().execute(ref, vLabel));                            | collectAndAssertNotEquals(new EqualByElementData().execute(ref, vKey));                             
+collectAndAssertNotEquals(new EqualByElementData().execute(ref, eLabel));                            | collectAndAssertNotEquals(new EqualByElementData().execute(ref, eKey));                             
+collectAndAssertNotEquals(new EqualByElementData().execute(ref, vValue));                              collectAndAssertNotEquals(new EqualByElementData().execute(ref, vValue));                           
+collectAndAssertNotEquals(new EqualByElementData().execute(ref, eValue));                              collectAndAssertNotEquals(new EqualByElementData().execute(ref, eValue));                           
+}                                                                                                      }                                                                                                   

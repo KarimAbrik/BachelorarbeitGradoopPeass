@@ -1,0 +1,12 @@
+/**
+ * New value equi join operator
+ *
+ * @param left left hand side data set
+ * @param right right hand side data set
+ * @param leftJoinProperties join criteria
+ * @param rightJoinProperties join criteria
+ * @param rightColumns size of the right embedding
+ */
+public ValueJoin(DataSet<Embedding> left, DataSet<Embedding> right, List<Integer> leftJoinProperties, List<Integer> rightJoinProperties, int rightColumns) {
+    this(left, right, leftJoinProperties, rightJoinProperties, rightColumns, Collections.emptyList(), Collections.emptyList(), Collections.emptyList(), Collections.emptyList(), JoinOperatorBase.JoinHint.OPTIMIZER_CHOOSES);
+}

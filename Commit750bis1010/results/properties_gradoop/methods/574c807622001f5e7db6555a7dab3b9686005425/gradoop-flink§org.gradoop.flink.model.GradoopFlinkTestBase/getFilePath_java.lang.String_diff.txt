@@ -1,0 +1,9 @@
+/**
+ * Returns the encoded file path to a resource.
+ *
+ * @param  relPath the relative path to the resource
+ * @return encoded file path
+ */
+protected String getFilePath(String relPath) throws UnsupportedEncodingException {
+    return URLDecoder.decode(getClass().getResource(relPath).getFile(), StandardCharsets.UTF_8.name());
+}

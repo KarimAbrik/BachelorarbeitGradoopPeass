@@ -1,0 +1,17 @@
+/**
+ * Creates a Property value list from a collection of property values.
+ *
+ * @param propertyValues property values
+ * @return property value list containing the given properties
+ * @throws IOException on failure
+ */
+public static PropertyValueList fromPropertyValues(Collection<PropertyValue> propertyValues) throws IOException {
+    ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
+    DataOutputStream outputStream = new DataOutputStream(byteStream);
+    DataOutputView outputView = new DataOutputViewStreamWrapper(outputStream);
+    for (PropertyValue propertyValue : propertyValues) {
+        propertyValue.write(outputView);
+    }
+    outputStream.flush();
+    return new PropertyValueList(byteStream.toByteArray());
+}

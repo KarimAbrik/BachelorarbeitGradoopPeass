@@ -1,0 +1,4 @@
+@Override
+public GraphCollection fromTransactions(DataSet<GraphTransaction> transactions) {
+    return new GraphCollection(layoutFactory.fromTransactions(transactions), config);
+}

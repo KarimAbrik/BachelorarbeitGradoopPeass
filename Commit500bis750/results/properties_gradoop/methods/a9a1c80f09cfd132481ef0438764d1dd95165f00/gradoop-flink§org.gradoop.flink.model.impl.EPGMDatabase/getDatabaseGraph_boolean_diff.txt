@@ -1,0 +1,19 @@
+/**
+ * Returns a logical graph containing the complete vertex and edge space of
+ * that EPGM database.
+ *
+ * @param withGraphContainment true, if vertices and edges shall be updated to
+ *                             be contained in the logical graph representing
+ *                             the database
+ *
+ * @return logical graph of vertex and edge space
+ */
+@Deprecated
+public LogicalGraph getDatabaseGraph(boolean withGraphContainment) {
+    if (withGraphContainment) {
+        DataSet<GradoopId> graphId = graphHead.map(new Id<GraphHead>());
+        return config.getLogicalGraphFactory().fromDataSets(graphHead, database.getVertices().map(new AddToGraphBroadcast<Vertex>()).withBroadcastSet(graphId, AddToGraphBroadcast.GRAPH_ID), database.getEdges().map(new AddToGraphBroadcast<Edge>()).withBroadcastSet(graphId, AddToGraphBroadcast.GRAPH_ID));
+    } else {
+        return config.getLogicalGraphFactory().fromDataSets(graphHead, database.getVertices(), database.getEdges());
+    }
+}

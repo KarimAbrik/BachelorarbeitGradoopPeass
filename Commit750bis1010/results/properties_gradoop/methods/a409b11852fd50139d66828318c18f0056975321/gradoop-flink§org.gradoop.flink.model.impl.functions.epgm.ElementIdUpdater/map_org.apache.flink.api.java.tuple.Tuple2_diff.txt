@@ -1,0 +1,5 @@
+@Override
+public EL map(Tuple2<EL, GradoopId> tuple2) {
+    tuple2.f0.setId(tuple2.f1);
+    return tuple2.f0;
+}

@@ -1,0 +1,10 @@
+/**
+ * Base constructor, only setting the mapper functions.
+ *
+ * @param vertexValue Function mapping vertices from Gradoop to Gelly.
+ * @param edgeValue   function mapping edges from Gradoop to Gelly.
+ */
+protected GradoopGellyAlgorithm(VertexToGellyVertex<VV> vertexValue, EdgeToGellyEdge<EV> edgeValue) {
+    this.toGellyVertex = vertexValue;
+    this.toGellyEdge = edgeValue;
+}

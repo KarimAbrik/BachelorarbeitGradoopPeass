@@ -1,0 +1,14 @@
+@Override
+public boolean is(Object value) {
+    if (!(value instanceof Set)) {
+        return false;
+    }
+    for (Object item : (Set) value) {
+        // Set is not a valid property value if it contains any object
+        // that is not a property value itself.
+        if (!(item instanceof PropertyValue)) {
+            return false;
+        }
+    }
+    return true;
+}

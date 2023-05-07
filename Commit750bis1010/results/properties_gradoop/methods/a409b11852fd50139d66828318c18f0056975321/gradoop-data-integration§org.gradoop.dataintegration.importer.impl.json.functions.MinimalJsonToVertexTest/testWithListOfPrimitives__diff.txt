@@ -1,0 +1,12 @@
+/**
+ * Test the function using a JSON object with an list property where the list
+ * contains strings, integers, floats and booleans.
+ *
+ * @throws Exception if the execution fails or the JSON object is invalid.
+ */
+@Test
+public void testWithListOfPrimitives() throws Exception {
+    Vertex vertex = function.map("{\"someList\": [\"test\", true, 1.6, -9]}");
+    expectedValue.setProperty("someList", Arrays.asList(PropertyValue.create("test"), PropertyValue.create("true"), PropertyValue.create("1.6"), PropertyValue.create("-9")));
+    assertVertexEquals(expectedValue, vertex);
+}

@@ -1,0 +1,14 @@
+/**
+ * Returns a bit vector representing the matches for the given entity.
+ *
+ * @param candidateCount  size of the bit vector
+ * @param matches         matches for the given entity
+ * @return bit vector representing matches
+ */
+protected boolean[] getCandidates(int candidateCount, List<Long> matches) {
+    boolean[] candidates = new boolean[candidateCount];
+    for (Long candidate : matches) {
+        candidates[candidate.intValue()] = true;
+    }
+    return candidates;
+}

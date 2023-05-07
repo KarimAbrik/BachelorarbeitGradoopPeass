@@ -1,0 +1,12 @@
+/**
+ * New embedding filter operator
+ * @param input Candidate embeddings
+ * @param predicates Predicates to used for filtering
+ * @param metaData Maps variable names to embedding entries
+ */
+public FilterEmbeddings(DataSet<Embedding> input, CNF predicates, EmbeddingMetaData metaData) {
+    this.input = input;
+    this.predicates = predicates;
+    this.metaData = metaData;
+    this.setName("FilterEmbeddings");
+}

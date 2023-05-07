@@ -1,0 +1,10 @@
+/**
+ * Returns the number of distinct edge property values for given property name<br>
+ * Eg {@code (name) -> 20}
+ *
+ * @param propertyName property name
+ * @return number of distinct property values for label property name pair
+ */
+public long getDistinctEdgeProperties(String propertyName) {
+    return distinctEdgeProperties.getOrDefault(propertyName, 0L);
+}

@@ -1,0 +1,19 @@
+/**
+ * Connects another CNF via OR.
+ *
+ * @param other a predicate in cnf
+ * @return this
+ */
+public CNF or(CNF other) {
+    ArrayList<CNFElement> newPredicates = new ArrayList<>();
+    for (CNFElement p : predicates) {
+        for (CNFElement q : other.getPredicates()) {
+            CNFElement newCNFElement = new CNFElement();
+            newCNFElement.addPredicates(p.getPredicates());
+            newCNFElement.addPredicates(q.getPredicates());
+            newPredicates.add(newCNFElement);
+        }
+    }
+    predicates = newPredicates;
+    return this;
+}

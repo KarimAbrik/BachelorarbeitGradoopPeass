@@ -1,0 +1,18 @@
+/**
+ * Test Count, VertexCount and EdgeCount with a single graph.
+ *
+ * @throws Exception if the execution fails.
+ */
+@Test
+public void testSingleGraphCount() throws Exception {
+    LogicalGraph graph = getLoaderFromString("[()-->()<--()]").getLogicalGraph();
+    VertexCount vertexCount = new VertexCount();
+    EdgeCount edgeCount = new EdgeCount();
+    Count count = new Count();
+    graph = graph.aggregate(vertexCount).aggregate(edgeCount).aggregate(count);
+    GraphHead graphHead = graph.getGraphHead().collect().get(0);
+    assertTrue("vertex count not set", graphHead.hasProperty(vertexCount.getAggregatePropertyKey()));
+    assertTrue("edge count not set", graphHead.hasProperty(edgeCount.getAggregatePropertyKey()));
+    assertTrue("element count not set", graphHead.hasProperty(count.getAggregatePropertyKey()));
+    assertCounts(graphHead, 3L, 2L);
+}

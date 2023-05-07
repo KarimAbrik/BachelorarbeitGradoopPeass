@@ -1,0 +1,68 @@
+{
+  "clazz" : "org.gradoop.model.impl.labelpropagation.LabelPropagationGradoopTest",
+  "methods" : [ {
+    "method" : "testLabelPropagationWithCallByPropertyKey",
+    "datacollectorResults" : [ {
+      "name" : "de.dagere.kopeme.datacollection.TimeDataCollectorNoGC",
+      "chunks" : [ ],
+      "results" : [ {
+        "value" : 4.4248559395E9,
+        "deviation" : 0.423002169411363,
+        "min" : 3.380758284E9,
+        "max" : 9.586610547E9,
+        "warmup" : 0,
+        "iterations" : 10,
+        "repetitions" : 2,
+        "commit" : null,
+        "vmRunConfiguration" : {
+          "showStart" : false,
+          "executeBeforeClassInMeasurement" : false,
+          "redirectToTemp" : false,
+          "redirectToNull" : true,
+          "useKieker" : false
+        },
+        "parameters" : {
+          "JUNIT_PARAMETERIZED" : "Execution mode = CLUSTER"
+        },
+        "javaVersion" : "1.8.0_362",
+        "cpu" : "model name : Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz",
+        "memory" : "MemTotal: 16280544 kB",
+        "date" : 1681003309184,
+        "fulldata" : {
+          "fileName" : null,
+          "values" : [ {
+            "startTime" : 1681003264337,
+            "value" : 9586610547
+          }, {
+            "startTime" : 1681003273924,
+            "value" : 5026025395
+          }, {
+            "startTime" : 1681003278950,
+            "value" : 3945869972
+          }, {
+            "startTime" : 1681003282896,
+            "value" : 4043484940
+          }, {
+            "startTime" : 1681003286939,
+            "value" : 3808944206
+          }, {
+            "startTime" : 1681003290748,
+            "value" : 3506163325
+          }, {
+            "startTime" : 1681003294255,
+            "value" : 3804804166
+          }, {
+            "startTime" : 1681003298059,
+            "value" : 3553961886
+          }, {
+            "startTime" : 1681003301613,
+            "value" : 3380758284
+          }, {
+            "startTime" : 1681003304994,
+            "value" : 3591936674
+          } ]
+        }
+      } ]
+    } ]
+  } ]
+}

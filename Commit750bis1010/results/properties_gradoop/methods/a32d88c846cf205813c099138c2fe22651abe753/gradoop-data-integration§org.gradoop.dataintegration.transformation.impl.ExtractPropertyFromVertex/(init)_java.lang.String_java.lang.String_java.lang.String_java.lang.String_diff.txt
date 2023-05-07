@@ -1,0 +1,12 @@
+/**
+ * Constructs a new {@link UnaryGraphToGraphOperator} which extracts properties from vertices into
+ * newly created vertices.
+ *
+ * @param forVerticesOfLabel   The vertices the extraction is executed for.
+ * @param originalPropertyName The property key at the original vertex.
+ * @param newVertexLabel       The label of the extracted vertex.
+ * @param newPropertyName      The property name of the extracted property at the new vertex.
+ */
+public ExtractPropertyFromVertex(String forVerticesOfLabel, String originalPropertyName, String newVertexLabel, String newPropertyName) {
+    this(forVerticesOfLabel, originalPropertyName, newVertexLabel, newPropertyName, EdgeDirection.NONE, null);
+}

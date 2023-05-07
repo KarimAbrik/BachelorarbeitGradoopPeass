@@ -1,0 +1,68 @@
+{
+  "clazz" : "org.gradoop.model.impl.LogicalGraphAggregateTest",
+  "methods" : [ {
+    "method" : "aggregateEdgeCountTest",
+    "datacollectorResults" : [ {
+      "name" : "de.dagere.kopeme.datacollection.TimeDataCollectorNoGC",
+      "chunks" : [ ],
+      "results" : [ {
+        "value" : 4.4452325379999995E8,
+        "deviation" : 0.6419860456971658,
+        "min" : 1.89401217E8,
+        "max" : 1.153167956E9,
+        "warmup" : 0,
+        "iterations" : 10,
+        "repetitions" : 2,
+        "commit" : null,
+        "vmRunConfiguration" : {
+          "showStart" : false,
+          "executeBeforeClassInMeasurement" : false,
+          "redirectToTemp" : false,
+          "redirectToNull" : true,
+          "useKieker" : false
+        },
+        "parameters" : {
+          "JUNIT_PARAMETERIZED" : "Execution mode = CLUSTER"
+        },
+        "javaVersion" : "1.8.0_362",
+        "cpu" : "model name : Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz",
+        "memory" : "MemTotal: 16280544 kB",
+        "date" : 1680979786719,
+        "fulldata" : {
+          "fileName" : null,
+          "values" : [ {
+            "startTime" : 1680979782134,
+            "value" : 1153167956
+          }, {
+            "startTime" : 1680979783287,
+            "value" : 518439613
+          }, {
+            "startTime" : 1680979783806,
+            "value" : 544104867
+          }, {
+            "startTime" : 1680979784350,
+            "value" : 530338754
+          }, {
+            "startTime" : 1680979784880,
+            "value" : 444878981
+          }, {
+            "startTime" : 1680979785325,
+            "value" : 374232518
+          }, {
+            "startTime" : 1680979785700,
+            "value" : 240985901
+          }, {
+            "startTime" : 1680979785941,
+            "value" : 230602980
+          }, {
+            "startTime" : 1680979786171,
+            "value" : 219079751
+          }, {
+            "startTime" : 1680979786390,
+            "value" : 189401217
+          } ]
+        }
+      } ]
+    } ]
+  } ]
+}

@@ -1,0 +1,14 @@
+/**
+ * Serializes a {@code LocalTime} value.
+ *
+ * @param time {@code LocalTime} value
+ *
+ * @return serialized value
+ */
+public static byte[] serializeTime(LocalTime time) {
+    int hour = time.getHour();
+    int minute = time.getMinute();
+    int second = time.getSecond();
+    int nano = time.getNano();
+    return serialize(new int[] { hour, minute, second, nano });
+}

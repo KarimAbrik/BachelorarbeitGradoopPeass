@@ -1,0 +1,10 @@
+@Test
+public void testAppendSingleIdAndProperties() {
+    GradoopId id = GradoopId.get();
+    Embedding embedding = new Embedding();
+    embedding.add(id, PropertyValue.create("String"), PropertyValue.create(42));
+    assertEquals(1, embedding.size());
+    assertEquals(id, embedding.getId(0));
+    assertEquals("String", embedding.getProperty(0).getString());
+    assertEquals(42, embedding.getProperty(1).getInt());
+}

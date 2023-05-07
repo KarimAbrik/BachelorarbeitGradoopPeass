@@ -1,0 +1,7 @@
+@Test(expected = UnsupportedOperationException.class)
+public void testGetPropertyThrowsUnsupportedOperationExceptionForProjectionEntries() {
+    Embedding embedding = new Embedding();
+    GradoopId id = GradoopId.get();
+    embedding.add(id, PropertyValue.create("a"), PropertyValue.create(42));
+    embedding.getIdList(0);
+}

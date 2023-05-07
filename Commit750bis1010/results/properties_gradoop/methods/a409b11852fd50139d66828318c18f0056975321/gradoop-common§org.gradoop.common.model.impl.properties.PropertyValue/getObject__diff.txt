@@ -1,0 +1,12 @@
+/**
+ * Returns the wrapped value as object.
+ *
+ * @return value or {@code null} if the value is empty
+ */
+public Object getObject() {
+    Object obj = null;
+    if (value != null) {
+        obj = get(value.getClass());
+    }
+    return obj;
+}

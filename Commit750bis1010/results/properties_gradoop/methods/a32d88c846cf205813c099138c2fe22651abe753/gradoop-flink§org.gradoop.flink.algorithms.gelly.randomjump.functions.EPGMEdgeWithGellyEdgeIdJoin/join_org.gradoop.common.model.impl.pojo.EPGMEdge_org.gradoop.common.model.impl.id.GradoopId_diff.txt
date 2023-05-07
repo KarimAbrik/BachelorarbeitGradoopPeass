@@ -1,0 +1,9 @@
+@Override
+public EPGMEdge join(EPGMEdge edge, GradoopId visitedEdgeId) throws Exception {
+    boolean visited = false;
+    if (visitedEdgeId != null) {
+        visited = true;
+    }
+    edge.setProperty(propertyKey, visited);
+    return edge;
+}

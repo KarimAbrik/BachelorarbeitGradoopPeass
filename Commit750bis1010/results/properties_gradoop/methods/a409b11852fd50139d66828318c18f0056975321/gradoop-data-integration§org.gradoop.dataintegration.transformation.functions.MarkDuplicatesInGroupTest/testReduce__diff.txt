@@ -1,0 +1,34 @@
+/**
+ * Test the reduce functionality.
+ *
+ * @throws Exception when the execution in Flink fails.
+ */
+@Test
+public void testReduce() throws Exception {
+    VertexFactory<EPGMVertex> vertexFactory = getConfig().getLogicalGraphFactory().getVertexFactory();
+    List<EPGMVertex> testVertices = IntStream.range(0, 10).mapToObj(i -> vertexFactory.createVertex()).collect(Collectors.toList());
+    for (EPGMVertex testVertex : testVertices) {
+        testVertex.setLabel("Test");
+        testVertex.setProperty("a", PropertyValue.NULL_VALUE);
+    }
+    List<EPGMVertex> reduced = getExecutionEnvironment().fromCollection(testVertices).groupBy(new GetPropertiesAsList<>(Collections.singletonList("a"))).reduceGroup(new MarkDuplicatesInGroup<>()).collect();
+    assertEquals(testVertices.size(), reduced.size());
+    int numberOfMarkedElements = 0;
+    GradoopId duplicateId = null;
+    for (EPGMVertex vertex : reduced) {
+        if (vertex.hasProperty(MarkDuplicatesInGroup.PROPERTY_KEY)) {
+            numberOfMarkedElements++;
+        } else {
+            assertNull("Duplicate ID was already found", duplicateId);
+            duplicateId = vertex.getId();
+        }
+    }
+    assertEquals(testVertices.size() - 1, numberOfMarkedElements);
+    for (EPGMVertex vertex : reduced) {
+        if (vertex.hasProperty(MarkDuplicatesInGroup.PROPERTY_KEY)) {
+            PropertyValue propertyValue = vertex.getPropertyValue(MarkDuplicatesInGroup.PROPERTY_KEY);
+            assertTrue(propertyValue.isGradoopId());
+            assertEquals(duplicateId, propertyValue.getGradoopId());
+        }
+    }
+}

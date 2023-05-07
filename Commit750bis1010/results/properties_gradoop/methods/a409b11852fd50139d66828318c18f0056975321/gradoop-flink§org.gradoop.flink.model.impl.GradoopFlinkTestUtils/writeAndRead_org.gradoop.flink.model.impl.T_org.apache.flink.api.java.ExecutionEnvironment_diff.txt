@@ -1,0 +1,4 @@
+public static <T> T writeAndRead(T element, ExecutionEnvironment env) throws Exception {
+    DataSet<T> dataSet = env.fromElements(element);
+    return dataSet.collect().get(0);
+}

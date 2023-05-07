@@ -1,0 +1,11 @@
+/**
+ * Returns the current value.
+ *
+ * @return the current value
+ * @throws IOException on failure
+ * @throws InterruptedException if interrupted
+ */
+@Override
+public Text getCurrentValue() throws IOException, InterruptedException {
+    return currentValue;
+}

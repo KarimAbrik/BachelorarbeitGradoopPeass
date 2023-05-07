@@ -1,0 +1,5 @@
+@Override
+public void write(DataOutputView dataOutput) throws IOException {
+    dataOutput.writeShort(bytes.length);
+    dataOutput.write(bytes);
+}

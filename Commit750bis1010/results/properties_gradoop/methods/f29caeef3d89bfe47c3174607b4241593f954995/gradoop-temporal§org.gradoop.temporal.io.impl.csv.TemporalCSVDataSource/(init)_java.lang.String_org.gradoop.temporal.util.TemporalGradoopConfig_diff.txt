@@ -1,0 +1,9 @@
+/**
+ * Creates a new temporal CSV data source.
+ *
+ * @param csvPath path to the directory containing the CSV files
+ * @param config  Gradoop Flink configuration
+ */
+public TemporalCSVDataSource(String csvPath, TemporalGradoopConfig config) {
+    super(csvPath, config);
+}

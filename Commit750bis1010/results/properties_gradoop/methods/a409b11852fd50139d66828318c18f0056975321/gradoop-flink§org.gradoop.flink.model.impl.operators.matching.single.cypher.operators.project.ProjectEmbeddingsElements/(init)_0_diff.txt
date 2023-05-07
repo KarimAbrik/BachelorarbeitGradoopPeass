@@ -1,0 +1,15 @@
+/**
+ * New embeddings filter operator
+ *
+ * @param input               input embeddings
+ * @param projectionVariables projection variables
+ * @param inputMetaData       input meta data
+ * @param outputMetaData      output meta data
+ */
+public ProjectEmbeddingsElements(DataSet<Embedding> input, Set<String> projectionVariables, EmbeddingMetaData inputMetaData, EmbeddingMetaData outputMetaData) {
+    this.input = input;
+    this.projectionVariables = projectionVariables;
+    this.inputMetaData = inputMetaData;
+    this.outputMetaData = outputMetaData;
+    this.setName("ProjectEmbeddingsElements");
+}

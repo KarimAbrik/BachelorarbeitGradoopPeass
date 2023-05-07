@@ -1,0 +1,9 @@
+/**
+ * True when running JVM is having sun's Unsafe package available in it and underlying
+ * system having unaligned-access capability.
+ *
+ * @return true, if unaligned
+ */
+static boolean unaligned() {
+    return UNALIGNED;
+}

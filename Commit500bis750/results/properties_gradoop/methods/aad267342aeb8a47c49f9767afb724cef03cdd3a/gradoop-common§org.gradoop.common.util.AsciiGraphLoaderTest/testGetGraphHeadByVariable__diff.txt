@@ -1,0 +1,11 @@
+@Test
+public void testGetGraphHeadByVariable() throws Exception {
+    AsciiGraphLoader<GraphHead, Vertex, Edge> asciiGraphLoader = AsciiGraphLoader.fromString("g[()];h[()]", config);
+    validateCollections(asciiGraphLoader, 2, 2, 0);
+    validateCaches(asciiGraphLoader, 2, 0, 0);
+    GraphHead g = asciiGraphLoader.getGraphHeadByVariable("g");
+    GraphHead h = asciiGraphLoader.getGraphHeadByVariable("h");
+    assertNotNull("graphHead was null", g);
+    assertNotNull("graphHead was null", h);
+    assertNotEquals("graphHeads were equal", g, h);
+}

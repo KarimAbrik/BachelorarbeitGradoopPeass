@@ -1,0 +1,4 @@
+@Override
+public void combine(Iterable<VertexGroupItem> values, Collector<VertexGroupItem> out) throws Exception {
+    reduce(values, out);
+}

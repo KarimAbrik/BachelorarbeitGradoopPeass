@@ -1,0 +1,13 @@
+@Test
+public void testEvaluationWithMissingProperty() {
+    String queryString = "MATCH (a) WHERE a.age > 20";
+    QueryHandler query = new QueryHandler(queryString);
+    CNF predicates = query.getPredicates();
+    PropertyValue[] properties = new PropertyValue[] { PropertyValue.NULL_VALUE };
+    Embedding embedding = new Embedding();
+    embedding.add(GradoopId.get(), properties);
+    EmbeddingMetaData metaData = new EmbeddingMetaData();
+    metaData.setEntryColumn("a", EntryType.VERTEX, 0);
+    metaData.setPropertyColumn("a", "age", 0);
+    assertFalse(predicates.evaluate(embedding, metaData));
+}

@@ -1,0 +1,11 @@
+/**
+ * Parse function to translate string representation of a Set to a set of PropertyValues.
+ *
+ * @param s          the string to parse as set, e.g. "[myString1,myString2]"
+ * @param itemParser the function to parse the set items
+ * @return the set represented by the argument
+ */
+private static Object parseSetProperty(String s, Function<String, Object> itemParser) {
+    s = s.substring(1, s.length() - 1);
+    return Arrays.stream(StringEscaper.split(s, CSVConstants.LIST_DELIMITER)).map(itemParser).map(PropertyValue::create).collect(Collectors.toSet());
+}

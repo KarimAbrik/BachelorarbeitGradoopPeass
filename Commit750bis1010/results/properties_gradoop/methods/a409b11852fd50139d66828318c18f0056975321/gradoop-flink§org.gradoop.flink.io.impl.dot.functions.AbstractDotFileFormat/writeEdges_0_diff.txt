@@ -1,0 +1,17 @@
+/**
+ * Adds edge information to the specified builder
+ *
+ * sourceId->targetId [label="label", property1="value1", ...];
+ *
+ * @param transaction graph transaction
+ * @param builder string builder to append
+ * @param suffix id suffix specific for the current {@link GraphTransaction}
+ */
+private void writeEdges(GraphTransaction transaction, StringBuilder builder, String suffix) {
+    for (EPGMEdge edge : transaction.getEdges()) {
+        builder.append(VERTEX_ID_PREFIX).append(edge.getSourceId()).append(suffix).append("->").append(VERTEX_ID_PREFIX).append(edge.getTargetId()).append(suffix).append(" [");
+        // write dot attributes if present
+        writeLabel(builder, edge);
+        builder.append("];\n");
+    }
+}

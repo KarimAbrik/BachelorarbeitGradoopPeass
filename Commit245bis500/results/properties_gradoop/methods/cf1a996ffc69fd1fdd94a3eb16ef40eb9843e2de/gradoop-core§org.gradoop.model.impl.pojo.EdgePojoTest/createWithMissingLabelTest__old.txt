@@ -1,0 +1,5 @@
+@Test
+public void createWithMissingLabelTest() {
+    EPGMEdge v = new EdgePojoFactory().createEdge(0L, 23L, 42L);
+    assertThat(v.getLabel(), is(GConstants.DEFAULT_EDGE_LABEL));
+}

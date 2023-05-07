@@ -1,0 +1,23 @@
+/**
+ * Put a short value out to the specified byte array position.
+ *
+ * @param bytes the byte array
+ * @param offset position in the array
+ * @param val short to write out
+ * @return incremented offset
+ * @throws IllegalArgumentException if the byte array given doesn't have enough room at the
+ * offset specified.
+ */
+public static int putShort(byte[] bytes, int offset, short val) {
+    if (bytes.length - offset < SIZEOF_SHORT) {
+        throw new IllegalArgumentException("Not enough room to put a short at" + " offset " + offset + " in a " + bytes.length + " byte array");
+    }
+    if (UNSAFE_UNALIGNED) {
+        return putShortUnsafe(bytes, offset, val);
+    } else {
+        bytes[offset + 1] = (byte) val;
+        val >>= 8;
+        bytes[offset] = (byte) val;
+        return offset + SIZEOF_SHORT;
+    }
+}

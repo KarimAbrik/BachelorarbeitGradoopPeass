@@ -1,0 +1,10 @@
+/**
+ * Constructs an {@link PropertyValueStrategyFactory} with type - strategy mappings as defined in
+ * {@code initClassStrategyMap}.
+ * Only one instance of this class is needed.
+ */
+private PropertyValueStrategyFactory() {
+    nullStrategy = new NullStrategy();
+    classStrategyMap = initClassStrategyMap();
+    byteStrategyMap = initByteStrategyMap();
+}

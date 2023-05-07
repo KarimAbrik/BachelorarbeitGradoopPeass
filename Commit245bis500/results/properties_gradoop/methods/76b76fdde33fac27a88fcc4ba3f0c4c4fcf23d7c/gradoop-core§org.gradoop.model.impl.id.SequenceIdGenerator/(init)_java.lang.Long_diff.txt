@@ -1,0 +1,11 @@
+/**
+ * Instantiates a new generator.
+ *
+ * @param offset new identifiers are created based on that offset
+ */
+public SequenceIdGenerator(Long offset) {
+    if (offset == null) {
+        throw new IllegalArgumentException("Offset must not be null");
+    }
+    this.offset = new AtomicLong(offset);
+}

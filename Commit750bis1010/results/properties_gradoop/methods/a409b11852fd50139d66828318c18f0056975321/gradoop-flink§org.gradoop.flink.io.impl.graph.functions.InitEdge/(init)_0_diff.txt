@@ -1,0 +1,13 @@
+/**
+ * Creates a new join function.
+ *
+ * @param epgmEdgeFactory         edge factory
+ * @param lineagePropertyKey  property key to store import identifier
+ *                            (can be {@code null})
+ * @param keyTypeInfo         type info for the import edge identifier
+ */
+public InitEdge(EdgeFactory<EPGMEdge> epgmEdgeFactory, String lineagePropertyKey, TypeInformation<K> keyTypeInfo) {
+    super(lineagePropertyKey, keyTypeInfo);
+    this.edgeFactory = epgmEdgeFactory;
+    this.reuseTuple = new Tuple2<>();
+}

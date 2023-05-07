@@ -1,0 +1,12 @@
+/**
+ * Creates persistent edge data.
+ *
+ * @param edge         encapsulated edge data
+ * @param sourceVertex source vertex data containing id and label
+ * @param targetVertex target vertex data containing id and label
+ */
+public HBaseEdge(EPGMEdge edge, VertexPojo sourceVertex, VertexPojo targetVertex) {
+    super(edge);
+    this.sourceVertex = sourceVertex;
+    this.targetVertex = targetVertex;
+}

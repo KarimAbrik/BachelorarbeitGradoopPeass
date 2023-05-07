@@ -1,0 +1,11 @@
+/**
+ * Constructor for Page Rank with fixed number of iterations and {@link #includeZeroDegrees}
+ * set to {@code false}.
+ *
+ * @param propertyKey Property key to store the page rank in.
+ * @param dampingFactor Damping factor.
+ * @param iterations    Number of iterations.
+ */
+public PageRank(String propertyKey, double dampingFactor, int iterations) {
+    this(propertyKey, dampingFactor, iterations, false);
+}

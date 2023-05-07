@@ -1,0 +1,10 @@
+/**
+ * Converts a byte array to an int value
+ *
+ * @param bytes byte array
+ * @param offset offset into array
+ * @return the int value
+ */
+public static int toInt(byte[] bytes, int offset) {
+    return toInt(bytes, offset, SIZEOF_INT);
+}

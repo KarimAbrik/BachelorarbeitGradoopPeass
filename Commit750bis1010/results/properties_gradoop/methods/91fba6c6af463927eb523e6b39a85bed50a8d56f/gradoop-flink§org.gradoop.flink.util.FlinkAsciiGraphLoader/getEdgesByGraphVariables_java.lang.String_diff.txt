@@ -1,0 +1,9 @@
+/**
+ * Returns all edges that belong to the given graph variables.
+ *
+ * @param variables graph variables used in the GDL script
+ * @return edges
+ */
+public Collection<EPGMEdge> getEdgesByGraphVariables(String... variables) {
+    return loader.getEdgesByGraphVariables(variables);
+}

@@ -1,0 +1,40 @@
+/**
+ * Write every field of the tuple in a csv file.
+ * Separates record via record delimiter and every field in a record
+ * with field delimiters.
+ *
+ * @param t the tuple to write in the output file
+ * @param wrt the writer for the tuple
+ * @throws IOException - Thrown, if the records could not be added to to an I/O problem.
+ */
+public void writeToCSV(Tuple t, Writer wrt) throws IOException {
+    int numFields = t.getArity();
+    for (int i = 0; i < numFields; i++) {
+        Object v = t.getField(i);
+        if (v != null) {
+            if (i != 0) {
+                wrt.write(this.fieldDelimiter);
+            }
+            if (quoteStrings) {
+                if (v instanceof String || v instanceof StringValue) {
+                    wrt.write('"');
+                    wrt.write(v.toString());
+                    wrt.write('"');
+                } else {
+                    wrt.write(v.toString());
+                }
+            } else {
+                wrt.write(v.toString());
+            }
+        } else {
+            if (this.allowNullValues) {
+                if (i != 0) {
+                    wrt.write(this.fieldDelimiter);
+                }
+            } else {
+                throw new RuntimeException("Cannot write tuple with <null> value at position: " + i);
+            }
+        }
+    }
+    wrt.write(this.recordDelimiter);
+}

@@ -1,0 +1,25 @@
+                                                                                                     | /**                                                                                                 
+                                                                                                     | * Returns the duration of an element based on the given {@link TimeDimension}.                      
+                                                                                                     | * If start or end of the interval are `null` or set to a default value, {@code -1} is returned.     
+                                                                                                     | *                                                                                                   
+                                                                                                     | * @param element the given TemporalElement                                                          
+                                                                                                     | * @return a {@link PropertyValue} object holding the duration as long value [ms] or {@value -1} in c
+                                                                                                     | */                                                                                                  
+                                                                                                     | PropertyValue getDuration(TemporalElement element) {                                                
+                                                                                                     | Tuple2&lt;Long, Long&gt; timeInterval;                                                              
+                                                                                                     | switch(dimension) {                                                                                 
+                                                                                                     | case TRANSACTION_TIME:                                                                              
+                                                                                                     | timeInterval = element.getTransactionTime();                                                        
+                                                                                                     | break;                                                                                              
+                                                                                                     | case VALID_TIME:                                                                                    
+                                                                                                     | timeInterval = element.getValidTime();                                                              
+                                                                                                     | break;                                                                                              
+                                                                                                     | default:                                                                                            
+                                                                                                     | throw new IllegalArgumentException("Unknown dimension [" + dimension + "].");                       
+                                                                                                     | }                                                                                                   
+                                                                                                     | if (timeInterval.f0 == null || timeInterval.f1 == null || timeInterval.f0.equals(TemporalElement.DEF
+                                                                                                     | return PropertyValue.create(-1L);                                                                   
+                                                                                                     | } else {                                                                                            
+                                                                                                     | return PropertyValue.create(timeInterval.f1 - timeInterval.f0);                                     
+                                                                                                     | }                                                                                                   
+                                                                                                     | }                                                                                                   

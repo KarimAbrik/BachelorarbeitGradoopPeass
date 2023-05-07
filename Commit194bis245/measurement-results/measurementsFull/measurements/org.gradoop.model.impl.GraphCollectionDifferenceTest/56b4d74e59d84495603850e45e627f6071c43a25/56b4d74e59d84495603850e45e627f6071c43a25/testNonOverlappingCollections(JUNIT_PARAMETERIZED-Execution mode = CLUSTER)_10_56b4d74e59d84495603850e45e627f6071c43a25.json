@@ -1,0 +1,68 @@
+{
+  "clazz" : "org.gradoop.model.impl.GraphCollectionDifferenceTest",
+  "methods" : [ {
+    "method" : "testNonOverlappingCollections",
+    "datacollectorResults" : [ {
+      "name" : "de.dagere.kopeme.datacollection.TimeDataCollectorNoGC",
+      "chunks" : [ ],
+      "results" : [ {
+        "value" : 1.05407785E9,
+        "deviation" : 0.7926546348825807,
+        "min" : 5.61883556E8,
+        "max" : 3.367242917E9,
+        "warmup" : 0,
+        "iterations" : 10,
+        "repetitions" : 2,
+        "commit" : null,
+        "vmRunConfiguration" : {
+          "showStart" : false,
+          "executeBeforeClassInMeasurement" : false,
+          "redirectToTemp" : false,
+          "redirectToNull" : true,
+          "useKieker" : false
+        },
+        "parameters" : {
+          "JUNIT_PARAMETERIZED" : "Execution mode = CLUSTER"
+        },
+        "javaVersion" : "1.8.0_362",
+        "cpu" : "model name : Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz",
+        "memory" : "MemTotal: 16280544 kB",
+        "date" : 1680979084849,
+        "fulldata" : {
+          "fileName" : null,
+          "values" : [ {
+            "startTime" : 1680979074105,
+            "value" : 3367242917
+          }, {
+            "startTime" : 1680979077472,
+            "value" : 1122659668
+          }, {
+            "startTime" : 1680979078595,
+            "value" : 1113074045
+          }, {
+            "startTime" : 1680979079708,
+            "value" : 835383869
+          }, {
+            "startTime" : 1680979080543,
+            "value" : 756926116
+          }, {
+            "startTime" : 1680979081300,
+            "value" : 561883556
+          }, {
+            "startTime" : 1680979081862,
+            "value" : 757020394
+          }, {
+            "startTime" : 1680979082619,
+            "value" : 587862004
+          }, {
+            "startTime" : 1680979083207,
+            "value" : 808446884
+          }, {
+            "startTime" : 1680979084016,
+            "value" : 630279047
+          } ]
+        }
+      } ]
+    } ]
+  } ]
+}

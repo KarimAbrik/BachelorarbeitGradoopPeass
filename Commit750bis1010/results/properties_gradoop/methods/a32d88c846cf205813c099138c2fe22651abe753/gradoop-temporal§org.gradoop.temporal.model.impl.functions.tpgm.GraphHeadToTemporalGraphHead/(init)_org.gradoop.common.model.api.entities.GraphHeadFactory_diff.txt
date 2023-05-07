@@ -1,0 +1,9 @@
+/**
+ * Creates an instance of the TemporalGraphHeadFromNonTemporal map function. The temporal instance
+ * will have default temporal information.
+ *
+ * @param elementFactory factory that is responsible for creating a temporal graph head instance
+ */
+public GraphHeadToTemporalGraphHead(GraphHeadFactory<TemporalGraphHead> elementFactory) {
+    this.reuse = elementFactory.createGraphHead();
+}

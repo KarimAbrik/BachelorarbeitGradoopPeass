@@ -1,0 +1,25 @@
+@Override
+public EL apply(EL current, EL transformed) {
+    // transformed will have the current id and graph ids, but not the label or the properties
+    transformed.setLabel(current.getLabel());
+    transformed.setProperties(current.getProperties());
+    // filters relevant elements
+    if ((label == null) || label.equals(current.getLabel())) {
+        if (current.hasProperty(propertyKey)) {
+            // save transformed value with the same key
+            if (newPropertyKey == null) {
+                if (keepHistory) {
+                    // save the original value with the version number in the property key
+                    transformed.setProperty(propertyKey + PROPERTY_VERSION_SEPARATOR + getNextVersionNumber(current), current.getPropertyValue(propertyKey));
+                }
+                // save the new transformed value
+                transformed.setProperty(propertyKey, transformationFunction.execute(current.getPropertyValue(propertyKey)));
+                // new key is used, so the old property is untouched
+            } else {
+                // store the transformed value with the new key
+                transformed.setProperty(newPropertyKey, transformationFunction.execute(current.getPropertyValue(propertyKey)));
+            }
+        }
+    }
+    return transformed;
+}

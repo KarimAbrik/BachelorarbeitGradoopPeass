@@ -1,0 +1,4 @@
+@Override
+public Embedding map(EPGMVertex vertex) {
+    return EmbeddingFactory.fromVertex(vertex, propertyKeys);
+}

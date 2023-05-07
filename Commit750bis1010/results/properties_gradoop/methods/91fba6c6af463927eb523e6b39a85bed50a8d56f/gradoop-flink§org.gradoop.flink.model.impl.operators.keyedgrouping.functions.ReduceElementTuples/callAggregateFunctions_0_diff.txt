@@ -1,0 +1,24 @@
+/**
+ * Calculate aggregate functions and update tuple fields.
+ *
+ * @param superTuple       The tuple storing the current aggregate values.
+ * @param inputTuple       The tuple storing the increment values.
+ */
+void callAggregateFunctions(T superTuple, T inputTuple) {
+    // Calculate aggregate values.
+    for (int i = 0; i < aggregateFunctions.size(); i++) {
+        final PropertyValue aggregate = superTuple.getField(i + tupleDataOffset);
+        final PropertyValue increment = inputTuple.getField(i + tupleDataOffset);
+        // Delete the increment from the input tuple as it is not needed anymore.
+        inputTuple.setField(PropertyValue.NULL_VALUE, i + tupleDataOffset);
+        // Do not aggregate if the increment is null.
+        if (!increment.equals(PropertyValue.NULL_VALUE)) {
+            if (aggregate.equals(PropertyValue.NULL_VALUE)) {
+                // If the aggregate is null, use the increment as the new initial value.
+                superTuple.setField(increment, i + tupleDataOffset);
+            } else {
+                superTuple.setField(aggregateFunctions.get(i).aggregate(aggregate, increment), i + tupleDataOffset);
+            }
+        }
+    }
+}

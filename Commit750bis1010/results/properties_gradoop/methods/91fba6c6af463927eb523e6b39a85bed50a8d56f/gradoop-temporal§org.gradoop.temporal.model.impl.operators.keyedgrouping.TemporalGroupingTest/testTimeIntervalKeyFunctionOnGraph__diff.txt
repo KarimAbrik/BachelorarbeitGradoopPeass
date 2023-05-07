@@ -1,0 +1,25 @@
+/**
+ * Test grouping using the {@link TimeIntervalKeyFunction} key function.
+ *
+ * @throws Exception when the execution in Flink fails
+ */
+@Test
+public void testTimeIntervalKeyFunctionOnGraph() throws Exception {
+    final long testTimeFrom1 = asMillis("2019.01.01 12:00:00.000");
+    final long testTimeTo1 = asMillis("2019.02.01 12:00:00.000");
+    final long testTimeFrom2 = asMillis("2019.01.02 12:00:00.000");
+    final long testTimeTo2 = asMillis("2019.03.01 12:00:00.000");
+    FlinkAsciiGraphLoader loader = getLoaderFromString("input[" + "(:t {__valFrom:" + testTimeFrom1 + "L, __valTo: " + testTimeTo1 + "L, a: 1L})" + "(:t {__valFrom:" + testTimeFrom1 + "L, __valTo: " + testTimeTo1 + "L, a: 2L})" + "(:t {__valFrom:" + testTimeFrom1 + "L, __valTo: " + testTimeTo2 + "L, a: 3L})" + "(:t {__valFrom:" + testTimeFrom1 + "L, __valTo: " + testTimeTo2 + "L, a: 4L})" + "(:t {__valFrom:" + testTimeFrom2 + "L, __valTo: " + testTimeTo1 + "L, a: 5L})" + "(:t {__valFrom:" + testTimeFrom2 + "L, __valTo: " + testTimeTo1 + "L, a: 6L})" + "(:t {__valFrom:" + testTimeFrom2 + "L, __valTo: " + testTimeTo2 + "L, a: 7L})" + "(:t {__valFrom:" + testTimeFrom2 + "L, __valTo: " + testTimeTo2 + "L, a: 8L})" + "]" + "expected [" + "({__valFrom:" + testTimeFrom1 + "L, __valTo: " + testTimeTo1 + "L, min_a: 1L, max_a: 2L, count: 2L})" + "({__valFrom:" + testTimeFrom1 + "L, __valTo: " + testTimeTo2 + "L, min_a: 3L, max_a: 4L, count: 2L})" + "({__valFrom:" + testTimeFrom2 + "L, __valTo: " + testTimeTo1 + "L, min_a: 5L, max_a: 6L, count: 2L})" + "({__valFrom:" + testTimeFrom2 + "L, __valTo: " + testTimeTo2 + "L, min_a: 7L, max_a: 8L, count: 2L})" + "]");
+    TemporalGraph input = toTemporalGraphWithDefaultExtractors(loader.getLogicalGraphByVariable("input"));
+    List<KeyFunction<TemporalVertex, ?>> vertexGroupingKeys = Collections.singletonList(TemporalGroupingKeys.timeInterval(VALID_TIME));
+    List<AggregateFunction> vertexAggregateFunctions = Arrays.asList(new MaxVertexProperty("a", "max_a"), new MinVertexProperty("a", "min_a"), new VertexCount("count"));
+    TemporalGraph result = input.callForGraph(new KeyedGrouping<>(vertexGroupingKeys, vertexAggregateFunctions, Collections.emptyList(), Collections.emptyList()));
+    TemporalGraph expected = toTemporalGraphWithDefaultExtractors(loader.getLogicalGraphByVariable("expected")).transformVertices((current, transformed) -> {
+        // These properties are not automatically removed when the graph is converted to a temporal graph,
+        // but they are during grouping, since no property grouping keys are given.
+        current.removeProperty("__valFrom");
+        current.removeProperty("__valTo");
+        return current;
+    });
+    collectAndAssertTrue(expected.toLogicalGraph().equalsByElementData(result.toLogicalGraph()));
+}

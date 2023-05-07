@@ -1,0 +1,13 @@
+/**
+ * Returns all edges with the given label or {@code null} if there are no
+ * edges with that label.
+ *
+ * @param label edge label
+ * @return edges or {@code null}
+ */
+public Collection<Edge> getEdgesByLabel(String label) {
+    if (labelToEdgeCache == null) {
+        labelToEdgeCache = initSetCache(getEdges(), Edge::getLabel, Function.identity());
+    }
+    return labelToEdgeCache.get(label);
+}

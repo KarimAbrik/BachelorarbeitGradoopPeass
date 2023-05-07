@@ -1,0 +1,11 @@
+/**
+ * Creates a new FlinkAsciiGraphLoader instance.
+ *
+ * @param config Gradoop Flink configuration
+ */
+public FlinkAsciiGraphLoader(GradoopFlinkConfig config) {
+    if (config == null) {
+        throw new IllegalArgumentException("Config must not be null.");
+    }
+    this.config = config;
+}

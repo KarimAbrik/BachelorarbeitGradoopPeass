@@ -1,0 +1,28 @@
+/**
+ * Returns the wrapped Map as {@code Map<PropertyValue, PropertyValue>}.
+ *
+ * @return {@code Map<PropertyValue, PropertyValue>} value
+ */
+public Map<PropertyValue, PropertyValue> getMap() {
+    PropertyValue key;
+    PropertyValue value;
+    Map<PropertyValue, PropertyValue> map = new HashMap<>();
+    ByteArrayInputStream byteStream = new ByteArrayInputStream(rawBytes);
+    DataInputStream inputStream = new DataInputStream(byteStream);
+    DataInputView inputView = new DataInputViewStreamWrapper(inputStream);
+    try {
+        if (inputStream.skipBytes(OFFSET) != OFFSET) {
+            throw new RuntimeException("Malformed entry in PropertyValue List");
+        }
+        while (inputStream.available() > 0) {
+            key = new PropertyValue();
+            key.read(inputView);
+            value = new PropertyValue();
+            value.read(inputView);
+            map.put(key, value);
+        }
+    } catch (IOException e) {
+        throw new RuntimeException("Error reading PropertyValue");
+    }
+    return map;
+}

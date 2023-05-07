@@ -1,0 +1,15 @@
+@Test
+public void testDistinctVertexPropertyValuesByPropertyName() throws Exception {
+    LogicalGraph db = getSocialNetworkLoader().getLogicalGraph();
+    List<WithCount<String>> result = new DistinctVertexProperties().execute(db).collect();
+    Map<String, Long> cache = new HashMap<>(5);
+    result.forEach(e -> cache.put(e.getObject(), e.getCount()));
+    assertThat(result.size(), is(7));
+    assertThat(cache.get("name"), is(9L));
+    assertThat(cache.get("gender"), is(2L));
+    assertThat(cache.get("city"), is(3L));
+    assertThat(cache.get("age"), is(4L));
+    assertThat(cache.get("speaks"), is(1L));
+    assertThat(cache.get("locIP"), is(1L));
+    assertThat(cache.get("title"), is(2L));
+}

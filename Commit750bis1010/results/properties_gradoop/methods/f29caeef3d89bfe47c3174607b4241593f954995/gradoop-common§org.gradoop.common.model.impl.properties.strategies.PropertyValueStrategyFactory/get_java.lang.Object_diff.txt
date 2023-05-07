@@ -1,0 +1,18 @@
+/**
+ * Get strategy by object.
+ *
+ * @param value some object.
+ * @return strategy that handles operations on the provided object type. If value is {@code null},
+ * {@link NullStrategy} is returned.
+ * @throws UnsupportedTypeException when there is no matching strategy for a given object.
+ */
+public static PropertyValueStrategy get(Object value) throws UnsupportedTypeException {
+    if (value != null) {
+        PropertyValueStrategy strategy = get(value.getClass());
+        if (strategy == null) {
+            throw new UnsupportedTypeException("No strategy for class " + value.getClass());
+        }
+        return get(value.getClass());
+    }
+    return INSTANCE.nullStrategy;
+}

@@ -1,0 +1,14 @@
+/**
+ * Executes a property transformation using a new property key on edges and checks if the
+ * result is correct.
+ *
+ * @throws Exception If the execution fails.
+ */
+@Test
+public void testEdgeTransformationNewPropKey() throws Exception {
+    FlinkAsciiGraphLoader loader = getLoaderFromString(TEST_GRAPH);
+    LogicalGraph original = loader.getLogicalGraphByVariable("g0");
+    LogicalGraph expected = loader.getLogicalGraphByVariable("g24");
+    LogicalGraph result = original.callForGraph(new PropertyTransformation<>("a", null, null, DIVISION, null, "dividedA", true));
+    collectAndAssertTrue(result.equalsByData(expected));
+}

@@ -1,0 +1,32 @@
+@Test
+public void testBigDecimalConversion() {
+    PropertyValue property;
+    BigDecimal decimalValue;
+    // SHORT
+    property = create(SHORT_VAL_e);
+    decimalValue = BigDecimal.valueOf(SHORT_VAL_e);
+    assertEquals(decimalValue, property.getBigDecimal());
+    // INT
+    property = create(INT_VAL_2);
+    decimalValue = BigDecimal.valueOf(INT_VAL_2);
+    assertEquals(decimalValue, property.getBigDecimal());
+    // LONG
+    property = create(LONG_VAL_3);
+    decimalValue = BigDecimal.valueOf(LONG_VAL_3);
+    assertEquals(decimalValue, property.getBigDecimal());
+    // FLOAT
+    property = create(FLOAT_VAL_4);
+    decimalValue = BigDecimal.valueOf(FLOAT_VAL_4);
+    assertEquals(decimalValue, property.getBigDecimal());
+    // DOUBLE
+    property = create(DOUBLE_VAL_5);
+    decimalValue = BigDecimal.valueOf(DOUBLE_VAL_5);
+    assertEquals(decimalValue, property.getBigDecimal());
+    // STRING
+    property = create("-3.5");
+    decimalValue = new BigDecimal("-3.5");
+    assertEquals(decimalValue, property.getBigDecimal());
+    exception.expect(NumberFormatException.class);
+    property = create("No Number");
+    property.getBigDecimal();
+}

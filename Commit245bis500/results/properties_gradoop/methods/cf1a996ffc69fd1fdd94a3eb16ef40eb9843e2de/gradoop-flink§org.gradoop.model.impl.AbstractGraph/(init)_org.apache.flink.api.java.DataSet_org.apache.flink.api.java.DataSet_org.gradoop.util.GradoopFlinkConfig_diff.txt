@@ -1,0 +1,12 @@
+/**
+ * Creates a new graph instance.
+ *
+ * @param vertices  vertex data set
+ * @param edges     edge data set
+ * @param config    Gradoop Flink configuration
+ */
+protected AbstractGraph(DataSet<VD> vertices, DataSet<ED> edges, GradoopFlinkConfig<VD, ED, GD> config) {
+    this.vertices = vertices;
+    this.edges = edges;
+    this.config = config;
+}

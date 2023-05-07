@@ -1,0 +1,20 @@
+/**
+ * Set up this test.
+ */
+@Before
+public void setUp() {
+    // We use a TreeMap here fix the label order.
+    Map<String, List<KeyFunctionWithDefaultValue<EPGMVertex, ?>>> labelToKeys = new TreeMap<>();
+    labelToKeys.put(Grouping.DEFAULT_VERTEX_LABEL_GROUP, Arrays.asList(property("forDefault"), label()));
+    labelToKeys.put("a", Arrays.asList(property("forA"), property("forA2")));
+    labelToKeys.put("b", Collections.emptyList());
+    labelToKeys.put("c", Collections.singletonList(property("forC")));
+    Map<String, String> naming = new HashMap<>();
+    naming.put("a", "newA");
+    testFunction = new LabelSpecificKeyFunction<>(labelToKeys, naming);
+    testVertex = getConfig().getLogicalGraphFactory().getVertexFactory().createVertex();
+    testVertex.setProperty("forA", PropertyValue.create("valueForA"));
+    testVertex.setProperty("forA2", PropertyValue.create("valueForA2"));
+    testVertex.setProperty("forB", PropertyValue.create("valueForB"));
+    testVertex.setProperty("forC", PropertyValue.create("valueForC"));
+}

@@ -1,0 +1,7 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public GD readGraphHead(final Result res) throws IOException {
+    return graphHeadFactory.createGraphHead(readId(res), readLabel(res), readProperties(res));
+}

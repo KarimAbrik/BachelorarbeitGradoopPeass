@@ -1,0 +1,12 @@
+/**
+ * Creates a default Configuration using POJO handlers for vertices, edges
+ * and graph heads and default table names.
+ *
+ * @return Default Gradoop HBase configuration.
+ */
+public static GradoopHBaseConfig<VertexPojo, EdgePojo, GraphHeadPojo> getDefaultConfig() {
+    VertexHandler<VertexPojo, EdgePojo> vertexHandler = new HBaseVertexHandler<>(new VertexPojoFactory());
+    EdgeHandler<EdgePojo, VertexPojo> edgeHandler = new HBaseEdgeHandler<>(new EdgePojoFactory());
+    GraphHeadHandler<GraphHeadPojo> graphHeadHandler = new HBaseGraphHeadHandler<>(new GraphHeadPojoFactory());
+    return new GradoopHBaseConfig<>(vertexHandler, edgeHandler, graphHeadHandler, GConstants.DEFAULT_TABLE_VERTICES, GConstants.DEFAULT_TABLE_EDGES, GConstants.DEFAULT_TABLE_GRAPHS);
+}

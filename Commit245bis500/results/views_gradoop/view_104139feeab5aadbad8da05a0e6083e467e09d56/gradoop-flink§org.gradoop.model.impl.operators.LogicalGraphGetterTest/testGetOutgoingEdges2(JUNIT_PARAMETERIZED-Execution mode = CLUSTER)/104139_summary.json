@@ -1,0 +1,30 @@
+{
+  "overallScore" : 0,
+  "selected" : false,
+  "testcase" : {
+    "clazz" : "org.gradoop.model.impl.operators.LogicalGraphGetterTest",
+    "method" : "testGetOutgoingEdges2",
+    "module" : "gradoop-flink",
+    "params" : "JUNIT_PARAMETERIZED-Execution mode = CLUSTER"
+  },
+  "callCounts" : {
+    "gradoop-core§org.gradoop.model.impl.pojo.EdgePojo#toString" : 48,
+    "gradoop-core§org.gradoop.model.impl.pojo.ElementPojo#<init>" : 72,
+    "gradoop-core§org.gradoop.model.impl.pojo.ElementPojo#getId" : 1,
+    "gradoop-flink§org.gradoop.model.impl.AbstractGraph#getOutgoingEdges(java.lang.Long)" : 1,
+    "gradoop-core§org.gradoop.model.impl.pojo.EdgePojo#<init>" : 72,
+    "gradoop-flink§org.gradoop.model.impl.operators.LogicalGraphGetterTest#testGetOutgoingEdges2" : 1,
+    "gradoop-flink§org.gradoop.model.FlinkTestBase#getGraphStore" : 1,
+    "gradoop-flink§org.gradoop.model.impl.EPGMDatabase#getDatabaseGraph" : 1,
+    "gradoop-flink§org.gradoop.model.impl.LogicalGraph#<init>(org.apache.flink.api.java.DataSet,org.apache.flink.api.java.DataSet,org.gradoop.model.impl.GD,org.gradoop.util.GradoopFlinkConfig)" : 1,
+    "gradoop-flink§org.gradoop.model.impl.LogicalGraph#fromDataSets(org.apache.flink.api.java.DataSet,org.apache.flink.api.java.DataSet,org.gradoop.model.impl.GD,org.gradoop.util.GradoopFlinkConfig)" : 1,
+    "gradoop-flink§org.gradoop.model.impl.AbstractGraph#getEdges" : 1,
+    "gradoop-core§org.gradoop.model.impl.pojo.GraphElementPojo#toString" : 48,
+    "gradoop-core§org.gradoop.model.impl.pojo.ElementPojo#toString" : 48,
+    "gradoop-core§org.gradoop.model.impl.pojo.GraphElementPojo#<init>" : 72,
+    "gradoop-flink§org.gradoop.model.impl.AbstractGraph#getVertices" : 1,
+    "gradoop-flink§org.gradoop.model.impl.AbstractGraph#<init>(org.apache.flink.api.java.DataSet,org.apache.flink.api.java.DataSet,org.gradoop.util.GradoopFlinkConfig)" : 1,
+    "gradoop-core§org.gradoop.model.impl.pojo.EdgePojo#getSourceVertexId" : 24
+  },
+  "selectedChanges" : [ ]
+}

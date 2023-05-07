@@ -1,0 +1,41 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public LogicalGraph execute(LogicalGraph graph) {
+    DataSet<Vertex> vertices;
+    switch(getDirection()) {
+        case IN:
+            // takes edges and gets the corresponding vertices and applies the aggregate function for
+            // vertices of incoming edges
+            vertices = graph.getEdges().// tuple of source id and target id
+            map(new VertexIdsFromEdge()).join(graph.getVertices()).where(1).equalTo(new Id<>()).// replace the second id with the vertex
+            with(new VertexToFieldOne<GradoopId, GradoopId>()).join(graph.getVertices()).// replace the first id with the vertex
+            where(0).equalTo(new Id<>()).with(new VertexToFieldZero<GradoopId, Vertex>()).// group by the target vertex
+            groupBy(new IdInTuple<Tuple2<Vertex, Vertex>>(1)).// aggregate values
+            reduceGroup(new NeighborVertexReduceFunction((VertexAggregateFunction) getFunction()));
+            break;
+        case OUT:
+            // takes edges and gets the corresponding vertices and applies the aggregate function for
+            // vertices of outgoing edges
+            vertices = graph.getEdges().// tuple of target id and source id
+            map(new VertexIdsFromEdge(true)).join(graph.getVertices()).where(1).equalTo(new Id<>()).// replace the second id with the vertex
+            with(new VertexToFieldOne<GradoopId, GradoopId>()).join(graph.getVertices()).// replace the first id with the vertex
+            where(0).equalTo(new Id<>()).with(new VertexToFieldZero<GradoopId, Vertex>()).// group by the target vertex
+            groupBy(new IdInTuple<Tuple2<Vertex, Vertex>>(1)).// aggregate values
+            reduceGroup(new NeighborVertexReduceFunction((VertexAggregateFunction) getFunction()));
+            break;
+        case BOTH:
+            // takes edges and gets the corresponding vertices and applies the aggregate function for
+            // vertices of incoming and outgoing edges
+            vertices = graph.getEdges().// maps source-target and target-source ids from the edge
+            flatMap(new ShuffledVertexIdsFromEdge()).join(graph.getVertices()).where(1).equalTo(new Id<>()).// replace the second id with the vertex
+            with(new VertexToFieldOne<GradoopId, GradoopId>()).join(graph.getVertices()).where(0).equalTo(new Id<>()).// replace the first id with the vertex
+            with(new VertexToFieldZero<GradoopId, Vertex>()).groupBy(new IdInTuple<Tuple2<Vertex, Vertex>>(1)).// aggregate values
+            reduceGroup(new NeighborVertexReduceFunction((VertexAggregateFunction) getFunction()));
+            break;
+        default:
+            vertices = null;
+    }
+    return graph.getConfig().getLogicalGraphFactory().fromDataSets(graph.getGraphHead(), vertices, graph.getEdges());
+}

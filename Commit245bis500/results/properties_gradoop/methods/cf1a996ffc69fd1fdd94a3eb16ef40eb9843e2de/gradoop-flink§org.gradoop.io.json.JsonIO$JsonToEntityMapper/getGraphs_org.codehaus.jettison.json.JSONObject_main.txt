@@ -1,0 +1,16 @@
+/**
+ * Reads a set of graph identifiers from the json object.
+ *
+ * @param object json object
+ * @return graph identifiers
+ * @throws JSONException
+ */
+protected GradoopIds getGraphs(JSONObject object) throws JSONException {
+    GradoopIds result;
+    if (!object.getJSONObject(META).has(GRAPHS)) {
+        result = new GradoopIds();
+    } else {
+        result = getArrayValues(object.getJSONObject(META).getJSONArray(GRAPHS));
+    }
+    return result;
+}

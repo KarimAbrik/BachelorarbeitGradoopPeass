@@ -1,0 +1,9 @@
+@Override
+public boolean filter(T value) throws Exception {
+    for (FilterFunction<? super T> componentFilter : components) {
+        if (componentFilter.filter(value)) {
+            return true;
+        }
+    }
+    return false;
+}

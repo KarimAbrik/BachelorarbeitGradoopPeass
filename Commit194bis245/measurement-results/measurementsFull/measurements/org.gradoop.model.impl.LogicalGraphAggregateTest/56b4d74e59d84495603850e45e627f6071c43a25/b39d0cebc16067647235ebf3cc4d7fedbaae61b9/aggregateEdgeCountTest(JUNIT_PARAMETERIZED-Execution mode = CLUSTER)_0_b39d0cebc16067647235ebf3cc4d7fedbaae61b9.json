@@ -1,0 +1,68 @@
+{
+  "clazz" : "org.gradoop.model.impl.LogicalGraphAggregateTest",
+  "methods" : [ {
+    "method" : "aggregateEdgeCountTest",
+    "datacollectorResults" : [ {
+      "name" : "de.dagere.kopeme.datacollection.TimeDataCollectorNoGC",
+      "chunks" : [ ],
+      "results" : [ {
+        "value" : 4.2045303959999996E8,
+        "deviation" : 0.7628272195628208,
+        "min" : 1.16390069E8,
+        "max" : 1.231328302E9,
+        "warmup" : 0,
+        "iterations" : 10,
+        "repetitions" : 2,
+        "commit" : null,
+        "vmRunConfiguration" : {
+          "showStart" : false,
+          "executeBeforeClassInMeasurement" : false,
+          "redirectToTemp" : false,
+          "redirectToNull" : true,
+          "useKieker" : false
+        },
+        "parameters" : {
+          "JUNIT_PARAMETERIZED" : "Execution mode = CLUSTER"
+        },
+        "javaVersion" : "1.8.0_362",
+        "cpu" : "model name : Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz",
+        "memory" : "MemTotal: 16280544 kB",
+        "date" : 1680979707937,
+        "fulldata" : {
+          "fileName" : null,
+          "values" : [ {
+            "startTime" : 1680979703528,
+            "value" : 1231328302
+          }, {
+            "startTime" : 1680979704759,
+            "value" : 512310564
+          }, {
+            "startTime" : 1680979705272,
+            "value" : 389574414
+          }, {
+            "startTime" : 1680979705661,
+            "value" : 564854625
+          }, {
+            "startTime" : 1680979706226,
+            "value" : 419828612
+          }, {
+            "startTime" : 1680979706646,
+            "value" : 352175789
+          }, {
+            "startTime" : 1680979706998,
+            "value" : 250469344
+          }, {
+            "startTime" : 1680979707249,
+            "value" : 188509844
+          }, {
+            "startTime" : 1680979707437,
+            "value" : 179088833
+          }, {
+            "startTime" : 1680979707616,
+            "value" : 116390069
+          } ]
+        }
+      } ]
+    } ]
+  } ]
+}

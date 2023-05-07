@@ -1,0 +1,14 @@
+@Test
+public void testWriteEdgeCountByTargetVertexAndEdgeLabel() throws Exception {
+    String tmpPath = temporaryFolder.getRoot().getPath();
+    LogicalGraph input = getSocialNetworkLoader().getLogicalGraph(true);
+    DataSink statisticDataSink = new GraphStatisticsDataSink(tmpPath);
+    statisticDataSink.write(input, true);
+    getExecutionEnvironment().execute();
+    GraphStatistics statistics = GraphStatisticsLocalFSReader.read(tmpPath);
+    assertThat(statistics.getEdgeCountByTarget("Tag", "hasTag"), is(4L));
+    assertThat(statistics.getEdgeCountByTarget("Tag", "hasInterest"), is(4L));
+    assertThat(statistics.getEdgeCountByTarget("Person", "knows"), is(10L));
+    assertThat(statistics.getEdgeCountByTarget("Person", "hasMember"), is(4L));
+    assertThat(statistics.getEdgeCountByTarget("Person", "hasModerator"), is(2L));
+}

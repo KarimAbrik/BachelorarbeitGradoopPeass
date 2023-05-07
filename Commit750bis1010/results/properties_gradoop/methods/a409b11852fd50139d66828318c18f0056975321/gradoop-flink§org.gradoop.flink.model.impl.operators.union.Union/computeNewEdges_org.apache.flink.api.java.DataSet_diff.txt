@@ -1,0 +1,4 @@
+@Override
+protected DataSet<E> computeNewEdges(DataSet<V> newVertices) {
+    return firstCollection.getEdges().union(secondCollection.getEdges()).distinct(new Id<>());
+}

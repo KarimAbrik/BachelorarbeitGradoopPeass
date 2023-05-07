@@ -1,0 +1,20 @@
+@Override
+public Tuple3<String, String, Set<String>> map(E e) throws Exception {
+    if (e instanceof Edge) {
+        reuseTuple.f0 = MetaDataSource.EDGE_TYPE;
+    } else if (e instanceof Vertex) {
+        reuseTuple.f0 = MetaDataSource.VERTEX_TYPE;
+    } else if (e instanceof GraphHead) {
+        reuseTuple.f0 = MetaDataSource.GRAPH_TYPE;
+    } else {
+        throw new Exception("Unsupported element class: " + e.getClass().getName());
+    }
+    reuseTuple.f1 = StringEscaper.escape(e.getLabel(), CSVConstants.ESCAPED_CHARACTERS);
+    reuseTuple.f2.clear();
+    if (e.getProperties() != null) {
+        for (Property property : e.getProperties()) {
+            reuseTuple.f2.add(CSVMetaDataParser.getPropertyMetaData(property));
+        }
+    }
+    return reuseTuple;
+}

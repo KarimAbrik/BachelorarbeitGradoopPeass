@@ -1,0 +1,30 @@
+@Override
+public void reduce(Iterable<VertexGroupItem> vertexGroupItems, Collector<Tuple2<VertexGroupItem, IdWithIdSet>> out) throws Exception {
+    GradoopId superVertexId = null;
+    String groupLabel = null;
+    PropertyValueList groupPropertyValues = null;
+    LabelGroup vertexLabelGroup = null;
+    boolean isFirst = true;
+    Set<GradoopId> superVertexIds = new HashSet<>();
+    for (VertexGroupItem groupItem : vertexGroupItems) {
+        if (isFirst) {
+            superVertexId = GradoopId.get();
+            groupLabel = groupItem.getGroupLabel();
+            groupPropertyValues = groupItem.getGroupingValues();
+            vertexLabelGroup = groupItem.getLabelGroup();
+            isFirst = false;
+        }
+        // store the super vertex id created in the previous combiner
+        superVertexIds.add(groupItem.getSuperVertexId());
+        vertexLabelGroup.aggregate(groupItem.getAggregateValues());
+    }
+    reuseInnerTuple.setId(superVertexId);
+    reuseInnerTuple.setIdSet(GradoopIdSet.fromExisting(superVertexIds));
+    reuseOuterTuple.f0 = createSuperVertexTuple(superVertexId, groupLabel, groupPropertyValues, vertexLabelGroup.getAggregateValueList());
+    reuseOuterTuple.f0.setSuperVertexId(superVertexId);
+    reuseOuterTuple.f0.setLabelGroup(vertexLabelGroup);
+    reuseOuterTuple.f1 = reuseInnerTuple;
+    // collect single item representing the whole group
+    reuseOuterTuple.f0.getLabelGroup().resetAggregateValues();
+    out.collect(reuseOuterTuple);
+}

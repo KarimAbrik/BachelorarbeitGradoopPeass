@@ -1,0 +1,7 @@
+@Test
+public void testTraverseLoop() {
+    RootedTraverser traverser = new DFSTraverser();
+    traverser.setQueryHandler(new QueryHandler("(v0)-->(v0)"));
+    TraversalCode result = traverser.traverse(0L);
+    assertTrue(Iterables.elementsEqual(result.getSteps(), Lists.newArrayList(new Step(0L, 0L, 0L, true))));
+}

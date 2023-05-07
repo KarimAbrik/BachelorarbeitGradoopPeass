@@ -1,0 +1,12 @@
+@Test
+public void testCollectionEdgeInducedSubgraph() throws Exception {
+    FlinkAsciiGraphLoader loader = getSocialNetworkLoader();
+    loader.appendToDatabaseFromString("expected0:Community {interest: \"Databases\", vertexCount: 3} [" + "(eve)-[ekb]->(bob)" + "]");
+    loader.appendToDatabaseFromString("expected1:Community {interest: \"Hadoop\", vertexCount: 3} [" + "(frank)-[fkc]->(carol)" + "(frank)-[fkd]->(dave)" + "]");
+    loader.appendToDatabaseFromString("expected2:Community {interest: \"Graphs\", vertexCount: 4} []");
+    GraphCollection expected = loader.getGraphCollectionByVariables("expected0", "expected1", "expected2");
+    GraphCollection input = loader.getGraphCollectionByVariables("g0", "g1", "g2");
+    GraphCollection result = input.apply(new ApplySubgraph<>(null, e -> e.getPropertyValue("since").getInt() == 2015, Subgraph.Strategy.EDGE_INDUCED));
+    collectAndAssertTrue(result.equalsByGraphElementIds(expected));
+    collectAndAssertTrue(result.equalsByGraphData(expected));
+}

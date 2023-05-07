@@ -1,0 +1,10 @@
+/**
+ * Creates a new data source. The constructor creates a default HDFS configuration.
+ *
+ * @param csvPath root path of csv files
+ * @param config gradoop configuration
+ * @throws IOException
+ */
+public IndexedCSVDataSource(String csvPath, GradoopFlinkConfig config) throws IOException {
+    this(csvPath, config, new Configuration());
+}

@@ -1,0 +1,7 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public boolean hasProperty(String key) {
+    return this.properties != null && this.properties.containsKey(key);
+}

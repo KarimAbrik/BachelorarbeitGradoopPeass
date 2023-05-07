@@ -1,0 +1,8 @@
+/**
+ * Set this test up, creating the function to test.
+ */
+@Before
+public void setUp() {
+    vertexFactory = getConfig().getLogicalGraphFactory().getVertexFactory();
+    toTest = new CreateCartesianNeighborhoodEdges<>(getConfig().getLogicalGraphFactory().getEdgeFactory(), edgeLabel);
+}

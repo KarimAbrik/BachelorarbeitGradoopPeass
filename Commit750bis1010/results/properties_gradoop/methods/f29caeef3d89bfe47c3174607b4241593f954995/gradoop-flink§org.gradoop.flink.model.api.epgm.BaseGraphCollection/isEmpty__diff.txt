@@ -1,0 +1,7 @@
+//----------------------------------------------------------------------------
+// Utility methods
+//----------------------------------------------------------------------------
+@Override
+default DataSet<Boolean> isEmpty() {
+    return getGraphHeads().map(new True<>()).distinct().union(getConfig().getExecutionEnvironment().fromElements(false)).reduce(new Or()).map(new Not());
+}

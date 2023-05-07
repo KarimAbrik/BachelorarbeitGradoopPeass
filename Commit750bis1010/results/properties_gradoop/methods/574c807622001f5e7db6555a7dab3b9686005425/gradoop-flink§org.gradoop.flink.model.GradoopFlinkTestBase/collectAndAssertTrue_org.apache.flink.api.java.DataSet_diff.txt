@@ -1,0 +1,6 @@
+//----------------------------------------------------------------------------
+// Test helper
+//----------------------------------------------------------------------------
+protected void collectAndAssertTrue(DataSet<Boolean> result) throws Exception {
+    assertTrue("expected true", result.collect().get(0));
+}

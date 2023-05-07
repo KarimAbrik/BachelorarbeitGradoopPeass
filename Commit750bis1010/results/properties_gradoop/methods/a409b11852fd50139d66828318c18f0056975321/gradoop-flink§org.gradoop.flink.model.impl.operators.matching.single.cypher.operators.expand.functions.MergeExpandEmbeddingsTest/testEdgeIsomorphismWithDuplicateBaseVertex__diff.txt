@@ -1,0 +1,5 @@
+@Test
+public void testEdgeIsomorphismWithDuplicateBaseVertex() throws Exception {
+    testJoin(buildEdge(a, e2, m), new ArrayList<>(), Lists.newArrayList(0, 1), -1, true);
+    testJoin(buildEdge(a, e2, n), new ArrayList<>(), Lists.newArrayList(0, 1), -1, true);
+}

@@ -1,0 +1,12 @@
+/**
+ * Test the {@link TemporalGraphCollection#getVerticesByLabel(String)} method.
+ */
+@Test
+public void testGetVerticesByLabel() throws Exception {
+    List<TemporalVertex> temporalVertices = Lists.newArrayList();
+    testTemporalCollection.getVerticesByLabel("Person").output(new LocalCollectionOutputFormat<>(temporalVertices));
+    getExecutionEnvironment().execute();
+    assertEquals(5, temporalVertices.size());
+    temporalVertices.forEach(v -> assertEquals("Person", v.getLabel()));
+    temporalVertices.forEach(this::checkDefaultTemporalElement);
+}

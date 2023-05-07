@@ -1,0 +1,8 @@
+@Test
+public void testFromGraphsMethod() throws Exception {
+    LogicalGraph graph1 = loader.getLogicalGraphByVariable("g1");
+    LogicalGraph graph2 = loader.getLogicalGraphByVariable("g2");
+    GraphCollection expected = loader.getGraphCollectionByVariables("g1", "g2");
+    GraphCollection result = factory.fromGraphs(graph1, graph2);
+    collectAndAssertTrue(result.equalsByGraphElementData(expected));
+}

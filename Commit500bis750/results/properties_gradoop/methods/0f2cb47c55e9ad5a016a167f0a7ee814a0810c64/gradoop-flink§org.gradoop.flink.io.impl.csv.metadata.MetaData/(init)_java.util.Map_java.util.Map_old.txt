@@ -1,0 +1,10 @@
+/**
+ * Constructor
+ *
+ * @param metaData contains entity label and its property strings
+ * @param labelType contains entity label and its type
+ */
+MetaData(Map<String, List<PropertyMetaData>> metaData, Map<String, String> labelType) {
+    this.metaData = metaData;
+    this.labelType = labelType;
+}

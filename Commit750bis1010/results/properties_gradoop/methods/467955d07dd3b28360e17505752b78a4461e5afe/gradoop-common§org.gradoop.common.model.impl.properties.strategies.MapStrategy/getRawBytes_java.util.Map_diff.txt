@@ -1,0 +1,20 @@
+/**
+ * {@inheritDoc}
+ * @throws IOException if converting the value to a byte array fails.
+ */
+@Override
+public byte[] getRawBytes(Map<PropertyValue, PropertyValue> value) throws IOException {
+    int size = value.keySet().stream().mapToInt(PropertyValue::byteSize).sum() + value.values().stream().mapToInt(PropertyValue::byteSize).sum() + PropertyValue.OFFSET;
+    try (ByteArrayOutputStream byteStream = new ByteArrayOutputStream(size);
+        DataOutputStream outputStream = new DataOutputStream(byteStream);
+        DataOutputViewStreamWrapper outputView = new DataOutputViewStreamWrapper(outputStream)) {
+        outputStream.write(Type.MAP.getTypeByte());
+        for (Map.Entry<PropertyValue, PropertyValue> entry : value.entrySet()) {
+            entry.getKey().write(outputView);
+            entry.getValue().write(outputView);
+        }
+        return byteStream.toByteArray();
+    } catch (IOException e) {
+        throw new IOException("Error writing PropertyValue with MapStrategy.", e);
+    }
+}

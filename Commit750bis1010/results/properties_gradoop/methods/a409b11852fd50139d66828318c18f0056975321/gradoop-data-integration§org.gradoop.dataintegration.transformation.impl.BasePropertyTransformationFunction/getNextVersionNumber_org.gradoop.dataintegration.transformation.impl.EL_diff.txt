@@ -1,0 +1,13 @@
+/**
+ * Returns the next unused version number.
+ *
+ * @param element element whose property shall be transformed up
+ * @return next unused version number
+ */
+protected int getNextVersionNumber(EL element) {
+    int i = 1;
+    while (element.hasProperty(propertyKey + PROPERTY_VERSION_SEPARATOR + i)) {
+        i++;
+    }
+    return i;
+}

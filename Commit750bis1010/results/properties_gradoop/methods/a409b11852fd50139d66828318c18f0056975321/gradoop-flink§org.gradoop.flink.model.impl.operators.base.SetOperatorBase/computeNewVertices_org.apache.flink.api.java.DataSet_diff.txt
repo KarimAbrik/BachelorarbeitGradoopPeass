@@ -1,0 +1,13 @@
+/**
+ * Computes new vertices based on the new subgraphs. For each vertex, each
+ * graph is collected in a flatMap function and then joined with the new
+ * subgraph dataset.
+ *
+ * @param newGraphHeads graph dataset of the resulting graph collection
+ * @return vertex set of the resulting graph collection
+ */
+@Override
+protected DataSet<V> computeNewVertices(DataSet<G> newGraphHeads) {
+    DataSet<Tuple2<V, GradoopId>> verticesWithGraphs = firstCollection.getVertices().flatMap(new PairVertexWithGraphs<>());
+    return verticesWithGraphs.join(newGraphHeads).where(1).equalTo(new Id<>()).with(new LeftJoin0OfTuple2<>()).withForwardedFieldsFirst("f0->*").distinct(new Id<>());
+}

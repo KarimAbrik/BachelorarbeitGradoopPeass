@@ -1,0 +1,68 @@
+{
+  "clazz" : "org.gradoop.model.impl.GraphCollectionDifferenceTest",
+  "methods" : [ {
+    "method" : "testNonOverlappingCollections",
+    "datacollectorResults" : [ {
+      "name" : "de.dagere.kopeme.datacollection.TimeDataCollectorNoGC",
+      "chunks" : [ ],
+      "results" : [ {
+        "value" : 1.0549947569E9,
+        "deviation" : 0.7754212936555617,
+        "min" : 6.10277291E8,
+        "max" : 3.333428909E9,
+        "warmup" : 0,
+        "iterations" : 10,
+        "repetitions" : 2,
+        "commit" : null,
+        "vmRunConfiguration" : {
+          "showStart" : false,
+          "executeBeforeClassInMeasurement" : false,
+          "redirectToTemp" : false,
+          "redirectToNull" : true,
+          "useKieker" : false
+        },
+        "parameters" : {
+          "JUNIT_PARAMETERIZED" : "Execution mode = CLUSTER"
+        },
+        "javaVersion" : "1.8.0_362",
+        "cpu" : "model name : Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz",
+        "memory" : "MemTotal: 16280544 kB",
+        "date" : 1680979147517,
+        "fulldata" : {
+          "fileName" : null,
+          "values" : [ {
+            "startTime" : 1680979136802,
+            "value" : 3333428909
+          }, {
+            "startTime" : 1680979140135,
+            "value" : 1225053408
+          }, {
+            "startTime" : 1680979141360,
+            "value" : 882233014
+          }, {
+            "startTime" : 1680979142242,
+            "value" : 812450914
+          }, {
+            "startTime" : 1680979143055,
+            "value" : 728511342
+          }, {
+            "startTime" : 1680979143784,
+            "value" : 610277291
+          }, {
+            "startTime" : 1680979144394,
+            "value" : 708465815
+          }, {
+            "startTime" : 1680979145102,
+            "value" : 720723926
+          }, {
+            "startTime" : 1680979145823,
+            "value" : 832038221
+          }, {
+            "startTime" : 1680979146655,
+            "value" : 696764729
+          } ]
+        }
+      } ]
+    } ]
+  } ]
+}

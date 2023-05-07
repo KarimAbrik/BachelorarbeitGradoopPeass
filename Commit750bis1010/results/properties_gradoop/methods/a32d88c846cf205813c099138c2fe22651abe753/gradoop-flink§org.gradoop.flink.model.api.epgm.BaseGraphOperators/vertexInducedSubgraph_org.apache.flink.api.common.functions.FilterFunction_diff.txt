@@ -1,0 +1,10 @@
+/**
+ * Returns the subgraph that is induced by the vertices which fulfill the given filter function.
+ *
+ * @param vertexFilterFunction vertex filter function
+ * @return vertex-induced subgraph
+ */
+default LG vertexInducedSubgraph(FilterFunction<V> vertexFilterFunction) {
+    Objects.requireNonNull(vertexFilterFunction);
+    return callForGraph(new Subgraph<>(vertexFilterFunction, null, Subgraph.Strategy.VERTEX_INDUCED));
+}

@@ -1,0 +1,27 @@
+@Override
+public void read(DataInputView in) throws IOException {
+    int sizeBuffer = in.readInt();
+    byte[] ids = new byte[sizeBuffer];
+    if (sizeBuffer > 0) {
+        if (in.read(ids) != sizeBuffer) {
+            throw new RuntimeException("Deserialisation of Embedding failed");
+        }
+    }
+    sizeBuffer = in.readInt();
+    byte[] newPropertyData = new byte[sizeBuffer];
+    if (sizeBuffer > 0) {
+        if (in.read(newPropertyData) != sizeBuffer) {
+            throw new RuntimeException("Deserialisation of Embedding failed");
+        }
+    }
+    sizeBuffer = in.readInt();
+    byte[] idLists = new byte[sizeBuffer];
+    if (sizeBuffer > 0) {
+        if (in.read(idLists) != sizeBuffer) {
+            throw new RuntimeException("Deserialisation of Embedding failed");
+        }
+    }
+    this.idData = ids;
+    this.propertyData = newPropertyData;
+    this.idListData = idLists;
+}

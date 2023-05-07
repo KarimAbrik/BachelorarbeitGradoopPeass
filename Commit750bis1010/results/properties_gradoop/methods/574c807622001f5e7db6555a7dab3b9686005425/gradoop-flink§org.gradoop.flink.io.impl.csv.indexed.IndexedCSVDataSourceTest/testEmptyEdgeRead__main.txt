@@ -1,0 +1,14 @@
+/**
+ * Test reading a indexed csv graph collection without edges.
+ *
+ * @throws Exception on failure
+ */
+@Test
+public void testEmptyEdgeRead() throws Exception {
+    String csvPath = getFilePath("/data/csv/input_indexed_no_edges");
+    String gdlPath = getFilePath("/data/csv/expected/expected_no_edges.gdl");
+    DataSource dataSource = new IndexedCSVDataSource(csvPath, getConfig());
+    GraphCollection input = dataSource.getGraphCollection();
+    GraphCollection expected = getLoaderFromFile(gdlPath).getGraphCollectionByVariables("expected1", "expected2");
+    collectAndAssertTrue(input.equalsByGraphData(expected));
+}

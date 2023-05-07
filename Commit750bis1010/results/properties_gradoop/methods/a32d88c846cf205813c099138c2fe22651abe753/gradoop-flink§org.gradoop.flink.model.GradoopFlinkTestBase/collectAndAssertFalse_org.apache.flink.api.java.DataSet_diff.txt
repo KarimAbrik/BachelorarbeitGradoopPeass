@@ -1,0 +1,3 @@
+protected void collectAndAssertFalse(DataSet<Boolean> result) throws Exception {
+    assertFalse("expected false", result.collect().get(0));
+}

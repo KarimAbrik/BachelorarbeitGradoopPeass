@@ -1,0 +1,17 @@
+@Override
+public Set<PropertyValue> read(DataInputView inputView, byte typeByte) throws IOException {
+    byte[] rawBytes = readVariableSizedData(inputView, typeByte);
+    PropertyValue item;
+    Set<PropertyValue> set = new HashSet<>();
+    DataInputViewStreamWrapper internalInputView = createInputView(rawBytes);
+    try {
+        while (internalInputView.available() > 0) {
+            item = new PropertyValue();
+            item.read(internalInputView);
+            set.add(item);
+        }
+    } catch (IOException e) {
+        throw new IOException("Error reading PropertyValue with SetStrategy.", e);
+    }
+    return set;
+}

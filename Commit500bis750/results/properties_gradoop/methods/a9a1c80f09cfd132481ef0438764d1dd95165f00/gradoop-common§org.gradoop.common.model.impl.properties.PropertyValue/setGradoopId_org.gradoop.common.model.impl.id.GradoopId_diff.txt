@@ -1,0 +1,11 @@
+/**
+ * Sets the wrapped value as {@code GradoopId} value.
+ *
+ * @param gradoopIdValue value
+ */
+public void setGradoopId(GradoopId gradoopIdValue) {
+    byte[] valueBytes = gradoopIdValue.toByteArray();
+    rawBytes = new byte[OFFSET + GradoopId.ID_SIZE];
+    rawBytes[0] = TYPE_GRADOOP_ID;
+    Bytes.putBytes(rawBytes, OFFSET, valueBytes, 0, valueBytes.length);
+}

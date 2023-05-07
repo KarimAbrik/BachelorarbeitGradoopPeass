@@ -1,0 +1,54 @@
+@Test
+public void testExecute() throws Exception {
+    GradoopId a = GradoopId.get();
+    GradoopId b = GradoopId.get();
+    GradoopId c = GradoopId.get();
+    GradoopId d = GradoopId.get();
+    GradoopId e = GradoopId.get();
+    GradoopId f = GradoopId.get();
+    GradoopId g = GradoopId.get();
+    EmbeddingMetaData leftInputMetaData = new EmbeddingMetaData();
+    leftInputMetaData.setEntryColumn("v1", EntryType.VERTEX, 0);
+    Embedding embedding1 = createEmbedding(a);
+    DataSet<Embedding> leftEmbeddings = getExecutionEnvironment().fromElements(embedding1);
+    /*
+     * -------------------------
+     * |  v1   | e1    | v2    |
+     * -------------------------
+     * | id(a) | id(b) | id(c) | -> Embedding 2
+     * -------------------------
+     * | id(c) | id(d) | id(e) | -> Embedding 3
+     * -------------------------
+     * | id(e) | id(f) | id(g) | -> Embedding 4
+     * -------------------------
+     */
+    EmbeddingMetaData rightInputMetaData = new EmbeddingMetaData();
+    rightInputMetaData.setEntryColumn("v1", EntryType.VERTEX, 0);
+    rightInputMetaData.setEntryColumn("e1", EntryType.EDGE, 1);
+    rightInputMetaData.setEntryColumn("v2", EntryType.VERTEX, 2);
+    Embedding embedding2 = createEmbedding(a, b, c);
+    Embedding embedding3 = createEmbedding(c, d, e);
+    Embedding embedding4 = createEmbedding(e, f, g);
+    DataSet<Embedding> rightEmbeddings = getExecutionEnvironment().fromElements(embedding2, embedding3, embedding4);
+    MockPlanNode leftChild = new MockPlanNode(leftEmbeddings, leftInputMetaData);
+    MockPlanNode rightChild = new MockPlanNode(rightEmbeddings, rightInputMetaData);
+    ExpandEmbeddingsNode node = new ExpandEmbeddingsNode(leftChild, rightChild, "v1", "e1", "v2", 3, 3, ExpandDirection.OUT, MatchStrategy.ISOMORPHISM, MatchStrategy.ISOMORPHISM);
+    /*
+     * ---------------------------------------------------
+     * |  v1   | e1                              | v2    |
+     * ---------------------------------------------------
+     * | id(a) | [id(b),id(c),id(d),id(e),id(f)] | id(g) | -> Result
+     * ---------------------------------------------------
+     */
+    List<Embedding> result = node.execute().collect();
+    assertThat(result.size(), is(1));
+    Embedding embedding = result.get(0);
+    assertThat(embedding.getId(0), is(a));
+    assertThat(embedding.getIdList(1).size(), is(5));
+    assertThat(embedding.getIdList(1).get(0), is(b));
+    assertThat(embedding.getIdList(1).get(1), is(c));
+    assertThat(embedding.getIdList(1).get(2), is(d));
+    assertThat(embedding.getIdList(1).get(3), is(e));
+    assertThat(embedding.getIdList(1).get(4), is(f));
+    assertThat(embedding.getId(2), is(g));
+}

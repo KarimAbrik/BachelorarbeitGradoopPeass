@@ -1,0 +1,6 @@
+protected DataSet<EPGMEdge> createEdgesWithProperties(List<String> propertyNames) {
+    Properties properties = getProperties(propertyNames);
+    EPGMEdgeFactory edgeFactory = new EPGMEdgeFactory();
+    List<EPGMEdge> edges = Lists.newArrayList(edgeFactory.createEdge("Label1", GradoopId.get(), GradoopId.get(), properties), edgeFactory.createEdge("Label2", GradoopId.get(), GradoopId.get(), properties));
+    return getExecutionEnvironment().fromCollection(edges);
+}

@@ -1,0 +1,21 @@
+@Override
+public LG execute(LG superGraph) {
+    LG result;
+    switch(strategy) {
+        case BOTH:
+            result = subgraph(superGraph);
+            break;
+        case VERTEX_INDUCED:
+            result = vertexInducedSubgraph(superGraph);
+            break;
+        case EDGE_INDUCED:
+            result = edgeInducedSubgraph(superGraph);
+            break;
+        case EDGE_INDUCED_PROJECT_FIRST:
+            result = edgeInducedSubgraphProjectFirst(superGraph);
+            break;
+        default:
+            throw new IllegalArgumentException("Strategy " + strategy + " is not supported");
+    }
+    return result;
+}

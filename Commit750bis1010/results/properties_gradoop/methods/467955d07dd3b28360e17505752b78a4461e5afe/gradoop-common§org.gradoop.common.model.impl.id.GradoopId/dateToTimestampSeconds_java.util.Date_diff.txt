@@ -1,0 +1,9 @@
+/**
+ * Converts a date into the seconds since unix epoch.
+ *
+ * @param time a time
+ * @return int representing the seconds between unix epoch and the given time
+ */
+private static int dateToTimestampSeconds(final Date time) {
+    return (int) (time.getTime() / 1000);
+}

@@ -1,0 +1,8 @@
+/**
+ * Returns the process identifier component of the id.
+ *
+ * @return the process identifier
+ */
+private short getProcessIdentifier() {
+    return (short) makeInt((byte) 0, (byte) 0, bytes[7], bytes[8]);
+}

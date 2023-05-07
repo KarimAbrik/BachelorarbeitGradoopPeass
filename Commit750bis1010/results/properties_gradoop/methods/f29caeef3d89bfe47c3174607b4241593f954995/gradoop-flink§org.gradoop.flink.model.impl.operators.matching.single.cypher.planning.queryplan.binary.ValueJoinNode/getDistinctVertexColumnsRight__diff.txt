@@ -1,0 +1,9 @@
+/**
+ * According to the specified {@link ValueJoinNode#vertexStrategy}, the method returns
+ * the columns that need to contain distinct entries in the right embedding.
+ *
+ * @return distinct vertex columns of the right embedding
+ */
+private List<Integer> getDistinctVertexColumnsRight() {
+    return getDistinctVertexColumns(getRightChild().getEmbeddingMetaData());
+}

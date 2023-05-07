@@ -1,0 +1,23 @@
+@Test
+public void testExecute() throws Exception {
+    GradoopId vertexAId = GradoopId.get();
+    GradoopId vertexBId = GradoopId.get();
+    EmbeddingMetaData metaData = new EmbeddingMetaData();
+    metaData.setEntryColumn("a", EntryType.VERTEX, 0);
+    metaData.setEntryColumn("b", EntryType.VERTEX, 1);
+    metaData.setPropertyColumn("a", "age", 0);
+    metaData.setPropertyColumn("b", "age", 1);
+    Embedding embedding1 = new Embedding();
+    embedding1.add(vertexAId, PropertyValue.create(42));
+    embedding1.add(vertexBId, PropertyValue.create(23));
+    DataSet<Embedding> input = getExecutionEnvironment().fromElements(embedding1);
+    PlanNode mockChild = new MockPlanNode(input, metaData);
+    List<Pair<String, String>> projectedKeys = new ArrayList<>();
+    projectedKeys.add(Pair.of("a", "age"));
+    List<Embedding> result = new ProjectEmbeddingsNode(mockChild, projectedKeys).execute().collect();
+    Assert.assertThat(result.size(), Is.is(1));
+    assertEquals(result.get(0).getId(0), vertexAId);
+    assertEquals(result.get(0).getId(1), vertexBId);
+    assertThat(result.get(0).getProperties().size(), is(1));
+    assertEquals(result.get(0).getProperty(0), PropertyValue.create(42));
+}

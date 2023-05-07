@@ -1,0 +1,12 @@
+/**
+ * Creates a test temporal graph from the social network loader.
+ *
+ * @throws Exception if loading the graph fails
+ */
+@Before
+public void setUp() throws Exception {
+    testGraph = toTemporalGraph(getSocialNetworkLoader().getLogicalGraph()).transformGraphHead((current, trans) -> {
+        current.setProperty("testGraphHeadProperty", PropertyValue.create(1L));
+        return current;
+    });
+}

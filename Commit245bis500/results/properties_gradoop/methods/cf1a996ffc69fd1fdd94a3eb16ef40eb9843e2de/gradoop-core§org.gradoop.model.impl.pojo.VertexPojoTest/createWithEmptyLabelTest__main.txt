@@ -1,0 +1,6 @@
+@Test(expected = IllegalArgumentException.class)
+public void createWithEmptyLabelTest() {
+    GradoopIdGenerator idGen = new SequenceIdGenerator();
+    GradoopId vertexID = idGen.createId();
+    new VertexPojoFactory().createVertex(vertexID, "");
+}

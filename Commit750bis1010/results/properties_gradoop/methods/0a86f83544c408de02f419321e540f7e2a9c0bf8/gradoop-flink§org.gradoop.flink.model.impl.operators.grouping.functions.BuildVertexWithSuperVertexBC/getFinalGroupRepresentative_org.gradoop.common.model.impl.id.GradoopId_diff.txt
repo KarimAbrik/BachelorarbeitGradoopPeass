@@ -1,0 +1,20 @@
+/**
+ * Determines the final super vertex id for the given id.
+ *
+ * @param current current super vertex id of a vertex
+ * @return final super vertex id
+ */
+private GradoopId getFinalGroupRepresentative(GradoopId current) {
+    GradoopId result = null;
+    if (cache.containsKey(current)) {
+        result = cache.get(current);
+    } else {
+        for (IdWithIdSet group : mapping) {
+            if (group.getIdSet().contains(current)) {
+                result = group.f0;
+                cache.put(current, result);
+            }
+        }
+    }
+    return result;
+}

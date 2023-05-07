@@ -1,0 +1,12 @@
+/**
+ * Create a new temporal config that also acts as a regular {@link GradoopFlinkConfig}.
+ *
+ * @param executionEnvironment        Flink execution environment.
+ * @param epgmLayoutFactory           Factory for creating EPGM graphs.
+ * @param epgmCollectionLayoutFactory Factory for creating EPGM graph collections.
+ */
+private TemporalGradoopConfig(ExecutionEnvironment executionEnvironment, LogicalGraphLayoutFactory<EPGMGraphHead, EPGMVertex, EPGMEdge> epgmLayoutFactory, GraphCollectionLayoutFactory<EPGMGraphHead, EPGMVertex, EPGMEdge> epgmCollectionLayoutFactory) {
+    super(executionEnvironment, epgmLayoutFactory, epgmCollectionLayoutFactory);
+    temporalGraphFactory = new TemporalGraphFactory(this);
+    temporalGraphCollectionFactory = new TemporalGraphCollectionFactory(this);
+}

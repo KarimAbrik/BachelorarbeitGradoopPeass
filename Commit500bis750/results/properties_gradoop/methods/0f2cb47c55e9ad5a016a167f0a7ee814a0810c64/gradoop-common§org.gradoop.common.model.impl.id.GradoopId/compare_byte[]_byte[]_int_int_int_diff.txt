@@ -1,0 +1,20 @@
+/**
+ * Compares multiple GradoopIds represented a byte arrays at the specified ranges.
+ *
+ * @param first first byte representation of multiple gradoop ids
+ * @param second second byte representation of multiple gradoop ids
+ * @param firstPos start index in the first array
+ * @param secondPos start index in the second array
+ * @param length length of the range
+ *
+ * @return a negative integer, zero, or a positive integer as this object is less than, equal to,
+ *         or greater than the specified object.
+ */
+private static int compare(byte[] first, byte[] second, int firstPos, int secondPos, int length) {
+    for (int i = 0; i < length; i++) {
+        if (first[firstPos + i] != second[secondPos + i]) {
+            return ((first[firstPos + i] & 0xff) < (second[secondPos + i] & 0xff)) ? -1 : 1;
+        }
+    }
+    return 0;
+}

@@ -1,0 +1,19 @@
+/**
+ * {@inheritDoc}
+ */
+@SuppressWarnings("unchecked")
+@Override
+public LogicalGraph<VD, ED, GD> getGraph(final Long graphID) throws Exception {
+    // filter vertices and edges based on given graph id
+    Graph<Long, VD, ED> subGraph = this.graph.subgraph(new VertexInGraphFilter<VD>(graphID), new EdgeInGraphFilter<ED>(graphID));
+    DataSet<Tuple1<Long>> graphIDDataSet = env.fromCollection(Lists.newArrayList(new Tuple1<>(graphID)));
+    // get graph data based on graph id
+    GD graphData = this.subgraphs.joinWithTiny(graphIDDataSet).where(new KeySelectors.GraphKeySelector<GD>()).equalTo(0).with(new JoinFunction<Subgraph<Long, GD>, Tuple1<Long>, GD>() {
+
+        @Override
+        public GD join(Subgraph<Long, GD> g, Tuple1<Long> gID) throws Exception {
+            return g.getValue();
+        }
+    }).first(1).collect().get(0);
+    return LogicalGraph.fromGraph(subGraph, graphData, vertexDataFactory, edgeDataFactory, graphDataFactory);
+}

@@ -1,0 +1,4 @@
+@Override
+public TemporalGraphCollection fromGraph(LogicalGraphLayout<TemporalGraphHead, TemporalVertex, TemporalEdge> logicalGraphLayout) {
+    return new TemporalGraphCollection(layoutFactory.fromGraphLayout(logicalGraphLayout), config);
+}

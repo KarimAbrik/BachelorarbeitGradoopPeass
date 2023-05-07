@@ -1,0 +1,7 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public Put writeIncomingEdges(final Put put, final Set<ED> incomingEdgeData) throws IOException {
+    return writeEdges(put, CF_IN_EDGES_BYTES, incomingEdgeData, false);
+}

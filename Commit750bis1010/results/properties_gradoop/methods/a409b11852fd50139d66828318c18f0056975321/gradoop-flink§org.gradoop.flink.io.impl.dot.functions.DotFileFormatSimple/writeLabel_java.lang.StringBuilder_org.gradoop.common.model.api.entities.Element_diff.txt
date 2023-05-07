@@ -1,0 +1,13 @@
+@Override
+void writeLabel(StringBuilder builder, Element element) {
+    String label = StringUtils.isEmpty(element.getLabel()) ? element.getId().toString() : element.getLabel();
+    Properties properties = element.getProperties();
+    if (properties != null && properties.size() > 0) {
+        builder.append("label=\"").append(escapeJava(label)).append("\"");
+        for (Property property : properties) {
+            builder.append(",").append(escapeJava(property.getKey())).append("=\"").append(escapeJava(property.getValue().toString())).append("\"");
+        }
+    } else {
+        builder.append("label=\"").append(escapeJava(label)).append("\"");
+    }
+}

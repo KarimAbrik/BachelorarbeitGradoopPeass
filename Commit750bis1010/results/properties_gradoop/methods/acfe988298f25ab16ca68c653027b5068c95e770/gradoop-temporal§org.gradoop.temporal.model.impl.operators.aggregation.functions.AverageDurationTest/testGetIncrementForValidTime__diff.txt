@@ -1,0 +1,16 @@
+/**
+ * Test the implementation of {@link AverageDuration#getIncrement(TemporalElement)} for valid time.
+ */
+@Test
+public void testGetIncrementForValidTime() {
+    AverageDuration function = new AverageDuration("", VALID_TIME);
+    TemporalElement testElement = getVertexFactory().createVertex();
+    testElement.setValidTime(Tuple2.of(DEFAULT_TIME_FROM, DEFAULT_TIME_TO));
+    assertEquals(IGNORED_VALUE, function.getIncrement(testElement));
+    testElement.setValidTime(Tuple2.of(DEFAULT_TIME_FROM, 6L));
+    assertEquals(IGNORED_VALUE, function.getIncrement(testElement));
+    testElement.setValidTime(Tuple2.of(3L, DEFAULT_TIME_TO));
+    assertEquals(IGNORED_VALUE, function.getIncrement(testElement));
+    testElement.setValidTime(Tuple2.of(2L, 7L));
+    assertEquals(create(Arrays.asList(create(5L), create(1L))), function.getIncrement(testElement));
+}

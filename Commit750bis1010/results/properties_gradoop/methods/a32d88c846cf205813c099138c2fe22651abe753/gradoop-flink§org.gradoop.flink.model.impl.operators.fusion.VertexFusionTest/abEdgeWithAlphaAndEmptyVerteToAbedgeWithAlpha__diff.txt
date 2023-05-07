@@ -1,0 +1,13 @@
+@Test
+public void abEdgeWithAlphaAndEmptyVerteToAbedgeWithAlpha() throws Exception {
+    FlinkAsciiGraphLoader loader = getLoaderFromString("ab_edgeWithAlpha:G {ab_edgeWithAlpha : \"graph\"}[" + "(a:A {atype : \"avalue\"})-[alpha:AlphaEdge {alphatype : \"alphavalue\"}]->(b:B {btype :" + " \"bvalue\"}) ]" + "emptyVertex:G {emptyVertex : \"graph\"}[()]");
+    LogicalGraph searchGraph = loader.getLogicalGraphByVariable("ab_edgeWithAlpha");
+    LogicalGraph patternGraph = loader.getLogicalGraphByVariable("emptyVertex");
+    VertexFusion f = new VertexFusion();
+    LogicalGraph output = f.execute(searchGraph, patternGraph);
+    LogicalGraph expected = loader.getLogicalGraphByVariable("ab_edgeWithAlpha");
+    collectAndAssertTrue(output.equalsByData(expected));
+    if (deepSearch) {
+        collectAndAssertTrue(VertexFusionUtils.myInducedEdgeSubgraphForFusion(searchGraph, expected).equalsByElementIds(VertexFusionUtils.myInducedEdgeSubgraphForFusion(expected, searchGraph)));
+    }
+}

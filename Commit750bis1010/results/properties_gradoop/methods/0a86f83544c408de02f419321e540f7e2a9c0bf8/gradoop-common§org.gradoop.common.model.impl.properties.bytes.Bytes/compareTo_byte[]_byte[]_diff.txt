@@ -1,0 +1,10 @@
+/**
+ * Compares two byte arrays
+ *
+ * @param left left operand
+ * @param right right operand
+ * @return 0 if equal, &lt; 0 if left is less than right, etc.
+ */
+public static int compareTo(final byte[] left, final byte[] right) {
+    return LexicographicalComparerHolder.BEST_COMPARER.compareTo(left, 0, left.length, right, 0, right.length);
+}

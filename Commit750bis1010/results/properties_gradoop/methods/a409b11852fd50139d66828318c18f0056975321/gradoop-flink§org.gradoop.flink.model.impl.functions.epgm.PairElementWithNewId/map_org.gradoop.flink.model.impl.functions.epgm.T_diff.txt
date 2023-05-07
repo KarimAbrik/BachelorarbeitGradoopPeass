@@ -1,0 +1,6 @@
+@Override
+public Tuple2<T, GradoopId> map(T input) {
+    reuseTuple.f0 = input;
+    reuseTuple.f1 = GradoopId.get();
+    return reuseTuple;
+}

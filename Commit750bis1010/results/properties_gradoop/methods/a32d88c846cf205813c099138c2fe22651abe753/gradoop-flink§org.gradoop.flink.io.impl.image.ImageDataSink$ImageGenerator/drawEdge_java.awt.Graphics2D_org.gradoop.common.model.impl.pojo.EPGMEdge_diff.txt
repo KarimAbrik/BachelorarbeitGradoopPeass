@@ -1,0 +1,22 @@
+/**
+ * Draw a single edge
+ *
+ * @param gfx The graphics-object to use for drawing
+ * @param e   The edge to draw
+ */
+private void drawEdge(Graphics2D gfx, EPGMEdge e) {
+    gfx.setColor(plotter.edgeColor);
+    float edgeSize = plotter.edgeSize;
+    if (plotter.dynamicEdgeSize && e.getPropertyValue("SIZE") != null) {
+        edgeSize *= Math.sqrt((float) e.getPropertyValue("SIZE").getInt());
+    }
+    gfx.setStroke(new BasicStroke(edgeSize));
+    try {
+        int sourceX = e.getPropertyValue(SOURCE_X).getInt();
+        int sourceY = e.getPropertyValue(SOURCE_Y).getInt();
+        int targetX = e.getPropertyValue(TARGET_X).getInt();
+        int targetY = e.getPropertyValue(TARGET_Y).getInt();
+        gfx.drawLine(sourceX, sourceY, targetX, targetY);
+    } catch (NullPointerException ef) {
+    }
+}

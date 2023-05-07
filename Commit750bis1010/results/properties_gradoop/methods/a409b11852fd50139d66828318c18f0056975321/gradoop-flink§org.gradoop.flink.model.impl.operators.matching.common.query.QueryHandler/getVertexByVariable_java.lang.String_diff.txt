@@ -1,0 +1,10 @@
+/**
+ * Returns the vertex associated with the given variable or {@code null} if the variable does
+ * not exist. The variable can be either user-defined or auto-generated.
+ *
+ * @param variable query vertex variable
+ * @return vertex or {@code null}
+ */
+public Vertex getVertexByVariable(String variable) {
+    return vertexCache.get(variable);
+}

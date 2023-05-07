@@ -1,0 +1,9 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public void setAutoFlush(boolean autoFlush) {
+    vertexTable.setAutoFlush(autoFlush, true);
+    edgeTable.setAutoFlush(autoFlush, true);
+    graphHeadTable.setAutoFlush(autoFlush, true);
+}

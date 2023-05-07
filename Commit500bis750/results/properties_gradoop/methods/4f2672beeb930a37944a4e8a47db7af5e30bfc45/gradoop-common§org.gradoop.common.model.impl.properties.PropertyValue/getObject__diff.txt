@@ -1,0 +1,11 @@
+//----------------------------------------------------------------------------
+// Getter
+//----------------------------------------------------------------------------
+/**
+ * Returns the wrapped value as object.
+ *
+ * @return value or {@code null} if the value is empty
+ */
+public Object getObject() {
+    return isBoolean() ? getBoolean() : isShort() ? getShort() : isInt() ? getInt() : isLong() ? getLong() : isFloat() ? getFloat() : isDouble() ? getDouble() : isString() ? getString() : isBigDecimal() ? getBigDecimal() : isGradoopId() ? getGradoopId() : isMap() ? getMap() : isList() ? getList() : isDate() ? getDate() : isTime() ? getTime() : isDateTime() ? getDateTime() : null;
+}

@@ -1,0 +1,14 @@
+/**
+ * Test HasVertexLabel with a single graph and result false.
+ *
+ * @throws Exception if the execution or IO fails.
+ */
+@Test
+public void testSingleGraphHasVertexLabelTrue() throws Exception {
+    LogicalGraph graph = getSocialNetworkLoader().getLogicalGraphByVariable("g2");
+    HasVertexLabel hasPerson = new HasVertexLabel("Person");
+    graph = graph.aggregate(hasPerson);
+    GraphHead graphHead = graph.getGraphHead().collect().get(0);
+    assertTrue("Property hasVertexLabel_Person not set", graphHead.hasProperty(hasPerson.getAggregatePropertyKey()));
+    assertTrue("Property hasVertexLabel_Person is false, should be true", graphHead.getPropertyValue(hasPerson.getAggregatePropertyKey()).getBoolean());
+}

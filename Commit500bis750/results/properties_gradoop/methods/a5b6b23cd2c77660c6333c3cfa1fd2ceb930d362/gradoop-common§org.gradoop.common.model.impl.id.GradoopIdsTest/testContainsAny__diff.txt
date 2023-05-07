@@ -1,0 +1,13 @@
+@Test                                                                                                  @Test                                                                                               
+public void testContainsAny() throws Exception {                                                       public void testContainsAny() throws Exception {                                                    
+GradoopId id1 = GradoopId.get();                                                                       GradoopId id1 = GradoopId.get();                                                                    
+GradoopId id2 = GradoopId.get();                                                                       GradoopId id2 = GradoopId.get();                                                                    
+GradoopId id3 = GradoopId.get();                                                                       GradoopId id3 = GradoopId.get();                                                                    
+GradoopIds ids = new GradoopIds();                                                                   | GradoopIdSet ids = new GradoopIdSet();                                                              
+ids.addAll(Arrays.asList(id1, id2));                                                                   ids.addAll(Arrays.asList(id1, id2));                                                                
+assertTrue(ids.containsAny(Arrays.asList(id1)));                                                     | assertTrue(ids.containsAny(Sets.newHashSet(id1)));                                                  
+assertTrue(ids.containsAny(Arrays.asList(id2)));                                                     | assertTrue(ids.containsAny(Sets.newHashSet(id2)));                                                  
+assertTrue(ids.containsAny(Arrays.asList(id1, id2)));                                                | assertTrue(ids.containsAny(Sets.newHashSet(id1, id2)));                                             
+assertFalse(ids.containsAny(Arrays.asList(id3)));                                                    | assertFalse(ids.containsAny(Sets.newHashSet(id3)));                                                 
+assertTrue(ids.containsAny(Arrays.asList(id1, id3)));                                                | assertTrue(ids.containsAny(Sets.newHashSet(id1, id3)));                                             
+}                                                                                                      }                                                                                                   

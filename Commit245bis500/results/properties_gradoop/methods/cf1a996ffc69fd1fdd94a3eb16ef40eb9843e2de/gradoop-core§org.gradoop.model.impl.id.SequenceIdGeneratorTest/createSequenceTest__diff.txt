@@ -1,0 +1,7 @@
+@Test
+public void createSequenceTest() {
+    SequenceIdGenerator generator = new SequenceIdGenerator();
+    for (long id = 0L; id < 10L; id++) {
+        Assert.assertEquals(generator.createId(), new GradoopId(id));
+    }
+}

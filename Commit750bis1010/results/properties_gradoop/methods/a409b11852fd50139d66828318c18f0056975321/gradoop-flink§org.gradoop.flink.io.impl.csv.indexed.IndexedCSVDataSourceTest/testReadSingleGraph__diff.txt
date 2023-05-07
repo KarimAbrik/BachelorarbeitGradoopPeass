@@ -1,0 +1,15 @@
+/**
+ * Test reading a single logical indexed csv graph.
+ *
+ * @throws Exception on failure
+ */
+@Test
+public void testReadSingleGraph() throws Exception {
+    String csvPath = getFilePath("/data/csv/input_indexed");
+    String gdlPath = getFilePath("/data/csv/expected/expected_graph_collection.gdl");
+    DataSource dataSource = new IndexedCSVDataSource(csvPath, getConfig());
+    LogicalGraph input = dataSource.getLogicalGraph();
+    GraphCollection graphCollection = getLoaderFromFile(gdlPath).getGraphCollectionByVariables("expected1", "expected2");
+    LogicalGraph expected = graphCollection.reduce(new ReduceCombination<>());
+    collectAndAssertTrue(input.equalsByElementData(expected));
+}

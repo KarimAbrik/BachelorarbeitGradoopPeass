@@ -1,0 +1,10 @@
+/**
+ * Reads the entity identifier from the json object.
+ *
+ * @param object json object
+ * @return entity identifier
+ * @throws JSONException
+ */
+protected GradoopId getID(JSONObject object) throws JSONException {
+    return GradoopId.fromLongString(object.getString(IDENTIFIER));
+}

@@ -1,0 +1,8 @@
+@Override
+public Tuple2<EPGMVertex, List<GradoopId>> map(Tuple2<PropertyValue, GradoopId> tuple) {
+    EPGMVertex vertex = vertexFactory.createVertex(newVertexLabel);
+    vertex.setProperty(newPropertyName, tuple.f0);
+    reuseTuple.f0 = vertex;
+    reuseTuple.f1 = Collections.singletonList(tuple.f1);
+    return reuseTuple;
+}

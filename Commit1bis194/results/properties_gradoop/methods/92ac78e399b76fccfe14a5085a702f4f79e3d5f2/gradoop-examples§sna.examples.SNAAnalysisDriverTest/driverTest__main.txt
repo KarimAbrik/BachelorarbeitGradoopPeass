@@ -1,0 +1,20 @@
+@Test
+public void driverTest() throws Exception {
+    Configuration conf = utility.getConfiguration();
+    String nodeFile = "person.csv";
+    String edgeFile = "person_knows_person.csv";
+    URL resourceUrl = getClass().getResource("/person_meta.csv");
+    String[] args = new String[] { "-" + SNAAnalysisDriver.LoadConfUtils.OPTION_DROP_TABLES, "-" + SNAAnalysisDriver.LoadConfUtils.OPTION_BULKLOAD, "-" + SNAAnalysisDriver.LoadConfUtils.OPTION_VERTEX_LINE_READER, "CSVReader", "-" + SNAAnalysisDriver.OPTION_GRAPH_INPUT_PATH, "", "-" + SNAAnalysisDriver.OPTION_GRAPH_OUTPUT_PATH, "/output/sna", "-" + SNAAnalysisDriver.LoadConfUtils.OPTION_METADATA_PATH, resourceUrl.getPath().replace("person_meta.csv", ""), "-" + SNAAnalysisDriver.OPTION_VERBOSE, "-" + SNAAnalysisDriver.LoadConfUtils.OPTION_LABLEPROPAGATION, "-" + SNAAnalysisDriver.LoadConfUtils.OPTION_WORKERS, "1", "-" + SNAAnalysisDriver.LoadConfUtils.OPTION_SUMMARIZE_OUTPUT_PATH, "/output/summarize", "-" + SNAAnalysisDriver.LoadConfUtils.OPTION_SUMMARIZE };
+    copyFromLocal(nodeFile);
+    copyFromLocal(edgeFile);
+    SNAAnalysisDriver snaAnalysisDriver = new SNAAnalysisDriver();
+    snaAnalysisDriver.setConf(conf);
+    //run the pipeline
+    int exitCode = snaAnalysisDriver.run(args);
+    //test
+    assertThat(exitCode, is(0));
+    GraphStore graphStore = openGraphStore();
+    // Label Propagation Result
+    validateLabelPropagation(graphStore);
+    graphStore.close();
+}

@@ -1,0 +1,17 @@
+/**
+ * Constructor for the reader which handles TLF splits and
+ * initializes the file input stream.
+ *
+ * @param split the split of the file containing all TLF content
+ * @param conf the configuration of the task attempt context
+ * @throws IOException on failure
+ */
+public TLFRecordReader(FileSplit split, Configuration conf) throws IOException {
+    // open the file and seek to the start of the split
+    start = split.getStart();
+    end = start + split.getLength();
+    Path file = split.getPath();
+    FileSystem fs = file.getFileSystem(conf);
+    fsin = fs.open(split.getPath());
+    fsin.seek(start);
+}

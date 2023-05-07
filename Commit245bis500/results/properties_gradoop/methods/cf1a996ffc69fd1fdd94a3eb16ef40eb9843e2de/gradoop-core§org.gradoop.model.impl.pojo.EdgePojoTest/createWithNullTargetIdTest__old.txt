@@ -1,0 +1,4 @@
+@Test(expected = IllegalArgumentException.class)
+public void createWithNullTargetIdTest() {
+    new EdgePojoFactory().createEdge(0L, 23L, null);
+}

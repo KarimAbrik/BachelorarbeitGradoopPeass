@@ -1,0 +1,6 @@
+@Test
+public void testSetFloat() throws Exception {
+    PropertyValue p = new PropertyValue();
+    p.setFloat(FLOAT_VAL_4);
+    assertEquals(FLOAT_VAL_4, p.getFloat(), 0);
+}

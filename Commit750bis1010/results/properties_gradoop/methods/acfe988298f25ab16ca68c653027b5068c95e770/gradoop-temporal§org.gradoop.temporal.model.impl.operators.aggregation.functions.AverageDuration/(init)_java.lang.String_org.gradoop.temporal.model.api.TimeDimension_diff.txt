@@ -1,0 +1,10 @@
+/**                                                                                                    /**                                                                                                 
+* Create an instance of the {@link AverageDuration} aggregate function.                                * Create an instance of the {@link AverageDuration} aggregate function.                             
+*                                                                                                      *                                                                                                   
+* @param aggregatePropertyKey The aggregate property key.                                              * @param aggregatePropertyKey The aggregate property key.                                           
+* @param dimension            The time dimension to consider.                                        | * @param dimension the time dimension to consider                                                   
+*/                                                                                                     */                                                                                                  
+public AverageDuration(String aggregatePropertyKey, TimeDimension dimension) {                         public AverageDuration(String aggregatePropertyKey, TimeDimension dimension) {                      
+super(aggregatePropertyKey);                                                                         | super(aggregatePropertyKey, dimension);                                                             
+this.dimension = Objects.requireNonNull(dimension);                                                    this.dimension = Objects.requireNonNull(dimension);                                                 
+}                                                                                                      }                                                                                                   

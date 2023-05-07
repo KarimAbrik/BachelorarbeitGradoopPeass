@@ -1,0 +1,7 @@
+protected Properties getProperties(List<String> propertyNames) {
+    Properties properties = new Properties();
+    for (String propertyName : propertyNames) {
+        properties.set(propertyName, propertyName);
+    }
+    return properties;
+}

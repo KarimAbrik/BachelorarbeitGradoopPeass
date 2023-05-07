@@ -1,0 +1,23 @@
+/**
+ * Constructs a vertex from a given JSON string representation.
+ *
+ * @param jsonString The String representation of a JSON object.
+ * @return A new vertex from the JSON object.
+ * @throws Exception on failure
+ */
+@Override
+public EPGMVertex map(String jsonString) throws Exception {
+    JSONObject jsonVertex = new JSONObject(jsonString);
+    Properties properties = reuse.getProperties();
+    if (properties == null) {
+        properties = Properties.create();
+        reuse.setProperties(properties);
+    }
+    properties.clear();
+    for (Iterator it = jsonVertex.keys(); it.hasNext(); ) {
+        String key = (String) it.next();
+        PropertyValue propertyValue = getPropertyValue(jsonVertex, key);
+        properties.set(key, propertyValue);
+    }
+    return reuse;
+}

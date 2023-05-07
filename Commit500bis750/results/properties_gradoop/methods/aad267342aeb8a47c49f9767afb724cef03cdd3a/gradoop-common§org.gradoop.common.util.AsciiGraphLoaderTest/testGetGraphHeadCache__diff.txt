@@ -1,0 +1,12 @@
+@Test
+public void testGetGraphHeadCache() throws Exception {
+    AsciiGraphLoader<GraphHead, Vertex, Edge> asciiGraphLoader = AsciiGraphLoader.fromString("g[()],h[()],[()]", config);
+    validateCollections(asciiGraphLoader, 3, 3, 0);
+    validateCaches(asciiGraphLoader, 2, 0, 0);
+    GraphHead g = asciiGraphLoader.getGraphHeadByVariable("g");
+    GraphHead h = asciiGraphLoader.getGraphHeadByVariable("h");
+    GraphHead gCache = asciiGraphLoader.getGraphHeadCache().get("g");
+    GraphHead hCache = asciiGraphLoader.getGraphHeadCache().get("h");
+    assertEquals("Graphs were not equal", g, gCache);
+    assertEquals("Graphs were not equal", h, hCache);
+}

@@ -1,0 +1,5 @@
+@Override
+public void reduce(Iterable<Tuple2<K, Set<PropertyValue>>> values, Collector<WithCount<K>> collector) throws Exception {
+    List<Tuple2<K, Set<PropertyValue>>> pairs = Lists.newArrayList(values);
+    collector.collect(new WithCount<>(pairs.get(0).f0, (long) combineSets(pairs).size()));
+}

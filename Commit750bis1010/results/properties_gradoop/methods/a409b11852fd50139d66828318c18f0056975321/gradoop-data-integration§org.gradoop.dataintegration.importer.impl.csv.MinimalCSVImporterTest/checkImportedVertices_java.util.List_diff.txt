@@ -1,0 +1,38 @@
+/**
+ * Checks if the csv file import is equals to the assert import.
+ *
+ * @param vertices list of the import vertices
+ */
+private void checkImportedVertices(List<EPGMVertex> vertices) {
+    assertEquals(3, vertices.size());
+    // Check that IDs are unique.
+    assertEquals(3, vertices.stream().map(Vertex::getId).distinct().count());
+    for (EPGMVertex v : vertices) {
+        switch(String.valueOf(v.getPropertyValue("name"))) {
+            case "foo":
+                assertNotNull(v.getProperties());
+                assertEquals(4, v.getProperties().size());
+                assertEquals("453", v.getPropertyValue("value1").getString());
+                assertEquals("true", v.getPropertyValue("value2").getString());
+                assertEquals("71.03", v.getPropertyValue("value3").getString());
+                break;
+            case "bar":
+                assertNotNull(v.getProperties());
+                assertEquals(4, v.getProperties().size());
+                assertEquals("76", v.getPropertyValue("value1").getString());
+                assertEquals("false", v.getPropertyValue("value2").getString());
+                assertEquals("33.4", v.getPropertyValue("value3").getString());
+                break;
+            case "bla":
+                assertNotNull(v.getProperties());
+                assertEquals(3, v.getProperties().size());
+                assertEquals("4568", v.getPropertyValue("value1").toString());
+                assertFalse(v.hasProperty("value2"));
+                assertEquals("9.42", v.getPropertyValue("value3").toString());
+                break;
+            default:
+                fail();
+                break;
+        }
+    }
+}

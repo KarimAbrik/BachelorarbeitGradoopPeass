@@ -1,0 +1,11 @@
+/**
+ * Sets the wrapped value as {@code LocalDateTime} value.
+ *
+ * @param dateTime value
+ */
+public void setDateTime(LocalDateTime dateTime) {
+    byte[] valueBytes = DateTimeSerializer.serializeDateTime(dateTime);
+    rawBytes = new byte[OFFSET + DateTimeSerializer.SIZEOF_DATETIME];
+    rawBytes[0] = TYPE_DATETIME;
+    Bytes.putBytes(rawBytes, OFFSET, valueBytes, 0, valueBytes.length);
+}

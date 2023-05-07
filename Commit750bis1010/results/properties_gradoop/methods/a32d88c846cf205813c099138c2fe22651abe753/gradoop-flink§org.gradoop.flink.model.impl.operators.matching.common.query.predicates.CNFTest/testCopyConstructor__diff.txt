@@ -1,0 +1,7 @@
+@Test
+public void testCopyConstructor() {
+    CNF base = getPredicate("MATCH (a),(b) WHERE (a=b) AND (a = 0)");
+    CNF copy = new CNF(base);
+    copy.getPredicates().remove(0);
+    assertNotEquals(base, copy);
+}

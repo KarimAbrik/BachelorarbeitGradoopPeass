@@ -1,0 +1,41 @@
+/**
+ * Performs a walk to a random neighbor by sending a message to a target from an unvisited
+ * outgoing edge. Sets the vertex value as visited if necessary and updates the visited edge ids.
+ * Sets a boolean flag, if the vertex value has changed.
+ * Alternatively performs a jump to a random vertex with a probability given in
+ * {@link #jumpProbability} or if there are no unvisited outgoing edges.
+ * Returns the vertex value with the boolean flag as {@code Tuple2} eventually.
+ *
+ * @param valueWithHasChanged {@code Tuple2} containing the vertex value and a boolean flag
+ *                            determining if the value has changed
+ * @param edgesList List of all outgoing edge for the vertex
+ * @return {@code Tuple2} containing the vertex value and a boolean flag determining if the
+ *         value has changed
+ */
+private Tuple2<VCIVertexValue, Boolean> walkToRandomNeighbor(Tuple2<VCIVertexValue, Boolean> valueWithHasChanged, List<Edge<Long, Long>> edgesList) {
+    if (!valueWithHasChanged.f0.isVisited()) {
+        visitedVerticesAggregator.aggregate(1L);
+        valueWithHasChanged.f0.setVisited();
+        valueWithHasChanged.f1 = true;
+    }
+    if ((jumpProbability == 0d) || (jumpProbability < ThreadLocalRandom.current().nextDouble())) {
+        List<Tuple2<Long, Long>> unvisitedNeighborWithEdgeId = new ArrayList<>();
+        for (Edge<Long, Long> edge : edgesList) {
+            if (!valueWithHasChanged.f0.getVisitedOutEdges().contains(edge.getValue())) {
+                unvisitedNeighborWithEdgeId.add(Tuple2.of(edge.getTarget(), edge.getValue()));
+            }
+        }
+        if (!unvisitedNeighborWithEdgeId.isEmpty()) {
+            int randomIndex = ThreadLocalRandom.current().nextInt(unvisitedNeighborWithEdgeId.size());
+            Long randomNeighborIndex = unvisitedNeighborWithEdgeId.get(randomIndex).f0;
+            valueWithHasChanged.f0.addVisitedOutEdge(unvisitedNeighborWithEdgeId.get(randomIndex).f1);
+            sendMessageTo(randomNeighborIndex, new NullValue());
+            valueWithHasChanged.f1 = true;
+        } else {
+            jumpToRandomVertex();
+        }
+    } else {
+        jumpToRandomVertex();
+    }
+    return valueWithHasChanged;
+}

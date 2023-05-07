@@ -1,0 +1,13 @@
+/**                                                                                                    /**                                                                                                 
+* {@inheritDoc}                                                                                        * {@inheritDoc}                                                                                     
+*/                                                                                                     */                                                                                                  
+@Override                                                                                              @Override                                                                                           
+public ED readEdge(Result res) throws IOException {                                                  | public ED readEdge(Result res) {                                                                    
+return edgeFactory.createEdge(readId(res), readLabel(res), readSourceVertexId(res), readTargetVertex | ED edge = null;                                                                                     
+                                                                                                     | try {                                                                                               
+                                                                                                     | edge = edgeFactory.createEdge(readId(res), readLabel(res), readSourceVertexId(res), readTargetVertex
+                                                                                                     | } catch (IOException e) {                                                                           
+                                                                                                     | e.printStackTrace();                                                                                
+}                                                                                                      }                                                                                                   
+                                                                                                     | return edge;                                                                                        
+                                                                                                     | }                                                                                                   

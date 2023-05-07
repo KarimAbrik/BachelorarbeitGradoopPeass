@@ -1,0 +1,7 @@
+/**
+ * Creates an instance of the ClusteringCoefficientBase wrapper class.
+ * Calls constructor of super class {@link GradoopGellyAlgorithm}
+ */
+public ClusteringCoefficientBase() {
+    super(new VertexToGellyVertexWithNullValue(), new EdgeToGellyEdgeWithNullValue());
+}

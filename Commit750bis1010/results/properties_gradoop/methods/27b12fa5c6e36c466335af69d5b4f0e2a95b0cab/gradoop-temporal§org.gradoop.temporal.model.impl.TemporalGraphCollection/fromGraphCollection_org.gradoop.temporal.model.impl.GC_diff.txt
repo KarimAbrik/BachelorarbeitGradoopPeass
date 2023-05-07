@@ -1,0 +1,16 @@
+                                                                                                     | /**                                                                                                 
+                                                                                                     | * Convenience API function to create a {@link TemporalGraphCollection} from an existing             
+                                                                                                     | * {@link BaseGraphCollection} with default values for the temporal attributes.                      
+                                                                                                     | *                                                                                                   
+                                                                                                     | * @param baseGraphCollection the existing {@link BaseGraphCollection} instance                      
+                                                                                                     | * @param &lt;G&gt; The graph head type.                                                             
+                                                                                                     | * @param &lt;V&gt; The vertex type.                                                                 
+                                                                                                     | * @param &lt;E&gt; The edge type.                                                                   
+                                                                                                     | * @param &lt;LG&gt; The type of the graph.                                                          
+                                                                                                     | * @param &lt;GC&gt; The type of the graph collection.                                               
+                                                                                                     | * @return a temporal graph collection with default temporal values                                  
+                                                                                                     | * @see TemporalGraphCollectionFactory#fromNonTemporalGraphCollection(BaseGraphCollection)           
+                                                                                                     | */                                                                                                  
+                                                                                                     | public static &lt;G extends GraphHead, V extends Vertex, E extends Edge, LG extends BaseGraph&lt;G, 
+                                                                                                     | return TemporalGradoopConfig.fromGradoopFlinkConfig(baseGraphCollection.getConfig()).getTemporalGrap
+                                                                                                     | }                                                                                                   

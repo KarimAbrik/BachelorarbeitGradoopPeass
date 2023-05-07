@@ -1,0 +1,13 @@
+/**                                                                                                    /**                                                                                                 
+* {@inheritDoc}                                                                                        * {@inheritDoc}                                                                                     
+*/                                                                                                     */                                                                                                  
+@Override                                                                                              @Override                                                                                           
+public Put writeEdge(Put put, PersistentEdge&lt;VD&gt; edgeData) {                                   | public Put writeEdge(Put put, PersistentEdge&lt;VD&gt; edgeData) throws IOException {               
+LOG.info("Creating Put from: " + edgeData);                                                            LOG.info("Creating Put from: " + edgeData);                                                         
+writeLabel(put, edgeData);                                                                             writeLabel(put, edgeData);                                                                          
+writeSourceVertex(put, edgeData.getSourceVertex());                                                    writeSourceVertex(put, edgeData.getSourceVertex());                                                 
+writeTargetVertex(put, edgeData.getTargetVertex());                                                    writeTargetVertex(put, edgeData.getTargetVertex());                                                 
+writeProperties(put, edgeData);                                                                        writeProperties(put, edgeData);                                                                     
+writeGraphs(put, edgeData);                                                                          | writeGraphIds(put, edgeData);                                                                       
+return put;                                                                                            return put;                                                                                         
+}                                                                                                      }                                                                                                   

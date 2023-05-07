@@ -1,0 +1,10 @@
+@Override
+public LogicalGraph getLogicalGraph() throws IOException {
+    MetaData metaData = MetaData.fromFile(getMetaDataPath(), hdfsConfig);
+    ExecutionEnvironment env = getConfig().getExecutionEnvironment();
+    VertexFactory vertexFactory = getConfig().getVertexFactory();
+    EdgeFactory edgeFactory = getConfig().getEdgeFactory();
+    Map<String, DataSet<Vertex>> vertices = metaData.getVertexLabels().stream().map(l -> Tuple2.of(l, env.readTextFile(getVertexCSVPath(l)).map(new CSVLineToVertex(vertexFactory)).withBroadcastSet(MetaData.fromFile(getMetaDataPath(), getConfig()), BC_METADATA))).collect(Collectors.toMap(t -> t.f0, t -> t.f1));
+    Map<String, DataSet<Edge>> edges = metaData.getEdgeLabels().stream().map(l -> Tuple2.of(l, env.readTextFile(getEdgeCSVPath(l)).map(new CSVLineToEdge(edgeFactory)).withBroadcastSet(MetaData.fromFile(getMetaDataPath(), getConfig()), BC_METADATA))).collect(Collectors.toMap(t -> t.f0, t -> t.f1));
+    return getConfig().getLogicalGraphFactory().fromIndexedDataSets(vertices, edges);
+}

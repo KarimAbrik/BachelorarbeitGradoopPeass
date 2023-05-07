@@ -1,0 +1,12 @@
+/**
+ * Test the filter using some elements. For this test the filter is created using the other
+ * constructor.
+ *
+ * @throws Exception when the execution in Flink fails.
+ */
+@Test
+public void testFilterCollection() throws Exception {
+    List<EPGMVertex> result = getExecutionEnvironment().fromCollection(inputVertices).filter(new LabelIsIn<>(Arrays.asList("a", "b", "a", null))).collect();
+    result.sort(comparator);
+    assertArrayEquals(expected.toArray(), result.toArray());
+}

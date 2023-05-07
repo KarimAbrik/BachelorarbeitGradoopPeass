@@ -1,0 +1,18 @@
+/**
+ * Returns the IDs entries stored at the specified positions
+ * @param columns positions of the entries
+ * @return IDs of the entries stored at the specified positions
+ */
+public List<GradoopId> getIdsAsList(List<Integer> columns) {
+    int offset;
+    List<GradoopId> ids = new ArrayList<>();
+    for (Integer column : columns) {
+        offset = getIdOffset(column);
+        if (idData[offset] == ID_LIST_FLAG) {
+            ids.addAll(getIdList(column));
+        } else {
+            ids.add(getId(column));
+        }
+    }
+    return ids;
+}

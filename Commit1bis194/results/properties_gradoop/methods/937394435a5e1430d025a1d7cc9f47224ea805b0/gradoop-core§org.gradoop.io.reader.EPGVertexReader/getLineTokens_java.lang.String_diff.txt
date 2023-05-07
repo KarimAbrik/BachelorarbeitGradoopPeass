@@ -1,0 +1,9 @@
+/**
+ * Separates the whole line using {@code LINE_TOKEN_SEPARATOR}.
+ *
+ * @param line single input line
+ * @return token array
+ */
+private String[] getLineTokens(final String line) {
+    return LINE_TOKEN_SEPARATOR.split(line);
+}

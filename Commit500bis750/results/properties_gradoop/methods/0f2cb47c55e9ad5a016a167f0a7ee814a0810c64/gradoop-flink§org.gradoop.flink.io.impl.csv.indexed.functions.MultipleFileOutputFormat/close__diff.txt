@@ -1,0 +1,10 @@
+@Override
+public void close() throws IOException {
+    for (Entry<String, FSDataOutputStream> e : streams.entrySet()) {
+        final FSDataOutputStream s = e.getValue();
+        if (s != null) {
+            e.setValue(null);
+            s.close();
+        }
+    }
+}

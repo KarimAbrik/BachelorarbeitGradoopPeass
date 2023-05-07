@@ -1,0 +1,13 @@
+@Override
+public GraphTransaction map(GraphTransaction graphTransaction) throws Exception {
+    String label;
+    for (EPGMVertex vertex : graphTransaction.getVertices()) {
+        label = vertexDictionary.get(Integer.parseInt(vertex.getLabel()));
+        if (label != null) {
+            vertex.setLabel(label);
+        } else {
+            vertex.setLabel(vertex.getLabel() + TLFConstants.EMPTY_LABEL);
+        }
+    }
+    return graphTransaction;
+}

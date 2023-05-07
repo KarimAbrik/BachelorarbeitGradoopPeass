@@ -1,0 +1,19 @@
+/**
+ * Get the property meta data for the type and label.
+ *
+ * @param type  entity type, (g,v or e)
+ * @param label entity label
+ * @return list containing the property meta data
+ */
+public List<PropertyMetaData> getPropertyMetaData(String type, String label) {
+    switch(type) {
+        case MetaDataSource.GRAPH_TYPE:
+            return this.graphMetaData.getOrDefault(label, new ArrayList<>());
+        case MetaDataSource.VERTEX_TYPE:
+            return this.vertexMetaData.getOrDefault(label, new ArrayList<>());
+        case MetaDataSource.EDGE_TYPE:
+            return this.edgeMetaData.getOrDefault(label, new ArrayList<>());
+        default:
+            throw new IllegalArgumentException("Entity type " + type + " is not supported. Supported " + "types are g, v and e.");
+    }
+}

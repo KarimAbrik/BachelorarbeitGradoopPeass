@@ -1,0 +1,13 @@
+/**
+ * Builds a {@link GraphCollection} from the graph referenced by the given
+ * graph variables.
+ *
+ * @param variables graph variables used in GDL script
+ * @return GraphCollection
+ */
+public GraphCollection getGraphCollectionByVariables(String... variables) {
+    Collection<EPGMGraphHead> graphHeads = getGraphHeadsByVariables(variables);
+    Collection<EPGMVertex> vertices = getVerticesByGraphVariables(variables);
+    Collection<EPGMEdge> edges = getEdgesByGraphVariables(variables);
+    return config.getGraphCollectionFactory().fromCollections(graphHeads, vertices, edges);
+}

@@ -1,0 +1,20 @@
+/**
+ * Test CSVDataSink to write a graph with all supported properties.
+ * CSVDataSource ignores the graph heads when using getLogicalGraph(),
+ * therefore the graph head is not tested for equality.
+ *
+ * @throws Exception if the execution or IO fails.
+ */
+@Test
+public void testWriteExtendedProperties() throws Exception {
+    String tmpPath = temporaryFolder.getRoot().getPath();
+    LogicalGraph logicalGraph = getExtendedLogicalGraph();
+    DataSink csvDataSink = new CSVDataSink(tmpPath, getConfig());
+    csvDataSink.write(logicalGraph, true);
+    getExecutionEnvironment().execute();
+    DataSource csvDataSource = new CSVDataSource(tmpPath, getConfig());
+    LogicalGraph sourceLogicalGraph = csvDataSource.getLogicalGraph();
+    collectAndAssertTrue(logicalGraph.equalsByElementData(sourceLogicalGraph));
+    sourceLogicalGraph.getEdges().collect().forEach(this::checkProperties);
+    sourceLogicalGraph.getVertices().collect().forEach(this::checkProperties);
+}

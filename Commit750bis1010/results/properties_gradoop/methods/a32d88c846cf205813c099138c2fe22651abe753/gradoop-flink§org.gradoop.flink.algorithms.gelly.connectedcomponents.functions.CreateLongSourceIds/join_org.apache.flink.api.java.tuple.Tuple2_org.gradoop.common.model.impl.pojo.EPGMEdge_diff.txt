@@ -1,0 +1,15 @@
+/**
+ * Builds intermediate result.
+ *
+ * @param tuple holds information about long id and gradoop id of a vertex
+ * @param edge holds information about source and target vertices
+ * @return tuple {@code <vertexID<Long>,vertexID<GradoopID>,sourceID<Long>,targetID<GradoopID>>}
+ */
+@Override
+public Tuple4<Long, GradoopId, Long, GradoopId> join(Tuple2<Long, GradoopId> tuple, EPGMEdge edge) {
+    reuse.f0 = tuple.f0;
+    reuse.f1 = tuple.f1;
+    reuse.f2 = tuple.f0;
+    reuse.f3 = edge.getTargetId();
+    return reuse;
+}

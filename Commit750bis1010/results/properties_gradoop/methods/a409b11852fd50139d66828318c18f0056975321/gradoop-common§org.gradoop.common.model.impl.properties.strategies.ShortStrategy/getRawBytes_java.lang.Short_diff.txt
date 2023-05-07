@@ -1,0 +1,7 @@
+@Override
+public byte[] getRawBytes(Short value) {
+    byte[] rawBytes = new byte[PropertyValue.OFFSET + Bytes.SIZEOF_SHORT];
+    rawBytes[0] = getRawType();
+    Bytes.putShort(rawBytes, PropertyValue.OFFSET, value);
+    return rawBytes;
+}

@@ -1,0 +1,12 @@
+@Test
+public void testEvaluationReturnsPropertyValue() {
+    PropertySelector selector = new PropertySelector("a", "age");
+    PropertySelectorComparable wrapper = new PropertySelectorComparable(selector);
+    Embedding embedding = new Embedding();
+    embedding.add(GradoopId.get(), PropertyValue.create(42));
+    EmbeddingMetaData metaData = new EmbeddingMetaData();
+    metaData.setEntryColumn("a", EntryType.VERTEX, 0);
+    metaData.setPropertyColumn("a", "age", 0);
+    assertEquals(PropertyValue.create(42), wrapper.evaluate(embedding, metaData));
+    assertNotEquals(PropertyValue.create("42"), wrapper.evaluate(embedding, metaData));
+}

@@ -1,0 +1,10 @@
+@Test
+public void testEdgeWithLabel() throws Exception {
+    String query = "MATCH (n)-[e:knows]->(m)";
+    QueryHandler queryHandler = new QueryHandler(query);
+    FilterAndProjectEdgesNode node = new FilterAndProjectEdgesNode(null, "n", "e", "m", queryHandler.getPredicates().getSubCNF("e"), Sets.newHashSet(), false);
+    FilterEstimator elementEstimator = new FilterEstimator(queryHandler, STATS);
+    elementEstimator.visit(node);
+    assertThat(elementEstimator.getCardinality(), is(10L));
+    assertThat(elementEstimator.getSelectivity(), is(1d));
+}

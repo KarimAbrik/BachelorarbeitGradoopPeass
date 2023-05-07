@@ -1,0 +1,8 @@
+@Override
+public EPGMGraphHead map(EPGMGraphHead graphHead) {
+    double vc1 = (double) graphHead.getPropertyValue("vertexCount").getLong();
+    double ec1 = (double) graphHead.getPropertyValue("edgeCount").getLong();
+    double density = ec1 / (vc1 * (vc1 - 1.));
+    graphHead.setProperty(propertyKey, density);
+    return graphHead;
+}

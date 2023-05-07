@@ -1,0 +1,68 @@
+{
+  "clazz" : "org.gradoop.model.impl.labelpropagation.LabelPropagationGradoopTest",
+  "methods" : [ {
+    "method" : "testLabelPropagationWithCallByPropertyKey",
+    "datacollectorResults" : [ {
+      "name" : "de.dagere.kopeme.datacollection.TimeDataCollectorNoGC",
+      "chunks" : [ ],
+      "results" : [ {
+        "value" : 4.3817383365E9,
+        "deviation" : 0.4582038548209448,
+        "min" : 3.264898089E9,
+        "max" : 9.916709043E9,
+        "warmup" : 0,
+        "iterations" : 10,
+        "repetitions" : 2,
+        "commit" : null,
+        "vmRunConfiguration" : {
+          "showStart" : false,
+          "executeBeforeClassInMeasurement" : false,
+          "redirectToTemp" : false,
+          "redirectToNull" : true,
+          "useKieker" : false
+        },
+        "parameters" : {
+          "JUNIT_PARAMETERIZED" : "Execution mode = CLUSTER"
+        },
+        "javaVersion" : "1.8.0_362",
+        "cpu" : "model name : Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz",
+        "memory" : "MemTotal: 16280544 kB",
+        "date" : 1681002479715,
+        "fulldata" : {
+          "fileName" : null,
+          "values" : [ {
+            "startTime" : 1681002435384,
+            "value" : 9916709043
+          }, {
+            "startTime" : 1681002445301,
+            "value" : 5051039723
+          }, {
+            "startTime" : 1681002450352,
+            "value" : 3783030575
+          }, {
+            "startTime" : 1681002454135,
+            "value" : 3822037281
+          }, {
+            "startTime" : 1681002457957,
+            "value" : 3860113821
+          }, {
+            "startTime" : 1681002461817,
+            "value" : 3462168917
+          }, {
+            "startTime" : 1681002465280,
+            "value" : 3751923925
+          }, {
+            "startTime" : 1681002469032,
+            "value" : 3585785465
+          }, {
+            "startTime" : 1681002472617,
+            "value" : 3319676526
+          }, {
+            "startTime" : 1681002475937,
+            "value" : 3264898089
+          } ]
+        }
+      } ]
+    } ]
+  } ]
+}

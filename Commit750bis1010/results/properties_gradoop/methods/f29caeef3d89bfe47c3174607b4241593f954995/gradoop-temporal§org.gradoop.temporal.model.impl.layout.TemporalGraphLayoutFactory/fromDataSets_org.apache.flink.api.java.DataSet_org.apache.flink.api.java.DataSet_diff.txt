@@ -1,0 +1,11 @@
+@Override
+public LogicalGraphLayout<TemporalGraphHead, TemporalVertex, TemporalEdge> fromDataSets(DataSet<TemporalVertex> vertices, DataSet<TemporalEdge> edges) {
+    requireNonNull(vertices, "Vertex DataSet is null");
+    requireNonNull(edges, "Edge DataSet is null");
+    TemporalGraphHead graphHead = getGraphHeadFactory().createGraphHead();
+    DataSet<TemporalGraphHead> graphHeadSet = getConfig().getExecutionEnvironment().fromElements(graphHead);
+    // update vertices and edges with new graph head id
+    vertices = vertices.map(new AddToGraph<>(graphHead)).withForwardedFields("id;label;properties;transactionTime;validTime");
+    edges = edges.map(new AddToGraph<>(graphHead)).withForwardedFields("id;sourceId;targetId;label;properties;transactionTime;validTime");
+    return new TemporalGVELayout(graphHeadSet, vertices, edges);
+}

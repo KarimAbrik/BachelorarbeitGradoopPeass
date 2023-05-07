@@ -1,0 +1,14 @@
+/**
+ * Adds a list of property keys to the edge grouping keys for edges  which do not have a
+ * specific label group.
+ *
+ * @param keys property keys
+ * @return this builder
+ */
+public GroupingBuilder addEdgeGroupingKeys(List<String> keys) {
+    Objects.requireNonNull(keys);
+    for (String key : keys) {
+        this.addEdgeGroupingKey(key);
+    }
+    return this;
+}

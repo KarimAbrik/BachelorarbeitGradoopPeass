@@ -1,0 +1,7 @@
+/**
+ * Constructor.
+ */
+public VertexToGellyVertexWithNullValue() {
+    reuseVertex = new org.apache.flink.graph.Vertex<>();
+    reuseVertex.setValue(NullValue.getInstance());
+}

@@ -1,0 +1,4 @@
+@Override
+public void sendMessages(Vertex<GradoopId, PropertyValue> vertex) throws Exception {
+    sendMessageToAllNeighbors(vertex.getValue());
+}

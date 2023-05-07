@@ -1,0 +1,11 @@
+//------------------------------------------------------------------------------------------------
+// private little helpers
+//------------------------------------------------------------------------------------------------
+/**
+ * Returns the timestamp component of the id.
+ *
+ * @return the timestamp
+ */
+private int getTimeStamp() {
+    return makeInt(bytes[0], bytes[1], bytes[2], bytes[3]);
+}

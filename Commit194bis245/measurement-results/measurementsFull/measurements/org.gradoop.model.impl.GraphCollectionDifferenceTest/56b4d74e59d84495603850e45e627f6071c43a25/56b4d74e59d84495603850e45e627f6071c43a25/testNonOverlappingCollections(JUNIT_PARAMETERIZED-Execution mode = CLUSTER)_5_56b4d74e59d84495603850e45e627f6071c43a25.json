@@ -1,0 +1,68 @@
+{
+  "clazz" : "org.gradoop.model.impl.GraphCollectionDifferenceTest",
+  "methods" : [ {
+    "method" : "testNonOverlappingCollections",
+    "datacollectorResults" : [ {
+      "name" : "de.dagere.kopeme.datacollection.TimeDataCollectorNoGC",
+      "chunks" : [ ],
+      "results" : [ {
+        "value" : 1.008066934E9,
+        "deviation" : 0.8064871064212569,
+        "min" : 5.70122102E8,
+        "max" : 3.279412768E9,
+        "warmup" : 0,
+        "iterations" : 10,
+        "repetitions" : 2,
+        "commit" : null,
+        "vmRunConfiguration" : {
+          "showStart" : false,
+          "executeBeforeClassInMeasurement" : false,
+          "redirectToTemp" : false,
+          "redirectToNull" : true,
+          "useKieker" : false
+        },
+        "parameters" : {
+          "JUNIT_PARAMETERIZED" : "Execution mode = CLUSTER"
+        },
+        "javaVersion" : "1.8.0_362",
+        "cpu" : "model name : Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz",
+        "memory" : "MemTotal: 16280544 kB",
+        "date" : 1680978927124,
+        "fulldata" : {
+          "fileName" : null,
+          "values" : [ {
+            "startTime" : 1680978916864,
+            "value" : 3279412768
+          }, {
+            "startTime" : 1680978920144,
+            "value" : 1115805759
+          }, {
+            "startTime" : 1680978921260,
+            "value" : 844960561
+          }, {
+            "startTime" : 1680978922105,
+            "value" : 681067284
+          }, {
+            "startTime" : 1680978922786,
+            "value" : 699981220
+          }, {
+            "startTime" : 1680978923486,
+            "value" : 703872979
+          }, {
+            "startTime" : 1680978924190,
+            "value" : 725505978
+          }, {
+            "startTime" : 1680978924915,
+            "value" : 570122102
+          }, {
+            "startTime" : 1680978925486,
+            "value" : 853873050
+          }, {
+            "startTime" : 1680978926339,
+            "value" : 606067639
+          } ]
+        }
+      } ]
+    } ]
+  } ]
+}

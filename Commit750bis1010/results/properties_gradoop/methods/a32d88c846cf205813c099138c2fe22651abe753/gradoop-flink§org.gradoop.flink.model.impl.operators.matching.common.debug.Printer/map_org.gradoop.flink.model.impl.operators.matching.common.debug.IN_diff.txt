@@ -1,0 +1,5 @@
+@Override
+public IN map(IN in) throws Exception {
+    getLogger().debug(String.format("%s%s", getHeader(), getDebugString(in)));
+    return in;
+}

@@ -1,0 +1,22 @@
+/**
+ * Removes the dictionary labels and sets the simple labels (integer).
+ *
+ * @param graphTransaction graph transaction with label format:
+ *                         'dictionarylabel'
+ * @return graph transaction with label format: 'simpleLabel' (Integer)
+ * @throws Exception on failure
+ */
+@Override
+public GraphTransaction map(GraphTransaction graphTransaction) throws Exception {
+    if (vertexDictionary != null) {
+        for (EPGMVertex vertex : graphTransaction.getVertices()) {
+            vertex.setLabel(vertexDictionary.get(vertex.getLabel()).toString());
+        }
+    }
+    if (edgeDictionary != null) {
+        for (EPGMEdge edge : graphTransaction.getEdges()) {
+            edge.setLabel(edgeDictionary.get(edge.getLabel()).toString());
+        }
+    }
+    return graphTransaction;
+}

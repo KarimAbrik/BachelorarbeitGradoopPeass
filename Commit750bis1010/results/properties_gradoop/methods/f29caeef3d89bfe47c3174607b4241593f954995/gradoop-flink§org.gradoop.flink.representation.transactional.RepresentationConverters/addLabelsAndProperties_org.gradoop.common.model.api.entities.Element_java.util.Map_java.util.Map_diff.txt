@@ -1,0 +1,14 @@
+/**
+ * Adds label and properties of an EPGM element to id-label and id-properties maps.
+ *
+ * @param element EPGM element
+ * @param labels id-label map
+ * @param properties id-properties map
+ */
+private static void addLabelsAndProperties(Element element, Map<GradoopId, String> labels, Map<GradoopId, Properties> properties) {
+    labels.put(element.getId(), element.getLabel());
+    Properties propertyList = element.getProperties();
+    if (propertyList != null && !propertyList.isEmpty()) {
+        properties.put(element.getId(), propertyList);
+    }
+}

@@ -1,0 +1,9 @@
+@Override                                                                                            |                                                                                                     
+public void write(DataOutputView out) throws IOException {                                           |                                                                                                     
+if (isEmpty()) {                                                                                     |                                                                                                     
+out.writeInt(0);                                                                                     |                                                                                                     
+} else {                                                                                             |                                                                                                     
+out.writeInt(size());                                                                                |                                                                                                     
+out.write(writeIds(ids));                                                                            |                                                                                                     
+}                                                                                                    |                                                                                                     
+}                                                                                                    |                                                                                                     

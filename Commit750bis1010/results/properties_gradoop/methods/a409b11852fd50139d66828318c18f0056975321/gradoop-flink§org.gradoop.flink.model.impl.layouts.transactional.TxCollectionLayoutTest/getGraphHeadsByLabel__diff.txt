@@ -1,0 +1,5 @@
+@Test
+public void getGraphHeadsByLabel() throws Exception {
+    TxCollectionLayout layout = new TxCollectionLayout(getExecutionEnvironment().fromElements(tx0, tx1));
+    GradoopTestUtils.validateElementCollections(Sets.newHashSet(tx0.getGraphHead()), layout.getGraphHeadsByLabel("A").collect());
+}

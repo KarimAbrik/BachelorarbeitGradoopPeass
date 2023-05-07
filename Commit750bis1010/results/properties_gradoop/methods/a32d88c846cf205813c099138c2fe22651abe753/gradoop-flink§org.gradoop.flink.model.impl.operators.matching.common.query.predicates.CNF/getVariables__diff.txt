@@ -1,0 +1,8 @@
+@Override
+public Set<String> getVariables() {
+    Set<String> variables = new HashSet<>();
+    for (CNFElement cnfElement : predicates) {
+        variables.addAll(cnfElement.getVariables());
+    }
+    return variables;
+}

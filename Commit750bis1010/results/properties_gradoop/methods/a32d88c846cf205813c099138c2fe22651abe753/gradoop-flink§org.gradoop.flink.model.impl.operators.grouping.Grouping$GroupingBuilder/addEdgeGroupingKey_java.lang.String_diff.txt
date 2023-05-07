@@ -1,0 +1,16 @@
+/**
+ * Adds a property key to the edge grouping keys for edges which do not have a specific
+ * label group.
+ *
+ * @param key property key
+ * @return this builder
+ */
+public GroupingBuilder addEdgeGroupingKey(String key) {
+    Objects.requireNonNull(key);
+    if (key.equals(Grouping.LABEL_SYMBOL)) {
+        useEdgeLabel(true);
+    } else {
+        defaultEdgeLabelGroup.addPropertyKey(key);
+    }
+    return this;
+}

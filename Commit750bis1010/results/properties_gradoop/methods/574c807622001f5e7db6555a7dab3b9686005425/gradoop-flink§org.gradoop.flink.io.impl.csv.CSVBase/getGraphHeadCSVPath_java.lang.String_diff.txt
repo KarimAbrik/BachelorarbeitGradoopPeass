@@ -1,0 +1,9 @@
+/**
+ * Returns the path to the graph head file containing only graph heads with the specified label.
+ *
+ * @param label graph head label
+ * @return path to csv file
+ */
+protected String getGraphHeadCSVPath(String label) {
+    return getElementCSVPath(label, getGraphHeadPath());
+}

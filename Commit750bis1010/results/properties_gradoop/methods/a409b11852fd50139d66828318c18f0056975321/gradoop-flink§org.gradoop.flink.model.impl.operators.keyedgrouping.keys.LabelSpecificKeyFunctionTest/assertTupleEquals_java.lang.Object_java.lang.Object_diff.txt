@@ -1,0 +1,26 @@
+/**
+ * Check if two tuples are equal. This is necessary since {@code byte[]} does not have a valid {@code
+ * equals} implementation.
+ *
+ * @param expected The expected object.
+ * @param actual The actual object.
+ */
+private void assertTupleEquals(Object expected, Object actual) {
+    assertTrue("Element is not a tuple: " + expected, expected instanceof Tuple);
+    Tuple expectedTuple = (Tuple) expected;
+    assertTrue("Element is not a tuple: " + actual, actual instanceof Tuple);
+    Tuple actualTuple = (Tuple) actual;
+    assertEquals("Tuple arity is not equal", expectedTuple.getArity(), actualTuple.getArity());
+    final int arity = expectedTuple.getArity();
+    for (int i = 0; i < arity; i++) {
+        final Object expectedField = expectedTuple.getField(i);
+        final Object actualField = actualTuple.getField(i);
+        if (expectedField instanceof Tuple && actualField instanceof Tuple) {
+            assertTupleEquals(expectedField, actualField);
+        } else if (expectedField instanceof byte[] && actualField instanceof byte[]) {
+            assertArrayEquals("Element at index " + i + " not equal", (byte[]) expectedField, (byte[]) actualField);
+        } else {
+            assertEquals("Element at index " + i + " not equal", expectedField, actualField);
+        }
+    }
+}

@@ -1,0 +1,12 @@
+/**
+ * Turns the intermediate result into an embedding
+ * {@code (base,(a,b,c),d) -> (base, IdListEntry(a,b,c), IdEntry(d))}
+ *
+ * @return embedding representation of the expand intermediate result
+ */
+public Embedding toEmbedding() {
+    Embedding embedding = getBase();
+    embedding.add(f1);
+    embedding.add(f2);
+    return getBase();
+}

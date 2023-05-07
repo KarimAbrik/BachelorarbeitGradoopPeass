@@ -1,0 +1,16 @@
+                                                                                                     | /**                                                                                                 
+                                                                                                     | * Copies the given local file into HDFS.                                                            
+                                                                                                     | *                                                                                                   
+                                                                                                     | * @param inputFile path to local file                                                               
+                                                                                                     | * @throws IOException                                                                               
+                                                                                                     | */                                                                                                  
+                                                                                                     | protected void copyFromLocal(String inputFile) throws IOException {                                 
+                                                                                                     | URL tmpUrl = Thread.currentThread().getContextClassLoader().getResource(inputFile);                 
+                                                                                                     | assertNotNull(tmpUrl);                                                                              
+                                                                                                     | String graphFileResource = tmpUrl.getPath();                                                        
+                                                                                                     | // copy input graph to DFS                                                                          
+                                                                                                     | FileSystem fs = utility.getTestFileSystem();                                                        
+                                                                                                     | Path graphFileLocalPath = new Path(graphFileResource);                                              
+                                                                                                     | Path graphFileDFSPath = new Path(inputFile);                                                        
+                                                                                                     | fs.copyFromLocalFile(graphFileLocalPath, graphFileDFSPath);                                         
+                                                                                                     | }                                                                                                   

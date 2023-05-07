@@ -1,0 +1,14 @@
+@Override
+public void flatMap(EPGMGraphHead graphHead, Collector<Tuple3<String, Long, Long>> out) {
+    List<String> vertexWcc = graphHead.getPropertyValue(new AggregateListOfWccVertices(propertyKey).getAggregatePropertyKey()).getList().stream().map(PropertyValue::getString).collect(Collectors.toList());
+    Set<String> distinctComponentIds = new HashSet<>(vertexWcc);
+    List<String> edgeWcc = new ArrayList<>();
+    if (annotateEdges) {
+        edgeWcc = graphHead.getPropertyValue(new AggregateListOfWccEdges(propertyKey).getAggregatePropertyKey()).getList().stream().map(PropertyValue::getString).collect(Collectors.toList());
+    }
+    List<String> finalEdgeWcc = edgeWcc;
+    List<Tuple3<String, Long, Long>> wccDist = distinctComponentIds.stream().map(wccId -> new Tuple3<>(wccId, (long) Collections.frequency(vertexWcc, wccId), annotateEdges ? (long) Collections.frequency(finalEdgeWcc, wccId) : -1L)).collect(Collectors.toList());
+    for (Tuple3<String, Long, Long> distTuple : wccDist) {
+        out.collect(distTuple);
+    }
+}

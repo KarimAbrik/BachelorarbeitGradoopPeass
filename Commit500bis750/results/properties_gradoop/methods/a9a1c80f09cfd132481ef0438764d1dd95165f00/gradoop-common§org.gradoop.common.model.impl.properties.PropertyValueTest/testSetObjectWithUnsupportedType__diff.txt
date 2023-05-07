@@ -1,0 +1,5 @@
+@Test(expected = UnsupportedTypeException.class)
+public void testSetObjectWithUnsupportedType() {
+    PropertyValue p = new PropertyValue();
+    p.setObject(new HashSet<>());
+}

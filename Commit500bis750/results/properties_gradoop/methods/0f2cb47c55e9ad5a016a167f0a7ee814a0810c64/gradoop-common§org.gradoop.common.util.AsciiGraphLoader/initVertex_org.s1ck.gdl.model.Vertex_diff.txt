@@ -1,0 +1,18 @@
+/**
+ * Creates a new EPGMVertex from the GDL Loader or updates an existing one.
+ *
+ * @param v vertex from GDL Loader
+ * @return EPGM vertex
+ */
+private V initVertex(Vertex v) {
+    V vertex;
+    if (!vertexIds.containsKey(v.getId())) {
+        vertex = (V) config.getVertexFactory().createVertex(v.getLabel(), Properties.createFromMap(v.getProperties()), createGradoopIdSet(v));
+        vertexIds.put(v.getId(), vertex.getId());
+        vertices.put(vertex.getId(), vertex);
+    } else {
+        vertex = vertices.get(vertexIds.get(v.getId()));
+        vertex.setGraphIds(createGradoopIdSet(v));
+    }
+    return vertex;
+}

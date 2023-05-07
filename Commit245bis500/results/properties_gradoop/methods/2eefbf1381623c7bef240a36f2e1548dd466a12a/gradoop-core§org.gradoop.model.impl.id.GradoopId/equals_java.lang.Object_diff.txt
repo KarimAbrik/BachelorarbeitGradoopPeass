@@ -1,0 +1,14 @@
+@Override                                                                                              @Override                                                                                           
+public boolean equals(Object o) {                                                                      public boolean equals(Object o) {                                                                   
+                                                                                                     | boolean equals = false;                                                                             
+if (this == o) {                                                                                       if (this == o) {                                                                                    
+return true;                                                                                         | equals = true;                                                                                      
+                                                                                                     | } else if (o instanceof GradoopId) {                                                                
+                                                                                                     | equals = this.identifier.equals(((GradoopId) o).identifier);                                        
+}                                                                                                      }                                                                                                   
+if (!(o instanceof GradoopId)) {                                                                     | return equals;                                                                                      
+return false;                                                                                        |                                                                                                     
+}                                                                                                      }                                                                                                   
+GradoopId gradoopId = (GradoopId) o;                                                                 |                                                                                                     
+return Objects.equals(identifier, gradoopId.identifier);                                             |                                                                                                     
+}                                                                                                    |                                                                                                     

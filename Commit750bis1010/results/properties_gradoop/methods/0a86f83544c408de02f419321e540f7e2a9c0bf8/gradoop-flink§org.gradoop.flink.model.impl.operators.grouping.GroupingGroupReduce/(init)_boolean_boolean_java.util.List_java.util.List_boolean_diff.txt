@@ -1,0 +1,13 @@
+                                                                                                     | /**                                                                                                 
+                                                                                                     | * Creates grouping operator instance.                                                               
+                                                                                                     | *                                                                                                   
+                                                                                                     | * @param useVertexLabels             group on vertex label true/false                               
+                                                                                                     | * @param useEdgeLabels               group on edge label true/false                                 
+                                                                                                     | * @param vertexLabelGroups           stores grouping properties for vertex labels                   
+                                                                                                     | * @param edgeLabelGroups             stores grouping properties for edge labels                     
+                                                                                                     | * @param retainVerticesWithoutGroup  a flag to retain vertices that are not affected by the         
+                                                                                                     | *                                    grouping                                                       
+                                                                                                     | */                                                                                                  
+                                                                                                     | GroupingGroupReduce(boolean useVertexLabels, boolean useEdgeLabels, List&lt;LabelGroup&gt; vertexLab
+                                                                                                     | super(useVertexLabels, useEdgeLabels, vertexLabelGroups, edgeLabelGroups, retainVerticesWithoutGroup
+                                                                                                     | }                                                                                                   

@@ -1,0 +1,8 @@
+//----------------------------------------------------------------------------
+// Data generation
+//----------------------------------------------------------------------------
+protected FlinkAsciiGraphLoader getLoaderFromString(String asciiString) {
+    FlinkAsciiGraphLoader loader = getNewLoader();
+    loader.initDatabaseFromString(asciiString);
+    return loader;
+}

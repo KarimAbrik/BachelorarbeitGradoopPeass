@@ -1,0 +1,9 @@
+@Test
+public void createWithMissingLabelTest() {
+    GradoopIdGenerator idGen = new SequenceIdGenerator();
+    GradoopId edgeId = idGen.createId();
+    GradoopId sourceId = idGen.createId();
+    GradoopId targetId = idGen.createId();
+    EPGMEdge e = new EdgePojoFactory().createEdge(edgeId, sourceId, targetId);
+    assertThat(e.getLabel(), is(GConstants.DEFAULT_EDGE_LABEL));
+}

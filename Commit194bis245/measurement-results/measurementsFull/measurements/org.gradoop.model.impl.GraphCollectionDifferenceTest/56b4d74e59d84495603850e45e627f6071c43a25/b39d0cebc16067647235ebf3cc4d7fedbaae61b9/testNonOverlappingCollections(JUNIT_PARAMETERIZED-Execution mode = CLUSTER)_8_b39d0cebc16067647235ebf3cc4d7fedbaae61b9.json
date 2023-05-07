@@ -1,0 +1,68 @@
+{
+  "clazz" : "org.gradoop.model.impl.GraphCollectionDifferenceTest",
+  "methods" : [ {
+    "method" : "testNonOverlappingCollections",
+    "datacollectorResults" : [ {
+      "name" : "de.dagere.kopeme.datacollection.TimeDataCollectorNoGC",
+      "chunks" : [ ],
+      "results" : [ {
+        "value" : 1.0167998510999999E9,
+        "deviation" : 0.7575910935578845,
+        "min" : 5.89848441E8,
+        "max" : 3.172303852E9,
+        "warmup" : 0,
+        "iterations" : 10,
+        "repetitions" : 2,
+        "commit" : null,
+        "vmRunConfiguration" : {
+          "showStart" : false,
+          "executeBeforeClassInMeasurement" : false,
+          "redirectToTemp" : false,
+          "redirectToNull" : true,
+          "useKieker" : false
+        },
+        "parameters" : {
+          "JUNIT_PARAMETERIZED" : "Execution mode = CLUSTER"
+        },
+        "javaVersion" : "1.8.0_362",
+        "cpu" : "model name : Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz",
+        "memory" : "MemTotal: 16280544 kB",
+        "date" : 1680979021484,
+        "fulldata" : {
+          "fileName" : null,
+          "values" : [ {
+            "startTime" : 1680979011104,
+            "value" : 3172303852
+          }, {
+            "startTime" : 1680979014277,
+            "value" : 1067808808
+          }, {
+            "startTime" : 1680979015344,
+            "value" : 837309010
+          }, {
+            "startTime" : 1680979016182,
+            "value" : 759810099
+          }, {
+            "startTime" : 1680979016942,
+            "value" : 726281977
+          }, {
+            "startTime" : 1680979017668,
+            "value" : 590447454
+          }, {
+            "startTime" : 1680979018258,
+            "value" : 728921128
+          }, {
+            "startTime" : 1680979018987,
+            "value" : 798225138
+          }, {
+            "startTime" : 1680979019786,
+            "value" : 897042604
+          }, {
+            "startTime" : 1680979020683,
+            "value" : 589848441
+          } ]
+        }
+      } ]
+    } ]
+  } ]
+}

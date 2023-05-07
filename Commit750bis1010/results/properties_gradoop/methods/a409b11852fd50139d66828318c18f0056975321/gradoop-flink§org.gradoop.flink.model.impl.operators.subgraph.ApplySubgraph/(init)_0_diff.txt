@@ -1,0 +1,17 @@
+/**
+ * Creates a new sub graph operator instance.
+ * <p>
+ * If both parameters are not {@code null}, the operator returns the subgraph
+ * defined by filtered vertices and edges.
+ * <p>
+ * If the {@code edgeFilterFunction} is {@code null}, the operator returns the vertex-induced subgraph.
+ * <p>
+ * If the {@code vertexFilterFunction} is {@code null}, the operator returns the edge-induced subgraph.
+ *
+ * @param vertexFilterFunction vertex filter function
+ * @param edgeFilterFunction   edge filter function
+ * @param strategy             sets the execution strategy for the operator
+ */
+public ApplySubgraph(FilterFunction<V> vertexFilterFunction, FilterFunction<E> edgeFilterFunction, Strategy strategy) {
+    super(vertexFilterFunction, edgeFilterFunction, strategy);
+}

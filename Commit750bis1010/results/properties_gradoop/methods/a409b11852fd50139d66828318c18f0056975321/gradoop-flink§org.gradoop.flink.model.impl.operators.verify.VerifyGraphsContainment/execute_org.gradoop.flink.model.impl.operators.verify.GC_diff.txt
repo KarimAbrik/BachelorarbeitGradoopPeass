@@ -1,0 +1,7 @@
+@Override
+public GC execute(GC collection) {
+    DataSet<GradoopId> idSet = collection.getGraphHeads().map(new Id<>());
+    DataSet<V> verifiedVertices = collection.getVertices().map(new RemoveDanglingGraphIds<>()).withBroadcastSet(idSet, RemoveDanglingGraphIds.GRAPH_ID_SET);
+    DataSet<E> verifiedEdges = collection.getEdges().map(new RemoveDanglingGraphIds<>()).withBroadcastSet(idSet, RemoveDanglingGraphIds.GRAPH_ID_SET);
+    return collection.getFactory().fromDataSets(collection.getGraphHeads(), verifiedVertices, verifiedEdges);
+}

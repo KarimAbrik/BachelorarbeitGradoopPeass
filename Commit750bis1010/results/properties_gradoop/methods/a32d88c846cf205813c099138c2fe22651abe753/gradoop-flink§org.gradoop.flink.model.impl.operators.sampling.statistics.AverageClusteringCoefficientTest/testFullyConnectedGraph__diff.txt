@@ -1,0 +1,11 @@
+/**
+ * Test for a fully connected graph
+ */
+@Test
+public void testFullyConnectedGraph() throws Exception {
+    LogicalGraph graph = loader.getLogicalGraphByVariable("clique");
+    LogicalGraph result = graph.callForGraph(new AverageClusteringCoefficient());
+    validateGraphProperties(result);
+    EPGMGraphHead head = result.getGraphHead().collect().get(0);
+    assertEquals("Wrong average value for fully connected graph, should be 1", 1d, head.getPropertyValue(AverageClusteringCoefficient.PROPERTY_KEY_AVERAGE).getDouble(), 0.0);
+}

@@ -1,0 +1,4 @@
+@Override
+public MapOperator<Long, Tuple1<Long>> execute(final LogicalGraph graph) {
+    return new DistinctTargetIds().execute(graph).map(new ObjectTo1<>());
+}

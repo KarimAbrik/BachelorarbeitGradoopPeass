@@ -1,0 +1,24 @@
+/**
+ * {@inheritDoc}
+ * @throws IOException if converting the byte array to a List fails.
+ */
+@Override
+public List<PropertyValue> get(byte[] bytes) throws IOException {
+    PropertyValue item;
+    List<PropertyValue> list = new ArrayList<>();
+    try (ByteArrayInputStream byteStream = new ByteArrayInputStream(bytes);
+        DataInputStream inputStream = new DataInputStream(byteStream);
+        DataInputViewStreamWrapper inputView = new DataInputViewStreamWrapper(inputStream)) {
+        if (inputView.skipBytes(PropertyValue.OFFSET) != PropertyValue.OFFSET) {
+            throw new IOException("Malformed entry in PropertyValue List.");
+        }
+        while (inputView.available() > 0) {
+            item = new PropertyValue();
+            item.read(inputView);
+            list.add(item);
+        }
+    } catch (IOException e) {
+        throw new IOException("Error reading PropertyValue with ListStrategy.", e);
+    }
+    return list;
+}

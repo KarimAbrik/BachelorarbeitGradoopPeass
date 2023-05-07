@@ -1,0 +1,6 @@
+@Override
+public void flatMap(Vertex<Long, VCIVertexValue> gellyVertex, Collector<Long> out) throws Exception {
+    for (Long visitedOutEdge : gellyVertex.getValue().getVisitedOutEdges()) {
+        out.collect(visitedOutEdge);
+    }
+}

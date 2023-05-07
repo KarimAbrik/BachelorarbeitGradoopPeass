@@ -1,0 +1,17 @@
+@Override
+public void combine(Iterable<Edge> edges, Collector<PropertyValue> out) throws Exception {
+    PropertyValue aggregate = null;
+    for (Edge edge : edges) {
+        PropertyValue increment = aggFunc.getEdgeIncrement(edge);
+        if (increment != null) {
+            if (aggregate == null) {
+                aggregate = increment;
+            } else {
+                aggregate = aggFunc.aggregate(aggregate, increment);
+            }
+        }
+    }
+    if (aggregate != null) {
+        out.collect(aggregate);
+    }
+}

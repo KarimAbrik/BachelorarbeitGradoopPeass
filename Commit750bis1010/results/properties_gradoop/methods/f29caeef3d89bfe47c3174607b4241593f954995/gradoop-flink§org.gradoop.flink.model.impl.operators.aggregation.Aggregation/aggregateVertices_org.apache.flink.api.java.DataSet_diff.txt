@@ -1,0 +1,9 @@
+/**
+ * Applies vertex aggregate functions to the partitions of a vertex data set.
+ *
+ * @param vertices vertex data set
+ * @return partition aggregate values mapped from their property key
+ */
+private DataSet<Map<String, PropertyValue>> aggregateVertices(DataSet<V> vertices) {
+    return vertices.combineGroup(new AggregateElements<>(aggregateFunctions.stream().filter(AggregateFunction::isVertexAggregation).collect(Collectors.toSet())));
+}

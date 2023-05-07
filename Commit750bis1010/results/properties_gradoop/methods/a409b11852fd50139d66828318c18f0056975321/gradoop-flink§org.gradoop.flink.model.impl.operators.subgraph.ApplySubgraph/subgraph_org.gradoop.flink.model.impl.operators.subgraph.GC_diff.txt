@@ -1,0 +1,15 @@
+/**
+ * Returns one subgraph for each of the given supergraphs.
+ * The subgraphs are defined by the vertices that fulfil the vertex filter
+ * function and edges that fulfill the edge filter function.
+ * <p>
+ * Note, that the operator does not verify the consistency of the resulting graph.
+ *
+ * @param collection collection of supergraphs
+ * @return collection of subgraphs
+ */
+private GC subgraph(GC collection) {
+    DataSet<V> newVertices = collection.getVertices().filter(vertexFilterFunction);
+    DataSet<E> newEdges = collection.getEdges().filter(edgeFilterFunction);
+    return collection.getFactory().fromDataSets(collection.getGraphHeads(), newVertices, newEdges);
+}

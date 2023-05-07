@@ -1,0 +1,10 @@
+/**
+ * Creates a new mock plan node
+ *
+ * @param mockOutput result of {@link MockPlanNode#execute()}
+ * @param mockMetaData result of {@link MockPlanNode#getEmbeddingMetaData()}
+ */
+public MockPlanNode(DataSet<Embedding> mockOutput, EmbeddingMetaData mockMetaData) {
+    this.mockOutput = mockOutput;
+    this.mockMetaData = mockMetaData;
+}

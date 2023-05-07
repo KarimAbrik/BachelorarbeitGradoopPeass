@@ -1,0 +1,21 @@
+/**
+ * Executes a common rollUp on vertices using multiple grouping keys and checks if the result
+ * is correct. This test also checks if vertices which do not contain the grouping key are
+ * handled correctly.
+ *
+ * @throws Exception If the execution fails.
+ */
+@Test
+public void testVertexRollUp() throws Exception {
+    FlinkAsciiGraphLoader loader = getSocialNetworkLoader();
+    LogicalGraph input = loader.getGraphCollectionByVariables("g0", "g1", "g2", "g3").reduce(new ReduceCombination<>());
+    //expected
+    loader.initDatabaseFromString("g0 {vertexRollUpGroupingKeys:\"age,gender,city\"}[" + "(v2 {gender:\"f\",city:\"Dresden\",count:1L,age:30})" + "(v3 {gender:\"m\",city:\"Leipzig\",count:1L,age:30})" + "(v5 {gender:NULL,city:NULL,count:1L,age:NULL})" + "(v6 {gender:\"m\",city:\"Dresden\",count:1L,age:40})" + "(v12 {gender:\"f\",city:\"Leipzig\",count:1L,age:20})" + "(v13 {gender:\"m\",city:\"Berlin\",count:1L,age:35})" + "(v17 {gender:\"f\",city:\"Dresden\",count:1L,age:35})" + "(v2)-[e1]->(v3)" + "(v17)-[e2]->(v3)" + "(v13)-[e3]->(v6)" + "(v3)-[e4]->(v12)" + "(v12)-[e12]->(v3)" + "(v13)-[e13]->(v2)" + "(v6)-[e17]->(v2)" + "(v17)-[e18]->(v12)" + "(v5)-[e30]->(v2)" + "(v5)-[e31]->(v6)" + "(v2)-[e32]->(v6)" + "(v3)-[e33]->(v2)" + "]" + "g1 {vertexRollUpGroupingKeys:\"age,gender\"}[" + "(v4 {gender:\"m\",count:1L,age:30})" + "(v8 {gender:\"f\",count:1L,age:30})" + "(v9 {gender:\"f\",count:1L,age:35})" + "(v10 {gender:\"m\",count:1L,age:35})" + "(v11 {gender:\"m\",count:1L,age:40})" + "(v14 {gender:\"f\",count:1L,age:20})" + "(v18 {gender:NULL,count:1L,age:NULL})" + "(v4)-[e5]->(v8)" + "(v4)-[e6]->(v14)" + "(v9)-[e7]->(v4)" + "(v9)-[e8]->(v14)" + "(v18)-[e14]->(v11)" + "(v10)-[e15]->(v11)" + "(v11)-[e16]->(v8)" + "(v18)-[e19]->(v8)" + "(v8)-[e20]->(v4)" + "(v8)-[e21]->(v11)" + "(v10)-[e22]->(v8)" + "(v14)-[e23]->(v4)" + "]" + "g2 {vertexRollUpGroupingKeys:\"age\"}[" + "(v0 {count:2L,age:35})" + "(v1 {count:1L,age:40})" + "(v7 {count:1L,age:NULL})" + "(v15 {count:1L,age:20})" + "(v16 {count:2L,age:30})" + "(v16)-[e0]->(v16)" + "(v1)-[e9]->(v16)" + "(v7)-[e10]->(v1)" + "(v7)-[e11]->(v16)" + "(v0)-[e24]->(v1)" + "(v0)-[e25]->(v15)" + "(v0)-[e26]->(v16)" + "(v15)-[e27]->(v16)" + "(v16)-[e28]->(v1)" + "(v16)-[e29]->(v15)" + "]");
+    GraphCollection expected = loader.getGraphCollection();
+    List<String> vertexGK = Arrays.asList("age", "gender", "city");
+    List<AggregateFunction> vertexAGG = Collections.singletonList(new Count("count"));
+    List<String> edgeGK = Collections.emptyList();
+    List<AggregateFunction> edgeAGG = Collections.emptyList();
+    GraphCollection output = input.groupVerticesByRollUp(vertexGK, vertexAGG, edgeGK, edgeAGG);
+    collectAndAssertTrue(output.equalsByGraphData(expected));
+}

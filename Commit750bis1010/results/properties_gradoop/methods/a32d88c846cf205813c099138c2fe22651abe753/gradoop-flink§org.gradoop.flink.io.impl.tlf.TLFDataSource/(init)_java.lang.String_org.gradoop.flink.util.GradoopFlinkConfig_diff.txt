@@ -1,0 +1,9 @@
+/**
+ * Creates a new data source. Paths can be local (file://) or HDFS (hdfs://).
+ *
+ * @param tlfPath tlf data file
+ * @param config Gradoop Flink configuration
+ */
+public TLFDataSource(String tlfPath, GradoopFlinkConfig config) {
+    super(tlfPath, "", "", config);
+}

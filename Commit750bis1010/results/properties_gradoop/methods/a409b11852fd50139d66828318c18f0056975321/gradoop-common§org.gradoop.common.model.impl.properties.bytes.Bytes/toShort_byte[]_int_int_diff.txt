@@ -1,0 +1,24 @@
+/**
+ * Converts a byte array to a short value
+ *
+ * @param bytes byte array
+ * @param offset offset into array
+ * @param length length, has to be {@link #SIZEOF_SHORT}
+ * @return the short value
+ * @throws IllegalArgumentException if length is not {@link #SIZEOF_SHORT}
+ * or if there's not enough room in the array at the offset indicated.
+ */
+public static short toShort(byte[] bytes, int offset, final int length) {
+    if (length != SIZEOF_SHORT || offset + length > bytes.length) {
+        throw explainWrongLengthOrOffset(bytes, offset, length, SIZEOF_SHORT);
+    }
+    if (UNSAFE_UNALIGNED) {
+        return toShortUnsafe(bytes, offset);
+    } else {
+        short n = 0;
+        n = (short) ((n ^ bytes[offset]) & 0xFF);
+        n = (short) (n << 8);
+        n = (short) ((n ^ bytes[offset + 1]) & 0xFF);
+        return n;
+    }
+}

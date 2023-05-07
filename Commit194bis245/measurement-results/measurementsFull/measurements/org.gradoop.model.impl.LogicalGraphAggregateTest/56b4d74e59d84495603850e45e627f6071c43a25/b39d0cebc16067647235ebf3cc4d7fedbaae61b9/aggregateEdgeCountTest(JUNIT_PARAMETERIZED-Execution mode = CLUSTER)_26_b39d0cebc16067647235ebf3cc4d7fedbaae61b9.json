@@ -1,0 +1,68 @@
+{
+  "clazz" : "org.gradoop.model.impl.LogicalGraphAggregateTest",
+  "methods" : [ {
+    "method" : "aggregateEdgeCountTest",
+    "datacollectorResults" : [ {
+      "name" : "de.dagere.kopeme.datacollection.TimeDataCollectorNoGC",
+      "chunks" : [ ],
+      "results" : [ {
+        "value" : 4.5919225300000006E8,
+        "deviation" : 0.5214316367831328,
+        "min" : 2.35061572E8,
+        "max" : 1.025500257E9,
+        "warmup" : 0,
+        "iterations" : 10,
+        "repetitions" : 2,
+        "commit" : null,
+        "vmRunConfiguration" : {
+          "showStart" : false,
+          "executeBeforeClassInMeasurement" : false,
+          "redirectToTemp" : false,
+          "redirectToNull" : true,
+          "useKieker" : false
+        },
+        "parameters" : {
+          "JUNIT_PARAMETERIZED" : "Execution mode = CLUSTER"
+        },
+        "javaVersion" : "1.8.0_362",
+        "cpu" : "model name : Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz",
+        "memory" : "MemTotal: 16280544 kB",
+        "date" : 1680980395978,
+        "fulldata" : {
+          "fileName" : null,
+          "values" : [ {
+            "startTime" : 1680980391180,
+            "value" : 1025500257
+          }, {
+            "startTime" : 1680980392205,
+            "value" : 578021021
+          }, {
+            "startTime" : 1680980392783,
+            "value" : 523054361
+          }, {
+            "startTime" : 1680980393306,
+            "value" : 587932373
+          }, {
+            "startTime" : 1680980393894,
+            "value" : 445540551
+          }, {
+            "startTime" : 1680980394340,
+            "value" : 353875072
+          }, {
+            "startTime" : 1680980394694,
+            "value" : 326586882
+          }, {
+            "startTime" : 1680980395020,
+            "value" : 241111496
+          }, {
+            "startTime" : 1680980395262,
+            "value" : 275238945
+          }, {
+            "startTime" : 1680980395537,
+            "value" : 235061572
+          } ]
+        }
+      } ]
+    } ]
+  } ]
+}

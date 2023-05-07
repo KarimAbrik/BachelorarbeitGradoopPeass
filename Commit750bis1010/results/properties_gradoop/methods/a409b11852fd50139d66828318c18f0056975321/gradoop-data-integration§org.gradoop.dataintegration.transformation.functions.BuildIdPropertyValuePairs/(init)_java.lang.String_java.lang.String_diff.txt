@@ -1,0 +1,12 @@
+/**
+ * The constructor of the {@link FlatMapFunction} to create {@link GradoopId} /
+ * {@link PropertyValue} pairs.
+ *
+ * @param label       The label of the elements to propagate from.
+ * @param propertyKey The property key of the property to propagate.
+ */
+public BuildIdPropertyValuePairs(String label, String propertyKey) {
+    this.label = Objects.requireNonNull(label);
+    this.propertyKey = Objects.requireNonNull(propertyKey);
+    this.reuse = new Tuple2<>();
+}

@@ -1,0 +1,23 @@
+/**                                                                                                    /**                                                                                                 
+* Test the {@link MinDuration#postAggregate(PropertyValue)} and the                                    * Test the {@link MinDuration#postAggregate(PropertyValue)} and the                                 
+* {@link MaxDuration#postAggregate(PropertyValue)} functions. If all the time data of temporal eleme   * {@link MaxDuration#postAggregate(PropertyValue)} functions. If all the time data of temporal eleme
+* a graph is set to default, all the duration aggregate functions return null                          * a graph is set to default, all the duration aggregate functions return null                       
+*                                                                                                      *                                                                                                   
+* @throws Exception when the execution in Flink fails.                                                 * @throws Exception when the execution in Flink fails.                                              
+*/                                                                                                     */                                                                                                  
+@Test                                                                                                  @Test                                                                                               
+public void testDurationWithDefaultValues() throws Exception {                                         public void testDurationWithDefaultValues() throws Exception {                                      
+LogicalGraph logicalGraph = getSocialNetworkLoader().getLogicalGraph();                                LogicalGraph logicalGraph = getSocialNetworkLoader().getLogicalGraph();                             
+TemporalGraph temporalGraph = TemporalGraph.fromLogicalGraph(logicalGraph);                          | TemporalGraph temporalGraph = TemporalGraph.fromGraph(logicalGraph);                                
+temporalGraph = temporalGraph.aggregate(new MinDuration("minDur", VALID_TIME), new MaxDuration("maxD   temporalGraph = temporalGraph.aggregate(new MinDuration("minDur", VALID_TIME), new MaxDuration("maxD
+LogicalGraph result = temporalGraph.toLogicalGraph();                                                  LogicalGraph result = temporalGraph.toLogicalGraph();                                               
+List&lt;EPGMGraphHead&gt; graphHead = new ArrayList&lt;&gt;();                                         List&lt;EPGMGraphHead&gt; graphHead = new ArrayList&lt;&gt;();                                      
+result.getGraphHead().output(new LocalCollectionOutputFormat&lt;&gt;(graphHead));                      result.getGraphHead().output(new LocalCollectionOutputFormat&lt;&gt;(graphHead));                   
+getExecutionEnvironment().execute();                                                                   getExecutionEnvironment().execute();                                                                
+PropertyValue test = graphHead.get(0).getPropertyValue("minDur");                                      PropertyValue test = graphHead.get(0).getPropertyValue("minDur");                                   
+assertNotNull(test);                                                                                   assertNotNull(test);                                                                                
+assertEquals(PropertyValue.NULL_VALUE, test);                                                          assertEquals(PropertyValue.NULL_VALUE, test);                                                       
+test = graphHead.get(0).getPropertyValue("maxDur");                                                    test = graphHead.get(0).getPropertyValue("maxDur");                                                 
+assertNotNull(test);                                                                                   assertNotNull(test);                                                                                
+assertEquals(PropertyValue.NULL_VALUE, test);                                                          assertEquals(PropertyValue.NULL_VALUE, test);                                                       
+}                                                                                                      }                                                                                                   

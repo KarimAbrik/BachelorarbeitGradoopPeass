@@ -1,0 +1,27 @@
+@Override
+public void coGroup(Iterable<Tuple2<V, List<NeighborhoodVertex>>> incoming, Iterable<Tuple2<V, List<NeighborhoodVertex>>> outgoing, Collector<E> edges) {
+    Iterator<Tuple2<V, List<NeighborhoodVertex>>> incIt = incoming.iterator();
+    Iterator<Tuple2<V, List<NeighborhoodVertex>>> outIt = outgoing.iterator();
+    if (incIt.hasNext() && outIt.hasNext()) {
+        // each of the incoming and outgoing sets should be represented only once.
+        Tuple2<V, List<NeighborhoodVertex>> first = incIt.next();
+        V centralVertex = first.f0;
+        List<NeighborhoodVertex> in = first.f1;
+        List<NeighborhoodVertex> out = outIt.next().f1;
+        if (in.isEmpty()) {
+            return;
+        }
+        reuse.setProperties(centralVertex.getProperties());
+        reuse.setProperty(ORIGINAL_VERTEX_LABEL, centralVertex.getLabel());
+        for (NeighborhoodVertex source : in) {
+            for (NeighborhoodVertex target : out) {
+                reuse.setId(GradoopId.get());
+                reuse.setSourceId(source.getNeighborId());
+                reuse.setTargetId(target.getNeighborId());
+                reuse.setProperty(FIRST_EDGE_LABEL, source.getConnectingEdgeLabel());
+                reuse.setProperty(SECOND_EDGE_LABEL, target.getConnectingEdgeLabel());
+                edges.collect(reuse);
+            }
+        }
+    }
+}

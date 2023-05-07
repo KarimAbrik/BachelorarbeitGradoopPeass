@@ -1,0 +1,18 @@
+/**
+ * Creates the process identifier.  This does not have to be unique per class loader because
+ * NEXT_COUNTER will provide the uniqueness.
+ * <p>
+ * Note: Implementation taken from org.bson.types.ObjectId
+ *
+ * @return a short representing the process
+ */
+private static short createProcessIdentifier() {
+    short processId;
+    String processName = java.lang.management.ManagementFactory.getRuntimeMXBean().getName();
+    if (processName.contains("@")) {
+        processId = (short) Integer.parseInt(processName.substring(0, processName.indexOf('@')));
+    } else {
+        processId = (short) java.lang.management.ManagementFactory.getRuntimeMXBean().getName().hashCode();
+    }
+    return processId;
+}

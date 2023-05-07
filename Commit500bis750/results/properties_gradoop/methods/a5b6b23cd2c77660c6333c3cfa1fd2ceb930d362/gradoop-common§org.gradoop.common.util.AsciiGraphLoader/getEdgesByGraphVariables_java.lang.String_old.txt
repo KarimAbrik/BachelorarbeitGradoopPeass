@@ -1,0 +1,13 @@
+/**
+ * Returns all edges that belong to the given graph variables.
+ *
+ * @param variables graph variables used in the GDL script
+ * @return edges
+ */
+public Collection<E> getEdgesByGraphVariables(String... variables) {
+    GradoopIds graphIds = new GradoopIds();
+    for (G graphHead : getGraphHeadsByVariables(variables)) {
+        graphIds.add(graphHead.getId());
+    }
+    return getEdgesByGraphIds(graphIds);
+}

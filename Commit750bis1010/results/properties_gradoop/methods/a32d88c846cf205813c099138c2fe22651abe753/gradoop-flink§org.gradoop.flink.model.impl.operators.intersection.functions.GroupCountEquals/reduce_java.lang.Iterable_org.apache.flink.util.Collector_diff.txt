@@ -1,0 +1,13 @@
+@Override
+public void reduce(Iterable<O> iterable, Collector<O> collector) throws Exception {
+    Iterator<O> iterator = iterable.iterator();
+    long count = 0L;
+    O object = null;
+    while (iterator.hasNext()) {
+        object = iterator.next();
+        count++;
+    }
+    if (count == expectedGroupSize) {
+        collector.collect(object);
+    }
+}

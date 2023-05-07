@@ -1,0 +1,8 @@
+@Test
+public void testStoreSingleListEntry() {
+    GradoopId[] ids = new GradoopId[] { GradoopId.get(), GradoopId.get(), GradoopId.get() };
+    Embedding embedding = new Embedding();
+    embedding.add(ids);
+    assertEquals(1, embedding.size());
+    assertEquals(Lists.newArrayList(ids), embedding.getIdList(0));
+}

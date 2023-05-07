@@ -1,0 +1,18 @@
+/**                                                                                                  |                                                                                                     
+* Checks if the given id is contained in the list.                                                   |                                                                                                     
+*                                                                                                    |                                                                                                     
+* @param identifier the id to look for                                                               |                                                                                                     
+* @return true, iff the given id is in the list                                                      |                                                                                                     
+*/                                                                                                   |                                                                                                     
+public boolean contains(GradoopId identifier) {                                                      |                                                                                                     
+if (isEmpty()) {                                                                                     |                                                                                                     
+return false;                                                                                        |                                                                                                     
+}                                                                                                    |                                                                                                     
+byte[] idBytes = identifier.toByteArray();                                                           |                                                                                                     
+for (int i = 0; i &lt; bytes.length / GradoopId.ID_SIZE; i++) {                                      |                                                                                                     
+if (GradoopId.equals(bytes, idBytes, i * GradoopId.ID_SIZE, 0)) {                                    |                                                                                                     
+return true;                                                                                         |                                                                                                     
+}                                                                                                    |                                                                                                     
+}                                                                                                    |                                                                                                     
+return false;                                                                                        |                                                                                                     
+}                                                                                                    |                                                                                                     

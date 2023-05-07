@@ -1,0 +1,15 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public void initialize(InputSplit inputSplit, TaskAttemptContext context) throws IOException, InterruptedException {
+    super.initialize(inputSplit, context);
+    this.isPartitioned = getConf().getBoolean(PARTITIONED_INPUT, DEFAULT_PARTITIONED_INPUT);
+    // if the input graph is partitioned (contains two vertex values), the
+    // the edges start at offset 2
+    if (this.isPartitioned) {
+        edgeOffset = PARTITIONED_EDGE_OFFSET;
+    } else {
+        edgeOffset = UNPARTITIONED_EDGE_OFFSET;
+    }
+}

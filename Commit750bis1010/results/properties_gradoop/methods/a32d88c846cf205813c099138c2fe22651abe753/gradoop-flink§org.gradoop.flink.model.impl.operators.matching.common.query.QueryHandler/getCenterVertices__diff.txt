@@ -1,0 +1,12 @@
+/**
+ * Returns all vertices that have a minimum eccentricity.
+ *
+ * @return center vertices
+ */
+public Collection<Vertex> getCenterVertices() {
+    List<Vertex> result = Lists.newArrayList();
+    for (Long vId : getCentralVertexIds()) {
+        result.add(getVertexById(vId));
+    }
+    return result;
+}

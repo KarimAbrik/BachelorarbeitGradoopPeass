@@ -1,0 +1,10 @@
+                                                                                                     | /**                                                                                                 
+                                                                                                     | * Returns the property meta data associated with the specified label and type.                      
+                                                                                                     | *                                                                                                   
+                                                                                                     | * @param type element type                                                                          
+                                                                                                     | * @param label element label                                                                        
+                                                                                                     | * @return property meta data for the element                                                        
+                                                                                                     | */                                                                                                  
+                                                                                                     | public List&lt;PropertyMetaData&gt; getPropertyMetaData(String type, String label) {                
+                                                                                                     | return metaData.getOrDefault(new Tuple2&lt;&gt;(type, label), new ArrayList&lt;&gt;());             
+                                                                                                     | }                                                                                                   

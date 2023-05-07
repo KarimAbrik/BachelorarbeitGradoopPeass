@@ -1,0 +1,11 @@
+/**
+ * Returns a property value that wraps the represented literal
+ *
+ * @param embedding the embedding holding the data
+ * @param metaData meta data describing the embedding
+ * @return property value of literal value
+ */
+@Override
+public PropertyValue evaluate(Embedding embedding, EmbeddingMetaData metaData) {
+    return PropertyValue.create(literal.getValue());
+}

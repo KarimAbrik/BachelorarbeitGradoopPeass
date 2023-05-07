@@ -1,0 +1,8 @@
+/**
+ * Returns a distinct collection of base graphs. Graph equality is based on graph identifiers.
+ *
+ * @return distinct graph collection
+ */
+default GC distinctById() {
+    return callForCollection(new DistinctById<>());
+}

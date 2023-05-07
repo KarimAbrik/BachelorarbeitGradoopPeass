@@ -1,0 +1,8 @@
+/**
+ * Copy constructor for CNF.
+ *
+ * @param copyValue CNF to copy
+ */
+public CNF(CNF copyValue) {
+    this(new ArrayList<>(copyValue.getPredicates()));
+}

@@ -1,0 +1,8 @@
+/**
+ * True, if the wrapped value is of type {@code int}.
+ *
+ * @return true, if {@code int} value
+ */
+public boolean isInt() {
+    return rawBytes[0] == TYPE_INTEGER;
+}

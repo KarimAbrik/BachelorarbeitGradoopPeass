@@ -1,0 +1,68 @@
+{
+  "clazz" : "org.gradoop.model.impl.labelpropagation.LabelPropagationGradoopTest",
+  "methods" : [ {
+    "method" : "testLabelPropagationWithCallByPropertyKey",
+    "datacollectorResults" : [ {
+      "name" : "de.dagere.kopeme.datacollection.TimeDataCollectorNoGC",
+      "chunks" : [ ],
+      "results" : [ {
+        "value" : 4.4952833917E9,
+        "deviation" : 0.41527528489517124,
+        "min" : 3.455370693E9,
+        "max" : 9.629908606E9,
+        "warmup" : 0,
+        "iterations" : 10,
+        "repetitions" : 2,
+        "commit" : null,
+        "vmRunConfiguration" : {
+          "showStart" : false,
+          "executeBeforeClassInMeasurement" : false,
+          "redirectToTemp" : false,
+          "redirectToNull" : true,
+          "useKieker" : false
+        },
+        "parameters" : {
+          "JUNIT_PARAMETERIZED" : "Execution mode = CLUSTER"
+        },
+        "javaVersion" : "1.8.0_362",
+        "cpu" : "model name : Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz",
+        "memory" : "MemTotal: 16280544 kB",
+        "date" : 1680994634498,
+        "fulldata" : {
+          "fileName" : null,
+          "values" : [ {
+            "startTime" : 1680994588898,
+            "value" : 9629908606
+          }, {
+            "startTime" : 1680994598528,
+            "value" : 5107615081
+          }, {
+            "startTime" : 1680994603635,
+            "value" : 4160093374
+          }, {
+            "startTime" : 1680994607796,
+            "value" : 3950603863
+          }, {
+            "startTime" : 1680994611746,
+            "value" : 4010791001
+          }, {
+            "startTime" : 1680994615757,
+            "value" : 3602872254
+          }, {
+            "startTime" : 1680994619360,
+            "value" : 3906930708
+          }, {
+            "startTime" : 1680994623267,
+            "value" : 3672441896
+          }, {
+            "startTime" : 1680994626939,
+            "value" : 3455370693
+          }, {
+            "startTime" : 1680994630395,
+            "value" : 3456206441
+          } ]
+        }
+      } ]
+    } ]
+  } ]
+}

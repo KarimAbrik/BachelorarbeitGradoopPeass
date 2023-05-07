@@ -1,0 +1,4 @@
+@Override
+public PropertyValue aggregate(PropertyValue aggregate, PropertyValue increment) {
+    return PropertyValueUtils.Numeric.min(aggregate, increment);
+}

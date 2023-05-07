@@ -1,0 +1,36 @@
+/**                                                                                                    /**                                                                                                 
+* Creates a {@link MetaData} object from the specified lines. The specified tuple is already           * Creates a {@link MetaData} object from the specified lines. The specified tuple is already        
+* separated into the label and the                                                                     * separated into the label and the                                                                  
+*                                                                                                      *                                                                                                   
+* @param metaDataStrings (label, meta-data) tuples                                                     * @param metaDataStrings (label, meta-data) tuples                                                  
+* @return Meta Data object                                                                             * @return Meta Data object                                                                          
+*/                                                                                                     */                                                                                                  
+public static MetaData create(List&lt;Tuple3&lt;String, String, String&gt;&gt; metaDataStrings) {      public static MetaData create(List&lt;Tuple3&lt;String, String, String&gt;&gt; metaDataStrings) {   
+Map&lt;String, List&lt;PropertyMetaData&gt;&gt; labelPropertiesMap = new HashMap&lt;&gt;(metaDataStr | Map&lt;Tuple2&lt;String, String&gt;, List&lt;PropertyMetaData&gt;&gt; metaDataMap = new HashMap&lt;&
+Map&lt;String, String&gt; labelTypeMap = new HashMap&lt;&gt;(metaDataStrings.size());                |                                                                                                     
+for (Tuple3&lt;String, String, String&gt; tuple : metaDataStrings) {                                   for (Tuple3&lt;String, String, String&gt; tuple : metaDataStrings) {                                
+List&lt;PropertyMetaData&gt; propertyMetaDataList;                                                     List&lt;PropertyMetaData&gt; propertyMetaDataList;                                                  
+if (tuple.f2.length() &gt; 0) {                                                                        if (tuple.f2.length() &gt; 0) {                                                                     
+String[] propertyStrings = tuple.f2.split(PROPERTY_DELIMITER);                                         String[] propertyStrings = tuple.f2.split(PROPERTY_DELIMITER);                                      
+propertyMetaDataList = new ArrayList&lt;&gt;(propertyStrings.length);                                  propertyMetaDataList = new ArrayList&lt;&gt;(propertyStrings.length);                               
+for (String propertyString : propertyStrings) {                                                        for (String propertyString : propertyStrings) {                                                     
+String[] propertyMetadata = propertyString.split(PROPERTY_TOKEN_DELIMITER, 2);                         String[] propertyMetadata = propertyString.split(PROPERTY_TOKEN_DELIMITER, 2);                      
+String[] propertyTypeTokens = propertyMetadata[1].split(PROPERTY_TOKEN_DELIMITER);                     String[] propertyTypeTokens = propertyMetadata[1].split(PROPERTY_TOKEN_DELIMITER);                  
+if (propertyTypeTokens.length == 2 && propertyTypeTokens[0].equals(TypeString.LIST.getTypeString()))   if (propertyTypeTokens.length == 2 && propertyTypeTokens[0].equals(TypeString.LIST.getTypeString()))
+// it's a list with one additional data type (type of list items)                                      // it's a list with one additional data type (type of list items)                                   
+propertyMetaDataList.add(new PropertyMetaData(propertyMetadata[0], propertyMetadata[1], getListValue   propertyMetaDataList.add(new PropertyMetaData(propertyMetadata[0], propertyMetadata[1], getListValue
+} else if (propertyTypeTokens.length == 3 && propertyTypeTokens[0].equals(TypeString.MAP.getTypeStri   } else if (propertyTypeTokens.length == 3 && propertyTypeTokens[0].equals(TypeString.MAP.getTypeStri
+// it's a map with two additional data types (key type + value type)                                   // it's a map with two additional data types (key type + value type)                                
+propertyMetaDataList.add(new PropertyMetaData(propertyMetadata[0], propertyMetadata[1], getMapValueP   propertyMetaDataList.add(new PropertyMetaData(propertyMetadata[0], propertyMetadata[1], getMapValueP
+} else {                                                                                               } else {                                                                                            
+propertyMetaDataList.add(new PropertyMetaData(propertyMetadata[0], propertyMetadata[1], getValuePars   propertyMetaDataList.add(new PropertyMetaData(propertyMetadata[0], propertyMetadata[1], getValuePars
+}                                                                                                      }                                                                                                   
+}                                                                                                      }                                                                                                   
+} else {                                                                                               } else {                                                                                            
+propertyMetaDataList = new ArrayList&lt;&gt;(0);                                                       propertyMetaDataList = new ArrayList&lt;&gt;(0);                                                    
+}                                                                                                      }                                                                                                   
+labelPropertiesMap.put(tuple.f1, propertyMetaDataList);                                              | metaDataMap.put(new Tuple2&lt;&gt;(tuple.f0, tuple.f1), propertyMetaDataList);                      
+labelTypeMap.put(tuple.f1, tuple.f0);                                                                |                                                                                                     
+}                                                                                                      }                                                                                                   
+return new MetaData(labelPropertiesMap, labelTypeMap);                                               | return new MetaData(metaDataMap);                                                                   
+}                                                                                                      }                                                                                                   

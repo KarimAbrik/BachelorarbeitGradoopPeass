@@ -1,0 +1,11 @@
+/**
+ * Test if {@link GradoopIdSet}s are serialized correctly in a
+ * {@link org.apache.flink.api.java.DataSet}.
+ *
+ * @throws Exception if the execution fails.
+ */
+@Test
+public void testGradoopIdSetSerializationInDataSets() throws Exception {
+    GradoopIdSet idsIn = GradoopIdSet.fromExisting(GradoopId.get(), GradoopId.get());
+    assertEquals("GradoopIdSets were not equal", idsIn, GradoopFlinkTestUtils.writeAndRead(idsIn));
+}

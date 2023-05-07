@@ -1,0 +1,18 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public void writeVertex(final PersistentVertex<ED> vertexData) {
+    LOG.info("Writing vertex data: " + vertexData);
+    try {
+        VertexHandler<VD, ED> vertexHandler = config.getVertexHandler();
+        // vertex id
+        Put put = new Put(vertexHandler.getRowKey(vertexData.getId()));
+        // write vertex data to Put
+        put = vertexHandler.writeVertex(put, vertexData);
+        // write to table
+        vertexTable.put(put);
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}

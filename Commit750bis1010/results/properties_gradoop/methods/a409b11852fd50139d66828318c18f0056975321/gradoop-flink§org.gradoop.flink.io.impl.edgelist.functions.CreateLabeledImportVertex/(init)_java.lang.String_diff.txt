@@ -1,0 +1,11 @@
+/**
+ * Constructor
+ *
+ * @param propertyKey used PropertyKey
+ */
+public CreateLabeledImportVertex(String propertyKey) {
+    this.propertyKey = propertyKey;
+    this.reuseVertex = new ImportVertex<>();
+    reuseVertex.setLabel(GradoopConstants.DEFAULT_VERTEX_LABEL);
+    reuseVertex.setProperties(Properties.createWithCapacity(1));
+}

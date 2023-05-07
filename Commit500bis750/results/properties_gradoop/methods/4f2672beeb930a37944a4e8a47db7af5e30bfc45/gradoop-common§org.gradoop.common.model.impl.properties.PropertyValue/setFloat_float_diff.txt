@@ -1,0 +1,10 @@
+/**
+ * Sets the wrapped value as {@code float} value.
+ *
+ * @param floatValue value
+ */
+public void setFloat(float floatValue) {
+    rawBytes = new byte[OFFSET + Bytes.SIZEOF_FLOAT];
+    rawBytes[0] = TYPE_FLOAT;
+    Bytes.putFloat(rawBytes, OFFSET, floatValue);
+}

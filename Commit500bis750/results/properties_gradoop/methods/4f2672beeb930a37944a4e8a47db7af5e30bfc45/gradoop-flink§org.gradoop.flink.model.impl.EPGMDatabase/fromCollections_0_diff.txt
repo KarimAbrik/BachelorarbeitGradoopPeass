@@ -1,0 +1,29 @@
+//----------------------------------------------------------------------------
+// from Collection
+//----------------------------------------------------------------------------
+/**
+ * Creates a database from collections of vertex and data objects.
+ *
+ * @param graphDataCollection   collection of graph heads
+ * @param vertexDataCollection  collection of vertices
+ * @param edgeDataCollection    collection of edges
+ * @param config                Gradoop Flink configuration
+ * @return EPGM database
+ */
+@SuppressWarnings("unchecked")
+@Deprecated
+public static EPGMDatabase fromCollections(Collection<GraphHead> graphDataCollection, Collection<Vertex> vertexDataCollection, Collection<Edge> edgeDataCollection, GradoopFlinkConfig config) {
+    if (config == null) {
+        throw new IllegalArgumentException("Config must not be null");
+    }
+    ExecutionEnvironment env = config.getExecutionEnvironment();
+    DataSet<Vertex> vertices = env.fromCollection(vertexDataCollection);
+    DataSet<Edge> edges = env.fromCollection(edgeDataCollection);
+    DataSet<GraphHead> graphHeads;
+    if (graphDataCollection != null) {
+        graphHeads = env.fromCollection(graphDataCollection);
+    } else {
+        graphHeads = env.fromElements(config.getGraphHeadFactory().createGraphHead());
+    }
+    return new EPGMDatabase(graphHeads, vertices, edges, config);
+}

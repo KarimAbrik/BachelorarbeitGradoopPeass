@@ -1,0 +1,5 @@
+@Override
+public V join(V vertex, Tuple2<GradoopId, GradoopIdSet> vertexWithGraphIds) {
+    vertex.getGraphIds().addAll(vertexWithGraphIds.f1);
+    return vertex;
+}

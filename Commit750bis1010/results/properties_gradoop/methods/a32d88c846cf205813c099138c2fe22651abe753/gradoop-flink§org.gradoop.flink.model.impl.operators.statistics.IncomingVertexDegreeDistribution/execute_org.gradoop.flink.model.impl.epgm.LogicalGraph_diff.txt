@@ -1,0 +1,4 @@
+@Override
+public DataSet<WithCount<Long>> execute(LogicalGraph graph) {
+    return Count.groupByFromTuple(new IncomingVertexDegrees().execute(graph).<Tuple1<Long>>project(1)).map(new Tuple2ToWithCount<>());
+}

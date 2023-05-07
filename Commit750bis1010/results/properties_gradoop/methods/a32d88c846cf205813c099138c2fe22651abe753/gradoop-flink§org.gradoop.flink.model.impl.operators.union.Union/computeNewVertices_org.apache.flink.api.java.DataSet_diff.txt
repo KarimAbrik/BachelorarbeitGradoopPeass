@@ -1,0 +1,4 @@
+@Override
+protected DataSet<V> computeNewVertices(DataSet<G> newGraphHeads) {
+    return firstCollection.getVertices().union(secondCollection.getVertices()).distinct(new Id<>());
+}

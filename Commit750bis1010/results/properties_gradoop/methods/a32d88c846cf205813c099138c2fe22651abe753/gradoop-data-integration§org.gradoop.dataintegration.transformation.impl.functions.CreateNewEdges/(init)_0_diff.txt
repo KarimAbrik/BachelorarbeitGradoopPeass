@@ -1,0 +1,13 @@
+/**
+ * Creates a new {@link FlatMapFunction} that creates edges between f0 (EPGMVertex) and all entries
+ * in f1 (Gradoop Ids of other vertices).
+ *
+ * @param factory The edge factory which is used for the creation of new edges.
+ * @param edgeDirection The direction of the created edge(s).
+ * @param edgeLabel     The label of the newly created edge(s).
+ */
+public CreateNewEdges(EdgeFactory<EPGMEdge> factory, EdgeDirection edgeDirection, String edgeLabel) {
+    this.edgeDirection = edgeDirection;
+    this.edgeLabel = edgeLabel;
+    this.edgeFactory = factory;
+}

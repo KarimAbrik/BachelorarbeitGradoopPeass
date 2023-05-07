@@ -1,0 +1,10 @@
+/**
+ * Sets the wrapped value as {@code long} value.
+ *
+ * @param longValue value
+ */
+public void setLong(long longValue) {
+    rawBytes = new byte[OFFSET + Bytes.SIZEOF_LONG];
+    rawBytes[0] = TYPE_LONG;
+    Bytes.putLong(rawBytes, OFFSET, longValue);
+}

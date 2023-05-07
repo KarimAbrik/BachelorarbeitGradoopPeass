@@ -1,0 +1,23 @@
+@Test
+public void testJoin() throws Exception {
+    Embedding l = new Embedding();
+    l.add(v0, PropertyValue.create("Foobar"));
+    l.add(e0, PropertyValue.create(42));
+    l.add(v1);
+    DataSet<Embedding> left = getExecutionEnvironment().fromElements(l);
+    Embedding r1 = new Embedding();
+    r1.add(v2, PropertyValue.create("Foobar"));
+    r1.add(e1, PropertyValue.create(21));
+    r1.add(v3);
+    Embedding r2 = new Embedding();
+    r2.add(v2, PropertyValue.create("Baz"));
+    r2.add(e1, PropertyValue.create(42));
+    r2.add(v3);
+    DataSet<Embedding> right = getExecutionEnvironment().fromElements(r1, r2);
+    List<Integer> emptyList = Lists.newArrayListWithCapacity(0);
+    PhysicalOperator join = new ValueJoin(left, right, Lists.newArrayList(0), Lists.newArrayList(0), 3, emptyList, emptyList, emptyList, emptyList, JoinOperatorBase.JoinHint.OPTIMIZER_CHOOSES);
+    DataSet<Embedding> result = join.evaluate();
+    assertEquals(1, result.count());
+    assertEveryEmbedding(result, embedding -> embedding.getProperties().equals(Lists.newArrayList(PropertyValue.create("Foobar"), PropertyValue.create(42), PropertyValue.create("Foobar"), PropertyValue.create(21))));
+    assertEmbeddingExists(result, v0, e0, v1, v2, e1, v3);
+}

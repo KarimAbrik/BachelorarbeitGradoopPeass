@@ -1,0 +1,8 @@
+@Override
+public V map(VertexGroupItem groupItem) throws Exception {
+    V supVertex = vertexFactory.initVertex(groupItem.getSuperVertexId());
+    supVertex.setLabel(groupItem.getGroupLabel());
+    setGroupProperties(supVertex, groupItem.getGroupingValues(), groupItem.getLabelGroup());
+    setAggregateProperties(supVertex, groupItem.getAggregateValues(), groupItem.getLabelGroup().getAggregateFunctions());
+    return supVertex;
+}

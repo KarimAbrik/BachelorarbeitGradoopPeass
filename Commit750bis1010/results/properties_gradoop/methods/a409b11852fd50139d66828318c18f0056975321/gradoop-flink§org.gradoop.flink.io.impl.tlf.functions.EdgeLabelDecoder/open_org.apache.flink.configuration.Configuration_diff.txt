@@ -1,0 +1,5 @@
+@Override
+public void open(Configuration parameters) throws Exception {
+    super.open(parameters);
+    edgeDictionary = getRuntimeContext().<HashMap<Integer, String>>getBroadcastVariable(TLFConstants.EDGE_DICTIONARY).get(0);
+}

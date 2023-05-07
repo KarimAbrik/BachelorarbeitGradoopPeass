@@ -1,0 +1,8 @@
+@Override
+public EPGMEdge initEdge(final GradoopId id, final String label, final GradoopId sourceVertexId, final GradoopId targetVertexId, final Properties properties, GradoopIdSet graphIds) {
+    checkNotNull(id, "Identifier was null");
+    checkNotNull(label, "Label was null");
+    checkNotNull(sourceVertexId, "Source vertex id was null");
+    checkNotNull(targetVertexId, "Target vertex id was null");
+    return new EPGMEdge(id, label, sourceVertexId, targetVertexId, properties, graphIds);
+}

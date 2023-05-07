@@ -1,0 +1,10 @@
+/**
+ * New embedding filter function
+ *
+ * @param predicates predicates used for filtering
+ * @param metaData mapping of variable names to embedding column
+ */
+public FilterEmbedding(CNF predicates, EmbeddingMetaData metaData) {
+    this.predicates = predicates;
+    this.metaData = metaData;
+}

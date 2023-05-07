@@ -1,0 +1,11 @@
+/**
+ * Filters and casts graph heads from a given set of {@link Element}
+ *
+ * @param elements      elements
+ * @param graphHeadType graph head type
+ * @param <G> The graph head type
+ * @return graph heads
+ */
+private static <G extends GraphHead> DataSet<G> extractGraphHeads(DataSet<Element> elements, Class<G> graphHeadType) {
+    return elements.filter(new IsInstance<>(graphHeadType)).map(new Cast<>(graphHeadType)).returns(TypeExtractor.createTypeInfo(graphHeadType));
+}

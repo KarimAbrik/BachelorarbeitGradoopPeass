@@ -1,0 +1,12 @@
+/**
+ * Deletes the graph store based on the given config.
+ *
+ * @param config Hadoop configuration
+ */
+public static void deleteGraphStore(final Configuration config) {
+    try {
+        deleteTablesIfExists(config);
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}

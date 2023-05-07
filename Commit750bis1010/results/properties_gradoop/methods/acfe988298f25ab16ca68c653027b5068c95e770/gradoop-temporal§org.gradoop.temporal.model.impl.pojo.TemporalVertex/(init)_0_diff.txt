@@ -1,0 +1,13 @@
+/**
+ * Creates a instance of a temporal vertex without temporal information.
+ *
+ * @param id the vertex identifier
+ * @param label the vertex label
+ * @param properties the vertex properties
+ * @param graphIds identifiers of graphs this vertex is contained in
+ * @param validFrom valid from unix timestamp in milliseconds
+ * @param validTo valid to unix timestamp in milliseconds
+ */
+public TemporalVertex(GradoopId id, String label, Properties properties, GradoopIdSet graphIds, Long validFrom, Long validTo) {
+    super(id, label, properties, graphIds, validFrom, validTo);
+}

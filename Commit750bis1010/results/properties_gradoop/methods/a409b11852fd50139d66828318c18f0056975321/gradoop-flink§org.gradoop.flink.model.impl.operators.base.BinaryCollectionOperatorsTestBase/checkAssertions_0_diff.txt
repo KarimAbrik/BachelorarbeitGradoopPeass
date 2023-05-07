@@ -1,0 +1,4 @@
+protected void checkAssertions(GraphCollection expectation, GraphCollection result, String attribute) throws Exception {
+    assertTrue("wrong graph ids for " + attribute + " overlapping collections", result.equalsByGraphIds(expectation).collect().get(0));
+    assertTrue("wrong graph element ids for" + attribute + " overlapping collections", result.equalsByGraphElementIds(expectation).collect().get(0));
+}

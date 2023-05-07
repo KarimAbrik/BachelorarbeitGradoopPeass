@@ -1,0 +1,4 @@
+private CNF getPredicate(String queryString) {
+    QueryHandler query = new QueryHandler(queryString);
+    return query.getPredicates();
+}

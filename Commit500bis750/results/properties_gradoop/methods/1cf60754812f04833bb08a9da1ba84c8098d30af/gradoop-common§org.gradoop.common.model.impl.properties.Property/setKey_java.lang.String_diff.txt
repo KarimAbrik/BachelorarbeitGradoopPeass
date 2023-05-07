@@ -1,0 +1,10 @@
+/**
+ * Sets the property key.
+ *
+ * @param key property key (must not be {@code null})
+ */
+public void setKey(String key) {
+    checkNotNull(key, "Property key was null");
+    checkArgument(!key.isEmpty(), "Property key was empty");
+    this.key = key;
+}

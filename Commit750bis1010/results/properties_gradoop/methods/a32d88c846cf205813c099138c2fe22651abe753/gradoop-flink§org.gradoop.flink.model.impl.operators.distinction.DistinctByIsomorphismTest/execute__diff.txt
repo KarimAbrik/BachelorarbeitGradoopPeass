@@ -1,0 +1,8 @@
+@Test
+public void execute() throws Exception {
+    GraphCollection collection = getTestCollection();
+    collection = collection.distinctById();
+    assertEquals(5, collection.getGraphHeads().count());
+    collection = collection.distinctByIsomorphism();
+    assertEquals(3, collection.getGraphHeads().count());
+}

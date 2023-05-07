@@ -1,0 +1,12 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public void flush() {
+    try {
+        this.verticesTable.flushCommits();
+        this.graphsTable.flushCommits();
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}

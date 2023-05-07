@@ -1,0 +1,9 @@
+/**
+ * Creates a new temporal config from an existing {@link GradoopFlinkConfig}.
+ * Use {@link #fromGradoopFlinkConfig(GradoopFlinkConfig)} to use this constructor.
+ *
+ * @param existingConfig The existing configuration.
+ */
+private TemporalGradoopConfig(GradoopFlinkConfig existingConfig) {
+    this(requireNonNull(existingConfig).getExecutionEnvironment(), existingConfig.getLogicalGraphFactory().getLayoutFactory(), existingConfig.getGraphCollectionFactory().getLayoutFactory());
+}

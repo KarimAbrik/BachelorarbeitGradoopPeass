@@ -1,0 +1,7 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public ED readEdge(Result res) throws IOException {
+    return edgeFactory.createEdge(readId(res), readLabel(res), readSourceVertexId(res), readTargetVertexId(res), readProperties(res), readGraphIds(res));
+}

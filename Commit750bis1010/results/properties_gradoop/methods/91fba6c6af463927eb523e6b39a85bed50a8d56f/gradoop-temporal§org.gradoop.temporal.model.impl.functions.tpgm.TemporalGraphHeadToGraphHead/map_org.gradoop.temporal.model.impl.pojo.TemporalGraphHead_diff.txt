@@ -1,0 +1,7 @@
+@Override
+public EPGMGraphHead map(TemporalGraphHead graphHead) {
+    reuse.setId(graphHead.getId());
+    reuse.setLabel(graphHead.getLabel());
+    reuse.setProperties(graphHead.getProperties());
+    return reuse;
+}

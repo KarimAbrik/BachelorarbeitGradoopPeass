@@ -1,0 +1,20 @@
+/**
+ * Sets the wrapped value as {@code List} value.
+ *
+ * @param list value
+ */
+public void setList(List<PropertyValue> list) {
+    int size = list.stream().mapToInt(PropertyValue::byteSize).sum() + OFFSET;
+    ByteArrayOutputStream byteStream = new ByteArrayOutputStream(size);
+    DataOutputStream outputStream = new DataOutputStream(byteStream);
+    DataOutputView outputView = new DataOutputViewStreamWrapper(outputStream);
+    try {
+        outputStream.write(TYPE_LIST);
+        for (PropertyValue entry : list) {
+            entry.write(outputView);
+        }
+    } catch (IOException e) {
+        throw new RuntimeException("Error writing PropertyValue");
+    }
+    this.rawBytes = byteStream.toByteArray();
+}

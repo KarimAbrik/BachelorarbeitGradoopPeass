@@ -1,0 +1,14 @@
+/**                                                                                                    /**                                                                                                 
+* {@inheritDoc}                                                                                        * {@inheritDoc}                                                                                     
+*/                                                                                                     */                                                                                                  
+@Override                                                                                              @Override                                                                                           
+public boolean hasNext() {                                                                             public boolean hasNext() {                                                                          
+                                                                                                     | boolean hasNext = false;                                                                            
+if (it.hasNext()) {                                                                                    if (it.hasNext()) {                                                                                 
+result = it.next();                                                                                    result = it.next();                                                                                 
+return true;                                                                                         | hasNext = result != null;                                                                           
+} else {                                                                                             |                                                                                                     
+return false;                                                                                        |                                                                                                     
+}                                                                                                      }                                                                                                   
+                                                                                                     | return hasNext;                                                                                     
+}                                                                                                      }                                                                                                   

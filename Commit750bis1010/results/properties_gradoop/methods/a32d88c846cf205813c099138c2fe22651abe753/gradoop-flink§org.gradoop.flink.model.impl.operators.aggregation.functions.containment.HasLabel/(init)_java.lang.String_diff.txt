@@ -1,0 +1,8 @@
+/**
+ * Creates a new instance of a HasLabel aggregate function.
+ *
+ * @param label element label to check presence of
+ */
+public HasLabel(String label) {
+    this(label, "hasLabel_" + label);
+}

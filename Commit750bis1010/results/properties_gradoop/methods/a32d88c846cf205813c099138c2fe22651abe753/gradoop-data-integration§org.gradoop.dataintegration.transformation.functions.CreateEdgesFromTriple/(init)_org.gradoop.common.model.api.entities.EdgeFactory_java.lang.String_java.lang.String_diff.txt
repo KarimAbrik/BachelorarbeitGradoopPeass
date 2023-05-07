@@ -1,0 +1,15 @@
+/**
+ * The constructor to create the new edges based on the given triple.
+ *
+ * @param factory              The Factory which creates the new edges.
+ * @param edgeLabelSourceToNew The label of the newly created edge which points to the newly
+ *                             created vertex.
+ * @param edgeLabelNewToTarget The label of the newly created edge which starts at the newly
+ *                             created vertex.
+ */
+public CreateEdgesFromTriple(EdgeFactory<E> factory, String edgeLabelSourceToNew, String edgeLabelNewToTarget) {
+    this.edgeType = Objects.requireNonNull(factory).getType();
+    this.edgeLabelSourceToNew = Objects.requireNonNull(edgeLabelSourceToNew);
+    this.edgeLabelNewToTarget = Objects.requireNonNull(edgeLabelNewToTarget);
+    this.reuse = factory.createEdge(edgeLabelSourceToNew, GradoopId.NULL_VALUE, GradoopId.NULL_VALUE);
+}

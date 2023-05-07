@@ -1,0 +1,12 @@
+/**
+ * The constructor of the co group function for accumulation of collected property values.
+ *
+ * @param targetVertexPropertyKey The property key where the PropertyValue list should be
+ *                                stored at the target vertices.
+ * @param targetVertexLabels      The set of labels of elements where the property should be
+ *                                set. (Use {@code null} for all vertices.)
+ */
+public AccumulatePropagatedValues(String targetVertexPropertyKey, Set<String> targetVertexLabels) {
+    this.targetVertexPropertyKey = Objects.requireNonNull(targetVertexPropertyKey);
+    this.targetVertexLabels = targetVertexLabels;
+}

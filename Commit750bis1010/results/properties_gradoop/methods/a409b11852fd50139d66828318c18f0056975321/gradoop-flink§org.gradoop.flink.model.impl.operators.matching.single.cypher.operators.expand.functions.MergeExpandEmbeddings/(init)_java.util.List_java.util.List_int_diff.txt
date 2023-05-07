@@ -1,0 +1,11 @@
+/**
+ * Create a new Combine Expand Embeddings Operator
+ * @param distinctVertices distinct vertex columns
+ * @param distinctEdges distinct edge columns
+ * @param closingColumn base column that should be equal to a paths end node
+ */
+public MergeExpandEmbeddings(List<Integer> distinctVertices, List<Integer> distinctEdges, int closingColumn) {
+    this.distinctVertices = distinctVertices;
+    this.distinctEdges = distinctEdges;
+    this.closingColumn = closingColumn;
+}

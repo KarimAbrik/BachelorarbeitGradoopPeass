@@ -1,0 +1,7 @@
+/**
+ * Converts the predicate into conjunctive normal form
+ * @return predicate in cnf
+ */
+public CNF asCNF() {
+    return getLhs().asCNF().or(getRhs().asCNF());
+}

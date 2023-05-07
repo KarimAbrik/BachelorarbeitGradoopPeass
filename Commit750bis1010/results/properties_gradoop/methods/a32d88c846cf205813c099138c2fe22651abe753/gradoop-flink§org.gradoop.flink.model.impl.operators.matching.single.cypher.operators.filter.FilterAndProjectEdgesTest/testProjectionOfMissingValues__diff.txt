@@ -1,0 +1,12 @@
+@Test
+public void testProjectionOfMissingValues() throws Exception {
+    CNF predicates = predicateFromQuery("MATCH ()-[a]->() WHERE a.name = \"Alice\"");
+    Properties properties = Properties.create();
+    properties.set("name", "Alice");
+    EPGMEdge edge = new EPGMEdgeFactory().createEdge("Label", GradoopId.get(), GradoopId.get(), properties);
+    DataSet<EPGMEdge> edges = getExecutionEnvironment().fromElements(edge);
+    List<String> projectionPropertyKeys = Lists.newArrayList("name", "since");
+    Embedding result = new FilterAndProjectEdges<>(edges, predicates, projectionPropertyKeys, false).evaluate().collect().get(0);
+    assertEquals(result.getProperty(0), PropertyValue.create("Alice"));
+    assertEquals(result.getProperty(1), PropertyValue.NULL_VALUE);
+}

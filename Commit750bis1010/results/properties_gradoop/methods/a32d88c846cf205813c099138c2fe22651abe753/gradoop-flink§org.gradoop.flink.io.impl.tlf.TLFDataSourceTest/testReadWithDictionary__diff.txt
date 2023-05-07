@@ -1,0 +1,13 @@
+@Test
+public void testReadWithDictionary() throws Exception {
+    String tlfFile = getFilePath("/data/tlf/io_test.tlf");
+    String tlfVertexDictionaryFile = getFilePath("/data/tlf/io_test_vertex_dictionary.tlf");
+    String tlfEdgeDictionaryFile = getFilePath("/data/tlf/io_test_edge_dictionary.tlf");
+    // create datasource
+    DataSource dataSource = new TLFDataSource(tlfFile, tlfVertexDictionaryFile, tlfEdgeDictionaryFile, getConfig());
+    // get transactions
+    DataSet<GraphTransaction> transactions = dataSource.getGraphCollection().getGraphTransactions();
+    String asciiGraphs = "" + "g1[(v1:A)-[:a]->(v2:B)-[:b]->(v1)]" + "g2[(v1:A)-[:a]->(v2:B)<-[:b]-(v1)]";
+    FlinkAsciiGraphLoader loader = getLoaderFromString(asciiGraphs);
+    collectAndAssertTrue(loader.getGraphCollectionByVariables("g1", "g2").equalsByGraphData(getConfig().getGraphCollectionFactory().fromTransactions(transactions)));
+}

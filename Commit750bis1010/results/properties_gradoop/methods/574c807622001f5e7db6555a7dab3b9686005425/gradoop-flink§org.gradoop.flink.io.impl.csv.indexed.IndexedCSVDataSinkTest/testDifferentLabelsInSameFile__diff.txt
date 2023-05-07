@@ -1,0 +1,25 @@
+/**
+ * Test writing and reading a graph with different labels that result in the same
+ * indexed CSV path because of replaced illegal filename characters in windows.
+ *
+ * @throws Exception if the execution or IO fails.
+ */
+@Test
+public void testDifferentLabelsInSameFile() throws Exception {
+    String tmpPath = temporaryFolder.getRoot().getPath();
+    ExecutionEnvironment env = getExecutionEnvironment();
+    // This results in the path "graphs/a_b" because < and > are illegal filename characters.
+    EPGMGraphHead graphHead1 = new EPGMGraphHeadFactory().createGraphHead("a<b");
+    EPGMGraphHead graphHead2 = new EPGMGraphHeadFactory().createGraphHead("a>b");
+    DataSet<EPGMGraphHead> graphHeads = env.fromElements(graphHead1, graphHead2);
+    // This results in the path "vertices/b_c" because < and > are illegal filename characters.
+    EPGMVertex vertex1 = new EPGMVertexFactory().createVertex("B<C");
+    EPGMVertex vertex2 = new EPGMVertexFactory().createVertex("B>C");
+    DataSet<EPGMVertex> vertices = env.fromElements(vertex1, vertex2).map(new AddToGraph<>(graphHead1)).map(new AddToGraph<>(graphHead2)).withForwardedFields("id;label;properties");
+    // This results in the path "edges/c_d" because < and > are illegal filename characters.
+    EPGMEdge edge1 = new EPGMEdgeFactory().createEdge("c<d", vertex1.getId(), vertex2.getId());
+    EPGMEdge edge2 = new EPGMEdgeFactory().createEdge("c>d", vertex2.getId(), vertex1.getId());
+    DataSet<EPGMEdge> edges = env.fromElements(edge1, edge2).map(new AddToGraph<>(graphHead1)).withForwardedFields("id;label;properties");
+    LogicalGraph graph = getConfig().getLogicalGraphFactory().fromDataSets(graphHeads, vertices, edges);
+    checkIndexedCSVWrite(tmpPath, graph);
+}

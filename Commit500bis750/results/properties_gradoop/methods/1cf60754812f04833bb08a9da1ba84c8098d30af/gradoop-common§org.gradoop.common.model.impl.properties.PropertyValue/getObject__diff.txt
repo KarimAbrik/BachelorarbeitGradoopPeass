@@ -1,0 +1,11 @@
+//----------------------------------------------------------------------------                         //----------------------------------------------------------------------------                      
+// Getter                                                                                              // Getter                                                                                           
+//----------------------------------------------------------------------------                         //----------------------------------------------------------------------------                      
+/**                                                                                                    /**                                                                                                 
+* Returns the wrapped value as object.                                                                 * Returns the wrapped value as object.                                                              
+*                                                                                                      *                                                                                                   
+* @return value or {@code null} if the value is empty                                                  * @return value or {@code null} if the value is empty                                               
+*/                                                                                                     */                                                                                                  
+public Object getObject() {                                                                            public Object getObject() {                                                                         
+return isBoolean() ? getBoolean() : isInt() ? getInt() : isLong() ? getLong() : isFloat() ? getFloat | return isBoolean() ? getBoolean() : isShort() ? getShort() : isInt() ? getInt() : isLong() ? getLong
+}                                                                                                      }                                                                                                   

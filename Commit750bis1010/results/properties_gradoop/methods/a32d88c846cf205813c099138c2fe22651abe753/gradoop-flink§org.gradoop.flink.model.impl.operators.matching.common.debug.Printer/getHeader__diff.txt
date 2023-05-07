@@ -1,0 +1,9 @@
+/**
+ * Builds the header for debug string which contains the prefix and the
+ * superstep number (0 if non-iterative).
+ *
+ * @return debug header
+ */
+private String getHeader() {
+    return String.format("[%d][%s]: ", isIterative ? getIterationRuntimeContext().getSuperstepNumber() : iterationNumber, prefix != null && !prefix.isEmpty() ? prefix : " ");
+}

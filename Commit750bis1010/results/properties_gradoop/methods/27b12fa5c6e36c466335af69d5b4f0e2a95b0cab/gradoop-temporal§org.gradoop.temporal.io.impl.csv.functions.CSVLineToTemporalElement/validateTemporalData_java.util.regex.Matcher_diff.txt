@@ -1,0 +1,11 @@
+/**
+ * Validates the temporal data matched by the given matcher instance.
+ *
+ * @param matcher the matcher instance containing the temporal data
+ * @throws IOException if the temporal attributes can not be found inside the string
+ */
+void validateTemporalData(Matcher matcher) throws IOException {
+    if (!matcher.matches() || matcher.groupCount() != 4) {
+        throw new IOException("Can not read temporal data from csv line of edge file.");
+    }
+}

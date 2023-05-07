@@ -1,0 +1,15 @@
+/**                                                                                                  |                                                                                                     
+* Since we will need to do operations on individual ids we need                                      |                                                                                                     
+* to reconstruct the {@link GradoopId} instances.                                                    |                                                                                                     
+* @param bytes serialized sequence of {@link GradoopId}s                                             |                                                                                                     
+* @return a set representation                                                                       |                                                                                                     
+*/                                                                                                   |                                                                                                     
+private Set&lt;GradoopId&gt; readIds(byte[] bytes) {                                                 |                                                                                                     
+ids = new HashSet&lt;&gt;();                                                                         |                                                                                                     
+for (int i = 0; i &lt; bytes.length / GradoopId.ID_SIZE; i++) {                                      |                                                                                                     
+byte[] idBytes = new byte[GradoopId.ID_SIZE];                                                        |                                                                                                     
+System.arraycopy(bytes, i * GradoopId.ID_SIZE, idBytes, 0, GradoopId.ID_SIZE);                       |                                                                                                     
+ids.add(GradoopId.fromByteArray(idBytes));                                                           |                                                                                                     
+}                                                                                                    |                                                                                                     
+return ids;                                                                                          |                                                                                                     
+}                                                                                                    |                                                                                                     

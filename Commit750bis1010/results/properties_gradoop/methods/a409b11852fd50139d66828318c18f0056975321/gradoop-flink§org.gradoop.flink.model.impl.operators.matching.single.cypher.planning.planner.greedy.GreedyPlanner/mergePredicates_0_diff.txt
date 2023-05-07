@@ -1,0 +1,14 @@
+/**
+ * Creates a new predicate that includes only elements that exist in both input predicates
+ *
+ * @param leftEntry left side plant table entry
+ * @param rightEntry right side plan table entry
+ * @return Merged predicates
+ */
+private CNF mergePredicates(PlanTableEntry leftEntry, PlanTableEntry rightEntry) {
+    CNF leftPredicates = new CNF(leftEntry.getPredicates());
+    CNF rightPredicates = new CNF(rightEntry.getPredicates());
+    leftPredicates.removeSubCNF(rightEntry.getProcessedVariables());
+    rightPredicates.removeSubCNF(leftEntry.getProcessedVariables());
+    return leftPredicates.and(rightPredicates);
+}

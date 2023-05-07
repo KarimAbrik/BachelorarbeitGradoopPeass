@@ -1,0 +1,7 @@
+@Override
+public Tuple3<Long, Long, GradoopId> join(Tuple3<Long, GradoopId, GradoopId> edgeTuple, Tuple2<Long, GradoopId> uniqueLongToVertexId) throws Exception {
+    reuseTuple.f0 = edgeTuple.f0;
+    reuseTuple.f1 = uniqueLongToVertexId.f0;
+    reuseTuple.f2 = edgeTuple.f2;
+    return reuseTuple;
+}

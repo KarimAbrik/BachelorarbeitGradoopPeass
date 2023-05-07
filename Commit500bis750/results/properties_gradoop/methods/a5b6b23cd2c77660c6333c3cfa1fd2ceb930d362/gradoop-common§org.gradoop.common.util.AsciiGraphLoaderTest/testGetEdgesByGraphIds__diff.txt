@@ -1,0 +1,26 @@
+@Test                                                                                                  @Test                                                                                               
+public void testGetEdgesByGraphIds() throws Exception {                                                public void testGetEdgesByGraphIds() throws Exception {                                             
+AsciiGraphLoader&lt;GraphHead, Vertex, Edge&gt; asciiGraphLoader = AsciiGraphLoader.fromString("g[()   AsciiGraphLoader&lt;GraphHead, Vertex, Edge&gt; asciiGraphLoader = AsciiGraphLoader.fromString("g[()
+validateCollections(asciiGraphLoader, 2, 6, 4);                                                        validateCollections(asciiGraphLoader, 2, 6, 4);                                                     
+validateCaches(asciiGraphLoader, 2, 0, 4);                                                             validateCaches(asciiGraphLoader, 2, 0, 4);                                                          
+GraphHead g = asciiGraphLoader.getGraphHeadByVariable("g");                                            GraphHead g = asciiGraphLoader.getGraphHeadByVariable("g");                                         
+GraphHead h = asciiGraphLoader.getGraphHeadByVariable("h");                                            GraphHead h = asciiGraphLoader.getGraphHeadByVariable("h");                                         
+Collection&lt;Edge&gt; edgesG = asciiGraphLoader.getEdgesByGraphIds(GradoopIds.fromExisting(g.getId( | Collection&lt;Edge&gt; edgesG = asciiGraphLoader.getEdgesByGraphIds(GradoopIdSet.fromExisting(g.getI
+Collection&lt;Edge&gt; edgesH = asciiGraphLoader.getEdgesByGraphIds(GradoopIds.fromExisting(h.getId( | Collection&lt;Edge&gt; edgesH = asciiGraphLoader.getEdgesByGraphIds(GradoopIdSet.fromExisting(h.getI
+Collection&lt;Edge&gt; edgesGH = asciiGraphLoader.getEdgesByGraphIds(GradoopIds.fromExisting(g.getId | Collection&lt;Edge&gt; edgesGH = asciiGraphLoader.getEdgesByGraphIds(GradoopIdSet.fromExisting(g.get
+Edge a = asciiGraphLoader.getEdgeByVariable("a");                                                      Edge a = asciiGraphLoader.getEdgeByVariable("a");                                                   
+Edge b = asciiGraphLoader.getEdgeByVariable("b");                                                      Edge b = asciiGraphLoader.getEdgeByVariable("b");                                                   
+Edge c = asciiGraphLoader.getEdgeByVariable("c");                                                      Edge c = asciiGraphLoader.getEdgeByVariable("c");                                                   
+Edge d = asciiGraphLoader.getEdgeByVariable("d");                                                      Edge d = asciiGraphLoader.getEdgeByVariable("d");                                                   
+assertEquals("Wrong number of edges", 2, edgesG.size());                                               assertEquals("Wrong number of edges", 2, edgesG.size());                                            
+assertEquals("Wrong number of edges", 2, edgesH.size());                                               assertEquals("Wrong number of edges", 2, edgesH.size());                                            
+assertEquals("Wrong number of edges", 4, edgesGH.size());                                              assertEquals("Wrong number of edges", 4, edgesGH.size());                                           
+assertTrue("Edge was not contained in graph", edgesG.contains(a));                                     assertTrue("Edge was not contained in graph", edgesG.contains(a));                                  
+assertTrue("Edge was not contained in graph", edgesG.contains(b));                                     assertTrue("Edge was not contained in graph", edgesG.contains(b));                                  
+assertTrue("Edge was not contained in graph", edgesH.contains(c));                                     assertTrue("Edge was not contained in graph", edgesH.contains(c));                                  
+assertTrue("Edge was not contained in graph", edgesH.contains(d));                                     assertTrue("Edge was not contained in graph", edgesH.contains(d));                                  
+assertTrue("Edge was not contained in graph", edgesGH.contains(a));                                    assertTrue("Edge was not contained in graph", edgesGH.contains(a));                                 
+assertTrue("Edge was not contained in graph", edgesGH.contains(b));                                    assertTrue("Edge was not contained in graph", edgesGH.contains(b));                                 
+assertTrue("Edge was not contained in graph", edgesGH.contains(c));                                    assertTrue("Edge was not contained in graph", edgesGH.contains(c));                                 
+assertTrue("Edge was not contained in graph", edgesGH.contains(d));                                    assertTrue("Edge was not contained in graph", edgesGH.contains(d));                                 
+}                                                                                                      }                                                                                                   

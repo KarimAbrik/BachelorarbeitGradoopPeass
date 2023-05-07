@@ -1,0 +1,10 @@
+@Test
+public void testGraphUnsupportedPropertyValueType() throws Exception {
+    FlinkAsciiGraphLoader loader = getLoaderFromString("g[({a : 0})-[{b : 0.0}]->({a : true})-[{b : \"\"}]->({})]");
+    LogicalGraph graph = loader.getLogicalGraphByVariable("g");
+    try {
+        graph.aggregate(new SumVertexProperty("a")).aggregate(new SumEdgeProperty("b")).getGraphHead().print();
+    } catch (Exception e) {
+        assertTrue(e instanceof JobExecutionException && e.getCause() instanceof UnsupportedTypeException);
+    }
+}

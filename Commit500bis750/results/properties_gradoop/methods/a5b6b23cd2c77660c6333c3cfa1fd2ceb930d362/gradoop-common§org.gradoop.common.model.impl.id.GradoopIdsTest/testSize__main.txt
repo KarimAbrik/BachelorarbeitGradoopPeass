@@ -1,0 +1,13 @@
+@Test
+public void testSize() throws Exception {
+    GradoopId id1 = GradoopId.get();
+    GradoopId id2 = GradoopId.get();
+    GradoopIdSet ids = new GradoopIdSet();
+    assertThat(ids.size(), is(0));
+    ids.add(id1);
+    assertThat(ids.size(), is(1));
+    ids.add(id1);
+    assertThat(ids.size(), is(1));
+    ids.add(id2);
+    assertThat(ids.size(), is(2));
+}

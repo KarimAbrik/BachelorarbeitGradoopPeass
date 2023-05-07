@@ -1,0 +1,17 @@
+@Test
+public void testFilterEmbeddings() throws Exception {
+    CNF predicates = predicateFromQuery("MATCH (a),(b) WHERE a.age > b.age");
+    PropertyValue[] propertiesA = new PropertyValue[] { PropertyValue.create(23) };
+    PropertyValue[] propertiesB = new PropertyValue[] { PropertyValue.create(42) };
+    Embedding embedding = new Embedding();
+    embedding.add(GradoopId.get(), propertiesA);
+    embedding.add(GradoopId.get(), propertiesB);
+    DataSet<Embedding> embeddings = getExecutionEnvironment().fromElements(embedding);
+    EmbeddingMetaData metaData = new EmbeddingMetaData();
+    metaData.setEntryColumn("a", EntryType.VERTEX, 0);
+    metaData.setEntryColumn("b", EntryType.VERTEX, 1);
+    metaData.setPropertyColumn("a", "age", 0);
+    metaData.setPropertyColumn("b", "age", 1);
+    FilterEmbeddings filter = new FilterEmbeddings(embeddings, predicates, metaData);
+    assertEquals(0, filter.evaluate().count());
+}

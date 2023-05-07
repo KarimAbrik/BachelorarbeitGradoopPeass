@@ -1,0 +1,79 @@
+/**
+ * Compares a numerical to an object. The object needs to be an instance of {@code Number}.
+ *
+ * @param aValue first value
+ * @param other second value
+ * @return a negative integer, zero, or a positive integer as aValue is less than, equal to, or
+ * greater than bValue.
+ * @throws IllegalArgumentException if other is not an instance of number.
+ */
+static int compareNumerical(Number aValue, Object other) {
+    if (!(other instanceof Number)) {
+        throw new IllegalArgumentException(String.format("Incompatible types: %s, %s", aValue.getClass(), other.getClass()));
+    }
+    Number bValue = (Number) other;
+    int aType = getType(aValue);
+    int bType = getType(bValue);
+    boolean sameType = aType == bType;
+    int maxType = Math.max(aType, bType);
+    int result;
+    if (maxType == SHORT) {
+        result = Short.compare(aValue.shortValue(), bValue.shortValue());
+    } else if (maxType == INT) {
+        int a;
+        int b;
+        if (sameType) {
+            a = aValue.intValue();
+            b = bValue.intValue();
+        } else {
+            a = aType == INT ? aValue.intValue() : aValue.shortValue();
+            b = bType == INT ? bValue.intValue() : bValue.shortValue();
+        }
+        result = Integer.compare(a, b);
+    } else if (maxType == FLOAT) {
+        float a;
+        float b;
+        if (sameType) {
+            a = aValue.floatValue();
+            b = bValue.floatValue();
+        } else {
+            a = aType == FLOAT ? aValue.floatValue() : floatValue(aValue, aType);
+            b = bType == FLOAT ? bValue.floatValue() : floatValue(bValue, bType);
+        }
+        result = Float.compare(a, b);
+    } else if (maxType == LONG) {
+        long a;
+        long b;
+        if (sameType) {
+            a = aValue.longValue();
+            b = bValue.longValue();
+        } else {
+            a = aType == LONG ? aValue.longValue() : longValue(aValue, aType);
+            b = bType == LONG ? bValue.longValue() : longValue(bValue, bType);
+        }
+        result = Long.compare(a, b);
+    } else if (maxType == DOUBLE) {
+        double a;
+        double b;
+        if (sameType) {
+            a = aValue.doubleValue();
+            b = bValue.doubleValue();
+        } else {
+            a = aType == DOUBLE ? aValue.doubleValue() : doubleValue(aValue, aType);
+            b = bType == DOUBLE ? bValue.doubleValue() : doubleValue(bValue, bType);
+        }
+        result = Double.compare(a, b);
+    } else {
+        BigDecimal a;
+        BigDecimal b;
+        if (sameType) {
+            a = (BigDecimal) aValue;
+            b = (BigDecimal) bValue;
+        } else {
+            a = aType == BIG_DECIMAL ? (BigDecimal) aValue : bigDecimalValue(aValue, aType);
+            b = bType == BIG_DECIMAL ? (BigDecimal) bValue : bigDecimalValue(bValue, bType);
+        }
+        result = a.compareTo(b);
+    }
+    return result;
+}

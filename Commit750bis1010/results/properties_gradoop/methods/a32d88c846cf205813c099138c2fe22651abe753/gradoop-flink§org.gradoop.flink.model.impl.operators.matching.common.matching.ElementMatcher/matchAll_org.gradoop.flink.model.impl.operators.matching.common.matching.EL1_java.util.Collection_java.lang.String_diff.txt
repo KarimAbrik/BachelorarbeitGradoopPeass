@@ -1,0 +1,21 @@
+/**
+ * Matches the given data graph element against all given query elements.
+ *
+ * @param <EL1>         element type
+ * @param <EL2>         GDL element type
+ * @param dbElement     data graph element (vertex/edge)
+ * @param queryElements query graph elements (vertices/edges)
+ * @param defaultLabel  default element label
+ * @return true, iff the data graph element matches at least one query element
+ */
+public static <EL1 extends Element, EL2 extends GraphElement> boolean matchAll(EL1 dbElement, Collection<EL2> queryElements, String defaultLabel) {
+    boolean match = false;
+    for (GraphElement queryElement : queryElements) {
+        match = match(dbElement, queryElement, defaultLabel);
+        // no need to verify remaining elements
+        if (match) {
+            break;
+        }
+    }
+    return match;
+}

@@ -1,0 +1,9 @@
+/**
+ * Creates build base.
+ *
+ * @param useLabel true, if element label shall be used for grouping
+ */
+protected ReduceVertexGroupItemBase(boolean useLabel) {
+    super(useLabel);
+    this.reuseVertexGroupItem = new VertexGroupItem();
+}

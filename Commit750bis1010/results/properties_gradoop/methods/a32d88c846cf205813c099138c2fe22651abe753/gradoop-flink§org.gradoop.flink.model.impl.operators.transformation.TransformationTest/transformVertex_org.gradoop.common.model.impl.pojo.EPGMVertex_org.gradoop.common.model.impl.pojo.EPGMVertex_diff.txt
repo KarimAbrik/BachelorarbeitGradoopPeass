@@ -1,0 +1,10 @@
+static EPGMVertex transformVertex(EPGMVertex current, EPGMVertex transformed) {
+    transformed.setLabel(current.getLabel());
+    if (current.getLabel().equals("A")) {
+        transformed.setProperty("a", current.getPropertyValue("a").getInt() + 1);
+        transformed.setProperty("b", current.getPropertyValue("b").getInt() - 1);
+    } else if (current.getLabel().equals("B")) {
+        transformed.setProperty("d", current.getPropertyValue("c"));
+    }
+    return transformed;
+}

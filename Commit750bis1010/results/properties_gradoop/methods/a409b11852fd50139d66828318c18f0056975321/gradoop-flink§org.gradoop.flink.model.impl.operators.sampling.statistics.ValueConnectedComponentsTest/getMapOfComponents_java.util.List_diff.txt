@@ -1,0 +1,17 @@
+/**
+ * Parses the results into a {@code Map<ComponentID,Count(v)>}.
+ *
+ * @param vertexComponentList lists of vertices with its corresponding component id
+ * @return parsed map.
+ */
+private Map<Long, Long> getMapOfComponents(List<Tuple2<Long, Long>> vertexComponentList) {
+    Map<Long, Long> components = new HashMap<>();
+    for (Tuple2<Long, Long> tuple : vertexComponentList) {
+        if (!components.containsKey(tuple.f1)) {
+            components.put(tuple.f1, 1L);
+        } else {
+            components.put(tuple.f1, components.get(tuple.f1) + 1L);
+        }
+    }
+    return components;
+}

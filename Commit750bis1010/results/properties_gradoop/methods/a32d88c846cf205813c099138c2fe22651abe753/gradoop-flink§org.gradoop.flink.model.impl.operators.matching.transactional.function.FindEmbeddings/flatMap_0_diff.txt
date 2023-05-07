@@ -1,0 +1,8 @@
+@Override
+public void flatMap(GraphWithCandidates graphWithCandidates, Collector<Tuple4<GradoopId, GradoopId, GradoopIdSet, GradoopIdSet>> collector) throws Exception {
+    List<Embedding<GradoopId>> embeddings = this.algo.findEmbeddings(graphWithCandidates, this.query);
+    for (Embedding<GradoopId> embedding : embeddings) {
+        GradoopId newGraphId = GradoopId.get();
+        collector.collect(new Tuple4<>(newGraphId, graphWithCandidates.f0, GradoopIdSet.fromExisting(embedding.getVertexMapping()), GradoopIdSet.fromExisting(embedding.getEdgeMapping())));
+    }
+}

@@ -1,0 +1,6 @@
+@Override
+public DataSet<Embedding> execute() {
+    FilterAndProjectVertices<V> op = new FilterAndProjectVertices<>(vertices, filterPredicate, projectionKeys);
+    op.setName(toString());
+    return op.evaluate();
+}

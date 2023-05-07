@@ -1,0 +1,12 @@
+/**
+ * Computes the overlapping query variables of the specified entries.
+ *
+ * @param firstEntry first entry
+ * @param secondEntry second entry
+ * @return variables that are available in both input entries
+ */
+private List<String> getOverlap(PlanTableEntry firstEntry, PlanTableEntry secondEntry) {
+    Set<String> overlap = firstEntry.getAllVariables();
+    overlap.retainAll(secondEntry.getAllVariables());
+    return new ArrayList<>(overlap);
+}

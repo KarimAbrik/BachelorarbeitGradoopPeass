@@ -1,0 +1,15 @@
+/**
+ * New edge filter operator
+ *
+ * @param input Candidate edges
+ * @param predicates Predicates used to filter edges
+ * @param projectionPropertyKeys Property keys used for projection
+ * @param isLoop is the edge a loop
+ */
+public FilterAndProjectEdges(DataSet<E> input, CNF predicates, List<String> projectionPropertyKeys, boolean isLoop) {
+    this.input = input;
+    this.predicates = predicates;
+    this.projectionPropertyKeys = projectionPropertyKeys;
+    this.isLoop = isLoop;
+    this.setName("FilterAndProjectEdges");
+}

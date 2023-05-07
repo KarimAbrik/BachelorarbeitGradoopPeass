@@ -1,0 +1,8 @@
+@Override
+public DataSet<Double> execute(LogicalGraph graph) {
+    DataSet<WithCount<GradoopId>> degrees = new VertexDegrees().execute(graph);
+    DataSet<Long> vertexCount = new VertexCount().execute(graph);
+    // for broadcasting
+    DataSet<WithCount<GradoopId>> maxDegree = degrees.max(1);
+    return degrees.map(new DegreeDistanceFunction(BROADCAST_NAME)).withBroadcastSet(maxDegree, BROADCAST_NAME).sum(0).crossWithTiny(vertexCount).with(new CalculateDegreeCentrality());
+}

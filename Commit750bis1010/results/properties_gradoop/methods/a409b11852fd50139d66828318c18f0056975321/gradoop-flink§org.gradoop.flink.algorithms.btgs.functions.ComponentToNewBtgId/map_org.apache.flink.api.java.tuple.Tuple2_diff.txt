@@ -1,0 +1,4 @@
+@Override
+public Tuple2<GradoopId, GradoopIdSet> map(Tuple2<GradoopId, GradoopIdSet> pair) throws Exception {
+    return new Tuple2<>(GradoopId.get(), pair.f1);
+}

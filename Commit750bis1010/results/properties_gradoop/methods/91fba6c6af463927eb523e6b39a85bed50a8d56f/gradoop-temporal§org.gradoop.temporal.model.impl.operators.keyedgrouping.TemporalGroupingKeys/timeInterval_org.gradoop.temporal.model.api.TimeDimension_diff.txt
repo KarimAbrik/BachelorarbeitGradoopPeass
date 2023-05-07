@@ -1,0 +1,11 @@
+/**
+ * Group by a time interval. This will use a time interval as is for grouping.
+ *
+ * @param interval The time interval to group by.
+ * @param <T> The type of the elements to group.
+ * @return The grouping key function extracting a time interval.
+ * @see TimeIntervalKeyFunction
+ */
+public static <T extends TemporalElement> KeyFunction<T, Tuple2<Long, Long>> timeInterval(TimeDimension interval) {
+    return new TimeIntervalKeyFunction<>(interval);
+}

@@ -1,0 +1,14 @@
+@Override
+public boolean is(Object value) {
+    if (!(value instanceof List)) {
+        return false;
+    }
+    for (Object item : (List) value) {
+        // List is not a valid property value if it contains any object
+        // that is not a property value itself.
+        if (!(item instanceof PropertyValue)) {
+            return false;
+        }
+    }
+    return true;
+}

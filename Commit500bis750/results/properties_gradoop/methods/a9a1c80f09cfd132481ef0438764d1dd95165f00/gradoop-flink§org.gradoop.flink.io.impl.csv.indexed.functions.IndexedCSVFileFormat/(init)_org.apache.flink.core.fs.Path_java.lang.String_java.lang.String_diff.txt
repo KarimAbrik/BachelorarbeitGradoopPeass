@@ -1,0 +1,19 @@
+/**
+ * Creates a new instance of an IndexedCSVFileFormat.
+ *
+ * @param outputPath The path where the CSV file will be written.
+ * @param recordDelimiter The record delimiter for the CSV file.
+ * @param fieldDelimiter The field delimiter for the CSV file.
+ */
+public IndexedCSVFileFormat(Path outputPath, String recordDelimiter, String fieldDelimiter) {
+    super(outputPath);
+    if (recordDelimiter == null) {
+        throw new IllegalArgumentException("RecordDelmiter shall not be null.");
+    }
+    if (fieldDelimiter == null) {
+        throw new IllegalArgumentException("FieldDelimiter shall not be null.");
+    }
+    this.fieldDelimiter = fieldDelimiter;
+    this.recordDelimiter = recordDelimiter;
+    this.labelsToWriter = new HashMap<>();
+}

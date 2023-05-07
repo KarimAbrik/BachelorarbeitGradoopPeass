@@ -1,0 +1,18 @@
+/**
+ * Initializes an vertex using the specified parameters and adds its label
+ * if the given vertex was created for the return pattern.
+ *
+ * @param out flat map collector
+ * @param graphHead graph head to assign vertex to
+ * @param vertexId vertex identifier
+ * @param label label associated with vertex
+ */
+private void initVertexWithData(Collector<Element> out, G graphHead, GradoopId vertexId, String label) {
+    if (!processedIds.contains(vertexId)) {
+        V v = vertexFactory.initVertex(vertexId);
+        v.addGraphId(graphHead.getId());
+        v.setLabel(label);
+        out.collect(v);
+        processedIds.add(vertexId);
+    }
+}

@@ -1,0 +1,11 @@
+/**
+ * Combine this filter with another filter using a logical {@code and}.
+ * Either filter may be a
+ * {@link org.apache.flink.api.common.functions.RichFunction}.
+ *
+ * @param other The filter that will be combined with this filter.
+ * @return The combined filter.
+ */
+default CombinableFilter<T> and(FilterFunction<? super T> other) {
+    return new And<>(this, other);
+}

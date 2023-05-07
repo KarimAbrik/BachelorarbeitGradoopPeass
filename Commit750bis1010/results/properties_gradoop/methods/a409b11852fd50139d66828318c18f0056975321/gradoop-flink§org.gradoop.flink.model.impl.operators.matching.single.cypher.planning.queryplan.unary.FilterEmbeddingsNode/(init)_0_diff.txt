@@ -1,0 +1,10 @@
+/**
+ * Creates a new node.
+ *
+ * @param childNode input plan node
+ * @param filterPredicate filter predicate to be applied on embeddings
+ */
+public FilterEmbeddingsNode(PlanNode childNode, CNF filterPredicate) {
+    super(childNode);
+    this.filterPredicate = filterPredicate;
+}

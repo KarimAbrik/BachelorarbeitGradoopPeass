@@ -1,0 +1,14 @@
+/**
+ * Tests the computation of graph density for a logical graph
+ *
+ * @throws Exception If loading of the example-graph fails
+ */
+@Test
+public void testGraphDensity() throws Exception {
+    LogicalGraph graph = getSocialNetworkLoader().getLogicalGraph();
+    double density = graph.callForGraph(new GraphDensity()).getGraphHead().collect().get(0).getPropertyValue(SamplingEvaluationConstants.PROPERTY_KEY_DENSITY).getDouble();
+    // density should not be 0
+    assertTrue("Graph density is 0", density > 0.);
+    // density for social network graph should be (24 / 11 * 10) = 0.21818...
+    assertTrue("Computed graph density is incorrect", density == (24d / 110d));
+}

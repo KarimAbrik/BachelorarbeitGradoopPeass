@@ -1,0 +1,10 @@
+@Test
+public void testCreateFromMap() throws Exception {
+    Properties properties = Properties.createFromMap(SUPPORTED_PROPERTIES);
+    assertEquals(SUPPORTED_PROPERTIES.size(), properties.size());
+    for (Map.Entry<String, Object> entry : SUPPORTED_PROPERTIES.entrySet()) {
+        String k = entry.getKey();
+        assertTrue(properties.containsKey(k));
+        assertEquals(entry.getValue(), properties.get(k).getObject());
+    }
+}

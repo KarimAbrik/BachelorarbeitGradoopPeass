@@ -1,0 +1,6 @@
+@Nonnull
+@Override
+default HBaseElementFilter<T> negate() {
+    // this will be implemented at issue #857
+    throw new NotImplementedException("Logical negation not implemented.");
+}

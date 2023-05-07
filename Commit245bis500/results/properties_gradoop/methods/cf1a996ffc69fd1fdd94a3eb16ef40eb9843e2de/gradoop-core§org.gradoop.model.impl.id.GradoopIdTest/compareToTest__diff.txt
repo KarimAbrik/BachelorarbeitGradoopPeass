@@ -1,0 +1,8 @@
+@Test
+public void compareToTest() {
+    GradoopId one = new GradoopId(1L);
+    GradoopId two = new GradoopId(2L);
+    Assert.assertEquals(-1, one.compareTo(two));
+    Assert.assertEquals(0, one.compareTo(one));
+    Assert.assertEquals(1, two.compareTo(one));
+}

@@ -1,0 +1,3 @@
+protected GVELayout from(Collection<EPGMGraphHead> graphHeads, Collection<EPGMVertex> vertices, Collection<EPGMEdge> edges) {
+    return new GVELayout(getExecutionEnvironment().fromCollection(graphHeads), getExecutionEnvironment().fromCollection(vertices), getExecutionEnvironment().fromCollection(edges));
+}

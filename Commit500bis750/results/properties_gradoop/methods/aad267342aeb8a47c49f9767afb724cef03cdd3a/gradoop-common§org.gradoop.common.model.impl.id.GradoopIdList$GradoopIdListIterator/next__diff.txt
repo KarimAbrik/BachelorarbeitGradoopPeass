@@ -1,0 +1,10 @@
+@Override                                                                                            |                                                                                                     
+public GradoopId next() {                                                                            |                                                                                                     
+if (!hasNext()) {                                                                                    |                                                                                                     
+throw new NoSuchElementException();                                                                  |                                                                                                     
+}                                                                                                    |                                                                                                     
+int from = GradoopId.ID_SIZE * i;                                                                    |                                                                                                     
+int to = from + GradoopId.ID_SIZE;                                                                   |                                                                                                     
+i++;                                                                                                 |                                                                                                     
+return GradoopId.fromByteArray(Arrays.copyOfRange(bytes, from, to));                                 |                                                                                                     
+}                                                                                                    |                                                                                                     

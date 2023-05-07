@@ -1,0 +1,7 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public LogicalGraph subgraph(FilterFunction<Vertex> vertexFilterFunction, FilterFunction<Edge> edgeFilterFunction, Subgraph.Strategy strategy) {
+    return callForGraph(new Subgraph(vertexFilterFunction, edgeFilterFunction, strategy));
+}

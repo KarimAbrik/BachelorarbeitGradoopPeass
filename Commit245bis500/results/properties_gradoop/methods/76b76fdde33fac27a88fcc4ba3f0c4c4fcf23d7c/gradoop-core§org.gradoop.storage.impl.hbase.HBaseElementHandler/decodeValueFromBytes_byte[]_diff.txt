@@ -1,0 +1,36 @@
+/**
+ * Decodes a value from a given byte array.
+ *
+ * @param encValue encoded value with type information
+ * @return decoded value
+ */
+protected Object decodeValueFromBytes(final byte[] encValue) {
+    Object o = null;
+    if (encValue.length > 0) {
+        byte type = encValue[0];
+        byte[] value = Bytes.tail(encValue, encValue.length - 1);
+        switch(type) {
+            case GConstants.TYPE_BOOLEAN:
+                o = Bytes.toBoolean(value);
+                break;
+            case GConstants.TYPE_INTEGER:
+                o = Bytes.toInt(value);
+                break;
+            case GConstants.TYPE_LONG:
+                o = Bytes.toLong(value);
+                break;
+            case GConstants.TYPE_FLOAT:
+                o = Bytes.toFloat(value);
+                break;
+            case GConstants.TYPE_DOUBLE:
+                o = Bytes.toDouble(value);
+                break;
+            case GConstants.TYPE_STRING:
+                o = Bytes.toString(value);
+                break;
+            default:
+                throw new UnsupportedTypeException("Type code " + type + " not supported");
+        }
+    }
+    return o;
+}

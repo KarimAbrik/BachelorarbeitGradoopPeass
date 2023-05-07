@@ -1,0 +1,22 @@
+/**
+ * Tests whether vertices are created properly even if not deduplicated.
+ *
+ * @throws Exception If the data could not be loaded or collected properly.
+ */
+@Test
+public void nonDeduplicationTest() throws Exception {
+    LogicalGraph social = getSocialNetworkLoader().getLogicalGraph();
+    // this operation should create 6 vertices with the property values:
+    // 'Berlin', 3 times 'Dresden', 2 times 'Leipzig'
+    ExtractPropertyFromVertex extract = new ExtractPropertyFromVertex("Person", "city", "City", "name");
+    extract.setCondensation(false);
+    LogicalGraph extractedGraph = social.callForGraph(extract);
+    List<EPGMVertex> vertices = new ArrayList<>();
+    extractedGraph.getVerticesByLabel("City").output(new LocalCollectionOutputFormat<>(vertices));
+    getConfig().getExecutionEnvironment().execute();
+    Map<String, Integer> cityCountMap = new HashMap<>();
+    vertices.forEach(v -> cityCountMap.merge(v.getPropertyValue("name").getString(), 1, Integer::sum));
+    Assert.assertEquals(1, cityCountMap.get("Berlin").intValue());
+    Assert.assertEquals(3, cityCountMap.get("Dresden").intValue());
+    Assert.assertEquals(2, cityCountMap.get("Leipzig").intValue());
+}

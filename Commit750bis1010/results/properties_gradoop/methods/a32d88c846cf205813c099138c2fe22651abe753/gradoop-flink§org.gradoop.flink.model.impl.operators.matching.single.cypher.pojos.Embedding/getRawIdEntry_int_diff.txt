@@ -1,0 +1,9 @@
+/**
+ * Returns the internal representation of the IdEntry stored at the specified position
+ * @param column the position the entry is stored at
+ * @return Internal representation of the entry
+ */
+public byte[] getRawIdEntry(int column) {
+    int offset = getIdOffset(column);
+    return ArrayUtils.subarray(idData, offset, offset + ID_ENTRY_SIZE);
+}

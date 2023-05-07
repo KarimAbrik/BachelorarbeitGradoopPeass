@@ -1,0 +1,5 @@
+@Override
+public EL map(EL element) {
+    element.setGraphIds(GradoopIdSet.fromExisting(graphId));
+    return element;
+}

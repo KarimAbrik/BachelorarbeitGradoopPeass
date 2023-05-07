@@ -1,0 +1,6 @@
+@Override
+public VertexWithSuperVertex map(VertexGroupItem vertexGroupItem) throws Exception {
+    reuseTuple.setVertexId(vertexGroupItem.getVertexId());
+    reuseTuple.setSuperVertexId(vertexGroupItem.getSuperVertexId());
+    return reuseTuple;
+}

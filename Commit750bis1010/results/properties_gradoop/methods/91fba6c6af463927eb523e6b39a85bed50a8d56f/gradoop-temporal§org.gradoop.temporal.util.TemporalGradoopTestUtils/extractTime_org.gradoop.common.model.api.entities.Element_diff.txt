@@ -1,0 +1,17 @@
+/**
+ * Extract the valid time from properties of an {@link Element}.
+ * Those times are expected to be stored as {@value #PROPERTY_VALID_FROM} and {@value #PROPERTY_VALID_TO}.
+ *
+ * @param element The element storing valid times as properties.
+ * @return The valid time extracted from that element.
+ */
+public static Tuple2<Long, Long> extractTime(Element element) {
+    Tuple2<Long, Long> validTime = new Tuple2<>(TemporalElement.DEFAULT_TIME_FROM, TemporalElement.DEFAULT_TIME_TO);
+    if (element.hasProperty(PROPERTY_VALID_FROM)) {
+        validTime.f0 = element.getPropertyValue(PROPERTY_VALID_FROM).getLong();
+    }
+    if (element.hasProperty(PROPERTY_VALID_TO)) {
+        validTime.f1 = element.getPropertyValue(PROPERTY_VALID_TO).getLong();
+    }
+    return validTime;
+}

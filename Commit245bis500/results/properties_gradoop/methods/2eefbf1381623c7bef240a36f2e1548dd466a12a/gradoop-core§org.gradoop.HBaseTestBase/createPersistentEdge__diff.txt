@@ -1,0 +1,26 @@
+public static Iterable<PersistentEdge<VertexPojo>> createPersistentEdge() {
+    List<PersistentEdge<VertexPojo>> persistentEdgeData = Lists.newArrayListWithExpectedSize(2);
+    PersistentEdgeFactory<EdgePojo, VertexPojo, HBaseEdge> persistentEdgeFactory = new HBaseEdgeFactory();
+    EPGMVertexFactory<VertexPojo> vertexFactory = new VertexPojoFactory();
+    EPGMEdgeFactory<EdgePojo> edgeFactory = new EdgePojoFactory();
+    // edge 0
+    GradoopId edgeId = GradoopId.fromLong(0L);
+    String edgeLabel = "a";
+    Map<String, Object> edgeProperties = new HashMap<>();
+    edgeProperties.put("k1", "v1");
+    edgeProperties.put("k2", "v2");
+    GradoopIds graphs = GradoopIds.fromLongs(0L, 1L);
+    VertexPojo edgeSourceData = vertexFactory.createVertex(GradoopId.fromLong(0L), "A");
+    VertexPojo edgeTargetData = vertexFactory.createVertex(GradoopId.fromLong(1L), "B");
+    persistentEdgeData.add(persistentEdgeFactory.createEdge(edgeFactory.createEdge(edgeId, edgeLabel, edgeSourceData.getId(), edgeTargetData.getId(), edgeProperties, graphs), edgeSourceData, edgeTargetData));
+    // edge 1
+    edgeId = GradoopId.fromLong(1L);
+    edgeLabel = "b";
+    edgeProperties = Maps.newHashMapWithExpectedSize(1);
+    edgeProperties.put("k1", "v1");
+    graphs = GradoopIds.fromLongs(1L, 2L);
+    edgeSourceData = vertexFactory.createVertex(GradoopId.fromLong(0L), "A");
+    edgeTargetData = vertexFactory.createVertex(GradoopId.fromLong(2L), "C");
+    persistentEdgeData.add(persistentEdgeFactory.createEdge(edgeFactory.createEdge(edgeId, edgeLabel, edgeSourceData.getId(), edgeTargetData.getId(), edgeProperties, graphs), edgeSourceData, edgeTargetData));
+    return persistentEdgeData;
+}

@@ -1,0 +1,9 @@
+/**
+ * Converts a byte array to a BigDecimal
+ *
+ * @param bytes bytes
+ * @return the char value
+ */
+public static BigDecimal toBigDecimal(byte[] bytes) {
+    return toBigDecimal(bytes, 0, bytes.length);
+}

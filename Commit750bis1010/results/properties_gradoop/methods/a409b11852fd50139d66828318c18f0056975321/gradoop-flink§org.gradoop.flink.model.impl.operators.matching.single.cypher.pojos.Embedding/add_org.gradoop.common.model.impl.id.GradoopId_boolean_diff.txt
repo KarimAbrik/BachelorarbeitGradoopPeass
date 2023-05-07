@@ -1,0 +1,13 @@
+/**
+ * Adds an entry to the embedding.
+ * This can either be an ID representing referencing a Vertex/Edge or a pointer to a path entry
+ * @param id the id that will be added to the embedding
+ * @param isIdList indicates if the id represents a GraphElement or points to a path entry
+ */
+private void add(GradoopId id, boolean isIdList) {
+    byte[] newIds = new byte[idData.length + 1 + GradoopId.ID_SIZE];
+    System.arraycopy(idData, 0, newIds, 0, idData.length);
+    newIds[idData.length] = isIdList ? ID_LIST_FLAG : ID_ENTRY_FLAG;
+    System.arraycopy(id.toByteArray(), 0, newIds, idData.length + 1, GradoopId.ID_SIZE);
+    idData = newIds;
+}

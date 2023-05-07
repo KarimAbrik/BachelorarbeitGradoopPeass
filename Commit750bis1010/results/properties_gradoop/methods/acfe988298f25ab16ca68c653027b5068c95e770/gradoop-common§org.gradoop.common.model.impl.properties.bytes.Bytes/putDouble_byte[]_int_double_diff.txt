@@ -1,0 +1,11 @@
+/**
+ * Put a double value out to the specified byte position.
+ *
+ * @param bytes byte array
+ * @param offset offset to write to
+ * @param d value
+ * @return New offset into array <code>bytes</code>
+ */
+public static int putDouble(byte[] bytes, int offset, double d) {
+    return putLong(bytes, offset, Double.doubleToLongBits(d));
+}

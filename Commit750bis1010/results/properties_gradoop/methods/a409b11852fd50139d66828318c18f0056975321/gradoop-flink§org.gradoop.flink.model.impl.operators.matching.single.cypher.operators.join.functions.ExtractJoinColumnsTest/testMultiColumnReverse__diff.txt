@@ -1,0 +1,9 @@
+@Test
+public void testMultiColumnReverse() throws Exception {
+    GradoopId v0 = GradoopId.get();
+    GradoopId v1 = GradoopId.get();
+    Embedding embedding = createEmbedding(v0, v1);
+    ExtractJoinColumns udf1 = new ExtractJoinColumns(Arrays.asList(0, 1));
+    ExtractJoinColumns udf2 = new ExtractJoinColumns(Arrays.asList(1, 0));
+    Assert.assertNotEquals(udf1.getKey(embedding), udf2.getKey(embedding));
+}

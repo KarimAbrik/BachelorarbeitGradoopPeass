@@ -1,0 +1,18 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public LogicalGraph execute(LogicalGraph graph) {
+    DataSet<Vertex> vertices = graph.getVertices();
+    DataSet<Edge> edges = graph.getEdges();
+    DataSet<PropertyValue> aggregate;
+    if (this.aggregateFunction instanceof VertexAggregateFunction) {
+        aggregate = aggregateVertices(vertices);
+    } else {
+        aggregate = aggregateEdges(edges);
+    }
+    DataSet<PropertyValue> nullValue = graph.getConfig().getExecutionEnvironment().fromElements(PropertyValue.NULL_VALUE);
+    aggregate = aggregate.reduceGroup(new CombinePartitionAggregates(aggregateFunction)).union(nullValue).reduceGroup(new SetNullIfEmpty());
+    DataSet<GraphHead> graphHead = graph.getGraphHead().map(new SetAggregateProperty(aggregateFunction)).withBroadcastSet(aggregate, SetAggregateProperty.VALUE);
+    return graph.getConfig().getLogicalGraphFactory().fromDataSets(graphHead, vertices, edges);
+}

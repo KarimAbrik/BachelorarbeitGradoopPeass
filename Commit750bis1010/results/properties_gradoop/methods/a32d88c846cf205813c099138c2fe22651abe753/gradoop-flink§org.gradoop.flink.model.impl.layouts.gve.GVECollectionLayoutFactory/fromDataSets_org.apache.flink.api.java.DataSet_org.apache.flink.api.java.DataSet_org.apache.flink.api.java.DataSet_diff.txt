@@ -1,0 +1,4 @@
+@Override
+public GraphCollectionLayout<EPGMGraphHead, EPGMVertex, EPGMEdge> fromDataSets(DataSet<EPGMGraphHead> graphHeads, DataSet<EPGMVertex> vertices, DataSet<EPGMEdge> edges) {
+    return create(graphHeads, vertices, edges);
+}

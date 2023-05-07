@@ -1,0 +1,12 @@
+/**
+ * Opens an existing or creates a new graph store.
+ *
+ * @param conf       cluster config
+ * @param dropTables true, if existing tables shall be dropped
+ */
+private void createGraphStore(final Configuration conf, boolean dropTables) {
+    if (dropTables) {
+        HBaseGraphStoreFactory.deleteGraphStore(conf);
+    }
+    HBaseGraphStoreFactory.createGraphStore(conf, new EPGVertexHandler(), new EPGGraphHandler());
+}

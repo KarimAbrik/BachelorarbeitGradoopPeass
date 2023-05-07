@@ -1,0 +1,6 @@
+@Override
+public Tuple map(E element) throws Exception {
+    final Tuple result = super.map(element);
+    result.setField(element.getId(), GroupingConstants.VERTEX_TUPLE_ID);
+    return result;
+}

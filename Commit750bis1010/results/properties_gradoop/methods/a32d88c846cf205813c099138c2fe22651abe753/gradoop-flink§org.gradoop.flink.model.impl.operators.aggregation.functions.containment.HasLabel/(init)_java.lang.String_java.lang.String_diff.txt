@@ -1,0 +1,11 @@
+/**
+ * Creates a new instance of a HasLabel aggregate function.
+ *
+ * @param label label to check presence of
+ * @param aggregatePropertyKey aggregate property key
+ */
+public HasLabel(String label, String aggregatePropertyKey) {
+    super(aggregatePropertyKey);
+    Objects.requireNonNull(label);
+    this.label = label;
+}

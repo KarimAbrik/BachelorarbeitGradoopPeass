@@ -1,0 +1,32 @@
+{
+  "overallScore" : 0,
+  "selected" : false,
+  "testcase" : {
+    "clazz" : "org.gradoop.biiig.examples.BTGAnalysisDriverTest",
+    "method" : "driverTest",
+    "module" : "gradoop-biiig",
+    "params" : null
+  },
+  "callCounts" : {
+    "gradoop-biiig§org.gradoop.biiig.utils.ConfigurationUtils#performSanityCheck(org.apache.commons.cli.CommandLine)" : 1,
+    "gradoop-core§org.gradoop.storage.hbase.BasicHandler#<init>" : 2,
+    "gradoop-core§org.gradoop.storage.hbase.HBaseGraphStoreFactory#deleteGraphStore(org.apache.hadoop.conf.Configuration,java.lang.String,java.lang.String)" : 1,
+    "gradoop-core§org.gradoop.storage.hbase.HBaseGraphStore#<init>(org.apache.hadoop.hbase.client.HTable,org.apache.hadoop.hbase.client.HTable,org.gradoop.storage.hbase.VertexHandler,org.gradoop.storage.hbase.GraphHandler)" : 1,
+    "gradoop-core§org.gradoop.storage.hbase.HBaseGraphStoreFactory#createOrOpenGraphStore(org.apache.hadoop.conf.Configuration,org.gradoop.storage.hbase.VertexHandler,org.gradoop.storage.hbase.GraphHandler,java.lang.String,java.lang.String)" : 1,
+    "gradoop-core§org.gradoop.storage.hbase.EPGVertexHandler#createTable(org.apache.hadoop.hbase.client.HBaseAdmin,org.apache.hadoop.hbase.HTableDescriptor)" : 1,
+    "gradoop-core§org.gradoop.storage.hbase.EPGGraphHandler#<init>" : 1,
+    "gradoop-core§org.gradoop.storage.hbase.HBaseGraphStoreFactory#createOrOpenGraphStore(org.apache.hadoop.conf.Configuration,org.gradoop.storage.hbase.VertexHandler,org.gradoop.storage.hbase.GraphHandler)" : 1,
+    "gradoop-biiig§org.gradoop.biiig.examples.BTGAnalysisDriverTest#driverTest" : 1,
+    "gradoop-core§org.gradoop.GradoopClusterTest#copyFromLocal(java.lang.String)" : 1,
+    "gradoop-biiig§org.gradoop.biiig.examples.BTGAnalysisDriver#<init>" : 1,
+    "gradoop-biiig§org.gradoop.biiig.utils.ConfigurationUtils#parseArgs(java.lang.String[])" : 1,
+    "gradoop-core§org.gradoop.storage.hbase.HBaseGraphStoreFactory#createTablesIfNotExists(org.apache.hadoop.conf.Configuration,org.gradoop.storage.hbase.VertexHandler,org.gradoop.storage.hbase.GraphHandler,java.lang.String,java.lang.String)" : 1,
+    "gradoop-biiig§org.gradoop.biiig.examples.BTGAnalysisDriver#runBulkLoad(org.apache.hadoop.conf.Configuration,java.lang.String,java.lang.String,boolean)" : 1,
+    "gradoop-core§org.gradoop.storage.hbase.EPGVertexHandler#<init>" : 1,
+    "gradoop-core§org.gradoop.storage.hbase.HBaseGraphStoreFactory#deleteGraphStore(org.apache.hadoop.conf.Configuration)" : 1,
+    "gradoop-core§org.gradoop.storage.hbase.HBaseGraphStoreFactory#deleteTablesIfExists(org.apache.hadoop.conf.Configuration,java.lang.String,java.lang.String)" : 1,
+    "gradoop-biiig§org.gradoop.biiig.examples.BTGAnalysisDriver#run(java.lang.String[])" : 1,
+    "gradoop-core§org.gradoop.storage.hbase.EPGGraphHandler#createTable(org.apache.hadoop.hbase.client.HBaseAdmin,org.apache.hadoop.hbase.HTableDescriptor)" : 1
+  },
+  "selectedChanges" : [ ]
+}

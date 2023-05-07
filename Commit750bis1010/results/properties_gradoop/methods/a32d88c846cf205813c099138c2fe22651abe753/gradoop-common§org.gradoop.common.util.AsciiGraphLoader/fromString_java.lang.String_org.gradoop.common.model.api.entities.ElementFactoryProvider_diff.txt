@@ -1,0 +1,14 @@
+/**                                                                                                    /**                                                                                                 
+* Creates an AsciiGraphLoader from the given ASCII GDL string.                                         * Creates an AsciiGraphLoader from the given ASCII GDL string.                                      
+*                                                                                                      *                                                                                                   
+* @param asciiGraph GDL string                                                                         * @param asciiGraph GDL string                                                                      
+* @param elementFactoryProvider Factory provider for graph elements.                                   * @param elementFactoryProvider Factory provider for graph elements.                                
+* @param &lt;G&gt; graph head type                                                                     * @param &lt;G&gt; graph head type                                                                  
+* @param &lt;V&gt; vertex type                                                                         * @param &lt;V&gt; vertex type                                                                      
+* @param &lt;E&gt; edge type                                                                           * @param &lt;E&gt; edge type                                                                        
+*                                                                                                      *                                                                                                   
+* @return AsciiGraphLoader                                                                             * @return AsciiGraphLoader                                                                          
+*/                                                                                                     */                                                                                                  
+public static &lt;G extends GraphHead, V extends Vertex, E extends Edge&gt; AsciiGraphLoader&lt;G, V   public static &lt;G extends GraphHead, V extends Vertex, E extends Edge&gt; AsciiGraphLoader&lt;G, V
+return new AsciiGraphLoader&lt;&gt;(new GDLHandler.Builder().setDefaultGraphLabel(GradoopConstants.D | return new AsciiGraphLoader&lt;&gt;(new GDLHandler.Builder().setDefaultGraphLabel(GradoopConstants.D
+}                                                                                                      }                                                                                                   

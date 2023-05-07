@@ -1,0 +1,17 @@
+/**
+ * Increments the aggregate map by the increment of the aggregate functions on the element
+ *
+ * @param aggregate aggregate map to be incremented
+ * @param element element to increment with
+ * @param aggregateFunctions aggregate functions
+ * @return incremented aggregate map
+ */
+static Map<String, PropertyValue> increment(Map<String, PropertyValue> aggregate, Element element, Set<AggregateFunction> aggregateFunctions) {
+    for (AggregateFunction aggFunc : aggregateFunctions) {
+        PropertyValue increment = aggFunc.getIncrement(element);
+        if (increment != null) {
+            aggregate.compute(aggFunc.getAggregatePropertyKey(), (key, agg) -> agg == null ? increment.copy() : aggFunc.aggregate(agg, increment));
+        }
+    }
+    return aggregate;
+}

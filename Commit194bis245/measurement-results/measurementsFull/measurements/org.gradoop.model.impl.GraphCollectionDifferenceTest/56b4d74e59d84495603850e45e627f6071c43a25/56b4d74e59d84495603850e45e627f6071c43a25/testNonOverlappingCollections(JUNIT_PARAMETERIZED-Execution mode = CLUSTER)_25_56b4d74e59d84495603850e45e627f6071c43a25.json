@@ -1,0 +1,68 @@
+{
+  "clazz" : "org.gradoop.model.impl.GraphCollectionDifferenceTest",
+  "methods" : [ {
+    "method" : "testNonOverlappingCollections",
+    "datacollectorResults" : [ {
+      "name" : "de.dagere.kopeme.datacollection.TimeDataCollectorNoGC",
+      "chunks" : [ ],
+      "results" : [ {
+        "value" : 1.0487890093000001E9,
+        "deviation" : 0.7579819728126286,
+        "min" : 5.54308334E8,
+        "max" : 3.248038535E9,
+        "warmup" : 0,
+        "iterations" : 10,
+        "repetitions" : 2,
+        "commit" : null,
+        "vmRunConfiguration" : {
+          "showStart" : false,
+          "executeBeforeClassInMeasurement" : false,
+          "redirectToTemp" : false,
+          "redirectToNull" : true,
+          "useKieker" : false
+        },
+        "parameters" : {
+          "JUNIT_PARAMETERIZED" : "Execution mode = CLUSTER"
+        },
+        "javaVersion" : "1.8.0_362",
+        "cpu" : "model name : Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz",
+        "memory" : "MemTotal: 16280544 kB",
+        "date" : 1680979557011,
+        "fulldata" : {
+          "fileName" : null,
+          "values" : [ {
+            "startTime" : 1680979546283,
+            "value" : 3248038535
+          }, {
+            "startTime" : 1680979549531,
+            "value" : 1257252234
+          }, {
+            "startTime" : 1680979550788,
+            "value" : 839326091
+          }, {
+            "startTime" : 1680979551627,
+            "value" : 845990239
+          }, {
+            "startTime" : 1680979552473,
+            "value" : 745102307
+          }, {
+            "startTime" : 1680979553219,
+            "value" : 681455092
+          }, {
+            "startTime" : 1680979553900,
+            "value" : 554308334
+          }, {
+            "startTime" : 1680979554454,
+            "value" : 706369553
+          }, {
+            "startTime" : 1680979555161,
+            "value" : 890975798
+          }, {
+            "startTime" : 1680979556052,
+            "value" : 719071910
+          } ]
+        }
+      } ]
+    } ]
+  } ]
+}

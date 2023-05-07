@@ -1,0 +1,55 @@
+/**
+ * Test the {@link MinDuration} aggregate function and its subclasses in an aggregation.
+ *
+ * @throws Exception when the execution in Flink fails.
+ */
+@Test
+public void testWithMinAggregation() throws Exception {
+    TemporalGraphFactory graphFactory = getConfig().getTemporalGraphFactory();
+    VertexFactory<TemporalVertex> vertexFactory = graphFactory.getVertexFactory();
+    EdgeFactory<TemporalEdge> edgeFactory = graphFactory.getEdgeFactory();
+    TemporalVertex v1 = vertexFactory.createVertex();
+    v1.setTransactionTime(Tuple2.of(0L, 2L));
+    v1.setValidTime(Tuple2.of(DEFAULT_TIME_FROM, DEFAULT_TIME_TO));
+    TemporalVertex v2 = vertexFactory.createVertex();
+    v2.setTransactionTime(Tuple2.of(DEFAULT_TIME_FROM, 5L));
+    v2.setValidTime(Tuple2.of(-3L, DEFAULT_TIME_TO));
+    TemporalVertex v3 = vertexFactory.createVertex();
+    v3.setTransactionTime(Tuple2.of(0L, DEFAULT_TIME_TO));
+    v3.setValidTime(Tuple2.of(DEFAULT_TIME_FROM, 0L));
+    TemporalVertex v4 = vertexFactory.createVertex();
+    v4.setTransactionTime(Tuple2.of(DEFAULT_TIME_FROM, DEFAULT_TIME_TO));
+    v4.setValidTime(Tuple2.of(-5L, -2L));
+    TemporalVertex v5 = vertexFactory.createVertex();
+    v5.setTransactionTime(Tuple2.of(1L, 4L));
+    v5.setValidTime(Tuple2.of(-100L, -3L));
+    TemporalEdge e1 = edgeFactory.createEdge(v1.getId(), v2.getId());
+    e1.setTransactionTime(Tuple2.of(0L, 10L));
+    e1.setValidTime(Tuple2.of(DEFAULT_TIME_FROM, DEFAULT_TIME_TO));
+    TemporalEdge e2 = edgeFactory.createEdge(v2.getId(), v3.getId());
+    e2.setTransactionTime(Tuple2.of(DEFAULT_TIME_FROM, 7L));
+    e2.setValidTime(Tuple2.of(-100L, DEFAULT_TIME_TO));
+    TemporalEdge e3 = edgeFactory.createEdge(v3.getId(), v1.getId());
+    e3.setTransactionTime(Tuple2.of(-1L, DEFAULT_TIME_TO));
+    e3.setValidTime(Tuple2.of(DEFAULT_TIME_FROM, -80L));
+    TemporalEdge e4 = edgeFactory.createEdge(v1.getId(), v3.getId());
+    e4.setTransactionTime(Tuple2.of(DEFAULT_TIME_FROM, DEFAULT_TIME_TO));
+    e4.setValidTime(Tuple2.of(-120L, 100L));
+    TemporalEdge e5 = edgeFactory.createEdge(v2.getId(), v4.getId());
+    e5.setTransactionTime(Tuple2.of(10L, 50L));
+    e5.setValidTime(Tuple2.of(-302L, -298L));
+    DataSet<TemporalVertex> vertices = getExecutionEnvironment().fromElements(v1, v2, v3, v4, v5);
+    DataSet<TemporalEdge> edges = getExecutionEnvironment().fromElements(e1, e2, e3, e4, e5);
+    TemporalGraph temporalResult = graphFactory.fromDataSets(vertices, edges).aggregate(new MinDuration("minDurTx", TRANSACTION_TIME), new MinDuration("minDurValid", VALID_TIME), new MinVertexDuration("minVertexDurTx", TRANSACTION_TIME), new MinVertexDuration("minVertexDurValid", VALID_TIME), new MinEdgeDuration("minEdgeDurTx", TRANSACTION_TIME), new MinEdgeDuration("minEdgeDurValid", VALID_TIME));
+    LogicalGraph result = temporalResult.toLogicalGraph();
+    List<EPGMGraphHead> graphHead = new ArrayList<>();
+    result.getGraphHead().output(new LocalCollectionOutputFormat<>(graphHead));
+    getExecutionEnvironment().execute();
+    Properties headProperties = graphHead.get(0).getProperties();
+    assertEquals(2L, headProperties.get("minDurTx").getLong());
+    assertEquals(3L, headProperties.get("minDurValid").getLong());
+    assertEquals(2L, headProperties.get("minVertexDurTx").getLong());
+    assertEquals(3L, headProperties.get("minVertexDurValid").getLong());
+    assertEquals(10L, headProperties.get("minEdgeDurTx").getLong());
+    assertEquals(4L, headProperties.get("minEdgeDurValid").getLong());
+}

@@ -1,0 +1,23 @@
+/**
+ * Creates a graph store or opens an existing one based on the given
+ * parameters. If something goes wrong, {@code null} is returned.
+ *
+ * @param config              Hadoop cluster configuration
+ * @param gradoopHBaseConfig  Gradoop HBase configuration
+ * @param <VD>                vertex data type
+ * @param <ED>                edge data type
+ * @param <GD>                graph data type
+ * @return EPGM store instance or {@code null in the case of errors}
+ */
+public static <VD extends EPGMVertex, ED extends EPGMEdge, GD extends EPGMGraphHead> EPGMStore<VD, ED, GD> createOrOpenEPGMStore(final Configuration config, final GradoopHBaseConfig<VD, ED, GD> gradoopHBaseConfig) {
+    try {
+        createTablesIfNotExists(config, gradoopHBaseConfig.getVertexHandler(), gradoopHBaseConfig.getEdgeHandler(), gradoopHBaseConfig.getGraphHeadHandler(), gradoopHBaseConfig.getVertexTableName(), gradoopHBaseConfig.getEdgeTableName(), gradoopHBaseConfig.getGraphTableName());
+        HTable vertexDataTable = new HTable(config, gradoopHBaseConfig.getVertexTableName());
+        HTable edgeDataTable = new HTable(config, gradoopHBaseConfig.getEdgeTableName());
+        HTable graphDataTable = new HTable(config, gradoopHBaseConfig.getGraphTableName());
+        return new HBaseEPGMStore<>(vertexDataTable, edgeDataTable, graphDataTable, gradoopHBaseConfig);
+    } catch (IOException e) {
+        e.printStackTrace();
+        return null;
+    }
+}

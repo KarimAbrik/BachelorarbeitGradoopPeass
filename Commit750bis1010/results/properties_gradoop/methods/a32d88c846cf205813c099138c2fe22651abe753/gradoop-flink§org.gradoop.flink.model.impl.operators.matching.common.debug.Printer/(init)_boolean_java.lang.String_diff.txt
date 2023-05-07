@@ -1,0 +1,13 @@
+/**
+ * Constructor
+ *
+ * Automatically determines the current iteration when instantiated in Flink iteration.
+ *
+ * @param isIterative true, if called in a Flink iterative context (i.e. bulk/delta iteration)
+ * @param prefix      prefix for output
+ */
+public Printer(boolean isIterative, String prefix) {
+    this.isIterative = isIterative;
+    this.iterationNumber = 0;
+    this.prefix = prefix;
+}

@@ -1,0 +1,4 @@
+@Test
+public void testMatchEdge() throws Exception {
+    assertCardinalities("MATCH ()-[:knows]->()", 10, 10);
+}

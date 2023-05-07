@@ -1,0 +1,12 @@
+private static List<PropertyValue> getSplitValues(EPGMVertex v) {
+    String key1 = "key1";
+    String key2 = "key2";
+    List<PropertyValue> valueList = new ArrayList<>();
+    if (v.hasProperty(key1)) {
+        valueList.add(v.getPropertyValue(key1));
+    }
+    if (v.hasProperty(key2)) {
+        valueList.add(v.getPropertyValue(key2));
+    }
+    return valueList;
+}

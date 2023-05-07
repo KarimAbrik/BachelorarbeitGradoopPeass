@@ -1,0 +1,9 @@
+@Override
+public void reduce(Iterable<PropertyValue> values, Collector<PropertyValue> out) throws Exception {
+    Iterator<PropertyValue> iterator = values.iterator();
+    PropertyValue value = iterator.next();
+    if (iterator.hasNext() && value.equals(PropertyValue.NULL_VALUE)) {
+        value = iterator.next();
+    }
+    out.collect(value);
+}

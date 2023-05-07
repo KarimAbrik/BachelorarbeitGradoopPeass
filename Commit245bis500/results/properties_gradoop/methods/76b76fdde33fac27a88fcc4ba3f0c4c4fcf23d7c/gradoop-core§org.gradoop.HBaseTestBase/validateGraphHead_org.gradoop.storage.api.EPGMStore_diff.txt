@@ -1,0 +1,27 @@
+/**
+ * Checks data consistency with {@code createPersistentGraphData()}.
+ *
+ * @param graphStore graph store
+ */
+public static void validateGraphHead(EPGMStore<VertexPojo, EdgePojo, GraphHeadPojo> graphStore) {
+    // g0
+    EPGMGraphHead g = graphStore.readGraph(GradoopId.fromLong(0L));
+    assertNotNull(g);
+    assertEquals("A", g.getLabel());
+    List<String> propertyKeys = Lists.newArrayList(g.getPropertyKeys());
+    assertEquals(2, propertyKeys.size());
+    for (String key : propertyKeys) {
+        if (key.equals("k1")) {
+            assertEquals("v1", g.getProperty("k1"));
+        } else if (key.equals("v2")) {
+            assertEquals("v2", g.getProperty("k2"));
+        }
+    }
+    // g1
+    g = graphStore.readGraph(GradoopId.fromLong(1L));
+    assertNotNull(g);
+    assertEquals("A", g.getLabel());
+    propertyKeys = Lists.newArrayList(g.getPropertyKeys());
+    assertEquals(1, propertyKeys.size());
+    assertEquals("v1", g.getProperty("k1"));
+}

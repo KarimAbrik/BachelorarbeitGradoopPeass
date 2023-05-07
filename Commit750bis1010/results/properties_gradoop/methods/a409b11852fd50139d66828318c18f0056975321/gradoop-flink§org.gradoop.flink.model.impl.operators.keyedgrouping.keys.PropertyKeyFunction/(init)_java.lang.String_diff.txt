@@ -1,0 +1,8 @@
+/**
+ * Create a new instance of this key function.
+ *
+ * @param propertyKey The key of the property to group by.
+ */
+public PropertyKeyFunction(String propertyKey) {
+    this.propertyKey = Objects.requireNonNull(propertyKey);
+}

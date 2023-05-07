@@ -1,0 +1,10 @@
+/**
+ * Reads a single {@link Long} value from the specified file.
+ *
+ * @param lines stream of lines in the file
+ * @return long value in first line of file
+ * @throws IOException if an I/O error occurs opening the file
+ */
+static Long readSingleValue(Stream<String> lines) throws IOException {
+    return lines.map(Long::parseLong).collect(Collectors.toList()).get(0);
+}

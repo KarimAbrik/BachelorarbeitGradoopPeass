@@ -1,0 +1,17 @@
+/**
+ * Selects vertices and edges for a selected subset of graph heads / graph ids.
+ * Creates a graph collection representing selection result.
+ *
+ * @param collection input collection
+ * @param graphHeads selected graph heads
+ *
+ * @return selection result
+ */
+protected GC selectVerticesAndEdges(GC collection, DataSet<G> graphHeads) {
+    // get the identifiers of these base graphs
+    DataSet<GradoopId> graphIds = graphHeads.map(new Id<>());
+    // use graph ids to filter vertices from the actual graph structure
+    DataSet<V> vertices = collection.getVertices().filter(new InAnyGraphBroadcast<>()).withBroadcastSet(graphIds, GraphsContainmentFilterBroadcast.GRAPH_IDS);
+    DataSet<E> edges = collection.getEdges().filter(new InAnyGraphBroadcast<>()).withBroadcastSet(graphIds, GraphsContainmentFilterBroadcast.GRAPH_IDS);
+    return collection.getFactory().fromDataSets(graphHeads, vertices, edges);
+}

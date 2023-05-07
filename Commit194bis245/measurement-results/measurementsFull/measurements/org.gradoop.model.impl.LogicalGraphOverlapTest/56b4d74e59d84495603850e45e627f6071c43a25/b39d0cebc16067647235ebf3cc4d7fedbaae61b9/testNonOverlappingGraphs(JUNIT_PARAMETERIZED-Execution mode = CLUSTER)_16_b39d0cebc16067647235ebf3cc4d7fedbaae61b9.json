@@ -1,0 +1,68 @@
+{
+  "clazz" : "org.gradoop.model.impl.LogicalGraphOverlapTest",
+  "methods" : [ {
+    "method" : "testNonOverlappingGraphs",
+    "datacollectorResults" : [ {
+      "name" : "de.dagere.kopeme.datacollection.TimeDataCollectorNoGC",
+      "chunks" : [ ],
+      "results" : [ {
+        "value" : 9.579229580999999E8,
+        "deviation" : 0.836817306184858,
+        "min" : 5.04785612E8,
+        "max" : 3.183287647E9,
+        "warmup" : 0,
+        "iterations" : 10,
+        "repetitions" : 2,
+        "commit" : null,
+        "vmRunConfiguration" : {
+          "showStart" : false,
+          "executeBeforeClassInMeasurement" : false,
+          "redirectToTemp" : false,
+          "redirectToNull" : true,
+          "useKieker" : false
+        },
+        "parameters" : {
+          "JUNIT_PARAMETERIZED" : "Execution mode = CLUSTER"
+        },
+        "javaVersion" : "1.8.0_362",
+        "cpu" : "model name : Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz",
+        "memory" : "MemTotal: 16280544 kB",
+        "date" : 1680988056202,
+        "fulldata" : {
+          "fileName" : null,
+          "values" : [ {
+            "startTime" : 1680988046463,
+            "value" : 3183287647
+          }, {
+            "startTime" : 1680988049648,
+            "value" : 1141600291
+          }, {
+            "startTime" : 1680988050789,
+            "value" : 707466070
+          }, {
+            "startTime" : 1680988051497,
+            "value" : 640803753
+          }, {
+            "startTime" : 1680988052138,
+            "value" : 574925282
+          }, {
+            "startTime" : 1680988052713,
+            "value" : 504785612
+          }, {
+            "startTime" : 1680988053217,
+            "value" : 574236000
+          }, {
+            "startTime" : 1680988053792,
+            "value" : 730914248
+          }, {
+            "startTime" : 1680988054523,
+            "value" : 709416660
+          }, {
+            "startTime" : 1680988055232,
+            "value" : 811794018
+          } ]
+        }
+      } ]
+    } ]
+  } ]
+}

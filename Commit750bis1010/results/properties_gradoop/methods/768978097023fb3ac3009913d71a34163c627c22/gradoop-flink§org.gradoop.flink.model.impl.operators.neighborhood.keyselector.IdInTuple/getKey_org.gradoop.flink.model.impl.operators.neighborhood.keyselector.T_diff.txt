@@ -1,0 +1,7 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public GradoopId getKey(T tuple) throws Exception {
+    return ((EPGMGraphElement) tuple.getField(field)).getId();
+}

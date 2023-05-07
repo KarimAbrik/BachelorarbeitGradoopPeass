@@ -1,0 +1,9 @@
+/**
+ * True, if the wrapped value is of type {@link BigDecimal}.
+ *
+ * @return true, if {@link BigDecimal} value
+ * @see BigDecimal
+ */
+public boolean isBigDecimal() {
+    return is(BigDecimal.class);
+}

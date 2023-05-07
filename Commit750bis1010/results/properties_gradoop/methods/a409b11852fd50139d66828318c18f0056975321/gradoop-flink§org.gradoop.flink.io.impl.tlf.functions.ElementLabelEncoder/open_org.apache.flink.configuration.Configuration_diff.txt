@@ -1,0 +1,11 @@
+@Override
+public void open(Configuration parameters) throws Exception {
+    super.open(parameters);
+    //load the dictionaries if set
+    if (hasVertexDictionary) {
+        vertexDictionary = getRuntimeContext().<HashMap<String, Integer>>getBroadcastVariable(TLFConstants.VERTEX_DICTIONARY).get(0);
+    }
+    if (hasEdgeDictionary) {
+        edgeDictionary = getRuntimeContext().<HashMap<String, Integer>>getBroadcastVariable(TLFConstants.EDGE_DICTIONARY).get(0);
+    }
+}

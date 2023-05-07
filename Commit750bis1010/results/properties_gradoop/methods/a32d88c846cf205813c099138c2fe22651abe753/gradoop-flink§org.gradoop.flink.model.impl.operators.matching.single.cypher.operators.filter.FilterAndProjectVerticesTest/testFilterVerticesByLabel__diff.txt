@@ -1,0 +1,11 @@
+@Test
+public void testFilterVerticesByLabel() throws Exception {
+    CNF predicates = predicateFromQuery("MATCH (a:Person)");
+    EPGMVertexFactory vertexFactory = new EPGMVertexFactory();
+    EPGMVertex v1 = vertexFactory.createVertex("Person");
+    EPGMVertex v2 = vertexFactory.createVertex("Forum");
+    DataSet<EPGMVertex> vertices = getExecutionEnvironment().fromElements(v1, v2);
+    List<Embedding> result = new FilterAndProjectVertices<>(vertices, predicates, new ArrayList<>()).evaluate().collect();
+    assertEquals(1, result.size());
+    assertEquals(result.get(0).getId(0), v1.getId());
+}

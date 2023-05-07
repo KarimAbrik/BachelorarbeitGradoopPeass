@@ -1,0 +1,15 @@
+/**
+ * Merge two intermediate Images into one
+ *
+ * @param arr1 Image 1
+ * @param arr2 Image 2
+ * @return Output-Image
+ */
+public byte[] mergeImages(byte[] arr1, byte[] arr2) {
+    BufferedImage bufferedImage = arrToImg(arr1);
+    BufferedImage t1 = arrToImg(arr2);
+    Graphics2D g = bufferedImage.createGraphics();
+    g.drawImage(t1, 0, 0, plotter.imageWidth, plotter.imageHeight, null);
+    g.dispose();
+    return imgToArr(bufferedImage);
+}

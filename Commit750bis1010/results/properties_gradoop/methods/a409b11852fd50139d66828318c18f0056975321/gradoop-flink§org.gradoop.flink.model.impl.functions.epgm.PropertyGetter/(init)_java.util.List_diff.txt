@@ -1,0 +1,8 @@
+/**
+ * Constructor
+ *
+ * @param propertyKeys property keys to retrieve values for
+ */
+public PropertyGetter(List<String> propertyKeys) {
+    this.propertyKeys = checkNotNull(propertyKeys);
+}

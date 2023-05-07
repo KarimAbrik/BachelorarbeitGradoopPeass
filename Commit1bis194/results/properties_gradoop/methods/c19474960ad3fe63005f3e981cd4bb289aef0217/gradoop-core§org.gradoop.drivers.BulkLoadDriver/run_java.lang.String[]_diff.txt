@@ -1,0 +1,31 @@
+/**                                                                                                    /**                                                                                                 
+* {@inheritDoc}                                                                                        * {@inheritDoc}                                                                                     
+*/                                                                                                     */                                                                                                  
+@Override                                                                                              @Override                                                                                           
+public int run(String[] args) throws Exception {                                                       public int run(String[] args) throws Exception {                                                    
+LOG.info("####parseArgs");                                                                           | int check = parseArgs(args);                                                                        
+LoadConfUtils.setOptions();                                                                          | if (check == 0) {                                                                                   
+parseArgs(args);                                                                                     | return 0;                                                                                           
+LOG.info("####inputPath: " + inputPath);                                                             | }                                                                                                   
+LOG.info("####outputPath: " + outputPath);                                                           |                                                                                                     
+CommandLine cmd = LoadConfUtils.parseArgs(args);                                                       CommandLine cmd = LoadConfUtils.parseArgs(args);                                                    
+if (cmd == null) {                                                                                     if (cmd == null) {                                                                                  
+return 0;                                                                                              return 0;                                                                                           
+}                                                                                                      }                                                                                                   
+boolean sane = performSanityCheck(cmd);                                                                boolean sane = performSanityCheck(cmd);                                                             
+if (sane) {                                                                                          | if (!sane) {                                                                                        
+return -1;                                                                                             return -1;                                                                                          
+}                                                                                                      }                                                                                                   
+                                                                                                     | Configuration conf = getGiraphConf();                                                               
+                                                                                                     | String inputPath = getInputPath();                                                                  
+                                                                                                     | String outputPath = getOutputPath();                                                                
+                                                                                                     | boolean verbose = getVerbose();                                                                     
+boolean dropTables = cmd.hasOption(LoadConfUtils.OPTION_DROP_TABLES);                                  boolean dropTables = cmd.hasOption(LoadConfUtils.OPTION_DROP_TABLES);                               
+String readerClassName = cmd.getOptionValue(LoadConfUtils.OPTION_VERTEX_LINE_READER);                  String readerClassName = cmd.getOptionValue(LoadConfUtils.OPTION_VERTEX_LINE_READER);               
+Class&lt;? extends VertexLineReader&gt; readerClass = getLineReaderClass(readerClassName);             Class&lt;? extends VertexLineReader&gt; readerClass = getLineReaderClass(readerClassName);          
+createGraphStore(conf, dropTables);                                                                    createGraphStore(conf, dropTables);                                                                 
+if (!runBulkLoad(conf, readerClass, inputPath, outputPath, verbose)) {                                 if (!runBulkLoad(conf, readerClass, inputPath, outputPath, verbose)) {                              
+return -1;                                                                                             return -1;                                                                                          
+}                                                                                                      }                                                                                                   
+return 0;                                                                                              return 0;                                                                                           
+}                                                                                                      }                                                                                                   

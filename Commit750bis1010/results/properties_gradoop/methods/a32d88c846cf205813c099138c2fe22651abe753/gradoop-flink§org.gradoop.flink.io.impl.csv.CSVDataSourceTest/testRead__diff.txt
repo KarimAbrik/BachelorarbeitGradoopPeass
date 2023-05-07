@@ -1,0 +1,9 @@
+@Test
+public void testRead() throws Exception {
+    String csvPath = getFilePath("/data/csv/input_graph_collection");
+    String gdlPath = getFilePath("/data/csv/expected/expected_graph_collection.gdl");
+    DataSource dataSource = new CSVDataSource(csvPath, getConfig());
+    GraphCollection input = dataSource.getGraphCollection();
+    GraphCollection expected = getLoaderFromFile(gdlPath).getGraphCollectionByVariables("expected1", "expected2");
+    collectAndAssertTrue(input.equalsByGraphElementData(expected));
+}

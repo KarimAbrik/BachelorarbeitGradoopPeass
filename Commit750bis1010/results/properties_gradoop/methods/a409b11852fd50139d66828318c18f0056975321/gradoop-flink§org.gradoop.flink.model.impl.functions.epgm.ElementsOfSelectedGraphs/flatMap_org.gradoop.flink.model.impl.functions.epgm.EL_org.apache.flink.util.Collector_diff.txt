@@ -1,0 +1,10 @@
+@Override
+public void flatMap(EL element, Collector<Tuple2<GradoopId, EL>> collector) throws Exception {
+    for (GradoopId graphId : element.getGraphIds()) {
+        if (graphIds.contains(graphId)) {
+            reuse.f0 = graphId;
+            reuse.f1 = element;
+            collector.collect(reuse);
+        }
+    }
+}

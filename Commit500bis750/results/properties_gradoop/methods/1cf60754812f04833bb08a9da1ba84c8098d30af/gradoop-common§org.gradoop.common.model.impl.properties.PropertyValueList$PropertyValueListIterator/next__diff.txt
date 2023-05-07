@@ -1,0 +1,11 @@
+@Override
+public PropertyValue next() {
+    PropertyValue nextValue = new PropertyValue();
+    try {
+        DataInputView inputView = new DataInputViewStreamWrapper(inputStream);
+        nextValue.read(inputView);
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+    return nextValue;
+}

@@ -1,0 +1,10 @@
+/**
+ * Creates a test temporal graph collection from the social network loader
+ *
+ * @throws Exception if loading the graph fails
+ */
+@Before
+public void setUp() throws Exception {
+    testCollection = getSocialNetworkLoader().getGraphCollectionByVariables("g1", "g2");
+    testTemporalCollection = toTemporalGraphCollection(testCollection);
+}

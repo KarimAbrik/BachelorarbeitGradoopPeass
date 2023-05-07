@@ -1,0 +1,5 @@
+@Override
+public LG execute(LG firstGraph, LG secondGraph) {
+    DataSet<V> newVertexSet = firstGraph.getVertices().leftOuterJoin(secondGraph.getVertices()).where(new Id<>()).equalTo(new Id<>()).with(new LeftWhenRightIsNull<>());
+    return firstGraph.getFactory().fromDataSets(firstGraph.getGraphHead(), newVertexSet, firstGraph.getEdges()).verify();
+}

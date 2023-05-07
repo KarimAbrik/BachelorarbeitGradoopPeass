@@ -1,0 +1,59 @@
+/**
+ * Extend the given embedding by found matches
+ *
+ * @param startEmbedding embedding that is to be extended
+ * @param step next step
+ * @param vertexMatch vertex chosen for next step
+ * @param edgeMatches found match
+ * @return extended embedding
+ */
+private List<Embedding<GradoopId>> buildNewEmbeddings(Embedding<GradoopId> startEmbedding, int step, GradoopId vertexMatch, Map<Long, Set<GradoopId>> edgeMatches) {
+    // begin with the start embedding
+    List<Embedding<GradoopId>> result = new ArrayList<>();
+    result.add(startEmbedding);
+    // list of embeddings in next growing step
+    List<Embedding<GradoopId>> temporaryEmbeddings;
+    // get edge matches
+    List<Map.Entry<Long, Set<GradoopId>>> entries = new ArrayList<>(edgeMatches.entrySet());
+    // if no edge matches have been found, the result is an embedding with only
+    // one vertex
+    if (entries.isEmpty()) {
+        Embedding<GradoopId> newEmbedding = copyEmbedding(startEmbedding);
+        newEmbedding.getVertexMapping()[step] = vertexMatch;
+        result.clear();
+        result.add(newEmbedding);
+    }
+    // for each edge with matches
+    for (Map.Entry<Long, Set<GradoopId>> entry : entries) {
+        temporaryEmbeddings = new ArrayList<>();
+        // for each embedding in the result so far
+        for (Embedding<GradoopId> embedding : result) {
+            // for each edge match
+            for (GradoopId id : entry.getValue()) {
+                // check if the edge match already occurs in the embedding
+                boolean contains = false;
+                for (GradoopId edgeId : embedding.getEdgeMapping()) {
+                    if (edgeId == null) {
+                        continue;
+                    }
+                    if (edgeId.equals(id)) {
+                        contains = true;
+                        break;
+                    }
+                }
+                // if yes, skip it
+                if (contains) {
+                    continue;
+                }
+                // else, copy the embedding, add the edge match and add it to the
+                // results in the next iteration
+                Embedding<GradoopId> newEmbedding = copyEmbedding(embedding);
+                newEmbedding.getVertexMapping()[step] = vertexMatch;
+                newEmbedding.getEdgeMapping()[Math.toIntExact(entry.getKey())] = id;
+                temporaryEmbeddings.add(newEmbedding);
+            }
+        }
+        result = new ArrayList<>(temporaryEmbeddings);
+    }
+    return result;
+}

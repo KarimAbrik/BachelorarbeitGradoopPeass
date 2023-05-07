@@ -1,0 +1,4 @@
+@Override
+public BaseGraphFactory<EPGMGraphHead, EPGMVertex, EPGMEdge, LogicalGraph, GraphCollection> getFactory() {
+    return config.getLogicalGraphFactory();
+}

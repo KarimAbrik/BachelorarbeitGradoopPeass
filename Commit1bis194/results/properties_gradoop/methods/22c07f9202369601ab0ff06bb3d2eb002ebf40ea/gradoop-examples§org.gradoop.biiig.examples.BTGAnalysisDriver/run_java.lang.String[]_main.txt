@@ -1,0 +1,64 @@
+/**
+ * Starting point for BTG analysis pipeline.
+ *
+ * @param args driver arguments
+ * @return Exit code (0 - ok)
+ * @throws Exception
+ */
+@Override
+public int run(String[] args) throws Exception {
+    Configuration conf = getConf();
+    CommandLine cmd = ConfigurationUtils.parseArgs(args);
+    if (cmd == null) {
+        return 0;
+    }
+    boolean verbose = cmd.hasOption(ConfigurationUtils.OPTION_VERBOSE);
+    /*
+    Step 0: Delete (if exists) and create HBase tables
+     */
+    if (cmd.hasOption(ConfigurationUtils.OPTION_DROP_TABLES)) {
+        HBaseGraphStoreFactory.deleteGraphStore(conf);
+    }
+    graphStore = HBaseGraphStoreFactory.createOrOpenGraphStore(conf, new EPGVertexHandler(), new EPGGraphHandler());
+    /*
+    Step 1: Bulk Load of the graph into HBase using MapReduce
+     */
+    String inputPath = cmd.getOptionValue(ConfigurationUtils.OPTION_GRAPH_INPUT_PATH);
+    String outputPath = cmd.getOptionValue(ConfigurationUtils.OPTION_GRAPH_OUTPUT_PATH);
+    if (!runBulkLoad(conf, inputPath, outputPath, verbose)) {
+        return -1;
+    }
+    /*
+    Step 2: BTG Computation using Giraph
+     */
+    int workers = Integer.parseInt(cmd.getOptionValue(ConfigurationUtils.OPTION_WORKERS));
+    if (!runBTGComputation(conf, workers, verbose)) {
+        return -1;
+    }
+    /*
+    Step 3: Select And Aggregate using MapReduce
+     */
+    int scanCache = Integer.parseInt(cmd.getOptionValue(ConfigurationUtils.OPTION_HBASE_SCAN_CACHE, "500"));
+    int reducers = Integer.parseInt(cmd.getOptionValue(ConfigurationUtils.OPTION_REDUCERS, "1"));
+    if (!runSelectAndAggregate(conf, scanCache, reducers, verbose)) {
+        return -1;
+    }
+    /*
+    Step 4: Sort graphs by profit
+     */
+    String sortTableName = cmd.getOptionValue(ConfigurationUtils.OPTION_SORT_TABLE_NAME);
+    if (!runSort(conf, sortTableName, scanCache, verbose)) {
+        return -1;
+    }
+    /*
+    Step 5: Compute overlapping nodes of top 100 graphs
+     */
+    StopWatch sw = new StopWatch();
+    sw.start();
+    if (!runOverlap(conf, sortTableName, 100)) {
+        return -1;
+    }
+    sw.stop();
+    LOG.info(String.format("Overlap took: %d seconds", sw.getTime() / 1000));
+    return 0;
+}

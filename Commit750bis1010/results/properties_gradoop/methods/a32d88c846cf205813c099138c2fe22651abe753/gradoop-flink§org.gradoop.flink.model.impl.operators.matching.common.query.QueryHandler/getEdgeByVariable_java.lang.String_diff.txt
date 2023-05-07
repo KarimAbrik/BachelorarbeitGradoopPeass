@@ -1,0 +1,10 @@
+/**
+ * Returns the Edge associated with the given variable or {@code null} if the variable does
+ * not exist. The variable can be either user-defined or auto-generated.
+ *
+ * @param variable query edge variable
+ * @return edge or {@code null}
+ */
+public Edge getEdgeByVariable(String variable) {
+    return edgeCache.get(variable);
+}

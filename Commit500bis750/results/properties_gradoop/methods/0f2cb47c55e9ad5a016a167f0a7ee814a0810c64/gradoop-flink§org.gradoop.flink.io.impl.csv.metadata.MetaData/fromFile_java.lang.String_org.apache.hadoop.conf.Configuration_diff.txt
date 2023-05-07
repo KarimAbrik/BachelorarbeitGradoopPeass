@@ -1,0 +1,17 @@
+/**
+ * Reads the meta data from a specified csv file. The file can be either located in a local file
+ * system or in HDFS.
+ *
+ * @param path path to metadata csv file
+ * @param hdfsConfig file system configuration
+ * @return meta data
+ * @throws IOException
+ */
+public static MetaData fromFile(String path, Configuration hdfsConfig) throws IOException {
+    FileSystem fs = FileSystem.get(hdfsConfig);
+    Path file = new Path(path);
+    Charset charset = Charset.forName("UTF-8");
+    try (BufferedReader br = new BufferedReader(new InputStreamReader(fs.open(file), charset))) {
+        return MetaDataParser.create(br.lines().map(line -> line.split(CSVConstants.TOKEN_DELIMITER, 3)).map(tokens -> Tuple3.of(tokens[0], tokens[1], tokens[2])).collect(Collectors.toList()));
+    }
+}

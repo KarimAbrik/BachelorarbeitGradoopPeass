@@ -1,0 +1,6 @@
+@Override
+public void open(Configuration parameters) throws Exception {
+    super.open(parameters);
+    queryVertices = getQueryHandler().getVertices();
+    vertexCount = queryVertices.size();
+}

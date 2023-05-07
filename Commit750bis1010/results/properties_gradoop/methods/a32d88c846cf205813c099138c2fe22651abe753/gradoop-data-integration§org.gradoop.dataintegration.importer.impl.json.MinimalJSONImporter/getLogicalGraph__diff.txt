@@ -1,0 +1,5 @@
+@Override
+public LogicalGraph getLogicalGraph() {
+    DataSet<EPGMVertex> vertices = config.getExecutionEnvironment().readTextFile(jsonPath).map(new MinimalJsonToVertex(config.getLogicalGraphFactory().getVertexFactory()));
+    return config.getLogicalGraphFactory().fromDataSets(vertices);
+}

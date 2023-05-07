@@ -1,0 +1,8 @@
+/**
+ * Returns the Id of the entry stored at the specified position
+ * @param column the position the entry is stored at
+ * @return ID of the entry
+ */
+public GradoopId getId(int column) {
+    return GradoopId.fromByteArray(getRawId(column));
+}

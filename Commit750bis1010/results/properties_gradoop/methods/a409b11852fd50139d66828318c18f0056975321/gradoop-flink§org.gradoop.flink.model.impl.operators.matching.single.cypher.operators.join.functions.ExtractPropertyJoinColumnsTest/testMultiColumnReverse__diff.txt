@@ -1,0 +1,10 @@
+@Test
+public void testMultiColumnReverse() throws Exception {
+    PropertyValue a = PropertyValue.create("Foo");
+    PropertyValue b = PropertyValue.create(42);
+    Embedding embedding = new Embedding();
+    embedding.add(GradoopId.get(), a, b);
+    ExtractPropertyJoinColumns udf1 = new ExtractPropertyJoinColumns(Arrays.asList(0, 1));
+    ExtractPropertyJoinColumns udf2 = new ExtractPropertyJoinColumns(Arrays.asList(1, 0));
+    Assert.assertNotEquals(udf1.getKey(embedding), udf2.getKey(embedding));
+}

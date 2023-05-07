@@ -1,0 +1,10 @@
+@Test
+public void testTransformation() throws Exception {
+    FlinkAsciiGraphLoader loader = getSocialNetworkLoader();
+    GraphCollection originalCollection = loader.getGraphCollection();
+    DataSet<GraphTransaction> transactions = originalCollection.getGraphTransactions();
+    GraphCollection restoredCollection = originalCollection.getFactory().fromTransactions(transactions);
+    collectAndAssertTrue(originalCollection.equalsByGraphIds(restoredCollection));
+    collectAndAssertTrue(originalCollection.equalsByGraphElementIds(restoredCollection));
+    collectAndAssertTrue(originalCollection.equalsByGraphData(restoredCollection));
+}

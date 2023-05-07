@@ -1,0 +1,14 @@
+/**
+ * Adds a list of property keys to the vertex grouping keys for vertices which do not have a
+ * specific label group.
+ *
+ * @param keys property keys
+ * @return this builder
+ */
+public GroupingBuilder addVertexGroupingKeys(List<String> keys) {
+    Objects.requireNonNull(keys);
+    for (String key : keys) {
+        this.addVertexGroupingKey(key);
+    }
+    return this;
+}

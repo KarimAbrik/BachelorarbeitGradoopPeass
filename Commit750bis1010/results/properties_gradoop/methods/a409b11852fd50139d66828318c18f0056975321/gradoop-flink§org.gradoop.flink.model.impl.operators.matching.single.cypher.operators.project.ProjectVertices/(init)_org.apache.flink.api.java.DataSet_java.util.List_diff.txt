@@ -1,0 +1,11 @@
+/**
+ * Creates a new vertex projection operator
+ *
+ * @param input vertices that should be projected
+ * @param propertyKeys List of propertyKeys that will be kept in the projection
+ */
+public ProjectVertices(DataSet<EPGMVertex> input, List<String> propertyKeys) {
+    this.input = input;
+    this.propertyKeys = propertyKeys;
+    this.name = "ProjectVertices";
+}

@@ -1,0 +1,10 @@
+/**
+ * Maps the EPGM element to a value according to the specified {@code valueFunction} and groups
+ * those values and counts the values per group.
+ *
+ * @param elements EPGM elements
+ * @return extracted values and the corresponding number of elements with that value
+ */
+DataSet<WithCount<T>> compute(DataSet<EL> elements) {
+    return Count.groupBy(elements.map(valueFunction)).map(new Tuple2ToWithCount<>());
+}

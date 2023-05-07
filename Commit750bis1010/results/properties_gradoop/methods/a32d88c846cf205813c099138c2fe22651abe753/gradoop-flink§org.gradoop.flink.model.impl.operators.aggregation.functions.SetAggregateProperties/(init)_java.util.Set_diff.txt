@@ -1,0 +1,13 @@
+/**
+ * Creates a new instance of a SetAggregateProperties coGroup function.
+ *
+ * @param aggregateFunctions aggregate functions
+ */
+public SetAggregateProperties(final Set<AggregateFunction> aggregateFunctions) {
+    defaultValues = new HashMap<>();
+    this.aggregateFunctions = Objects.requireNonNull(aggregateFunctions);
+    for (AggregateFunction func : aggregateFunctions) {
+        Objects.requireNonNull(func);
+        defaultValues.put(func.getAggregatePropertyKey(), AggregateUtil.getDefaultAggregate(func));
+    }
+}

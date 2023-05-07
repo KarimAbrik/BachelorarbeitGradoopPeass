@@ -1,0 +1,13 @@
+/**
+ * Updates the target vertex identifier of the given EPGM edge.
+ *
+ * @param targetIdEdgePair import target id and EPGM edge
+ * @param vertexIdPair     import target vertex id and EPGM vertex id
+ * @return EPGM edge with updated target vertex id
+ * @throws Exception on failure
+ */
+@Override
+public E join(Tuple2<K, E> targetIdEdgePair, Tuple2<K, GradoopId> vertexIdPair) throws Exception {
+    targetIdEdgePair.f1.setTargetId(vertexIdPair.f1);
+    return targetIdEdgePair.f1;
+}

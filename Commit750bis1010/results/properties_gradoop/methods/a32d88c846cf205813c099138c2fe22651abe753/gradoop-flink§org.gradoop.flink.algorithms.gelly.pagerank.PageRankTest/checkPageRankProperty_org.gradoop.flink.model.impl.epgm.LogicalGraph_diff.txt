@@ -1,0 +1,12 @@
+/**
+ * Checks if the PageRank property exists and its value was initialized
+ *
+ * @param graph The result graph
+ */
+private void checkPageRankProperty(LogicalGraph graph) throws Exception {
+    List<EPGMVertex> vertices = graph.getVertices().collect();
+    for (EPGMVertex vertex : vertices) {
+        assertTrue(vertex.hasProperty(propertyKey));
+        assertTrue(vertex.getPropertyValue(propertyKey).getDouble() > 0d);
+    }
+}

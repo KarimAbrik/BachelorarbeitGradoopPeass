@@ -1,0 +1,33 @@
+/**
+ * Creates an {@link ValueJoinNode} from the specified arguments.
+ *
+ * @param leftEntry left entry
+ * @param rightEntry right entry
+ * @param joinPredicate join predicate
+ *
+ * @return new value join node
+ */
+private PlanTableEntry createValueJoinEntry(PlanTableEntry leftEntry, PlanTableEntry rightEntry, CNF joinPredicate) {
+    List<Pair<String, String>> leftProperties = new ArrayList<>();
+    List<Pair<String, String>> rightProperties = new ArrayList<>();
+    for (CNFElement e : joinPredicate.getPredicates()) {
+        ComparisonExpression comparison = e.getPredicates().get(0);
+        Pair<String, String> joinProperty = extractJoinProperty(comparison.getLhs());
+        if (leftEntry.getAllVariables().contains(joinProperty.getKey())) {
+            leftProperties.add(joinProperty);
+        } else {
+            rightProperties.add(joinProperty);
+        }
+        joinProperty = extractJoinProperty(comparison.getRhs());
+        if (leftEntry.getAllVariables().contains(joinProperty.getKey())) {
+            leftProperties.add(joinProperty);
+        } else {
+            rightProperties.add(joinProperty);
+        }
+    }
+    ValueJoinNode node = new ValueJoinNode(leftEntry.getQueryPlan().getRoot(), rightEntry.getQueryPlan().getRoot(), leftProperties, rightProperties, vertexStrategy, edgeStrategy);
+    Set<String> processedVariables = leftEntry.getProcessedVariables();
+    processedVariables.addAll(rightEntry.getProcessedVariables());
+    CNF predicates = mergePredicates(leftEntry, rightEntry);
+    return new PlanTableEntry(GRAPH, processedVariables, predicates, new QueryPlanEstimator(new QueryPlan(node), queryHandler, graphStatistics));
+}

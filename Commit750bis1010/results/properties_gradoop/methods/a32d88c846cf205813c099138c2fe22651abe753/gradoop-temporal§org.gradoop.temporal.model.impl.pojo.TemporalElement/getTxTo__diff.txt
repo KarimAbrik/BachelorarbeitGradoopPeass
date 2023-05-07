@@ -1,0 +1,8 @@
+/**
+ * Get the end of the elements transaction interval as unix timestamp in milliseconds.
+ *
+ * @return the end of the elements transaction interval as unix timestamp in milliseconds
+ */
+public Long getTxTo() {
+    return this.transactionTime.f1;
+}

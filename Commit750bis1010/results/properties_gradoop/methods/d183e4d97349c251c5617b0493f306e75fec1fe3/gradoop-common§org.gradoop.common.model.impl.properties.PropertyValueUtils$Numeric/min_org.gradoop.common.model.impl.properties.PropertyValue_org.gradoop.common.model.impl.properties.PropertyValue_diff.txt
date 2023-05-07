@@ -1,0 +1,11 @@
+/**
+ * Compares two numerical property values and returns the smaller one.
+ *
+ * @param a first value
+ * @param b second value
+ *
+ * @return smaller value
+ */
+public static PropertyValue min(PropertyValue a, PropertyValue b) {
+    return isLessOrEqualThan(a, b) ? a : b;
+}

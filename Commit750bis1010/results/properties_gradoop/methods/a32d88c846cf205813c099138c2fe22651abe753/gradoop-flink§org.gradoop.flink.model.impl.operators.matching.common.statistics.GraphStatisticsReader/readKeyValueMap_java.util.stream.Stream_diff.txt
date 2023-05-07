@@ -1,0 +1,10 @@
+/**
+ * Reads a key value map from the specified file.
+ *
+ * @param lines stream of lines in the file
+ * @return key value map
+ * @throws IOException if an I/O error occurs opening the file
+ */
+static Map<String, Long> readKeyValueMap(Stream<String> lines) throws IOException {
+    return lines.map(s -> s.split(TOKEN_SEPARATOR)).collect(Collectors.toMap(tokens -> tokens[0], tokens -> Long.parseLong(tokens[1])));
+}

@@ -1,0 +1,8 @@
+@Test
+public void createWithIDTest() {
+    GradoopIdGenerator idGen = new SequenceIdGenerator();
+    GradoopId graphID = idGen.createId();
+    EPGMGraphHead g = new GraphHeadPojoFactory().createGraphHead(graphID);
+    assertThat(g.getId(), is(graphID));
+    assertThat(g.getPropertyCount(), is(0));
+}

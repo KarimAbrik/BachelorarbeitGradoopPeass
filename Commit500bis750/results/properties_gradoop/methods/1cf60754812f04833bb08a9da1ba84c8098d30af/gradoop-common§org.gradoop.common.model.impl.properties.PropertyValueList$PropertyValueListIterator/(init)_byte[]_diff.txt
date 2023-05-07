@@ -1,0 +1,12 @@
+/**
+ * Creates new iterator
+ *
+ * @param rawBytes property value list byte representation
+ */
+PropertyValueListIterator(byte[] rawBytes) {
+    if (rawBytes == null) {
+        rawBytes = new byte[0];
+    }
+    byteStream = new ByteArrayInputStream(rawBytes);
+    inputStream = new DataInputStream(byteStream);
+}

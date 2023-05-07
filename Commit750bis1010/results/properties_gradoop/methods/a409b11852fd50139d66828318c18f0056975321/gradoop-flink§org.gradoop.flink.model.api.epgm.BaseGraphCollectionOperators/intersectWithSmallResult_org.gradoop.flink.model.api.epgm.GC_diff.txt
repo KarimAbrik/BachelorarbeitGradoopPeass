@@ -1,0 +1,13 @@
+/**
+ * Returns a collection with all base graphs that exist in both input collections.
+ * Graph equality is based on their identifiers.
+ * <p>
+ * Implementation that works faster if {@code otherCollection} is small
+ * (e.g. fits in the workers main memory).
+ *
+ * @param otherCollection collection to build intersect with
+ * @return intersection of both collections
+ */
+default GC intersectWithSmallResult(GC otherCollection) {
+    return callForCollection(new IntersectionBroadcast<>(), otherCollection);
+}

@@ -1,0 +1,68 @@
+{
+  "clazz" : "org.gradoop.model.impl.LogicalGraphOverlapTest",
+  "methods" : [ {
+    "method" : "testNonOverlappingGraphs",
+    "datacollectorResults" : [ {
+      "name" : "de.dagere.kopeme.datacollection.TimeDataCollectorNoGC",
+      "chunks" : [ ],
+      "results" : [ {
+        "value" : 9.006839906000001E8,
+        "deviation" : 0.8875972803688331,
+        "min" : 4.35569898E8,
+        "max" : 3.056817547E9,
+        "warmup" : 0,
+        "iterations" : 10,
+        "repetitions" : 2,
+        "commit" : null,
+        "vmRunConfiguration" : {
+          "showStart" : false,
+          "executeBeforeClassInMeasurement" : false,
+          "redirectToTemp" : false,
+          "redirectToNull" : true,
+          "useKieker" : false
+        },
+        "parameters" : {
+          "JUNIT_PARAMETERIZED" : "Execution mode = CLUSTER"
+        },
+        "javaVersion" : "1.8.0_362",
+        "cpu" : "model name : Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz",
+        "memory" : "MemTotal: 16280544 kB",
+        "date" : 1680987872730,
+        "fulldata" : {
+          "fileName" : null,
+          "values" : [ {
+            "startTime" : 1680987863532,
+            "value" : 3056817547
+          }, {
+            "startTime" : 1680987866589,
+            "value" : 1299077535
+          }, {
+            "startTime" : 1680987867888,
+            "value" : 859212513
+          }, {
+            "startTime" : 1680987868747,
+            "value" : 603045329
+          }, {
+            "startTime" : 1680987869350,
+            "value" : 533393393
+          }, {
+            "startTime" : 1680987869884,
+            "value" : 485472039
+          }, {
+            "startTime" : 1680987870369,
+            "value" : 473588391
+          }, {
+            "startTime" : 1680987870843,
+            "value" : 599983762
+          }, {
+            "startTime" : 1680987871443,
+            "value" : 435569898
+          }, {
+            "startTime" : 1680987871879,
+            "value" : 660679499
+          } ]
+        }
+      } ]
+    } ]
+  } ]
+}

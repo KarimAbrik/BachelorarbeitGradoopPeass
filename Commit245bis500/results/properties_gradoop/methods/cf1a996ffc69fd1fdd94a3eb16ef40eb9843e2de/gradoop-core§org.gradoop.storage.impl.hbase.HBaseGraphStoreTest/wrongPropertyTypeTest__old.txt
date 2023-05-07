@@ -1,0 +1,20 @@
+/**
+ * Tries to add an unsupported property type {@link List} as property value.
+ */
+@Test(expected = UnsupportedTypeException.class)
+public void wrongPropertyTypeTest() {
+    EPGMStore<VertexPojo, EdgePojo, GraphHeadPojo> graphStore = createEmptyEPGMStore();
+    PersistentVertexFactory<VertexPojo, EdgePojo, HBaseVertex> persistentVertexFactory = new HBaseVertexFactory();
+    EPGMVertexFactory<VertexPojo> vertexFactory = new VertexPojoFactory();
+    // list is not supported by
+    final List<String> value = Lists.newArrayList();
+    Long vertexID = 0L;
+    final String label = "A";
+    final Map<String, Object> properties = new HashMap<>();
+    properties.put("k1", value);
+    final Set<EdgePojo> outEdges = Sets.newHashSetWithExpectedSize(0);
+    final Set<EdgePojo> inEdges = Sets.newHashSetWithExpectedSize(0);
+    final Set<Long> graphs = Sets.newHashSetWithExpectedSize(0);
+    PersistentVertex<EdgePojo> v = persistentVertexFactory.createVertex(vertexFactory.createVertex(vertexID, label, properties, graphs), outEdges, inEdges);
+    graphStore.writeVertex(v);
+}

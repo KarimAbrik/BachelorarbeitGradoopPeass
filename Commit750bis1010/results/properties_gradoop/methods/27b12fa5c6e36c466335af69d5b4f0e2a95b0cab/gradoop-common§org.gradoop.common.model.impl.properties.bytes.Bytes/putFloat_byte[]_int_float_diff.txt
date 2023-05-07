@@ -1,0 +1,11 @@
+/**
+ * Put a float value out to the specified byte position.
+ *
+ * @param bytes byte array
+ * @param offset offset to write to
+ * @param f float value
+ * @return New offset in <code>bytes</code>
+ */
+public static int putFloat(byte[] bytes, int offset, float f) {
+    return putInt(bytes, offset, Float.floatToRawIntBits(f));
+}

@@ -1,0 +1,14 @@
+@Test
+public void testWriteDistinctSourceVertexCountByEdgeLabel() throws Exception {
+    String tmpPath = temporaryFolder.getRoot().getPath();
+    LogicalGraph input = getSocialNetworkLoader().getLogicalGraph(true);
+    DataSink statisticDataSink = new GraphStatisticsDataSink(tmpPath);
+    statisticDataSink.write(input, true);
+    getExecutionEnvironment().execute();
+    GraphStatistics statistics = GraphStatisticsLocalFSReader.read(tmpPath);
+    assertThat(statistics.getDistinctSourceVertexCount("hasInterest"), is(4L));
+    assertThat(statistics.getDistinctSourceVertexCount("hasModerator"), is(2L));
+    assertThat(statistics.getDistinctSourceVertexCount("knows"), is(6L));
+    assertThat(statistics.getDistinctSourceVertexCount("hasTag"), is(2L));
+    assertThat(statistics.getDistinctSourceVertexCount("hasMember"), is(2L));
+}

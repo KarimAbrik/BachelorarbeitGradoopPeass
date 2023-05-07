@@ -1,0 +1,22 @@
+public static Iterable<PersistentGraphHead> createPersistentGraphHead() {
+    List<PersistentGraphHead> persistentGraphData = Lists.newArrayListWithExpectedSize(2);
+    EPGMGraphHeadFactory<GraphHeadPojo> graphHeadFactory = new GraphHeadPojoFactory();
+    // graph 0
+    GradoopId graphID = GradoopId.fromLong(0L);
+    String graphLabel = "A";
+    Map<String, Object> graphProperties = new HashMap<>();
+    graphProperties.put("k1", "v1");
+    graphProperties.put("k2", "v2");
+    GradoopIds vertices = GradoopIds.fromLongs(0L, 1L);
+    GradoopIds edges = GradoopIds.fromLongs(2L, 3L);
+    persistentGraphData.add(new HBaseGraphHead(graphHeadFactory.createGraphHead(graphID, graphLabel, graphProperties), vertices, edges));
+    // graph 1
+    graphID = GradoopId.fromLong(1L);
+    graphLabel = "A";
+    graphProperties = new HashMap<>();
+    graphProperties.put("k1", "v1");
+    vertices = GradoopIds.fromLongs(1L, 2L);
+    edges = GradoopIds.fromLongs(4L, 5L);
+    persistentGraphData.add(new HBaseGraphHead(graphHeadFactory.createGraphHead(graphID, graphLabel, graphProperties), vertices, edges));
+    return persistentGraphData;
+}

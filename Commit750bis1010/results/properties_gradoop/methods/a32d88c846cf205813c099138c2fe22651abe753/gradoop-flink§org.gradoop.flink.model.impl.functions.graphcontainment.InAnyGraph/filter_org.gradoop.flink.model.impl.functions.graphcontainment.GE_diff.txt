@@ -1,0 +1,4 @@
+@Override
+public boolean filter(GE element) throws Exception {
+    return element.getGraphIds().containsAny(this.graphIds);
+}

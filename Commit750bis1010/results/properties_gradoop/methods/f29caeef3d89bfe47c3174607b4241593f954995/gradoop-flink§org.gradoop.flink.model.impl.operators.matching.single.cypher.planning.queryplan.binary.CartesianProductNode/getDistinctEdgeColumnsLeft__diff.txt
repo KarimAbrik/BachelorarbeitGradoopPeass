@@ -1,0 +1,9 @@
+/**
+ * According to the specified {@link CartesianProductNode#edgeStrategy}, the method returns
+ * the columns that need to contain distinct entries in the left embedding.
+ *
+ * @return distinct edge columns of the left embedding
+ */
+private List<Integer> getDistinctEdgeColumnsLeft() {
+    return getDistinctEdgeColumns(getLeftChild().getEmbeddingMetaData());
+}

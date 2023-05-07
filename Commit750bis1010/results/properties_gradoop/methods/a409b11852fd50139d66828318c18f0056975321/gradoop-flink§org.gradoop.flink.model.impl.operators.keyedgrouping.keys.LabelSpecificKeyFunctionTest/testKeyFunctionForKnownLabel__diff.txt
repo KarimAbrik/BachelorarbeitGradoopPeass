@@ -1,0 +1,21 @@
+/**
+ * Test the key function for a label with specific key functions defined.
+ */
+@Test
+public void testKeyFunctionForKnownLabel() {
+    testVertex.setLabel("a");
+    Tuple expectedForLabelA = defaultKey.copy();
+    expectedForLabelA.setField(1, 0);
+    expectedForLabelA.setField(Tuple2.of(PropertyValue.create("valueForA").getRawBytes(), PropertyValue.create("valueForA2").getRawBytes()), 2);
+    assertTupleEquals(expectedForLabelA, testFunction.getKey(testVertex));
+    testVertex.setLabel("b");
+    Tuple expectedForLabelB = defaultKey.copy();
+    expectedForLabelB.setField(2, 0);
+    expectedForLabelB.setField(Tuple0.INSTANCE, 3);
+    assertTupleEquals(expectedForLabelB, testFunction.getKey(testVertex));
+    testVertex.setLabel("c");
+    Tuple expectedForLabelC = defaultKey.copy();
+    expectedForLabelC.setField(3, 0);
+    expectedForLabelC.setField(PropertyValue.create("valueForC").getRawBytes(), 4);
+    assertTupleEquals(expectedForLabelC, testFunction.getKey(testVertex));
+}

@@ -1,0 +1,22 @@
+/**
+ * Reads the fist row of a csv file and creates a list including all column entries that
+ * will be used as property names.
+ *
+ * @return the property names
+ * @throws IOException if an error occurred while open the stream
+ */
+private List<String> readHeaderRow() throws IOException {
+    Path filePath = new Path(path);
+    try (FileSystem fs = FileSystem.get(filePath.toUri(), new Configuration())) {
+        FSDataInputStream inputStream = fs.open(filePath);
+        BufferedReader lineReader = new BufferedReader(new InputStreamReader(inputStream, charset));
+        String headerLine = lineReader.readLine();
+        lineReader.close();
+        if (headerLine == null || headerLine.isEmpty()) {
+            throw new IOException("The csv file '" + path + "' does not contain any rows.");
+        }
+        return Arrays.asList(headerLine.split(tokenSeparator));
+    } catch (IOException ioe) {
+        throw new IOException("Error while opening a stream to '" + path + "'.", ioe);
+    }
+}

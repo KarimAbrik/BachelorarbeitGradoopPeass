@@ -1,0 +1,4 @@
+@Override
+protected DataSet<Tuple2<Tuple2<String, String>, Set<PropertyValue>>> extractValuePairs(LogicalGraph graph) {
+    return graph.getEdges().flatMap(new ExtractPropertyValuesByLabel<>());
+}

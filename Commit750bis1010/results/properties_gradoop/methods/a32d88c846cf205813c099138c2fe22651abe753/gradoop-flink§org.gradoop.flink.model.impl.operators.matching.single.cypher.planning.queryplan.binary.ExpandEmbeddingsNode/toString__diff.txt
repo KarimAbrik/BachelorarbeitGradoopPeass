@@ -1,0 +1,4 @@
+@Override
+public String toString() {
+    return String.format("ExpandEmbeddingsNode={" + "startVariable='%s', " + "pathVariable='%s', " + "endVariable='%s', " + "lowerBound=%d, " + "upperBound=%d, " + "expandDirection=%s, " + "vertexMorphismType=%s, " + "edgeMorphismType=%s}", startVariable, pathVariable, endVariable, lowerBound, upperBound, expandDirection, vertexStrategy, edgeStrategy);
+}

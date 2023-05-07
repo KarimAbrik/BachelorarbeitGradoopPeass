@@ -1,0 +1,8 @@
+/**
+ * Returns a new GradoopId
+ *
+ * @return new GradoopId
+ */
+public static GradoopId get() {
+    return new GradoopId(dateToTimestampSeconds(new Date()), MACHINE_IDENTIFIER, PROCESS_IDENTIFIER, NEXT_COUNTER.getAndIncrement(), false);
+}

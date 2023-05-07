@@ -1,0 +1,17 @@
+/**
+ * Checks if the specified ids are contained in the set.
+ *
+ * @param other the ids to look for
+ * @return true, iff all specified ids are contained in the set
+ */
+public boolean containsAll(GradoopIdSet other) {
+    if (other.size() > this.size()) {
+        return false;
+    }
+    for (GradoopId id : other) {
+        if (!this.contains(id)) {
+            return false;
+        }
+    }
+    return true;
+}

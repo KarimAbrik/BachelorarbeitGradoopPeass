@@ -1,0 +1,5 @@
+@Override
+public EPGMVertex join(org.apache.flink.graph.Vertex<GradoopId, Double> gellyVertex, EPGMVertex gradoopVertex) {
+    gradoopVertex.setProperty(shortestPathProperty, gellyVertex.getValue());
+    return gradoopVertex;
+}

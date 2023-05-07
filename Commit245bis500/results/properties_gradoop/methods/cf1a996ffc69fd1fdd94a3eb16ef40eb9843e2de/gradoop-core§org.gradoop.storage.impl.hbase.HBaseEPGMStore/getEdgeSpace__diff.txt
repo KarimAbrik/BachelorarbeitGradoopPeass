@@ -1,0 +1,7 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public Iterator<ED> getEdgeSpace() throws IOException {
+    return getEdgeSpace(GConstants.HBASE_DEFAULT_SCAN_CACHE_SIZE);
+}

@@ -1,0 +1,9 @@
+/**
+ * Create an instance of the {@link AverageVertexDuration} aggregate function.
+ *
+ * @param aggregatePropertyKey The aggregate property key.
+ * @param dimension            The time dimension to consider.
+ */
+public AverageVertexDuration(String aggregatePropertyKey, TimeDimension dimension) {
+    super(aggregatePropertyKey, dimension);
+}

@@ -1,0 +1,13 @@
+@Override
+public void writeRecord(IT record) throws IOException {
+    String subDirectory = getDirectoryForRecord(record);
+    OutputFormat<IT> format;
+    if (formatsPerSubdirectory.containsKey(subDirectory)) {
+        format = formatsPerSubdirectory.get(subDirectory);
+    } else {
+        format = createFormatForDirectory(new Path(rootOutputPath, subDirectory));
+        format.open(taskNumber, numTasks);
+        formatsPerSubdirectory.put(subDirectory, format);
+    }
+    format.writeRecord(record);
+}

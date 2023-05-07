@@ -1,0 +1,15 @@
+/**
+ * Creates a vertex from a vertex input line.
+ *
+ * @param vertex json encoded vertex object
+ * @return vertex with id, labels, properties
+ * @throws JSONException
+ */
+private List<Vertex> createFromVertexLine(JSONObject vertex) throws JSONException {
+    Long vertexID = vertex.getLong(VERTEX_ID);
+    Vertex v = VertexFactory.createDefaultVertexWithID(vertexID);
+    addProperties(v, vertex.getJSONObject(META), BIIIGConstants.META_PREFIX);
+    addProperties(v, vertex.getJSONObject(DATA));
+    v.setLabel(String.valueOf(getKind(vertex)));
+    return Lists.newArrayList(v);
+}

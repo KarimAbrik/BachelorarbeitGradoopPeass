@@ -1,0 +1,12 @@
+/**
+ * Group by duration of a time interval. The duration will be calculated in a certain unit.
+ *
+ * @param interval The time interval to get the duration of.
+ * @param timeUnit The unit in which the duration is measured.
+ * @param <T> The type of the elements to group.
+ * @return The grouping key function extracting the duration.
+ * @see DurationKeyFunction
+ */
+public static <T extends TemporalElement> KeyFunction<T, Long> duration(TimeDimension interval, TemporalUnit timeUnit) {
+    return new DurationKeyFunction<>(interval, timeUnit);
+}

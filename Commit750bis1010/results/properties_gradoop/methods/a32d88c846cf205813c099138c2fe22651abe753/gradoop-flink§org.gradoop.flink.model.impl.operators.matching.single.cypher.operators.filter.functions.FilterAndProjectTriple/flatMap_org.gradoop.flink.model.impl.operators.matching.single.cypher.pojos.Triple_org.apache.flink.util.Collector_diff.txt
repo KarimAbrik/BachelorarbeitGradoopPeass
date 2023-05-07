@@ -1,0 +1,14 @@
+@Override
+public void flatMap(Triple triple, Collector<Embedding> out) throws Exception {
+    boolean isValid = true;
+    if (isLoop) {
+        if (!(triple.getSourceId().equals(triple.getTargetId()))) {
+            isValid = false;
+        }
+    } else if (isVertexIso && triple.getSourceId().equals(triple.getTargetId())) {
+        isValid = false;
+    }
+    if (isValid && filter(triple)) {
+        out.collect(EmbeddingFactory.fromTriple(triple, sourceProjectionPropertyKeys, edgeProjectionPropertyKeys, targetProjectionPropertyKeys, sourceVariable, targetVariable));
+    }
+}

@@ -1,0 +1,16 @@
+/**
+ * Converts a {@link Vertex} into an {@link Embedding}.
+ *
+ * The resulting embedding has one entry containing the vertex id and one entry for each property
+ * value associated with the specified property keys (ordered by list order). Note that missing
+ * property values are represented by a {@link PropertyValue#NULL_VALUE}.
+ *
+ * @param vertex vertex to create embedding from
+ * @param propertyKeys properties that will be stored in the embedding
+ * @return Embedding
+ */
+public static Embedding fromVertex(Vertex vertex, List<String> propertyKeys) {
+    Embedding embedding = new Embedding();
+    embedding.add(vertex.getId(), project(vertex, propertyKeys));
+    return embedding;
+}

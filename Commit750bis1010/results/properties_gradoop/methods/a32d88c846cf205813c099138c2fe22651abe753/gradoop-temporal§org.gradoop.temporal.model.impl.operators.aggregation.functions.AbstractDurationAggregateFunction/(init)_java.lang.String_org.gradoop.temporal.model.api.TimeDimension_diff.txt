@@ -1,0 +1,10 @@
+/**
+ * Creates a new instance of this base aggregate function.
+ *
+ * @param aggregatePropertyKey aggregate property key
+ * @param dimension the given TimeDimension
+ */
+AbstractDurationAggregateFunction(String aggregatePropertyKey, TimeDimension dimension) {
+    super(aggregatePropertyKey);
+    this.dimension = Objects.requireNonNull(dimension);
+}

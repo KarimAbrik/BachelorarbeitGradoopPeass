@@ -1,0 +1,9 @@
+/**
+ * Returns a list of variables that are contained in the embedding and refer to vertices. The
+ * order of the variables is determined by their position within the embedding.
+ *
+ * @return a list of all vertex variables
+ */
+public List<String> getVertexVariables() {
+    return getVariables(entry -> entry == EntryType.VERTEX);
+}

@@ -1,0 +1,10 @@
+/**
+ * Check if the temporal graph element has default time values for valid and transaction time.
+ *
+ * @param element the temporal graph element to check
+ */
+protected void checkDefaultTemporalElement(TemporalElement element) {
+    assertEquals(TemporalElement.DEFAULT_TIME_FROM, element.getValidFrom());
+    assertEquals(TemporalElement.DEFAULT_TIME_TO, element.getValidTo());
+    checkDefaultTxTimes(element);
+}

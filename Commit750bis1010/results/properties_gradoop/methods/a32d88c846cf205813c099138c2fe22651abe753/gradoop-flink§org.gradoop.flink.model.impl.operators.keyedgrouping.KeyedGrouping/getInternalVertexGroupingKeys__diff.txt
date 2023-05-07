@@ -1,0 +1,8 @@
+/**
+ * Get the internal grouping keys used for grouping the vertex tuples.
+ *
+ * @return The grouping keys, as tuple indices.
+ */
+private int[] getInternalVertexGroupingKeys() {
+    return IntStream.range(GroupingConstants.VERTEX_TUPLE_RESERVED, GroupingConstants.VERTEX_TUPLE_RESERVED + vertexGroupingKeys.size()).toArray();
+}

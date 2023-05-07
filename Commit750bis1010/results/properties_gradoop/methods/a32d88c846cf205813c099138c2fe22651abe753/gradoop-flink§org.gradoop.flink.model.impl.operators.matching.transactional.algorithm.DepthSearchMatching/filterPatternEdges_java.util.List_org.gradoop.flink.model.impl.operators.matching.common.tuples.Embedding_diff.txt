@@ -1,0 +1,21 @@
+/**
+ * Remove all edges that are neither loops nor have source or target vertex that is in the embedding.
+ *
+ * @param patternEdges edges to be filtered
+ * @param embedding embedding with possible source and target vertices
+ * @return filtered edge list
+ */
+private List<Edge> filterPatternEdges(List<Edge> patternEdges, Embedding<GradoopId> embedding) {
+    for (int i = 0; i < patternEdges.size(); i++) {
+        long sourceId = patternEdges.get(i).getSourceVertexId();
+        long targetId = patternEdges.get(i).getTargetVertexId();
+        GradoopId[] vertexMapping = embedding.getVertexMapping();
+        if ((vertexMapping[(int) sourceId] == null) && (vertexMapping[(int) targetId] == null)) {
+            if (sourceId != targetId) {
+                patternEdges.remove(i);
+                i--;
+            }
+        }
+    }
+    return patternEdges;
+}

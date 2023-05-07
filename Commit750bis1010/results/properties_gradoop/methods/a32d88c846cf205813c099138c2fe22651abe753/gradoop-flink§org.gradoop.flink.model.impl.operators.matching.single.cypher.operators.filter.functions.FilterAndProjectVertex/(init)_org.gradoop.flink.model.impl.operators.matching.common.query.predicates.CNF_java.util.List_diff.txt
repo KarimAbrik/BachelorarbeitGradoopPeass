@@ -1,0 +1,10 @@
+/**
+ * New vertex filter function
+ *
+ * @param predicates predicates used for filtering
+ * @param projectionPropertyKeys property keys that will be used for projection
+ */
+public FilterAndProjectVertex(CNF predicates, List<String> projectionPropertyKeys) {
+    this.predicates = predicates;
+    this.projectionPropertyKeys = projectionPropertyKeys;
+}

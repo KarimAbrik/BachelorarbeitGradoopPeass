@@ -1,0 +1,4 @@
+@Override
+public DataSet<Boolean> equalsByData(TemporalGraph other) {
+    return callForValue(new GraphEquality<>(new TemporalGraphHeadToDataString<>(), new TemporalVertexToDataString<>(), new TemporalEdgeToDataString<>(), true), other);
+}

@@ -1,0 +1,5 @@
+@Override                                                                                              @Override                                                                                           
+public Vertex map(String csvLine) throws Exception {                                                   public Vertex map(String csvLine) throws Exception {                                                
+String[] tokens = split(csvLine, 3);                                                                   String[] tokens = split(csvLine, 3);                                                                
+return vertexFactory.initVertex(GradoopId.fromString(tokens[0]), tokens[1], parseProperties(tokens[1 | return vertexFactory.initVertex(GradoopId.fromString(tokens[0]), tokens[1], parseProperties(CSVConst
+}                                                                                                      }                                                                                                   

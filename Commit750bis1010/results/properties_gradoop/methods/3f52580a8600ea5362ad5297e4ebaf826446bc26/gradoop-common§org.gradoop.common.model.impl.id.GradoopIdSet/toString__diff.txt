@@ -1,0 +1,17 @@
+@Override
+public String toString() {
+    if (isEmpty()) {
+        return "[]";
+    }
+    Iterator<GradoopId> it = iterator();
+    StringBuilder sb = new StringBuilder();
+    sb.append('[');
+    for (; ; ) {
+        GradoopId id = it.next();
+        sb.append(id);
+        if (!it.hasNext()) {
+            return sb.append(']').toString();
+        }
+        sb.append(',').append(' ');
+    }
+}

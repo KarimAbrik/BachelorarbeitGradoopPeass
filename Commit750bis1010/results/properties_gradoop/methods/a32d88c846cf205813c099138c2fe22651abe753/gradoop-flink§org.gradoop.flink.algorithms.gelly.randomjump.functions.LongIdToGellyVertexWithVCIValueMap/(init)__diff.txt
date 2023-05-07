@@ -1,0 +1,7 @@
+/**
+ * Creates an instance of LongIdToGellyVertexWithVCIValueMap.
+ */
+public LongIdToGellyVertexWithVCIValueMap() {
+    this.reuseVertex = new Vertex<>();
+    this.reuseValue = new VCIVertexValue(false, new ArrayList<>());
+}

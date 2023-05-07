@@ -1,0 +1,8 @@
+/**
+ * Create a new instance of this key function.
+ *
+ * @param propertyKeys The keys of the properties to extract.
+ */
+public GetPropertiesAsList(List<String> propertyKeys) {
+    this.propertyKeys = Objects.requireNonNull(propertyKeys);
+}

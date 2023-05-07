@@ -1,0 +1,5 @@
+@Test(expected = NullPointerException.class)
+public void testSetValueNull() {
+    Property p = new Property("key", PropertyValue.create(11));
+    p.setValue(null);
+}

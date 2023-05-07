@@ -1,0 +1,13 @@
+/**
+ * Parse function to translate string representation of a Map to a Map with
+ * key and value of type PropertyValue.
+ *
+ * @param s           the string to parse as map, e.g. "{myString1=myValue1,myString2=myValue2}"
+ * @param keyParser   the function to parse the keys
+ * @param valueParser the function to parse the values
+ * @return the map represented by the argument
+ */
+private static Object parseMapProperty(String s, Function<String, Object> keyParser, Function<String, Object> valueParser) {
+    s = s.substring(1, s.length() - 1);
+    return Arrays.stream(StringEscaper.split(s, CSVConstants.LIST_DELIMITER)).map(st -> StringEscaper.split(st, CSVConstants.MAP_SEPARATOR)).map(strings -> new Object[] { keyParser.apply(strings[0]), valueParser.apply(strings[1]) }).collect(Collectors.toMap(e -> PropertyValue.create(e[0]), e -> PropertyValue.create(e[1])));
+}

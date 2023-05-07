@@ -1,0 +1,33 @@
+/**
+ * Cunstructs a dataset containing TLFGraph(s).
+ *
+ * @param inputTuple consists of a key(LongWritable) and a value(Text)
+ * @return a TLFGraph created by the input text
+ * @throws Exception on failure
+ */
+@Override
+public GraphTransaction map(Tuple2<LongWritable, Text> inputTuple) throws Exception {
+    Map<Long, GradoopId> idMap = new HashMap<>();
+    Set<EPGMVertex> vertices = new HashSet<>();
+    Set<EPGMEdge> edges = new HashSet<>();
+    EPGMGraphHead graphHead = null;
+    String[] lines = inputTuple.f1.toString().split("\\R", -1);
+    for (int i = 0; i < lines.length; i++) {
+        String[] fields = lines[i].trim().split(" ");
+        GradoopId gradoopId = GradoopId.get();
+        if (i == 0) {
+            idMap.put(Long.valueOf(fields[2]), gradoopId);
+            graphHead = graphHeadFactory.initGraphHead(gradoopId);
+        } else if (TLFConstants.VERTEX_SYMBOL.equals(fields[0])) {
+            idMap.put(Long.valueOf(fields[1]), gradoopId);
+            EPGMVertex vertex = vertexFactory.initVertex(gradoopId, getLabel(fields, 2));
+            vertex.addGraphId(graphHead.getId());
+            vertices.add(vertex);
+        } else if (TLFConstants.EDGE_SYMBOL.equals(fields[0])) {
+            EPGMEdge edge = edgeFactory.initEdge(gradoopId, getLabel(fields, 3), idMap.get(Long.valueOf(fields[1])), idMap.get(Long.valueOf(fields[2])));
+            edge.addGraphId(graphHead.getId());
+            edges.add(edge);
+        }
+    }
+    return new GraphTransaction(graphHead, vertices, edges);
+}

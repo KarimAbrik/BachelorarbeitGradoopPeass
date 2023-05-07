@@ -1,0 +1,68 @@
+{
+  "clazz" : "org.gradoop.model.impl.GraphCollectionDifferenceTest",
+  "methods" : [ {
+    "method" : "testNonOverlappingCollections",
+    "datacollectorResults" : [ {
+      "name" : "de.dagere.kopeme.datacollection.TimeDataCollectorNoGC",
+      "chunks" : [ ],
+      "results" : [ {
+        "value" : 1.0098697043E9,
+        "deviation" : 0.8371605909764954,
+        "min" : 4.97487028E8,
+        "max" : 3.355085273E9,
+        "warmup" : 0,
+        "iterations" : 10,
+        "repetitions" : 2,
+        "commit" : null,
+        "vmRunConfiguration" : {
+          "showStart" : false,
+          "executeBeforeClassInMeasurement" : false,
+          "redirectToTemp" : false,
+          "redirectToNull" : true,
+          "useKieker" : false
+        },
+        "parameters" : {
+          "JUNIT_PARAMETERIZED" : "Execution mode = CLUSTER"
+        },
+        "javaVersion" : "1.8.0_362",
+        "cpu" : "model name : Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz",
+        "memory" : "MemTotal: 16280544 kB",
+        "date" : 1680979115778,
+        "fulldata" : {
+          "fileName" : null,
+          "values" : [ {
+            "startTime" : 1680979105495,
+            "value" : 3355085273
+          }, {
+            "startTime" : 1680979108851,
+            "value" : 1193449530
+          }, {
+            "startTime" : 1680979110044,
+            "value" : 858378792
+          }, {
+            "startTime" : 1680979110902,
+            "value" : 748920305
+          }, {
+            "startTime" : 1680979111651,
+            "value" : 711075531
+          }, {
+            "startTime" : 1680979112363,
+            "value" : 677197243
+          }, {
+            "startTime" : 1680979113040,
+            "value" : 497487028
+          }, {
+            "startTime" : 1680979113537,
+            "value" : 548922460
+          }, {
+            "startTime" : 1680979114086,
+            "value" : 721863244
+          }, {
+            "startTime" : 1680979114808,
+            "value" : 786317637
+          } ]
+        }
+      } ]
+    } ]
+  } ]
+}

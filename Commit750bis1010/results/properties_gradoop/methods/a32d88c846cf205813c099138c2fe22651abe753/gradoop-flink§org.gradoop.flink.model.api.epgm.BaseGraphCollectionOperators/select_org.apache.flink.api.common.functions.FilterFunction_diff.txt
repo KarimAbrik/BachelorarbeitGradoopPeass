@@ -1,0 +1,12 @@
+//----------------------------------------------------------------------------
+// Unary Operators
+//----------------------------------------------------------------------------
+/**
+ * Filter containing graphs based on their associated graph head.
+ *
+ * @param predicateFunction predicate function for graph head
+ * @return collection with base graphs that fulfil the predicate
+ */
+default GC select(final FilterFunction<G> predicateFunction) {
+    return callForCollection(new Selection<>(predicateFunction));
+}

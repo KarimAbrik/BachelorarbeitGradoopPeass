@@ -1,0 +1,10 @@
+/**
+ * Creates group reducer
+ *
+ * @param useLabel use edge label
+ * @param edgeFactory edge factory
+ */
+public ReduceEdgeGroupItems(boolean useLabel, EdgeFactory<E> edgeFactory) {
+    super(useLabel);
+    this.edgeFactory = edgeFactory;
+}

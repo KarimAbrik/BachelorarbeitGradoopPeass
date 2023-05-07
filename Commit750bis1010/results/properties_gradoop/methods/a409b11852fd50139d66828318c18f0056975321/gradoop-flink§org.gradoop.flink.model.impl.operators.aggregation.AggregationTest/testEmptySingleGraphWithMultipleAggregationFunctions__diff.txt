@@ -1,0 +1,15 @@
+/**
+ * Test using multiple aggregation functions in one call on an empty graph.
+ *
+ * @throws Exception if the execution or IO fails.
+ */
+@Test
+public void testEmptySingleGraphWithMultipleAggregationFunctions() throws Exception {
+    LogicalGraph graph = getLoaderFromString("g[]").getLogicalGraphByVariable("g");
+    VertexCount vertexCount = new VertexCount();
+    Count count = new Count();
+    MinEdgeProperty minEdgeProperty = new MinEdgeProperty(PROPERTY);
+    LogicalGraph expected = graph.aggregate(vertexCount).aggregate(minEdgeProperty).aggregate(count);
+    LogicalGraph output = graph.aggregate(vertexCount, minEdgeProperty, count);
+    collectAndAssertTrue(expected.equalsByData(output));
+}

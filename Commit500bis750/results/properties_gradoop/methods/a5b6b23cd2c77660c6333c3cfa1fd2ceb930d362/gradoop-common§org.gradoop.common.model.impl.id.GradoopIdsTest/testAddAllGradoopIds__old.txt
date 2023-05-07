@@ -1,0 +1,15 @@
+@Test
+public void testAddAllGradoopIds() throws Exception {
+    GradoopId id1 = GradoopId.get();
+    GradoopId id2 = GradoopId.get();
+    GradoopIds list1 = new GradoopIds();
+    list1.add(id1);
+    list1.add(id2);
+    GradoopIds list2 = new GradoopIds();
+    list2.addAll(list1);
+    assertThat(list2.size(), is(2));
+    assertTrue(list2.contains(id1));
+    assertTrue(list2.contains(id2));
+    list2.addAll(list1);
+    assertThat(list2.size(), is(2));
+}

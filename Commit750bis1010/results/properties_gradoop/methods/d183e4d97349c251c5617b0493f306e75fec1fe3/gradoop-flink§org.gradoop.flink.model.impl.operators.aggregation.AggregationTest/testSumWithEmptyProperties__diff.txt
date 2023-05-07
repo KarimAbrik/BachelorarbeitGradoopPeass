@@ -1,0 +1,12 @@
+@Test
+public void testSumWithEmptyProperties() throws Exception {
+    LogicalGraph graph = getLoaderFromString("org:Ga[(:Va)-[:ea]->(:Vb)]").getLogicalGraphByVariable("org");
+    SumVertexProperty sumVertexProperty = new SumVertexProperty(VERTEX_PROPERTY);
+    SumEdgeProperty sumEdgeProperty = new SumEdgeProperty(EDGE_PROPERTY);
+    graph = graph.aggregate(sumVertexProperty).aggregate(sumEdgeProperty);
+    EPGMGraphHead graphHead = graph.getGraphHead().collect().get(0);
+    assertTrue("edge sum not set", graphHead.hasProperty(sumEdgeProperty.getAggregatePropertyKey()));
+    assertTrue("vertex sum not set", graphHead.hasProperty(sumVertexProperty.getAggregatePropertyKey()));
+    assertEquals(PropertyValue.NULL_VALUE, graphHead.getPropertyValue(sumEdgeProperty.getAggregatePropertyKey()));
+    assertEquals(PropertyValue.NULL_VALUE, graphHead.getPropertyValue(sumVertexProperty.getAggregatePropertyKey()));
+}

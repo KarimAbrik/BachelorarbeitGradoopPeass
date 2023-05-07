@@ -1,0 +1,10 @@
+/**
+ * Define, if the vertex label shall be used for grouping vertices.
+ *
+ * @param useVertexLabel true, iff vertex label shall be used for grouping
+ * @return this builder
+ */
+public GroupingBuilder useVertexLabel(boolean useVertexLabel) {
+    this.useVertexLabel = useVertexLabel;
+    return this;
+}

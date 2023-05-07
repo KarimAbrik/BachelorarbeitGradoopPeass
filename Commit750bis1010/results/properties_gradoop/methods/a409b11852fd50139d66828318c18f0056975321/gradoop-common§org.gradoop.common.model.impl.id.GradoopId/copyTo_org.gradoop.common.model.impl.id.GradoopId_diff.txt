@@ -1,0 +1,4 @@
+@Override                                                                                              @Override                                                                                           
+public void copyTo(GradoopId target) {                                                                 public void copyTo(GradoopId target) {                                                              
+target.bytes = this.bytes;                                                                           | System.arraycopy(bytes, 0, target.bytes, 0, ID_SIZE);                                               
+}                                                                                                      }                                                                                                   

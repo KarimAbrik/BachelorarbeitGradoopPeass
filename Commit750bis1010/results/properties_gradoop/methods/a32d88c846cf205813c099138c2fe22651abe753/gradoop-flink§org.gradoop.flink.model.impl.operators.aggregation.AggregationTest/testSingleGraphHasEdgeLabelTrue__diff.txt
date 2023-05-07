@@ -1,0 +1,14 @@
+/**
+ * Test HasEdgeLabel with a single graph and result true.
+ *
+ * @throws Exception if the execution or IO fails.
+ */
+@Test
+public void testSingleGraphHasEdgeLabelTrue() throws Exception {
+    LogicalGraph graph = getSocialNetworkLoader().getLogicalGraphByVariable("g2");
+    HasEdgeLabel hasKnows = new HasEdgeLabel("knows");
+    graph = graph.aggregate(hasKnows);
+    GraphHead graphHead = graph.getGraphHead().collect().get(0);
+    assertTrue("Property hasEdgeLabel_knows not set", graphHead.hasProperty(hasKnows.getAggregatePropertyKey()));
+    assertTrue("Property hasEdgeLabel_knows is false, should be true", graphHead.getPropertyValue(hasKnows.getAggregatePropertyKey()).getBoolean());
+}

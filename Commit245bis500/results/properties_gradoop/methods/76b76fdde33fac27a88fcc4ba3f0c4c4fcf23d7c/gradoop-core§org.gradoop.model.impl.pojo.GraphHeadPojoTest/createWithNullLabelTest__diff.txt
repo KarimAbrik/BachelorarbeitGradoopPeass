@@ -1,0 +1,6 @@
+@Test(expected = IllegalArgumentException.class)
+public void createWithNullLabelTest() {
+    GradoopIdGenerator idGen = new SequenceIdGenerator();
+    GradoopId graphID = idGen.createId();
+    new GraphHeadPojoFactory().createGraphHead(graphID, null);
+}

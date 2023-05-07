@@ -1,0 +1,13 @@
+@Override
+public void flatMap(EL element, Collector<Tuple2<GradoopId, EL>> collector) throws Exception {
+    reuse.f1 = element;
+    for (GradoopId graphId : element.getGraphIds()) {
+        reuse.f0 = graphId;
+        collector.collect(reuse);
+    }
+    // assign entities with no graph to the DB graph
+    if (element.getGraphCount() == 0) {
+        reuse.f0 = GradoopConstants.DB_GRAPH_ID;
+        collector.collect(reuse);
+    }
+}

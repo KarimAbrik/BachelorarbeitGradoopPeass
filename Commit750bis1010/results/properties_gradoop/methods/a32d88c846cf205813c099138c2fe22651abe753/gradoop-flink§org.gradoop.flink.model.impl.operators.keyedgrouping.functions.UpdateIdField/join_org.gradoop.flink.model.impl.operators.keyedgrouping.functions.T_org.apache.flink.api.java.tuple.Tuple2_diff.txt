@@ -1,0 +1,5 @@
+@Override
+public T join(T inputTuple, Tuple2<GradoopId, GradoopId> updateValue) throws Exception {
+    inputTuple.setField(updateValue.f1, index);
+    return inputTuple;
+}

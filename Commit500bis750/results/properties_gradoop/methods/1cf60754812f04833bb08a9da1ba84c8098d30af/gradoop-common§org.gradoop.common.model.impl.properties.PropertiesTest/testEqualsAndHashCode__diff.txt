@@ -1,0 +1,19 @@
+@Test
+public void testEqualsAndHashCode() throws Exception {
+    Properties properties1 = Properties.createFromMap(SUPPORTED_PROPERTIES);
+    Properties properties2 = Properties.createFromMap(SUPPORTED_PROPERTIES);
+    Properties properties3 = Properties.createFromMap(SUPPORTED_PROPERTIES);
+    // override property
+    properties3.set(KEY_1, INT_VAL_2);
+    assertTrue("properties were not equal", properties1.equals(properties2));
+    assertFalse("properties were equal", properties1.equals(properties3));
+    assertTrue("different hash code", properties1.hashCode() == properties2.hashCode());
+    assertTrue("same hash code", properties1.hashCode() != properties3.hashCode());
+    properties1 = Properties.create();
+    properties1.set(KEY_1, BOOL_VAL_1);
+    properties1.set(KEY_2, INT_VAL_2);
+    properties2 = Properties.create();
+    properties2.set(KEY_1, BOOL_VAL_1);
+    assertFalse("properties were equal", properties1.equals(properties2));
+    assertTrue("same hash code", properties1.hashCode() != properties2.hashCode());
+}

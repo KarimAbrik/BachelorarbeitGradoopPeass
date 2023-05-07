@@ -1,0 +1,16 @@
+@Override
+public void reduce(Iterable<Tuple2<PropertyValue, GradoopId>> values, Collector<Tuple2<EPGMVertex, List<GradoopId>>> out) {
+    List<GradoopId> sources = new ArrayList<>();
+    PropertyValue pv = null;
+    for (Tuple2<PropertyValue, GradoopId> tuple : values) {
+        sources.add(tuple.f1);
+        if (pv == null) {
+            pv = tuple.f0;
+        }
+    }
+    EPGMVertex vertex = vertexFactory.createVertex(newVertexLabel);
+    vertex.setProperty(newPropertyName, pv);
+    reuseTuple.f0 = vertex;
+    reuseTuple.f1 = sources;
+    out.collect(reuseTuple);
+}

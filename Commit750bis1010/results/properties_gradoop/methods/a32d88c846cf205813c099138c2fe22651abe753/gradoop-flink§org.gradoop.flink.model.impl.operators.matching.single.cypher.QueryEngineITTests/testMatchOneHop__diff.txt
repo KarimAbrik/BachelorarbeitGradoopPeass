@@ -1,0 +1,4 @@
+@Test
+public void testMatchOneHop() throws Exception {
+    assertCardinalities("MATCH (:Person)<--(:Forum)", 5, 6);
+}

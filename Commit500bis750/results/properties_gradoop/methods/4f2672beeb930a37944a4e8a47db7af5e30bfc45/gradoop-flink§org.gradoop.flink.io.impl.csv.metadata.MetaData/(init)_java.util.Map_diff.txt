@@ -1,0 +1,8 @@
+/**
+ * Constructor
+ *
+ * @param metaData contains entity tuple(type, label) and its property strings
+ */
+MetaData(Map<Tuple2<String, String>, List<PropertyMetaData>> metaData) {
+    this.metaData = metaData;
+}

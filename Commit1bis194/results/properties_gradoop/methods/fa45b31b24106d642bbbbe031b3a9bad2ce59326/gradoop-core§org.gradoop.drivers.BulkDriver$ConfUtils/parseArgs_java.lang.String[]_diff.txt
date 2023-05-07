@@ -1,0 +1,20 @@
+                                                                                                     | /**                                                                                                 
+                                                                                                     | * Parses the given arguments.                                                                       
+                                                                                                     | *                                                                                                   
+                                                                                                     | * @param args command line arguments                                                                
+                                                                                                     | * @return parsed command line                                                                       
+                                                                                                     | * @throws org.apache.commons.cli.ParseException                                                     
+                                                                                                     | */                                                                                                  
+                                                                                                     | public static CommandLine parseArgs(final String[] args) throws ParseException {                    
+                                                                                                     | if (args.length == 0) {                                                                             
+                                                                                                     | LOG.error("No arguments were provided (try -h)");                                                   
+                                                                                                     | }                                                                                                   
+                                                                                                     | CommandLineParser parser = new BasicParser();                                                       
+                                                                                                     | CommandLine cmd = parser.parse(OPTIONS, args, true);                                                
+                                                                                                     | if (cmd.hasOption(OPTION_HELP)) {                                                                   
+                                                                                                     | printHelp();                                                                                        
+                                                                                                     | return null;                                                                                        
+                                                                                                     | }                                                                                                   
+                                                                                                     | boolean sane = performSanityCheck(cmd);                                                             
+                                                                                                     | return sane ? cmd : null;                                                                           
+                                                                                                     | }                                                                                                   

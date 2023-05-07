@@ -1,0 +1,10 @@
+/**
+ * Creates a new Triple
+ * @param sourceVertex source vertex
+ * @param edge edge
+ * @param targetVertex target vertex
+ */
+public Triple(EPGMVertex sourceVertex, EPGMEdge edge, EPGMVertex targetVertex) {
+    super(sourceVertex, edge, targetVertex);
+    requireValidTriple(sourceVertex, edge, targetVertex);
+}

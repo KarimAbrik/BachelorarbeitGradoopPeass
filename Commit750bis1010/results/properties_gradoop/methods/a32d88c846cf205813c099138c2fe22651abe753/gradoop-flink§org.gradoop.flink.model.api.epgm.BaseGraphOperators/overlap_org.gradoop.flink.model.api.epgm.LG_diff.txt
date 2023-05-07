@@ -1,0 +1,10 @@
+/**
+ * Creates a new base graph containing the overlapping vertex and edge sets of this graph
+ * and the given graph. Vertex and edge equality is based on their identifiers.
+ *
+ * @param otherGraph base graph to compute overlap with
+ * @return base graph that contains all vertices and edges that exist in both input graphs
+ */
+default LG overlap(LG otherGraph) {
+    return callForGraph(new Overlap<>(), otherGraph);
+}

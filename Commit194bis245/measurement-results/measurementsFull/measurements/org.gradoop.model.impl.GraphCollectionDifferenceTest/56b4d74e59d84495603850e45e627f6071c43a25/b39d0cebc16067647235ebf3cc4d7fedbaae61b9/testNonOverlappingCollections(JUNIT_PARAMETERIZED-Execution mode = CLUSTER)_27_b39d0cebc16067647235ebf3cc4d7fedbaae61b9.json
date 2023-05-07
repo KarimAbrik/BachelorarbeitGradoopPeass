@@ -1,0 +1,68 @@
+{
+  "clazz" : "org.gradoop.model.impl.GraphCollectionDifferenceTest",
+  "methods" : [ {
+    "method" : "testNonOverlappingCollections",
+    "datacollectorResults" : [ {
+      "name" : "de.dagere.kopeme.datacollection.TimeDataCollectorNoGC",
+      "chunks" : [ ],
+      "results" : [ {
+        "value" : 1.0123832350999998E9,
+        "deviation" : 0.7968998305052105,
+        "min" : 5.87631809E8,
+        "max" : 3.257856742E9,
+        "warmup" : 0,
+        "iterations" : 10,
+        "repetitions" : 2,
+        "commit" : null,
+        "vmRunConfiguration" : {
+          "showStart" : false,
+          "executeBeforeClassInMeasurement" : false,
+          "redirectToTemp" : false,
+          "redirectToNull" : true,
+          "useKieker" : false
+        },
+        "parameters" : {
+          "JUNIT_PARAMETERIZED" : "Execution mode = CLUSTER"
+        },
+        "javaVersion" : "1.8.0_362",
+        "cpu" : "model name : Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz",
+        "memory" : "MemTotal: 16280544 kB",
+        "date" : 1680979619633,
+        "fulldata" : {
+          "fileName" : null,
+          "values" : [ {
+            "startTime" : 1680979609313,
+            "value" : 3257856742
+          }, {
+            "startTime" : 1680979612571,
+            "value" : 1169112450
+          }, {
+            "startTime" : 1680979613740,
+            "value" : 854544832
+          }, {
+            "startTime" : 1680979614595,
+            "value" : 783686277
+          }, {
+            "startTime" : 1680979615379,
+            "value" : 731253848
+          }, {
+            "startTime" : 1680979616110,
+            "value" : 591630504
+          }, {
+            "startTime" : 1680979616702,
+            "value" : 587631809
+          }, {
+            "startTime" : 1680979617289,
+            "value" : 712806949
+          }, {
+            "startTime" : 1680979618002,
+            "value" : 801275282
+          }, {
+            "startTime" : 1680979618804,
+            "value" : 634033658
+          } ]
+        }
+      } ]
+    } ]
+  } ]
+}

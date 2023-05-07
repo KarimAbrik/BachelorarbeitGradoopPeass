@@ -1,0 +1,23 @@
+@Override
+public LG execute(LG graph) {
+    //--------------------------------------------------------------------------
+    // compute new graphs
+    //--------------------------------------------------------------------------
+    DataSet<G> graphHead = graph.getGraphHead().map(new Clone<>());
+    DataSet<GradoopId> graphId = graphHead.map(new Id<>());
+    //--------------------------------------------------------------------------
+    // compute new vertices
+    //--------------------------------------------------------------------------
+    DataSet<Tuple2<V, GradoopId>> vertexTuple = graph.getVertices().map(new PairElementWithNewId<>());
+    DataSet<Tuple2<GradoopId, GradoopId>> vertexIdTuple = vertexTuple.map(new Value0Of2ToId<>());
+    DataSet<V> vertices = vertexTuple.map(new ElementIdUpdater<>()).//update graph ids
+    map(new ElementGraphUpdater<>()).withBroadcastSet(graphId, ElementGraphUpdater.GRAPHID);
+    //--------------------------------------------------------------------------
+    // compute new edges
+    //--------------------------------------------------------------------------
+    DataSet<E> edges = graph.getEdges().map(new Clone<>()).//update source vertex ids
+    join(vertexIdTuple).where(new SourceId<>()).equalTo(0).with(new EdgeSourceUpdateJoin<>()).//update target vertex ids
+    join(vertexIdTuple).where(new TargetId<>()).equalTo(0).with(new EdgeTargetUpdateJoin<>()).//update graph ids
+    map(new ElementGraphUpdater<>()).withBroadcastSet(graphId, ElementGraphUpdater.GRAPHID);
+    return graph.getFactory().fromDataSets(graphHead, vertices, edges);
+}

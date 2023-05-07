@@ -1,0 +1,8 @@
+/**
+ * Unary function to apply the projection on the vertices
+ *
+ * @return unary vertex to vertex function
+ */
+protected UnaryFunction<VD, VD> getVertexFunc() {
+    return this.vertexFunc;
+}

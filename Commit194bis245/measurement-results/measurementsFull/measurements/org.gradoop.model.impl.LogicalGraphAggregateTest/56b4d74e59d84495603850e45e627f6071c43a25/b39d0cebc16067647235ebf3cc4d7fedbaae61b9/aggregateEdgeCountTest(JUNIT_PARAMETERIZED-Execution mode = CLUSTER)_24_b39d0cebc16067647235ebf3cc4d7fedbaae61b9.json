@@ -1,0 +1,68 @@
+{
+  "clazz" : "org.gradoop.model.impl.LogicalGraphAggregateTest",
+  "methods" : [ {
+    "method" : "aggregateEdgeCountTest",
+    "datacollectorResults" : [ {
+      "name" : "de.dagere.kopeme.datacollection.TimeDataCollectorNoGC",
+      "chunks" : [ ],
+      "results" : [ {
+        "value" : 4.5758775770000005E8,
+        "deviation" : 0.5713305682272467,
+        "min" : 2.20358595E8,
+        "max" : 1.115122176E9,
+        "warmup" : 0,
+        "iterations" : 10,
+        "repetitions" : 2,
+        "commit" : null,
+        "vmRunConfiguration" : {
+          "showStart" : false,
+          "executeBeforeClassInMeasurement" : false,
+          "redirectToTemp" : false,
+          "redirectToNull" : true,
+          "useKieker" : false
+        },
+        "parameters" : {
+          "JUNIT_PARAMETERIZED" : "Execution mode = CLUSTER"
+        },
+        "javaVersion" : "1.8.0_362",
+        "cpu" : "model name : Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz",
+        "memory" : "MemTotal: 16280544 kB",
+        "date" : 1680980342875,
+        "fulldata" : {
+          "fileName" : null,
+          "values" : [ {
+            "startTime" : 1680980338108,
+            "value" : 1115122176
+          }, {
+            "startTime" : 1680980339223,
+            "value" : 560368684
+          }, {
+            "startTime" : 1680980339784,
+            "value" : 446605047
+          }, {
+            "startTime" : 1680980340230,
+            "value" : 572148945
+          }, {
+            "startTime" : 1680980340802,
+            "value" : 448134484
+          }, {
+            "startTime" : 1680980341251,
+            "value" : 352108950
+          }, {
+            "startTime" : 1680980341603,
+            "value" : 329739021
+          }, {
+            "startTime" : 1680980341933,
+            "value" : 292545624
+          }, {
+            "startTime" : 1680980342225,
+            "value" : 238746051
+          }, {
+            "startTime" : 1680980342464,
+            "value" : 220358595
+          } ]
+        }
+      } ]
+    } ]
+  } ]
+}

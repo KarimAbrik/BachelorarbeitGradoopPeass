@@ -1,0 +1,6 @@
+@Override
+public E map(T tuple) throws Exception {
+    E vertex = setAggregatePropertiesAndKeys(reuse, tuple);
+    vertex.setId(tuple.getField(GroupingConstants.VERTEX_TUPLE_SUPERID));
+    return vertex;
+}

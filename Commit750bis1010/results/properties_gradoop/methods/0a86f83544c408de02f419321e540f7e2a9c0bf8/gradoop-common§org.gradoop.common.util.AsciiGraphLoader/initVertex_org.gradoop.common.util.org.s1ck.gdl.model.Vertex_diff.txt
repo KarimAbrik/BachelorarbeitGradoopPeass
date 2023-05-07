@@ -1,0 +1,18 @@
+/**
+ * Creates a new Vertex from the GDL Loader or updates an existing one.
+ *
+ * @param v vertex from GDL Loader
+ * @return vertex
+ */
+private V initVertex(org.s1ck.gdl.model.Vertex v) {
+    V vertex;
+    if (!vertexIds.containsKey(v.getId())) {
+        vertex = elementFactoryProvider.getVertexFactory().createVertex(v.getLabel(), Properties.createFromMap(v.getProperties()), createGradoopIdSet(v));
+        vertexIds.put(v.getId(), vertex.getId());
+        vertices.put(vertex.getId(), vertex);
+    } else {
+        vertex = vertices.get(vertexIds.get(v.getId()));
+        vertex.setGraphIds(createGradoopIdSet(v));
+    }
+    return vertex;
+}

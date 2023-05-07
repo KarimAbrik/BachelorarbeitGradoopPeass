@@ -1,0 +1,18 @@
+/**
+ * Escapes the {@code escapedCharacters} in a string.
+ *
+ * @param string string to be escaped
+ * @param escapedCharacters characters to be escaped
+ * @return escaped string
+ */
+public static String escape(String string, Set<Character> escapedCharacters) {
+    StringBuilder sb = new StringBuilder();
+    for (char c : string.toCharArray()) {
+        if (escapedCharacters.contains(c)) {
+            sb.append(escapeCharacter(c));
+        } else {
+            sb.append(c);
+        }
+    }
+    return sb.toString();
+}

@@ -1,0 +1,10 @@
+/**
+ * Sets the aggregate values
+ *
+ * @param aggregateValues aggregate value list
+ */
+public void setAggregateValues(PropertyValueList aggregateValues) {
+    List<PropertyValue> aggregate = new ArrayList<>();
+    aggregateValues.iterator().forEachRemaining(aggregate::add);
+    setAggregateValues(aggregate);
+}

@@ -1,0 +1,21 @@
+@Override
+public void write(TemporalGraphCollection temporalGraphCollection, boolean overwrite) {
+    FileSystem.WriteMode writeMode = overwrite ? FileSystem.WriteMode.OVERWRITE : FileSystem.WriteMode.NO_OVERWRITE;
+    DataSet<Tuple3<String, String, String>> metaData;
+    CSVMetaDataSource source = new CSVMetaDataSource();
+    if (!reuseMetadata()) {
+        metaData = source.tuplesFromCollection(temporalGraphCollection);
+    } else {
+        metaData = source.readDistributed(metaDataPath, getConfig());
+    }
+    DataSet<TemporalCSVGraphHead> csvGraphHeads = temporalGraphCollection.getGraphHeads().map(new TemporalGraphHeadToTemporalCSVGraphHead()).withBroadcastSet(metaData, BC_METADATA);
+    DataSet<TemporalCSVVertex> csvVertices = temporalGraphCollection.getVertices().map(new TemporalVertexToTemporalCSVVertex()).withBroadcastSet(metaData, BC_METADATA);
+    DataSet<TemporalCSVEdge> csvEdges = temporalGraphCollection.getEdges().map(new TemporalEdgeToTemporalCSVEdge()).withBroadcastSet(metaData, BC_METADATA);
+    // Write metadata only if the path is not the same or reuseMetadata is false.
+    if (!getMetaDataPath().equals(metaDataPath) || !reuseMetadata()) {
+        new CSVMetaDataSink().writeDistributed(getMetaDataPath(), metaData, writeMode);
+    }
+    csvGraphHeads.writeAsCsv(getGraphHeadCSVPath(), CSVConstants.ROW_DELIMITER, CSVConstants.TOKEN_DELIMITER, writeMode);
+    csvVertices.writeAsCsv(getVertexCSVPath(), CSVConstants.ROW_DELIMITER, CSVConstants.TOKEN_DELIMITER, writeMode);
+    csvEdges.writeAsCsv(getEdgeCSVPath(), CSVConstants.ROW_DELIMITER, CSVConstants.TOKEN_DELIMITER, writeMode);
+}

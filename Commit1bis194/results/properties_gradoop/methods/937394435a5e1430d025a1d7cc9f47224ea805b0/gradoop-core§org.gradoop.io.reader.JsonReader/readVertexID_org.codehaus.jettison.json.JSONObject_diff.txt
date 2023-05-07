@@ -1,0 +1,10 @@
+/**
+ * Reads the vertex id from the json object.
+ *
+ * @param json json object
+ * @return vertex id
+ * @throws JSONException
+ */
+private Long readVertexID(final JSONObject json) throws JSONException {
+    return json.getLong(JsonWriter.VERTEX_ID);
+}

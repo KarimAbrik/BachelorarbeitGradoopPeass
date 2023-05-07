@@ -1,0 +1,5 @@
+@Test
+public void testGetEdgeById() throws Exception {
+    Edge expected = GDL_HANDLER.getEdgeCache().get("e1");
+    assertTrue(QUERY_HANDLER.getEdgeById(expected.getId()).equals(expected));
+}

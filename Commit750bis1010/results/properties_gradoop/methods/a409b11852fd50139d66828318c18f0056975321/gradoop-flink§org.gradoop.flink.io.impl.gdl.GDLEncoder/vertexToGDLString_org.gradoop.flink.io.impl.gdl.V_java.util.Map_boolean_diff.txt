@@ -1,0 +1,17 @@
+/**
+ * Returns the gdl formatted vertex including the properties and the label on first occurrence
+ * or otherwise just the variable name.
+ *
+ * @param vertex The vertex that should be formatted.
+ * @param idToVertexName Maps GradoopId of a vertex to a string that represents the gdl
+ *                       variable name
+ * @param firstOccurrence Is it the first occurrence of the vertex in all graphs?
+ * @return A GDL formatted vertex string.
+ */
+private String vertexToGDLString(V vertex, Map<GradoopId, String> idToVertexName, boolean firstOccurrence) {
+    if (firstOccurrence) {
+        return String.format("(%s:%s %s)", idToVertexName.get(vertex.getId()), vertex.getLabel(), propertiesToGDLString(vertex.getProperties()));
+    } else {
+        return String.format("(%s)", idToVertexName.get(vertex.getId()));
+    }
+}

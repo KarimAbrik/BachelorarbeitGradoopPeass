@@ -1,0 +1,11 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public Put writeGraphIds(Put put, EPGMGraphElement graphElement) throws IOException {
+    if (graphElement.getGraphCount() > 0) {
+        byte[] graphsBytes = Writables.getBytes(graphElement.getGraphIds());
+        put = put.add(CF_META_BYTES, COL_GRAPHS_BYTES, graphsBytes);
+    }
+    return put;
+}

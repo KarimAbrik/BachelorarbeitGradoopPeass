@@ -1,0 +1,6 @@
+@Override
+public IdWithLabel map(E edge) throws Exception {
+    reuseTuple.setId(edge.getTargetId());
+    reuseTuple.setLabel(edge.getLabel());
+    return reuseTuple;
+}

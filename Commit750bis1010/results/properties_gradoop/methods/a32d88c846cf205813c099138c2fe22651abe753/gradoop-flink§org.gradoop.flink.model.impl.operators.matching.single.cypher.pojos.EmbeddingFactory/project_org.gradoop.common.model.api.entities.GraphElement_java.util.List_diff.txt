@@ -1,0 +1,21 @@
+/**
+ * Projects the elements properties into a list of property values. Only those properties
+ * specified by their key will be kept. Properties that are specified but not present at the
+ * element will be adopted as {@link PropertyValue#NULL_VALUE}.
+ *
+ * @param element element of which the properties will be projected
+ * @param propertyKeys properties that will be projected from the specified element
+ * @return projected property values
+ */
+private static PropertyValue[] project(GraphElement element, List<String> propertyKeys) {
+    PropertyValue[] propertyValues = new PropertyValue[propertyKeys.size()];
+    int i = 0;
+    for (String propertyKey : propertyKeys) {
+        if (propertyKey.equals("__label__")) {
+            propertyValues[i++] = PropertyValue.create(element.getLabel());
+        } else {
+            propertyValues[i++] = element.hasProperty(propertyKey) ? element.getPropertyValue(propertyKey) : PropertyValue.NULL_VALUE;
+        }
+    }
+    return propertyValues;
+}

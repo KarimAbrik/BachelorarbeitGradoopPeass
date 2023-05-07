@@ -1,0 +1,19 @@
+/**                                                                                                    /**                                                                                                 
+* Checks if the given arguments make sense.                                                            * Checks if the given arguments make sense.                                                         
+*                                                                                                      *                                                                                                   
+* @param cmd command line                                                                              * @param cmd command line                                                                           
+*/                                                                                                     */                                                                                                  
+private static void performSanityCheck(final CommandLine cmd) {                                        private static void performSanityCheck(final CommandLine cmd) {                                     
+if (!cmd.hasOption(OPTION_WORKERS)) {                                                                  if (!cmd.hasOption(OPTION_WORKERS)) {                                                               
+throw new IllegalArgumentException("Chose the number of workers (-w)");                                throw new IllegalArgumentException("Chose the number of workers (-w)");                             
+}                                                                                                      }                                                                                                   
+if (!cmd.hasOption(OPTION_GRAPH_INPUT_PATH)) {                                                         if (!cmd.hasOption(OPTION_GRAPH_INPUT_PATH)) {                                                      
+throw new IllegalArgumentException("Chose the graph input path (-gip");                                throw new IllegalArgumentException("Chose the graph input path (-gip");                             
+}                                                                                                      }                                                                                                   
+if (!cmd.hasOption(OPTION_GRAPH_OUTPUT_PATH)) {                                                        if (!cmd.hasOption(OPTION_GRAPH_OUTPUT_PATH)) {                                                     
+throw new IllegalArgumentException("Chose the graph output path (-gop");                               throw new IllegalArgumentException("Chose the graph output path (-gop");                            
+}                                                                                                      }                                                                                                   
+                                                                                                     | if (!cmd.hasOption(OPTION_SORT_TABLE_NAME)) {                                                       
+                                                                                                     | throw new IllegalArgumentException("Chose the sort table name (-stn");                              
+}                                                                                                      }                                                                                                   
+                                                                                                     | }                                                                                                   

@@ -1,0 +1,21 @@
+/**
+ * Serializes an edge to an edge identifier in the following format:
+ * <p>
+ * <edge-identifier> ::= <edgeId><otherID><label>
+ *
+ * @param edge   edge to create identifier for
+ * @param isOutgoing true, if the edge is an outgoing edge, false if
+ *                   incoming
+ * @return byte representation of the edge identifier
+ */
+private byte[] createEdgeIdentifier(final EPGMEdge edge, boolean isOutgoing) throws IOException {
+    // initially only GradoopId
+    byte[] edgeIdentifier = Writables.getBytes(edge.getId());
+    // extend by source or vertex id
+    byte[] otherVertexIdBytes = Writables.getBytes(isOutgoing ? edge.getTargetVertexId() : edge.getSourceVertexId());
+    ArrayUtils.addAll(edgeIdentifier, otherVertexIdBytes);
+    // extend by label
+    byte[] labelBytes = Bytes.toBytes(edge.getLabel());
+    ArrayUtils.addAll(edgeIdentifier, labelBytes);
+    return edgeIdentifier;
+}

@@ -1,0 +1,12 @@
+/**
+ * Creates  a new node.
+ *
+ * @param leftChild left input plan node
+ * @param rightChild right right input plan node
+ * @param joinVariables query variables to join the inputs on
+ * @param vertexStrategy morphism setting for vertices
+ * @param edgeStrategy morphism setting for edges
+ */
+public JoinEmbeddingsNode(PlanNode leftChild, PlanNode rightChild, List<String> joinVariables, MatchStrategy vertexStrategy, MatchStrategy edgeStrategy) {
+    this(leftChild, rightChild, joinVariables, vertexStrategy, edgeStrategy, JoinOperatorBase.JoinHint.OPTIMIZER_CHOOSES);
+}

@@ -1,0 +1,11 @@
+// ---------------------------------------------------------------------------
+//  EPGMVertex methods
+// ---------------------------------------------------------------------------
+/**
+ * Returns all vertices contained in the ASCII graph.
+ *
+ * @return vertices
+ */
+public Collection<V> getVertices() {
+    return new ImmutableSet.Builder<V>().addAll(vertices.values()).build();
+}

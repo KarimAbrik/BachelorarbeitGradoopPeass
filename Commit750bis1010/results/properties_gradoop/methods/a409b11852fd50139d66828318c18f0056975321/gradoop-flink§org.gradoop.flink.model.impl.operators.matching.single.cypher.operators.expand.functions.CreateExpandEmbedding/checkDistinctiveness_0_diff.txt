@@ -1,0 +1,21 @@
+/**
+ * Checks the distinct criteria for the expansion
+ * @param input the base part of the expansion
+ * @param edge edge along which we expand
+ * @return true if distinct criteria hold for the expansion
+ */
+private boolean checkDistinctiveness(Embedding input, EdgeWithTiePoint edge) {
+    GradoopId edgeId = edge.getId();
+    GradoopId tgt = edge.getTarget();
+    for (int i : distinctVertices) {
+        if (input.getIdAsList(i).contains(tgt) && i != closingColumn) {
+            return false;
+        }
+    }
+    for (int i : distinctEdges) {
+        if (input.getIdAsList(i).contains(edgeId)) {
+            return false;
+        }
+    }
+    return true;
+}

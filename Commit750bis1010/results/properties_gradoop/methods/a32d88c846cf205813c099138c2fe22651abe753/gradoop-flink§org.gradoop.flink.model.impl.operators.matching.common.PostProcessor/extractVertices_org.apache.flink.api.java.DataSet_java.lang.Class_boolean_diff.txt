@@ -1,0 +1,14 @@
+/**
+ * Filters and casts vertices from a given set of {@link Element}
+ *
+ * @param elements      elements
+ * @param vertexType    vertex type
+ * @param mayOverlap    vertices may be contained in multiple graphs
+ * @param <V> The produced vertex type.
+ * @return vertices
+ */
+private static <V extends Vertex> DataSet<V> extractVertices(DataSet<Element> elements, Class<V> vertexType, boolean mayOverlap) {
+    DataSet<V> result = elements.filter(new IsInstance<>(vertexType)).map(new Cast<>(vertexType)).returns(TypeExtractor.createTypeInfo(vertexType));
+    // TODO: Replace two group-by statements with a combinable reduce function.
+    return mayOverlap ? result.groupBy(new Id<>()).combineGroup(new MergedGraphIds<>()).groupBy(new Id<>()).reduceGroup(new MergedGraphIds<>()) : result;
+}

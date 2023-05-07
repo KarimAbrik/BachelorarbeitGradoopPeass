@@ -1,0 +1,14 @@
+/**
+ * Converts a byte array to an int value (Unsafe version)
+ *
+ * @param bytes byte array
+ * @param offset offset into array
+ * @return the int value
+ */
+public static int toIntUnsafe(byte[] bytes, int offset) {
+    if (LexicographicalComparerHolder.UnsafeComparer.LITTLE_ENDIAN) {
+        return Integer.reverseBytes(LexicographicalComparerHolder.UnsafeComparer.UNSAFE.getInt(bytes, (long) offset + LexicographicalComparerHolder.UnsafeComparer.BYTE_ARRAY_BASE_OFFSET));
+    } else {
+        return LexicographicalComparerHolder.UnsafeComparer.UNSAFE.getInt(bytes, (long) offset + LexicographicalComparerHolder.UnsafeComparer.BYTE_ARRAY_BASE_OFFSET);
+    }
+}

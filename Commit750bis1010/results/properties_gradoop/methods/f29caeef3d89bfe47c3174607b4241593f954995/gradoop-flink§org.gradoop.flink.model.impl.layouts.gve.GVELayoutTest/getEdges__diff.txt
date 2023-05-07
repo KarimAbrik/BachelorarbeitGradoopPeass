@@ -1,0 +1,4 @@
+@Test
+public void getEdges() throws Exception {
+    GradoopTestUtils.validateGraphElementCollections(Sets.newHashSet(e0, e1), from(asList(g0, g1), asList(v0, v1, v2), asList(e0, e1)).getEdges().collect());
+}

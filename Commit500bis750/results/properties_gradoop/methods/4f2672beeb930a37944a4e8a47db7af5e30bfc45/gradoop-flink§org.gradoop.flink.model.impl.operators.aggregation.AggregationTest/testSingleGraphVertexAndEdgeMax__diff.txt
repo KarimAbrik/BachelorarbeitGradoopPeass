@@ -1,0 +1,12 @@
+@Test
+public void testSingleGraphVertexAndEdgeMax() throws Exception {
+    LogicalGraph graph = getLoaderFromString("org:Ga[" + "(:Va{vp : 0.5f})-[:ea{ep : 2}]->(:Vb{vp : 3.1f})" + "(:Vc{vp : 0.33f})-[:eb]->(:Vd{vp : 0.0f})" + "]").getLogicalGraphByVariable("org");
+    MaxVertexProperty maxVertexProperty = new MaxVertexProperty(VERTEX_PROPERTY);
+    MaxEdgeProperty maxEdgeProperty = new MaxEdgeProperty(EDGE_PROPERTY);
+    graph = graph.aggregate(maxVertexProperty).aggregate(maxEdgeProperty);
+    EPGMGraphHead graphHead = graph.getGraphHead().collect().get(0);
+    assertTrue("vertex maximum not set", graphHead.hasProperty(maxEdgeProperty.getAggregatePropertyKey()));
+    assertEquals(3.1f, graphHead.getPropertyValue(maxVertexProperty.getAggregatePropertyKey()).getFloat(), 0.00001f);
+    assertTrue("edge maximum not set", graphHead.hasProperty(maxVertexProperty.getAggregatePropertyKey()));
+    assertEquals(2, graphHead.getPropertyValue(maxEdgeProperty.getAggregatePropertyKey()).getInt());
+}

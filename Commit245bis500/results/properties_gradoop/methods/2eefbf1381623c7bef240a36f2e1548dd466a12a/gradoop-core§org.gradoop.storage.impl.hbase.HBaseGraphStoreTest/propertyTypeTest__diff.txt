@@ -1,0 +1,63 @@
+/**
+ * Checks if property values are read correctly.
+ */
+@Test
+public void propertyTypeTest() {
+    EPGMStore<VertexPojo, EdgePojo, GraphHeadPojo> graphStore = createEmptyEPGMStore();
+    PersistentVertexFactory<VertexPojo, EdgePojo, HBaseVertex> persistentVertexFactory = new HBaseVertexFactory();
+    EPGMVertexFactory<VertexPojo> vertexFactory = new VertexPojoFactory();
+    final int propertyCount = 6;
+    final String keyBoolean = "key1";
+    final boolean valueBoolean = true;
+    final String keyInteger = "key2";
+    final int valueInteger = 23;
+    final String keyLong = "key3";
+    final long valueLong = 42L;
+    final String keyFloat = "key4";
+    final float valueFloat = 13.37f;
+    final String keyDouble = "key5";
+    final double valueDouble = 3.14d;
+    final String keyString = "key6";
+    final String valueString = "value";
+    final GradoopId vertexID = GradoopId.fromLong(0L);
+    final String label = "A";
+    final Map<String, Object> properties = new HashMap<>();
+    properties.put(keyBoolean, valueBoolean);
+    properties.put(keyInteger, valueInteger);
+    properties.put(keyLong, valueLong);
+    properties.put(keyFloat, valueFloat);
+    properties.put(keyDouble, valueDouble);
+    properties.put(keyString, valueString);
+    final Set<EdgePojo> outEdges = Sets.newHashSetWithExpectedSize(0);
+    final Set<EdgePojo> inEdges = Sets.newHashSetWithExpectedSize(0);
+    final GradoopIds graphs = new GradoopIds();
+    // write to store
+    graphStore.writeVertex(persistentVertexFactory.createVertex(vertexFactory.createVertex(vertexID, label, properties, graphs), outEdges, inEdges));
+    graphStore.flush();
+    // read from store
+    EPGMVertex v = graphStore.readVertex(vertexID);
+    List<String> propertyKeys = Lists.newArrayList(v.getPropertyKeys());
+    assertEquals(propertyCount, propertyKeys.size());
+    for (String propertyKey : propertyKeys) {
+        switch(propertyKey) {
+            case keyBoolean:
+                assertEquals(valueBoolean, v.getProperty(propertyKey));
+                break;
+            case keyInteger:
+                assertEquals(valueInteger, v.getProperty(keyInteger));
+                break;
+            case keyLong:
+                assertEquals(valueLong, v.getProperty(keyLong));
+                break;
+            case keyFloat:
+                assertEquals(valueFloat, v.getProperty(keyFloat));
+                break;
+            case keyDouble:
+                assertEquals(valueDouble, v.getProperty(keyDouble));
+                break;
+            case keyString:
+                assertEquals(valueString, v.getProperty(keyString));
+                break;
+        }
+    }
+}

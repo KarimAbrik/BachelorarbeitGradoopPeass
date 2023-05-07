@@ -1,0 +1,5 @@
+@Test
+public void testPropertyListSerialization() throws Exception {
+    Properties pIn = Properties.createFromMap(GradoopTestUtils.SUPPORTED_PROPERTIES);
+    assertEquals("Property Lists were not equal", pIn, GradoopFlinkTestUtils.writeAndRead(pIn, getExecutionEnvironment()));
+}

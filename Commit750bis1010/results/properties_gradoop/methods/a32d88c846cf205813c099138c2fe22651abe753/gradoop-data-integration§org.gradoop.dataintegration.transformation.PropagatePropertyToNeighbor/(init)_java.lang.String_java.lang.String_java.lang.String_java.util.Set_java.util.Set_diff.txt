@@ -1,0 +1,21 @@
+/**
+ * The constructor for the propagate property transformation. Additionally it is possible to
+ * define which edge labels can be used for propagation and / or which vertices could be target
+ * of the Properties.
+ *
+ * @param vertexLabel             The label of the vertex the property to propagate is part of.
+ * @param propertyKey             The property key of the property to propagate.
+ * @param targetVertexPropertyKey The property key where the PropertyValue list should be stored
+ *                                at the target vertices.
+ * @param propagatingEdges        Only edges with the inserted labels are used. If all labels
+ *                                are sufficient use {@code null}.
+ * @param targetVertexLabels      Only vertices with the inserted labels will store the
+ *                                propagated values. If all vertices should, use {@code null}.
+ */
+public PropagatePropertyToNeighbor(String vertexLabel, String propertyKey, String targetVertexPropertyKey, Set<String> propagatingEdges, Set<String> targetVertexLabels) {
+    this.vertexLabel = Objects.requireNonNull(vertexLabel);
+    this.propertyKey = Objects.requireNonNull(propertyKey);
+    this.targetVertexPropertyKey = Objects.requireNonNull(targetVertexPropertyKey);
+    this.propagatingEdgeLabels = propagatingEdges;
+    this.targetVertexLabels = targetVertexLabels;
+}

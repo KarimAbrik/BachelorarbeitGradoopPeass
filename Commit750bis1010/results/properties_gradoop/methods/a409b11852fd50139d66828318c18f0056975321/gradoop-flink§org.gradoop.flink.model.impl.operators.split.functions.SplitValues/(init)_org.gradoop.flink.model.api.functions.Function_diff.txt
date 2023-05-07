@@ -1,0 +1,8 @@
+/**
+ * Constructor
+ *
+ * @param function user-defined function to determine split values
+ */
+public SplitValues(Function<V, List<PropertyValue>> function) {
+    this.function = checkNotNull(function);
+}

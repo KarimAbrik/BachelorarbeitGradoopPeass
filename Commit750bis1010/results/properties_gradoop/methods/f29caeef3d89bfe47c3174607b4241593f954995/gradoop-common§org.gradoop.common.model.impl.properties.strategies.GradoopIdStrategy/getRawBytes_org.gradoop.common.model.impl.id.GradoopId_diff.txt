@@ -1,0 +1,8 @@
+@Override
+public byte[] getRawBytes(GradoopId value) {
+    byte[] valueBytes = value.toByteArray();
+    byte[] rawBytes = new byte[PropertyValue.OFFSET + GradoopId.ID_SIZE];
+    rawBytes[0] = getRawType();
+    Bytes.putBytes(rawBytes, PropertyValue.OFFSET, valueBytes, 0, valueBytes.length);
+    return rawBytes;
+}

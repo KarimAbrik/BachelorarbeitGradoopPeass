@@ -1,0 +1,4 @@
+@Override
+public GraphCollectionLayout fromGraphLayout(LogicalGraphLayout graph) {
+    return fromDataSets(graph.getGraphHead(), graph.getVertices(), graph.getEdges());
+}

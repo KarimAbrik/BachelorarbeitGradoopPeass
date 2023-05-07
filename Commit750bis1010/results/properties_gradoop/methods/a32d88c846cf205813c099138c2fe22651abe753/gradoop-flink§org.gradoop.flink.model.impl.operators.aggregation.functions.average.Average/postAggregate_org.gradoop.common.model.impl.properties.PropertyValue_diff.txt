@@ -1,0 +1,32 @@
+/**
+ * Calculate the average from the internally used aggregate value.
+ *
+ * @param result The result of the aggregation step.
+ * @return The average value (or null, if there were no elements to get the average of).
+ * @throws IllegalArgumentException if the previous result had an invalid format.
+ */
+@Override
+default PropertyValue postAggregate(PropertyValue result) {
+    if (!Objects.requireNonNull(result).isList()) {
+        throw new IllegalArgumentException("The aggregate value is expected to be a List.");
+    }
+    List<PropertyValue> value = result.getList();
+    if (value.size() != 2) {
+        throw new IllegalArgumentException("The aggregate value list is expected to have size 2.");
+    }
+    if (!value.get(0).isNumber() || !value.get(1).isLong()) {
+        throw new IllegalArgumentException("The aggregate value list contains unsupported types.");
+    }
+    // Convert the two list values to a double.
+    // The first was some unknown number type, the second a long.
+    double sum = ((Number) value.get(0).getObject()).doubleValue();
+    long count = value.get(1).getLong();
+    if (count < 0) {
+        throw new IllegalArgumentException("Invalid number of elements " + count + ", expected value greater than zero.");
+    } else if (count == 0) {
+        return PropertyValue.NULL_VALUE;
+    } else {
+        result.setDouble(sum / count);
+        return result;
+    }
+}

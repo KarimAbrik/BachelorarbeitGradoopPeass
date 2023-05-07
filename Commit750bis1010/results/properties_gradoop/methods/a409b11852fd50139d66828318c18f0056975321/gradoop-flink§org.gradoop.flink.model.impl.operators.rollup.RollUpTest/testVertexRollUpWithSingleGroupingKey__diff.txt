@@ -1,0 +1,20 @@
+/**
+ * Executes a rollUp on vertices using a single grouping key and checks if the result
+ * is correct.
+ *
+ * @throws Exception If the execution fails.
+ */
+@Test
+public void testVertexRollUpWithSingleGroupingKey() throws Exception {
+    FlinkAsciiGraphLoader loader = getSocialNetworkLoader();
+    LogicalGraph input = loader.getGraphCollectionByVariables("g0", "g1", "g2").reduce(new ReduceCombination<>());
+    //expected
+    loader.initDatabaseFromString("g0 {vertexRollUpGroupingKeys:\"age\"}[" + "(v0 {count:1L,age:20})" + "(v1 {count:2L,age:30})" + "(v2 {count:2L,age:35})" + "(v3 {count:1L,age:40})" + "(v2)-[e0]->(v0)" + "(v1)-[e1]->(v0)" + "(v3)-[e2]->(v1)" + "(v0)-[e3]->(v1)" + "(v2)-[e4]->(v1)" + "(v2)-[e5]->(v3)" + "(v1)-[e6]->(v1)" + "(v1)-[e7]->(v3)" + "]");
+    GraphCollection expected = loader.getGraphCollection();
+    List<String> vertexGK = Collections.singletonList("age");
+    List<AggregateFunction> vertexAGG = Collections.singletonList(new Count("count"));
+    List<String> edgeGK = Collections.emptyList();
+    List<AggregateFunction> edgeAGG = Collections.emptyList();
+    GraphCollection output = input.groupVerticesByRollUp(vertexGK, vertexAGG, edgeGK, edgeAGG);
+    collectAndAssertTrue(output.equalsByGraphData(expected));
+}

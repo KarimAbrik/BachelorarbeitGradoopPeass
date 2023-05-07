@@ -1,0 +1,22 @@
+/**
+ * Test the coGroup function using some values.
+ *
+ * @throws Exception on failure
+ */
+@Test
+public void testCoGroup() throws Exception {
+    VertexFactory<EPGMVertex> vertexFactory = getConfig().getLogicalGraphFactory().getVertexFactory();
+    EPGMVertex v1 = vertexFactory.createVertex("a");
+    Tuple2<GradoopId, PropertyValue> property1 = Tuple2.of(v1.getId(), PropertyValue.create(1L));
+    EPGMVertex v2 = vertexFactory.createVertex("a");
+    EPGMVertex v3 = vertexFactory.createVertex("b");
+    Tuple2<GradoopId, PropertyValue> property2 = Tuple2.of(v3.getId(), PropertyValue.create(1L));
+    List<EPGMVertex> input = Arrays.asList(v1, v2, v3);
+    List<EPGMVertex> result = getExecutionEnvironment().fromElements(property1, property2).coGroup(getExecutionEnvironment().fromCollection(input)).where(0).equalTo(new Id<>()).with(new AccumulatePropagatedValues<>("k", Collections.singleton("a"))).collect();
+    v1.setProperty("k", PropertyValue.create(Collections.singletonList(PropertyValue.create(1L))));
+    List<EPGMVertex> expected = Arrays.asList(v1, v2, v3);
+    Comparator<EPGMVertex> comparator = Comparator.comparing(EPGMVertex::getId);
+    expected.sort(comparator);
+    result.sort(comparator);
+    assertArrayEquals(expected.toArray(), result.toArray());
+}

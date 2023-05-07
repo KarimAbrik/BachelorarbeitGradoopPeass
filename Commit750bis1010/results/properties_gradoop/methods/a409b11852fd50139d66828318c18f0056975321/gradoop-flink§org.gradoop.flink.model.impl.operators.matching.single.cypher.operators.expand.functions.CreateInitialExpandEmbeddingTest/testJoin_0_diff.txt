@@ -1,0 +1,27 @@
+/**
+ * Tests the join of the edge with an Embedding
+ * (m, e0, n) x edge
+ *
+ * @param edge the edge the join is performed with
+ * @param distinctVertices distinct vertex columns of the base embedding
+ * @param distinctEdges distinct edge columns of the base embedding
+ * @param closingColumn closing column
+ * @param isResult if true it is expected that the join yields exactly one result, 0 otherwise
+ * @throws Exception on failure
+ */
+private void testJoin(Embedding edge, List<Integer> distinctVertices, List<Integer> distinctEdges, int closingColumn, boolean isResult) throws Exception {
+    Embedding base = new Embedding();
+    base.add(m);
+    base.add(e0);
+    base.add(n);
+    EdgeWithTiePoint edgeTuple = new EdgeWithTiePoint(edge);
+    CreateExpandEmbedding op = new CreateExpandEmbedding(distinctVertices, distinctEdges, closingColumn);
+    List<ExpandEmbedding> results = new ArrayList<>();
+    op.join(base, edgeTuple, new ListCollector<>(results));
+    assertEquals(isResult ? 1 : 0, results.size());
+    if (isResult) {
+        assertEquals(base, results.get(0).getBase());
+        assertArrayEquals(new GradoopId[] { edge.getId(1) }, results.get(0).getPath());
+        assertEquals(edge.getId(2), results.get(0).getEnd());
+    }
+}

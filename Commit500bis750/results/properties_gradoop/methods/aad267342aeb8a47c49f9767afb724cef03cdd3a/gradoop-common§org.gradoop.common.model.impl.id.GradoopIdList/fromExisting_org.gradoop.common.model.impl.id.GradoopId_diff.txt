@@ -1,0 +1,9 @@
+/**                                                                                                  |                                                                                                     
+* Creates a new instance from multiple GradoopIDs.                                                   |                                                                                                     
+*                                                                                                    |                                                                                                     
+* @param ids array of gradoop ids                                                                    |                                                                                                     
+* @return gradoop id set                                                                             |                                                                                                     
+*/                                                                                                   |                                                                                                     
+public static GradoopIdList fromExisting(GradoopId... ids) {                                         |                                                                                                     
+return fromExisting(Arrays.asList(ids));                                                             |                                                                                                     
+}                                                                                                    |                                                                                                     

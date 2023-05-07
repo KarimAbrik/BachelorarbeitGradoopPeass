@@ -1,0 +1,15 @@
+/**
+ * Put an int value out to the specified byte array position (Unsafe).
+ *
+ * @param bytes the byte array
+ * @param offset position in the array
+ * @param val int to write out
+ * @return incremented offset
+ */
+private static int putIntUnsafe(byte[] bytes, int offset, int val) {
+    if (LexicographicalComparerHolder.UnsafeComparer.LITTLE_ENDIAN) {
+        val = Integer.reverseBytes(val);
+    }
+    LexicographicalComparerHolder.UnsafeComparer.UNSAFE.putInt(bytes, (long) offset + LexicographicalComparerHolder.UnsafeComparer.BYTE_ARRAY_BASE_OFFSET, val);
+    return offset + SIZEOF_INT;
+}

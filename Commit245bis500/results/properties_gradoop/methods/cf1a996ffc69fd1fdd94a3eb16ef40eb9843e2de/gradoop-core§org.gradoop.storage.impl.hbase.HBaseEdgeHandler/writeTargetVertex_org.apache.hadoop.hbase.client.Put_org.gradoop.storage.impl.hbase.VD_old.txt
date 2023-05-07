@@ -1,0 +1,7 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public Put writeTargetVertex(Put put, VD vertexData) {
+    return put.add(CF_META_BYTES, COL_TARGET_VERTEX_BYTES, createVertexIdentifier(vertexData));
+}

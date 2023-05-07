@@ -1,0 +1,8 @@
+@Override
+public Tuple3<V, GradoopId, GradoopId> map(E e) {
+    reuse.f0.setId(GradoopId.get());
+    reuse.f0.setProperties(e.getProperties());
+    reuse.f1 = e.getSourceId();
+    reuse.f2 = e.getTargetId();
+    return reuse;
+}

@@ -1,0 +1,9 @@
+@Override
+public void reduce(Iterable<PropertyValue> partitionAggregates, Collector<PropertyValue> out) throws Exception {
+    Iterator<PropertyValue> iterator = partitionAggregates.iterator();
+    PropertyValue aggregate = iterator.next();
+    while (iterator.hasNext()) {
+        aggregateFunction.aggregate(aggregate, iterator.next());
+    }
+    out.collect(aggregate);
+}

@@ -1,0 +1,9 @@
+/**
+ * Creates a new CSV data source.
+ *
+ * @param csvPath path to the directory containing the CSV files
+ * @param config  Gradoop Flink configuration
+ */
+public CSVDataSource(String csvPath, GradoopFlinkConfig config) {
+    super(csvPath, config);
+}

@@ -1,0 +1,5 @@
+@Override
+public void flatMap(E edge, Collector<GradoopId> collector) throws Exception {
+    collector.collect(edge.getSourceId());
+    collector.collect(edge.getTargetId());
+}

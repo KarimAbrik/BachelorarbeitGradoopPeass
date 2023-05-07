@@ -1,0 +1,17 @@
+/**
+ * Test if the operator works correctly for loops.
+ * This will also check if using the same property key for reading and writing values works.
+ *
+ * @throws Exception when the execution in Flink fails.
+ */
+@Test
+public void testPropagateInLoops() throws Exception {
+    LogicalGraph input = loader.getLogicalGraphByVariable("input2");
+    UnaryGraphToGraphOperator operator = new PropagatePropertyToNeighbor("Vertex", "t", "t");
+    LogicalGraph expected = input.transformVertices((v, c) -> {
+        v.setProperty("t", Collections.singletonList(PropertyValue.create(1L)));
+        return v;
+    });
+    LogicalGraph result = input.callForGraph(operator);
+    collectAndAssertTrue(expected.equalsByData(result));
+}

@@ -1,0 +1,17 @@
+@Override
+public void flatMap(Tuple2<V, List<NeighborhoodVertex>> value, Collector<E> out) {
+    final List<NeighborhoodVertex> neighbors = value.f1;
+    // To "simulate" bidirectional edges we have to create an edge for each direction.
+    for (NeighborhoodVertex source : neighbors) {
+        // The source id is the same for the inner loop, we can keep it.
+        reuseEdge.setSourceId(source.getNeighborId());
+        for (NeighborhoodVertex target : neighbors) {
+            if (source == target) {
+                continue;
+            }
+            reuseEdge.setId(GradoopId.get());
+            reuseEdge.setTargetId(target.getNeighborId());
+            out.collect(reuseEdge);
+        }
+    }
+}

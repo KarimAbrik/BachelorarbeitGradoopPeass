@@ -1,0 +1,8 @@
+/**
+ * Get the temporal vertex factory from the config.
+ *
+ * @return The vertex factory.
+ */
+protected TemporalVertexFactory getVertexFactory() {
+    return (TemporalVertexFactory) getConfig().getTemporalGraphFactory().getVertexFactory();
+}

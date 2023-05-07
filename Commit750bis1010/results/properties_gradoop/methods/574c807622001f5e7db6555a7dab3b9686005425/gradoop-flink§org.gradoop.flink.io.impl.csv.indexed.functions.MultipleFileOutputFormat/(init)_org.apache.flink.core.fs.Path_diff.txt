@@ -1,0 +1,9 @@
+/**
+ * Creates a new output format with multiple output files.
+ *
+ * @param rootPath The root directory where all files will be stored.
+ */
+MultipleFileOutputFormat(Path rootPath) {
+    this.rootOutputPath = rootPath;
+    formatsPerSubdirectory = new HashMap<>();
+}

@@ -1,0 +1,5 @@
+//VertexIsomorphism
+@Test
+public void testVertexIsomorphismWithoutDuplicates() throws Exception {
+    testJoin(buildEdge(a, e2, b), Lists.newArrayList(0, 2), new ArrayList<>(), -1, true);
+}

@@ -1,0 +1,6 @@
+@Test
+public void testSetList() throws Exception {
+    PropertyValue p = new PropertyValue();
+    p.setList(LIST_VAL_a);
+    assertEquals(LIST_VAL_a, p.getList());
+}

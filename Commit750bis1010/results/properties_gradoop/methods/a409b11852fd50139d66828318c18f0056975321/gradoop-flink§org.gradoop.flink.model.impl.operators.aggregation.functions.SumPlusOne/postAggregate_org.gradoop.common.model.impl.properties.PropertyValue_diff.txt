@@ -1,0 +1,10 @@
+/**
+ * Post-processing for this aggregate function: Increment the result by {@code 1}.
+ *
+ * @param result The result of the aggregation step.
+ * @return The final result.
+ */
+@Override
+public PropertyValue postAggregate(PropertyValue result) {
+    return PropertyValueUtils.Numeric.add(result, PropertyValue.create(1L));
+}

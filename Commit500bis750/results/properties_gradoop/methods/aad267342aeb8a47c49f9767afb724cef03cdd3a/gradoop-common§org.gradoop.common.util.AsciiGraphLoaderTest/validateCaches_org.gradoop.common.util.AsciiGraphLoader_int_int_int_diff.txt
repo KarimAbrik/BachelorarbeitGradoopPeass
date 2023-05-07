@@ -1,0 +1,5 @@
+private void validateCaches(AsciiGraphLoader<GraphHead, Vertex, Edge> asciiGraphLoader, int expectedGraphHeadCacheCount, int expectedVertexCacheCount, int expectedEdgeCacheCount) {
+    assertEquals("wrong graph head cache count", expectedGraphHeadCacheCount, asciiGraphLoader.getGraphHeadCache().size());
+    assertEquals("wrong vertex cache count", expectedVertexCacheCount, asciiGraphLoader.getVertexCache().size());
+    assertEquals("wrong edge cache count", expectedEdgeCacheCount, asciiGraphLoader.getEdgeCache().size());
+}

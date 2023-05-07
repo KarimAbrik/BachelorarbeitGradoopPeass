@@ -1,0 +1,22 @@
+/**
+ * Get the increment to be added to the aggregate from an element.
+ * The default implementation of this method will check if the element is a temporal element,
+ * in that case the increment will be determined by {@link #getIncrement(TemporalElement)}.
+ * Otherwise the value of {@link #getNonTemporalIncrement(Element)} will be used.
+ * <br>
+ * <b>Note: </b> Implementations of the {@link TemporalAggregateFunction} interface should
+ * implement {@link #getIncrement(TemporalElement)} (and optionally
+ * {@link #getNonTemporalIncrement(Element)}) instead of this method.
+ *
+ * @param element element used to get the increment
+ * @return The increment, possibly {@code null}.
+ * @see #getIncrement(TemporalElement) method to be implemented instead of this method.
+ */
+@Override
+default PropertyValue getIncrement(Element element) {
+    if (element instanceof TemporalElement) {
+        return getIncrement((TemporalElement) element);
+    } else {
+        return getNonTemporalIncrement(element);
+    }
+}

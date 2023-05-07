@@ -1,0 +1,14 @@
+/**
+ * Creates a new step.
+ *
+ * @param from starting vertex id
+ * @param via traversed edge id
+ * @param to target vertex id
+ * @param isOutgoing if traversed edge was outgoing from starting vertex
+ */
+public Step(long from, long via, long to, boolean isOutgoing) {
+    this.from = from;
+    this.via = via;
+    this.to = to;
+    this.isOutgoing = isOutgoing;
+}

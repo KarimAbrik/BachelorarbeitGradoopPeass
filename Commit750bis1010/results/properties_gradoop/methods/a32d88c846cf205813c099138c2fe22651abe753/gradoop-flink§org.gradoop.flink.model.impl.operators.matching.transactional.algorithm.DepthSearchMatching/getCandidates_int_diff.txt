@@ -1,0 +1,18 @@
+/**
+ * Get all vertices that match the pattern of a step.
+ *
+ * @param step next step in the plan
+ * @return list containing the ids of the matching vertices
+ */
+public List<GradoopId> getCandidates(int step) {
+    List<GradoopId> possibilities = new ArrayList<>(vertexDict.keySet());
+    for (int i = 0; i < possibilities.size(); i++) {
+        GradoopId vertexId = possibilities.get(i);
+        boolean[] candidates = vertexDict.get(vertexId);
+        if (!candidates[step]) {
+            possibilities.remove(i);
+            --i;
+        }
+    }
+    return possibilities;
+}

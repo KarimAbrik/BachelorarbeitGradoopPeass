@@ -1,0 +1,35 @@
+{
+  "overallScore" : 0,
+  "selected" : false,
+  "testcase" : {
+    "clazz" : "org.gradoop.model.impl.labelpropagation.LabelPropagationGellyTest",
+    "method" : "testConnectedGraphWithVertexValues",
+    "module" : "gradoop-flink",
+    "params" : "JUNIT_PARAMETERIZED-Execution mode = CLUSTER"
+  },
+  "callCounts" : {
+    "gradoop-flink§org.gradoop.model.impl.operators.labelpropagation.LabelPropagationAlgorithm$LPUpdater#getMostFrequent(org.apache.flink.graph.Vertex,java.util.List)" : 33,
+    "gradoop-flink§org.gradoop.model.impl.operators.labelpropagation.LabelPropagationAlgorithm$LPUpdater#getNewCommunity(org.apache.flink.graph.Vertex,org.apache.flink.graph.spargel.MessageIterator)" : 33,
+    "gradoop-flink§org.gradoop.model.impl.labelpropagation.LabelPropagationTestHelper#getGraph(java.lang.String[],org.apache.flink.api.java.ExecutionEnvironment)" : 1,
+    "gradoop-flink§org.gradoop.model.impl.operators.labelpropagation.LabelPropagationAlgorithm$LPMessenger#sendMessages(org.apache.flink.graph.Vertex)" : 39,
+    "gradoop-flink§org.gradoop.model.impl.labelpropagation.LabelPropagationGellyTest#parseResult(java.util.List)" : 1,
+    "gradoop-flink§org.gradoop.model.impl.labelpropagation.LabelPropagationGellyTest#validateConnectedGraphResult(java.util.Map)" : 1,
+    "gradoop-flink§org.gradoop.model.impl.labelpropagation.LabelPropagationGellyTest#testConnectedGraphWithVertexValues" : 1,
+    "gradoop-flink§org.gradoop.model.impl.operators.labelpropagation.LabelPropagationValue#<init>(long,long)" : 12,
+    "gradoop-flink§org.gradoop.model.impl.operators.labelpropagation.LabelPropagationValue#setLastCommunity(long)" : 15,
+    "gradoop-flink§org.gradoop.model.impl.operators.labelpropagation.LabelPropagationAlgorithm#<init>(int)" : 1,
+    "gradoop-flink§org.gradoop.model.impl.operators.labelpropagation.LabelPropagationAlgorithm$LPUpdater#<init>" : 1,
+    "gradoop-flink§org.gradoop.model.impl.operators.labelpropagation.LabelPropagationValue#setChangeMax(int)" : 12,
+    "gradoop-flink§org.gradoop.model.impl.operators.labelpropagation.LabelPropagationAlgorithm$LPUpdater#updateVertex(org.apache.flink.graph.Vertex,org.apache.flink.graph.spargel.MessageIterator)" : 45,
+    "gradoop-flink§org.gradoop.model.impl.operators.labelpropagation.LabelPropagationValue#getLastCommunity" : 33,
+    "gradoop-flink§org.gradoop.model.impl.operators.labelpropagation.LabelPropagationValue#getChangeMax" : 3,
+    "gradoop-flink§org.gradoop.model.impl.labelpropagation.LabelPropagationGellyTest#getConnectedGraphWithVertexValues" : 1,
+    "gradoop-flink§org.gradoop.model.impl.operators.labelpropagation.LabelPropagationAlgorithm#run(org.apache.flink.graph.Graph)" : 1,
+    "gradoop-flink§org.gradoop.model.impl.operators.labelpropagation.LabelPropagationValue#setStabilizationCounter(int)" : 3,
+    "gradoop-flink§org.gradoop.model.impl.operators.labelpropagation.LabelPropagationValue#getCurrentCommunity" : 84,
+    "gradoop-flink§org.gradoop.model.impl.operators.labelpropagation.LabelPropagationAlgorithm$LPMessenger#<init>" : 1,
+    "gradoop-flink§org.gradoop.model.impl.operators.labelpropagation.LabelPropagationValue#setCurrentCommunity(long)" : 27,
+    "gradoop-flink§org.gradoop.model.impl.operators.labelpropagation.LabelPropagationValue#getStabilizationCounter" : 33
+  },
+  "selectedChanges" : [ ]
+}

@@ -1,0 +1,4 @@
+@Override
+public SamplingAlgorithm getSamplingOperator() {
+    return new PageRankSampling(dampeningFactor, maxIteration, (double) sampleSize, sampleGreaterThanThreshold, keepVerticesIfSameScore);
+}

@@ -1,0 +1,11 @@
+/**
+ * Counts the elements in the given dataset and stores the result in a
+ * 1-element dataset.
+ *
+ * @param dataSet input dataset
+ * @param <T>     element type in input dataset
+ * @return 1-element dataset with count of input dataset
+ */
+public static <T> DataSet<Long> count(DataSet<T> dataSet) {
+    return dataSet.map(new Tuple1With1L<T>()).union(dataSet.getExecutionEnvironment().fromElements(new Tuple1<>(0L))).sum(0).map(new ValueOf1<>());
+}

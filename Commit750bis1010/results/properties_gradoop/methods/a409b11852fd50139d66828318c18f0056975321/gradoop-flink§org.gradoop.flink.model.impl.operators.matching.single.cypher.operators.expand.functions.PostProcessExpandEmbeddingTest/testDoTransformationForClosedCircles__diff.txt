@@ -1,0 +1,6 @@
+@Test
+public void testDoTransformationForClosedCircles() throws Exception {
+    List<Embedding> result = new ArrayList<>();
+    new PostProcessExpandEmbedding(0, 0).flatMap(expandEmbedding(), new ListCollector<>(result));
+    assertEquals(1, result.size());
+}

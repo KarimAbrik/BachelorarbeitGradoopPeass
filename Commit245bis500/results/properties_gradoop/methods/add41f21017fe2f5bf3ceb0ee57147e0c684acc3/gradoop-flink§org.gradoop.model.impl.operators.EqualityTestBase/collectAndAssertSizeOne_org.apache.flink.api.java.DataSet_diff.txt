@@ -1,0 +1,11 @@
+private List<Boolean> collectAndAssertSizeOne(DataSet<Boolean> result) {
+    List<Boolean> collectedResult = null;
+    try {
+        collectedResult = result.collect();
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+    assertNotNull("result is null", collectedResult);
+    assertEquals("only one boolean result expected", 1, collectedResult.size());
+    return collectedResult;
+}

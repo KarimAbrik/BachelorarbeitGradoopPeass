@@ -1,0 +1,36 @@
+/**
+ * Reads the split and searches for matches with given 'match byte array'.
+ *
+ * @param match the match byte to be found
+ * @param withinBlock specifies if match is within the graph block
+ * @return true if match was found or the end of file was reached, so
+ * that the current block can be closed
+ * @throws IOException on failure
+ */
+private boolean readUntilMatch(byte[] match, boolean withinBlock) throws IOException {
+    int i = 0;
+    while (true) {
+        int b = fsin.read();
+        // end of file:
+        if (b == -1) {
+            return true;
+        }
+        // save to buffer:
+        if (withinBlock) {
+            buffer.write(b);
+        }
+        // check if we are matching:
+        if (b == match[i]) {
+            i++;
+            if (i >= match.length) {
+                return true;
+            }
+        } else {
+            i = 0;
+        }
+        // see if we have passed the stop point:
+        if (!withinBlock && i == 0 && fsin.getPos() >= end) {
+            return false;
+        }
+    }
+}

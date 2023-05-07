@@ -1,0 +1,7 @@
+@Test
+public void testIsEmpty() throws Exception {
+    GradoopIdSet set1 = GradoopIdSet.fromExisting(GradoopId.get());
+    GradoopIdSet set2 = new GradoopIdSet();
+    assertFalse(set1.isEmpty());
+    assertTrue(set2.isEmpty());
+}

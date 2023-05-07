@@ -1,0 +1,14 @@
+@Override
+public LogicalGraphLayout fromCollections(GraphHead graphHead, Collection<Vertex> vertices, Collection<Edge> edges) {
+    Objects.requireNonNull(vertices, "Vertex collection was null");
+    List<GraphHead> graphHeads;
+    if (graphHead == null) {
+        graphHeads = Lists.newArrayListWithCapacity(0);
+    } else {
+        graphHeads = Lists.newArrayList(graphHead);
+    }
+    if (edges == null) {
+        edges = Lists.newArrayListWithCapacity(0);
+    }
+    return fromDataSets(createGraphHeadDataSet(graphHeads), createVertexDataSet(vertices), createEdgeDataSet(edges));
+}

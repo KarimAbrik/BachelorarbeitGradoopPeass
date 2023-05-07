@@ -1,0 +1,18 @@
+                                                                                                     | /**                                                                                                 
+                                                                                                     | * Checks if the specified ids are contained in the set.                                             
+                                                                                                     | *                                                                                                   
+                                                                                                     | * @param other the ids to look for                                                                  
+                                                                                                     | * @return true, iff all specified ids are contained in the set                                      
+                                                                                                     | */                                                                                                  
+                                                                                                     | @Override                                                                                           
+                                                                                                     | public boolean containsAll(Collection&lt;?&gt; other) {                                             
+                                                                                                     | if (other instanceof Set && other.size() &gt; this.size()) {                                        
+                                                                                                     | return false;                                                                                       
+                                                                                                     | }                                                                                                   
+                                                                                                     | for (Object id : other) {                                                                           
+                                                                                                     | if (!this.contains(id)) {                                                                           
+                                                                                                     | return false;                                                                                       
+                                                                                                     | }                                                                                                   
+                                                                                                     | }                                                                                                   
+                                                                                                     | return true;                                                                                        
+                                                                                                     | }                                                                                                   

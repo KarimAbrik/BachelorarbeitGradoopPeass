@@ -1,0 +1,9 @@
+/**
+ * Constructor for this filter using a collection of labels.
+ *
+ * @param labels A collection of accepted labels.
+ */
+public LabelIsIn(Collection<String> labels) {
+    Objects.requireNonNull(labels);
+    this.labels = new HashSet<>(labels);
+}

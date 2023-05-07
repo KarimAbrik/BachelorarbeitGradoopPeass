@@ -1,0 +1,5 @@
+@Override
+public Double cross(Tuple1<Long> vertexDistanceSum, Long vertexCount) {
+    double sum = vertexDistanceSum.f0;
+    return sum / ((vertexCount - 2) * (vertexCount - 1));
+}

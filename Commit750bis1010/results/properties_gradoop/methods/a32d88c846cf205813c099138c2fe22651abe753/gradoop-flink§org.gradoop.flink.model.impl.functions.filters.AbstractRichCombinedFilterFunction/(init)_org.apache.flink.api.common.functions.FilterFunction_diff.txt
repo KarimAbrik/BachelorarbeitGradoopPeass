@@ -1,0 +1,13 @@
+/**
+ * Constructor setting the component filter functions that this filter is
+ * composed of.
+ *
+ * @param filters The filters.
+ */
+@SafeVarargs
+public AbstractRichCombinedFilterFunction(FilterFunction<? super T>... filters) {
+    for (FilterFunction<? super T> filter : filters) {
+        Objects.requireNonNull(filter);
+    }
+    components = filters;
+}

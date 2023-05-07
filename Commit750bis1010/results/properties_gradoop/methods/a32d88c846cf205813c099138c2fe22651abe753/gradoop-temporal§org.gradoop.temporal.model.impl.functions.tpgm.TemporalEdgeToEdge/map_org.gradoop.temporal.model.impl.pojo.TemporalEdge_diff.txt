@@ -1,0 +1,10 @@
+@Override
+public EPGMEdge map(TemporalEdge value) {
+    reuse.setId(value.getId());
+    reuse.setLabel(value.getLabel());
+    reuse.setSourceId(value.getSourceId());
+    reuse.setTargetId(value.getTargetId());
+    reuse.setProperties(value.getProperties());
+    reuse.setGraphIds(value.getGraphIds());
+    return reuse;
+}

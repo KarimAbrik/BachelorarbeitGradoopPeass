@@ -1,0 +1,36 @@
+/**
+ * Creates a GDL formatted string from the graph heads, vertices and edges.
+ *
+ * @return GDL formatted string
+ */
+public String getGDLString() {
+    Map<GradoopId, String> idToGraphHeadName = getGraphHeadNameMapping(graphHeads);
+    Map<GradoopId, String> idToVertexName = getVertexNameMapping(vertices);
+    Map<GradoopId, String> idToEdgeName = getEdgeNameMapping(edges);
+    Set<GradoopId> usedVertexIds = new HashSet<>();
+    Set<GradoopId> usedEdgeIds = new HashSet<>();
+    StringBuilder result = new StringBuilder();
+    for (G graphHead : graphHeads) {
+        StringBuilder verticesString = new StringBuilder();
+        StringBuilder edgesString = new StringBuilder();
+        for (V vertex : vertices) {
+            boolean containedInGraph = vertex.getGraphIds().contains(graphHead.getId());
+            boolean firstOccurrence = !usedVertexIds.contains(vertex.getId());
+            if (containedInGraph) {
+                String vertexString = vertexToGDLString(vertex, idToVertexName, firstOccurrence);
+                usedVertexIds.add(vertex.getId());
+                verticesString.append(vertexString).append(System.lineSeparator());
+            }
+        }
+        for (E edge : edges) {
+            if (edge.getGraphIds().contains(graphHead.getId())) {
+                boolean firstOccurrence = !usedEdgeIds.contains(edge.getId());
+                String edgeString = edgeToGDLString(edge, idToVertexName, idToEdgeName, firstOccurrence);
+                usedEdgeIds.add(edge.getId());
+                edgesString.append(edgeString).append(System.lineSeparator());
+            }
+        }
+        result.append(graphHeadToGDLString(graphHead, idToGraphHeadName)).append(GRAPH_ELEMENTS_DEFINITION_START).append(System.lineSeparator()).append(verticesString).append(edgesString.length() > 0 ? System.lineSeparator() : "").append(edgesString).append(GRAPH_ELEMENTS_DEFINITION_END).append(System.lineSeparator()).append(System.lineSeparator());
+    }
+    return result.toString();
+}

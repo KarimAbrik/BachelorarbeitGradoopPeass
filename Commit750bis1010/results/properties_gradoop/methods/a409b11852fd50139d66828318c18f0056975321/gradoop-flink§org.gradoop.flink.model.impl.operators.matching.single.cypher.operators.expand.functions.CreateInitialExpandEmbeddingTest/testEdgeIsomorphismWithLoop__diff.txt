@@ -1,0 +1,5 @@
+@Test
+public void testEdgeIsomorphismWithLoop() throws Exception {
+    testJoin(buildEdge(n, e1, m), new ArrayList<>(), Lists.newArrayList(0, 1), 0, true);
+    testJoin(buildEdge(n, e0, m), new ArrayList<>(), Lists.newArrayList(0, 1), 0, false);
+}

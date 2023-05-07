@@ -1,0 +1,12 @@
+/**
+ * Creates a GDLEncoder using the passed parameters.
+ *
+ * @param graphHeads graph head that should be encoded
+ * @param vertices vertices that should be encoded
+ * @param edges edges that should be encoded
+ */
+public GDLEncoder(List<G> graphHeads, List<V> vertices, List<E> edges) {
+    this.graphHeads = graphHeads;
+    this.vertices = vertices;
+    this.edges = edges;
+}

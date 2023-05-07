@@ -1,0 +1,37 @@
+/**
+ * Creates a database from JSON files. Paths can be local (file://) or HDFS
+ * (hdfs://).
+ *
+ * @param vertexFile  vertex data file
+ * @param edgeFile    edge data file
+ * @param graphFile   graph data file
+ * @param config      Gradoop Flink configuration
+ * @param <VD>        EPGM vertex type
+ * @param <ED>        EPGM edge type
+ * @param <GD>        EPGM graph head type
+ *
+ * @return EPGM database
+ */
+@SuppressWarnings("unchecked")
+public static <VD extends EPGMVertex, ED extends EPGMEdge, GD extends EPGMGraphHead> EPGMDatabase fromJsonFile(String vertexFile, String edgeFile, String graphFile, GradoopFlinkConfig<VD, ED, GD> config) {
+    if (config == null) {
+        throw new IllegalArgumentException("config must not be null");
+    }
+    ExecutionEnvironment env = config.getExecutionEnvironment();
+    // used for type hinting when loading vertex data
+    TypeInformation<VD> vertexTypeInfo = (TypeInformation<VD>) TypeExtractor.createTypeInfo(config.getVertexFactory().getType());
+    // used for type hinting when loading edge data
+    TypeInformation<ED> edgeTypeInfo = (TypeInformation<ED>) TypeExtractor.createTypeInfo(config.getEdgeFactory().getType());
+    // used for type hinting when loading graph data
+    TypeInformation<GD> graphTypeInfo = (TypeInformation<GD>) TypeExtractor.createTypeInfo(config.getGraphHeadFactory().getType());
+    // read vertex, edge and graph data
+    DataSet<VD> vertices = env.readTextFile(vertexFile).map(new JsonReader.JsonToVertexMapper<>(config.getVertexFactory())).returns(vertexTypeInfo);
+    DataSet<ED> edges = env.readTextFile(edgeFile).map(new JsonReader.JsonToEdgeMapper<>(config.getEdgeFactory())).returns(edgeTypeInfo);
+    DataSet<GD> graphHeads;
+    if (graphFile != null) {
+        graphHeads = env.readTextFile(graphFile).map(new JsonReader.JsonToGraphMapper<>(config.getGraphHeadFactory())).returns(graphTypeInfo);
+    } else {
+        graphHeads = env.fromCollection(Lists.newArrayList(config.getGraphHeadFactory().createGraphHead(FlinkConstants.DATABASE_GRAPH_ID)));
+    }
+    return new EPGMDatabase<>(vertices, edges, graphHeads, config);
+}

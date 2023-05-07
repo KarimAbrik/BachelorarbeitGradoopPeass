@@ -1,0 +1,19 @@
+/**
+ * Creates an instance of KRandomJumpGellyVCI.
+ *
+ * @param numberOfStartVertices Number of starting vertices.
+ * @param maxIterations Value for maximum number of iterations for the algorithm.
+ * @param jumpProbability Probability for jumping to random vertex instead of walking to random
+ *                       neighbor.
+ * @param percentageToVisit Relative amount of vertices to visit at least.
+ */
+public KRandomJumpGellyVCI(int numberOfStartVertices, int maxIterations, double jumpProbability, double percentageToVisit) {
+    checkArgument(numberOfStartVertices >= 1, "at least 1 starting vertex is needed, numberOfStartVertices must be equal or greater 1");
+    checkArgument(maxIterations > 0, "maxIterations must be greater than 0");
+    checkArgument(jumpProbability >= 0d && jumpProbability <= 1d, "jumpProbability must be equal/greater than 0.0 and smaller/equal 1.0");
+    checkArgument(percentageToVisit > 0d && percentageToVisit <= 1d, "percentageToVisit must be greater than 0.0 and smaller/equal 1.0");
+    this.numberOfStartVertices = numberOfStartVertices;
+    this.maxIterations = maxIterations;
+    this.jumpProbability = jumpProbability;
+    this.percentageToVisit = percentageToVisit;
+}

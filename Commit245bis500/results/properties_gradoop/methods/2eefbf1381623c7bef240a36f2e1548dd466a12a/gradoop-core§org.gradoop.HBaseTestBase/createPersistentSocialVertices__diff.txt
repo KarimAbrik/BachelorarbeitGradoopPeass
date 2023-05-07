@@ -1,0 +1,45 @@
+public static Collection<PersistentVertex<EdgePojo>> createPersistentSocialVertices() {
+    Collection<VertexPojo> vertexDataCollection = createVertexPojoCollection();
+    List<PersistentVertex<EdgePojo>> persistentVertexData = Lists.newArrayListWithExpectedSize(vertexDataCollection.size());
+    PersistentVertexFactory<VertexPojo, EdgePojo, HBaseVertex> vertexDataFactory = new HBaseVertexFactory();
+    Set<EdgePojo> outEdges = null;
+    Set<EdgePojo> inEdges = null;
+    for (VertexPojo vertexData : vertexDataCollection) {
+        if (vertexData.getId().equals(VERTEX_PERSON_ALICE.getId())) {
+            outEdges = Sets.newHashSet(EDGE_0_KNOWS, EDGE_8_HAS_INTEREST);
+            inEdges = Sets.newHashSet(EDGE_1_KNOWS, EDGE_6_KNOWS, EDGE_15_HAS_MODERATOR, EDGE_17_HAS_MEMBER);
+        } else if (vertexData.getId().equals(VERTEX_PERSON_BOB.getId())) {
+            outEdges = Sets.newHashSet(EDGE_1_KNOWS, EDGE_2_KNOWS);
+            inEdges = Sets.newHashSet(EDGE_0_KNOWS, EDGE_3_KNOWS, EDGE_18_HAS_MEMBER, EDGE_21_KNOWS);
+        } else if (vertexData.getId().equals(VERTEX_PERSON_CAROL.getId())) {
+            outEdges = Sets.newHashSet(EDGE_3_KNOWS, EDGE_4_KNOWS);
+            inEdges = Sets.newHashSet(EDGE_2_KNOWS, EDGE_5_KNOWS, EDGE_19_HAS_MEMBER, EDGE_22_KNOWS);
+        } else if (vertexData.getId().equals(VERTEX_PERSON_DAVE.getId())) {
+            outEdges = Sets.newHashSet(EDGE_5_KNOWS, EDGE_9_HAS_INTEREST);
+            inEdges = Sets.newHashSet(EDGE_4_KNOWS, EDGE_16_HAS_MODERATOR, EDGE_20_HAS_MEMBER, EDGE_23_KNOWS);
+        } else if (vertexData.getId().equals(VERTEX_PERSON_EVE.getId())) {
+            outEdges = Sets.newHashSet(EDGE_6_KNOWS, EDGE_7_HAS_INTEREST, EDGE_21_KNOWS);
+            inEdges = Sets.newHashSet();
+        } else if (vertexData.getId().equals(VERTEX_PERSON_FRANK.getId())) {
+            outEdges = Sets.newHashSet(EDGE_10_HAS_INTEREST, EDGE_22_KNOWS, EDGE_23_KNOWS);
+            inEdges = Sets.newHashSet();
+        } else if (vertexData.getId().equals(VERTEX_TAG_DATABASES.getId())) {
+            outEdges = Sets.newHashSet();
+            inEdges = Sets.newHashSet(EDGE_7_HAS_INTEREST, EDGE_8_HAS_INTEREST, EDGE_11_HAS_TAG);
+        } else if (vertexData.getId().equals(VERTEX_TAG_GRAPHS.getId())) {
+            outEdges = Sets.newHashSet();
+            inEdges = Sets.newHashSet(EDGE_12_HAS_TAG, EDGE_13_HAS_TAG);
+        } else if (vertexData.getId().equals(VERTEX_TAG_HADOOP.getId())) {
+            outEdges = Sets.newHashSet();
+            inEdges = Sets.newHashSet(EDGE_9_HAS_INTEREST, EDGE_10_HAS_INTEREST, EDGE_14_HAS_TAG);
+        } else if (vertexData.getId().equals(VERTEX_FORUM_GDBS.getId())) {
+            outEdges = Sets.newHashSet(EDGE_11_HAS_TAG, EDGE_12_HAS_TAG, EDGE_15_HAS_MODERATOR, EDGE_17_HAS_MEMBER, EDGE_18_HAS_MEMBER);
+            inEdges = Sets.newHashSet();
+        } else if (vertexData.getId().equals(VERTEX_FORUM_GPS.getId())) {
+            outEdges = Sets.newHashSet(EDGE_13_HAS_TAG, EDGE_14_HAS_TAG, EDGE_16_HAS_MODERATOR, EDGE_19_HAS_MEMBER, EDGE_20_HAS_MEMBER);
+            inEdges = Sets.newHashSet();
+        }
+        persistentVertexData.add(vertexDataFactory.createVertex(vertexData, outEdges, inEdges));
+    }
+    return persistentVertexData;
+}

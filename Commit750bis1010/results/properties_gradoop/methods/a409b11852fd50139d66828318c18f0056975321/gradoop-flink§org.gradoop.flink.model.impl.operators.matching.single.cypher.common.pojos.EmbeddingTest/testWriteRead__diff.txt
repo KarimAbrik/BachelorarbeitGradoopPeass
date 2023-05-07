@@ -1,0 +1,16 @@
+@Test
+public void testWriteRead() throws Exception {
+    Embedding inEmbedding = new Embedding();
+    Embedding outEmbedding = writeAndReadValue(Embedding.class, inEmbedding);
+    assertEquals(inEmbedding, outEmbedding);
+    inEmbedding.add(GradoopId.get());
+    outEmbedding = writeAndReadValue(Embedding.class, inEmbedding);
+    assertEquals(inEmbedding, outEmbedding);
+    inEmbedding.add(GradoopId.get(), PropertyValue.create(42), PropertyValue.create("Foobar"));
+    outEmbedding = writeAndReadValue(Embedding.class, inEmbedding);
+    assertEquals(inEmbedding, outEmbedding);
+    GradoopId[] idList = new GradoopId[] { GradoopId.get(), GradoopId.get(), GradoopId.get() };
+    inEmbedding.add(idList);
+    outEmbedding = writeAndReadValue(Embedding.class, inEmbedding);
+    assertEquals(inEmbedding, outEmbedding);
+}

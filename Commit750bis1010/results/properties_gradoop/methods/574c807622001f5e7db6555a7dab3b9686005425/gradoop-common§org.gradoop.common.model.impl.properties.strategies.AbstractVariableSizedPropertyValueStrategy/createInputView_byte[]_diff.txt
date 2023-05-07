@@ -1,0 +1,11 @@
+/**
+ * Creates an instance of {@link DataInputViewStreamWrapper} from a byte array.
+ *
+ * @param bytes input byte array
+ * @return A DataInputViewStreamWrapper
+ */
+DataInputViewStreamWrapper createInputView(byte[] bytes) {
+    ByteArrayInputStream byteStream = new ByteArrayInputStream(bytes);
+    DataInputStream inputStream = new DataInputStream(byteStream);
+    return new DataInputViewStreamWrapper(inputStream);
+}

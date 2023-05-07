@@ -1,0 +1,19 @@
+/**
+ * Creates a new PageRankSampling instance.
+ *
+ * @param dampeningFactor The dampening factor used by PageRank-algorithm, e.g. 0.85
+ * @param maxIteration The number of iterations used by PageRank-algorithm, e.g. 40
+ * @param threshold The threshold for the PageRank-score (ranging between 0 and 1 when scaled),
+ *                  determining if a vertex is sampled, e.g. 0.5
+ * @param sampleGreaterThanThreshold Whether to sample vertices with a PageRank-score
+ *                                   greater (true) or equal/smaller (false) the threshold
+ * @param keepVerticesIfSameScore Whether to sample all vertices (true) or none of them (false)
+ *                                in case all vertices got the same PageRank-score.
+ */
+public PageRankSampling(double dampeningFactor, int maxIteration, double threshold, boolean sampleGreaterThanThreshold, boolean keepVerticesIfSameScore) {
+    this.dampeningFactor = dampeningFactor;
+    this.threshold = threshold;
+    this.maxIteration = maxIteration;
+    this.sampleGreaterThanThreshold = sampleGreaterThanThreshold;
+    this.keepVerticesIfSameScore = keepVerticesIfSameScore;
+}

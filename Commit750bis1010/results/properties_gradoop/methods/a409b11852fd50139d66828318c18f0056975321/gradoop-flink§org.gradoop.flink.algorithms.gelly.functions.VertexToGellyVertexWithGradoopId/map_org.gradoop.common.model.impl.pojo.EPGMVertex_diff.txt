@@ -1,0 +1,7 @@
+@Override
+public org.apache.flink.graph.Vertex<GradoopId, GradoopId> map(EPGMVertex epgmVertex) {
+    GradoopId id = epgmVertex.getId();
+    reuseVertex.setId(id);
+    reuseVertex.setValue(id);
+    return reuseVertex;
+}

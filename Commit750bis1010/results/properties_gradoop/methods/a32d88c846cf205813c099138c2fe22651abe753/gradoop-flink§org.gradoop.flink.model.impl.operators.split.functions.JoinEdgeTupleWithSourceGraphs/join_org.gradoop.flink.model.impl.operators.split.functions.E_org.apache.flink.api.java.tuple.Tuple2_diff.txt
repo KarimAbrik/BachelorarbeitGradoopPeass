@@ -1,0 +1,6 @@
+@Override
+public Tuple2<E, GradoopIdSet> join(E left, Tuple2<GradoopId, GradoopIdSet> right) {
+    reuseTuple.f0 = left;
+    reuseTuple.f1 = right.f1;
+    return reuseTuple;
+}

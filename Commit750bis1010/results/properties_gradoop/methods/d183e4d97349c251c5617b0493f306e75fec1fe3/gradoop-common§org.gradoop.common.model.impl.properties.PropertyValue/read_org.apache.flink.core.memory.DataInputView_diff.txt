@@ -1,0 +1,47 @@
+@Override
+public void read(DataInputView inputView) throws IOException {
+    int length = 0;
+    // type
+    byte typeByte = inputView.readByte();
+    // Apply bitmask to get the actual type.
+    byte type = (byte) (~FLAG_LARGE & typeByte);
+    // dynamic type?
+    if (type == TYPE_STRING || type == TYPE_BIG_DECIMAL || type == TYPE_MAP || type == TYPE_LIST || type == TYPE_SET) {
+        // read length
+        if ((typeByte & FLAG_LARGE) == FLAG_LARGE) {
+            length = inputView.readInt();
+        } else {
+            length = inputView.readShort();
+        }
+    } else if (type == TYPE_NULL) {
+        length = 0;
+    } else if (type == TYPE_BOOLEAN) {
+        length = Bytes.SIZEOF_BOOLEAN;
+    } else if (type == TYPE_SHORT) {
+        length = Bytes.SIZEOF_SHORT;
+    } else if (type == TYPE_INTEGER) {
+        length = Bytes.SIZEOF_INT;
+    } else if (type == TYPE_LONG) {
+        length = Bytes.SIZEOF_LONG;
+    } else if (type == TYPE_FLOAT) {
+        length = Bytes.SIZEOF_FLOAT;
+    } else if (type == TYPE_DOUBLE) {
+        length = Bytes.SIZEOF_DOUBLE;
+    } else if (type == TYPE_GRADOOP_ID) {
+        length = GradoopId.ID_SIZE;
+    } else if (type == TYPE_DATE) {
+        length = DateTimeSerializer.SIZEOF_DATE;
+    } else if (type == TYPE_TIME) {
+        length = DateTimeSerializer.SIZEOF_TIME;
+    } else if (type == TYPE_DATETIME) {
+        length = DateTimeSerializer.SIZEOF_DATETIME;
+    }
+    // init new array
+    rawBytes = new byte[OFFSET + length];
+    // read type info
+    rawBytes[0] = type;
+    // read data
+    for (int i = OFFSET; i < rawBytes.length; i++) {
+        rawBytes[i] = inputView.readByte();
+    }
+}

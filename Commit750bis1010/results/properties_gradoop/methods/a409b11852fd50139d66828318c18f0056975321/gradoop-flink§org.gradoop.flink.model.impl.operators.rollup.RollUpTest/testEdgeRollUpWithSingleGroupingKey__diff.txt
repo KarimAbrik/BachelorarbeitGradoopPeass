@@ -1,0 +1,20 @@
+/**
+ * Executes a rollUp on edges using a single grouping key and checks if the result
+ * is correct.
+ *
+ * @throws Exception If the execution fails.
+ */
+@Test
+public void testEdgeRollUpWithSingleGroupingKey() throws Exception {
+    FlinkAsciiGraphLoader loader = getSocialNetworkLoader();
+    LogicalGraph input = loader.getGraphCollectionByVariables("g0", "g1", "g2", "g3").reduce(new ReduceCombination<>());
+    //expected
+    loader.initDatabaseFromString("g0 {edgeRollUpGroupingKeys:\":label\"}[" + "(v0)" + "(v0)-[e_0:knows{count:10L}]->(v0)" + "(v0)-[e_1:hasModerator{count:1L}]->(v0)" + "(v0)-[e_2:hasMember{count:2L}]->(v0)" + "]");
+    GraphCollection expected = loader.getGraphCollection();
+    List<String> vertexGK = Collections.emptyList();
+    List<AggregateFunction> vertexAGG = Collections.emptyList();
+    List<String> edgeGK = Collections.singletonList(Grouping.LABEL_SYMBOL);
+    List<AggregateFunction> edgeAGG = Collections.singletonList(new Count("count"));
+    GraphCollection output = input.groupEdgesByRollUp(vertexGK, vertexAGG, edgeGK, edgeAGG);
+    collectAndAssertTrue(output.equalsByGraphData(expected));
+}

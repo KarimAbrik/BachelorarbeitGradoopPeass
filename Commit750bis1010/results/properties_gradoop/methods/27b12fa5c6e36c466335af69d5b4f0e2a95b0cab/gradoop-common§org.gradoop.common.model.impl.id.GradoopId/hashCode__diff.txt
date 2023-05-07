@@ -1,0 +1,15 @@
+/**
+ * Returns the hash code of this GradoopId.
+ * <p>
+ * Note: Implementation taken from org.bson.types.ObjectId
+ *
+ * @return hash code
+ */
+@Override
+public int hashCode() {
+    int result = getTimeStamp();
+    result = 31 * result + getMachineIdentifier();
+    result = 31 * result + (int) getProcessIdentifier();
+    result = 31 * result + getCounter();
+    return result;
+}

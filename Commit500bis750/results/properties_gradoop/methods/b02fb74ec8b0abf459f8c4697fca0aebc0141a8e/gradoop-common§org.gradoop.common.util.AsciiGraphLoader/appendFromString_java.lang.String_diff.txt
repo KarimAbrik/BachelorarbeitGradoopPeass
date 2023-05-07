@@ -1,0 +1,12 @@
+/**
+ * Appends the given ASCII GDL to the graph handled by that loader.
+ *
+ * Variables that were previously used, can be reused in the given script and
+ * refer to the same entities.
+ *
+ * @param asciiGraph GDL string
+ */
+public void appendFromString(String asciiGraph) {
+    this.gdlHandler.append(asciiGraph);
+    init();
+}

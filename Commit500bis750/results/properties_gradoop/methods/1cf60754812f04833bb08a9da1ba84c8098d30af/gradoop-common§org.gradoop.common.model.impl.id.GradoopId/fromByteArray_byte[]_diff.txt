@@ -1,0 +1,9 @@
+/**
+ * Returns the Gradoop ID represented by a byte array
+ *
+ * @param bytes byte representation
+ * @return Gradoop ID
+ */
+public static GradoopId fromByteArray(byte[] bytes) {
+    return new GradoopId(bytes);
+}

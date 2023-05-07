@@ -1,0 +1,18 @@
+/**
+ * Check the label of a tuple to identify the name of the according output file.
+ * If there is not already a writer for the label, it will map it to the tuple.
+ *
+ * @param fileName Name of the file for the tuple.
+ * @param t Tuple that will be mapped to writer.
+ * @throws IOException - Throne if creating writer or output stream fails.
+ */
+public void mapWriter(Tuple t, String fileName) throws IOException {
+    if (labelsToWriter.containsKey(fileName)) {
+        writeToCSV(t, labelsToWriter.get(fileName));
+    } else {
+        FSDataOutputStream stream = super.getAndCreateFileStream(fileName);
+        Writer wrt = this.charsetName == null ? new OutputStreamWriter(new BufferedOutputStream(stream, 4096), "UTF8") : new OutputStreamWriter(new BufferedOutputStream(stream, 4096), this.charsetName);
+        labelsToWriter.put(fileName, wrt);
+        writeToCSV(t, wrt);
+    }
+}

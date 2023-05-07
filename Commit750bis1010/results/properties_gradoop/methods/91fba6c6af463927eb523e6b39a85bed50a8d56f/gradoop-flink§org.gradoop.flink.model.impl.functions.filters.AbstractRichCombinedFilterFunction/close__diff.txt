@@ -1,0 +1,9 @@
+@Override
+public void close() throws Exception {
+    super.close();
+    for (FilterFunction<? super T> component : components) {
+        if (component instanceof RichFunction) {
+            ((RichFunction) component).close();
+        }
+    }
+}

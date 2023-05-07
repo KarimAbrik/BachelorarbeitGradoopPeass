@@ -1,0 +1,4 @@
+@Override
+public GraphHeadString map(G graph) {
+    return new GraphHeadString(graph.getId(), "|" + labelWithProperties(graph) + time(graph) + "|");
+}

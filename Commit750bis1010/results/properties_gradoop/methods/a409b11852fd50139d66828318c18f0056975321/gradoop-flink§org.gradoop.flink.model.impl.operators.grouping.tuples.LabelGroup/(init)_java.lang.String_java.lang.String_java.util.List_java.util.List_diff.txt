@@ -1,0 +1,11 @@
+/**
+ * Constructor with varargs.
+ *
+ * @param groupingLabel label used for grouping
+ * @param groupLabel label used after grouping
+ * @param propertyKeys variable amount of grouping keys for the label
+ * @param aggregators aggregate functions
+ */
+public LabelGroup(String groupingLabel, String groupLabel, List<String> propertyKeys, List<AggregateFunction> aggregators) {
+    super(groupingLabel, groupLabel, propertyKeys, aggregators, new ArrayList<>());
+}

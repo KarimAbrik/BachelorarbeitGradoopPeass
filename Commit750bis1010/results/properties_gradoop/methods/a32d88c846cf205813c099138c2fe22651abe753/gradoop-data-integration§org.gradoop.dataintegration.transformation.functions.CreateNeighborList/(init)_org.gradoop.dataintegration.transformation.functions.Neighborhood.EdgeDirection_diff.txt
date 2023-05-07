@@ -1,0 +1,9 @@
+/**
+ * The constructor for the creation of neighbor lists.
+ *
+ * @param edgeDirection The edge direction to consider.
+ */
+public CreateNeighborList(Neighborhood.EdgeDirection edgeDirection) {
+    this.edgeDirection = Objects.requireNonNull(edgeDirection);
+    reuse = new Tuple2<>();
+}

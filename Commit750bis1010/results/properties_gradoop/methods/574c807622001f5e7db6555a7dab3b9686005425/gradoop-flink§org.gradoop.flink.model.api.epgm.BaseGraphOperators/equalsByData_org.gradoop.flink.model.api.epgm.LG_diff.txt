@@ -1,0 +1,10 @@
+/**
+ * Checks, if another graph has the same attached data and contains
+ * vertices and edges with the same attached data as this graph.
+ *
+ * @param other other graph
+ * @return 1-element dataset containing true, iff equal by element data
+ */
+default DataSet<Boolean> equalsByData(LG other) {
+    return callForValue(new GraphEquality<>(new GraphHeadToDataString<>(), new VertexToDataString<>(), new EdgeToDataString<>(), true), other);
+}

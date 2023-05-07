@@ -1,0 +1,8 @@
+@Test
+public void testGetEccentricity() throws Exception {
+    Map<Long, Integer> eccentricity = GraphMetrics.getEccentricity(QUERY_HANDLER);
+    for (Map.Entry<Long, Integer> ecc : eccentricity.entrySet()) {
+        Integer expected = (Integer) QUERY_HANDLER.getVertexById(ecc.getKey()).getProperties().get(ECC_PROPERTY_KEY);
+        assertEquals(expected, ecc.getValue());
+    }
+}

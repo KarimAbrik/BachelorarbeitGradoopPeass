@@ -1,0 +1,4 @@
+@Test(expected = UnsupportedOperationException.class)
+public void testCompareToWithMap() {
+    create(MAP_VAL_9).compareTo(create(MAP_VAL_9));
+}

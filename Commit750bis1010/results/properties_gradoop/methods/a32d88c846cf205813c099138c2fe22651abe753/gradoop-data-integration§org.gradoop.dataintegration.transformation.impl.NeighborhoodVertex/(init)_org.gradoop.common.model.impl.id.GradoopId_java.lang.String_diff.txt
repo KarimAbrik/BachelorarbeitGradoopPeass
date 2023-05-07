@@ -1,0 +1,11 @@
+/**
+ * A constructor for the Pojo that contains information of a neighbor vertex.
+ *
+ * @param neighborId          The {@link GradoopId} of the neighbor vertex.
+ * @param connectingEdgeLabel The edge label of the edge which connects the original vertex and
+ *                            the neighbor.
+ */
+public NeighborhoodVertex(GradoopId neighborId, String connectingEdgeLabel) {
+    this.f0 = neighborId;
+    this.f1 = connectingEdgeLabel;
+}

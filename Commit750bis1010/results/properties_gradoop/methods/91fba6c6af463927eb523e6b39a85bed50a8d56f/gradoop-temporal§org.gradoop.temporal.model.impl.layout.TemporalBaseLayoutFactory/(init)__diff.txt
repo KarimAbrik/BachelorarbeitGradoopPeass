@@ -1,0 +1,8 @@
+/**
+ * Initialize this factory.
+ */
+TemporalBaseLayoutFactory() {
+    graphHeadFactory = new TemporalGraphHeadFactory();
+    vertexFactory = new TemporalVertexFactory();
+    edgeFactory = new TemporalEdgeFactory();
+}

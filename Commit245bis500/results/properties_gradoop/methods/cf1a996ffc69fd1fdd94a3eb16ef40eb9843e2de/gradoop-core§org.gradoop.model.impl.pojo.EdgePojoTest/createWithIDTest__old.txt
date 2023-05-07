@@ -1,0 +1,12 @@
+@Test
+public void createWithIDTest() {
+    Long edgeId = 0L;
+    Long sourceId = 23L;
+    Long targetId = 42L;
+    EPGMEdge e = new EdgePojoFactory().createEdge(edgeId, sourceId, targetId);
+    assertThat(e.getId(), is(edgeId));
+    assertThat(e.getSourceVertexId(), is(sourceId));
+    assertThat(e.getTargetVertexId(), is(targetId));
+    assertThat(e.getPropertyCount(), is(0));
+    assertThat(e.getGraphCount(), is(0));
+}

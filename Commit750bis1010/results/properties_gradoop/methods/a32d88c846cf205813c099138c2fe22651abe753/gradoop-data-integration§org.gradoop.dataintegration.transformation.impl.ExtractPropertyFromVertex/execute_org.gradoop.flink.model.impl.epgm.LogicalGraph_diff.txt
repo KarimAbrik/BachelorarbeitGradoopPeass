@@ -1,0 +1,21 @@
+@Override
+public LogicalGraph execute(LogicalGraph logicalGraph) {
+    // filter the vertices by the given label
+    DataSet<EPGMVertex> filteredVertices = logicalGraph.getVertices().filter(new ByLabel<>(forVerticesOfLabel));
+    // calculate new vertices and store the origin for linking
+    DataSet<Tuple2<PropertyValue, GradoopId>> candidates = filteredVertices.flatMap(new ExtractPropertyWithOriginId(originalPropertyName));
+    // extract the new vertices
+    DataSet<Tuple2<EPGMVertex, List<GradoopId>>> newVerticesAndOriginIds;
+    if (condense) {
+        newVerticesAndOriginIds = candidates.groupBy(0).reduceGroup(new CreateNewVertexWithEqualityCondense(logicalGraph.getFactory().getVertexFactory(), newVertexLabel, newPropertyName));
+    } else {
+        newVerticesAndOriginIds = candidates.map(new CreateNewVertex(logicalGraph.getFactory().getVertexFactory(), newVertexLabel, newPropertyName));
+    }
+    DataSet<EPGMVertex> vertices = newVerticesAndOriginIds.map(new Value0Of2<>()).map(new AddToGraphBroadcast<>()).withBroadcastSet(logicalGraph.getGraphHead().map(new Id<>()), AddToGraphBroadcast.GRAPH_ID).union(logicalGraph.getVertices());
+    // the newly created vertices should be linked to the original vertices
+    DataSet<EPGMEdge> edges = logicalGraph.getEdges();
+    if (!edgeDirection.equals(EdgeDirection.NONE)) {
+        edges = newVerticesAndOriginIds.flatMap(new CreateNewEdges(logicalGraph.getFactory().getEdgeFactory(), edgeDirection, edgeLabel)).map(new AddToGraphBroadcast<>()).withBroadcastSet(logicalGraph.getGraphHead().map(new Id<>()), AddToGraphBroadcast.GRAPH_ID).union(edges);
+    }
+    return logicalGraph.getFactory().fromDataSets(logicalGraph.getGraphHead(), vertices, edges);
+}

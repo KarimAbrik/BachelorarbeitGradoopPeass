@@ -1,0 +1,4 @@
+@Override
+public EPGMVertex createVertex(String label, Properties properties) {
+    return initVertex(GradoopId.get(), label, properties);
+}

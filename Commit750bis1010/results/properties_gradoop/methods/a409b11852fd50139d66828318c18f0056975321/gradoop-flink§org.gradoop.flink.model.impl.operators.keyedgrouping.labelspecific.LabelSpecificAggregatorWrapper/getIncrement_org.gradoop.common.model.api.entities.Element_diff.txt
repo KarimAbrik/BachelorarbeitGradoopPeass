@@ -1,0 +1,4 @@
+@Override
+public PropertyValue getIncrement(Element element) {
+    return element.getLabel().equals(targetLabel) ? wrap(wrappedFunction.getIncrement(element)) : PropertyValue.NULL_VALUE;
+}

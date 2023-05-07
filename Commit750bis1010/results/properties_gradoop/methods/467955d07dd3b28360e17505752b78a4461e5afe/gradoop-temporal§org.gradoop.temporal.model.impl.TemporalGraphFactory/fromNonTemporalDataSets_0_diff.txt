@@ -1,0 +1,14 @@
+/**
+ * Creates a {@link TemporalGraph} instance by the given EPGM graph head, vertex and edge datasets.
+ *
+ * The method assumes that the given vertices and edges are already assigned to the given
+ * graph head.
+ *
+ * @param graphHead   1-element graph head DataSet
+ * @param vertices    vertex DataSet
+ * @param edges       edge DataSet
+ * @return a temporal graph with default temporal data
+ */
+public TemporalGraph fromNonTemporalDataSets(DataSet<? extends GraphHead> graphHead, DataSet<? extends Vertex> vertices, DataSet<? extends Edge> edges) {
+    return new TemporalGraph(this.layoutFactory.fromDataSets(graphHead.map(new GraphHeadToTemporalGraphHead<>(getGraphHeadFactory())), vertices.map(new VertexToTemporalVertex<>(getVertexFactory())), edges.map(new EdgeToTemporalEdge<>(getEdgeFactory()))), config);
+}

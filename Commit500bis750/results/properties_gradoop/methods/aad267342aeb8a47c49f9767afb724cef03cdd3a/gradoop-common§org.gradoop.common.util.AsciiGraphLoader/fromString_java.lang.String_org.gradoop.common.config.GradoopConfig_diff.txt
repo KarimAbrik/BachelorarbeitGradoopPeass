@@ -1,0 +1,14 @@
+/**
+ * Creates an AsciiGraphLoader from the given ASCII GDL string.
+ *
+ * @param asciiGraph  GDL string
+ * @param config      Gradoop configuration
+ * @param <G> EPGM graph head type
+ * @param <V> EPGM vertex type
+ * @param <E> EPGM edge type
+ *
+ * @return AsciiGraphLoader
+ */
+public static <G extends EPGMGraphHead, V extends EPGMVertex, E extends EPGMEdge> AsciiGraphLoader<G, V, E> fromString(String asciiGraph, GradoopConfig<G, V, E> config) {
+    return new AsciiGraphLoader<>(new GDLHandler.Builder().setDefaultGraphLabel(GradoopConstants.DEFAULT_GRAPH_LABEL).setDefaultVertexLabel(GradoopConstants.DEFAULT_VERTEX_LABEL).setDefaultEdgeLabel(GradoopConstants.DEFAULT_EDGE_LABEL).buildFromString(asciiGraph), config);
+}

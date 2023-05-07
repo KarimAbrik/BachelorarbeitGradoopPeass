@@ -1,0 +1,7 @@
+@Test
+public void createExistingSubCnfTest() {
+    CNF base = getPredicate("MATCH (a), (b), (c) WHERE a=b AND a.name = \"Alice\" AND c.name = \"Chris\"");
+    CNF expectedReturnValue = getPredicate("MATCH (a), (b), (c) WHERE a.name = \"Alice\" AND c.name = \"Chris\"");
+    assertEquals(expectedReturnValue, base.getSubCNF(Sets.newHashSet("a", "c")));
+    assertEquals(new CNF(), base.getSubCNF(Sets.newHashSet("b")));
+}

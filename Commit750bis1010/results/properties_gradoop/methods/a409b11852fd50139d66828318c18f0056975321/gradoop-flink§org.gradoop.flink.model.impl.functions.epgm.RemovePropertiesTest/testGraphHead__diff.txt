@@ -1,0 +1,13 @@
+@Test
+public void testGraphHead() {
+    Properties props = Properties.create();
+    props.set("k1", "v1");
+    props.set("k2", "v2");
+    props.set("k3", "v3");
+    GraphHead graphHead = new EPGMGraphHeadFactory().initGraphHead(GradoopId.get(), "A", props);
+    TransformationFunction<GraphHead> removeFunction = new RemoveProperties<>("k1", "k2");
+    removeFunction.apply(graphHead, graphHead);
+    assertEquals(1, graphHead.getPropertyCount());
+    assertTrue(graphHead.hasProperty("k3"));
+    assertEquals("v3", graphHead.getPropertyValue("k3").getString());
+}

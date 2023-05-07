@@ -1,0 +1,17 @@
+/**
+ * Reduces edge group items to a single edge group item, creates a new
+ * super edge and collects it.
+ *
+ * @param edgeGroupItems  edge group items
+ * @param collector       output collector
+ * @throws Exception on failure
+ */
+@Override
+public void reduce(Iterable<EdgeGroupItem> edgeGroupItems, Collector<E> collector) throws Exception {
+    EdgeGroupItem edgeGroupItem = reduceInternal(edgeGroupItems);
+    E superEdge = edgeFactory.createEdge(edgeGroupItem.getGroupLabel(), edgeGroupItem.getSourceId(), edgeGroupItem.getTargetId());
+    setGroupProperties(superEdge, edgeGroupItem.getGroupingValues(), edgeGroupItem.getLabelGroup());
+    setAggregateProperties(superEdge, edgeGroupItem.getLabelGroup().getAggregateValueList(), edgeGroupItem.getLabelGroup().getAggregateFunctions());
+    edgeGroupItem.getLabelGroup().resetAggregateValues();
+    collector.collect(superEdge);
+}

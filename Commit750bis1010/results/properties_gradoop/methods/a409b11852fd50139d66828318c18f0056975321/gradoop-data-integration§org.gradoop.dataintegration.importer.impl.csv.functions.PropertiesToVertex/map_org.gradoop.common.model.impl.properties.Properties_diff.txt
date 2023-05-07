@@ -1,0 +1,6 @@
+@Override
+public V map(final Properties value) {
+    vertex.setProperties(value);
+    vertex.setId(GradoopId.get());
+    return vertex;
+}

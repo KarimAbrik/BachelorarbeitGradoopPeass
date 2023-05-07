@@ -1,0 +1,17 @@
+/**
+ * Computes the overlapping query variables of the specified entries.
+ *
+ * @param leftEntry first entry
+ * @param rightEntry second entry
+ * @return variables that are available in both input entries
+ */
+private CNF getJoinPredicate(PlanTableEntry leftEntry, PlanTableEntry rightEntry) {
+    Set<String> allVariables = leftEntry.getAllVariables();
+    allVariables.addAll(rightEntry.getAllVariables());
+    CNF leftPredicates = new CNF(leftEntry.getPredicates());
+    CNF rightPredicates = new CNF(rightEntry.getPredicates());
+    leftPredicates.removeSubCNF(rightEntry.getProcessedVariables());
+    rightPredicates.removeSubCNF(leftEntry.getProcessedVariables());
+    CNF predicates = leftPredicates.and(rightPredicates).getSubCNF(allVariables);
+    return new CNF(predicates.getPredicates().stream().filter(p -> p.size() == 1 && p.getPredicates().get(0).getComparator().equals(Comparator.EQ)).collect(Collectors.toList()));
+}

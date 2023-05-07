@@ -1,0 +1,23 @@
+/**
+ * Creates the type - parser function mapping of static property SIMPLE_TYPE_PARSER_MAP
+ *
+ * @return a HashMap containing the mapping of a simple type string to its corresponding
+ * parsing function.
+ */
+private static Map<String, Function<String, Object>> getSimpleTypeParserMap() {
+    Map<String, Function<String, Object>> map = new HashMap<>();
+    map.put(Type.SHORT.toString(), Short::parseShort);
+    map.put(Type.INTEGER.toString(), Integer::parseInt);
+    map.put(Type.LONG.toString(), Long::parseLong);
+    map.put(Type.FLOAT.toString(), Float::parseFloat);
+    map.put(Type.DOUBLE.toString(), Double::parseDouble);
+    map.put(Type.BOOLEAN.toString(), Boolean::parseBoolean);
+    map.put(Type.STRING.toString(), StringEscaper::unescape);
+    map.put(Type.BIG_DECIMAL.toString(), BigDecimal::new);
+    map.put(Type.GRADOOP_ID.toString(), GradoopId::fromString);
+    map.put(Type.DATE.toString(), LocalDate::parse);
+    map.put(Type.TIME.toString(), LocalTime::parse);
+    map.put(Type.DATE_TIME.toString(), LocalDateTime::parse);
+    map.put(Type.NULL.toString(), CSVMetaDataParser::parseNullProperty);
+    return Collections.unmodifiableMap(map);
+}

@@ -1,0 +1,13 @@
+/**                                                                                                    /**                                                                                                 
+* {@inheritDoc}                                                                                        * {@inheritDoc}                                                                                     
+*/                                                                                                     */                                                                                                  
+@Override                                                                                              @Override                                                                                           
+public GD readGraphHead(final Result res) throws IOException {                                       | public GD readGraphHead(final Result res) {                                                         
+return graphHeadFactory.createGraphHead(readId(res), readLabel(res), readProperties(res));           | GD graphHead = null;                                                                                
+                                                                                                     | try {                                                                                               
+                                                                                                     | graphHead = graphHeadFactory.createGraphHead(readId(res), readLabel(res), readProperties(res));     
+                                                                                                     | } catch (IOException e) {                                                                           
+                                                                                                     | e.printStackTrace();                                                                                
+}                                                                                                      }                                                                                                   
+                                                                                                     | return graphHead;                                                                                   
+                                                                                                     | }                                                                                                   

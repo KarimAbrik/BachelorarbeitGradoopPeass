@@ -1,0 +1,20 @@
+/**
+ * Creates a parsing function for map property type.
+ *
+ * @param keyType string representation of the map key type, e.g. "String"
+ * @param valueType string representation of the map value type, e.g. "Double"
+ * @return parsing function
+ */
+private static Function<String, Object> getMapValueParser(String keyType, String valueType) {
+    final String keyTypeLowerCase = keyType.toLowerCase();
+    // check the validity of the map key type
+    if (!TYPE_PARSER_MAP.containsKey(keyTypeLowerCase)) {
+        throw new TypeNotPresentException(keyTypeLowerCase, null);
+    }
+    final String valueTypeLowerCase = valueType.toLowerCase();
+    // check the validity of the map value type
+    if (!TYPE_PARSER_MAP.containsKey(valueTypeLowerCase)) {
+        throw new TypeNotPresentException(keyTypeLowerCase, null);
+    }
+    return s -> parseMapProperty(s, TYPE_PARSER_MAP.get(keyTypeLowerCase), TYPE_PARSER_MAP.get(valueTypeLowerCase));
+}

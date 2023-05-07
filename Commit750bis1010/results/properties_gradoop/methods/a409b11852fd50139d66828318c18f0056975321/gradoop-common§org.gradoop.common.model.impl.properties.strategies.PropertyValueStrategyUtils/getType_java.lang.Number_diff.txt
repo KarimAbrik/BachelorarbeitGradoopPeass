@@ -1,0 +1,26 @@
+/**
+ * Gets the number type of the provided object.
+ *
+ * @param value some number object.
+ * @return integer representation of the objects data type.
+ */
+private static int getType(Number value) {
+    checkNotNull(value);
+    int type;
+    if (value instanceof Short) {
+        type = SHORT;
+    } else if (value instanceof Integer) {
+        type = INT;
+    } else if (value instanceof Long) {
+        type = LONG;
+    } else if (value instanceof Float) {
+        type = FLOAT;
+    } else if (value instanceof Double) {
+        type = DOUBLE;
+    } else if (value instanceof BigDecimal) {
+        type = BIG_DECIMAL;
+    } else {
+        throw new UnsupportedTypeException(value.getClass());
+    }
+    return type;
+}

@@ -1,0 +1,25 @@
+/**
+ * Create a label-specific key function from a list of label groups.
+ *
+ * @param useLabels   Should labels be used for grouping?
+ * @param labelGroups The label groups to convert.
+ * @param <T> The element type for the key function.
+ * @return The label-specific key function.
+ */
+public static <T extends Element> LabelSpecificKeyFunction<T> asKeyFunction(boolean useLabels, List<LabelGroup> labelGroups) {
+    Map<String, List<KeyFunctionWithDefaultValue<T, ?>>> keyFunctions = new HashMap<>();
+    for (LabelGroup labelGroup : labelGroups) {
+        final String groupingLabel = labelGroup.getGroupingLabel();
+        if (keyFunctions.containsKey(groupingLabel)) {
+            throw new UnsupportedOperationException("Duplicate grouping label: " + groupingLabel);
+        }
+        List<KeyFunctionWithDefaultValue<T, ?>> keysForLabel = new ArrayList<>();
+        if ((groupingLabel.equals(Grouping.DEFAULT_VERTEX_LABEL_GROUP) || groupingLabel.equals(Grouping.DEFAULT_EDGE_LABEL_GROUP)) && useLabels) {
+            keysForLabel.add(GroupingKeys.label());
+        }
+        labelGroup.getPropertyKeys().forEach(k -> keysForLabel.add(GroupingKeys.property(k)));
+        keyFunctions.put(groupingLabel, keysForLabel);
+    }
+    Map<String, String> labelUpdateMap = labelGroups.stream().collect(Collectors.toMap(LabelGroup::getGroupingLabel, LabelGroup::getGroupLabel));
+    return new LabelSpecificKeyFunction<>(keyFunctions, labelUpdateMap);
+}

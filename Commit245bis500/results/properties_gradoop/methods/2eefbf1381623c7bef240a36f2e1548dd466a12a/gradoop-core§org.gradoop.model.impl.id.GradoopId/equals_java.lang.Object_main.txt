@@ -1,0 +1,10 @@
+@Override
+public boolean equals(Object o) {
+    boolean equals = false;
+    if (this == o) {
+        equals = true;
+    } else if (o instanceof GradoopId) {
+        equals = this.identifier.equals(((GradoopId) o).identifier);
+    }
+    return equals;
+}

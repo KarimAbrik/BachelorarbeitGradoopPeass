@@ -1,0 +1,12 @@
+/**
+ * Valued constructor
+ *
+ * @param graphHead graph head
+ * @param vertices set of vertices
+ * @param edges set of edges
+ */
+public GraphTransaction(EPGMGraphHead graphHead, Set<EPGMVertex> vertices, Set<EPGMEdge> edges) {
+    setGraphHead(graphHead);
+    setVertices(vertices);
+    setEdges(edges);
+}

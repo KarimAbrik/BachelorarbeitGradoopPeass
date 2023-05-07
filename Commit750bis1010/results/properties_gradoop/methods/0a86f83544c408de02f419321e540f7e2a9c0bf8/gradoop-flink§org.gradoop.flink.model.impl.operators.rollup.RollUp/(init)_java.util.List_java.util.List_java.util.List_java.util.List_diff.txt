@@ -1,0 +1,17 @@
+/**
+ * Creates a rollUp operator instance with {@link GroupingStrategy#GROUP_REDUCE} as grouping
+ * strategy. Use {@link RollUp#setGroupingStrategy(GroupingStrategy)} to define a different
+ * grouping strategy.
+ *
+ * @param vertexGroupingKeys        grouping keys to group vertices
+ * @param vertexAggregateFunctions  aggregate functions to apply on super vertices
+ * @param edgeGroupingKeys          grouping keys to group edges
+ * @param edgeAggregateFunctions    aggregate functions to apply on super edges
+ */
+RollUp(List<String> vertexGroupingKeys, List<AggregateFunction> vertexAggregateFunctions, List<String> edgeGroupingKeys, List<AggregateFunction> edgeAggregateFunctions) {
+    this.vertexGroupingKeys = vertexGroupingKeys;
+    this.vertexAggregateFunctions = vertexAggregateFunctions;
+    this.edgeGroupingKeys = edgeGroupingKeys;
+    this.edgeAggregateFunctions = edgeAggregateFunctions;
+    this.strategy = GroupingStrategy.GROUP_REDUCE;
+}

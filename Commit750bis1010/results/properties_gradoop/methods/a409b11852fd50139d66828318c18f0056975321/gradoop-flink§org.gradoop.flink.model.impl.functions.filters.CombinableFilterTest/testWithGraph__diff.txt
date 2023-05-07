@@ -1,0 +1,15 @@
+@Test
+public void testWithGraph() throws Exception {
+    FlinkAsciiGraphLoader loader = getSocialNetworkLoader();
+    loader.appendToDatabaseFromString("expected[" + // gender = 'f' and city = 'leipzig'
+    "(alice)" + // label = 'Tag'
+    "(databases)(graphs)(hadoop)" + "]");
+    LogicalGraph databaseGraph = loader.getLogicalGraph();
+    // Filter vertices where
+    // (gender = 'f' AND city = 'Leipzig') OR NOT(label = 'Person' OR label = 'Forum')
+    FilterFunction<EPGMVertex> vertexFilterFunction = new ByProperty<EPGMVertex>("gender", PropertyValue.create("f")).and(new ByProperty<>("city", PropertyValue.create("Leipzig"))).or(new ByLabel<>("Person").or(new ByLabel<>("Forum")).negate());
+    // Filter edges where
+    // label <> 'hasInterest'
+    LogicalGraph subgraph = databaseGraph.subgraph(vertexFilterFunction, new ByLabel<EPGMEdge>("hasInterest").negate(), Subgraph.Strategy.BOTH);
+    collectAndAssertTrue(subgraph.equalsByElementIds(loader.getLogicalGraphByVariable("expected")));
+}

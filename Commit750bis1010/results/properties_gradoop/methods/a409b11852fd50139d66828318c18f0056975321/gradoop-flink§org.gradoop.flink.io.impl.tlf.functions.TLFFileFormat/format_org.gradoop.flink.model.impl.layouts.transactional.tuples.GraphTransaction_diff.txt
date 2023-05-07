@@ -1,0 +1,29 @@
+/**
+ * Creates a TLF string representation of a given graph transaction, which
+ * has the following format:
+ * <p>
+ * t # 0
+ * v 0 label
+ * v 1 label
+ * v 2 label
+ * e 0 1 edgeLabel
+ * e 1 2 edgeLabel
+ * e 2 1 edgeLabel
+ * </p>
+ *
+ * @param graphTransaction graph transaction
+ * @return TLF string representation
+ */
+@Override
+public String format(GraphTransaction graphTransaction) {
+    StringBuilder builder = new StringBuilder();
+    vertexIdMap = Maps.newHashMapWithExpectedSize(graphTransaction.getVertices().size());
+    // GRAPH HEAD
+    writeGraphHead(builder, graphId);
+    graphId++;
+    // VERTICES
+    writeVertices(builder, graphTransaction.getVertices());
+    // EDGES
+    writeEdges(builder, graphTransaction.getEdges());
+    return builder.toString().trim();
+}

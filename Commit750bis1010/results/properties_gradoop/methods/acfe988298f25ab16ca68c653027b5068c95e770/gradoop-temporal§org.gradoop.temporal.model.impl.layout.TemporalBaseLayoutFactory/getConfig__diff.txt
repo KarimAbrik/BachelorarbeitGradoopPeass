@@ -1,0 +1,12 @@
+/**
+ * Get the temporal config to be used by this factory.
+ *
+ * @return The config.
+ * @throws IllegalStateException when the config has not been set yet.
+ */
+protected TemporalGradoopConfig getConfig() {
+    if (config != null) {
+        return config;
+    }
+    throw new IllegalStateException("No config is set for this factory.");
+}

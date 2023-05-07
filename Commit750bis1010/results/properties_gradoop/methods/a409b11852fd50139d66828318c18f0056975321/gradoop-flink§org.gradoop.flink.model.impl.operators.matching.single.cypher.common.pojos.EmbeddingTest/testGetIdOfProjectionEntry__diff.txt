@@ -1,0 +1,7 @@
+@Test
+public void testGetIdOfProjectionEntry() {
+    GradoopId id = GradoopId.get();
+    Embedding embedding = new Embedding();
+    embedding.add(id, PropertyValue.create("String"), PropertyValue.create(42));
+    assertEquals(id, embedding.getId(0));
+}

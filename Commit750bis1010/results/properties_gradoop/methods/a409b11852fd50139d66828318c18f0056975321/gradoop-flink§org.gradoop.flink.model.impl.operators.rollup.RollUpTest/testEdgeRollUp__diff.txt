@@ -1,0 +1,21 @@
+/**
+ * Executes a common rollUp on edges using multiple grouping keys and checks if the result
+ * is correct. This test also checks if edges which do not contain the grouping key are
+ * handled correctly.
+ *
+ * @throws Exception If the execution fails.
+ */
+@Test
+public void testEdgeRollUp() throws Exception {
+    FlinkAsciiGraphLoader loader = getSocialNetworkLoader();
+    LogicalGraph input = loader.getGraphCollectionByVariables("g0", "g1", "g2", "g3").reduce(new ReduceCombination<>());
+    //expected
+    loader.initDatabaseFromString("g0 {edgeRollUpGroupingKeys:\":label,since,vertexCount\"}[" + "(v0)" + "(v0)-[e_0:hasModerator{count:1L,vertexCount:NULL,since:2013}]->(v0)" + "(v0)-[e_1:knows{count:3L,vertexCount:NULL,since:2013}]->(v0)" + "(v0)-[e_2:knows{count:4L,vertexCount:NULL,since:2014}]->(v0)" + "(v0)-[e_3:knows{count:3L,vertexCount:NULL,since:2015}]->(v0)" + "(v0)-[e_4:hasMember{count:2L,vertexCount:NULL,since:NULL}]->(v0)" + "]" + "g1 {edgeRollUpGroupingKeys:\":label,since\"}[" + "(v2)" + "(v2)-[e_5:hasMember{count:2L,since:NULL}]->(v2)" + "(v2)-[e_6:knows{count:3L,since:2013}]->(v2)" + "(v2)-[e_7:knows{count:3L,since:2015}]->(v2)" + "(v2)-[e_8:hasModerator{count:1L,since:2013}]->(v2)" + "(v2)-[e_9:knows{count:4L,since:2014}]->(v2)" + "]" + "g2 {edgeRollUpGroupingKeys:\":label\"}[" + "(v1)" + "(v1)-[e_10:hasMember{count:2L}]->(v1)" + "(v1)-[e_11:hasModerator{count:1L}]->(v1)" + "(v1)-[e_12:knows{count:10L}]->(v1)" + "]");
+    GraphCollection expected = loader.getGraphCollection();
+    List<String> vertexGK = Collections.emptyList();
+    List<AggregateFunction> vertexAGG = Collections.emptyList();
+    List<String> edgeGK = Arrays.asList(Grouping.LABEL_SYMBOL, "since", "vertexCount");
+    List<AggregateFunction> edgeAGG = Collections.singletonList(new Count("count"));
+    GraphCollection output = input.groupEdgesByRollUp(vertexGK, vertexAGG, edgeGK, edgeAGG);
+    collectAndAssertTrue(output.equalsByGraphData(expected));
+}

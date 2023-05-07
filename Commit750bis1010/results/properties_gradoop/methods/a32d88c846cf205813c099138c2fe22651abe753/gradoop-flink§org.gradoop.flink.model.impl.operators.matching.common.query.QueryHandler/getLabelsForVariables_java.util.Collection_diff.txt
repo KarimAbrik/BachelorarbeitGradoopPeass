@@ -1,0 +1,16 @@
+/**
+ * Returns a mapping between the given variables (if existent) and the corresponding element
+ * label.
+ *
+ * @param variables query variables
+ * @return mapping between existing variables and their corresponding label
+ */
+public Map<String, String> getLabelsForVariables(Collection<String> variables) {
+    return variables.stream().filter(var -> isEdge(var) || isVertex(var)).map(var -> {
+        if (isEdge(var)) {
+            return Pair.of(var, getEdgeByVariable(var).getLabel());
+        } else {
+            return Pair.of(var, getVertexByVariable(var).getLabel());
+        }
+    }).collect(Collectors.toMap(Pair::getLeft, Pair::getRight));
+}

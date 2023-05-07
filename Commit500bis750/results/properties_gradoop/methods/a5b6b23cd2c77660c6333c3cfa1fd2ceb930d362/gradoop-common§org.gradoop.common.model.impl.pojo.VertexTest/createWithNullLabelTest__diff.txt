@@ -1,0 +1,5 @@
+@Test(expected = NullPointerException.class)
+public void createWithNullLabelTest() {
+    GradoopId vertexID = GradoopId.get();
+    new VertexFactory().initVertex(vertexID, null);
+}

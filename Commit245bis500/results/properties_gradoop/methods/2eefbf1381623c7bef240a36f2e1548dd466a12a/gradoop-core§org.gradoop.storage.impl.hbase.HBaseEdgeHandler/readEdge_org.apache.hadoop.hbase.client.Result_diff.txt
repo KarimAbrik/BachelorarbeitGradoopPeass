@@ -1,0 +1,13 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public ED readEdge(Result res) {
+    ED edge = null;
+    try {
+        edge = edgeFactory.createEdge(readId(res), readLabel(res), readSourceVertexId(res), readTargetVertexId(res), readProperties(res), readGraphIds(res));
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+    return edge;
+}

@@ -1,0 +1,11 @@
+@Override
+public LogicalGraphLayout fromIndexedDataSets(Map<String, DataSet<Vertex>> vertices, Map<String, DataSet<Edge>> edges) {
+    GraphHead graphHead = getConfig().getGraphHeadFactory().createGraphHead();
+    DataSet<GraphHead> graphHeadSet = getConfig().getExecutionEnvironment().fromElements(graphHead);
+    Map<String, DataSet<GraphHead>> graphHeads = Maps.newHashMap();
+    graphHeads.put(graphHead.getLabel(), graphHeadSet);
+    // update vertices and edges with new graph head id
+    vertices = vertices.entrySet().stream().collect(Collectors.toMap(Map.Entry::getKey, e -> e.getValue().map(new AddToGraph<>(graphHead)).withForwardedFields("id;label;properties")));
+    edges = edges.entrySet().stream().collect(Collectors.toMap(Map.Entry::getKey, e -> e.getValue().map(new AddToGraph<>(graphHead)).withForwardedFields("id;sourceId;targetId;label;properties")));
+    return create(graphHeads, vertices, edges);
+}

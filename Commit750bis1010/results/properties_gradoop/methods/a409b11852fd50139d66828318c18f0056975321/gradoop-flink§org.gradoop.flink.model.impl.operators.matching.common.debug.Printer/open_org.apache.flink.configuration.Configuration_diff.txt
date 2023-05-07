@@ -1,0 +1,8 @@
+@Override
+public void open(Configuration parameters) throws Exception {
+    super.open(parameters);
+    List<Tuple2<K, PropertyValue>> vertexMapping = getRuntimeContext().getBroadcastVariable(VERTEX_MAPPING);
+    vertexMap = initMapping(vertexMapping);
+    List<Tuple2<K, PropertyValue>> edgeMapping = getRuntimeContext().getBroadcastVariable(EDGE_MAPPING);
+    edgeMap = initMapping(edgeMapping);
+}

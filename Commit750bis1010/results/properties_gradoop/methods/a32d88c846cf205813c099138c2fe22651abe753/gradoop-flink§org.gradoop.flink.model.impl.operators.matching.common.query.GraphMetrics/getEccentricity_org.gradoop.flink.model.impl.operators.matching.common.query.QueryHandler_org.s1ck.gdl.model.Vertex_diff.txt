@@ -1,0 +1,26 @@
+/**
+ * Computes the eccentricity for the given vertex using a BFS approach.
+ *
+ * @param graph query graph (connected)
+ * @param v vertex
+ * @return eccentricity of v
+ */
+public static Integer getEccentricity(QueryHandler graph, Vertex v) {
+    Map<Long, Integer> distances = Maps.newHashMap();
+    Queue<Long> queue = new LinkedList<>();
+    queue.add(v.getId());
+    distances.put(v.getId(), 0);
+    int ecc = 0;
+    while (!queue.isEmpty()) {
+        Long current = queue.poll();
+        Integer currentDistance = distances.get(current);
+        ecc = currentDistance > ecc ? currentDistance : ecc;
+        for (Long neighbor : graph.getNeighborIds(current)) {
+            if (!distances.containsKey(neighbor)) {
+                distances.put(neighbor, currentDistance + 1);
+                queue.add(neighbor);
+            }
+        }
+    }
+    return ecc;
+}

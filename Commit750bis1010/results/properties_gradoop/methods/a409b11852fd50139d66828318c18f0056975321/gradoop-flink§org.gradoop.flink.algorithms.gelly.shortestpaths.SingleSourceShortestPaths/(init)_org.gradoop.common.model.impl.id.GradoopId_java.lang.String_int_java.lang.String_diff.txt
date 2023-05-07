@@ -1,0 +1,16 @@
+/**
+ * Constructor for single source shortest paths with the {@link GradoopId} of the source vertex
+ * and a maximum number of iterations.
+ *
+ * @param srcVertexId Id of the source vertex.
+ * @param propertyKeyEdge Property key to store the edge value in.
+ * @param iterations The maximum number of iterations.
+ * @param propertyKeyVertex Property key to store the vertex value in.
+ */
+public SingleSourceShortestPaths(GradoopId srcVertexId, String propertyKeyEdge, int iterations, String propertyKeyVertex) {
+    super(new VertexToGellyVertexWithNullValue(), new EdgeToGellyEdgeWithDouble(propertyKeyEdge));
+    this.propertyKeyVertex = propertyKeyVertex;
+    this.propertyKeyEdge = propertyKeyEdge;
+    this.iterations = iterations;
+    this.srcVertexId = srcVertexId;
+}

@@ -1,0 +1,15 @@
+/**
+ * Creates a HBase table with the given name.
+ *
+ * @param outputTable table name
+ * @throws IOException
+ */
+protected void createTable(String outputTable) throws IOException {
+    HTableDescriptor outputTableDescriptor = new HTableDescriptor(TableName.valueOf(outputTable));
+    HBaseAdmin admin = new HBaseAdmin(utility.getConfiguration());
+    if (!admin.tableExists(outputTableDescriptor.getName())) {
+        outputTableDescriptor.addFamily(new HColumnDescriptor("v"));
+        admin.createTable(outputTableDescriptor);
+    }
+    admin.close();
+}

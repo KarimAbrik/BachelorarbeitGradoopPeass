@@ -1,0 +1,5 @@
+@Test
+public void getGraphTransactions() throws Exception {
+    TxCollectionLayout layout = new TxCollectionLayout(getExecutionEnvironment().fromElements(tx0));
+    assertEquals(tx0, layout.getGraphTransactions().collect().get(0));
+}

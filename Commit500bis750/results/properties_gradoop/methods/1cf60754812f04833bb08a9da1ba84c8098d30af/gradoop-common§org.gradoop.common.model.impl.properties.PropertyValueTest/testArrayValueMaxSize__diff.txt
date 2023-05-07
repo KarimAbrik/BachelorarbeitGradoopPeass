@@ -1,0 +1,5 @@
+@Test                                                                                                  @Test                                                                                               
+public void testArrayValueMaxSize() {                                                                  public void testArrayValueMaxSize() {                                                               
+PropertyValue property = new PropertyValue();                                                          PropertyValue property = new PropertyValue();                                                       
+property.setBytes(new byte[PropertyValue.MAX_BINARY_LENGTH]);                                        | property.setBytes(new byte[PropertyValue.LARGE_PROPERTY_THRESHOLD]);                                
+}                                                                                                      }                                                                                                   

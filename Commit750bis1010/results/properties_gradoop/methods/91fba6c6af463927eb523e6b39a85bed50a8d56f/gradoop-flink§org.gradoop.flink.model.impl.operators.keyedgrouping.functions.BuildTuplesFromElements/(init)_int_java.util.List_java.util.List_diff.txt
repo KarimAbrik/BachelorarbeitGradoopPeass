@@ -1,0 +1,36 @@
+/**
+ * Initialize this function, setting the grouping keys and aggregate functions.
+ *
+ * @param tupleDataOffset    The number of tuple fields reserved for IDs.
+ * @param keys               The grouping keys.
+ * @param aggregateFunctions The aggregate functions used to determine the aggregate property
+ */
+public BuildTuplesFromElements(int tupleDataOffset, List<KeyFunction<E, ?>> keys, List<AggregateFunction> aggregateFunctions) {
+    this.tupleDataOffset = tupleDataOffset;
+    if (tupleDataOffset < 0) {
+        throw new IllegalArgumentException("The number of reserved tuple fields must not be negative.");
+    }
+    this.keys = Objects.requireNonNull(keys);
+    this.aggregateFunctions = Objects.requireNonNull(aggregateFunctions);
+    final int tupleSize = tupleDataOffset + keys.size() + aggregateFunctions.size();
+    if (tupleSize > Tuple.MAX_ARITY) {
+        throw new UnsupportedOperationException("Number of elements is too high for tuple: " + tupleSize + " (max.: " + Tuple.MAX_ARITY + ")");
+    }
+    elementTypes = new TypeInformation[tupleSize];
+    for (int i = 0; i < tupleDataOffset; i++) {
+        elementTypes[i] = TypeInformation.of(GradoopId.class);
+    }
+    // Fill grouping key types.
+    for (int i = 0; i < keys.size(); i++) {
+        elementTypes[i + tupleDataOffset] = keys.get(i).getType();
+    }
+    // Fill remaining spots with property value types.
+    for (int i = 0; i < aggregateFunctions.size(); i++) {
+        elementTypes[i + keys.size() + tupleDataOffset] = TypeInformation.of(PropertyValue.class);
+    }
+    reuseTuple = Tuple.newInstance(tupleSize);
+    // Fill first fields with default ID values.
+    for (int i = 0; i < tupleDataOffset; i++) {
+        reuseTuple.setField(GradoopId.NULL_VALUE, i);
+    }
+}

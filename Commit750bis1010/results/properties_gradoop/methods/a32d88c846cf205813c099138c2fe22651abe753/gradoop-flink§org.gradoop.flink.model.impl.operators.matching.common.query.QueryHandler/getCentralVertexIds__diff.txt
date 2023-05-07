@@ -1,0 +1,16 @@
+/**
+ * Returns all vertex ids that have a minimum eccentricity.
+ *
+ * @return vertex identifiers
+ */
+public Collection<Long> getCentralVertexIds() {
+    Map<Long, Integer> eccMap = GraphMetrics.getEccentricity(this);
+    Integer min = Collections.min(eccMap.values());
+    List<Long> result = Lists.newArrayList();
+    for (Map.Entry<Long, Integer> eccEntry : eccMap.entrySet()) {
+        if (eccEntry.getValue().equals(min)) {
+            result.add(eccEntry.getKey());
+        }
+    }
+    return result;
+}

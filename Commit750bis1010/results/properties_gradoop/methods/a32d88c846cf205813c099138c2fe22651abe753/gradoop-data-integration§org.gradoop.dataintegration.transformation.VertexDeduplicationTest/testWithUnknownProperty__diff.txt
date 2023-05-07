@@ -1,0 +1,11 @@
+/**
+ * Run the operator on a graph with the property not set.
+ *
+ * @throws Exception when the execution in Flink fails.
+ */
+@Test
+public void testWithUnknownProperty() throws Exception {
+    LogicalGraph socialGraph = getSocialNetworkLoader().getLogicalGraph();
+    List<EPGMVertex> vertices = socialGraph.callForGraph(new VertexDeduplication<>("Person", Collections.singletonList("notSet"))).getVerticesByLabel("Person").collect();
+    assertEquals(1, vertices.size());
+}

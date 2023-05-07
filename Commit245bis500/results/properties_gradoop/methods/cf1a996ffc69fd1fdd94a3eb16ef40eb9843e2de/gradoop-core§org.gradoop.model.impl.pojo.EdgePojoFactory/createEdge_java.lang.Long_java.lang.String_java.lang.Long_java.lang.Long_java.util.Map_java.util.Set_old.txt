@@ -1,0 +1,11 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public EdgePojo createEdge(final Long id, final String label, final Long sourceVertexId, final Long targetVertexId, final Map<String, Object> properties, Set<Long> graphs) {
+    checkId(id);
+    checkLabel(label);
+    checkId(sourceVertexId);
+    checkId(targetVertexId);
+    return new EdgePojo(id, label, sourceVertexId, targetVertexId, properties, graphs);
+}

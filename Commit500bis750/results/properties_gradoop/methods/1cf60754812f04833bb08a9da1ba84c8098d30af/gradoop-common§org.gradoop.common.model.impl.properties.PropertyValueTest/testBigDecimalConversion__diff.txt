@@ -1,0 +1,32 @@
+@Test                                                                                                  @Test                                                                                               
+public void testBigDecimalConversion() {                                                               public void testBigDecimalConversion() {                                                            
+PropertyValue property;                                                                                PropertyValue property;                                                                             
+BigDecimal decimalValue;                                                                               BigDecimal decimalValue;                                                                            
+                                                                                                     | // SHORT                                                                                            
+                                                                                                     | property = create(SHORT_VAL_e);                                                                     
+                                                                                                     | decimalValue = BigDecimal.valueOf(SHORT_VAL_e);                                                     
+                                                                                                     | assertEquals(decimalValue, property.getBigDecimal());                                               
+// INT                                                                                                 // INT                                                                                              
+property = create(INT_VAL_2);                                                                          property = create(INT_VAL_2);                                                                       
+decimalValue = BigDecimal.valueOf(INT_VAL_2);                                                          decimalValue = BigDecimal.valueOf(INT_VAL_2);                                                       
+assertEquals(decimalValue, property.getBigDecimal());                                                  assertEquals(decimalValue, property.getBigDecimal());                                               
+// LONG                                                                                                // LONG                                                                                             
+property = create(LONG_VAL_3);                                                                         property = create(LONG_VAL_3);                                                                      
+decimalValue = BigDecimal.valueOf(LONG_VAL_3);                                                         decimalValue = BigDecimal.valueOf(LONG_VAL_3);                                                      
+assertEquals(decimalValue, property.getBigDecimal());                                                  assertEquals(decimalValue, property.getBigDecimal());                                               
+// FLOAT                                                                                               // FLOAT                                                                                            
+property = create(FLOAT_VAL_4);                                                                        property = create(FLOAT_VAL_4);                                                                     
+decimalValue = BigDecimal.valueOf(FLOAT_VAL_4);                                                        decimalValue = BigDecimal.valueOf(FLOAT_VAL_4);                                                     
+assertEquals(decimalValue, property.getBigDecimal());                                                  assertEquals(decimalValue, property.getBigDecimal());                                               
+// DOUBLE                                                                                              // DOUBLE                                                                                           
+property = create(DOUBLE_VAL_5);                                                                       property = create(DOUBLE_VAL_5);                                                                    
+decimalValue = BigDecimal.valueOf(DOUBLE_VAL_5);                                                       decimalValue = BigDecimal.valueOf(DOUBLE_VAL_5);                                                    
+assertEquals(decimalValue, property.getBigDecimal());                                                  assertEquals(decimalValue, property.getBigDecimal());                                               
+// STRING                                                                                              // STRING                                                                                           
+property = create("-3.5");                                                                             property = create("-3.5");                                                                          
+decimalValue = new BigDecimal("-3.5");                                                                 decimalValue = new BigDecimal("-3.5");                                                              
+assertEquals(decimalValue, property.getBigDecimal());                                                  assertEquals(decimalValue, property.getBigDecimal());                                               
+exception.expect(NumberFormatException.class);                                                         exception.expect(NumberFormatException.class);                                                      
+property = create("No Number");                                                                        property = create("No Number");                                                                     
+property.getBigDecimal();                                                                              property.getBigDecimal();                                                                           
+}                                                                                                      }                                                                                                   

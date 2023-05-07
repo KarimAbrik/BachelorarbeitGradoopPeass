@@ -1,0 +1,10 @@
+@Test(expected = NoSuchElementException.class)
+public void testThrowErrorIfElementNotPresent() {
+    ElementSelector selector = new ElementSelector("a");
+    ElementSelectorComparable wrapper = new ElementSelectorComparable(selector);
+    Embedding embedding = new Embedding();
+    embedding.add(GradoopId.get());
+    EmbeddingMetaData metaData = new EmbeddingMetaData();
+    metaData.setEntryColumn("b", EntryType.VERTEX, 0);
+    wrapper.evaluate(embedding, metaData);
+}

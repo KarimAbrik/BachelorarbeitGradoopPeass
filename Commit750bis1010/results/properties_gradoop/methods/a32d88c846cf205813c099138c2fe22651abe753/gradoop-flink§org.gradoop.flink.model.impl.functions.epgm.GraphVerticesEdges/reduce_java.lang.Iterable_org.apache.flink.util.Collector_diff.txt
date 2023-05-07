@@ -1,0 +1,22 @@
+/**
+ * Merges sets created by the combiners.
+ *
+ * @param values partial vertex and edge sets for one transaction
+ * @param out collector
+ * @throws Exception The function may throw Exceptions, which will cause the program to cancel,
+ *                   and may trigger the recovery logic.
+ */
+@Override
+public void reduce(Iterable<Tuple3<GradoopId, Set<EPGMVertex>, Set<EPGMEdge>>> values, Collector<Tuple3<GradoopId, Set<EPGMVertex>, Set<EPGMEdge>>> out) throws Exception {
+    Iterator<Tuple3<GradoopId, Set<EPGMVertex>, Set<EPGMEdge>>> iterator = values.iterator();
+    Tuple3<GradoopId, Set<EPGMVertex>, Set<EPGMEdge>> first = iterator.next();
+    GradoopId graphId = first.f0;
+    Set<EPGMVertex> vertices = first.f1;
+    Set<EPGMEdge> edges = first.f2;
+    while (iterator.hasNext()) {
+        Tuple3<GradoopId, Set<EPGMVertex>, Set<EPGMEdge>> next = iterator.next();
+        vertices.addAll(next.f1);
+        edges.addAll(next.f2);
+    }
+    out.collect(Tuple3.of(graphId, vertices, edges));
+}

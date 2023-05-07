@@ -1,0 +1,7 @@
+@Test
+public void testSameGraph() throws Exception {
+    FlinkAsciiGraphLoader loader = getSocialNetworkLoader();
+    LogicalGraph graph = loader.getLogicalGraphByVariable("g0");
+    LogicalGraph overlap = graph.overlap(graph);
+    assertTrue("overlap of same graph failed", graph.equalsByElementIds(overlap).collect().get(0));
+}

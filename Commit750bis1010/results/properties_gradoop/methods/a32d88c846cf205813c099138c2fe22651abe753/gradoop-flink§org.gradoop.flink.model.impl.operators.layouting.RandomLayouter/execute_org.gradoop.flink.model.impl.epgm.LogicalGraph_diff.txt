@@ -1,0 +1,8 @@
+@Override
+public LogicalGraph execute(LogicalGraph g) {
+    if (rng == null) {
+        rng = ThreadLocalRandom.current();
+    }
+    DataSet<EPGMVertex> placed = g.getVertices().map(this);
+    return g.getFactory().fromDataSets(placed, g.getEdges());
+}

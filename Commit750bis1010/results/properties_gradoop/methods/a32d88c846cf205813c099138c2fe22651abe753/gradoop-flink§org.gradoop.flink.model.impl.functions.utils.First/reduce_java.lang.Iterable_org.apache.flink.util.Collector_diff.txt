@@ -1,0 +1,4 @@
+@Override
+public void reduce(Iterable<T> iterable, Collector<T> collector) throws Exception {
+    collector.collect(iterable.iterator().next());
+}

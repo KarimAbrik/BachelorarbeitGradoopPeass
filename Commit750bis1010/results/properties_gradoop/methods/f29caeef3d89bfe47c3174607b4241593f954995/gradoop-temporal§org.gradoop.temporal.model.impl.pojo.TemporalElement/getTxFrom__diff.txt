@@ -1,0 +1,8 @@
+/**
+ * Get the beginning of the elements transaction interval as unix timestamp in milliseconds.
+ *
+ * @return the beginning of the elements transaction interval as unix timestamp in milliseconds
+ */
+public Long getTxFrom() {
+    return this.transactionTime.f0;
+}

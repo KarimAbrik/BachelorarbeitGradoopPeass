@@ -1,0 +1,12 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public Tuple2<LongWritable, Mutation> map(PVD persistentVertexData) throws Exception {
+    LongWritable key = new LongWritable(persistentVertexData.getId());
+    Put put = new Put(vertexHandler.getRowKey(persistentVertexData.getId()));
+    put = vertexHandler.writeVertex(put, persistentVertexData);
+    reuseTuple.f0 = key;
+    reuseTuple.f1 = put;
+    return reuseTuple;
+}

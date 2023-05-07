@@ -1,0 +1,27 @@
+/**                                                                                                    /**                                                                                                 
+* Serializes an edge to an edge identifier in the following format:                                    * Serializes an edge to an edge identifier in the following format:                                 
+* &lt;p&gt;                                                                                            * &lt;p&gt;                                                                                         
+* &lt;edge-identifier&gt; ::= &lt;edgeId&gt;&lt;otherID&gt;&lt;label&gt;                               * &lt;edge-identifier&gt; ::= &lt;edgeId&gt;&lt;otherID&gt;&lt;label&gt;                            
+*                                                                                                      *                                                                                                   
+* @param edge   edge to create identifier for                                                          * @param edge   edge to create identifier for                                                       
+* @param isOutgoing true, if the edge is an outgoing edge, false if                                    * @param isOutgoing true, if the edge is an outgoing edge, false if                                 
+*                   incoming                                                                           *                   incoming                                                                        
+* @return byte representation of the edge identifier                                                   * @return byte representation of the edge identifier                                                
+*/                                                                                                     */                                                                                                  
+private byte[] createEdgeIdentifier(final EPGMEdge edge, boolean isOutgoing) {                       | private byte[] createEdgeIdentifier(final EPGMEdge edge, boolean isOutgoing) throws IOException {   
+                                                                                                     | // initially only GradoopId                                                                         
+                                                                                                     | byte[] edgeIdentifier = Writables.getBytes(edge.getId());                                           
+                                                                                                     | // extend by source or vertex id                                                                    
+                                                                                                     | byte[] otherVertexIdBytes = Writables.getBytes(isOutgoing ? edge.getTargetVertexId() : edge.getSourc
+                                                                                                     | ArrayUtils.addAll(edgeIdentifier, otherVertexIdBytes);                                              
+                                                                                                     | // extend by label                                                                                  
+byte[] labelBytes = Bytes.toBytes(edge.getLabel());                                                    byte[] labelBytes = Bytes.toBytes(edge.getLabel());                                                 
+byte[] edgeKey = new byte[2 * Bytes.SIZEOF_LONG + labelBytes.length];                                | ArrayUtils.addAll(edgeIdentifier, labelBytes);                                                      
+// edge identifier                                                                                   | return edgeIdentifier;                                                                              
+Bytes.putLong(edgeKey, 0, edge.getId());                                                             |                                                                                                     
+// source|target vertex identifier                                                                   |                                                                                                     
+Bytes.putLong(edgeKey, Bytes.SIZEOF_LONG, isOutgoing ? edge.getTargetVertexId() : edge.getSourceVert |                                                                                                     
+// edge label                                                                                        |                                                                                                     
+Bytes.putBytes(edgeKey, Bytes.SIZEOF_LONG * 2, labelBytes, 0, labelBytes.length);                    |                                                                                                     
+return edgeKey;                                                                                      |                                                                                                     
+}                                                                                                      }                                                                                                   

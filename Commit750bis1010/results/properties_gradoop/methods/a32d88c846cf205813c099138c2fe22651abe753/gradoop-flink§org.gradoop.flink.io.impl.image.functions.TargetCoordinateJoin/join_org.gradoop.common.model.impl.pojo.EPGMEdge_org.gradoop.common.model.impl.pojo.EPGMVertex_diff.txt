@@ -1,0 +1,6 @@
+@Override
+public EPGMEdge join(EPGMEdge first, EPGMVertex second) throws Exception {
+    first.setProperty(ImageDataSink.TARGET_X, second.getPropertyValue(LayoutingAlgorithm.X_COORDINATE_PROPERTY));
+    first.setProperty(ImageDataSink.TARGET_Y, second.getPropertyValue(LayoutingAlgorithm.Y_COORDINATE_PROPERTY));
+    return first;
+}

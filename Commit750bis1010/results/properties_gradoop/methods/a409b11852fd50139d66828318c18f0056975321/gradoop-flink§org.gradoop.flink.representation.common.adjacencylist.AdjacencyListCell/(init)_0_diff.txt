@@ -1,0 +1,9 @@
+/**
+ * Constructor.
+ * @param edgeData edge id
+ * @param vertexData target id (outgoing) or source id (incoming)
+ */
+public AdjacencyListCell(ED edgeData, VD vertexData) {
+    this.f0 = edgeData;
+    this.f1 = vertexData;
+}

@@ -1,0 +1,14 @@
+/**
+ * Executes a property transformation using a new property key on vertices and checks if the
+ * result is correct.
+ *
+ * @throws Exception If the execution fails.
+ */
+@Test
+public void testVertexTransformationNewPropKey() throws Exception {
+    FlinkAsciiGraphLoader loader = getLoaderFromString(TEST_GRAPH);
+    LogicalGraph original = loader.getLogicalGraphByVariable("g0");
+    LogicalGraph expected = loader.getLogicalGraphByVariable("g23");
+    LogicalGraph result = original.callForGraph(new PropertyTransformation<>("a", null, DIVISION, null, null, "dividedA", true));
+    collectAndAssertTrue(result.equalsByData(expected));
+}

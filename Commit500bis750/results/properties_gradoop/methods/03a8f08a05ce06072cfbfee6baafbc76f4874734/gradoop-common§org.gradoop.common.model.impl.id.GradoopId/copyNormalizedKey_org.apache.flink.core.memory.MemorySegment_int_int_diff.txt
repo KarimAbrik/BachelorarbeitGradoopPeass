@@ -1,0 +1,4 @@
+@Override
+public void copyNormalizedKey(MemorySegment target, int offset, int len) {
+    target.put(offset, bytes, 0, len);
+}

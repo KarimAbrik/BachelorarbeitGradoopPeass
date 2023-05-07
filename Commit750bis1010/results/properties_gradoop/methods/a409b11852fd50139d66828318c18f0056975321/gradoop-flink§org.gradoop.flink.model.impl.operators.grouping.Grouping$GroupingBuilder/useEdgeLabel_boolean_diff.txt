@@ -1,0 +1,10 @@
+/**
+ * Define, if the edge label shall be used for grouping edges.
+ *
+ * @param useEdgeLabel true, iff edge label shall be used for grouping
+ * @return this builder
+ */
+public GroupingBuilder useEdgeLabel(boolean useEdgeLabel) {
+    this.useEdgeLabel = useEdgeLabel;
+    return this;
+}

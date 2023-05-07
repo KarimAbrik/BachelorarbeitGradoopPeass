@@ -1,0 +1,16 @@
+/**
+ * Returns true, if the edge candidate matches the incoming pattern edge.
+ *
+ * @param patternEdge incoming pattern edge
+ * @param edgeCandidate id of the edge candidate
+ * @param source source id of the edge candidate
+ * @return true, iff edge matches pattern edge
+ */
+private boolean matchIncomingEdge(Edge patternEdge, GradoopId edgeCandidate, GradoopId source) {
+    Tuple3<GradoopId, GradoopId, boolean[]> edge = edgeDict.get(edgeCandidate);
+    if (edge.f2[(int) patternEdge.getId()]) {
+        GradoopId possibleVertex = edge.f0;
+        return possibleVertex.equals(source);
+    }
+    return false;
+}

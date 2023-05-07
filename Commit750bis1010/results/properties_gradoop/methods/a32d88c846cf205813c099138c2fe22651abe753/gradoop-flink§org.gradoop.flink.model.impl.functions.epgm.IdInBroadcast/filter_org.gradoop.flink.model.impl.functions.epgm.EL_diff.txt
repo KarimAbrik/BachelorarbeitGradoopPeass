@@ -1,0 +1,4 @@
+@Override
+public boolean filter(EL identifiable) throws Exception {
+    return ids.contains(identifiable.getId());
+}

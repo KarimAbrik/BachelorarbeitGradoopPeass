@@ -1,0 +1,11 @@
+/**
+ * Test the function usind a JSON object with another object as a property.
+ *
+ * @throws Exception if the execution fails or the JSON object is invalid.
+ */
+@Test
+public void testWithNestedObject() throws Exception {
+    Vertex vertex = function.map("{\"someObj\": {\"a\": 1, \"b\": [true], \"c\":" + "{\"d\": 1}}}");
+    expectedValue.setProperty("someObj", "{\"a\":1,\"b\":[true],\"c\":{\"d\":1}}");
+    assertVertexEquals(expectedValue, vertex);
+}

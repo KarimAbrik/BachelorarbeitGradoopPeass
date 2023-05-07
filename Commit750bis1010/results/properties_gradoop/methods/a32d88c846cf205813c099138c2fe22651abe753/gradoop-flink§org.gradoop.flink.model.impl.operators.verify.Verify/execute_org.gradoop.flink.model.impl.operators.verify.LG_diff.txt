@@ -1,0 +1,6 @@
+@Override
+public LG execute(LG graph) {
+    DataSet<V> vertices = graph.getVertices();
+    DataSet<E> verifiedEdges = graph.getEdges().join(vertices).where(new SourceId<>()).equalTo(new Id<>()).with(new LeftSide<>()).name("Verify Edges (1/2)").join(vertices).where(new TargetId<>()).equalTo(new Id<>()).with(new LeftSide<>()).name("Verify Edges (2/2)");
+    return graph.getFactory().fromDataSets(graph.getGraphHead(), vertices, verifiedEdges);
+}

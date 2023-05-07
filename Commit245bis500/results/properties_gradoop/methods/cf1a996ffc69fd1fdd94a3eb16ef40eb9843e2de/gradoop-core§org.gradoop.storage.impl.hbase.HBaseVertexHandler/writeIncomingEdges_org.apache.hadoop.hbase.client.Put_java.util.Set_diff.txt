@@ -1,0 +1,7 @@
+/**                                                                                                    /**                                                                                                 
+* {@inheritDoc}                                                                                        * {@inheritDoc}                                                                                     
+*/                                                                                                     */                                                                                                  
+@Override                                                                                              @Override                                                                                           
+public Put writeIncomingEdges(final Put put, final Set&lt;ED&gt; incomingEdgeData) {                 | public Put writeIncomingEdges(final Put put, final Set&lt;ED&gt; incomingEdgeData) throws IOExceptio
+return writeEdges(put, CF_IN_EDGES_BYTES, incomingEdgeData, false);                                    return writeEdges(put, CF_IN_EDGES_BYTES, incomingEdgeData, false);                                 
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,68 @@
+{
+  "clazz" : "org.gradoop.model.impl.labelpropagation.EPGMLabelPropagationGradoopTest",
+  "methods" : [ {
+    "method" : "testLabelPropagationWithCallByPropertyKey",
+    "datacollectorResults" : [ {
+      "name" : "de.dagere.kopeme.datacollection.TimeDataCollectorNoGC",
+      "chunks" : [ ],
+      "results" : [ {
+        "value" : 3.0606955614E9,
+        "deviation" : 0.5535146170007729,
+        "min" : 2.063961896E9,
+        "max" : 7.675534559E9,
+        "warmup" : 0,
+        "iterations" : 10,
+        "repetitions" : 2,
+        "commit" : null,
+        "vmRunConfiguration" : {
+          "showStart" : false,
+          "executeBeforeClassInMeasurement" : false,
+          "redirectToTemp" : false,
+          "redirectToNull" : true,
+          "useKieker" : false
+        },
+        "parameters" : {
+          "JUNIT_PARAMETERIZED" : "Execution mode = CLUSTER"
+        },
+        "javaVersion" : "1.8.0_362",
+        "cpu" : "model name : Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz",
+        "memory" : "MemTotal: 16280544 kB",
+        "date" : 1681001627734,
+        "fulldata" : {
+          "fileName" : null,
+          "values" : [ {
+            "startTime" : 1681001596918,
+            "value" : 7675534559
+          }, {
+            "startTime" : 1681001604594,
+            "value" : 3648043107
+          }, {
+            "startTime" : 1681001608242,
+            "value" : 3056245187
+          }, {
+            "startTime" : 1681001611298,
+            "value" : 2247272911
+          }, {
+            "startTime" : 1681001613545,
+            "value" : 2813678225
+          }, {
+            "startTime" : 1681001616359,
+            "value" : 2204649876
+          }, {
+            "startTime" : 1681001618564,
+            "value" : 2063961896
+          }, {
+            "startTime" : 1681001620628,
+            "value" : 2305690523
+          }, {
+            "startTime" : 1681001622934,
+            "value" : 2279401991
+          }, {
+            "startTime" : 1681001625213,
+            "value" : 2312477339
+          } ]
+        }
+      } ]
+    } ]
+  } ]
+}

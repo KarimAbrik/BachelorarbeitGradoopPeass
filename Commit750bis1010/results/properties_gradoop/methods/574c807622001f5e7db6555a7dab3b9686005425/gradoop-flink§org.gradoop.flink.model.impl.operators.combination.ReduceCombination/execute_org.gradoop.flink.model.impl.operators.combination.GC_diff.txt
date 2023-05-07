@@ -1,0 +1,4 @@
+@Override
+public LG execute(GC collection) {
+    return collection.getGraphFactory().fromDataSets(collection.getVertices(), collection.getEdges());
+}

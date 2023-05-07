@@ -1,0 +1,20 @@
+/**
+ * Creates an {@link ExpandEmbeddingsNode} from the specified arguments.
+ *
+ * @param leftEntry left entry
+ * @param rightEntry right entry
+ * @param startVariable vertex variable to expand from
+ *
+ * @return new expand node
+ */
+private ExpandEmbeddingsNode createExpandNode(PlanTableEntry leftEntry, PlanTableEntry rightEntry, String startVariable) {
+    String pathVariable = rightEntry.getQueryPlan().getRoot().getEmbeddingMetaData().getEdgeVariables().get(0);
+    Edge queryEdge = queryHandler.getEdgeByVariable(pathVariable);
+    Vertex sourceVertex = queryHandler.getVertexById(queryEdge.getSourceVertexId());
+    Vertex targetVertex = queryHandler.getVertexById(queryEdge.getTargetVertexId());
+    int lowerBound = queryEdge.getLowerBound();
+    int upperBound = queryEdge.getUpperBound();
+    ExpandDirection direction = sourceVertex.getVariable().equals(startVariable) ? ExpandDirection.OUT : ExpandDirection.IN;
+    String endVariable = direction == ExpandDirection.OUT ? targetVertex.getVariable() : sourceVertex.getVariable();
+    return new ExpandEmbeddingsNode(leftEntry.getQueryPlan().getRoot(), rightEntry.getQueryPlan().getRoot(), startVariable, pathVariable, endVariable, lowerBound, upperBound, direction, vertexStrategy, edgeStrategy);
+}

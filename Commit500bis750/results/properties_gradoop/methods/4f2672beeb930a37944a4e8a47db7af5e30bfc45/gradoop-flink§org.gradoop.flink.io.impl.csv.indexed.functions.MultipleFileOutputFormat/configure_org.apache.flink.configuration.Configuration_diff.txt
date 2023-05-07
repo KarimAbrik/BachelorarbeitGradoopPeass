@@ -1,0 +1,24 @@
+// ----------------------------------------------------------------
+@Override
+public void configure(Configuration parameters) {
+    // get the output file path, if it was not yet set
+    if (this.outputFilePath == null) {
+        // get the file parameter
+        String filePath = parameters.getString(FILE_PARAMETER_KEY, null);
+        if (filePath == null) {
+            throw new IllegalArgumentException("The output path has been specified neither via constructor/setters" + ", nor via the Configuration.");
+        }
+        try {
+            this.outputFilePath = new Path(filePath);
+        } catch (IllegalArgumentException ex) {
+            throw new IllegalArgumentException("Could not create a valid URI from the given file path name: " + ex.getMessage());
+        }
+    }
+    // check if have not been set and use the defaults in that case
+    if (this.writeMode == null) {
+        this.writeMode = DEFAULT_WRITE_MODE;
+    }
+    if (this.outputDirectoryMode == null) {
+        this.outputDirectoryMode = DEFAULT_OUTPUT_DIRECTORY_MODE;
+    }
+}

@@ -1,0 +1,12 @@
+@Test
+public void testGetEdgesByVariables() throws Exception {
+    AsciiGraphLoader<GraphHead, Vertex, Edge> asciiGraphLoader = AsciiGraphLoader.fromString("[()-[e]->()<-[f]-()]", config);
+    validateCollections(asciiGraphLoader, 1, 3, 2);
+    validateCaches(asciiGraphLoader, 0, 0, 2);
+    Collection<Edge> edges = asciiGraphLoader.getEdgesByVariables("e", "f");
+    Edge e = asciiGraphLoader.getEdgeByVariable("e");
+    Edge f = asciiGraphLoader.getEdgeByVariable("f");
+    assertEquals("Wrong number of edges", 2, edges.size());
+    assertTrue("Edge was not contained in result", edges.contains(e));
+    assertTrue("Edge was not contained in result", edges.contains(f));
+}

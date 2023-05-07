@@ -1,0 +1,84 @@
+public static Collection<PersistentEdge<VertexPojo>> createPersistentSocialEdges() {
+    Collection<EdgePojo> edgeDataCollection = createEdgePojoCollection();
+    List<PersistentEdge<VertexPojo>> persistentEdgeData = Lists.newArrayListWithExpectedSize(edgeDataCollection.size());
+    PersistentEdgeFactory<EdgePojo, VertexPojo, HBaseEdge> edgeDataFactory = new HBaseEdgeFactory();
+    VertexPojo sourceVertexData = null;
+    VertexPojo targetVertexData = null;
+    for (EdgePojo edgeData : edgeDataCollection) {
+        if (edgeData.getId().equals(EDGE_0_KNOWS.getId())) {
+            sourceVertexData = VERTEX_PERSON_ALICE;
+            targetVertexData = VERTEX_PERSON_BOB;
+        } else if (edgeData.getId().equals(EDGE_1_KNOWS.getId())) {
+            sourceVertexData = VERTEX_PERSON_BOB;
+            targetVertexData = VERTEX_PERSON_ALICE;
+        } else if (edgeData.getId().equals(EDGE_2_KNOWS.getId())) {
+            sourceVertexData = VERTEX_PERSON_BOB;
+            targetVertexData = VERTEX_PERSON_CAROL;
+        } else if (edgeData.getId().equals(EDGE_3_KNOWS.getId())) {
+            sourceVertexData = VERTEX_PERSON_CAROL;
+            targetVertexData = VERTEX_PERSON_BOB;
+        } else if (edgeData.getId().equals(EDGE_4_KNOWS.getId())) {
+            sourceVertexData = VERTEX_PERSON_CAROL;
+            targetVertexData = VERTEX_PERSON_DAVE;
+        } else if (edgeData.getId().equals(EDGE_5_KNOWS.getId())) {
+            sourceVertexData = VERTEX_PERSON_DAVE;
+            targetVertexData = VERTEX_PERSON_CAROL;
+        } else if (edgeData.getId().equals(EDGE_6_KNOWS.getId())) {
+            sourceVertexData = VERTEX_PERSON_EVE;
+            targetVertexData = VERTEX_PERSON_ALICE;
+        } else if (edgeData.getId().equals(EDGE_7_HAS_INTEREST.getId())) {
+            sourceVertexData = VERTEX_PERSON_EVE;
+            targetVertexData = VERTEX_TAG_DATABASES;
+        } else if (edgeData.getId().equals(EDGE_8_HAS_INTEREST.getId())) {
+            sourceVertexData = VERTEX_PERSON_ALICE;
+            targetVertexData = VERTEX_TAG_DATABASES;
+        } else if (edgeData.getId().equals(EDGE_9_HAS_INTEREST.getId())) {
+            sourceVertexData = VERTEX_PERSON_DAVE;
+            targetVertexData = VERTEX_TAG_HADOOP;
+        } else if (edgeData.getId().equals(EDGE_10_HAS_INTEREST.getId())) {
+            sourceVertexData = VERTEX_PERSON_FRANK;
+            targetVertexData = VERTEX_TAG_HADOOP;
+        } else if (edgeData.getId().equals(EDGE_11_HAS_TAG.getId())) {
+            sourceVertexData = VERTEX_FORUM_GDBS;
+            targetVertexData = VERTEX_TAG_DATABASES;
+        } else if (edgeData.getId().equals(EDGE_12_HAS_TAG.getId())) {
+            sourceVertexData = VERTEX_FORUM_GDBS;
+            targetVertexData = VERTEX_TAG_GRAPHS;
+        } else if (edgeData.getId().equals(EDGE_13_HAS_TAG.getId())) {
+            sourceVertexData = VERTEX_FORUM_GPS;
+            targetVertexData = VERTEX_TAG_GRAPHS;
+        } else if (edgeData.getId().equals(EDGE_14_HAS_TAG.getId())) {
+            sourceVertexData = VERTEX_FORUM_GPS;
+            targetVertexData = VERTEX_TAG_HADOOP;
+        } else if (edgeData.getId().equals(EDGE_15_HAS_MODERATOR.getId())) {
+            sourceVertexData = VERTEX_FORUM_GDBS;
+            targetVertexData = VERTEX_PERSON_ALICE;
+        } else if (edgeData.getId().equals(EDGE_16_HAS_MODERATOR.getId())) {
+            sourceVertexData = VERTEX_FORUM_GPS;
+            targetVertexData = VERTEX_PERSON_DAVE;
+        } else if (edgeData.getId().equals(EDGE_17_HAS_MEMBER.getId())) {
+            sourceVertexData = VERTEX_FORUM_GDBS;
+            targetVertexData = VERTEX_PERSON_ALICE;
+        } else if (edgeData.getId().equals(EDGE_18_HAS_MEMBER.getId())) {
+            sourceVertexData = VERTEX_FORUM_GDBS;
+            targetVertexData = VERTEX_PERSON_BOB;
+        } else if (edgeData.getId().equals(EDGE_19_HAS_MEMBER.getId())) {
+            sourceVertexData = VERTEX_FORUM_GPS;
+            targetVertexData = VERTEX_PERSON_CAROL;
+        } else if (edgeData.getId().equals(EDGE_20_HAS_MEMBER.getId())) {
+            sourceVertexData = VERTEX_FORUM_GPS;
+            targetVertexData = VERTEX_PERSON_DAVE;
+        } else if (edgeData.getId().equals(EDGE_21_KNOWS.getId())) {
+            sourceVertexData = VERTEX_PERSON_EVE;
+            targetVertexData = VERTEX_PERSON_BOB;
+        } else if (edgeData.getId().equals(EDGE_22_KNOWS.getId())) {
+            sourceVertexData = VERTEX_PERSON_FRANK;
+            targetVertexData = VERTEX_PERSON_CAROL;
+        } else if (edgeData.getId().equals(EDGE_23_KNOWS.getId())) {
+            sourceVertexData = VERTEX_PERSON_FRANK;
+            targetVertexData = VERTEX_PERSON_DAVE;
+        }
+        persistentEdgeData.add(edgeDataFactory.createEdge(edgeData, sourceVertexData, targetVertexData));
+    }
+    return persistentEdgeData;
+}

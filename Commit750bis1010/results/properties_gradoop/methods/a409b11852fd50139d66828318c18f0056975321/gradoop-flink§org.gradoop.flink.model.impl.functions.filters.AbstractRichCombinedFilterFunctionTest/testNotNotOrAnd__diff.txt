@@ -1,0 +1,26 @@
+/**
+ * Test the combined functions as a {@link RichFilterFunction}, checking if the open
+ * functions were called.
+ * This will filter a set of vertices by their id using the {@link IdInBroadcast} function
+ * combined like: {@code NOT(NOT(OR(AND(FILTER, FILTER), FILTER)))} which is equivalent
+ * to just the {@code FILTER}.
+ *
+ * @throws Exception if the execution in Flink failed.
+ */
+@Test
+public void testNotNotOrAnd() throws Exception {
+    VertexFactory<EPGMVertex> factory = getConfig().getLogicalGraphFactory().getVertexFactory();
+    EPGMVertex vertex1 = factory.createVertex();
+    EPGMVertex vertex2 = factory.createVertex();
+    List<EPGMVertex> input = Stream.generate(factory::createVertex).limit(100).collect(Collectors.toCollection(ArrayList::new));
+    input.add(vertex1);
+    input.add(vertex2);
+    List<EPGMVertex> result = getExecutionEnvironment().fromCollection(input).filter(new Or<>(new And<EPGMVertex>(new IdInBroadcast<>(), new IdInBroadcast<>()), new IdInBroadcast<>()).negate().negate()).withBroadcastSet(getExecutionEnvironment().fromElements(vertex1.getId(), vertex2.getId()), IdInBroadcast.IDS).collect();
+    assertEquals(2, result.size());
+    result.sort(Comparator.comparing(EPGMVertex::getId));
+    List<EPGMVertex> expected = new ArrayList<>();
+    expected.add(vertex1);
+    expected.add(vertex2);
+    expected.sort(Comparator.comparing(EPGMVertex::getId));
+    assertArrayEquals(expected.toArray(), result.toArray());
+}

@@ -1,0 +1,9 @@
+@Test
+public void testDistinctEdgePropertyValuesByPropertyName() throws Exception {
+    LogicalGraph db = getSocialNetworkLoader().getLogicalGraph();
+    List<WithCount<String>> result = new DistinctEdgeProperties().execute(db).collect();
+    Map<String, Long> cache = new HashMap<>(5);
+    result.forEach(e -> cache.put(e.getObject(), e.getCount()));
+    assertThat(result.size(), is(1));
+    assertThat(cache.get("since"), is(3L));
+}

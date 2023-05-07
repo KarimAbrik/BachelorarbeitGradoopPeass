@@ -1,0 +1,7 @@
+@Override
+public T apply(T current, T transformed) {
+    if (current.getLabel().equals(oldLabel)) {
+        current.setLabel(newLabel);
+    }
+    return current;
+}

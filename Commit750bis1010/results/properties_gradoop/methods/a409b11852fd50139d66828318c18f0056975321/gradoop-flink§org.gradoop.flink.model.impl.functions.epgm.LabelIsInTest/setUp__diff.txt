@@ -1,0 +1,14 @@
+/**
+ * Initialize input vertices and expected result.
+ */
+@Before
+public void setUp() {
+    VertexFactory<EPGMVertex> vertexFactory = getConfig().getLogicalGraphFactory().getVertexFactory();
+    EPGMVertex v1 = vertexFactory.createVertex();
+    EPGMVertex v2 = vertexFactory.createVertex("a");
+    EPGMVertex v3 = vertexFactory.createVertex("b");
+    EPGMVertex v4 = vertexFactory.createVertex("c");
+    inputVertices = Arrays.asList(v1, v2, v3, v4);
+    expected = Arrays.asList(v2, v3);
+    expected.sort(comparator);
+}

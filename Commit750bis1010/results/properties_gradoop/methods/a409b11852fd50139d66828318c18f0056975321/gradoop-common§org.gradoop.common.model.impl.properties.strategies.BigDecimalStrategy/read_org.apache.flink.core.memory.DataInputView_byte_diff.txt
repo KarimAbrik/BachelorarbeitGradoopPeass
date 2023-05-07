@@ -1,0 +1,5 @@
+@Override
+public BigDecimal read(DataInputView inputView, byte typeByte) throws IOException {
+    byte[] rawBytes = readVariableSizedData(inputView, typeByte);
+    return Bytes.toBigDecimal(rawBytes);
+}

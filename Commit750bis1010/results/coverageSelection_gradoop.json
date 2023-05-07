@@ -1,0 +1,118 @@
+{
+  "url" : "https://github.com/dbs-leipzig/gradoop.git",
+  "commits" : {
+    "f7c8ad0bb1f841bf155b8f651482590faeb965c7" : { },
+    "6c8e870ca839354429f2f8a178fc8ee001e0f812" : {
+      "predecessor" : "f7c8ad0bb1f841bf155b8f651482590faeb965c7"
+    },
+    "768978097023fb3ac3009913d71a34163c627c22" : {
+      "testcases" : {
+        "gradoop-flink§org.gradoop.flink.model.impl.operators.aggregation.AggregationTest" : [ "testSingleGraphVertexAndEdgeCount", "testSingleGraphVertexAndEdgeMax", "testSingleGraphVertexAndEdgeMin", "testSingleGraphVertexAndEdgeSum" ]
+      },
+      "predecessor" : "6c8e870ca839354429f2f8a178fc8ee001e0f812"
+    },
+    "d183e4d97349c251c5617b0493f306e75fec1fe3" : {
+      "testcases" : {
+        "gradoop-flink§org.gradoop.flink.model.impl.operators.aggregation.AggregationTest" : [ "testGraphUnsupportedPropertyValueType", "testSingleGraphVertexAndEdgeSum" ]
+      },
+      "predecessor" : "768978097023fb3ac3009913d71a34163c627c22"
+    },
+    "db83047bafb7b7996092ef440e3404e28a5d4851" : { },
+    "ab8b08b9dedd67f3dec23bd6977aa254885c5827" : {
+      "predecessor" : "db83047bafb7b7996092ef440e3404e28a5d4851"
+    },
+    "91fba6c6af463927eb523e6b39a85bed50a8d56f" : {
+      "testcases" : {
+        "gradoop-temporal§org.gradoop.temporal.model.impl.operators.keyedgrouping.TemporalGroupingTest" : [ "testTimeIntervalKeyFunctionOnGraph", "testTimeStampKeyFunctionOnGraph" ]
+      },
+      "predecessor" : "ab8b08b9dedd67f3dec23bd6977aa254885c5827"
+    },
+    "143c4aa1665245208d66ecf50929f33dbac57723" : {
+      "predecessor" : "91fba6c6af463927eb523e6b39a85bed50a8d56f"
+    },
+    "89c0c1cb77cbb4bf83cb737362e33cbed7e94a8f" : { },
+    "467955d07dd3b28360e17505752b78a4461e5afe" : {
+      "testcases" : {
+        "gradoop-flink§org.gradoop.flink.io.impl.csv.CSVDataSinkTest" : [ "testWriteWithDifferentPropertyTypes" ]
+      },
+      "predecessor" : "89c0c1cb77cbb4bf83cb737362e33cbed7e94a8f"
+    },
+    "0a86f83544c408de02f419321e540f7e2a9c0bf8" : {
+      "testcases" : {
+        "gradoop-flink§org.gradoop.flink.model.impl.operators.aggregation.functions.average.AveragePropertyTest" : [ "testWithGraphGrouping" ],
+        "gradoop-flink§org.gradoop.flink.model.impl.operators.rollup.RollUpTest" : [ "testVertexRollUp" ]
+      },
+      "predecessor" : "467955d07dd3b28360e17505752b78a4461e5afe"
+    },
+    "3f52580a8600ea5362ad5297e4ebaf826446bc26" : {
+      "testcases" : {
+        "gradoop-flink§org.gradoop.flink.model.impl.operators.cloning.CloningTest" : [ "testCloning" ]
+      },
+      "predecessor" : "0a86f83544c408de02f419321e540f7e2a9c0bf8"
+    },
+    "9345d32fa93add98f48ef3d56977d67cc9e1150e" : { },
+    "acfe988298f25ab16ca68c653027b5068c95e770" : {
+      "testcases" : {
+        "gradoop-temporal§org.gradoop.temporal.model.impl.operators.aggregation.functions.AverageDurationTest" : [ "testGetIncrementForTxTime", "testWithAggregation" ]
+      },
+      "predecessor" : "9345d32fa93add98f48ef3d56977d67cc9e1150e"
+    },
+    "12c9d93ca2c1ecaa46c1ead8d8ce1db1e815ff5c" : { },
+    "b676553950694aa870b053532a6f0179d9b114b3" : { },
+    "428ff8ea505dbcac2de27f6483c8148f77e651e1" : { },
+    "0549fd39dbc4d8f65e0ac877e96913a3d5538cc0" : { },
+    "f29caeef3d89bfe47c3174607b4241593f954995" : {
+      "testcases" : {
+        "gradoop-temporal§org.gradoop.temporal.model.impl.TemporalGraphCollectionTest" : [ "testFromGraphCollection" ]
+      },
+      "predecessor" : "0549fd39dbc4d8f65e0ac877e96913a3d5538cc0"
+    },
+    "49d9a71dab946e698cdad890ff45b44eb2a73d9b" : {
+      "predecessor" : "f29caeef3d89bfe47c3174607b4241593f954995"
+    },
+    "99a7bf68e7fbd3f86741b97dd40dbc30413d1a91" : { },
+    "a409b11852fd50139d66828318c18f0056975321" : {
+      "testcases" : {
+        "gradoop-flink§org.gradoop.flink.model.impl.operators.equality.EqualityTest" : [ "testCollectionEqualityByGraphElementIds" ]
+      },
+      "predecessor" : "99a7bf68e7fbd3f86741b97dd40dbc30413d1a91"
+    },
+    "b9368446494ce0a00c625553a31a2a581e0bc6a1" : {
+      "predecessor" : "a409b11852fd50139d66828318c18f0056975321"
+    },
+    "a32d88c846cf205813c099138c2fe22651abe753" : {
+      "testcases" : {
+        "gradoop-flink§org.gradoop.flink.model.impl.operators.matching.transactional.TransactionalPatternMatchingTest" : [ "test" ]
+      },
+      "predecessor" : "b9368446494ce0a00c625553a31a2a581e0bc6a1"
+    },
+    "27b12fa5c6e36c466335af69d5b4f0e2a95b0cab" : {
+      "testcases" : {
+        "gradoop-temporal§org.gradoop.temporal.io.impl.csv.TemporalCSVSourceAndSinkTest" : [ "testWriteToOverwrite" ],
+        "gradoop-temporal§org.gradoop.temporal.model.impl.TemporalGraphCollectionTest" : [ "testToGraphCollection" ],
+        "gradoop-temporal§org.gradoop.temporal.model.impl.operators.aggregation.functions.MinMaxDurationTest" : [ "testDurationWithDefaultValues" ]
+      },
+      "predecessor" : "a32d88c846cf205813c099138c2fe22651abe753"
+    },
+    "fc4cc872a73b90c87f8fd4d5011a96ba6ddf1e19" : {
+      "predecessor" : "27b12fa5c6e36c466335af69d5b4f0e2a95b0cab"
+    },
+    "e2e628071d33cf1d335baac00537226cd34753e6" : { },
+    "574c807622001f5e7db6555a7dab3b9686005425" : {
+      "testcases" : {
+        "gradoop-flink§org.gradoop.flink.io.impl.csv.indexed.IndexedCSVDataSinkTest" : [ "testWriteWithExistingMetaData" ],
+        "gradoop-flink§org.gradoop.flink.io.impl.csv.indexed.IndexedCSVDataSourceTest" : [ "testReadSingleGraph" ]
+      },
+      "predecessor" : "e2e628071d33cf1d335baac00537226cd34753e6"
+    },
+    "5a47cff2b567d1d0b04753900d133e73c57e8158" : { },
+    "0758a4a8056cb7f05898c802f63ed15c29ae131b" : { },
+    "8374f2f5d5026294fe8e1cf3ce92040205a6721b" : { },
+    "12f5487b48332e90bb79047f8614a4c495a5d0b4" : { },
+    "61be496a3a1ebeedcea3820d8f83c29f68bc124b" : { },
+    "f425f693b6a348e388aad6e911ed2870162ed65c" : {
+      "predecessor" : "61be496a3a1ebeedcea3820d8f83c29f68bc124b"
+    }
+  },
+  "android" : false
+}

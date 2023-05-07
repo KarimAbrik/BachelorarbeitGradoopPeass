@@ -1,0 +1,12 @@
+/**
+ * Creates an EPGM graph element using the given arguments.
+ *
+ * @param id         element id
+ * @param label      element label
+ * @param properties element properties
+ * @param graphs     graphs that element is contained in
+ */
+protected GraphElementPojo(Long id, String label, Map<String, Object> properties, Set<Long> graphs) {
+    super(id, label, properties);
+    this.graphs = graphs;
+}

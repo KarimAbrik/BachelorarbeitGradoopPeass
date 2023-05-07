@@ -1,0 +1,7 @@
+@Override
+public GC execute(GC collection) {
+    // create canonical labels for all graph heads and choose representative for all distinct ones
+    DataSet<GradoopId> graphIds = getCanonicalLabels(collection).distinct(1).map(new IdFromGraphHeadString());
+    DataSet<G> graphHeads = collection.getGraphHeads().filter(new IdInBroadcast<>()).withBroadcastSet(graphIds, IdInBroadcast.IDS);
+    return selectVerticesAndEdges(collection, graphHeads);
+}

@@ -1,0 +1,10 @@
+/**                                                                                                    /**                                                                                                 
+* Reads the target vertex identifier from the json object.                                             * Reads the target vertex identifier from the json object.                                          
+*                                                                                                      *                                                                                                   
+* @param jsonEdge json string representation                                                           * @param jsonEdge json string representation                                                        
+* @return target vertex identifier                                                                     * @return target vertex identifier                                                                  
+* @throws JSONException                                                                                * @throws JSONException                                                                             
+*/                                                                                                     */                                                                                                  
+private Long getTargetVertexID(JSONObject jsonEdge) throws JSONException {                           | private GradoopId getTargetVertexID(JSONObject jsonEdge) throws JSONException {                     
+return jsonEdge.getLong(EDGE_TARGET);                                                                | return GradoopId.fromLongString(jsonEdge.getString(EDGE_TARGET));                                   
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,4 @@
+@Override
+public Long get(byte[] bytes) {
+    return Bytes.toLong(bytes, PropertyValue.OFFSET);
+}

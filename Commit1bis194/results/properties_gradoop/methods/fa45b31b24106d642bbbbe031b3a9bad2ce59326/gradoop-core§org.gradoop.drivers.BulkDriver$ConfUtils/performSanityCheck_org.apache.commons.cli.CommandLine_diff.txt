@@ -1,0 +1,12 @@
+                                                                                                     | private static boolean performSanityCheck(final CommandLine cmd) {                                  
+                                                                                                     | boolean sane = true;                                                                                
+                                                                                                     | if (!cmd.hasOption(OPTION_GRAPH_OUTPUT_PATH)) {                                                     
+                                                                                                     | LOG.error("Choose the graph output path (-gop)");                                                   
+                                                                                                     | sane = false;                                                                                       
+                                                                                                     | }                                                                                                   
+                                                                                                     | if (!cmd.hasOption(OPTION_GRAPH_INPUT_PATH)) {                                                      
+                                                                                                     | LOG.error("Choose the graph input path. (-gip)");                                                   
+                                                                                                     | sane = false;                                                                                       
+                                                                                                     | }                                                                                                   
+                                                                                                     | return sane;                                                                                        
+                                                                                                     | }                                                                                                   

@@ -1,0 +1,13 @@
+/**
+ * Test SumProperty, VertexSumProperty and EdgeSumProperty with unsupported property value types.
+ */
+@Test
+public void testGraphUnsupportedPropertyValueType() {
+    FlinkAsciiGraphLoader loader = getLoaderFromString("g[({p : 0})-[{p : 0.0}]->({p : true})-[{p : \"\"}]->({})]");
+    LogicalGraph graph = loader.getLogicalGraphByVariable("g");
+    try {
+        graph.aggregate(new SumVertexProperty(PROPERTY, VERTEX_AGGREGATE_PROPERTY)).aggregate(new SumEdgeProperty(PROPERTY, EDGE_AGGREGATE_PROPERTY)).aggregate(new SumProperty(PROPERTY, ELEMENT_AGGREGATE_PROPERTY)).getGraphHead().print();
+    } catch (Exception e) {
+        assertTrue(e instanceof JobExecutionException && e.getCause() instanceof UnsupportedTypeException);
+    }
+}

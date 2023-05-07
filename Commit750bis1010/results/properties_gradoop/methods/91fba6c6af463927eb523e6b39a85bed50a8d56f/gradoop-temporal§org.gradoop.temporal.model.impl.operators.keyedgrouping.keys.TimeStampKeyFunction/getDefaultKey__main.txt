@@ -1,0 +1,14 @@
+@Override
+public Long getDefaultKey() {
+    if (fieldOfTimeStamp == null) {
+        switch(timeDimensionField) {
+            case FROM:
+                return TemporalElement.DEFAULT_TIME_FROM;
+            case TO:
+                return TemporalElement.DEFAULT_TIME_TO;
+            default:
+                throw new UnsupportedOperationException("Field not supported: " + timeDimensionField);
+        }
+    }
+    return -1L;
+}

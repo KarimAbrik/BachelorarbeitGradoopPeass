@@ -1,0 +1,15 @@
+/**
+ * Creates all combinations of the supplied grouping keys.
+ *
+ * @param groupingKeys list of all grouping keys to be combined
+ * @return list containing all combinations of grouping keys
+ */
+List<List<String>> createGroupingKeyCombinations(List<String> groupingKeys) {
+    List<List<String>> combinations = new ArrayList<>();
+    int elements = groupingKeys.size();
+    while (elements > 0) {
+        combinations.add(new ArrayList<>(groupingKeys.subList(0, elements)));
+        elements--;
+    }
+    return combinations;
+}

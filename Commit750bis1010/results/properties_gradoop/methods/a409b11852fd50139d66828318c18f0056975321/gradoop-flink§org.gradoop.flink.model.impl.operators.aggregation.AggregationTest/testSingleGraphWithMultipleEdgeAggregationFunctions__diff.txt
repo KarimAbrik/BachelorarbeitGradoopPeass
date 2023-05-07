@@ -1,0 +1,14 @@
+/**
+ * Test using multiple edge aggregation functions in one call.
+ *
+ * @throws Exception if the execution or IO fails.
+ */
+@Test
+public void testSingleGraphWithMultipleEdgeAggregationFunctions() throws Exception {
+    LogicalGraph graph = getSocialNetworkLoader().getLogicalGraph();
+    SumEdgeProperty sumEdgeProperty = new SumEdgeProperty("since");
+    MaxEdgeProperty maxEdgeProperty = new MaxEdgeProperty("since");
+    LogicalGraph expected = graph.aggregate(sumEdgeProperty).aggregate(maxEdgeProperty);
+    LogicalGraph output = graph.aggregate(sumEdgeProperty, maxEdgeProperty);
+    collectAndAssertTrue(expected.equalsByData(output));
+}

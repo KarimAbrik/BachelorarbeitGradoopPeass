@@ -1,0 +1,31 @@
+/**
+ * Test the {@link TemporalGraphCollection#fromGraphCollection(GraphCollection)} method.
+ */
+@Test
+public void testFromGraphCollection() throws Exception {
+    TemporalGraphCollection temporalCollection = TemporalGraphCollection.fromGraphCollection(testCollection);
+    Collection<TemporalGraphHead> loadedGraphHeads = new ArrayList<>();
+    Collection<TemporalVertex> loadedVertices = new ArrayList<>();
+    Collection<TemporalEdge> loadedEdges = new ArrayList<>();
+    temporalCollection.getGraphHeads().output(new LocalCollectionOutputFormat<>(loadedGraphHeads));
+    temporalCollection.getVertices().output(new LocalCollectionOutputFormat<>(loadedVertices));
+    temporalCollection.getEdges().output(new LocalCollectionOutputFormat<>(loadedEdges));
+    Collection<EPGMGraphHead> epgmGraphHeads = new ArrayList<>();
+    Collection<EPGMVertex> epgmVertices = new ArrayList<>();
+    Collection<EPGMEdge> epgmEdges = new ArrayList<>();
+    testCollection.getGraphHeads().output(new LocalCollectionOutputFormat<>(epgmGraphHeads));
+    testCollection.getVertices().output(new LocalCollectionOutputFormat<>(epgmVertices));
+    testCollection.getEdges().output(new LocalCollectionOutputFormat<>(epgmEdges));
+    getExecutionEnvironment().execute();
+    assertFalse(loadedGraphHeads.isEmpty());
+    assertFalse(loadedVertices.isEmpty());
+    assertFalse(loadedEdges.isEmpty());
+    validateElementCollections(epgmGraphHeads, loadedGraphHeads);
+    validateElementCollections(epgmVertices, loadedVertices);
+    validateElementCollections(epgmEdges, loadedEdges);
+    validateGraphElementCollections(epgmVertices, loadedVertices);
+    validateGraphElementCollections(epgmEdges, loadedEdges);
+    loadedGraphHeads.forEach(this::checkDefaultTemporalElement);
+    loadedVertices.forEach(this::checkDefaultTemporalElement);
+    loadedEdges.forEach(this::checkDefaultTemporalElement);
+}

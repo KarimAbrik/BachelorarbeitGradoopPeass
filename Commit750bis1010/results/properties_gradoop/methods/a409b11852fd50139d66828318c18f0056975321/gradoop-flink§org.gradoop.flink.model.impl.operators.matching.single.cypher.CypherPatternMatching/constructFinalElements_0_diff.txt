@@ -1,0 +1,22 @@
+/**
+ * Method to construct final embedded elements
+ *
+ * @param graph               Used logical graph
+ * @param embeddings          embeddings
+ * @param embeddingMetaData   Meta information
+ * @return                    New set of EmbeddingElements
+ */
+private DataSet<Element> constructFinalElements(LG graph, DataSet<Embedding> embeddings, EmbeddingMetaData embeddingMetaData) {
+    QueryHandler constructionPatternHandler = new QueryHandler(this.constructionPattern);
+    constructionPatternHandler.updateGeneratedVariableNames(n -> "_" + n);
+    Set<String> queryVars = Sets.newHashSet(embeddingMetaData.getVariables());
+    Set<String> constructionVars = constructionPatternHandler.getAllVariables();
+    Set<String> existingVars = intersection(queryVars, constructionVars).immutableCopy();
+    Set<String> newVars = difference(constructionVars, queryVars).immutableCopy();
+    EmbeddingMetaData newMetaData = computeNewMetaData(embeddingMetaData, constructionPatternHandler, existingVars, newVars);
+    // project existing embedding elements to new embeddings
+    ProjectEmbeddingsElements projectedEmbeddings = new ProjectEmbeddingsElements(embeddings, existingVars, embeddingMetaData, newMetaData);
+    // add new embedding elements
+    AddEmbeddingsElements addEmbeddingsElements = new AddEmbeddingsElements(projectedEmbeddings.evaluate(), newVars.size());
+    return addEmbeddingsElements.evaluate().flatMap(new ElementsFromEmbedding<>(graph.getFactory().getGraphHeadFactory(), graph.getFactory().getVertexFactory(), graph.getFactory().getEdgeFactory(), newMetaData, constructionPatternHandler.getSourceTargetVariables(), constructionPatternHandler.getLabelsForVariables(newVars)));
+}

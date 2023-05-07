@@ -1,0 +1,13 @@
+/**
+ * Used to initialize vertex and edge mapping.
+ *
+ * @param tuples broadcast set tuples
+ * @return mapping
+ */
+private Map<K, PropertyValue> initMapping(List<Tuple2<K, PropertyValue>> tuples) {
+    Map<K, PropertyValue> map = Maps.newHashMap();
+    for (Tuple2<K, PropertyValue> tuple : tuples) {
+        map.put(tuple.f0, tuple.f1);
+    }
+    return map;
+}

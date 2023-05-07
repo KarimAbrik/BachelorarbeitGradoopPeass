@@ -1,0 +1,19 @@
+@SuppressWarnings("ArraysAsListWithZeroOrOneArgument")
+@Test
+public void testGetDistinctColumnsHomomorphism() throws Exception {
+    EmbeddingMetaData leftInputMetaData = new EmbeddingMetaData();
+    leftInputMetaData.setEntryColumn("v1", EntryType.VERTEX, 0);
+    leftInputMetaData.setEntryColumn("e1", EntryType.EDGE, 1);
+    leftInputMetaData.setEntryColumn("v2", EntryType.VERTEX, 2);
+    leftInputMetaData.setEntryColumn("e2", EntryType.EDGE, 3);
+    leftInputMetaData.setEntryColumn("v3", EntryType.VERTEX, 4);
+    EmbeddingMetaData rightInputMetaData = new EmbeddingMetaData();
+    rightInputMetaData.setEntryColumn("v1", EntryType.VERTEX, 0);
+    rightInputMetaData.setEntryColumn("e1", EntryType.EDGE, 1);
+    rightInputMetaData.setEntryColumn("v2", EntryType.VERTEX, 2);
+    MockPlanNode leftMockNode = new MockPlanNode(null, leftInputMetaData);
+    MockPlanNode rightMockNode = new MockPlanNode(null, rightInputMetaData);
+    ExpandEmbeddingsNode node = new ExpandEmbeddingsNode(leftMockNode, rightMockNode, "v3", "e4", "v4", 0, 10, ExpandDirection.OUT, MatchStrategy.HOMOMORPHISM, MatchStrategy.HOMOMORPHISM);
+    assertThat(call(ExpandEmbeddingsNode.class, node, "getDistinctVertexColumns", new Class<?>[] { EmbeddingMetaData.class }, new Object[] { leftInputMetaData }), is(asList()));
+    assertThat(call(ExpandEmbeddingsNode.class, node, "getDistinctEdgeColumns", new Class<?>[] { EmbeddingMetaData.class }, new Object[] { leftInputMetaData }), is(asList()));
+}

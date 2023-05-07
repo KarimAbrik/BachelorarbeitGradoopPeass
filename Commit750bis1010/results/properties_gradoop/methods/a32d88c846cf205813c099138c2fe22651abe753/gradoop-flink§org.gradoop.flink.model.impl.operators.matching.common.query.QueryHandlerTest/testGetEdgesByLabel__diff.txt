@@ -1,0 +1,6 @@
+@Test
+public void testGetEdgesByLabel() throws Exception {
+    List<Edge> aEdges = Lists.newArrayList(QUERY_HANDLER.getEdgesByLabel("a"));
+    List<Edge> expected = Lists.newArrayList(GDL_HANDLER.getEdgeCache().get("e1"), GDL_HANDLER.getEdgeCache().get("e3"));
+    assertTrue(elementsEqual(aEdges, expected));
+}

@@ -1,0 +1,17 @@
+/**
+ * Group vertices by either vertex label, vertex property or both.
+ *
+ * @param groupVertices dataset containing vertex representation for grouping
+ * @return unsorted vertex grouping
+ */
+protected UnsortedGrouping<VertexGroupItem> groupVertices(DataSet<VertexGroupItem> groupVertices) {
+    UnsortedGrouping<VertexGroupItem> vertexGrouping;
+    if (useVertexLabels() && useVertexProperties()) {
+        vertexGrouping = groupVertices.groupBy(2, 3);
+    } else if (useVertexLabels()) {
+        vertexGrouping = groupVertices.groupBy(2);
+    } else {
+        vertexGrouping = groupVertices.groupBy(3);
+    }
+    return vertexGrouping;
+}

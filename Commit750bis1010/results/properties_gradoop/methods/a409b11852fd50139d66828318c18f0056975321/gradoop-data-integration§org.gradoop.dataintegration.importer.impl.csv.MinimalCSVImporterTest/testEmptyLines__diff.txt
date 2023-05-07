@@ -1,0 +1,15 @@
+/**
+ * Test if an empty line in the csv file will be skipped.
+ *
+ * @throws Exception on failure
+ */
+@Test
+public void testEmptyLines() throws Exception {
+    String csvPath = MinimalCSVImporterTest.class.getResource("/csv/inputEmptyLines.csv").getPath();
+    String gdlPath = MinimalCSVImporterTest.class.getResource("/csv/expected.gdl").getPath();
+    FlinkAsciiGraphLoader loader = getLoaderFromFile(gdlPath);
+    DataSource importer = new MinimalCSVImporter(csvPath, DELIMITER, getConfig(), true);
+    LogicalGraph result = importer.getLogicalGraph();
+    LogicalGraph expected = loader.getLogicalGraphByVariable("expected");
+    collectAndAssertTrue(expected.equalsByElementData(result));
+}

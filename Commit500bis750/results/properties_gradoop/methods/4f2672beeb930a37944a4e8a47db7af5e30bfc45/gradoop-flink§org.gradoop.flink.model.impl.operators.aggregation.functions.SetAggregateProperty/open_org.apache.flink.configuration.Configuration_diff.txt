@@ -1,0 +1,8 @@
+@Override
+public void open(Configuration parameters) throws Exception {
+    super.open(parameters);
+    this.aggregateValue = (PropertyValue) getRuntimeContext().getBroadcastVariable(VALUE).get(0);
+    if (aggregateValue.equals(PropertyValue.NULL_VALUE)) {
+        aggregateValue = defaultValue;
+    }
+}

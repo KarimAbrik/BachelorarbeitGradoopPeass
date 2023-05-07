@@ -1,0 +1,11 @@
+// ---------------------------------------------------------------------------
+//  EPGMEdge methods
+// ---------------------------------------------------------------------------
+/**
+ * Returns all edges contained in the ASCII graph.
+ *
+ * @return edges
+ */
+public Collection<E> getEdges() {
+    return new ImmutableSet.Builder<E>().addAll(edges.values()).build();
+}

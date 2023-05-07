@@ -1,0 +1,34 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public int run(String[] args) throws Exception {
+    Configuration conf = getConf();
+    CommandLine cmd = ConfUtils.parseArgs(args);
+    if (cmd == null) {
+        return 0;
+    }
+    boolean verbose = cmd.hasOption(ConfUtils.OPTION_VERBOSE);
+    String outputPath = cmd.getOptionValue(ConfUtils.OPTION_GRAPH_OUTPUT_PATH);
+    String writerClassName = cmd.getOptionValue(ConfUtils.OPTION_VERTEX_LINE_WRITER);
+    int hbaseScanCache = Integer.parseInt(cmd.getOptionValue(ConfUtils.OPTION_HBASE_SCAN_CACHE, "0"));
+    if (cmd.hasOption(ConfUtils.OPTION_CUSTOM_ARGUMENT)) {
+        for (String caOptionValue : cmd.getOptionValues("ca")) {
+            for (String paramValue : Splitter.on(',').split(caOptionValue)) {
+                String[] parts = Iterables.toArray(Splitter.on('=').split(paramValue), String.class);
+                if (parts.length != 2) {
+                    throw new IllegalArgumentException("Unable to parse custom " + " argument: " + paramValue);
+                }
+                //if (LOG.isInfoEnabled()) {
+                LOG.info("###Setting custom argument [" + parts[0] + "] to [" + parts[1] + "] in GiraphConfiguration");
+                //}
+                conf.set(parts[0], parts[1]);
+            }
+        }
+    }
+    Class<? extends VertexLineWriter> writerClass = getLineWriterClass(writerClassName);
+    if (!runBulkWrite(conf, writerClass, outputPath, hbaseScanCache, verbose)) {
+        return -1;
+    }
+    return 0;
+}

@@ -1,0 +1,4 @@
+@Override
+public DataSet<EPGMGraphHead> getGraphHeads() {
+    return transactions.map(new TransactionGraphHead<>()).filter(new ByDifferentId<>(GradoopConstants.DB_GRAPH_ID));
+}

@@ -1,0 +1,12 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public boolean hasNext() {
+    boolean hasNext = false;
+    if (it.hasNext()) {
+        result = it.next();
+        hasNext = result != null;
+    }
+    return hasNext;
+}

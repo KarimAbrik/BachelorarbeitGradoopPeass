@@ -1,0 +1,11 @@
+/**
+ * Creates a logical graph from the given arguments.
+ *
+ * @param graphHead Graph head associated with the logical graph
+ * @param vertices  Vertex collection
+ * @param edges     Edge collection
+ * @return Logical graph
+ */
+public LogicalGraph fromCollections(GraphHead graphHead, Collection<Vertex> vertices, Collection<Edge> edges) {
+    return new LogicalGraph(layoutFactory.fromCollections(graphHead, vertices, edges), config);
+}

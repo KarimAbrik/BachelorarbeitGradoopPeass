@@ -1,0 +1,12 @@
+/**
+ * Creates a new logical graph based on the given parameters.
+ *
+ * @param vertices  vertex data set
+ * @param edges     edge data set
+ * @param graphHead graph data associated with that logical graph
+ * @param config    Gradoop Flink configuration
+ */
+private LogicalGraph(DataSet<VD> vertices, DataSet<ED> edges, GD graphHead, GradoopFlinkConfig<VD, ED, GD> config) {
+    super(vertices, edges, config);
+    this.graphHead = graphHead;
+}

@@ -1,0 +1,9 @@
+/**
+ * Checks if the given variable points to a vertex.
+ *
+ * @param variable the elements variable
+ * @return True if the variable points to a vertex
+ */
+public boolean isVertex(String variable) {
+    return vertexCache.containsKey(variable);
+}

@@ -1,0 +1,13 @@
+/**
+ * Transforms a LogicalGraph to a Gelly Graph.
+ *
+ * @param graph Gradoop Graph.
+ * @return Gelly Graph.
+ */
+@Override
+public Graph<Long, Long, NullValue> transformToGelly(LogicalGraph graph) {
+    DataSet<Tuple2<Long, GradoopId>> uniqueVertexID = DataSetUtils.zipWithUniqueId(graph.getVertices().map(new Id<>()));
+    DataSet<Vertex<Long, Long>> vertices = uniqueVertexID.map(new LongTupleToGellyVertexWithLongValue());
+    DataSet<Edge<Long, NullValue>> edges = uniqueVertexID.join(graph.getEdges()).where(1).equalTo(new SourceId<>()).with(new CreateLongSourceIds()).join(uniqueVertexID).where(3).equalTo(1).with(new CreateLongTargetIds()).map(new LongTupleToGellyEdgeWithLongValue());
+    return Graph.fromDataSet(vertices, edges, graph.getConfig().getExecutionEnvironment());
+}

@@ -1,0 +1,20 @@
+/**
+ * Test the operator propagating a property to two vertices.
+ *
+ * @throws Exception when the execution in Flink fails.
+ */
+@Test
+public void testPropagateDirected() throws Exception {
+    LogicalGraph input = loader.getLogicalGraphByVariable("input1");
+    UnaryGraphToGraphOperator operator = new PropagatePropertyToNeighbor("Source", "p1", "t");
+    // We have to update the vertices manually because the ascii loader does not support lists.
+    LogicalGraph expected = input.transformVertices((v, c) -> {
+        if (!v.getLabel().equals("Target") && !v.getLabel().equals("Target2")) {
+            return v;
+        }
+        v.setProperty("t", Arrays.asList(PropertyValue.create(1L), PropertyValue.create("")));
+        return v;
+    }).callForGraph(new PropertyTransformation<>("t", pv -> pv, PropagatePropertyToNeighborTest::orderListProperty, pv -> pv));
+    LogicalGraph result = input.callForGraph(operator).callForGraph(new PropertyTransformation<>("t", pv -> pv, PropagatePropertyToNeighborTest::orderListProperty, pv -> pv));
+    collectAndAssertTrue(expected.equalsByData(result));
+}

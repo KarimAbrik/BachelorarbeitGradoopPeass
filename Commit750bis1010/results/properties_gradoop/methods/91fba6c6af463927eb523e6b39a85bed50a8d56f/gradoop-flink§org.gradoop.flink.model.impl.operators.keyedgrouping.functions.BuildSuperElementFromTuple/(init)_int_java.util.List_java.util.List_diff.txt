@@ -1,0 +1,12 @@
+/**
+ * Initialize this function.
+ *
+ * @param tupleDataOffset    The number of reserved fields in the tuple.
+ * @param groupingKeys       The grouping key functions.
+ * @param aggregateFunctions The aggregate functions.
+ */
+BuildSuperElementFromTuple(int tupleDataOffset, List<KeyFunction<E, ?>> groupingKeys, List<AggregateFunction> aggregateFunctions) {
+    this.tupleDataOffset = tupleDataOffset;
+    this.keyFunctions = Objects.requireNonNull(groupingKeys);
+    this.aggregateFunctions = Objects.requireNonNull(aggregateFunctions);
+}

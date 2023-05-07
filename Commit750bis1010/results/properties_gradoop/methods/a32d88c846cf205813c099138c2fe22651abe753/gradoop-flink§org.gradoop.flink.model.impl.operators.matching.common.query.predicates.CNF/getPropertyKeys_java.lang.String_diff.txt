@@ -1,0 +1,8 @@
+@Override
+public Set<String> getPropertyKeys(String variable) {
+    Set<String> properties = new HashSet<>();
+    for (CNFElement cnfElement : predicates) {
+        properties.addAll(cnfElement.getPropertyKeys(variable));
+    }
+    return properties;
+}

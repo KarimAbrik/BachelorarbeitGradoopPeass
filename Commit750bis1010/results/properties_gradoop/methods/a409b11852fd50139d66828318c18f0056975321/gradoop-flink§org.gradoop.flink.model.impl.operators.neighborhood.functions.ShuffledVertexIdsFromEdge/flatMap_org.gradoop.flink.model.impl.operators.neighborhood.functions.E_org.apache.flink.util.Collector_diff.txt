@@ -1,0 +1,7 @@
+@Override
+public void flatMap(E edge, Collector<Tuple2<GradoopId, GradoopId>> collector) throws Exception {
+    reuseTuple.setFields(edge.getSourceId(), edge.getTargetId());
+    collector.collect(reuseTuple);
+    reuseTuple.setFields(edge.getTargetId(), edge.getSourceId());
+    collector.collect(reuseTuple);
+}

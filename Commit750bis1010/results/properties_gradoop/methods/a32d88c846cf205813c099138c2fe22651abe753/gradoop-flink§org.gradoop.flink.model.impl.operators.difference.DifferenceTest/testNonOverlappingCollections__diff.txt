@@ -1,0 +1,10 @@
+@Test
+public void testNonOverlappingCollections() throws Exception {
+    FlinkAsciiGraphLoader loader = getSocialNetworkLoader();
+    GraphCollection col01 = loader.getGraphCollectionByVariables("g0", "g1");
+    GraphCollection col23 = loader.getGraphCollectionByVariables("g2", "g3");
+    GraphCollection result = col01.difference(col23);
+    checkAssertions(col01, result, "non");
+    result = col01.differenceWithSmallResult(col23);
+    checkAssertions(col01, result, "small non");
+}

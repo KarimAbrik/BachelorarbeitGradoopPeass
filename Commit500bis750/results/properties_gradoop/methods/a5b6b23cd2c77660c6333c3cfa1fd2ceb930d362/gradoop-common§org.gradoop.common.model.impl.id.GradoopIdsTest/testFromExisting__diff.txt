@@ -1,0 +1,8 @@
+@Test                                                                                                  @Test                                                                                               
+public void testFromExisting() {                                                                       public void testFromExisting() {                                                                    
+GradoopId id1 = GradoopId.get();                                                                       GradoopId id1 = GradoopId.get();                                                                    
+GradoopId id2 = GradoopId.get();                                                                       GradoopId id2 = GradoopId.get();                                                                    
+GradoopId id3 = GradoopId.get();                                                                       GradoopId id3 = GradoopId.get();                                                                    
+GradoopIds ids = GradoopIds.fromExisting(id1, id2, id3);                                             | GradoopIdSet ids = GradoopIdSet.fromExisting(id1, id2, id3);                                        
+assertThat(ids.size(), is(3));                                                                         assertThat(ids.size(), is(3));                                                                      
+}                                                                                                      }                                                                                                   

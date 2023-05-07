@@ -1,0 +1,9 @@
+/**
+ * According to the specified {@link JoinEmbeddingsNode#edgeStrategy}, the method returns
+ * the columns that need to contain distinct entries in the right embedding.
+ *
+ * @return distinct edge columns of the right embedding
+ */
+private List<Integer> getDistinctEdgeColumnsRight() {
+    return getDistinctEdgeColumns(getRightChild().getEmbeddingMetaData());
+}

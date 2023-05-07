@@ -1,0 +1,27 @@
+public static Collection<GraphHeadPojo> createGraphHeadCollection() {
+    // graphs
+    GraphHeadPojoFactory graphDataFactory = new GraphHeadPojoFactory();
+    List<GraphHeadPojo> graphs = Lists.newArrayList();
+    // Community {interest: Databases, vertexCount: 3} (0L)
+    Map<String, Object> properties = new HashMap<>();
+    properties.put(PROPERTY_KEY_INTEREST, "Databases");
+    properties.put(PROPERTY_KEY_VERTEX_COUNT, 3);
+    communityDatabases = graphDataFactory.createGraphHead(GradoopId.fromLong(0L), LABEL_COMMUNITY, properties);
+    graphs.add(communityDatabases);
+    // Community {interest: Hadoop, vertexCount: 3} (1L)
+    properties = new HashMap<>();
+    properties.put(PROPERTY_KEY_INTEREST, "Hadoop");
+    properties.put(PROPERTY_KEY_VERTEX_COUNT, 3);
+    communityHadoop = graphDataFactory.createGraphHead(GradoopId.fromLong(1L), LABEL_COMMUNITY, properties);
+    graphs.add(communityHadoop);
+    // Community {interest: Graphs, vertexCount: 4} (2L)
+    properties = new HashMap<>();
+    properties.put(PROPERTY_KEY_INTEREST, "Graphs");
+    properties.put(PROPERTY_KEY_VERTEX_COUNT, 4);
+    communityGraphs = graphDataFactory.createGraphHead(GradoopId.fromLong(2L), LABEL_COMMUNITY, properties);
+    graphs.add(communityGraphs);
+    // Forum {} (3L)
+    forumGraph = graphDataFactory.createGraphHead(GradoopId.fromLong(3L), LABEL_FORUM);
+    graphs.add(forumGraph);
+    return graphs;
+}

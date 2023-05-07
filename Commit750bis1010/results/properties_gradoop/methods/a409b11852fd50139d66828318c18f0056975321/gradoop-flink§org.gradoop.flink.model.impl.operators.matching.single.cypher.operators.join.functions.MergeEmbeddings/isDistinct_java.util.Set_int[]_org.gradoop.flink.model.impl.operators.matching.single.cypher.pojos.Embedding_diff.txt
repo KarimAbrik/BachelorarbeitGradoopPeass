@@ -1,0 +1,18 @@
+/**
+ * Checks if the specified embeddings contains distinct ids at the specified columns.
+ *
+ * @param ids used to track uniqueness
+ * @param columns columns to check for uniqueness
+ * @param embedding embedding to check
+ * @return true, if the embedding contains distinct Ids at the specified columns
+ */
+private boolean isDistinct(Set<GradoopId> ids, int[] columns, Embedding embedding) {
+    boolean isDistinct = true;
+    for (int column : columns) {
+        isDistinct = ids.addAll(embedding.getIdAsList(column));
+        if (!isDistinct) {
+            break;
+        }
+    }
+    return isDistinct;
+}

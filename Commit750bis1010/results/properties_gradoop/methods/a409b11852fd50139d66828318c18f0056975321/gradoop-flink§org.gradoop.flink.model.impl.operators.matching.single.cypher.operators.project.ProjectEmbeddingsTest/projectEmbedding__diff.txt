@@ -1,0 +1,16 @@
+@Test
+public void projectEmbedding() throws Exception {
+    Embedding embedding = new Embedding();
+    embedding.add(GradoopId.get());
+    embedding.add(GradoopId.get(), getPropertyValues(Lists.newArrayList("m", "n", "o")));
+    DataSet<Embedding> embeddings = getExecutionEnvironment().fromElements(embedding, embedding);
+    List<Integer> extractedPropertyKeys = Lists.newArrayList(0, 2);
+    ProjectEmbeddings operator = new ProjectEmbeddings(embeddings, extractedPropertyKeys);
+    DataSet<Embedding> results = operator.evaluate();
+    assertEquals(2, results.count());
+    assertEveryEmbedding(results, (e) -> {
+        assertEquals(2, e.size());
+        assertEquals(PropertyValue.create("m"), e.getProperty(0));
+        assertEquals(PropertyValue.create("o"), e.getProperty(1));
+    });
+}

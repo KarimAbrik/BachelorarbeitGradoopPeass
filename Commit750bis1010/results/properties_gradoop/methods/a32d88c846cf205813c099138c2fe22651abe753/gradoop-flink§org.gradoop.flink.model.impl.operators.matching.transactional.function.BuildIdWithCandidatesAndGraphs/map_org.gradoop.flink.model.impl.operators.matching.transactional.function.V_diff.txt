@@ -1,0 +1,7 @@
+@Override
+public Tuple2<GradoopIdSet, IdWithCandidates<GradoopId>> map(V v) throws Exception {
+    reuseTuple.f0 = v.getGraphIds();
+    reuseTuple.f1.setId(v.getId());
+    reuseTuple.f1.setCandidates(getCandidates(vertexCount, ElementMatcher.getMatches(v, queryVertices, DEFAULT_VERTEX_LABEL)));
+    return reuseTuple;
+}

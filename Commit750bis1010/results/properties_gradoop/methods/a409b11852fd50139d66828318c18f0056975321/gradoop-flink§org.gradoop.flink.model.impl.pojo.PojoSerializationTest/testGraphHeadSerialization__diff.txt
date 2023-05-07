@@ -1,0 +1,5 @@
+@Test
+public void testGraphHeadSerialization() throws Exception {
+    GraphHead graphHeadIn = new EPGMGraphHeadFactory().createGraphHead("Community", Properties.createFromMap(GradoopTestUtils.SUPPORTED_PROPERTIES));
+    Assert.assertEquals("GraphHead POJOs were not equal", graphHeadIn, GradoopFlinkTestUtils.writeAndRead(graphHeadIn));
+}

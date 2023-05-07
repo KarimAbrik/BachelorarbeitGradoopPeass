@@ -1,0 +1,19 @@
+/**
+ * Returns the offset of the property in the propertyData array
+ * @param column the index of the property
+ * @return Offset of the property in the propertyData array
+ */
+private int getPropertyOffset(int column) {
+    int i = 0;
+    int offset = 0;
+    int entryLength;
+    while (i < column && offset < propertyData.length) {
+        entryLength = Ints.fromByteArray(ArrayUtils.subarray(propertyData, offset, offset + Integer.BYTES));
+        offset += entryLength + Integer.BYTES;
+        i++;
+    }
+    if (offset >= propertyData.length) {
+        throw new IndexOutOfBoundsException("Cant find Property. " + (i - 1) + " < " + column);
+    }
+    return offset;
+}

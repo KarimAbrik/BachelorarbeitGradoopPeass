@@ -1,0 +1,12 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public GradoopIds readGraphIds(Result res) throws IOException {
+    byte[] graphBytes = res.getValue(CF_META_BYTES, COL_GRAPHS_BYTES);
+    GradoopIds graphIds = new GradoopIds();
+    if (graphBytes != null) {
+        Writables.getWritable(graphBytes, graphIds);
+    }
+    return graphIds;
+}

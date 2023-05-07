@@ -1,0 +1,13 @@
+/**
+ * Test the {@link EdgeToVertex} operator with its first parameter being {@code null}.
+ * This should not change anything.
+ *
+ * @throws Exception when the execution in Flink fails.
+ */
+@Test
+public void testWithoutVertexCreation() throws Exception {
+    UnaryGraphToGraphOperator operator = new EdgeToVertex(null, "newLabel", "fromSource", "toTarget");
+    LogicalGraph result = loader.getLogicalGraphByVariable("input").callForGraph(operator);
+    LogicalGraph expected = loader.getLogicalGraphByVariable("input");
+    collectAndAssertTrue(result.equalsByData(expected));
+}

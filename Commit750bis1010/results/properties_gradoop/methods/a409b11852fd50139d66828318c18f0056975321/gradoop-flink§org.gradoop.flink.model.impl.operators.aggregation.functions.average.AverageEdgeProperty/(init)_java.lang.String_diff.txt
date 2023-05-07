@@ -1,0 +1,9 @@
+/**
+ * Create an instance of this average aggregate function with a default aggregate property key.
+ * The key will be the original key, prefixed with {@code avg_}.
+ *
+ * @param propertyKey Key of the property to aggregate.
+ */
+public AverageEdgeProperty(String propertyKey) {
+    super(propertyKey);
+}

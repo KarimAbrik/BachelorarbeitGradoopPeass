@@ -1,0 +1,10 @@
+@Test
+public void testGetIdAsListForIdEntries() {
+    GradoopId a = new GradoopId();
+    GradoopId b = new GradoopId();
+    Embedding embedding = new Embedding();
+    embedding.add(a);
+    embedding.add(b);
+    assertEquals(Lists.newArrayList(a), embedding.getIdAsList(0));
+    assertEquals(Lists.newArrayList(b), embedding.getIdAsList(1));
+}

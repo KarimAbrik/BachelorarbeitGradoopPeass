@@ -1,0 +1,19 @@
+/**
+ * Initial step: initializations and reading the headline
+ *
+ * @param line line of sna input
+ */
+private void initialStep(String line) {
+    // Get properties (e.g. FirstName, LastName...)
+    properties = getTokens(line);
+    // Get MetaData (e.g. long, string, string...)
+    types = getTokens(conf.get(META_DATA));
+    //readTypes(conf.get(META_DATA));
+    // set label
+    label = conf.get(LABEL);
+    // getCSVType
+    isNodeCSV = isNodeCSV();
+    random = new Random();
+    // initialStep is over
+    initialStep = false;
+}

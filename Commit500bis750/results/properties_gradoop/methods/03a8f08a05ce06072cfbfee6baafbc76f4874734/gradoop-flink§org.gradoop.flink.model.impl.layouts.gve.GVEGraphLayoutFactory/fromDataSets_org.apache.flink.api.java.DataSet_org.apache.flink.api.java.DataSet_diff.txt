@@ -1,0 +1,11 @@
+@Override
+public GVELayout fromDataSets(DataSet<Vertex> vertices, DataSet<Edge> edges) {
+    Objects.requireNonNull(vertices, "Vertex DataSet was null");
+    Objects.requireNonNull(edges, "Edge DataSet was null");
+    GraphHead graphHead = getConfig().getGraphHeadFactory().createGraphHead();
+    DataSet<GraphHead> graphHeadSet = getConfig().getExecutionEnvironment().fromElements(graphHead);
+    // update vertices and edges with new graph head id
+    vertices = vertices.map(new AddToGraph<>(graphHead)).withForwardedFields("id;label;properties");
+    edges = edges.map(new AddToGraph<>(graphHead)).withForwardedFields("id;sourceId;targetId;label;properties");
+    return new GVELayout(graphHeadSet, vertices, edges);
+}

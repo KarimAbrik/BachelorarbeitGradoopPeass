@@ -1,0 +1,4 @@
+@Override
+public void write(LogicalGraph logicalGraph, boolean overwrite) throws IOException {
+    write(logicalGraph.getCollectionFactory().fromGraph(logicalGraph), overwrite);
+}

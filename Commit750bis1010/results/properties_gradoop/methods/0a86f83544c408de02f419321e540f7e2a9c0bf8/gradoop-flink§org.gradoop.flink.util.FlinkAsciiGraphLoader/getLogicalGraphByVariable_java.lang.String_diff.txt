@@ -1,0 +1,13 @@
+/**
+ * Builds a {@link LogicalGraph} from the graph referenced by the given
+ * graph variable.
+ *
+ * @param variable graph variable used in GDL script
+ * @return LogicalGraph
+ */
+public LogicalGraph getLogicalGraphByVariable(String variable) {
+    EPGMGraphHead graphHead = getGraphHeadByVariable(variable);
+    Collection<EPGMVertex> vertices = getVerticesByGraphVariables(variable);
+    Collection<EPGMEdge> edges = getEdgesByGraphVariables(variable);
+    return config.getLogicalGraphFactory().fromCollections(graphHead, vertices, edges);
+}

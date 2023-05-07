@@ -1,0 +1,10 @@
+// ---------------------------------------------------------------------------------------------
+//  Internal State
+// ---------------------------------------------------------------------------------------------
+/**
+ * Returns the number of entries in the embedding
+ * @return the number of entries in the embedding
+ */
+public int size() {
+    return idData.length / ID_ENTRY_SIZE;
+}

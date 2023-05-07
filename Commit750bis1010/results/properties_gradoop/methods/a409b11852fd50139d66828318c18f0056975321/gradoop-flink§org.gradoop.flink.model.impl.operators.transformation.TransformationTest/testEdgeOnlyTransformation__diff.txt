@@ -1,0 +1,8 @@
+@Test
+public void testEdgeOnlyTransformation() throws Exception {
+    FlinkAsciiGraphLoader loader = getLoaderFromString(testGraphString);
+    LogicalGraph original = loader.getLogicalGraphByVariable("g0");
+    LogicalGraph expected = loader.getLogicalGraphByVariable("g04");
+    LogicalGraph result = original.transformEdges(TransformationTest::transformEdge);
+    collectAndAssertTrue(result.equalsByData(expected));
+}

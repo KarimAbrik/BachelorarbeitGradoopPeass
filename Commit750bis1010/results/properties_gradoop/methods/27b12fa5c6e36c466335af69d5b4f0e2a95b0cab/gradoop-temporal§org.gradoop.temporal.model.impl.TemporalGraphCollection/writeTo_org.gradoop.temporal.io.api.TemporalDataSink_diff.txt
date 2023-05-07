@@ -1,0 +1,9 @@
+/**
+ * Writes the graph collection to the given data sink.
+ *
+ * @param dataSink The data sink to which the graph collection should be written.
+ * @throws IOException if the collection can't be written to the sink
+ */
+public void writeTo(TemporalDataSink dataSink) throws IOException {
+    dataSink.write(this);
+}

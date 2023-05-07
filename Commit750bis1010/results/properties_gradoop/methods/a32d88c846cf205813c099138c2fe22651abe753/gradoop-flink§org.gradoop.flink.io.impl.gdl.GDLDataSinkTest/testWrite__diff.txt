@@ -1,0 +1,12 @@
+@Test
+public void testWrite() throws Exception {
+    FlinkAsciiGraphLoader testLoader = getSocialNetworkLoader();
+    GraphCollection expectedCollection = testLoader.getGraphCollectionByVariables("g0", "g1", "g2", "g3");
+    String path = temporaryFolder.getRoot().getPath() + "/graph.gdl";
+    DataSink gdlsink = new GDLDataSink(path);
+    gdlsink.write(expectedCollection, true);
+    getExecutionEnvironment().execute();
+    FlinkAsciiGraphLoader sinkLoader = getLoaderFromFile(path);
+    GraphCollection sinkCollection = sinkLoader.getGraphCollectionByVariables("g0", "g1", "g2", "g3");
+    collectAndAssertTrue(sinkCollection.equalsByGraphElementData(expectedCollection));
+}

@@ -1,0 +1,24 @@
+public static Collection&lt;PersistentGraphHead&gt; createPersistentSocialGraphHead() {                public static Collection&lt;PersistentGraphHead&gt; createPersistentSocialGraphHead() {             
+Collection&lt;GraphHeadPojo&gt; graphDataCollection = createGraphHeadCollection();                     Collection&lt;GraphHeadPojo&gt; graphDataCollection = createGraphHeadCollection();                  
+List&lt;PersistentGraphHead&gt; persistentGraphData = Lists.newArrayListWithExpectedSize(graphDataCo   List&lt;PersistentGraphHead&gt; persistentGraphData = Lists.newArrayListWithExpectedSize(graphDataCo
+PersistentGraphHeadFactory&lt;GraphHeadPojo, HBaseGraphHead&gt; graphDataFactory = new HBaseGraphHea   PersistentGraphHeadFactory&lt;GraphHeadPojo, HBaseGraphHead&gt; graphDataFactory = new HBaseGraphHea
+GradoopIds vertexIds = null;                                                                           GradoopIds vertexIds = null;                                                                        
+GradoopIds edgeIds = null;                                                                             GradoopIds edgeIds = null;                                                                          
+for (GraphHeadPojo graphData : graphDataCollection) {                                                  for (GraphHeadPojo graphData : graphDataCollection) {                                               
+if (graphData.getId().equals(communityDatabases.getId())) {                                            if (graphData.getId().equals(communityDatabases.getId())) {                                         
+vertexIds = new GradoopIds(VERTEX_PERSON_ALICE.getId(), VERTEX_PERSON_BOB.getId(), VERTEX_PERSON_EVE | vertexIds = GradoopIds.fromExisting(VERTEX_PERSON_ALICE.getId(), VERTEX_PERSON_BOB.getId(), VERTEX_P
+edgeIds = new GradoopIds(EDGE_0_KNOWS.getId(), EDGE_1_KNOWS.getId(), EDGE_6_KNOWS.getId(), EDGE_21_K | edgeIds = GradoopIds.fromExisting(EDGE_0_KNOWS.getId(), EDGE_1_KNOWS.getId(), EDGE_6_KNOWS.getId(), 
+} else if (graphData.getId().equals(communityHadoop.getId())) {                                        } else if (graphData.getId().equals(communityHadoop.getId())) {                                     
+vertexIds = new GradoopIds(VERTEX_PERSON_CAROL.getId(), VERTEX_PERSON_DAVE.getId(), VERTEX_PERSON_FR | vertexIds = GradoopIds.fromExisting(VERTEX_PERSON_CAROL.getId(), VERTEX_PERSON_DAVE.getId(), VERTEX_
+edgeIds = new GradoopIds(EDGE_4_KNOWS.getId(), EDGE_5_KNOWS.getId(), EDGE_22_KNOWS.getId(), EDGE_23_ | edgeIds = GradoopIds.fromExisting(EDGE_4_KNOWS.getId(), EDGE_5_KNOWS.getId(), EDGE_22_KNOWS.getId(),
+} else if (graphData.getId().equals(communityGraphs.getId())) {                                        } else if (graphData.getId().equals(communityGraphs.getId())) {                                     
+vertexIds = new GradoopIds(VERTEX_PERSON_ALICE.getId(), VERTEX_PERSON_BOB.getId(), VERTEX_PERSON_CAR | vertexIds = GradoopIds.fromExisting(VERTEX_PERSON_ALICE.getId(), VERTEX_PERSON_BOB.getId(), VERTEX_P
+edgeIds = new GradoopIds(EDGE_0_KNOWS.getId(), EDGE_1_KNOWS.getId(), EDGE_2_KNOWS.getId(), EDGE_3_KN | edgeIds = GradoopIds.fromExisting(EDGE_0_KNOWS.getId(), EDGE_1_KNOWS.getId(), EDGE_2_KNOWS.getId(), 
+} else if (graphData.getId().equals(forumGraph.getId())) {                                             } else if (graphData.getId().equals(forumGraph.getId())) {                                          
+vertexIds = new GradoopIds(VERTEX_PERSON_CAROL.getId(), VERTEX_PERSON_DAVE.getId(), VERTEX_PERSON_FR | vertexIds = GradoopIds.fromExisting(VERTEX_PERSON_CAROL.getId(), VERTEX_PERSON_DAVE.getId(), VERTEX_
+edgeIds = new GradoopIds(EDGE_4_KNOWS.getId(), EDGE_16_HAS_MODERATOR.getId(), EDGE_19_HAS_MEMBER.get | edgeIds = GradoopIds.fromExisting(EDGE_4_KNOWS.getId(), EDGE_16_HAS_MODERATOR.getId(), EDGE_19_HAS_M
+}                                                                                                      }                                                                                                   
+persistentGraphData.add(graphDataFactory.createGraphHead(graphData, vertexIds, edgeIds));              persistentGraphData.add(graphDataFactory.createGraphHead(graphData, vertexIds, edgeIds));           
+}                                                                                                      }                                                                                                   
+return persistentGraphData;                                                                            return persistentGraphData;                                                                         
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,8 @@
+/**
+ * Returns the wrapped value as {@code GradoopId}.
+ *
+ * @return {@code GradoopId} value
+ */
+public GradoopId getGradoopId() {
+    return GradoopId.fromByteArray(Arrays.copyOfRange(rawBytes, OFFSET, GradoopId.ID_SIZE + OFFSET));
+}

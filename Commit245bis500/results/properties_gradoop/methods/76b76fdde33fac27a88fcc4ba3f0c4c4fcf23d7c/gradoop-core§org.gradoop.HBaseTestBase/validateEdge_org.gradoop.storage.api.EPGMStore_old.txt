@@ -1,0 +1,39 @@
+/**
+ * Checks data consistency with {@code createPersistentEdgeData()}.
+ *
+ * @param graphStore graph store
+ */
+public static void validateEdge(EPGMStore<VertexPojo, EdgePojo, GraphHeadPojo> graphStore) {
+    // edge 0
+    EPGMEdge e = graphStore.readEdge(GradoopId.fromLong(0L));
+    assertNotNull(e);
+    assertEquals("a", e.getLabel());
+    assertEquals(new Long(0L), e.getSourceVertexId());
+    assertEquals(new Long(1L), e.getTargetVertexId());
+    assertEquals(2L, e.getPropertyCount());
+    List<String> propertyKeys = Lists.newArrayList(e.getPropertyKeys());
+    assertEquals(2, propertyKeys.size());
+    for (String key : propertyKeys) {
+        if (key.equals("k1")) {
+            assertEquals("v1", e.getProperty("k1"));
+        } else if (key.equals("v2")) {
+            assertEquals("v2", e.getProperty("k2"));
+        }
+    }
+    assertEquals(2, e.getGraphCount());
+    assertTrue(e.getGraphIds().contains(GradoopId.fromLong(0L)));
+    assertTrue(e.getGraphIds().contains(GradoopId.fromLong(1L)));
+    // edge 1
+    e = graphStore.readEdge(GradoopId.fromLong(1L));
+    assertNotNull(e);
+    assertEquals("b", e.getLabel());
+    assertEquals(GradoopId.fromLong(0L), e.getSourceVertexId());
+    assertEquals(GradoopId.fromLong(2L), e.getTargetVertexId());
+    assertEquals(1L, e.getPropertyCount());
+    propertyKeys = Lists.newArrayList(e.getPropertyKeys());
+    assertEquals(1, propertyKeys.size());
+    assertEquals("v1", e.getProperty("k1"));
+    assertEquals(2, e.getGraphCount());
+    assertTrue(e.getGraphIds().contains(GradoopId.fromLong(1L)));
+    assertTrue(e.getGraphIds().contains(GradoopId.fromLong(2L)));
+}

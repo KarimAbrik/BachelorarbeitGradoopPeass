@@ -1,0 +1,10 @@
+/**
+ * Test the {@link TemporalGraphCollection#toGraphCollection()} method.
+ */
+@Test
+public void testToGraphCollection() throws Exception {
+    GraphCollection resultingCollection = testTemporalCollection.toGraphCollection();
+    collectAndAssertTrue(resultingCollection.equalsByGraphData(testCollection));
+    collectAndAssertTrue(resultingCollection.equalsByGraphElementData(testCollection));
+    collectAndAssertTrue(resultingCollection.equalsByGraphElementIds(testCollection));
+}

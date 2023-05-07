@@ -1,0 +1,24 @@
+/**
+ * Returns this property as a GDL formatted String.
+ *
+ * @param property The property.
+ * @return A GDL formatted string that represents the property.
+ */
+private String propertyToGDLString(Property property) {
+    StringBuilder result = new StringBuilder().append(property.getKey()).append(KEY_VALUE_SEPARATOR);
+    PropertyValue value = property.getValue();
+    if (value.isString()) {
+        result.append(STRING_PREFIX).append(value.toString()).append(STRING_SUFFIX);
+    } else if (value.isNull()) {
+        result.append(NULL_STRING);
+    } else if (value.isDouble()) {
+        result.append(value.toString()).append(DOUBLE_SUFFIX);
+    } else if (value.isFloat()) {
+        result.append(value.toString()).append(FLOAT_SUFFIX);
+    } else if (value.isLong()) {
+        result.append(value.toString()).append(LONG_SUFFIX);
+    } else {
+        result.append(value.toString());
+    }
+    return result.toString();
+}

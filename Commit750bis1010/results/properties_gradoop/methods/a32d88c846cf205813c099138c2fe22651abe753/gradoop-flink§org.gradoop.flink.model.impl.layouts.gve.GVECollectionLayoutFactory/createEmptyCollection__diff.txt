@@ -1,0 +1,7 @@
+@Override
+public GraphCollectionLayout<EPGMGraphHead, EPGMVertex, EPGMEdge> createEmptyCollection() {
+    Collection<EPGMGraphHead> graphHeads = new ArrayList<>();
+    Collection<EPGMVertex> vertices = new ArrayList<>();
+    Collection<EPGMEdge> edges = new ArrayList<>();
+    return fromCollections(graphHeads, vertices, edges);
+}

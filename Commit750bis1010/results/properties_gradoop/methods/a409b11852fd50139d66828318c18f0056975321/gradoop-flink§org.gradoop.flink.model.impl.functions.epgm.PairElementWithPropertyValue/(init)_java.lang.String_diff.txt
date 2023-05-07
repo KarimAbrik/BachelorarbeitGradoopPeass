@@ -1,0 +1,9 @@
+/**
+ * Constructor.
+ *
+ * @param propertyKey used to access property value
+ */
+public PairElementWithPropertyValue(String propertyKey) {
+    this.propertyKey = propertyKey;
+    this.reuseTuple = new Tuple2<>();
+}

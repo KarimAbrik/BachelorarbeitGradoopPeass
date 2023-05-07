@@ -1,0 +1,68 @@
+{
+  "clazz" : "org.gradoop.model.impl.LogicalGraphOverlapTest",
+  "methods" : [ {
+    "method" : "testNonOverlappingGraphs",
+    "datacollectorResults" : [ {
+      "name" : "de.dagere.kopeme.datacollection.TimeDataCollectorNoGC",
+      "chunks" : [ ],
+      "results" : [ {
+        "value" : 9.897466845000001E8,
+        "deviation" : 0.8103156024998625,
+        "min" : 5.63225967E8,
+        "max" : 3.184402095E9,
+        "warmup" : 0,
+        "iterations" : 10,
+        "repetitions" : 2,
+        "commit" : null,
+        "vmRunConfiguration" : {
+          "showStart" : false,
+          "executeBeforeClassInMeasurement" : false,
+          "redirectToTemp" : false,
+          "redirectToNull" : true,
+          "useKieker" : false
+        },
+        "parameters" : {
+          "JUNIT_PARAMETERIZED" : "Execution mode = CLUSTER"
+        },
+        "javaVersion" : "1.8.0_362",
+        "cpu" : "model name : Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz",
+        "memory" : "MemTotal: 16280544 kB",
+        "date" : 1680987569642,
+        "fulldata" : {
+          "fileName" : null,
+          "values" : [ {
+            "startTime" : 1680987559523,
+            "value" : 3184402095
+          }, {
+            "startTime" : 1680987562708,
+            "value" : 1279932910
+          }, {
+            "startTime" : 1680987563988,
+            "value" : 882420668
+          }, {
+            "startTime" : 1680987564870,
+            "value" : 627313186
+          }, {
+            "startTime" : 1680987565498,
+            "value" : 592406053
+          }, {
+            "startTime" : 1680987566090,
+            "value" : 569110025
+          }, {
+            "startTime" : 1680987566659,
+            "value" : 563225967
+          }, {
+            "startTime" : 1680987567223,
+            "value" : 591891952
+          }, {
+            "startTime" : 1680987567815,
+            "value" : 824065941
+          }, {
+            "startTime" : 1680987568639,
+            "value" : 782698048
+          } ]
+        }
+      } ]
+    } ]
+  } ]
+}

@@ -1,0 +1,17 @@
+/**
+ * The constructor for the structural transformation.
+ *
+ * @param edgeLabel            The label of the edges use for the transformation.
+ *                             (No edges will be transformed if this parameter is {@code null}).
+ * @param newVertexLabel       The label of the newly created vertex.
+ * @param edgeLabelSourceToNew The label of the newly created edge which points to the newly
+ *                             created vertex.
+ * @param edgeLabelNewToTarget The label of the newly created edge which starts at the newly
+ *                             created vertex.
+ */
+public EdgeToVertex(String edgeLabel, String newVertexLabel, String edgeLabelSourceToNew, String edgeLabelNewToTarget) {
+    this.edgeLabel = edgeLabel;
+    this.newVertexLabel = Objects.requireNonNull(newVertexLabel);
+    this.edgeLabelSourceToNew = Objects.requireNonNull(edgeLabelSourceToNew);
+    this.edgeLabelNewToTarget = Objects.requireNonNull(edgeLabelNewToTarget);
+}

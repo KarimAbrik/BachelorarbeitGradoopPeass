@@ -1,0 +1,8 @@
+@Override
+public Tuple2<EPGMVertex, GradoopId> map(EPGMGraphHead hid) throws Exception {
+    reusable.f0.setId(GradoopId.get());
+    reusable.f0.setLabel(hid.getLabel());
+    reusable.f0.setProperties(hid.getProperties());
+    reusable.f1 = hid.getId();
+    return reusable;
+}

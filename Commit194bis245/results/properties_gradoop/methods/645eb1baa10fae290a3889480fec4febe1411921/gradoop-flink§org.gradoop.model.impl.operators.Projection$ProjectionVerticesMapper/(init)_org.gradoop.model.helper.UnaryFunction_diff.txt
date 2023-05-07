@@ -1,0 +1,8 @@
+/**
+ * create a new ProjectVerticesMapper
+ *
+ * @param vertexFunc the vertex projection function
+ */
+public ProjectionVerticesMapper(UnaryFunction<VD, VD> vertexFunc) {
+    this.vertexFunc = vertexFunc;
+}

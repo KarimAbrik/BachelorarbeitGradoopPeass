@@ -1,0 +1,11 @@
+@Override
+public boolean filter(GE element) throws Exception {
+    boolean contained = false;
+    for (GradoopId graphID : graphIds) {
+        contained = element.getGraphIds().contains(graphID);
+        if (contained) {
+            break;
+        }
+    }
+    return !contained;
+}

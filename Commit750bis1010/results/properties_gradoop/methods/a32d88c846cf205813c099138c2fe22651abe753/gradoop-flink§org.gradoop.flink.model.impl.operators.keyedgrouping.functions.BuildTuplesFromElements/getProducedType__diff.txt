@@ -1,0 +1,4 @@
+@Override
+public TypeInformation<Tuple> getProducedType() {
+    return new TupleTypeInfo<>(elementTypes);
+}

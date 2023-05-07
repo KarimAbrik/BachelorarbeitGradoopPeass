@@ -1,0 +1,8 @@
+@Test
+public void testSelectionWithEmptyResult() throws Exception {
+    FlinkAsciiGraphLoader loader = getSocialNetworkLoader();
+    GraphCollection inputCollection = loader.getGraphCollectionByVariables("g0", "g1", "g2");
+    FilterFunction<EPGMGraphHead> predicateFunc = (FilterFunction<EPGMGraphHead>) entity -> entity.hasProperty("vertexCount") && entity.getPropertyValue("vertexCount").getInt() > 5;
+    GraphCollection outputCollection = inputCollection.select(predicateFunc);
+    collectAndAssertTrue(outputCollection.isEmpty());
+}

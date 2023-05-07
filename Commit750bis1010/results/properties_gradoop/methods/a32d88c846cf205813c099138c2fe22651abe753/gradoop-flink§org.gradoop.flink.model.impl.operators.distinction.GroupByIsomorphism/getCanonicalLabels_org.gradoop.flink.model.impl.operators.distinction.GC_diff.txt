@@ -1,0 +1,12 @@
+/**
+ * Creates a canonical label for each graph in a collection.
+ *
+ * @param collection input collection
+ * @return graph head label set
+ */
+DataSet<GraphHeadString> getCanonicalLabels(GC collection) {
+    // Init builder for canonical labels
+    CanonicalAdjacencyMatrixBuilder<G, V, E, LG, GC> camBuilder = new CanonicalAdjacencyMatrixBuilder<>(new GraphHeadToEmptyString<>(), new VertexToDataString<>(), new EdgeToDataString<>(), true);
+    // create canonical labels for all graph heads and choose representative for all distinct ones
+    return camBuilder.getGraphHeadStrings(collection);
+}

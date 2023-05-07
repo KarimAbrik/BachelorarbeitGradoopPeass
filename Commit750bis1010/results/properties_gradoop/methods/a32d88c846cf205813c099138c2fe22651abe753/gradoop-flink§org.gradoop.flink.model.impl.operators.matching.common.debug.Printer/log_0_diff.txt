@@ -1,0 +1,18 @@
+/**
+ * Prints out logging information if logging is enabled and mapping information is available.
+ *
+ * @param dataSet       dataset to be logged
+ * @param printer       prints each dataset row (or a subset of it)
+ * @param vertexMapping mapping between vertex id and debug property value
+ * @param edgeMapping   mapping between edge id and debug property value
+ * @param <T>           dataset type
+ * @param <K>           key type
+ * @return unmodified dataset
+ */
+public static <T, K> DataSet<T> log(DataSet<T> dataSet, Printer<T, K> printer, DataSet<Tuple2<K, PropertyValue>> vertexMapping, DataSet<Tuple2<K, PropertyValue>> edgeMapping) {
+    if (isDebugEnabled(vertexMapping, edgeMapping)) {
+        return dataSet.map(printer).withBroadcastSet(vertexMapping, Printer.VERTEX_MAPPING).withBroadcastSet(edgeMapping, Printer.EDGE_MAPPING);
+    } else {
+        return dataSet;
+    }
+}

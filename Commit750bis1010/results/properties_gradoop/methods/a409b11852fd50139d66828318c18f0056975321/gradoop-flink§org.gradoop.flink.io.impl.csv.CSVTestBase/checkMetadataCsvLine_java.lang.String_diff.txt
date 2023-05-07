@@ -1,0 +1,25 @@
+/**
+ * Check that a line of the created csv metadata file has all expected data type definitions
+ *
+ * @param line the line of a csv metadata file as string
+ */
+protected void checkMetadataCsvLine(String line) {
+    assertTrue(line.contains(GradoopTestUtils.KEY_0 + ":boolean"));
+    assertTrue(line.contains(GradoopTestUtils.KEY_1 + ":int"));
+    assertTrue(line.contains(GradoopTestUtils.KEY_2 + ":long"));
+    assertTrue(line.contains(GradoopTestUtils.KEY_3 + ":float"));
+    assertTrue(line.contains(GradoopTestUtils.KEY_4 + ":double"));
+    assertTrue(line.contains(GradoopTestUtils.KEY_5 + ":string"));
+    assertTrue(line.contains(GradoopTestUtils.KEY_6 + ":gradoopid"));
+    assertTrue(line.contains(GradoopTestUtils.KEY_7 + ":localdate"));
+    assertTrue(line.contains(GradoopTestUtils.KEY_8 + ":localtime"));
+    assertTrue(line.contains(GradoopTestUtils.KEY_9 + ":localdatetime"));
+    assertTrue(line.contains(GradoopTestUtils.KEY_a + ":bigdecimal"));
+    assertTrue(line.contains(GradoopTestUtils.KEY_b + ":map:string:double"));
+    assertTrue(line.contains(GradoopTestUtils.KEY_c + ":list:string"));
+    assertTrue(line.contains(GradoopTestUtils.KEY_d + ":list:int"));
+    assertTrue(line.contains(GradoopTestUtils.KEY_e + ":short"));
+    assertTrue(line.contains(GradoopTestUtils.KEY_f + ":null"));
+    assertTrue(line.contains(GradoopTestUtils.KEY_g + ":set:string"));
+    assertTrue(line.contains(GradoopTestUtils.KEY_h + ":set:int"));
+}

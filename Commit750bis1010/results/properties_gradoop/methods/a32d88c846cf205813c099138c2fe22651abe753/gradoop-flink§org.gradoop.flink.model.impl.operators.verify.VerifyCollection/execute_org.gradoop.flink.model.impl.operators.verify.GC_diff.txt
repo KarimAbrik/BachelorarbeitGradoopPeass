@@ -1,0 +1,6 @@
+@Override
+public GC execute(GC collection) {
+    DataSet<V> vertices = collection.getVertices();
+    DataSet<E> verifiedEdges = collection.getEdges().join(vertices).where(new SourceId<>()).equalTo(new Id<>()).with(new LeftSideWithRightGraphs<>()).name("Verify Edges (1/2)").join(vertices).where(new TargetId<>()).equalTo(new Id<>()).with(new LeftSideWithRightGraphs<>()).name("Verify Edges (2/2)");
+    return collection.getFactory().fromDataSets(collection.getGraphHeads(), vertices, verifiedEdges);
+}

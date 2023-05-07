@@ -1,0 +1,20 @@
+/**
+ * Creates a new property collection from a given map.
+ *
+ * If map is {@code null} an empty properties instance will be returned.
+ *
+ * @param map key value map
+ * @return PropertyList
+ */
+public static Properties createFromMap(Map<String, Object> map) {
+    Properties properties;
+    if (map == null) {
+        properties = Properties.createWithCapacity(0);
+    } else {
+        properties = Properties.createWithCapacity(map.size());
+        for (Map.Entry<String, Object> entry : map.entrySet()) {
+            properties.set(entry.getKey(), PropertyValue.create(entry.getValue()));
+        }
+    }
+    return properties;
+}

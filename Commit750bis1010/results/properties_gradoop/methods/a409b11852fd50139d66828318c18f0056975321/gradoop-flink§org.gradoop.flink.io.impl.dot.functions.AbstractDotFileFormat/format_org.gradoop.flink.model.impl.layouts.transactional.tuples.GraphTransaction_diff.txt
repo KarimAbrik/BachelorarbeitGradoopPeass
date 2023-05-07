@@ -1,0 +1,22 @@
+@Override
+public String format(GraphTransaction transaction) {
+    StringBuilder builder = new StringBuilder();
+    //--------------------------------------------------------------------------
+    // write DOT head lines and open block
+    //--------------------------------------------------------------------------
+    GradoopId id = transaction.getGraphHead().getId();
+    builder.append("subgraph cluster_g").append(id).append("{\n");
+    //--------------------------------------------------------------------------
+    // write DOT body
+    //--------------------------------------------------------------------------
+    if (printGraphHead) {
+        writeGraphHead(transaction, builder);
+    }
+    writeVertices(transaction, builder, id.toString());
+    writeEdges(transaction, builder, id.toString());
+    //--------------------------------------------------------------------------
+    // close DOT block
+    //--------------------------------------------------------------------------
+    builder.append("}\n");
+    return builder.toString();
+}

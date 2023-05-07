@@ -1,0 +1,15 @@
+/**
+ * Compares the specified GradoopIds based on their byte representation
+ * (to avoid object instantiation).
+ *
+ * Note: Implementation is taken from {@link ObjectId#compareTo(Object)} to avoid object
+ * instantiation.
+ *
+ * @param first first GradoopId
+ * @param second second GradoopId
+ * @return a negative integer, zero, or a positive integer as this object is less than, equal to,
+ *         or greater than the specified object.
+ */
+private static int compare(byte[] first, byte[] second) {
+    return compare(first, second, 0, 0, GradoopId.ID_SIZE);
+}

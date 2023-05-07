@@ -1,0 +1,43 @@
+@Test
+public void testExecute() throws Exception {
+    GradoopId a = GradoopId.get();
+    GradoopId b = GradoopId.get();
+    GradoopId c = GradoopId.get();
+    GradoopId d = GradoopId.get();
+    GradoopId e = GradoopId.get();
+    GradoopId f = GradoopId.get();
+    GradoopId g = GradoopId.get();
+    GradoopId h = GradoopId.get();
+    EmbeddingMetaData leftInputMetaData = new EmbeddingMetaData();
+    leftInputMetaData.setEntryColumn("v1", EntryType.VERTEX, 0);
+    leftInputMetaData.setPropertyColumn("v1", "age", 0);
+    Embedding embedding1 = createEmbedding(singletonList(Pair.of(a, singletonList(42))));
+    Embedding embedding2 = createEmbedding(singletonList(Pair.of(b, singletonList(21))));
+    DataSet<Embedding> leftEmbeddings = getExecutionEnvironment().fromElements(embedding1, embedding2);
+    /*
+     * ----------------------------------
+     * |  v2   | e1    | v3    | v3.age |
+     * ----------------------------------
+     * | id(c) | id(d) | id(e) |  42    | -> Embedding 3
+     * ----------------------------------
+     * | id(f) | id(g) | id(h) |  21    | -> Embedding 4
+     * ----------------------------------
+     */
+    EmbeddingMetaData rightInputMetaData = new EmbeddingMetaData();
+    rightInputMetaData.setEntryColumn("v2", EntryType.VERTEX, 0);
+    rightInputMetaData.setEntryColumn("e1", EntryType.EDGE, 1);
+    rightInputMetaData.setEntryColumn("v3", EntryType.VERTEX, 2);
+    rightInputMetaData.setPropertyColumn("v3", "age", 0);
+    Embedding embedding3 = createEmbedding(asList(Pair.of(c, emptyList()), Pair.of(d, emptyList()), Pair.of(e, singletonList(42))));
+    Embedding embedding4 = createEmbedding(asList(Pair.of(f, emptyList()), Pair.of(g, emptyList()), Pair.of(h, singletonList(21))));
+    DataSet<Embedding> rightEmbeddings = getExecutionEnvironment().fromElements(embedding3, embedding4);
+    MockPlanNode leftChild = new MockPlanNode(leftEmbeddings, leftInputMetaData);
+    MockPlanNode rightChild = new MockPlanNode(rightEmbeddings, rightInputMetaData);
+    CartesianProductNode node = new CartesianProductNode(leftChild, rightChild, MatchStrategy.ISOMORPHISM, MatchStrategy.ISOMORPHISM);
+    DataSet<Embedding> result = node.execute();
+    assertThat(result.count(), is(4L));
+    assertEmbeddingExists(result, a, f, g, h);
+    assertEmbeddingExists(result, b, f, g, h);
+    assertEmbeddingExists(result, a, c, d, e);
+    assertEmbeddingExists(result, b, c, d, e);
+}

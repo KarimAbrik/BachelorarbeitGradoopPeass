@@ -1,0 +1,10 @@
+/**
+ * Presumes float encoded as IEEE 754 floating-point "single format"
+ *
+ * @param bytes array to convert
+ * @param offset offset into array
+ * @return Float made from passed byte array.
+ */
+public static float toFloat(byte[] bytes, int offset) {
+    return Float.intBitsToFloat(toInt(bytes, offset, SIZEOF_INT));
+}

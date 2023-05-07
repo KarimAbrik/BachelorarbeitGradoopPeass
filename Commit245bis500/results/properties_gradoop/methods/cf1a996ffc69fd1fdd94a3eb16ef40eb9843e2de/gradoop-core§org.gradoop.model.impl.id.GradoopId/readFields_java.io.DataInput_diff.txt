@@ -1,0 +1,4 @@
+@Override
+public void readFields(DataInput dataInput) throws IOException {
+    this.identifier = dataInput.readLong();
+}

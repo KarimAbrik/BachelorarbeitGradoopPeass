@@ -1,0 +1,10 @@
+/**
+ * Constructor
+ *
+ * @param query GDL query
+ */
+public BuildTripleWithCandidatesAndGraphs(String query) {
+    super(query);
+    reuseTuple = new Tuple2<>();
+    reuseTuple.f1 = new TripleWithCandidates<>();
+}

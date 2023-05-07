@@ -1,0 +1,9 @@
+/**
+ * Create a {@link PropertyValue} that wraps a byte array.
+ *
+ * @param rawBytes array to wrap
+ * @return new instance of {@link PropertyValue}
+ */
+public static PropertyValue fromRawBytes(byte[] rawBytes) {
+    return new PropertyValue(rawBytes);
+}

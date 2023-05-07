@@ -1,0 +1,10 @@
+/**
+ * Valued constructor.
+ *
+ * @param function aggregate function
+ * @param direction considered edge direction
+ */
+public Neighborhood(AggregateFunction function, EdgeDirection direction) {
+    this.function = function;
+    this.direction = direction;
+}

@@ -1,0 +1,7 @@
+@Override
+public LogicalGraph execute(LogicalGraph graph) {
+    DataSet<Tuple2<EPGMVertex, List<NeighborhoodVertex>>> incomingNeighborhood = Neighborhood.getPerVertex(graph, graph.getVerticesByLabel(centralVertexLabel), Neighborhood.EdgeDirection.INCOMING);
+    DataSet<Tuple2<EPGMVertex, List<NeighborhoodVertex>>> outgoingNeighborhood = Neighborhood.getPerVertex(graph, graph.getVerticesByLabel(centralVertexLabel), Neighborhood.EdgeDirection.OUTGOING);
+    DataSet<EPGMEdge> newEdges = incomingNeighborhood.coGroup(outgoingNeighborhood).where(new IdInTuple<>(0)).equalTo(new IdInTuple<>(0)).with(new EdgesFromLocalTransitiveClosure<>(newEdgeLabel, graph.getFactory().getEdgeFactory())).map(new AddToGraphBroadcast<>()).withBroadcastSet(graph.getGraphHead().map(new Id<>()), AddToGraphBroadcast.GRAPH_ID);
+    return graph.getFactory().fromDataSets(graph.getGraphHead(), graph.getVertices(), graph.getEdges().union(newEdges));
+}

@@ -1,0 +1,11 @@
+@Override
+public EPGMEdge join(EPGMEdge edge, EPGMVertex vertex) throws Exception {
+    PropertyValue newEdgeValue = vertex.getPropertyValue(propertyKey);
+    if (edge.hasProperty(propertyKey)) {
+        if (edge.getPropertyValue(propertyKey).compareTo(newEdgeValue) < 0) {
+            return edge;
+        }
+    }
+    edge.setProperty(propertyKey, newEdgeValue);
+    return edge;
+}

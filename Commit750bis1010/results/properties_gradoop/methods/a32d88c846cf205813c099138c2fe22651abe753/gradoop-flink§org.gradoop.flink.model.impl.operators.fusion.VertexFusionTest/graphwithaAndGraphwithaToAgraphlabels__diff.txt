@@ -1,0 +1,13 @@
+@Test
+public void graphwithaAndGraphwithaToAgraphlabels() throws Exception {
+    FlinkAsciiGraphLoader loader = getLoaderFromString("graphWithA:G {graphWithA : \"graph\"}[(a:A {atype : \"avalue\"})]" + "aGraphLabels:G {graphWithA : \"graph\"}[(:G {graphWithA : \"graph\"})]");
+    LogicalGraph searchGraph = loader.getLogicalGraphByVariable("graphWithA");
+    LogicalGraph patternGraph = loader.getLogicalGraphByVariable("graphWithA");
+    VertexFusion f = new VertexFusion();
+    LogicalGraph output = f.execute(searchGraph, patternGraph);
+    LogicalGraph expected = loader.getLogicalGraphByVariable("aGraphLabels");
+    collectAndAssertTrue(output.equalsByData(expected));
+    if (deepSearch) {
+        collectAndAssertTrue(VertexFusionUtils.myInducedEdgeSubgraphForFusion(searchGraph, expected).equalsByElementIds(VertexFusionUtils.myInducedEdgeSubgraphForFusion(expected, searchGraph)));
+    }
+}

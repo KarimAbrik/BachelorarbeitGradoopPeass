@@ -1,0 +1,5 @@
+@Override
+public Tuple2<T0, T1> map(Tuple4<T0, T1, T2, T3> quad) throws Exception {
+    reuseTuple.setFields(quad.f0, quad.f1);
+    return reuseTuple;
+}

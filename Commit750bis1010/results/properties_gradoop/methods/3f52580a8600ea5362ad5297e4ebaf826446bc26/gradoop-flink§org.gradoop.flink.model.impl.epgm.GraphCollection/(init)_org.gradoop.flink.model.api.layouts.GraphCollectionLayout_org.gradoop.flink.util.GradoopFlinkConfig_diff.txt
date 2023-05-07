@@ -1,0 +1,10 @@
+/**
+ * Creates a graph collection from the given arguments.
+ *
+ * @param layout the graph collection layout
+ * @param config the Gradoop Flink configuration
+ */
+GraphCollection(GraphCollectionLayout<EPGMGraphHead, EPGMVertex, EPGMEdge> layout, GradoopFlinkConfig config) {
+    this.layout = Objects.requireNonNull(layout);
+    this.config = Objects.requireNonNull(config);
+}

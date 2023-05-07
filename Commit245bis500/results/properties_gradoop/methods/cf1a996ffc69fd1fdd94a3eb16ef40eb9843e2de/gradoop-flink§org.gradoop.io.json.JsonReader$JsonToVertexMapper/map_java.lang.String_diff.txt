@@ -1,0 +1,16 @@
+/**                                                                                                    /**                                                                                                 
+* Constructs a vertex from a given JSON string representation.                                         * Constructs a vertex from a given JSON string representation.                                      
+*                                                                                                      *                                                                                                   
+* @param s json string                                                                                 * @param s json string                                                                              
+* @return Gelly vertex storing gradoop vertex data                                                     * @return Gelly vertex storing gradoop vertex data                                                  
+* @throws Exception                                                                                    * @throws Exception                                                                                 
+*/                                                                                                     */                                                                                                  
+@Override                                                                                              @Override                                                                                           
+public VD map(String s) throws Exception {                                                             public VD map(String s) throws Exception {                                                          
+JSONObject jsonVertex = new JSONObject(s);                                                             JSONObject jsonVertex = new JSONObject(s);                                                          
+Long vertexID = getID(jsonVertex);                                                                   | GradoopId vertexID = getID(jsonVertex);                                                             
+String label = getLabel(jsonVertex);                                                                   String label = getLabel(jsonVertex);                                                                
+Map&lt;String, Object&gt; properties = getProperties(jsonVertex);                                      Map&lt;String, Object&gt; properties = getProperties(jsonVertex);                                   
+Set&lt;Long&gt; graphs = getGraphs(jsonVertex);                                                      | GradoopIds graphs = getGraphs(jsonVertex);                                                          
+return vertexFactory.createVertex(vertexID, label, properties, graphs);                                return vertexFactory.createVertex(vertexID, label, properties, graphs);                             
+}                                                                                                      }                                                                                                   

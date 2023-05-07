@@ -1,0 +1,23 @@
+@Test                                                                                                  @Test                                                                                               
+public void createVertexPojoTest() {                                                                   public void createVertexPojoTest() {                                                                
+Long vertexID = 0L;                                                                                  | GradoopIdGenerator idGen = new SequenceIdGenerator();                                               
+                                                                                                     | GradoopId vertexID = idGen.createId();                                                              
+String label = "A";                                                                                    String label = "A";                                                                                 
+Map&lt;String, Object&gt; props = Maps.newHashMapWithExpectedSize(2);                                  Map&lt;String, Object&gt; props = Maps.newHashMapWithExpectedSize(2);                               
+props.put("k1", "v1");                                                                                 props.put("k1", "v1");                                                                              
+props.put("k2", "v2");                                                                                 props.put("k2", "v2");                                                                              
+Set&lt;Long&gt; graphs = Sets.newHashSet(0L, 1L);                                                    | GradoopId graphId1 = idGen.createId();                                                              
+EPGMVertex vertex = new VertexPojoFactory().createVertex(vertexID, label, props, graphs);            | GradoopId graphId2 = idGen.createId();                                                              
+                                                                                                     | GradoopIds graphIds = new GradoopIds();                                                             
+                                                                                                     | graphIds.add(graphId1);                                                                             
+                                                                                                     | graphIds.add(graphId2);                                                                             
+                                                                                                     | EPGMVertex vertex = new VertexPojoFactory().createVertex(vertexID, label, props, graphIds);         
+assertThat(vertex.getId(), is(vertexID));                                                              assertThat(vertex.getId(), is(vertexID));                                                           
+assertEquals(label, vertex.getLabel());                                                                assertEquals(label, vertex.getLabel());                                                             
+assertThat(vertex.getPropertyCount(), is(2));                                                          assertThat(vertex.getPropertyCount(), is(2));                                                       
+assertThat(vertex.getProperty("k1"), Is.&lt;Object&gt;is("v1"));                                       assertThat(vertex.getProperty("k1"), Is.&lt;Object&gt;is("v1"));                                    
+assertThat(vertex.getProperty("k2"), Is.&lt;Object&gt;is("v2"));                                       assertThat(vertex.getProperty("k2"), Is.&lt;Object&gt;is("v2"));                                    
+assertThat(vertex.getGraphCount(), is(2));                                                             assertThat(vertex.getGraphCount(), is(2));                                                          
+assertTrue(vertex.getGraphs().contains(0L));                                                         | assertTrue(vertex.getGraphIds().contains(graphId1));                                                
+assertTrue(vertex.getGraphs().contains(1L));                                                         | assertTrue(vertex.getGraphIds().contains(graphId2));                                                
+}                                                                                                      }                                                                                                   

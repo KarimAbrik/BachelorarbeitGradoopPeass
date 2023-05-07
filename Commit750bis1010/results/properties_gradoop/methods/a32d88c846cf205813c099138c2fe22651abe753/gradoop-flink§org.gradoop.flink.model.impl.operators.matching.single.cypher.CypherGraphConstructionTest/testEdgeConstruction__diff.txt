@@ -1,0 +1,9 @@
+@Test
+public void testEdgeConstruction() throws Exception {
+    FlinkAsciiGraphLoader loader = getSocialNetworkLoader();
+    LogicalGraph dbGraph = loader.getLogicalGraph();
+    loader.appendToDatabaseFromString("expected0[" + "(alice)-[akb]->(bob)-[bkc]->(carol)," + "(alice)-[:possible_friend]->(carol)" + "]," + "expected1[" + "(bob)-[bkc]->(carol)-[ckd]->(dave)," + "(bob)-[:possible_friend]->(dave)" + "]");
+    GraphCollection result = dbGraph.query("MATCH (a:Person)-[e0:knows]->(b:Person)-[e1:knows]->(c:Person) " + "WHERE a.city = 'Leipzig' AND a <> c", "(b)<-[e0]-(a)-[e_new:possible_friend]->(c)<-[e1]-(b)");
+    GraphCollection expectedCollection = loader.getGraphCollectionByVariables("expected0", "expected1");
+    collectAndAssertTrue(result.equalsByGraphElementData(expectedCollection));
+}

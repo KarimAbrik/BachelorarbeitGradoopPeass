@@ -1,0 +1,40 @@
+{
+  "overallScore" : 0,
+  "selected" : false,
+  "testcase" : {
+    "clazz" : "org.gradoop.model.impl.operators.EPGMDatabaseTest",
+    "method" : "testGetExistingGraph",
+    "module" : "gradoop-flink",
+    "params" : "JUNIT_PARAMETERIZED-Execution mode = COLLECTION"
+  },
+  "callCounts" : {
+    "gradoop-flink§org.gradoop.util.GradoopFlinkConfig#getExecutionEnvironment" : 1,
+    "gradoop-core§org.gradoop.model.impl.pojo.ElementPojo#<init>" : 99,
+    "gradoop-core§org.gradoop.model.impl.pojo.ElementPojo#getId" : 4,
+    "gradoop-flink§org.gradoop.model.impl.functions.keyselectors.GraphKeySelector#getKey(org.gradoop.model.impl.functions.keyselectors.GD)" : 4,
+    "gradoop-flink§org.gradoop.model.impl.AbstractGraph#getConfig" : 2,
+    "gradoop-core§org.gradoop.model.impl.pojo.ElementPojo#getLabel" : 1,
+    "gradoop-flink§org.gradoop.model.impl.EPGMDatabase#getGraph(java.lang.Long)" : 1,
+    "gradoop-flink§org.gradoop.model.impl.AbstractGraph#getEdges" : 2,
+    "gradoop-core§org.gradoop.model.impl.pojo.GraphElementPojo#<init>" : 77,
+    "gradoop-flink§org.gradoop.model.impl.AbstractGraph#getVertices" : 2,
+    "gradoop-core§org.gradoop.model.impl.pojo.GraphHeadPojo#<init>" : 22,
+    "gradoop-flink§org.gradoop.model.impl.functions.filterfunctions.VertexInGraphFilter#<init>(long)" : 1,
+    "gradoop-flink§org.gradoop.model.impl.AbstractGraph#<init>(org.apache.flink.api.java.DataSet,org.apache.flink.api.java.DataSet,org.gradoop.util.GradoopFlinkConfig)" : 1,
+    "gradoop-flink§org.gradoop.model.impl.operators.EPGMDatabaseTest#testGetExistingGraph" : 1,
+    "gradoop-flink§org.gradoop.model.impl.functions.filterfunctions.VertexInGraphFilter#filter(org.gradoop.model.impl.functions.filterfunctions.VD)" : 11,
+    "gradoop-flink§org.gradoop.model.impl.functions.keyselectors.GraphKeySelector#<init>" : 1,
+    "gradoop-flink§org.gradoop.model.impl.functions.filterfunctions.EdgeInGraphFilter#<init>(long)" : 1,
+    "gradoop-flink§org.gradoop.model.impl.functions.filterfunctions.EdgeInGraphFilter#filter(org.gradoop.model.impl.functions.filterfunctions.ED)" : 24,
+    "gradoop-flink§org.gradoop.model.impl.LogicalGraph#getLabel" : 1,
+    "gradoop-flink§org.gradoop.model.impl.GraphCollection#getGraph(java.lang.Long)" : 1,
+    "gradoop-core§org.gradoop.model.impl.pojo.EdgePojo#<init>" : 52,
+    "gradoop-flink§org.gradoop.model.FlinkTestBase#getGraphStore" : 1,
+    "gradoop-flink§org.gradoop.model.impl.LogicalGraph#<init>(org.apache.flink.api.java.DataSet,org.apache.flink.api.java.DataSet,org.gradoop.model.impl.GD,org.gradoop.util.GradoopFlinkConfig)" : 1,
+    "gradoop-flink§org.gradoop.model.impl.LogicalGraph#fromDataSets(org.apache.flink.api.java.DataSet,org.apache.flink.api.java.DataSet,org.gradoop.model.impl.GD,org.gradoop.util.GradoopFlinkConfig)" : 1,
+    "gradoop-core§org.gradoop.model.impl.pojo.GraphElementPojo#getGraphCount" : 35,
+    "gradoop-core§org.gradoop.model.impl.pojo.GraphElementPojo#getGraphs" : 20,
+    "gradoop-core§org.gradoop.model.impl.pojo.VertexPojo#<init>" : 25
+  },
+  "selectedChanges" : [ ]
+}

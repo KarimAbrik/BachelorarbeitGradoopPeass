@@ -1,0 +1,8 @@
+/**
+ * Returns all (variable,key) pairs attached to the query plan.
+ *
+ * @return (variable,key) pairs attached to the current plan
+ */
+public Set<Pair<String, String>> getPropertyPairs() {
+    return getAttributedVariables().stream().flatMap(var -> getQueryPlan().getRoot().getEmbeddingMetaData().getPropertyKeys(var).stream().map(key -> Pair.of(var, key))).collect(Collectors.toSet());
+}

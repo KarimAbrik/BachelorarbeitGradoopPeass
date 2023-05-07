@@ -1,0 +1,10 @@
+/**
+ * Test that calling the 'and' function of an HBaseElementFilter instance throws the
+ * expected NotImplementedException.
+ */
+@Test(expected = NotImplementedException.class)
+public void testElementFilterAnd() {
+    DummyElementFilter<Edge> filter = new DummyElementFilter<>();
+    DummyElementFilter<Edge> anotherFilter = new DummyElementFilter<>();
+    filter.and(anotherFilter);
+}

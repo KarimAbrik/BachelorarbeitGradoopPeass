@@ -1,0 +1,10 @@
+/**
+ * Returns the path to the edge file containing only edges with the specified label.
+ *
+ * @param label edge label
+ * @return path to csv file
+ */
+protected String getEdgeCSVPath(String label) {
+    Objects.requireNonNull(label);
+    return csvRoot + EDGE_PATH + CSVConstants.DIRECTORY_SEPARATOR + label + CSVConstants.DIRECTORY_SEPARATOR + CSVConstants.SIMPLE_FILE;
+}

@@ -1,0 +1,5 @@
+@Override
+public DataSet<Embedding> evaluate() {
+    Map<Integer, Integer> projection = projectionVariables.stream().collect(Collectors.toMap(inputMetaData::getEntryColumn, outputMetaData::getEntryColumn));
+    return input.map(new ProjectEmbeddingElements(projection));
+}

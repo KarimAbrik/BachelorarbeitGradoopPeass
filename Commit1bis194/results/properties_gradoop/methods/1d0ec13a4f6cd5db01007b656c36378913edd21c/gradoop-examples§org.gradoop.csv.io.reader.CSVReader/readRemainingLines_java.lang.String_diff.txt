@@ -1,0 +1,28 @@
+private Vertex readRemainingLines(String line) {                                                     |                                                                                                     
+//    Log.info("###ReadRemainingLines");                                                             |                                                                                                     
+String[] tokens = getTokens(line);                                                                   |                                                                                                     
+long id = Long.parseLong(tokens[0]);                                                                 |                                                                                                     
+//    Log.info(id);                                                                                  |                                                                                                     
+//    Log.info(labels.get(0));                                                                       |                                                                                                     
+Vertex vex = VertexFactory.createDefaultVertexWithLabels(id, labels, null);                          |                                                                                                     
+if (node) {                                                                                          |                                                                                                     
+for (int i = 1; i &lt; properties.length; i++) {                                                     |                                                                                                     
+switch(types[i]) {                                                                                   |                                                                                                     
+case "long":                                                                                         |                                                                                                     
+vex.addProperty(properties[i], Long.parseLong(tokens[i]));                                           |                                                                                                     
+//          Log.info(tokens[i]);                                                                     |                                                                                                     
+break;                                                                                               |                                                                                                     
+case "string":                                                                                       |                                                                                                     
+vex.addProperty(properties[i], tokens[i]);                                                           |                                                                                                     
+//          Log.info(tokens[i]);                                                                     |                                                                                                     
+break;                                                                                               |                                                                                                     
+default:                                                                                             |                                                                                                     
+vex.addProperty(properties[i], tokens[i]);                                                           |                                                                                                     
+break;                                                                                               |                                                                                                     
+}                                                                                                    |                                                                                                     
+}                                                                                                    |                                                                                                     
+} else {                                                                                             |                                                                                                     
+//If edge                                                                                            |                                                                                                     
+}                                                                                                    |                                                                                                     
+return vex;                                                                                          |                                                                                                     
+}                                                                                                    |                                                                                                     

@@ -1,0 +1,12 @@
+/**
+ * Constructor
+ *
+ * @param graphHeadFactory graph head factory
+ * @param variable Variable assigned to the only query vertex
+ */
+public AddGraphElementToNewGraph(GraphHeadFactory<G> graphHeadFactory, String variable) {
+    this.graphHeadFactory = graphHeadFactory;
+    this.variable = variable;
+    reuseTuple = new Tuple2<>();
+    reuseVariableMapping = new HashMap<>();
+}

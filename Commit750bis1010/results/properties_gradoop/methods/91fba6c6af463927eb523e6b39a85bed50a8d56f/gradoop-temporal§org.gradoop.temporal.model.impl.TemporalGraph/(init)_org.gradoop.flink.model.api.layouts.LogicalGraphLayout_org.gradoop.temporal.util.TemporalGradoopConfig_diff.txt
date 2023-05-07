@@ -1,0 +1,10 @@
+/**
+ * Creates a new temporal graph instance with the given layout and temporal gradoop configuration.
+ *
+ * @param layout the layout representing the temporal graph
+ * @param config the temporal Gradoop config
+ */
+TemporalGraph(LogicalGraphLayout<TemporalGraphHead, TemporalVertex, TemporalEdge> layout, TemporalGradoopConfig config) {
+    this.layout = Preconditions.checkNotNull(layout);
+    this.config = Preconditions.checkNotNull(config);
+}

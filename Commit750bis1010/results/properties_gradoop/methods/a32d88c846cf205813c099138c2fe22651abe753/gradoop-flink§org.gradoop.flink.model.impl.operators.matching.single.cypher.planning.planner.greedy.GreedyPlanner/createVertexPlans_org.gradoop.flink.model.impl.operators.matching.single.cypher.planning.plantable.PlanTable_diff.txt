@@ -1,0 +1,22 @@
+//------------------------------------------------------------------------------------------------
+// Leaf nodes (i.e. vertices and (variable length) edges)
+//------------------------------------------------------------------------------------------------
+/**
+ * Creates an initial {@link PlanTableEntry} for each vertex in the query graph and adds it to the
+ * specified {@link PlanTable}. The entry wraps a query plan that filters vertices based on their
+ * predicates and projects properties that are required for further query planning.
+ *
+ * @param planTable plan table
+ */
+private void createVertexPlans(PlanTable planTable) {
+    for (Vertex vertex : queryHandler.getVertices()) {
+        String vertexVariable = vertex.getVariable();
+        CNF allPredicates = queryHandler.getPredicates();
+        // TODO: this might be moved to the FilterAndProject node in issue #510
+        CNF vertexPredicates = allPredicates.removeSubCNF(vertexVariable);
+        Set<String> projectionKeys = allPredicates.getPropertyKeys(vertexVariable);
+        DataSet<V> vertices = vertex.getLabel().equals(GradoopConstants.DEFAULT_VERTEX_LABEL) ? graph.getVertices() : graph.getVerticesByLabel(vertex.getLabel());
+        FilterAndProjectVerticesNode<V> node = new FilterAndProjectVerticesNode<>(vertices, vertex.getVariable(), vertexPredicates, projectionKeys);
+        planTable.add(new PlanTableEntry(VERTEX, Sets.newHashSet(vertexVariable), allPredicates, new QueryPlanEstimator(new QueryPlan(node), queryHandler, graphStatistics)));
+    }
+}

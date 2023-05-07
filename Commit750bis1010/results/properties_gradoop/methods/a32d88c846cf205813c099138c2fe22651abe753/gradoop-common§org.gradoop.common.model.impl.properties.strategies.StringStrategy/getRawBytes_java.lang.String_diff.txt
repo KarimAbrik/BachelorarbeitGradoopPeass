@@ -1,0 +1,8 @@
+@Override
+public byte[] getRawBytes(String value) {
+    byte[] valueBytes = Bytes.toBytes(value);
+    byte[] rawBytes = new byte[PropertyValue.OFFSET + valueBytes.length];
+    rawBytes[0] = getRawType();
+    Bytes.putBytes(rawBytes, PropertyValue.OFFSET, valueBytes, 0, valueBytes.length);
+    return rawBytes;
+}

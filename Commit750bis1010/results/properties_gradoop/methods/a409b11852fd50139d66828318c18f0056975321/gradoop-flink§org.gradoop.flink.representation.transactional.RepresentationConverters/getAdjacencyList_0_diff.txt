@@ -1,0 +1,42 @@
+/**
+ * {@code transaction => adjacency list}
+ *
+ * @param transaction (g,V,E)
+ * @param edgeDataFactory edge data factory
+ * @param vertexDataFactory vertex data factory
+ *
+ * @param <ED> edge data
+ * @param <VD> vertex data
+ *
+ * @return adjacency list
+ * @throws Exception on failure
+ */
+public static <ED, VD> AdjacencyList<GradoopId, String, ED, VD> getAdjacencyList(GraphTransaction transaction, MapFunction<EPGMEdge, ED> edgeDataFactory, MapFunction<EPGMVertex, VD> vertexDataFactory) throws Exception {
+    Set<EPGMVertex> vertices = transaction.getVertices();
+    Set<EPGMEdge> edges = transaction.getEdges();
+    int vertexCount = vertices.size();
+    Map<GradoopId, String> labels = Maps.newHashMapWithExpectedSize(1 + vertexCount + edges.size());
+    Map<GradoopId, Properties> properties = Maps.newHashMap();
+    Map<GradoopId, AdjacencyListRow<ED, VD>> outgoingRows = Maps.newHashMapWithExpectedSize(vertexCount);
+    Map<GradoopId, AdjacencyListRow<ED, VD>> incomingRows = Maps.newHashMapWithExpectedSize(vertexCount);
+    Map<GradoopId, EPGMVertex> vertexIndex = Maps.newHashMapWithExpectedSize(vertexCount);
+    // VERTICES
+    for (EPGMVertex vertex : vertices) {
+        addLabelsAndProperties(vertex, labels, properties);
+        vertexIndex.put(vertex.getId(), vertex);
+    }
+    // EDGES
+    for (EPGMEdge edge : edges) {
+        addLabelsAndProperties(edge, labels, properties);
+        EPGMVertex source = vertexIndex.get(edge.getSourceId());
+        AdjacencyListRow<ED, VD> outgoingRow = outgoingRows.computeIfAbsent(source.getId(), k -> new AdjacencyListRow<>());
+        VD sourceData = vertexDataFactory.map(source);
+        EPGMVertex target = vertexIndex.get(edge.getTargetId());
+        AdjacencyListRow<ED, VD> incomingRow = incomingRows.computeIfAbsent(target.getId(), k -> new AdjacencyListRow<>());
+        VD targetData = vertexDataFactory.map(target);
+        ED edgeData = edgeDataFactory.map(edge);
+        outgoingRow.getCells().add(new AdjacencyListCell<>(edgeData, targetData));
+        incomingRow.getCells().add(new AdjacencyListCell<>(edgeData, sourceData));
+    }
+    return new AdjacencyList<>(transaction.getGraphHead(), labels, properties, outgoingRows, incomingRows);
+}

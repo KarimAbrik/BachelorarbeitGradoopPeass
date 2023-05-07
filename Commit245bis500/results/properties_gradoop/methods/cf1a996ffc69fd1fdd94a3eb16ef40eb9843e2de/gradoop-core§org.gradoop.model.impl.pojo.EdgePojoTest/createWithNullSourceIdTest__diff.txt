@@ -1,0 +1,7 @@
+@Test(expected = IllegalArgumentException.class)                                                       @Test(expected = IllegalArgumentException.class)                                                    
+public void createWithNullSourceIdTest() {                                                             public void createWithNullSourceIdTest() {                                                          
+new EdgePojoFactory().createEdge(0L, null, 42L);                                                     | GradoopIdGenerator idGen = new SequenceIdGenerator();                                               
+                                                                                                     | GradoopId edgeId = idGen.createId();                                                                
+                                                                                                     | GradoopId targetId = idGen.createId();                                                              
+                                                                                                     | new EdgePojoFactory().createEdge(edgeId, null, targetId);                                           
+}                                                                                                      }                                                                                                   

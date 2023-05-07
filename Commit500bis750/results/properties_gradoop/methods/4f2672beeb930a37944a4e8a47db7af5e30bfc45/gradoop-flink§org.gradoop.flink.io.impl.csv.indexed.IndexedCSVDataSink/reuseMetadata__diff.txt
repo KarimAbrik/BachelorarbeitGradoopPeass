@@ -1,0 +1,8 @@
+/**
+ * Returns true, if the meta data shall be reused.
+ *
+ * @return true, iff reuse is possible
+ */
+private boolean reuseMetadata() {
+    return this.metaDataPath != null && !this.metaDataPath.isEmpty();
+}

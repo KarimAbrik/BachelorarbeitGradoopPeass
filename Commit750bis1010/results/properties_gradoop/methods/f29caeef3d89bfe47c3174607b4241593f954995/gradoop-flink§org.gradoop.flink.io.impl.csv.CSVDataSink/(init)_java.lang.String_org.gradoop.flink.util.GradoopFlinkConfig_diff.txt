@@ -1,0 +1,10 @@
+/**
+ * Creates a new CSV data sink. Computes the meta data based on the given graph.
+ *
+ * @param csvPath directory to write to
+ * @param config  Gradoop Flink configuration
+ */
+public CSVDataSink(String csvPath, GradoopFlinkConfig config) {
+    super(csvPath, config);
+    this.metaDataPath = null;
+}

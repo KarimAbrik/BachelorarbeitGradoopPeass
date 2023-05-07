@@ -1,0 +1,7 @@
+@Override
+public void close() throws IOException {
+    for (OutputFormat<IT> outputFormat : formatsPerSubdirectory.values()) {
+        outputFormat.close();
+    }
+    formatsPerSubdirectory.clear();
+}

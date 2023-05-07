@@ -1,0 +1,6 @@
+@Override
+public Tuple2<String, String> join(IdWithLabel first, IdWithLabel second) throws Exception {
+    reuseTuple.f0 = first.getLabel();
+    reuseTuple.f1 = second.getLabel();
+    return reuseTuple;
+}

@@ -1,0 +1,13 @@
+@Test                                                                                                  @Test                                                                                               
+public void createWithIDTest() {                                                                       public void createWithIDTest() {                                                                    
+Long edgeId = 0L;                                                                                    | GradoopIdGenerator idGen = new SequenceIdGenerator();                                               
+Long sourceId = 23L;                                                                                 | GradoopId edgeId = idGen.createId();                                                                
+Long targetId = 42L;                                                                                 | GradoopId sourceId = idGen.createId();                                                              
+                                                                                                     | GradoopId targetId = idGen.createId();                                                              
+EPGMEdge e = new EdgePojoFactory().createEdge(edgeId, sourceId, targetId);                             EPGMEdge e = new EdgePojoFactory().createEdge(edgeId, sourceId, targetId);                          
+assertThat(e.getId(), is(edgeId));                                                                     assertThat(e.getId(), is(edgeId));                                                                  
+assertThat(e.getSourceVertexId(), is(sourceId));                                                       assertThat(e.getSourceVertexId(), is(sourceId));                                                    
+assertThat(e.getTargetVertexId(), is(targetId));                                                       assertThat(e.getTargetVertexId(), is(targetId));                                                    
+assertThat(e.getPropertyCount(), is(0));                                                               assertThat(e.getPropertyCount(), is(0));                                                            
+assertThat(e.getGraphCount(), is(0));                                                                  assertThat(e.getGraphCount(), is(0));                                                               
+}                                                                                                      }                                                                                                   

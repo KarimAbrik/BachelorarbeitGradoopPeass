@@ -1,0 +1,4 @@
+@Override
+public String toString() {
+    return String.format("%s%s%s[tx%s,val%s]{%s}", id, label == null || label.equals("") ? "" : ":", label, getTransactionTime(), getValidTime(), properties == null ? "" : properties);
+}

@@ -1,0 +1,6 @@
+@Override
+public Embedding copy() {
+    Embedding res = new Embedding();
+    copyTo(res);
+    return res;
+}

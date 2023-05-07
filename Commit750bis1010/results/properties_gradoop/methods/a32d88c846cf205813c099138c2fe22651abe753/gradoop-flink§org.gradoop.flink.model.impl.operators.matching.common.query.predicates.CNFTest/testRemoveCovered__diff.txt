@@ -1,0 +1,8 @@
+@Test
+public void testRemoveCovered() {
+    CNF base = getPredicate("MATCH (a), (b), (c) WHERE (a = b) And (b > 5 OR a > 10) AND (c = false) AND (a = c)");
+    CNF expectedReturnValue = getPredicate("MATCH (a), (b), (c) WHERE (a = b) And (b > 5 OR a > 10)");
+    CNF expectedNewBase = getPredicate("MATCH (a), (b), (c) WHERE (c = false) AND (a = c)");
+    assertEquals(expectedReturnValue, base.removeSubCNF(Sets.newHashSet("a", "b")));
+    assertEquals(expectedNewBase, base);
+}

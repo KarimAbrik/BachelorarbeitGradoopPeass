@@ -1,0 +1,8 @@
+@Override
+public void flatMap(E element, Collector<Tuple2<GradoopId, GradoopId>> out) {
+    if (element.hasProperty(MarkDuplicatesInGroup.PROPERTY_KEY)) {
+        reuse.f0 = element.getId();
+        reuse.f1 = element.getPropertyValue(MarkDuplicatesInGroup.PROPERTY_KEY).getGradoopId();
+        out.collect(reuse);
+    }
+}

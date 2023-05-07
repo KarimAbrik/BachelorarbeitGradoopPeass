@@ -1,0 +1,5 @@
+@Override
+public EL map(EL el) throws Exception {
+    el.setId(GradoopId.get());
+    return el;
+}

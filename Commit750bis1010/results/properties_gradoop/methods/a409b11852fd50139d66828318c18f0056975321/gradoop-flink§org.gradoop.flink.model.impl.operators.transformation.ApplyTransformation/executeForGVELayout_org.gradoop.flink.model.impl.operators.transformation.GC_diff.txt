@@ -1,0 +1,6 @@
+@Override
+public GC executeForGVELayout(GC collection) {
+    // the resulting graph holds multiple graph heads
+    LG modifiedGraph = executeInternal(collection.getGraphHeads(), collection.getVertices(), collection.getEdges(), collection.getGraphFactory());
+    return collection.getFactory().fromDataSets(modifiedGraph.getGraphHead(), modifiedGraph.getVertices(), modifiedGraph.getEdges());
+}

@@ -1,0 +1,29 @@
+/**
+ * {@code adjacency list => transaction}
+ *
+ * @param adjacencyList adjacency list
+ * @return transaction
+ */
+public static GraphTransaction getGraphTransaction(AdjacencyList<GradoopId, String, GradoopId, GradoopId> adjacencyList) {
+    // GRAPH HEAD
+    EPGMGraphHead graphHead = adjacencyList.getGraphHead();
+    GradoopIdSet graphIds = GradoopIdSet.fromExisting(graphHead.getId());
+    Set<EPGMVertex> vertices = Sets.newHashSet();
+    Set<EPGMEdge> edges = Sets.newHashSet();
+    // VERTICES
+    for (Map.Entry<GradoopId, AdjacencyListRow<GradoopId, GradoopId>> entry : adjacencyList.getOutgoingRows().entrySet()) {
+        GradoopId sourceId = entry.getKey();
+        Properties properties = adjacencyList.getProperties(sourceId);
+        String label = adjacencyList.getLabel(sourceId);
+        vertices.add(new EPGMVertex(sourceId, label, properties, graphIds));
+        // EDGES
+        for (AdjacencyListCell<GradoopId, GradoopId> cell : entry.getValue().getCells()) {
+            GradoopId edgeId = cell.getEdgeData();
+            label = adjacencyList.getLabel(edgeId);
+            properties = adjacencyList.getProperties(edgeId);
+            GradoopId targetId = cell.getVertexData();
+            edges.add(new EPGMEdge(edgeId, label, sourceId, targetId, properties, graphIds));
+        }
+    }
+    return new GraphTransaction(graphHead, vertices, edges);
+}

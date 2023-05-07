@@ -1,0 +1,15 @@
+/**
+ * Constructor
+ *
+ * @param algorithm pattern matching algorithm
+ * @param query     given query-pattern
+ * @param findEmbeddings  flag that determines the type of the return
+ *                        false:  source graphs with an new property that is
+ *                                true iff the pattern was found in this graph
+ *                        true:   one graph per found embedding
+ */
+public TransactionalPatternMatching(String query, PatternMatchingAlgorithm algorithm, boolean findEmbeddings) {
+    this.query = query;
+    this.algorithm = algorithm;
+    this.findEmbeddings = findEmbeddings;
+}

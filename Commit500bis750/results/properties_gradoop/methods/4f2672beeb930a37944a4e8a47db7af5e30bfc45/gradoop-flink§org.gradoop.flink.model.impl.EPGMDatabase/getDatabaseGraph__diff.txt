@@ -1,0 +1,13 @@
+//----------------------------------------------------------------------------
+// Util methods
+//----------------------------------------------------------------------------
+/**
+ * Returns a logical graph containing the complete vertex and edge space of
+ * that EPGM database.
+ *
+ * @return logical graph of vertex and edge space
+ */
+@Deprecated
+public LogicalGraph getDatabaseGraph() {
+    return getDatabaseGraph(false);
+}

@@ -1,0 +1,11 @@
+/**
+ * Updates the state according to vertex statistics.
+ *
+ * @param vertexVariable vertex variable
+ */
+private void processVertex(String vertexVariable) {
+    String label = getLabel(vertexVariable, true);
+    long cardinality = getCardinality(label, true);
+    updateCardinality(vertexVariable, cardinality);
+    updateDistinctValues(vertexVariable, cardinality);
+}

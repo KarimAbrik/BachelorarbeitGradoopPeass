@@ -1,0 +1,21 @@
+/**
+ * Sets the wrapped value as {@code Map} value.
+ *
+ * @param map value
+ */
+public void setMap(Map<PropertyValue, PropertyValue> map) {
+    int size = map.keySet().stream().mapToInt(PropertyValue::byteSize).sum() + map.values().stream().mapToInt(PropertyValue::byteSize).sum() + OFFSET;
+    ByteArrayOutputStream byteStream = new ByteArrayOutputStream(size);
+    DataOutputStream outputStream = new DataOutputStream(byteStream);
+    DataOutputView outputView = new DataOutputViewStreamWrapper(outputStream);
+    try {
+        outputStream.write(TYPE_MAP);
+        for (Map.Entry<PropertyValue, PropertyValue> entry : map.entrySet()) {
+            entry.getKey().write(outputView);
+            entry.getValue().write(outputView);
+        }
+    } catch (IOException e) {
+        throw new RuntimeException("Error writing PropertyValue");
+    }
+    this.rawBytes = byteStream.toByteArray();
+}

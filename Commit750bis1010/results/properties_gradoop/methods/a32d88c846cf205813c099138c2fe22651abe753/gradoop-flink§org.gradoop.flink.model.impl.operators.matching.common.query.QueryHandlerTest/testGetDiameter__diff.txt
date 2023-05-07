@@ -1,0 +1,5 @@
+@Test
+public void testGetDiameter() {
+    assertEquals(2, QUERY_HANDLER.getDiameter());
+    assertEquals(0, new QueryHandler("(v0)").getDiameter());
+}

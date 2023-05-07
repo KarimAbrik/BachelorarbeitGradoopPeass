@@ -1,0 +1,12 @@
+/**
+ * Constructor
+ *
+ * @param keyMappings the map consists of {@code <old Key , new Key>}
+ */
+public RenamePropertyKeys(Map<String, String> keyMappings) {
+    this.keyMappings = checkNotNull(keyMappings);
+    for (Map.Entry mapping : keyMappings.entrySet()) {
+        checkNotNull(mapping.getKey());
+        checkNotNull(mapping.getValue());
+    }
+}

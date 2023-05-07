@@ -1,0 +1,17 @@
+@Override
+public List<PropertyValue> read(DataInputView inputView, byte typeByte) throws IOException {
+    byte[] rawBytes = readVariableSizedData(inputView, typeByte);
+    PropertyValue item;
+    List<PropertyValue> list = new ArrayList<>();
+    DataInputViewStreamWrapper internalInputView = createInputView(rawBytes);
+    try {
+        while (internalInputView.available() > 0) {
+            item = new PropertyValue();
+            item.read(internalInputView);
+            list.add(item);
+        }
+    } catch (IOException e) {
+        throw new IOException("Error reading PropertyValue with ListStrategy.", e);
+    }
+    return list;
+}

@@ -1,0 +1,28 @@
+@Test                                                                                                  @Test                                                                                               
+public void testEquals() {                                                                             public void testEquals() {                                                                          
+GradoopId a = GradoopId.get();                                                                         GradoopId a = GradoopId.get();                                                                      
+GradoopId b = GradoopId.get();                                                                         GradoopId b = GradoopId.get();                                                                      
+GradoopId c = GradoopId.get();                                                                         GradoopId c = GradoopId.get();                                                                      
+GradoopIds abc = GradoopIds.fromExisting(a, b, c);                                                   | GradoopIdSet abc = GradoopIdSet.fromExisting(a, b, c);                                              
+assertTrue("equals failed for same object", abc.equals(abc));                                          assertTrue("equals failed for same object", abc.equals(abc));                                       
+assertTrue("hashCode failed for same object", abc.hashCode() == abc.hashCode());                       assertTrue("hashCode failed for same object", abc.hashCode() == abc.hashCode());                    
+GradoopIds abc2 = GradoopIds.fromExisting(a, b, c);                                                  | GradoopIdSet abc2 = GradoopIdSet.fromExisting(a, b, c);                                             
+assertTrue("equals failed for same ids in same order", abc.equals(abc2));                              assertTrue("equals failed for same ids in same order", abc.equals(abc2));                           
+assertTrue("hashCode failed for same ids in same order", abc.hashCode() == abc2.hashCode());           assertTrue("hashCode failed for same ids in same order", abc.hashCode() == abc2.hashCode());        
+GradoopIds cba = GradoopIds.fromExisting(c, b, a);                                                   | GradoopIdSet cba = GradoopIdSet.fromExisting(c, b, a);                                              
+assertTrue("equals succeeds for same ids in different order", abc.equals(cba));                        assertTrue("equals succeeds for same ids in different order", abc.equals(cba));                     
+assertTrue("hashCode succeeds for same ids in different order", abc.hashCode() == cba.hashCode());     assertTrue("hashCode succeeds for same ids in different order", abc.hashCode() == cba.hashCode());  
+GradoopIds aab = GradoopIds.fromExisting(a, a, b);                                                   | GradoopIdSet aab = GradoopIdSet.fromExisting(a, a, b);                                              
+GradoopIds abb = GradoopIds.fromExisting(a, b, b);                                                   | GradoopIdSet abb = GradoopIdSet.fromExisting(a, b, b);                                              
+assertTrue("equals succeeds for same ids in different cardinality", aab.equals(abb));                  assertTrue("equals succeeds for same ids in different cardinality", aab.equals(abb));               
+assertTrue("hashCode succeeds for same ids in different cardinality", aab.hashCode() == abb.hashCode   assertTrue("hashCode succeeds for same ids in different cardinality", aab.hashCode() == abb.hashCode
+GradoopIds ab = GradoopIds.fromExisting(a, b);                                                       | GradoopIdSet ab = GradoopIdSet.fromExisting(a, b);                                                  
+assertTrue("equals succeeds for same ids but different sizes", aab.equals(ab));                        assertTrue("equals succeeds for same ids but different sizes", aab.equals(ab));                     
+assertTrue("hashCode succeeds for same ids but different sizes", aab.hashCode() == ab.hashCode());     assertTrue("hashCode succeeds for same ids but different sizes", aab.hashCode() == ab.hashCode());  
+GradoopIds empty = new GradoopIds();                                                                 | GradoopIdSet empty = new GradoopIdSet();                                                            
+assertTrue("equals failed for one empty list", !abc.equals(empty));                                    assertTrue("equals failed for one empty list", !abc.equals(empty));                                 
+assertTrue("hashCode failed for one empty list", abc.hashCode() != empty.hashCode());                  assertTrue("hashCode failed for one empty list", abc.hashCode() != empty.hashCode());               
+GradoopIds empty2 = new GradoopIds();                                                                | GradoopIdSet empty2 = new GradoopIdSet();                                                           
+assertTrue("equals failed for two empty lists", empty2.equals(empty));                                 assertTrue("equals failed for two empty lists", empty2.equals(empty));                              
+assertTrue("hashCode failed two one empty lists", empty2.hashCode() == empty.hashCode());              assertTrue("hashCode failed two one empty lists", empty2.hashCode() == empty.hashCode());           
+}                                                                                                      }                                                                                                   

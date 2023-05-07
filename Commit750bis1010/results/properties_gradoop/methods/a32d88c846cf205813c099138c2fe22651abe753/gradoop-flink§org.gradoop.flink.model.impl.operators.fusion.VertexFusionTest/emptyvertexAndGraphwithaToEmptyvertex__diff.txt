@@ -1,0 +1,13 @@
+@Test
+public void emptyvertexAndGraphwithaToEmptyvertex() throws Exception {
+    FlinkAsciiGraphLoader loader = getLoaderFromString("emptyVertex:G {emptyVertex : \"graph\"}[()]" + "graphWithA:G {graphWithA : \"graph\"}[(a:A {atype : \"avalue\"})]");
+    LogicalGraph searchGraph = loader.getLogicalGraphByVariable("emptyVertex");
+    LogicalGraph patternGraph = loader.getLogicalGraphByVariable("graphWithA");
+    VertexFusion f = new VertexFusion();
+    LogicalGraph output = f.execute(searchGraph, patternGraph);
+    LogicalGraph expected = loader.getLogicalGraphByVariable("emptyVertex");
+    collectAndAssertTrue(output.equalsByData(expected));
+    if (deepSearch) {
+        collectAndAssertTrue(VertexFusionUtils.myInducedEdgeSubgraphForFusion(searchGraph, expected).equalsByElementIds(VertexFusionUtils.myInducedEdgeSubgraphForFusion(expected, searchGraph)));
+    }
+}

@@ -1,0 +1,10 @@
+/**
+ * Merges left and right embeddings into {@link MergeEmbeddings#reuseEmbedding}
+ * @param left left embedding
+ * @param right right embedding
+ */
+protected void buildEmbedding(Embedding left, Embedding right) {
+    reuseEmbedding.setIdData(mergeIdData(left, right));
+    reuseEmbedding.setPropertyData(mergePropertyData(left, right));
+    reuseEmbedding.setIdListData(mergeIdListData(left, right));
+}

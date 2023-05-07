@@ -1,0 +1,17 @@
+/**
+ * Creates a vertex dataset from a given collection.
+ * Encapsulates the workaround for dataset creation from an empty collection.
+ *
+ * @param vertices  vertex collection
+ * @return vertex dataset
+ */
+protected DataSet<EPGMVertex> createVertexDataSet(Collection<EPGMVertex> vertices) {
+    ExecutionEnvironment env = getConfig().getExecutionEnvironment();
+    DataSet<EPGMVertex> vertexSet;
+    if (vertices.isEmpty()) {
+        vertexSet = env.fromElements(getVertexFactory().createVertex()).filter(new False<>());
+    } else {
+        vertexSet = env.fromCollection(vertices);
+    }
+    return vertexSet;
+}

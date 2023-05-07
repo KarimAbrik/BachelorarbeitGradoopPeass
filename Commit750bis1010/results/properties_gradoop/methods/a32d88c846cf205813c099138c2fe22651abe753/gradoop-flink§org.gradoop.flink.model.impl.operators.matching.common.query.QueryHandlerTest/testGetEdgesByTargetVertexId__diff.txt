@@ -1,0 +1,7 @@
+@Test
+public void testGetEdgesByTargetVertexId() throws Exception {
+    Vertex v3 = GDL_HANDLER.getVertexCache().get("v3");
+    List<Edge> inE = Lists.newArrayList(QUERY_HANDLER.getEdgesByTargetVertexId(v3.getId()));
+    List<Edge> expected = Lists.newArrayList(GDL_HANDLER.getEdgeCache().get("e2"), GDL_HANDLER.getEdgeCache().get("e4"));
+    assertTrue(elementsEqual(inE, expected));
+}

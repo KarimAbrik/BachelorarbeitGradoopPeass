@@ -1,0 +1,16 @@
+/**
+ * Returns the property values of the given element which are used for
+ * aggregation. If the EPGM element does not have a property, it uses the
+ * default value or {@code PropertyValue.NULL_VALUE} instead.
+ *
+ * @param element attributed EPGM element
+ * @return property values for aggregation
+ * @throws IOException on failure
+ */
+public PropertyValueList getIncrementValues(Element element) throws IOException {
+    if (f3.isEmpty()) {
+        return PropertyValueList.createEmptyList();
+    }
+    List<PropertyValue> propertyValues = getAggregateFunctions().stream().map(f -> getIncrement(f, element)).collect(Collectors.toList());
+    return PropertyValueList.fromPropertyValues(propertyValues);
+}

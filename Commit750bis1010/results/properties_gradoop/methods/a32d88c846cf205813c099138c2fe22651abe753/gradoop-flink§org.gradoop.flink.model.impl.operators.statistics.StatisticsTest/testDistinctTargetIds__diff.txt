@@ -1,0 +1,6 @@
+@Test
+public void testDistinctTargetIds() throws Exception {
+    LogicalGraph db = getSocialNetworkLoader().getLogicalGraph();
+    Long result = new DistinctTargetIds().execute(db).collect().get(0);
+    assertThat(result, is(7L));
+}

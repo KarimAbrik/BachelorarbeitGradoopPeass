@@ -1,0 +1,5 @@
+@Override
+public TemporalGraphCollection getTemporalGraphCollection() {
+    TemporalGraphCollectionFactory collectionFactory = getConfig().getTemporalGraphCollectionFactory();
+    return getCollection(new CSVLineToTemporalGraphHead(collectionFactory.getGraphHeadFactory()), new CSVLineToTemporalVertex(collectionFactory.getVertexFactory()), new CSVLineToTemporalEdge(collectionFactory.getEdgeFactory()), collectionFactory);
+}

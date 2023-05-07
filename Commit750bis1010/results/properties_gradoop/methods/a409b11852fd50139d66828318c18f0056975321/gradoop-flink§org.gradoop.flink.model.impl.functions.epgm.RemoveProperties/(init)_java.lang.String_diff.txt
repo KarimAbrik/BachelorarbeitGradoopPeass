@@ -1,0 +1,12 @@
+/**
+ * Constructs {@link RemoveProperties} instance.
+ *
+ * @param propertyKeys keys of properties to be removed
+ */
+public RemoveProperties(String... propertyKeys) {
+    checkNotNull(propertyKeys);
+    for (String propertyKey : propertyKeys) {
+        checkNotNull(propertyKey);
+    }
+    this.propertyKeys = propertyKeys;
+}

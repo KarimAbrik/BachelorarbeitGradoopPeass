@@ -1,0 +1,15 @@
+/**
+ * Test the retrieval of a graph collection
+ *
+ * @throws Exception on failure
+ */
+@Test
+public void testImportGraphCollection() throws Exception {
+    String csvPath = MinimalCSVImporterTest.class.getResource("/csv/input.csv").getPath();
+    DataSource importVertexImporter = new MinimalCSVImporter(csvPath, DELIMITER, getConfig(), true);
+    DataSet<EPGMVertex> importVertex = importVertexImporter.getGraphCollection().getVertices();
+    List<EPGMVertex> lv = new ArrayList<>();
+    importVertex.output(new LocalCollectionOutputFormat<>(lv));
+    getExecutionEnvironment().execute();
+    checkImportedVertices(lv);
+}

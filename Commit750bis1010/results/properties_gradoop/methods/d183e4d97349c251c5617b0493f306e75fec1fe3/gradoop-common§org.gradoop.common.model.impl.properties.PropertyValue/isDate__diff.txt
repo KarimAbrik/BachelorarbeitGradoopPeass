@@ -1,0 +1,8 @@
+/**
+ * True, if the wrapped value is of type {@code LocalDate}.
+ *
+ * @return true, if {@code LocalDate} value
+ */
+public boolean isDate() {
+    return rawBytes[0] == TYPE_DATE;
+}

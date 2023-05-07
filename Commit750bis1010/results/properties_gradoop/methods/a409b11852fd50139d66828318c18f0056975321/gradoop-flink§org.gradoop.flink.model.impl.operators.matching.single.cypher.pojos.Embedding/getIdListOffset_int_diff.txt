@@ -1,0 +1,29 @@
+/**
+ * Returns the offset of the ID-List in the idListData array
+ * @param column the index of the ID-List entry
+ * @return Offset of the ID-List in the idListData array
+ */
+private int getIdListOffset(int column) {
+    int pointerOffset = getIdOffset(column);
+    if (idData[pointerOffset++] != ID_LIST_FLAG) {
+        throw new UnsupportedOperationException("Entry is not an IDList");
+    }
+    byte[] pointer = ArrayUtils.subarray(idData, pointerOffset, pointerOffset + GradoopId.ID_SIZE);
+    int offset = 0;
+    byte[] comparePointer;
+    int listSize;
+    boolean found = false;
+    while (!found && offset < idListData.length) {
+        comparePointer = ArrayUtils.subarray(idListData, offset, offset + GradoopId.ID_SIZE);
+        offset += GradoopId.ID_SIZE;
+        found = Arrays.equals(pointer, comparePointer);
+        if (!found) {
+            listSize = Ints.fromByteArray(ArrayUtils.subarray(idListData, offset, offset + Integer.BYTES));
+            offset += GradoopId.ID_SIZE * listSize + Integer.BYTES;
+        }
+    }
+    if (!found) {
+        throw new RuntimeException("Could not find IdList entry");
+    }
+    return offset;
+}

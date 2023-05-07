@@ -1,0 +1,10 @@
+@Test                                                                                                  @Test                                                                                               
+public void testMapValueMaxSize() {                                                                    public void testMapValueMaxSize() {                                                                 
+Map&lt;PropertyValue, PropertyValue&gt; m = new HashMap&lt;&gt;();                                     Map&lt;PropertyValue, PropertyValue&gt; m = new HashMap&lt;&gt;();                                  
+// 8 bytes per double + 1 byte overhead                                                                // 8 bytes per double + 1 byte overhead                                                             
+for (int i = 0; i &lt; PropertyValue.MAX_BINARY_LENGTH / 18; i++) {                                  | for (int i = 0; i &lt; PropertyValue.LARGE_PROPERTY_THRESHOLD / 18; i++) {                          
+PropertyValue p = create(Math.random());                                                               PropertyValue p = create(Math.random());                                                            
+m.put(p, p);                                                                                           m.put(p, p);                                                                                        
+}                                                                                                      }                                                                                                   
+create(m);                                                                                             create(m);                                                                                          
+}                                                                                                      }                                                                                                   

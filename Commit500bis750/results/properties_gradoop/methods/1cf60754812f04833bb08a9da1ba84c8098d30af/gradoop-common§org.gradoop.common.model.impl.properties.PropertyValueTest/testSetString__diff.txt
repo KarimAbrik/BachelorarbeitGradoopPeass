@@ -1,0 +1,6 @@
+@Test
+public void testSetString() throws Exception {
+    PropertyValue p = new PropertyValue();
+    p.setString(STRING_VAL_6);
+    assertEquals(STRING_VAL_6, p.getString());
+}

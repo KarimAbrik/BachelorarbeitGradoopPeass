@@ -1,0 +1,4 @@
+@Override
+public TypeInformation<V> getProducedType() {
+    return TypeExtractor.createTypeInfo(vertexFactory.getType());
+}

@@ -1,0 +1,50 @@
+{
+  "url" : "https://github.com/dbs-leipzig/gradoop.git",
+  "commits" : {
+    "104139feeab5aadbad8da05a0e6083e467e09d56" : { },
+    "cf1a996ffc69fd1fdd94a3eb16ef40eb9843e2de" : {
+      "testcases" : {
+        "gradoop-core§org.gradoop.model.impl.pojo.EdgePojoTest" : [ "createWithEmptyLabelTest" ],
+        "gradoop-core§org.gradoop.model.impl.pojo.GraphHeadPojoTest" : [ "createDefaultGraphTest" ],
+        "gradoop-core§org.gradoop.model.impl.pojo.VertexPojoTest" : [ "createVertexPojoTest" ],
+        "gradoop-core§org.gradoop.storage.impl.hbase.HBaseGraphStoreTest" : [ "wrongPropertyTypeTest" ],
+        "gradoop-flink§org.gradoop.io.hbase.EPGMDatabaseHBaseTest" : [ "writeToHBaseTest(JUNIT_PARAMETERIZED-Execution mode = CLUSTER)" ]
+      },
+      "predecessor" : "104139feeab5aadbad8da05a0e6083e467e09d56"
+    },
+    "76b76fdde33fac27a88fcc4ba3f0c4c4fcf23d7c" : {
+      "testcases" : {
+        "gradoop-core§org.gradoop.storage.impl.hbase.HBaseGraphStoreTest" : [ "iteratorTest", "writeCloseOpenReadTest" ],
+        "gradoop-flink§org.gradoop.io.hbase.EPGMDatabaseHBaseTest" : [ "writeToHBaseTest(JUNIT_PARAMETERIZED-Execution mode = CLUSTER)" ]
+      },
+      "predecessor" : "cf1a996ffc69fd1fdd94a3eb16ef40eb9843e2de"
+    },
+    "baff4fc5d76319111029ed57681e577dcb347dd0" : {
+      "predecessor" : "76b76fdde33fac27a88fcc4ba3f0c4c4fcf23d7c"
+    },
+    "1e5c0fd23261897a17065bab933501652aefee90" : {
+      "predecessor" : "baff4fc5d76319111029ed57681e577dcb347dd0"
+    },
+    "bf3494490b46cc3609294dde1e549ead5e87df22" : {
+      "predecessor" : "1e5c0fd23261897a17065bab933501652aefee90"
+    },
+    "add41f21017fe2f5bf3ceb0ee57147e0c684acc3" : {
+      "testcases" : {
+        "gradoop-flink§org.gradoop.model.impl.operators.logicalgraph.binary.equality.EqualByElementDataTest" : [ "testPropertyEquality" ]
+      },
+      "predecessor" : "bf3494490b46cc3609294dde1e549ead5e87df22"
+    },
+    "2eefbf1381623c7bef240a36f2e1548dd466a12a" : {
+      "testcases" : {
+        "gradoop-core§org.gradoop.model.impl.pojo.EdgePojoTest" : [ "createEdgePojoTest" ],
+        "gradoop-core§org.gradoop.model.impl.pojo.GraphHeadPojoTest" : [ "createWithIDTest" ],
+        "gradoop-core§org.gradoop.storage.impl.hbase.HBaseGraphStoreTest" : [ "iteratorTest", "writeCloseOpenReadTest" ]
+      },
+      "predecessor" : "add41f21017fe2f5bf3ceb0ee57147e0c684acc3"
+    },
+    "ce5f2ec54eb90caf6e7a10c4c3bf908dc222f096" : {
+      "predecessor" : "2eefbf1381623c7bef240a36f2e1548dd466a12a"
+    }
+  },
+  "android" : false
+}

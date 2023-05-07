@@ -1,0 +1,11 @@
+/**
+ * Returns the diameter of the query graph.
+ *
+ * @return diameter
+ */
+public int getDiameter() {
+    if (diameter == null) {
+        diameter = GraphMetrics.getDiameter(this);
+    }
+    return diameter;
+}

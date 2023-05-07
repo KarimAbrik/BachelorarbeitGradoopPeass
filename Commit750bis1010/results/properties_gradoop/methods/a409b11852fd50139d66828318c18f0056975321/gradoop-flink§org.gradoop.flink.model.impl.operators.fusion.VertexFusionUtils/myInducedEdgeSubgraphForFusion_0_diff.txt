@@ -1,0 +1,14 @@
+/**
+ * uses the definition of edgeInducedSubgraph for a specific task
+ *
+ * @param containment Logical Graph used for the containment operation
+ * @param superGraph  Super graph from which extract the subgraph
+ * @return the subgraph of superGraph
+ */
+public static LogicalGraph myInducedEdgeSubgraphForFusion(LogicalGraph containment, LogicalGraph superGraph) {
+    //return the edges from the superGraph that are contained
+    DataSet<EPGMEdge> filteredEdges = containment.getGraphHead().first(1).map(new Id<>()).cross(superGraph.getEdges()).filter(new FilterSubgraphEdges()).map(new Value1Of2<>());
+    DataSet<EPGMVertex> tobeUnitedWith = filteredEdges.join(superGraph.getVertices()).where(new TargetId<>()).equalTo(new Id<>()).with(new RightSide<>());
+    DataSet<EPGMVertex> newVertices = filteredEdges.join(superGraph.getVertices()).where(new SourceId<>()).equalTo(new Id<>()).with(new RightSide<>()).union(tobeUnitedWith).distinct(new Id<>());
+    return superGraph.getFactory().fromDataSets(newVertices, filteredEdges);
+}

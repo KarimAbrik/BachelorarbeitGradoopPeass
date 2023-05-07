@@ -1,0 +1,9 @@
+/**
+ * Returns the path to the edge file containing only edges with the specified label.
+ *
+ * @param label edge label
+ * @return path to csv file
+ */
+protected String getEdgeCSVPath(String label) {
+    return getElementCSVPath(label, getEdgePath());
+}

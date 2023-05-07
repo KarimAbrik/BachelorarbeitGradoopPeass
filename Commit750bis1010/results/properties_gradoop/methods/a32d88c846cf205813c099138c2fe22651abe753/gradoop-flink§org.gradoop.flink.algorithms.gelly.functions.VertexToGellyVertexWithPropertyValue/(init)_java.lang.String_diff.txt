@@ -1,0 +1,9 @@
+/**
+ * Constructor
+ *
+ * @param propertyKey property key for get property value
+ */
+public VertexToGellyVertexWithPropertyValue(String propertyKey) {
+    this.propertyKey = propertyKey;
+    this.reuseVertex = new org.apache.flink.graph.Vertex<>();
+}

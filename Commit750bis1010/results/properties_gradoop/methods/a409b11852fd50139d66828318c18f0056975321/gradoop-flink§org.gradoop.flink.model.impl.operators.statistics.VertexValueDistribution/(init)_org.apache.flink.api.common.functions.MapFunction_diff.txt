@@ -1,0 +1,8 @@
+/**
+ * Constructor
+ *
+ * @param valueFunction extracts a value from a vertex
+ */
+public VertexValueDistribution(MapFunction<EPGMVertex, T> valueFunction) {
+    super(valueFunction);
+}

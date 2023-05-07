@@ -1,0 +1,14 @@
+/**
+ * Creates an TPGM graph element using the given attributes.
+ *
+ * @param id the element identifier
+ * @param label the element label
+ * @param properties the element properties
+ * @param graphIds the identifiers of the graphs this element is contained in
+ * @param validFrom the beginning of the elements validity as unix timestamp in milliseconds
+ * @param validTo the end of the elements validity as unix timestamp in milliseconds
+ */
+TemporalGraphElement(GradoopId id, String label, Properties properties, GradoopIdSet graphIds, Long validFrom, Long validTo) {
+    super(id, label, properties, validFrom, validTo);
+    this.graphIds = graphIds;
+}

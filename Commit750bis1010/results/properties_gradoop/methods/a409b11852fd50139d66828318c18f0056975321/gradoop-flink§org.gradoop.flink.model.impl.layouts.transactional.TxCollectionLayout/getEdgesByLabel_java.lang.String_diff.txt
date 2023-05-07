@@ -1,0 +1,4 @@
+@Override
+public DataSet<EPGMEdge> getEdgesByLabel(String label) {
+    return getEdges().filter(new ByLabel<>(label));
+}

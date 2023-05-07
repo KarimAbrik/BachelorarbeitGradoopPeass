@@ -1,0 +1,18 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public void writeGraphHead(final PersistentGraphHead graphHead) {
+    LOG.info("Writing graph data: " + graphHead);
+    try {
+        GraphHeadHandler graphHeadHandler = config.getGraphHeadHandler();
+        // graph id
+        Put put = new Put(graphHeadHandler.getRowKey(graphHead.getId()));
+        // write graph to Put
+        put = graphHeadHandler.writeGraphHead(put, graphHead);
+        // write to table
+        graphHeadTable.put(put);
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}

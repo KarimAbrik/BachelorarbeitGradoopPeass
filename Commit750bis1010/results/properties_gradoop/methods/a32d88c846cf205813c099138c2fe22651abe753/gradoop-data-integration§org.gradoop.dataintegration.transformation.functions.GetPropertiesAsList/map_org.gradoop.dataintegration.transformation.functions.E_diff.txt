@@ -1,0 +1,9 @@
+@Override
+public PropertyValueList map(E element) throws IOException {
+    List<PropertyValue> values = new ArrayList<>();
+    for (String key : propertyKeys) {
+        final PropertyValue value = element.getPropertyValue(key);
+        values.add(value == null ? PropertyValue.NULL_VALUE : value);
+    }
+    return PropertyValueList.fromPropertyValues(values);
+}

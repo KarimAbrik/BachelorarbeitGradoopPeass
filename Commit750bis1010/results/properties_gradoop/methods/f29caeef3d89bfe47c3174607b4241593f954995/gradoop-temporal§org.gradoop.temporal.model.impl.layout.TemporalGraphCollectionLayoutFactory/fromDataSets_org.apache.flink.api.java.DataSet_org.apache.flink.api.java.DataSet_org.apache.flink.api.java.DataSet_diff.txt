@@ -1,0 +1,4 @@
+@Override
+public GraphCollectionLayout<TemporalGraphHead, TemporalVertex, TemporalEdge> fromDataSets(DataSet<TemporalGraphHead> graphHeads, DataSet<TemporalVertex> vertices, DataSet<TemporalEdge> edges) {
+    return new TemporalGVELayout(Objects.requireNonNull(graphHeads), Objects.requireNonNull(vertices), Objects.requireNonNull(edges));
+}

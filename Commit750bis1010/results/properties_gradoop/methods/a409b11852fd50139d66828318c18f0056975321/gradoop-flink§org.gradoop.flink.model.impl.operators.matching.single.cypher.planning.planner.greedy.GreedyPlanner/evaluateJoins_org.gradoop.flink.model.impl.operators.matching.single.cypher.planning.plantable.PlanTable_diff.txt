@@ -1,0 +1,35 @@
+//------------------------------------------------------------------------------------------------
+// Join and Expand
+//------------------------------------------------------------------------------------------------
+/**
+ * Evaluates which entries in the specified plan table can be joined. The joined entries
+ * are added to a new table which is returned.
+ *
+ * @param currentTable query plan table
+ * @return new table containing solely joined plans from the input table
+ */
+private PlanTable evaluateJoins(PlanTable currentTable) {
+    PlanTable newTable = new PlanTable();
+    for (int i = 0; i < currentTable.size(); i++) {
+        PlanTableEntry leftEntry = currentTable.get(i);
+        if (mayExtend(leftEntry)) {
+            for (int j = 0; j < currentTable.size(); j++) {
+                PlanTableEntry rightEntry = currentTable.get(j);
+                if (i != j) {
+                    List<String> joinVariables = getOverlap(leftEntry, rightEntry);
+                    if (joinVariables.size() > 0) {
+                        if (rightEntry.getType() == PATH && joinVariables.size() == 2) {
+                            // evaluate join with variable length path on source and target vertex
+                            newTable.add(joinEntries(leftEntry, rightEntry, joinVariables.subList(0, 1)));
+                            newTable.add(joinEntries(leftEntry, rightEntry, joinVariables.subList(1, 2)));
+                        } else {
+                            // regular join or join with variable length path on source or target vertex
+                            newTable.add(joinEntries(leftEntry, rightEntry, joinVariables));
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return newTable;
+}

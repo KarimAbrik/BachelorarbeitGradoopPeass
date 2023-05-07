@@ -1,0 +1,10 @@
+@Test
+public void testDistinctEdgePropertyValuesByLabelAndPropertyName() throws Exception {
+    LogicalGraph db = getSocialNetworkLoader().getLogicalGraph();
+    List<WithCount<Tuple2<String, String>>> result = new DistinctEdgePropertiesByLabel().execute(db).collect();
+    Map<Tuple, Long> cache = new HashMap<>(5);
+    result.forEach(e -> cache.put(e.getObject(), e.getCount()));
+    assertThat(result.size(), is(2));
+    assertThat(cache.get(Tuple2.of("knows", "since")), is(3L));
+    assertThat(cache.get(Tuple2.of("hasModerator", "since")), is(1L));
+}

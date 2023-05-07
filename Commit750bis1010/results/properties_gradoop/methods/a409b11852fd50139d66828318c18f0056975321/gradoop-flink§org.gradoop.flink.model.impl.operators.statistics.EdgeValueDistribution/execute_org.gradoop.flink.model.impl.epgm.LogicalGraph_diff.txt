@@ -1,0 +1,4 @@
+@Override
+public DataSet<WithCount<T>> execute(LogicalGraph graph) {
+    return compute(graph.getEdges());
+}

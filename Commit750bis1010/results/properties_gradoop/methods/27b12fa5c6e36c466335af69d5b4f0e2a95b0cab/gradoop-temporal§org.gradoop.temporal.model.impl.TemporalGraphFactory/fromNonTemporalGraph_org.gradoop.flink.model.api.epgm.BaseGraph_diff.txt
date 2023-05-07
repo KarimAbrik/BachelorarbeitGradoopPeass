@@ -1,0 +1,12 @@
+/**
+ * Creates a {@link TemporalGraph} instance from a (non-temporal) base graph.
+ *
+ * This method calls {@link #fromNonTemporalDataSets(DataSet, DataSet, DataSet)} on the graphs element
+ * data sets.
+ *
+ * @param graph Some base graph.
+ * @return The resulting temporal graph.
+ */
+public TemporalGraph fromNonTemporalGraph(BaseGraph<?, ?, ?, ?, ?> graph) {
+    return fromNonTemporalDataSets(graph.getGraphHead(), graph.getVertices(), graph.getEdges());
+}

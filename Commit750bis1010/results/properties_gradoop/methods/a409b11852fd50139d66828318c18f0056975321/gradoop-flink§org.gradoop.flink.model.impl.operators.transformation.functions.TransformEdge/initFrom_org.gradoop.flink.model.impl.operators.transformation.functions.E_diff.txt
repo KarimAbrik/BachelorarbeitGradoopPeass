@@ -1,0 +1,4 @@
+@Override
+protected E initFrom(E edge) {
+    return edgeFactory.initEdge(edge.getId(), GradoopConstants.DEFAULT_EDGE_LABEL, edge.getSourceId(), edge.getTargetId(), edge.getGraphIds());
+}

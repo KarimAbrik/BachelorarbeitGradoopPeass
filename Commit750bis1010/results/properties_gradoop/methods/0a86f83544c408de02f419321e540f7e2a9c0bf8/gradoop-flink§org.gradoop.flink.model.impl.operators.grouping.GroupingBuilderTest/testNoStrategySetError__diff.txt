@@ -1,0 +1,8 @@
+/**
+ * Tests {@link Grouping.GroupingBuilder#build()}, expects a correct exception when no
+ * {@link GroupingStrategy} was set.
+ */
+@Test(expected = IllegalStateException.class)
+public void testNoStrategySetError() {
+    new Grouping.GroupingBuilder().useVertexLabel(true).build();
+}

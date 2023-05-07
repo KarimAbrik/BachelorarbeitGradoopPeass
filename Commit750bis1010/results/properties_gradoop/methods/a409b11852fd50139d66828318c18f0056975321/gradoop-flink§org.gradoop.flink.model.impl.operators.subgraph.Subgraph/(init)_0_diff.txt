@@ -1,0 +1,28 @@
+/**
+ * Creates a new sub graph operator instance.
+ * <p>
+ * If both parameters are not {@code null}, the operator returns the subgraph
+ * defined by filtered vertices and edges.
+ * <p>
+ * If the {@code edgeFilterFunction} is {@code null}, the operator returns the vertex-induced subgraph.
+ * <p>
+ * If the {@code vertexFilterFunction} is {@code null}, the operator returns the edge-induced subgraph.
+ *
+ * @param vertexFilterFunction vertex filter function
+ * @param edgeFilterFunction   edge filter function
+ * @param strategy             sets the execution strategy for the operator
+ */
+public Subgraph(FilterFunction<V> vertexFilterFunction, FilterFunction<E> edgeFilterFunction, Strategy strategy) {
+    if (strategy == BOTH && (vertexFilterFunction == null || edgeFilterFunction == null)) {
+        throw new IllegalArgumentException("No vertex or no edge filter function was given.");
+    }
+    if (strategy == VERTEX_INDUCED && vertexFilterFunction == null) {
+        throw new IllegalArgumentException("No vertex filter functions was given.");
+    }
+    if ((strategy == EDGE_INDUCED || strategy == EDGE_INDUCED_PROJECT_FIRST) && edgeFilterFunction == null) {
+        throw new IllegalArgumentException("No vertex edge functions was given.");
+    }
+    this.strategy = strategy;
+    this.vertexFilterFunction = vertexFilterFunction;
+    this.edgeFilterFunction = edgeFilterFunction;
+}

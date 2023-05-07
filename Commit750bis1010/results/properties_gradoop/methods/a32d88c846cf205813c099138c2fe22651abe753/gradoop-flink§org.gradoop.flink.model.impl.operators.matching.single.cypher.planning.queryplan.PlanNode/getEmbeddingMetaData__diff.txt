@@ -1,0 +1,11 @@
+/**
+ * Returns the meta data describing the embeddings produced by this node.
+ *
+ * @return meta data describing the output
+ */
+public EmbeddingMetaData getEmbeddingMetaData() {
+    if (this.embeddingMetaData == null) {
+        this.embeddingMetaData = computeEmbeddingMetaData();
+    }
+    return embeddingMetaData;
+}

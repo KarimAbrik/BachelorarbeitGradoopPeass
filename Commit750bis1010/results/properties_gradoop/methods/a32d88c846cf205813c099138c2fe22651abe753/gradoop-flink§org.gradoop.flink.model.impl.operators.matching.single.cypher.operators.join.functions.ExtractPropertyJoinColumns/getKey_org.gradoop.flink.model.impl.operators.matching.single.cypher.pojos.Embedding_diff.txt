@@ -1,0 +1,8 @@
+@Override
+public String getKey(Embedding value) throws Exception {
+    sb.delete(0, sb.length());
+    for (Integer property : properties) {
+        sb.append(ArrayUtils.toString(value.getRawProperty(property)));
+    }
+    return sb.toString();
+}

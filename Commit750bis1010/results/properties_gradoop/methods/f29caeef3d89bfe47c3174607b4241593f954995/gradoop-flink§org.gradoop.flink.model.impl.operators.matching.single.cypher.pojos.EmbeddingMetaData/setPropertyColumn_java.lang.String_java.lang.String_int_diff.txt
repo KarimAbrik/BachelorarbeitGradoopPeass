@@ -1,0 +1,11 @@
+/**
+ * Inserts or updates the mapping of a Variable-PropertyKey pair to the position of the
+ * corresponding PropertyValue within the embeddings propertyData array
+ *
+ * @param variable variable name
+ * @param propertyKey property key
+ * @param index position of the property value within the propertyData array
+ */
+public void setPropertyColumn(String variable, String propertyKey, int index) {
+    propertyMapping.put(Pair.of(variable, propertyKey), index);
+}

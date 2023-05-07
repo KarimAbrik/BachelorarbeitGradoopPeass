@@ -1,0 +1,20 @@
+/**
+ * The constructor for the propagate property transformation. Additionally it is possible to
+ * define which edge labels can be used for propagation and / or which vertices could be target
+ * of the Properties.
+ * <p>
+ * Using this constructor, properties will be propagated along all edges and to all
+ * target vertices. {@link #PropagatePropertyToNeighbor(String, String, String, Set, Set)}
+ * can be used when properties should only be propagated along certain edges (selected by their
+ * label) and / or to certain vertices (selected by their label). Using this constructor is
+ * equivalent to {@code PropagatePropertyToNeighbor(vertexLabel, propertyKey,
+ * targetVertexPropertyKey, null, null)}.
+ *
+ * @param vertexLabel             The label of the vertex the property to propagate is part of.
+ * @param propertyKey             The property key of the property to propagate.
+ * @param targetVertexPropertyKey The property key where the PropertyValue list should be stored
+ *                                at the target vertices.
+ */
+public PropagatePropertyToNeighbor(String vertexLabel, String propertyKey, String targetVertexPropertyKey) {
+    this(vertexLabel, propertyKey, targetVertexPropertyKey, null, null);
+}

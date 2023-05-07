@@ -1,0 +1,16 @@
+//----------------------------------------------------------------------------
+// Grouping properties
+//----------------------------------------------------------------------------
+/**
+ * Adds the given group properties to the attributed element.
+ *
+ * @param attributed attributed element
+ * @param groupPropertyValues group property values
+ * @param vertexLabelGroup vertex label group
+ */
+protected void setGroupProperties(Attributed attributed, PropertyValueList groupPropertyValues, LabelGroup vertexLabelGroup) {
+    Iterator<PropertyValue> valueIterator = groupPropertyValues.iterator();
+    for (String groupPropertyKey : vertexLabelGroup.getPropertyKeys()) {
+        attributed.setProperty(groupPropertyKey, valueIterator.next());
+    }
+}

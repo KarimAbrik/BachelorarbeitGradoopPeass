@@ -1,7 +1,0 @@
-protected <T extends Labeled & GraphElement> JSONObject writeGraphElementMeta(T entity) throws JSONException {
-    JSONObject meta = writeMeta(entity);
-    if (entity.getGraphCount() > 0) {
-        meta.put(GRAPHS, getJSONArray(entity.getGraphs()));
-    }
-    return meta;
-}

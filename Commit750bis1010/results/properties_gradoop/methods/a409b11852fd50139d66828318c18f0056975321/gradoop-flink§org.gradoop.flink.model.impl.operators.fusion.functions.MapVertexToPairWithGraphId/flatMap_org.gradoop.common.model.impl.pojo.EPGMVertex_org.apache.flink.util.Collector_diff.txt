@@ -1,0 +1,10 @@
+@Override
+public void flatMap(EPGMVertex value, Collector<Tuple2<EPGMVertex, GradoopId>> out) throws Exception {
+    if (value != null) {
+        for (GradoopId id : value.getGraphIds()) {
+            reusableTuple.f0 = value;
+            reusableTuple.f1 = id;
+            out.collect(reusableTuple);
+        }
+    }
+}

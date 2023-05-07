@@ -1,0 +1,4 @@
+@Override
+public String toString() {
+    return String.format("ValueJoinNode{" + "leftJoinProperties=%s, " + "rightJoinProperties=%s, " + "vertexMorphismType=%s, " + "edgeMorphismType=%s}", leftJoinProperties, rightJoinProperties, vertexStrategy, edgeStrategy);
+}

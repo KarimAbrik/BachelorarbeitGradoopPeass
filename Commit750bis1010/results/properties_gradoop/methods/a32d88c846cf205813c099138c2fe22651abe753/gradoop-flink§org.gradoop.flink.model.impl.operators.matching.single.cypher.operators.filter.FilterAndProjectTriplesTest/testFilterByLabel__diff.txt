@@ -1,0 +1,16 @@
+@Test
+public void testFilterByLabel() throws Exception {
+    CNF predicates = predicateFromQuery("MATCH (a:Person)-[e:likes]->(b)");
+    EPGMVertex a1 = vertexFactory.createVertex("Person");
+    EPGMVertex a2 = vertexFactory.createVertex("Orc");
+    EPGMVertex b = vertexFactory.createVertex("Person");
+    EPGMEdge e1 = edgeFactory.createEdge("likes", a1.getId(), b.getId());
+    EPGMEdge e2 = edgeFactory.createEdge("likes", a2.getId(), b.getId());
+    EPGMEdge e3 = edgeFactory.createEdge("knows", a1.getId(), b.getId());
+    DataSet<Triple> triples = getExecutionEnvironment().fromElements(new Triple(a1, e1, b), new Triple(a2, e2, b), new Triple(a1, e3, b));
+    List<Embedding> result = new FilterAndProjectTriples(triples, "a", "e", "b", predicates, new HashMap<>(), MatchStrategy.ISOMORPHISM).evaluate().collect();
+    assertEquals(1, result.size());
+    assertEquals(result.get(0).getId(0), a1.getId());
+    assertEquals(result.get(0).getId(1), e1.getId());
+    assertEquals(result.get(0).getId(2), b.getId());
+}

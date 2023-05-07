@@ -1,0 +1,9 @@
+/**
+ * Creates an instance of the TemporalVertexFromNonTemporal map function. The temporal instance
+ * will have default temporal information.
+ *
+ * @param elementFactory factory that is responsible for creating a temporal vertex instance
+ */
+public VertexToTemporalVertex(VertexFactory<TemporalVertex> elementFactory) {
+    this.reuse = elementFactory.createVertex();
+}

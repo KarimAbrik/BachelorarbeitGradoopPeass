@@ -1,0 +1,15 @@
+/**
+ * Order a list-type property. This is used to make sure that two lists are equal except
+ * for the order of their elements.
+ *
+ * @param list The property.
+ * @return The ordered property.
+ */
+private static PropertyValue orderListProperty(PropertyValue list) {
+    if (!list.isList()) {
+        return list;
+    }
+    List<PropertyValue> theList = list.getList();
+    theList.sort(byTypeFirst);
+    return PropertyValue.create(theList);
+}

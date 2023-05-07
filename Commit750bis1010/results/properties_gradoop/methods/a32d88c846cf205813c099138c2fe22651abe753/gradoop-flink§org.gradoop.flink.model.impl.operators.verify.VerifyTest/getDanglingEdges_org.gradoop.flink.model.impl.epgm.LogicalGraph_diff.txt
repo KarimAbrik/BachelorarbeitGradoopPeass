@@ -1,0 +1,14 @@
+/**
+ * Determines all dangling edges of a graph.
+ *
+ * @throws Exception when the execution in Flink fails.
+ */
+private List<EPGMEdge> getDanglingEdges(LogicalGraph graph) throws Exception {
+    List<EPGMVertex> vertices = new ArrayList<>();
+    List<EPGMEdge> edges = new ArrayList<>();
+    graph.getVertices().output(new LocalCollectionOutputFormat<>(vertices));
+    graph.getEdges().output(new LocalCollectionOutputFormat<>(edges));
+    getExecutionEnvironment().execute();
+    Set<GradoopId> ids = vertices.stream().map(EPGMVertex::getId).collect(Collectors.toSet());
+    return edges.stream().filter(e -> !ids.contains(e.getSourceId()) || !ids.contains(e.getTargetId())).collect(Collectors.toList());
+}

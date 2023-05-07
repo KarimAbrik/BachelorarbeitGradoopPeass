@@ -1,0 +1,6 @@
+@Override
+public void flatMap(GraphTransaction graphTransaction, Collector<String> collector) throws Exception {
+    for (EPGMVertex vertex : graphTransaction.getVertices()) {
+        collector.collect(vertex.getLabel());
+    }
+}

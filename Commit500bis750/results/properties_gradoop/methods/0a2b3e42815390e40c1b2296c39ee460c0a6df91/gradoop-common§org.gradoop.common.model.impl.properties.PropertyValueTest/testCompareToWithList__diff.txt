@@ -1,0 +1,4 @@
+@Test(expected = UnsupportedOperationException.class)
+public void testCompareToWithList() {
+    create(LIST_VAL_a).compareTo(create(LIST_VAL_a));
+}

@@ -1,0 +1,11 @@
+/**
+ * Creates an EPGM graph element using the given arguments.
+ *  @param id         element id
+ * @param label      element label
+ * @param properties element properties
+ * @param graphIds     graphIds that element is contained in
+ */
+protected GraphElement(GradoopId id, String label, Properties properties, GradoopIdList graphIds) {
+    super(id, label, properties);
+    this.graphIds = graphIds;
+}

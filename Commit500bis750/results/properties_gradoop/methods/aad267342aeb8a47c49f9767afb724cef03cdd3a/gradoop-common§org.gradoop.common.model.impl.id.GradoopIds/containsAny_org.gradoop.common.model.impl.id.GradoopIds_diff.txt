@@ -1,0 +1,14 @@
+                                                                                                     | /**                                                                                                 
+                                                                                                     | * Checks if any of the specified ids is contained in the set.                                       
+                                                                                                     | *                                                                                                   
+                                                                                                     | * @param ids the ids to look for                                                                    
+                                                                                                     | * @return true, iff any of the specified ids is contained in the set                                
+                                                                                                     | */                                                                                                  
+                                                                                                     | public boolean containsAny(GradoopIds ids) {                                                        
+                                                                                                     | for (GradoopId id : ids) {                                                                          
+                                                                                                     | if (this.contains(id)) {                                                                            
+                                                                                                     | return true;                                                                                        
+                                                                                                     | }                                                                                                   
+                                                                                                     | }                                                                                                   
+                                                                                                     | return false;                                                                                       
+                                                                                                     | }                                                                                                   

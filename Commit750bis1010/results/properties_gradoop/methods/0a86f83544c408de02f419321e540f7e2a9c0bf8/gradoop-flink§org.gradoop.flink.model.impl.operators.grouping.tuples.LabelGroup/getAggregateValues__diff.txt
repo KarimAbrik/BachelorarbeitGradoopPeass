@@ -1,0 +1,11 @@
+/**
+ * Returns the aggregate values as list
+ *
+ * @return aggregate values
+ */
+public List<PropertyValue> getAggregateValues() {
+    if (f4.size() < f3.size()) {
+        return f3.stream().map(AggregateUtil::getDefaultAggregate).collect(Collectors.toList());
+    }
+    return f4;
+}

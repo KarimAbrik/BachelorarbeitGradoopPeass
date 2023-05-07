@@ -1,0 +1,31 @@
+/**
+ * Matches the given data graph element against the given query element.
+ *
+ * @param <EL1>         element type
+ * @param <EL2>         GDL element type
+ * @param dbElement     data graph element (vertex/edge)
+ * @param queryElement  query graph element (vertex/edge)
+ * @param defaultLabel  default element label
+ * @return true, iff the data graph element matches the query graph element
+ */
+public static <EL1 extends Element, EL2 extends GraphElement> boolean match(EL1 dbElement, EL2 queryElement, String defaultLabel) {
+    boolean match = false;
+    // verify label
+    if (queryElement.getLabel().equals(dbElement.getLabel()) || queryElement.getLabel().equals(defaultLabel)) {
+        match = true;
+    }
+    // verify properties
+    if (match && queryElement.getProperties() != null) {
+        Iterator<Map.Entry<String, Object>> queryProperties = queryElement.getProperties().entrySet().iterator();
+        while (match && queryProperties.hasNext()) {
+            Map.Entry<String, Object> queryProperty = queryProperties.next();
+            // if the property key is not valid, it is not a match
+            if (!dbElement.hasProperty(queryProperty.getKey())) {
+                match = false;
+                break;
+            }
+            match = dbElement.getPropertyValue(queryProperty.getKey()).getObject().equals(queryProperty.getValue());
+        }
+    }
+    return match;
+}

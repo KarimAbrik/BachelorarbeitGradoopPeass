@@ -1,0 +1,13 @@
+/**
+ * Reads the next kex/value pair from the input for processing.
+ *
+ * @return true if a key/value pair was found
+ * @throws IOException on failure
+ * @throws InterruptedException if interrupted
+ */
+@Override
+public boolean nextKeyValue() throws IOException, InterruptedException {
+    currentKey = new LongWritable();
+    currentValue = new Text();
+    return next(currentKey, currentValue);
+}

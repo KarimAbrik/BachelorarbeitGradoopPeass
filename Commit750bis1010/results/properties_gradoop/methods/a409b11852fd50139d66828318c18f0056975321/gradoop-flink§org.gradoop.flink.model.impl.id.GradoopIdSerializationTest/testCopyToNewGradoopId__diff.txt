@@ -1,0 +1,10 @@
+/**
+ * Test if {@link GradoopId} implements {@link CopyableValue#copy()} correctly.
+ */
+@Test
+public void testCopyToNewGradoopId() {
+    GradoopId inputId = GradoopId.get();
+    GradoopId copy = inputId.copy();
+    assertNotSame(inputId, copy);
+    assertEquals(inputId, copy);
+}

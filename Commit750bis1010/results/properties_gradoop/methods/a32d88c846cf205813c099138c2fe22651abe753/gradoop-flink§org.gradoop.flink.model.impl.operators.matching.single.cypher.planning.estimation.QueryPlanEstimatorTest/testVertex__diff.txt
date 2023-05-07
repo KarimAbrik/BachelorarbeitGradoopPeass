@@ -1,0 +1,13 @@
+@Test
+public void testVertex() throws Exception {
+    String query = "MATCH (n)-->(m:Person)";
+    QueryHandler queryHandler = new QueryHandler(query);
+    LeafNode nNode = new FilterAndProjectVerticesNode(null, "n", queryHandler.getPredicates().getSubCNF("n"), Sets.newHashSet());
+    LeafNode mNode = new FilterAndProjectVerticesNode(null, "m", queryHandler.getPredicates().getSubCNF("m"), Sets.newHashSet());
+    QueryPlan queryPlan = new QueryPlan(nNode);
+    QueryPlanEstimator estimator = new QueryPlanEstimator(queryPlan, queryHandler, STATS);
+    assertThat(estimator.getCardinality(), is(11L));
+    queryPlan = new QueryPlan(mNode);
+    estimator = new QueryPlanEstimator(queryPlan, queryHandler, STATS);
+    assertThat(estimator.getCardinality(), is(6L));
+}

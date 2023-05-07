@@ -1,0 +1,11 @@
+@Test
+public void testSingleGraphVertexAndEdgeCount() throws Exception {
+    LogicalGraph graph = getLoaderFromString("[()-->()<--()]").getDatabase().getDatabaseGraph();
+    VertexCount vertexCount = new VertexCount();
+    EdgeCount edgeCount = new EdgeCount();
+    graph = graph.aggregate(vertexCount).aggregate(edgeCount);
+    EPGMGraphHead graphHead = graph.getGraphHead().collect().get(0);
+    assertTrue("vertex count not set", graphHead.hasProperty(vertexCount.getAggregatePropertyKey()));
+    assertTrue("edge count not set", graphHead.hasProperty(edgeCount.getAggregatePropertyKey()));
+    assertCounts(graphHead, 3L, 2L);
+}

@@ -1,0 +1,16 @@
+/**
+ * Creates a new map function which sets the simple label from either the
+ * vertex labels or the edge labels or both.
+ * Changes labels from:
+ *    'dictionarylabel'
+ * to:
+ *    'simpleLabel' (Integer)
+ *
+ * @param hasVertexDictionary set to true if vertex labels are set by a
+ *                            dictionary
+ * @param hasEdgeDictionary set to true if edge labels are set by a dictionary
+ */
+public ElementLabelEncoder(boolean hasVertexDictionary, boolean hasEdgeDictionary) {
+    this.hasVertexDictionary = hasVertexDictionary;
+    this.hasEdgeDictionary = hasEdgeDictionary;
+}

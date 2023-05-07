@@ -1,0 +1,14 @@
+@Test                                                                                                  @Test                                                                                               
+public void testBulkLoadDriver() throws Exception {                                                    public void testBulkLoadDriver() throws Exception {                                                 
+Configuration conf = utility.getConfiguration();                                                       Configuration conf = utility.getConfiguration();                                                    
+String graphFile = "json-sample.graph";                                                                String graphFile = "json-sample.graph";                                                             
+String[] args = new String[] { "-" + BulkLoadDriver.OPTION_GRAPH_INPUT_PATH, graphFile, "-" + BulkLo | String[] args = new String[] { "-" + BulkLoadDriver.OPTION_GRAPH_INPUT_PATH, graphFile, "-" + BulkLo
+copyFromLocal(graphFile);                                                                              copyFromLocal(graphFile);                                                                           
+BulkLoadDriver bulkLoadDriver = new BulkLoadDriver();                                                  BulkLoadDriver bulkLoadDriver = new BulkLoadDriver();                                               
+bulkLoadDriver.setConf(conf);                                                                          bulkLoadDriver.setConf(conf);                                                                       
+// run the bulk load                                                                                   // run the bulk load                                                                                
+int exitCode = bulkLoadDriver.run(args);                                                               int exitCode = bulkLoadDriver.run(args);                                                            
+// testing                                                                                             // testing                                                                                          
+assertThat(exitCode, is(0));                                                                           assertThat(exitCode, is(0));                                                                        
+validateExtendedGraphVertices(openGraphStore());                                                       validateExtendedGraphVertices(openGraphStore());                                                    
+}                                                                                                      }                                                                                                   

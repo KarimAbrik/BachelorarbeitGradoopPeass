@@ -1,0 +1,4 @@
+@Override
+public TypeInformation<E> getProducedType() {
+    return TypeExtractor.createTypeInfo(edgeFactory.getType());
+}

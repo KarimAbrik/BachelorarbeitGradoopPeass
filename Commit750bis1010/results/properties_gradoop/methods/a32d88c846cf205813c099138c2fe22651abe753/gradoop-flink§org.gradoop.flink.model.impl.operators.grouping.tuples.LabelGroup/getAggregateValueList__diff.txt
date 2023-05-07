@@ -1,0 +1,9 @@
+/**
+ * Returns the aggregate values as property value list
+ *
+ * @return aggregate values
+ * @throws IOException on failure
+ */
+public PropertyValueList getAggregateValueList() throws IOException {
+    return PropertyValueList.fromPropertyValues(getAggregateValues());
+}

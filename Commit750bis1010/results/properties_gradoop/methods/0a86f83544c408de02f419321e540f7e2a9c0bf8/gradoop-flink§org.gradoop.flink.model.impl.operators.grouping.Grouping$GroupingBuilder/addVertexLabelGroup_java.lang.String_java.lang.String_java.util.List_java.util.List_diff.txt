@@ -1,0 +1,14 @@
+/**
+ * Adds a vertex label group which defines the grouping keys and the aggregate functions for a
+ * specific label. Note that a label may be used multiple times.
+ *
+ * @param label vertex label
+ * @param superVertexLabel label of the group and therefore of the new super vertex
+ * @param groupingKeys keys used for grouping
+ * @param aggregateFunctions vertex aggregate functions
+ * @return this builder
+ */
+public GroupingBuilder addVertexLabelGroup(String label, String superVertexLabel, List<String> groupingKeys, List<AggregateFunction> aggregateFunctions) {
+    vertexLabelGroups.add(new LabelGroup(label, superVertexLabel, groupingKeys, aggregateFunctions));
+    return this;
+}

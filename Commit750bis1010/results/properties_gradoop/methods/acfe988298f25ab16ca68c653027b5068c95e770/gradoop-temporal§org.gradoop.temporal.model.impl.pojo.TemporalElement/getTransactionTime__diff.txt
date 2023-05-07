@@ -1,0 +1,8 @@
+/**
+ * Get the transaction time tuple (tx-from, tx-to). Needed because of Flink's POJO rules.
+ *
+ * @return a {@link Tuple2} representing the transaction time interval
+ */
+public Tuple2<Long, Long> getTransactionTime() {
+    return transactionTime;
+}

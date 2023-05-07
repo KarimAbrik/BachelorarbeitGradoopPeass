@@ -1,0 +1,21 @@
+/**
+ * Test getting a graph collection by variables from the loader
+ *
+ * @throws Exception on failure
+ */
+@Test
+public void testGetGraphCollectionByVariables() throws Exception {
+    FlinkAsciiGraphLoader loader = getSocialNetworkLoader();
+    String[] graphVariables = new String[] { "g0", "g1", "g2" };
+    List<GradoopId> graphIds = Lists.newArrayList();
+    for (String graphVariable : graphVariables) {
+        graphIds.add(loader.getGraphHeadByVariable(graphVariable).getId());
+    }
+    GradoopIdSet graphIdSet = GradoopIdSet.fromExisting(graphIds);
+    GraphCollection collectionFromLoader = loader.getGraphCollectionByVariables(graphVariables);
+    GraphCollection collectionFromDbViaSet = loader.getGraphCollection().getGraphs(graphIdSet);
+    // heads <> heads
+    collectAndAssertTrue(collectionFromLoader.equalsByGraphIds(collectionFromDbViaSet));
+    // elements <> elements
+    collectAndAssertTrue(collectionFromLoader.equalsByGraphElementIds(collectionFromDbViaSet));
+}

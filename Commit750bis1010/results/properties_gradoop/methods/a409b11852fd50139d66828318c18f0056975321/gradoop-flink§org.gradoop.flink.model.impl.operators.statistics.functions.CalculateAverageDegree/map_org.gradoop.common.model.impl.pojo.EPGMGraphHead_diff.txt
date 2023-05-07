@@ -1,0 +1,8 @@
+@Override
+public EPGMGraphHead map(EPGMGraphHead graphHead) {
+    long numVertices = graphHead.getPropertyValue("vertexCount").getLong();
+    long sumDegrees = graphHead.getPropertyValue(SamplingEvaluationConstants.PROPERTY_KEY_SUM_DEGREES).getLong();
+    long average = (long) Math.ceil((double) sumDegrees / (double) numVertices);
+    graphHead.setProperty(propertyKey, average);
+    return graphHead;
+}

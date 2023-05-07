@@ -1,0 +1,7 @@
+@Override
+public Tuple3<Long, GradoopId, GradoopId> join(EPGMEdge epgmEdge, Tuple2<Long, GradoopId> uniqueLongToVertexId) throws Exception {
+    reuseTuple.f0 = uniqueLongToVertexId.f0;
+    reuseTuple.f1 = epgmEdge.getTargetId();
+    reuseTuple.f2 = epgmEdge.getId();
+    return reuseTuple;
+}

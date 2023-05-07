@@ -1,0 +1,10 @@
+/**
+ * Returns a collection with all base graphs that exist in both input
+ * collections. Graph equality is based on their identifiers.
+ *
+ * @param otherCollection collection to build intersect with
+ * @return intersection of both collections
+ */
+default GC intersect(GC otherCollection) {
+    return callForCollection(new Intersection<>(), otherCollection);
+}

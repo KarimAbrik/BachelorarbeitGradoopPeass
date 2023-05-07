@@ -1,0 +1,68 @@
+{
+  "clazz" : "org.gradoop.model.impl.labelpropagation.LabelPropagationGradoopTest",
+  "methods" : [ {
+    "method" : "testLabelPropagationWithCallByPropertyKey",
+    "datacollectorResults" : [ {
+      "name" : "de.dagere.kopeme.datacollection.TimeDataCollectorNoGC",
+      "chunks" : [ ],
+      "results" : [ {
+        "value" : 4.439592762E9,
+        "deviation" : 0.4207593476933283,
+        "min" : 3.389277833E9,
+        "max" : 9.596119158E9,
+        "warmup" : 0,
+        "iterations" : 10,
+        "repetitions" : 2,
+        "commit" : null,
+        "vmRunConfiguration" : {
+          "showStart" : false,
+          "executeBeforeClassInMeasurement" : false,
+          "redirectToTemp" : false,
+          "redirectToNull" : true,
+          "useKieker" : false
+        },
+        "parameters" : {
+          "JUNIT_PARAMETERIZED" : "Execution mode = CLUSTER"
+        },
+        "javaVersion" : "1.8.0_362",
+        "cpu" : "model name : Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz",
+        "memory" : "MemTotal: 16280544 kB",
+        "date" : 1681003309587,
+        "fulldata" : {
+          "fileName" : null,
+          "values" : [ {
+            "startTime" : 1681003264542,
+            "value" : 9596119158
+          }, {
+            "startTime" : 1681003274139,
+            "value" : 5002602380
+          }, {
+            "startTime" : 1681003279141,
+            "value" : 3838807473
+          }, {
+            "startTime" : 1681003282980,
+            "value" : 4189149918
+          }, {
+            "startTime" : 1681003287169,
+            "value" : 3650567573
+          }, {
+            "startTime" : 1681003290820,
+            "value" : 3720125291
+          }, {
+            "startTime" : 1681003294540,
+            "value" : 3684973498
+          }, {
+            "startTime" : 1681003298225,
+            "value" : 3499703898
+          }, {
+            "startTime" : 1681003301725,
+            "value" : 3389277833
+          }, {
+            "startTime" : 1681003305114,
+            "value" : 3824600598
+          } ]
+        }
+      } ]
+    } ]
+  } ]
+}

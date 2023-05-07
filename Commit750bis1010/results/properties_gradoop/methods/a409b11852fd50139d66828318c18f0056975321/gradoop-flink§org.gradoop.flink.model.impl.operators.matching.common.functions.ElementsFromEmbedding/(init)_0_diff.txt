@@ -1,0 +1,21 @@
+/**
+ * Constructor
+ *
+ * @param traversalCode     traversal code to retrieve sourceId/targetId
+ * @param graphHeadFactory  graph head factory
+ * @param vertexFactory     vertex factory
+ * @param edgeFactory       edge factory
+ * @param query             query handler
+ */
+public ElementsFromEmbedding(TraversalCode traversalCode, GraphHeadFactory<? extends GraphHead> graphHeadFactory, VertexFactory<? extends Vertex> vertexFactory, EdgeFactory<? extends Edge> edgeFactory, QueryHandler query) {
+    this.graphHeadFactory = graphHeadFactory;
+    this.vertexFactory = vertexFactory;
+    this.edgeFactory = edgeFactory;
+    this.queryVertexMapping = query.getVertices().stream().collect(Collectors.toMap(v -> v.getId(), v -> v.getVariable()));
+    this.queryEdgeMapping = query.getEdges().stream().collect(Collectors.toMap(e -> e.getId(), e -> e.getVariable()));
+    List<Step> steps = traversalCode.getSteps();
+    edgeToStep = Maps.newHashMapWithExpectedSize(steps.size());
+    for (Step step : steps) {
+        edgeToStep.put((int) step.getVia(), step);
+    }
+}

@@ -1,0 +1,12 @@
+/**
+ * Returns the ID of the entry stored at the specified position represented as byte array
+ * @param column position the entry is stored at
+ * @return the entries ID
+ */
+public byte[] getRawId(int column) {
+    byte[] rawEntry = getRawIdEntry(column);
+    if (rawEntry[0] == ID_LIST_FLAG) {
+        throw new UnsupportedOperationException("Can't return ID for ID List");
+    }
+    return ArrayUtils.subarray(rawEntry, 1, ID_ENTRY_SIZE);
+}

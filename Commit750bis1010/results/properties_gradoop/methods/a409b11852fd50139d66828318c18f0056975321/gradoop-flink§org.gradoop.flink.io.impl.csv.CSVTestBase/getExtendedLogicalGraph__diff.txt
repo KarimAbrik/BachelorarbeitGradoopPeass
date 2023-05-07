@@ -1,0 +1,18 @@
+/**
+ * Get a logical graph with the schema and all properties of "input_extended_properties" csv
+ * graph from resources directory. A GDL file can not be used while types like
+ * LocalDate etc. are not supported.
+ *
+ * @return the logical graph representing the expected graph
+ */
+protected LogicalGraph getExtendedLogicalGraph() {
+    GradoopId idUser = GradoopId.get();
+    GradoopId idPost = GradoopId.get();
+    GradoopId idForum = GradoopId.get();
+    GradoopIdSet heads = GradoopIdSet.fromExisting(idForum);
+    Properties properties = Properties.createFromMap(PROPERTY_MAP);
+    DataSet<EPGMGraphHead> graphHead = getExecutionEnvironment().fromElements(new EPGMGraphHead(idForum, "Forum", properties));
+    DataSet<EPGMVertex> vertices = getExecutionEnvironment().fromElements(new EPGMVertex(idUser, "User", properties, heads), new EPGMVertex(idPost, "Post", properties, heads));
+    DataSet<EPGMEdge> edges = getExecutionEnvironment().fromElements(new EPGMEdge(GradoopId.get(), "creatorOf", idUser, idPost, properties, heads));
+    return getConfig().getLogicalGraphFactory().fromDataSets(graphHead, vertices, edges);
+}

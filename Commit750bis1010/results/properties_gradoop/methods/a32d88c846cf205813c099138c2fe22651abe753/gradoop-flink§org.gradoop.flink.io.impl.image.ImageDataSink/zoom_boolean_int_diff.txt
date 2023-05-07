@@ -1,0 +1,13 @@
+/**
+ * If true, scale the graph to completely fill the layout-area
+ *
+ * @param zoom the new value
+ * @param border Size of a border in px, that is to be left free when placing zoomed vertices. Can
+ *              be used to prevent vertices being cut off at the edges.
+ * @return this (for method-chaining)
+ */
+public ImageDataSink zoom(boolean zoom, int border) {
+    this.zoom = zoom;
+    this.zoomBorder = border;
+    return this;
+}

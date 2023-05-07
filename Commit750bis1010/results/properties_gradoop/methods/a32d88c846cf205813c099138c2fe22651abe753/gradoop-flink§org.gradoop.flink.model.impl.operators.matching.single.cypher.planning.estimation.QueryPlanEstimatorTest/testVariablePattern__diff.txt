@@ -1,0 +1,17 @@
+@Test
+public void testVariablePattern() throws Exception {
+    String query = "MATCH (n)-[e1:knows*1..2]->(m)-[e2]->(o)";
+    QueryHandler queryHandler = new QueryHandler(query);
+    LeafNode nNode = new FilterAndProjectVerticesNode(null, "n", queryHandler.getPredicates().getSubCNF("n"), Sets.newHashSet());
+    LeafNode mNode = new FilterAndProjectVerticesNode(null, "m", queryHandler.getPredicates().getSubCNF("m"), Sets.newHashSet());
+    LeafNode oNode = new FilterAndProjectVerticesNode(null, "o", queryHandler.getPredicates().getSubCNF("o"), Sets.newHashSet());
+    LeafNode e1Node = new FilterAndProjectEdgesNode(null, "n", "e1", "m", queryHandler.getPredicates().getSubCNF("e1"), Sets.newHashSet(), false);
+    LeafNode e2Node = new FilterAndProjectEdgesNode(null, "m", "e2", "o", queryHandler.getPredicates().getSubCNF("e2"), Sets.newHashSet(), false);
+    ExpandEmbeddingsNode ne1Join = new ExpandEmbeddingsNode(nNode, e1Node, "n", "e", "m", 2, 2, ExpandDirection.OUT, MatchStrategy.ISOMORPHISM, MatchStrategy.ISOMORPHISM);
+    JoinEmbeddingsNode ne1mJoin = new JoinEmbeddingsNode(ne1Join, mNode, Lists.newArrayList("m"), MatchStrategy.ISOMORPHISM, MatchStrategy.ISOMORPHISM);
+    JoinEmbeddingsNode ne1me2Join = new JoinEmbeddingsNode(ne1mJoin, e2Node, Lists.newArrayList("m"), MatchStrategy.ISOMORPHISM, MatchStrategy.ISOMORPHISM);
+    JoinEmbeddingsNode ne1me2oJoin = new JoinEmbeddingsNode(ne1me2Join, oNode, Lists.newArrayList("o"), MatchStrategy.ISOMORPHISM, MatchStrategy.ISOMORPHISM);
+    QueryPlan queryPlan = new QueryPlan(ne1me2oJoin);
+    QueryPlanEstimator estimator = new QueryPlanEstimator(queryPlan, queryHandler, STATS);
+    assertThat(estimator.getCardinality(), is(42L));
+}

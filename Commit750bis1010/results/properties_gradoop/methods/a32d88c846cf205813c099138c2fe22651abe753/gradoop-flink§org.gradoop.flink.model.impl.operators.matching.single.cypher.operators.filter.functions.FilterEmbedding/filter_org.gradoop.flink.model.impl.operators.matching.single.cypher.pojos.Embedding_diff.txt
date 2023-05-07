@@ -1,0 +1,4 @@
+@Override
+public boolean filter(Embedding embedding) {
+    return predicates.evaluate(embedding, metaData);
+}

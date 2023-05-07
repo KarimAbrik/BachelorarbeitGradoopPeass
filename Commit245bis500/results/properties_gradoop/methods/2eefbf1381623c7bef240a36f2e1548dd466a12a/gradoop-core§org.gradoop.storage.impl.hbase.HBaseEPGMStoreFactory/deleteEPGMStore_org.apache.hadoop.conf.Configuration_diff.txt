@@ -1,0 +1,8 @@
+/**
+ * Deletes the default graph store.
+ *
+ * @param config Hadoop configuration
+ */
+public static void deleteEPGMStore(final Configuration config) {
+    deleteEPGMStore(config, GConstants.DEFAULT_TABLE_VERTICES, GConstants.DEFAULT_TABLE_EDGES, GConstants.DEFAULT_TABLE_GRAPHS);
+}

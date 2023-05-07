@@ -1,0 +1,10 @@
+/**
+ * Invert this filter, i.e. get the logical {@code not} of this filter.
+ * This filter may be a
+ * {@link org.apache.flink.api.common.functions.RichFunction}.
+ *
+ * @return The inverted filter.
+ */
+default CombinableFilter<T> negate() {
+    return new Not<>(this);
+}

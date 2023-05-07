@@ -1,0 +1,22 @@
+/**
+ * Tests whether list properties are extracted correctly.
+ *
+ * @throws Exception If collect doesn't work as expected.
+ */
+@Test
+public void listPropertyTest() throws Exception {
+    VertexFactory<EPGMVertex> vf = getConfig().getLogicalGraphFactory().getVertexFactory();
+    EPGMVertex v1 = vf.createVertex("foo");
+    v1.setProperty("a", PropertyValue.create(Arrays.asList(PropertyValue.create("m"), PropertyValue.create("n"))));
+    EPGMVertex v2 = vf.createVertex("foo");
+    v2.setProperty("a", PropertyValue.create(Arrays.asList(PropertyValue.create("x"), PropertyValue.create("y"), PropertyValue.create("z"))));
+    LogicalGraph input = getConfig().getLogicalGraphFactory().fromCollections(Arrays.asList(v1, v2), Collections.emptyList());
+    ExtractPropertyFromVertex ext = new ExtractPropertyFromVertex("foo", "a", "A", "key");
+    LogicalGraph output = input.callForGraph(ext);
+    List<EPGMVertex> createdVertices = new ArrayList<>();
+    output.getVertices().filter(new ByLabel<>("A")).output(new LocalCollectionOutputFormat<>(createdVertices));
+    input.getConfig().getExecutionEnvironment().execute();
+    ArrayList<String> properties = new ArrayList<>();
+    createdVertices.forEach(v -> properties.add(v.getPropertyValue("key").getString()));
+    Assert.assertTrue(properties.containsAll(Arrays.asList("m", "n", "x", "y", "z")));
+}

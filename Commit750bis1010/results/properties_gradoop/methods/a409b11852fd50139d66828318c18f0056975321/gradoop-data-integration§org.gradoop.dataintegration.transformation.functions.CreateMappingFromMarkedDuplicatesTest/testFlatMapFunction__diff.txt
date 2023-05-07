@@ -1,0 +1,24 @@
+/**
+ * Test the flat map function.
+ *
+ * @throws Exception when the execution in Flink fails.
+ */
+@Test
+public void testFlatMapFunction() throws Exception {
+    VertexFactory<EPGMVertex> vertexFactory = getConfig().getLogicalGraphFactory().getVertexFactory();
+    GradoopId duplicateId = GradoopId.get();
+    EPGMVertex vertexWithProp = vertexFactory.createVertex();
+    vertexWithProp.setProperty(MarkDuplicatesInGroup.PROPERTY_KEY, PropertyValue.create(duplicateId));
+    EPGMVertex vertexWithProp2 = vertexFactory.createVertex();
+    vertexWithProp2.setProperty(MarkDuplicatesInGroup.PROPERTY_KEY, PropertyValue.create(duplicateId));
+    EPGMVertex vertexWithoutProp = vertexFactory.createVertex();
+    List<EPGMVertex> vertices = Arrays.asList(vertexWithoutProp, vertexWithProp, vertexWithProp2);
+    vertices.sort(Comparator.comparing(EPGMElement::getId));
+    List<Tuple2<GradoopId, GradoopId>> mapping = getExecutionEnvironment().fromCollection(vertices).flatMap(new CreateMappingFromMarkedDuplicates<>()).collect();
+    assertEquals(2, mapping.size());
+    assertNotEquals(mapping.get(0).f0, mapping.get(1).f0);
+    assertEquals(duplicateId, mapping.get(0).f1);
+    assertEquals(duplicateId, mapping.get(1).f1);
+    assertNotEquals(vertexWithoutProp.getId(), mapping.get(0).f0);
+    assertNotEquals(vertexWithoutProp.getId(), mapping.get(1).f0);
+}

@@ -1,0 +1,8 @@
+/**
+ * Checks if the the triple holds for the predicate
+ * @param triple triple to be filtered
+ * @return True if the triple holds for the predicate
+ */
+private boolean filter(Triple triple) {
+    return predicates.evaluate(EmbeddingFactory.fromTriple(triple, sourceFilterPropertyKeys, edgeFilterPropertyKeys, targetFilterPropertyKeys, sourceVariable, targetVariable), filterMetaData);
+}

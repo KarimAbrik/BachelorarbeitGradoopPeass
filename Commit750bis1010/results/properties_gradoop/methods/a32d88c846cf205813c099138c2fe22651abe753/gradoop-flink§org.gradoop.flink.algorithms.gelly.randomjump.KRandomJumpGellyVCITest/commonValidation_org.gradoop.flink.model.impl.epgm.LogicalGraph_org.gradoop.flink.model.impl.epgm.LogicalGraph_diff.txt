@@ -1,0 +1,24 @@
+/**
+ * Validation for all test-cases. Writes the output, compares the vertex- and edge-count and
+ * checks the annotation with the visited-property.
+ *
+ * @param graph The original graph
+ * @param resultGraph The annotated result graph
+ */
+private void commonValidation(LogicalGraph graph, LogicalGraph resultGraph) throws Exception {
+    resultVertices = new ArrayList<>();
+    List<EPGMEdge> resultEdges = new ArrayList<>();
+    resultGraph.getVertices().output(new LocalCollectionOutputFormat<>(resultVertices));
+    resultGraph.getEdges().output(new LocalCollectionOutputFormat<>(resultEdges));
+    getExecutionEnvironment().execute();
+    assertEquals("wrong number of vertices in resultGraph", graph.getVertices().count(), resultGraph.getVertices().count());
+    assertEquals("wrong number of edges in resultGraph", graph.getEdges().count(), resultGraph.getEdges().count());
+    resultVertices.forEach(vertex -> assertTrue("vertex " + vertex.getId() + " is not annotated", vertex.hasProperty(SamplingConstants.PROPERTY_KEY_SAMPLED)));
+    resultEdges.forEach(edge -> assertTrue("edge " + edge.getId() + " is not annotated", edge.hasProperty(SamplingConstants.PROPERTY_KEY_SAMPLED)));
+    for (EPGMEdge edge : resultEdges) {
+        if (edge.getPropertyValue(SamplingConstants.PROPERTY_KEY_SAMPLED).getBoolean()) {
+            resultVertices.stream().filter(vertex -> vertex.getId().equals(edge.getSourceId())).forEach(sourceVertex -> assertTrue("source of visited edge is not visited", sourceVertex.getPropertyValue(SamplingConstants.PROPERTY_KEY_SAMPLED).getBoolean()));
+            resultVertices.stream().filter(vertex -> vertex.getId().equals(edge.getTargetId())).forEach(targetVertex -> assertTrue("target of visited edge is not visited", targetVertex.getPropertyValue(SamplingConstants.PROPERTY_KEY_SAMPLED).getBoolean()));
+        }
+    }
+}

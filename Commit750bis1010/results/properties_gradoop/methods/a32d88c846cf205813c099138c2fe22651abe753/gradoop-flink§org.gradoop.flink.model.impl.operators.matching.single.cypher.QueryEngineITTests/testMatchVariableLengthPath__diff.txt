@@ -1,0 +1,4 @@
+@Test
+public void testMatchVariableLengthPath() throws Exception {
+    assertCardinalities("MATCH ()-[*0..10]->()", 98, 86);
+}

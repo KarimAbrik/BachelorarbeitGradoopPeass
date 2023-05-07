@@ -1,0 +1,10 @@
+/**
+ * Applies a consumer (e.g. containing an assertion) to each embedding in the given data set.
+ *
+ * @param dataSet data set containing embeddings
+ * @param consumer consumer
+ * @throws Exception on failure
+ */
+public static void assertEveryEmbedding(DataSet<Embedding> dataSet, Consumer<Embedding> consumer) throws Exception {
+    dataSet.collect().forEach(consumer);
+}

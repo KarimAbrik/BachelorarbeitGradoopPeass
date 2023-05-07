@@ -1,0 +1,13 @@
+@Test
+public void testFilterEmbeddingsOnClosingColumn() throws Exception {
+    GradoopId a = GradoopId.get();
+    GradoopId b = GradoopId.get();
+    Embedding embedding = new Embedding();
+    embedding.add(a);
+    embedding.add(b);
+    List<Embedding> result = new ArrayList<>();
+    new AdoptEmptyPaths(1, 0).flatMap(embedding, new ListCollector<>(result));
+    assertTrue(result.isEmpty());
+    new AdoptEmptyPaths(1, 1).flatMap(embedding, new ListCollector<>(result));
+    assertEquals(1, result.size());
+}

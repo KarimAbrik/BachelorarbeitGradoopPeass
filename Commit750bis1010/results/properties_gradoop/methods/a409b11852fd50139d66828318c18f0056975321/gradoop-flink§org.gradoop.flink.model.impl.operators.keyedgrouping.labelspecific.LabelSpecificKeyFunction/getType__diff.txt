@@ -1,0 +1,9 @@
+@Override
+public TypeInformation<Tuple> getType() {
+    TypeInformation[] types = new TypeInformation[1 + keyFunctions.size()];
+    types[0] = BasicTypeInfo.INT_TYPE_INFO;
+    for (int index = 0; index < keyFunctions.size(); index++) {
+        types[1 + index] = keyFunctions.get(index).getType();
+    }
+    return new TupleTypeInfo<>(types);
+}

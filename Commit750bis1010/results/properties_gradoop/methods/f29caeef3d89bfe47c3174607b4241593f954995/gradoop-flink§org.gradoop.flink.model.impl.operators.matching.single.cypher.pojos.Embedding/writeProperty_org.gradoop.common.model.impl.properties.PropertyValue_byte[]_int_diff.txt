@@ -1,0 +1,12 @@
+/**
+ * Writes the byte representation of a property into the target byte array
+ * starting at the specified offset
+ * @param value  PropertyValue that will be written
+ * @param target Target byte array
+ * @param offset offset the value will be written to
+ */
+private void writeProperty(PropertyValue value, byte[] target, int offset) {
+    writeInt(value.getByteSize(), target, offset);
+    offset += Integer.BYTES;
+    System.arraycopy(value.getRawBytes(), 0, target, offset, value.getByteSize());
+}

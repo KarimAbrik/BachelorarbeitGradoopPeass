@@ -1,0 +1,11 @@
+/**
+ * Creates a new instance of a SumProperty aggregate function.
+ *
+ * @param propertyKey property key to aggregate
+ * @param aggregatePropertyKey aggregate property key
+ */
+public SumProperty(String propertyKey, String aggregatePropertyKey) {
+    super(aggregatePropertyKey);
+    Objects.requireNonNull(propertyKey);
+    this.propertyKey = propertyKey;
+}

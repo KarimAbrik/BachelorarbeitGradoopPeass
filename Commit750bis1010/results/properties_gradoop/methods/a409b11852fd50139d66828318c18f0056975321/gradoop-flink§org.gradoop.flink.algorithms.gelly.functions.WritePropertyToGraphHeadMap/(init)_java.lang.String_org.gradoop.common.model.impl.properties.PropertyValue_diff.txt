@@ -1,0 +1,10 @@
+/**
+ * Creates an instance of a MapFunction, that writes a given property value to the EPGMGraphHead.
+ *
+ * @param propertyKey PropertyKey to access the value
+ * @param propertyValue PropertyValue to store in EPGMGraphHead
+ */
+public WritePropertyToGraphHeadMap(String propertyKey, PropertyValue propertyValue) {
+    this.propertyKey = propertyKey;
+    this.propertyValue = propertyValue;
+}

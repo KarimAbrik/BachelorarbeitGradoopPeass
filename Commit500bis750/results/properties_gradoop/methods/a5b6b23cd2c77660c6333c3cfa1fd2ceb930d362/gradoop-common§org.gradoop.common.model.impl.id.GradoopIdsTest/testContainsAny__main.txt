@@ -1,0 +1,13 @@
+@Test
+public void testContainsAny() throws Exception {
+    GradoopId id1 = GradoopId.get();
+    GradoopId id2 = GradoopId.get();
+    GradoopId id3 = GradoopId.get();
+    GradoopIdSet ids = new GradoopIdSet();
+    ids.addAll(Arrays.asList(id1, id2));
+    assertTrue(ids.containsAny(Sets.newHashSet(id1)));
+    assertTrue(ids.containsAny(Sets.newHashSet(id2)));
+    assertTrue(ids.containsAny(Sets.newHashSet(id1, id2)));
+    assertFalse(ids.containsAny(Sets.newHashSet(id3)));
+    assertTrue(ids.containsAny(Sets.newHashSet(id1, id3)));
+}

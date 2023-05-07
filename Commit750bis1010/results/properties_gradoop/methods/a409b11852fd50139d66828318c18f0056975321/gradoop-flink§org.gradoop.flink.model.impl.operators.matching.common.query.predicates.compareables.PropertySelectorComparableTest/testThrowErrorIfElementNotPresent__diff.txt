@@ -1,0 +1,11 @@
+@Test(expected = NoSuchElementException.class)
+public void testThrowErrorIfElementNotPresent() {
+    PropertySelector selector = new PropertySelector("a", "age");
+    PropertySelectorComparable wrapper = new PropertySelectorComparable(selector);
+    Embedding embedding = new Embedding();
+    embedding.add(GradoopId.get(), PropertyValue.create(42));
+    EmbeddingMetaData metaData = new EmbeddingMetaData();
+    metaData.setEntryColumn("b", EntryType.VERTEX, 0);
+    metaData.setPropertyColumn("b", "age", 0);
+    wrapper.evaluate(embedding, metaData);
+}

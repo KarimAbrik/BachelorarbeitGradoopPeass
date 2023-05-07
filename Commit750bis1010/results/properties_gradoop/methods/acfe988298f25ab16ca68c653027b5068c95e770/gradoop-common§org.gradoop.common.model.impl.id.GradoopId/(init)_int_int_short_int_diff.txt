@@ -1,0 +1,15 @@
+/**
+ * Creates a GradoopId using the given time, machine identifier, process identifier, and counter.
+ * <p>
+ * Note: Implementation taken from org.bson.types.ObjectId
+ *
+ * @param timestamp         the time in seconds
+ * @param machineIdentifier the machine identifier
+ * @param processIdentifier the process identifier
+ * @param counter           the counter
+ * @throws IllegalArgumentException if the high order byte of machineIdentifier
+ *                                  or counter is not zero
+ */
+public GradoopId(final int timestamp, final int machineIdentifier, final short processIdentifier, final int counter) {
+    this(timestamp, machineIdentifier, processIdentifier, counter, true);
+}

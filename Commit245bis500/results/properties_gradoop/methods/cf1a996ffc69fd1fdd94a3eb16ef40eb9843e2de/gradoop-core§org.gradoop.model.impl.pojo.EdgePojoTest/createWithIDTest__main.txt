@@ -1,0 +1,13 @@
+@Test
+public void createWithIDTest() {
+    GradoopIdGenerator idGen = new SequenceIdGenerator();
+    GradoopId edgeId = idGen.createId();
+    GradoopId sourceId = idGen.createId();
+    GradoopId targetId = idGen.createId();
+    EPGMEdge e = new EdgePojoFactory().createEdge(edgeId, sourceId, targetId);
+    assertThat(e.getId(), is(edgeId));
+    assertThat(e.getSourceVertexId(), is(sourceId));
+    assertThat(e.getTargetVertexId(), is(targetId));
+    assertThat(e.getPropertyCount(), is(0));
+    assertThat(e.getGraphCount(), is(0));
+}

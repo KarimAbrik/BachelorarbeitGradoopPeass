@@ -1,0 +1,4 @@
+@Override
+public DataSet<WithCount<Tuple2<String, String>>> execute(LogicalGraph graph) {
+    return Count.groupBy(graph.getVertices().map(new ToIdWithLabel<>()).join(graph.getEdges().map(new ToTargetIdWithLabel<>())).where(0).equalTo(0).with(new BothLabels())).map(new Tuple2ToWithCount<>());
+}

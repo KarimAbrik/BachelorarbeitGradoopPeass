@@ -1,0 +1,23 @@
+/**
+ * Compute new meta information
+ *
+ * @param metaData              old meta information
+ * @param returnPatternHandler  pattern handler
+ * @param existingVariables     old variables
+ * @param newVariables          new variables
+ * @return                      new EmbeddingMetaData
+ */
+private EmbeddingMetaData computeNewMetaData(EmbeddingMetaData metaData, QueryHandler returnPatternHandler, Set<String> existingVariables, Set<String> newVariables) {
+    // update meta data
+    EmbeddingMetaData newMetaData = new EmbeddingMetaData();
+    // case 1: Filter existing embeddings based on return pattern
+    for (String var : existingVariables) {
+        newMetaData.setEntryColumn(var, metaData.getEntryType(var), newMetaData.getEntryCount());
+    }
+    // case 2: Add new vertices and edges
+    for (String var : newVariables) {
+        EmbeddingMetaData.EntryType type = returnPatternHandler.isEdge(var) ? EmbeddingMetaData.EntryType.EDGE : EmbeddingMetaData.EntryType.VERTEX;
+        newMetaData.setEntryColumn(var, type, newMetaData.getEntryCount());
+    }
+    return newMetaData;
+}

@@ -1,0 +1,8 @@
+/**
+ * Returns a mapping from edge variable to the corresponding source and target variables.
+ *
+ * @return mapping from edge variable to source/target variable
+ */
+public Map<String, Pair<String, String>> getSourceTargetVariables() {
+    return getEdges().stream().map(e -> Pair.of(e.getVariable(), Pair.of(getVertexById(e.getSourceVertexId()).getVariable(), getVertexById(e.getTargetVertexId()).getVariable()))).collect(Collectors.toMap(Pair::getLeft, Pair::getRight));
+}

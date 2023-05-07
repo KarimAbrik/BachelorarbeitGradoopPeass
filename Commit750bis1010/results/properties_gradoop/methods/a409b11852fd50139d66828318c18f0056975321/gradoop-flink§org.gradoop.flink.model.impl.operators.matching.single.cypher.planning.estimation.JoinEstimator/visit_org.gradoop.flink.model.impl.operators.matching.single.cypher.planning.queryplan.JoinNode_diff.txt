@@ -1,0 +1,16 @@
+/**
+ * Updates the cardinalities according to the given join node.
+ *
+ * @param node join node
+ */
+void visit(JoinNode node) {
+    if (node instanceof BinaryNode) {
+        BinaryNode binaryNode = (BinaryNode) node;
+        if (binaryNode.getLeftChild() instanceof LeafNode) {
+            process(binaryNode.getLeftChild().getEmbeddingMetaData());
+        }
+        if (binaryNode.getRightChild() instanceof LeafNode) {
+            process(binaryNode.getRightChild().getEmbeddingMetaData());
+        }
+    }
+}

@@ -1,0 +1,7 @@
+@Override
+public T apply(T current, T transformed) {
+    for (String propertyKey : propertyKeys) {
+        current.removeProperty(propertyKey);
+    }
+    return current;
+}

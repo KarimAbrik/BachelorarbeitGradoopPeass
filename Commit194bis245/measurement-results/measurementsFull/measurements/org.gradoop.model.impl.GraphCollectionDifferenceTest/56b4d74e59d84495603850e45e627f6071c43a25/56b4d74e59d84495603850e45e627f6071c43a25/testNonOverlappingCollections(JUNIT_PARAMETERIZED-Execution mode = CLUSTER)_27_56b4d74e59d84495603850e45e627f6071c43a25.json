@@ -1,0 +1,68 @@
+{
+  "clazz" : "org.gradoop.model.impl.GraphCollectionDifferenceTest",
+  "methods" : [ {
+    "method" : "testNonOverlappingCollections",
+    "datacollectorResults" : [ {
+      "name" : "de.dagere.kopeme.datacollection.TimeDataCollectorNoGC",
+      "chunks" : [ ],
+      "results" : [ {
+        "value" : 1.024901949E9,
+        "deviation" : 0.7825558548199142,
+        "min" : 5.42863479E8,
+        "max" : 3.240498037E9,
+        "warmup" : 0,
+        "iterations" : 10,
+        "repetitions" : 2,
+        "commit" : null,
+        "vmRunConfiguration" : {
+          "showStart" : false,
+          "executeBeforeClassInMeasurement" : false,
+          "redirectToTemp" : false,
+          "redirectToNull" : true,
+          "useKieker" : false
+        },
+        "parameters" : {
+          "JUNIT_PARAMETERIZED" : "Execution mode = CLUSTER"
+        },
+        "javaVersion" : "1.8.0_362",
+        "cpu" : "model name : Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz",
+        "memory" : "MemTotal: 16280544 kB",
+        "date" : 1680979619373,
+        "fulldata" : {
+          "fileName" : null,
+          "values" : [ {
+            "startTime" : 1680979608949,
+            "value" : 3240498037
+          }, {
+            "startTime" : 1680979612190,
+            "value" : 1196546515
+          }, {
+            "startTime" : 1680979613386,
+            "value" : 888166529
+          }, {
+            "startTime" : 1680979614275,
+            "value" : 738736870
+          }, {
+            "startTime" : 1680979615013,
+            "value" : 833122257
+          }, {
+            "startTime" : 1680979615847,
+            "value" : 542863479
+          }, {
+            "startTime" : 1680979616389,
+            "value" : 558363439
+          }, {
+            "startTime" : 1680979616948,
+            "value" : 610603073
+          }, {
+            "startTime" : 1680979617558,
+            "value" : 884009391
+          }, {
+            "startTime" : 1680979618443,
+            "value" : 756109900
+          } ]
+        }
+      } ]
+    } ]
+  } ]
+}

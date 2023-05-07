@@ -1,0 +1,17 @@
+/**
+ * Executed the given query and checks if the estimated and exact cardinality applies to the
+ * specified values.
+ *
+ * @param q cypher query
+ * @param estimatedCardinality estimated cardinality of the result
+ * @param exactCardinality exact cardinality of the result
+ * @throws Exception on failure
+ */
+private void assertCardinalities(String q, long estimatedCardinality, int exactCardinality) throws Exception {
+    final QueryHandler queryHandler = new QueryHandler(q);
+    GreedyPlanner planner = new GreedyPlanner(socialNetwork, queryHandler, socialNetworkStatistics, MatchStrategy.ISOMORPHISM, MatchStrategy.ISOMORPHISM);
+    PlanTableEntry planTableEntry = planner.plan();
+    assertThat(planTableEntry.getEstimatedCardinality(), is(estimatedCardinality));
+    List<Embedding> result = planTableEntry.getQueryPlan().execute().collect();
+    assertThat(result.size(), is(exactCardinality));
+}

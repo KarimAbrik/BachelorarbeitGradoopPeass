@@ -1,0 +1,9 @@
+@Override
+public void setRuntimeContext(RuntimeContext t) {
+    super.setRuntimeContext(t);
+    for (FilterFunction<? super T> component : components) {
+        if (component instanceof RichFunction) {
+            ((RichFunction) component).setRuntimeContext(t);
+        }
+    }
+}

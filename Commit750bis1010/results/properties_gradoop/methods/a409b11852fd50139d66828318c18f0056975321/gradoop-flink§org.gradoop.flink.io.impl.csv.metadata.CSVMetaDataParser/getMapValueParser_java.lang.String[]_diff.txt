@@ -1,0 +1,24 @@
+/**
+ * Creates a parsing function for map property type.
+ *
+ * @param mapTypeTokens string tokens of the map type and its key type and value type, e.g.
+ *                      ["map", "string", "double"]
+ * @return parsing function
+ */
+private static Function<String, Object> getMapValueParser(String[] mapTypeTokens) {
+    // It's a map with two additional data types (key type + value type).
+    if (mapTypeTokens.length != 3) {
+        throw new IllegalArgumentException("Key type or value type of Map type is missing");
+    }
+    final String keyType = mapTypeTokens[1];
+    // check the validity of the map key type
+    if (!SIMPLE_TYPE_PARSER_MAP.containsKey(keyType)) {
+        throw new TypeNotPresentException(keyType, null);
+    }
+    final String valueType = mapTypeTokens[2];
+    // check the validity of the map value type
+    if (!SIMPLE_TYPE_PARSER_MAP.containsKey(valueType)) {
+        throw new TypeNotPresentException(valueType, null);
+    }
+    return s -> parseMapProperty(s, SIMPLE_TYPE_PARSER_MAP.get(keyType), SIMPLE_TYPE_PARSER_MAP.get(valueType));
+}

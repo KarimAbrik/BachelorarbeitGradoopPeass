@@ -1,0 +1,14 @@
+/**
+ * Creates a logical graph from the given arguments.
+ *
+ * The method assumes that the given vertices and edges are already assigned
+ * to the given graph head.
+ *
+ * @param graphHead   1-element GraphHead DataSet
+ * @param vertices    Vertex DataSet
+ * @param edges       Edge DataSet
+ * @return Logical graph
+ */
+public LogicalGraph fromDataSets(DataSet<GraphHead> graphHead, DataSet<Vertex> vertices, DataSet<Edge> edges) {
+    return new LogicalGraph(layoutFactory.fromDataSets(graphHead, vertices, edges), config);
+}

@@ -1,0 +1,18 @@
+/**
+ * Converts a value of a lower domain numerical type to Float.
+ *
+ * @param value value
+ * @param type type
+ *
+ * @return converted value
+ */
+private static float floatValue(PropertyValue value, int type) {
+    switch(type) {
+        case SHORT:
+            return value.getShort();
+        case INT:
+            return value.getInt();
+        default:
+            return value.getLong();
+    }
+}

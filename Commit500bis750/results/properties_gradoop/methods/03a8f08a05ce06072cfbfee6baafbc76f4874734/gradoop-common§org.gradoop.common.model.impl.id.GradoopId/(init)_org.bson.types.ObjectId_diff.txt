@@ -1,0 +1,8 @@
+/**
+ * Create GradoopId from existing ObjectId.
+ *
+ * @param objectId ObjectId
+ */
+GradoopId(ObjectId objectId) {
+    this.bytes = objectId.toByteArray();
+}

@@ -1,0 +1,5 @@
+@Test
+public void testGetDate() throws Exception {
+    PropertyValue p = PropertyValue.create(DATE_VAL_b);
+    assertEquals(DATE_VAL_b, p.getDate());
+}

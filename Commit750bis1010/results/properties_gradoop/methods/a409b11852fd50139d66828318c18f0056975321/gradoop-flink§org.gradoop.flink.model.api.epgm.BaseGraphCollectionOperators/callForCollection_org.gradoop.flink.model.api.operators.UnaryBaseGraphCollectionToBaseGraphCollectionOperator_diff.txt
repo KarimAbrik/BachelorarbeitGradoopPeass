@@ -1,0 +1,9 @@
+/**
+ * Creates a graph collection using the given unary graph collection operator.
+ *
+ * @param operator unary graph collection to graph collection operator
+ * @return result of given operator
+ */
+default GC callForCollection(UnaryBaseGraphCollectionToBaseGraphCollectionOperator<GC> operator) {
+    return callForValue(operator);
+}

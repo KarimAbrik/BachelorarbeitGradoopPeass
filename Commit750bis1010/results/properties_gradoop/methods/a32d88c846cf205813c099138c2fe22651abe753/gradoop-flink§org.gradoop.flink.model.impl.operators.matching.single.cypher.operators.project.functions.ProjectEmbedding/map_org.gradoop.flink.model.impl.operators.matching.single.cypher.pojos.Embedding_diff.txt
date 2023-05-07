@@ -1,0 +1,4 @@
+@Override
+public Embedding map(Embedding embedding) {
+    return embedding.project(propertyWhiteList);
+}

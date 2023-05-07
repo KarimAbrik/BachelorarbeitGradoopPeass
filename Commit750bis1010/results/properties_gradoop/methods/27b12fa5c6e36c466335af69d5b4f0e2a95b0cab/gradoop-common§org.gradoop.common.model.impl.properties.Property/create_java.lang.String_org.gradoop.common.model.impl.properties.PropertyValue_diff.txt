@@ -1,0 +1,10 @@
+/**
+ * Creates a new property from the given arguments.
+ *
+ * @param key   property key
+ * @param value property value
+ * @return property
+ */
+public static Property create(String key, PropertyValue value) {
+    return new Property(key, value);
+}

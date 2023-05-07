@@ -1,0 +1,11 @@
+/**
+ * Test community graph for degree centrality
+ *
+ * @throws Exception throws any Exception
+ */
+@Test
+public void testCommunity() throws Exception {
+    LogicalGraph graph = getLoaderFromString(graphString).getLogicalGraphByVariable("g2");
+    DataSet<Double> dataSet = new DegreeCentrality().execute(graph);
+    assertEquals(0.167, dataSet.collect().get(0), 0.001);
+}

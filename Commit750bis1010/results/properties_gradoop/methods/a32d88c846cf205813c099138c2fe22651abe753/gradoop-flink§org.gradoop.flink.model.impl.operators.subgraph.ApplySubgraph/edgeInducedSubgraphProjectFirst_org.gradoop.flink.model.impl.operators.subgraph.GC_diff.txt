@@ -1,0 +1,12 @@
+/**
+ * Returns one subgraph for each of the given supergraphs.
+ * The subgraphs are defined by the edges that fulfil the vertex filter function.
+ *
+ * @param collection collection of supergraph
+ * @return collection of edge-induced subgraph
+ */
+private GC edgeInducedSubgraphProjectFirst(GC collection) {
+    DataSet<E> filteredEdges = collection.getEdges().filter(edgeFilterFunction);
+    DataSet<V> inducedVertices = filteredEdges.flatMap(new EdgeToSourceAndTargetIdWithGraphIds<>()).distinct(0).join(collection.getVertices()).where(0).equalTo(new Id<>()).with(new RightSideWithLeftGraphs2To1<>());
+    return collection.getFactory().fromDataSets(collection.getGraphHeads(), inducedVertices, filteredEdges);
+}

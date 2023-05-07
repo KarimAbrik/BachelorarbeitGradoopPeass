@@ -1,0 +1,9 @@
+/**
+ * Creates a new instance of this JSON string to vertex converting function.
+ *
+ * @param vertexFactory The vertex factory used to create new vertices.
+ */
+public MinimalJsonToVertex(VertexFactory<EPGMVertex> vertexFactory) {
+    this.reuse = Objects.requireNonNull(vertexFactory).createVertex(JSON_VERTEX_LABEL);
+    this.reuse.setProperties(Properties.create());
+}

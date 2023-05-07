@@ -1,0 +1,13 @@
+@Override
+public void read(DataInputView inputView) throws IOException {
+    // type
+    byte typeByte = inputView.readByte();
+    // Apply bitmask to get the actual type.
+    byte type = (byte) (~PropertyValue.FLAG_LARGE & typeByte);
+    PropertyValueStrategy strategy = PropertyValueStrategyFactory.get(type);
+    if (strategy == null) {
+        throw new UnsupportedTypeException("No strategy for type byte from input view found");
+    } else {
+        value = strategy.read(inputView, typeByte);
+    }
+}

@@ -1,0 +1,7 @@
+@Override
+public GraphCollection groupVerticesByRollUp(List<String> vertexGroupingKeys, List<AggregateFunction> vertexAggregateFunctions, List<String> edgeGroupingKeys, List<AggregateFunction> edgeAggregateFunctions) {
+    if (vertexGroupingKeys == null || vertexGroupingKeys.isEmpty()) {
+        throw new IllegalArgumentException("Missing vertex grouping key(s).");
+    }
+    return callForCollection(new VertexRollUp(vertexGroupingKeys, vertexAggregateFunctions, edgeGroupingKeys, edgeAggregateFunctions));
+}

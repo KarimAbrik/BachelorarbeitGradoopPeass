@@ -1,0 +1,10 @@
+/**
+ * Creates new projection.
+ *
+ * @param vertexFunc vertex projection function
+ * @param edgeFunc   edge projection function
+ */
+public Projection(UnaryFunction<VD, VD> vertexFunc, UnaryFunction<ED, ED> edgeFunc) {
+    this.vertexFunc = vertexFunc;
+    this.edgeFunc = edgeFunc;
+}

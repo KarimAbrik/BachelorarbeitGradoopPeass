@@ -1,0 +1,9 @@
+/**
+ * Returns the graph heads assigned to the specified variables.
+ *
+ * @param variables variables used in the GDL script
+ * @return graphHeads assigned to the variables
+ */
+public Collection<EPGMGraphHead> getGraphHeadsByVariables(String... variables) {
+    return loader.getGraphHeadsByVariables(variables);
+}

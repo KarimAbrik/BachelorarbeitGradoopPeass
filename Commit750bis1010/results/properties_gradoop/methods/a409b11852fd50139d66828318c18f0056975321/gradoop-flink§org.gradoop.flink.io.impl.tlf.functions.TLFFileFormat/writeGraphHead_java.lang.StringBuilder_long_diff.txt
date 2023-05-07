@@ -1,0 +1,14 @@
+/**
+ * Converts the graph head into the following format and adds this to the
+ * StringBuilder:
+ * <p>
+ * t # 0
+ * </p>
+ *
+ * @param builder StringBuilder to build the whole string representation
+ * @param graphId current graph id
+ * @return builder with appended graph head representation
+ */
+private StringBuilder writeGraphHead(StringBuilder builder, long graphId) {
+    return builder.append(String.format("%s %s %s%n", TLFConstants.GRAPH_SYMBOL, TLFConstants.NEW_GRAPH_TAG, graphId));
+}

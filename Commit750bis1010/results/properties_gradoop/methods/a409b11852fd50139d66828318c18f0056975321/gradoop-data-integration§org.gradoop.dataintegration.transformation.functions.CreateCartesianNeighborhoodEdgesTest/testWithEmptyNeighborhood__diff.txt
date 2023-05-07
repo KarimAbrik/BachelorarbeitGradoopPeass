@@ -1,0 +1,12 @@
+/**
+ * Test the function using an empty neighborhood. Should produce no edges.
+ *
+ * @throws Exception when the execution in Flink fails.
+ */
+@Test
+public void testWithEmptyNeighborhood() throws Exception {
+    EPGMVertex someVertex = vertexFactory.createVertex();
+    Tuple2<EPGMVertex, List<NeighborhoodVertex>> inputEmpty = new Tuple2<>(someVertex, Collections.emptyList());
+    List<EPGMEdge> result = getExecutionEnvironment().fromElements(inputEmpty).flatMap(toTest).collect();
+    assertEquals(0, result.size());
+}

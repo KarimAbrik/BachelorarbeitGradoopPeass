@@ -1,0 +1,10 @@
+/**
+ * This method sets whether property value based condensation should be executed or not.
+ * The default value is 'true'.
+ *
+ * @param condense If true, all property values got condensed based on their equality.
+ *                 So that every newly created vertex has a unique property value.
+ */
+public void setCondensation(boolean condense) {
+    this.condense = condense;
+}

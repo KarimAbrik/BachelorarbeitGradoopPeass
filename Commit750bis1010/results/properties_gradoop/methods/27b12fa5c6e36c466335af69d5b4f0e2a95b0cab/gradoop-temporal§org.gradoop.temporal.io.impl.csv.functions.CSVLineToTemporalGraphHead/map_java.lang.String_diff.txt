@@ -1,0 +1,11 @@
+@Override
+public TemporalGraphHead map(String csvLine) throws Exception {
+    String[] tokens = split(csvLine, 4);
+    String label = StringEscaper.unescape(tokens[1]);
+    TemporalGraphHead graphHead = graphHeadFactory.initGraphHead(GradoopId.fromString(tokens[0]), label, parseProperties(MetaDataSource.GRAPH_TYPE, label, tokens[2]));
+    Matcher matcher = TEMPORAL_PATTERN.matcher(tokens[3]);
+    validateTemporalData(matcher);
+    graphHead.setTransactionTime(parseTransactionTime(matcher));
+    graphHead.setValidTime(parseValidTime(matcher));
+    return graphHead;
+}

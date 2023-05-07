@@ -1,0 +1,4 @@
+@Override
+public boolean filter(V v) throws Exception {
+    return ElementMatcher.matchAll(v, queryVertices, DEFAULT_VERTEX_LABEL);
+}

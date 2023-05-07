@@ -1,0 +1,4 @@
+@Override
+public TraversalCode traverse() {
+    return traverse(queryHandler.getVertices().iterator().next().getId());
+}

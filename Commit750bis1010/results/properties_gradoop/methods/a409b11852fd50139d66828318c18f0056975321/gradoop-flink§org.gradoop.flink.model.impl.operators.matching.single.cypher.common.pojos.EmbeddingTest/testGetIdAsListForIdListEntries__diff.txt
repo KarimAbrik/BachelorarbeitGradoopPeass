@@ -1,0 +1,13 @@
+@Test
+public void testGetIdAsListForIdListEntries() {
+    GradoopId a = new GradoopId();
+    GradoopId b = new GradoopId();
+    GradoopId[] ab = new GradoopId[] { a, b };
+    GradoopId[] ba = new GradoopId[] { b, a };
+    Embedding embedding = new Embedding();
+    embedding.add(a);
+    embedding.add(ab);
+    embedding.add(ba);
+    assertEquals(Lists.newArrayList(a, b), embedding.getIdAsList(1));
+    assertEquals(Lists.newArrayList(b, a), embedding.getIdAsList(2));
+}

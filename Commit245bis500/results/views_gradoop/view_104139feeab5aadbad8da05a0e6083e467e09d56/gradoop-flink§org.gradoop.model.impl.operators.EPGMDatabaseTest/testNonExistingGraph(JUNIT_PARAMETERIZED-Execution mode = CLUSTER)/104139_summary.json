@@ -1,0 +1,30 @@
+{
+  "overallScore" : 0,
+  "selected" : false,
+  "testcase" : {
+    "clazz" : "org.gradoop.model.impl.operators.EPGMDatabaseTest",
+    "method" : "testNonExistingGraph",
+    "module" : "gradoop-flink",
+    "params" : "JUNIT_PARAMETERIZED-Execution mode = CLUSTER"
+  },
+  "callCounts" : {
+    "gradoop-flink§org.gradoop.util.GradoopFlinkConfig#getExecutionEnvironment" : 1,
+    "gradoop-core§org.gradoop.model.impl.pojo.ElementPojo#<init>" : 16,
+    "gradoop-core§org.gradoop.model.impl.pojo.ElementPojo#getId" : 4,
+    "gradoop-flink§org.gradoop.model.impl.GraphCollection#getGraph(java.lang.Long)" : 1,
+    "gradoop-flink§org.gradoop.model.impl.functions.keyselectors.GraphKeySelector#getKey(org.gradoop.model.impl.functions.keyselectors.GD)" : 4,
+    "gradoop-core§org.gradoop.model.impl.pojo.GraphHeadPojo#toString" : 8,
+    "gradoop-flink§org.gradoop.model.FlinkTestBase#getGraphStore" : 1,
+    "gradoop-flink§org.gradoop.model.impl.AbstractGraph#getConfig" : 1,
+    "gradoop-flink§org.gradoop.model.impl.EPGMDatabase#getGraph(java.lang.Long)" : 1,
+    "gradoop-flink§org.gradoop.model.impl.AbstractGraph#getEdges" : 1,
+    "gradoop-core§org.gradoop.model.impl.pojo.ElementPojo#toString" : 8,
+    "gradoop-flink§org.gradoop.model.impl.AbstractGraph#getVertices" : 1,
+    "gradoop-core§org.gradoop.model.impl.pojo.GraphHeadPojo#<init>" : 16,
+    "gradoop-flink§org.gradoop.model.impl.operators.EPGMDatabaseTest#testNonExistingGraph" : 1,
+    "gradoop-flink§org.gradoop.model.impl.functions.filterfunctions.VertexInGraphFilter#<init>(long)" : 1,
+    "gradoop-flink§org.gradoop.model.impl.functions.keyselectors.GraphKeySelector#<init>" : 1,
+    "gradoop-flink§org.gradoop.model.impl.functions.filterfunctions.EdgeInGraphFilter#<init>(long)" : 1
+  },
+  "selectedChanges" : [ ]
+}

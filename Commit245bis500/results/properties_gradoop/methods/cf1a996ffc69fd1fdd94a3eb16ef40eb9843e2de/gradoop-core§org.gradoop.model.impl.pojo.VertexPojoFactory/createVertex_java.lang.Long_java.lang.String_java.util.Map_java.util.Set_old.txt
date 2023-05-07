@@ -1,0 +1,9 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public VertexPojo createVertex(final Long id, final String label, final Map<String, Object> properties, final Set<Long> graphs) {
+    checkId(id);
+    checkLabel(label);
+    return new VertexPojo(id, label, properties, graphs);
+}

@@ -1,0 +1,10 @@
+/**
+ * Creates group reduce function.
+ *
+ * @param useLabel                        true, iff labels are used for grouping
+ */
+public TransposeVertexGroupItems(boolean useLabel) {
+    super(useLabel);
+    this.reuseOuterTuple = new Tuple2<>();
+    this.reuseInnerTuple = new IdWithIdSet();
+}

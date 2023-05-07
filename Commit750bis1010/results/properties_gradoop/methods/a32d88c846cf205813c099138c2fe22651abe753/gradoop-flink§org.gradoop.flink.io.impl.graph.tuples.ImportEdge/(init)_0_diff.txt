@@ -1,0 +1,10 @@
+/**
+ * Creates a new import edge.
+ *
+ * @param edgeId    import edge id (i.e. identifier in source system)
+ * @param sourceId  import source vertex id
+ * @param targetId  import target vertex id
+ */
+public ImportEdge(K edgeId, K sourceId, K targetId) {
+    this(edgeId, sourceId, targetId, GradoopConstants.DEFAULT_EDGE_LABEL);
+}

@@ -1,0 +1,5 @@
+@Override
+public Tuple1<T> map(T value) throws Exception {
+    reuseTuple.f0 = value;
+    return reuseTuple;
+}

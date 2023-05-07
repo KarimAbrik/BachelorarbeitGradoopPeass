@@ -1,0 +1,13 @@
+/**
+ * Returns all vertices with the given label or {@code null} if there are no
+ * vertices with that label.
+ *
+ * @param label vertex label
+ * @return vertices or {@code null}
+ */
+public Collection<Vertex> getVerticesByLabel(String label) {
+    if (labelToVertexCache == null) {
+        labelToVertexCache = initSetCache(getVertices(), Vertex::getLabel, Function.identity());
+    }
+    return labelToVertexCache.get(label);
+}

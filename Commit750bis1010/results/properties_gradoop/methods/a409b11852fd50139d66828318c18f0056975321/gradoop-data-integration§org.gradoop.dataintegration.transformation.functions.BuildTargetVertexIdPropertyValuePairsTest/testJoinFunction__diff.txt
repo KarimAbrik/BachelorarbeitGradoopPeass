@@ -1,0 +1,24 @@
+/**
+ * Test the join function by using some values.
+ *
+ * @throws Exception when the execution in Flink fails.
+ */
+@Test
+public void testJoinFunction() throws Exception {
+    Comparator<Tuple2<GradoopId, PropertyValue>> comparator = Comparator.comparing(t -> t.f0);
+    GradoopId source1 = GradoopId.get();
+    GradoopId target1 = GradoopId.get();
+    GradoopId source2 = GradoopId.get();
+    GradoopId target2 = GradoopId.get();
+    EPGMEdge edge1 = getConfig().getLogicalGraphFactory().getEdgeFactory().createEdge(source1, target1);
+    EPGMEdge edge2 = getConfig().getLogicalGraphFactory().getEdgeFactory().createEdge(source2, target2);
+    Tuple2<GradoopId, PropertyValue> tuple1 = new Tuple2<>(source1, PropertyValue.create(1L));
+    Tuple2<GradoopId, PropertyValue> tuple2 = new Tuple2<>(source2, PropertyValue.create(2L));
+    List<Tuple2<GradoopId, PropertyValue>> result = getExecutionEnvironment().fromElements(tuple1, tuple2).join(getExecutionEnvironment().fromElements(edge1, edge2)).where(0).equalTo(new SourceId<>()).with(new BuildTargetVertexIdPropertyValuePairs<>()).collect();
+    result.sort(comparator);
+    Tuple2<GradoopId, PropertyValue> expected1 = new Tuple2<>(target1, PropertyValue.create(1L));
+    Tuple2<GradoopId, PropertyValue> expected2 = new Tuple2<>(target2, PropertyValue.create(2L));
+    List<Tuple2<GradoopId, PropertyValue>> expected = Arrays.asList(expected1, expected2);
+    expected.sort(comparator);
+    assertArrayEquals(expected.toArray(), result.toArray());
+}

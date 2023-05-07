@@ -1,0 +1,8 @@
+/**
+ * Creates a new instance of a CombinePartitionApplyAggregates group reduce function.
+ *
+ * @param aggregateFunctions aggregate functions
+ */
+public CombinePartitionApplyAggregates(Set<AggregateFunction> aggregateFunctions) {
+    this.aggregateFunctions = aggregateFunctions;
+}

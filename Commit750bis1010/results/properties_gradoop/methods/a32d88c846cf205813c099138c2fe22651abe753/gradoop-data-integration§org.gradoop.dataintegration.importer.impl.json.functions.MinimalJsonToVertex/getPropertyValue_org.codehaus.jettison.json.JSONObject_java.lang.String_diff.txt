@@ -1,0 +1,28 @@
+/**
+ * Convert a value of a JSON object to a {@link PropertyValue}.
+ *
+ * @param jsonObject The JSON object.
+ * @param key        The key associated with the value to convert into a property value.
+ * @return The converted value.
+ */
+private PropertyValue getPropertyValue(JSONObject jsonObject, String key) {
+    PropertyValue propertyValue = new PropertyValue();
+    if (jsonObject.optJSONArray(key) != null) {
+        JSONArray array = jsonObject.optJSONArray(key);
+        // is it list or object?
+        boolean listOrObject = array.optJSONObject(0) != null;
+        List<PropertyValue> propertyList = new ArrayList<>();
+        for (int i = 0; i < array.length(); i++) {
+            String stringValue = listOrObject ? array.optJSONObject(i).toString() : array.optString(i);
+            PropertyValue listElement = PropertyValue.create(stringValue);
+            propertyList.add(listElement);
+            propertyValue.setList(propertyList);
+        }
+    } else if (jsonObject.optString(key) != null) {
+        String text = jsonObject.optString(key);
+        propertyValue.setString(text);
+    } else {
+        propertyValue.setObject(null);
+    }
+    return propertyValue;
+}

@@ -1,0 +1,18 @@
+@Override
+public void flatMap(V vertex, Collector<VertexGroupItem> collector) throws Exception {
+    boolean usedVertexLabelGroup = false;
+    reuseVertexGroupItem.setVertexId(vertex.getId());
+    // check if vertex shall be grouped by a special set of keys
+    for (LabelGroup vertexLabelGroup : getLabelGroups()) {
+        if (vertexLabelGroup.getGroupingLabel().equals(vertex.getLabel())) {
+            usedVertexLabelGroup = true;
+            setGroupItem(reuseVertexGroupItem, vertex, vertexLabelGroup);
+            collector.collect(reuseVertexGroupItem);
+        }
+    }
+    // standard grouping case
+    if (!usedVertexLabelGroup) {
+        setGroupItem(reuseVertexGroupItem, vertex, getDefaultLabelGroup());
+        collector.collect(reuseVertexGroupItem);
+    }
+}

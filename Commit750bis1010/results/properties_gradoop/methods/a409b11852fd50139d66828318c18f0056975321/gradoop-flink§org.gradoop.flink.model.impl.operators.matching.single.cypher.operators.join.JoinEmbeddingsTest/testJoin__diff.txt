@@ -1,0 +1,16 @@
+@Test
+public void testJoin() throws Exception {
+    Embedding l = new Embedding();
+    l.add(v0, PropertyValue.create("Foobar"));
+    l.add(e0, PropertyValue.create(42));
+    l.add(v1);
+    DataSet<Embedding> left = getExecutionEnvironment().fromElements(l);
+    Embedding r = new Embedding();
+    r.add(v1, PropertyValue.create("Baz"));
+    DataSet<Embedding> right = getExecutionEnvironment().fromElements(r);
+    PhysicalOperator join = new JoinEmbeddings(left, right, 1, 2, 0);
+    DataSet<Embedding> result = join.evaluate();
+    assertEquals(1, result.count());
+    assertEveryEmbedding(result, embedding -> embedding.getProperties().equals(Lists.newArrayList(PropertyValue.create("Foobar"), PropertyValue.create(42), PropertyValue.create("Baz"))));
+    assertEmbeddingExists(result, v0, e0, v1);
+}

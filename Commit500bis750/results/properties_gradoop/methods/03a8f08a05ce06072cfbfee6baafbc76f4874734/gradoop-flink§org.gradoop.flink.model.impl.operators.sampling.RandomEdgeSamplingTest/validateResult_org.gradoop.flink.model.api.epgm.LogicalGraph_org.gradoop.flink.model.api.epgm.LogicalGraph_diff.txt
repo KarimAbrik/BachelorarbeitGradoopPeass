@@ -1,0 +1,32 @@
+private void validateResult(LogicalGraph input, LogicalGraph output) throws Exception {
+    List<Vertex> dbVertices = Lists.newArrayList();
+    List<Edge> dbEdges = Lists.newArrayList();
+    List<Vertex> newVertices = Lists.newArrayList();
+    List<Edge> newEdges = Lists.newArrayList();
+    input.getVertices().output(new LocalCollectionOutputFormat<>(dbVertices));
+    input.getEdges().output(new LocalCollectionOutputFormat<>(dbEdges));
+    output.getVertices().output(new LocalCollectionOutputFormat<>(newVertices));
+    output.getEdges().output(new LocalCollectionOutputFormat<>(newEdges));
+    getExecutionEnvironment().execute();
+    // Test, if there is a result graph
+    assertNotNull("graph was null", output);
+    Set<GradoopId> newVertexIDs = new HashSet<>();
+    for (Vertex vertex : newVertices) {
+        // Test, if all new vertices are taken from the original graph
+        assertTrue("sampled vertex is not part of the original graph", dbVertices.contains(vertex));
+        newVertexIDs.add(vertex.getId());
+    }
+    Set<GradoopId> connectedVerticesIDs = new HashSet<>();
+    for (Edge edge : newEdges) {
+        // Test, if all new edges are taken from the original graph
+        assertTrue("sampled edge is not part of the original graph", dbEdges.contains(edge));
+        // Test, if all source- and target-vertices from new edges are part of the sampled graph, too
+        assertTrue("sampled edge has source vertex which is not part of the sampled graph", newVertexIDs.contains(edge.getSourceId()));
+        connectedVerticesIDs.add(edge.getSourceId());
+        assertTrue("sampled edge has target vertex which is not part of the sampled graph", newVertexIDs.contains(edge.getTargetId()));
+        connectedVerticesIDs.add(edge.getTargetId());
+    }
+    // Test, if there aren't any unconnected vertices left
+    newVertexIDs.removeAll(connectedVerticesIDs);
+    assertTrue("there are unconnected vertices in the sampled graph", newVertexIDs.isEmpty());
+}

@@ -1,0 +1,16 @@
+/**
+ * Filters all disjunctions that could be evaluated with the given variable and returns them in a new CNF.
+ * <p>
+ * Example:
+ * <br>
+ * Given {@code myFilter = CNF((a = b) And (b > 5 OR a > 10) AND (c = false) AND (a = c))}<br>
+ * {@code myFilter.getSubCNF(a,b) => CNF((a = b) And (b > 5 OR a > 10))}
+ *
+ * @param variable variable that must be included in the disjunction
+ * @return CNF containing only the specified variable
+ */
+public CNF getSubCNF(String variable) {
+    Set<String> variables = new HashSet<>(1);
+    variables.add(variable);
+    return getSubCNF(variables);
+}

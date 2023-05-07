@@ -1,0 +1,6 @@
+@Test
+public void testEmptyFromGraphsMethod() throws Exception {
+    GraphCollection expected = factory.createEmptyCollection();
+    GraphCollection result = factory.fromGraphs();
+    collectAndAssertTrue(result.equalsByGraphElementData(expected));
+}

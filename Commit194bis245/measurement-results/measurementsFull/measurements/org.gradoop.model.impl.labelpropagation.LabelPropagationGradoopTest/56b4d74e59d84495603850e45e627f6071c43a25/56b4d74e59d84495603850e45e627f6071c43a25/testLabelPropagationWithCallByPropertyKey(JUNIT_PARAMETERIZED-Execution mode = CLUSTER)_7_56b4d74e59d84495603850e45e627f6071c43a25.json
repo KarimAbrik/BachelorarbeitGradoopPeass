@@ -1,0 +1,68 @@
+{
+  "clazz" : "org.gradoop.model.impl.labelpropagation.LabelPropagationGradoopTest",
+  "methods" : [ {
+    "method" : "testLabelPropagationWithCallByPropertyKey",
+    "datacollectorResults" : [ {
+      "name" : "de.dagere.kopeme.datacollection.TimeDataCollectorNoGC",
+      "chunks" : [ ],
+      "results" : [ {
+        "value" : 4.4607234072E9,
+        "deviation" : 0.43625610518431346,
+        "min" : 3.172207327E9,
+        "max" : 9.810819514E9,
+        "warmup" : 0,
+        "iterations" : 10,
+        "repetitions" : 2,
+        "commit" : null,
+        "vmRunConfiguration" : {
+          "showStart" : false,
+          "executeBeforeClassInMeasurement" : false,
+          "redirectToTemp" : false,
+          "redirectToNull" : true,
+          "useKieker" : false
+        },
+        "parameters" : {
+          "JUNIT_PARAMETERIZED" : "Execution mode = CLUSTER"
+        },
+        "javaVersion" : "1.8.0_362",
+        "cpu" : "model name : Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz",
+        "memory" : "MemTotal: 16280544 kB",
+        "date" : 1680994428539,
+        "fulldata" : {
+          "fileName" : null,
+          "values" : [ {
+            "startTime" : 1680994383411,
+            "value" : 9810819514
+          }, {
+            "startTime" : 1680994393222,
+            "value" : 5008584066
+          }, {
+            "startTime" : 1680994398231,
+            "value" : 4049670677
+          }, {
+            "startTime" : 1680994402281,
+            "value" : 4016892390
+          }, {
+            "startTime" : 1680994406297,
+            "value" : 4113288315
+          }, {
+            "startTime" : 1680994410411,
+            "value" : 3449213905
+          }, {
+            "startTime" : 1680994413860,
+            "value" : 3854812730
+          }, {
+            "startTime" : 1680994417715,
+            "value" : 3667011453
+          }, {
+            "startTime" : 1680994421382,
+            "value" : 3172207327
+          }, {
+            "startTime" : 1680994424554,
+            "value" : 3464733695
+          } ]
+        }
+      } ]
+    } ]
+  } ]
+}

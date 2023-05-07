@@ -1,0 +1,11 @@
+/**
+ * Compares two numerical property values and returns the bigger one.
+ *
+ * @param a first value
+ * @param b second value
+ *
+ * @return bigger value
+ */
+public static PropertyValue max(PropertyValue a, PropertyValue b) {
+    return isLessOrEqualThan(a, b) ? b : a;
+}

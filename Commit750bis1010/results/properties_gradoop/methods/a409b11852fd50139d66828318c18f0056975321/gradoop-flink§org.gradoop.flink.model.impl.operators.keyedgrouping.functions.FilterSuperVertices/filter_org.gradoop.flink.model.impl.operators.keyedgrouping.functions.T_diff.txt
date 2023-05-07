@@ -1,0 +1,6 @@
+@Override
+public boolean filter(T t) throws Exception {
+    final GradoopId id = t.getField(GroupingConstants.VERTEX_TUPLE_ID);
+    final GradoopId superId = t.getField(GroupingConstants.VERTEX_TUPLE_SUPERID);
+    return id.equals(superId);
+}

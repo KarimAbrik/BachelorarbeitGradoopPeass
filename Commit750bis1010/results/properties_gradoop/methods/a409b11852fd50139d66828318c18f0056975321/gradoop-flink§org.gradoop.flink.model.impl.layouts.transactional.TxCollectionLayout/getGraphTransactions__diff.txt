@@ -1,0 +1,4 @@
+@Override
+public DataSet<GraphTransaction> getGraphTransactions() {
+    return transactions.filter(new ByDifferentGraphId(GradoopConstants.DB_GRAPH_ID));
+}

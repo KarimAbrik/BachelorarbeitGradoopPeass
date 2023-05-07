@@ -1,0 +1,18 @@
+@Test
+public void testVertex() throws Exception {
+    GradoopId vertexId = GradoopId.get();
+    String label = "A";
+    Properties props = Properties.create();
+    props.set("k1", "v1");
+    props.set("k2", "v2");
+    Vertex vertex = new EPGMVertexFactory().initVertex(vertexId, label, props);
+    HashMap<String, String> newProps = new HashMap<>();
+    newProps.put("k1", "new_k1");
+    TransformationFunction<Vertex> renameFunction = new RenamePropertyKeys<>(newProps);
+    renameFunction.apply(vertex, vertex);
+    assertThat(vertex.getPropertyCount(), is(2));
+    assertEquals(label, vertex.getLabel());
+    assertThat(vertex.getPropertyValue("new_k1").toString(), Is.<Object>is("v1"));
+    assertThat(vertex.getPropertyValue("k2").toString(), Is.<Object>is("v2"));
+    assertNull(vertex.getPropertyValue("k1"));
+}

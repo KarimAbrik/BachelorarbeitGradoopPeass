@@ -1,0 +1,11 @@
+@Override
+public void flatMap(Tuple2<EPGMVertex, List<GradoopId>> value, Collector<EPGMEdge> out) {
+    for (GradoopId sourceId : value.f1) {
+        if (edgeDirection.equals(EdgeDirection.BIDIRECTIONAL) || edgeDirection.equals(EdgeDirection.NEWVERTEX_TO_ORIGIN)) {
+            out.collect(edgeFactory.createEdge(edgeLabel, value.f0.getId(), sourceId));
+        }
+        if (edgeDirection.equals(EdgeDirection.BIDIRECTIONAL) || edgeDirection.equals(EdgeDirection.ORIGIN_TO_NEWVERTEX)) {
+            out.collect(edgeFactory.createEdge(edgeLabel, sourceId, value.f0.getId()));
+        }
+    }
+}

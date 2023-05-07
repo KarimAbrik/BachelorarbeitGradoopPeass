@@ -1,0 +1,16 @@
+/**
+ * Checks if the specified object is equal to the current id.
+ *
+ * @param o the object to be compared
+ * @return true, iff the specified id is equal to this id
+ */
+@Override
+public boolean equals(Object o) {
+    if (this == o) {
+        return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+        return false;
+    }
+    return equals(bytes, ((GradoopId) o).bytes, 0, 0);
+}

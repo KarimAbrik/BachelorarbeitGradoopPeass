@@ -1,0 +1,11 @@
+/**
+ * Group by nothing. This will effectively reduce all elements to the same group.
+ * Note that this will only be effective if no other key function is used.
+ *
+ * @param <T> The type of the elements to group.
+ * @return A key function extracting the same key for every element.
+ * @see ConstantKeyFunction
+ */
+public static <T> KeyFunctionWithDefaultValue<T, Boolean> nothing() {
+    return new ConstantKeyFunction<>();
+}

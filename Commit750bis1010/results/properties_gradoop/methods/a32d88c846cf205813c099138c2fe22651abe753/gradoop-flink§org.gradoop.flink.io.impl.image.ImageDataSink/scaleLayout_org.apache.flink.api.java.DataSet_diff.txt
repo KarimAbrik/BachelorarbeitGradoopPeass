@@ -1,0 +1,19 @@
+/**
+ * Scale the coordinates of the graph so that the layout-space matches the requested drawing-size
+ *
+ * @param vertices original vertices
+ * @return vertices with scaled coordinates
+ */
+protected DataSet<EPGMVertex> scaleLayout(DataSet<EPGMVertex> vertices) {
+    if (zoom) {
+        final int imageWidthF = imageWidth - 2 * zoomBorder;
+        final int imageHeightF = imageHeight - 2 * zoomBorder;
+        final int zoomBorderF = zoomBorder;
+        DataSet<Tuple4<Integer, Integer, Integer, Integer>> minMaxCoords = vertices.map(new ToCoordsTuple()).aggregate(Aggregations.MIN, 0).and(Aggregations.MIN, 1).and(Aggregations.MAX, 2).and(Aggregations.MAX, 3);
+        return vertices.map(new VertexZoomMap(imageWidthF, imageHeightF, zoomBorderF)).withBroadcastSet(minMaxCoords, BORDER_BROADCAST);
+    } else {
+        final double widthScale = imageWidth / (double) layoutWidth;
+        final double heightScale = imageHeight / (double) layoutHeight;
+        return vertices.map(new VertexScaleMap(widthScale, heightScale));
+    }
+}

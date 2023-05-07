@@ -1,0 +1,19 @@
+@Test
+public void execute() throws Exception {
+    GraphCollection collection = getTestCollection();
+    String propertyKey = "count";
+    GraphHeadReduceFunction<EPGMGraphHead> countFunc = new CountGraphHeads<>(propertyKey);
+    collection = collection.groupByIsomorphism(countFunc);
+    List<EPGMGraphHead> graphHeads = collection.getGraphHeads().collect();
+    assertEquals(3, graphHeads.size());
+    for (EPGMGraphHead graphHead : graphHeads) {
+        assertTrue(graphHead.hasProperty(propertyKey));
+        int count = graphHead.getPropertyValue(propertyKey).getInt();
+        String label = graphHead.getLabel();
+        if (label.equals("G")) {
+            assertEquals(1, count);
+        } else {
+            assertEquals(2, count);
+        }
+    }
+}

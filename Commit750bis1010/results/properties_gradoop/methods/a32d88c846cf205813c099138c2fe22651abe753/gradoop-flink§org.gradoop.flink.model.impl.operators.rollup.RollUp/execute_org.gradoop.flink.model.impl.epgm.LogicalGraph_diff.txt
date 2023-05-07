@@ -1,0 +1,43 @@
+/**
+ * Applies the rollUp operation on the given input graph.
+ *
+ * @param graph input graph
+ * @return graphCollection containing all differently grouped graphs
+ */
+@Override
+public GraphCollection execute(LogicalGraph graph) {
+    DataSet<EPGMGraphHead> graphHeads = null;
+    DataSet<EPGMVertex> vertices = null;
+    DataSet<EPGMEdge> edges = null;
+    List<List<String>> groupingKeyCombinations = getGroupingKeyCombinations();
+    // for each permutation execute a grouping
+    for (List<String> combination : groupingKeyCombinations) {
+        // apply the grouping
+        LogicalGraph groupedGraph = applyGrouping(graph, combination);
+        // add a property to the grouped graph's head to specify the used keys
+        PropertyValue groupingKeys = PropertyValue.create(String.join(",", combination));
+        DataSet<EPGMGraphHead> newGraphHead = groupedGraph.getGraphHead().map(new SetProperty<>(getGraphPropertyKey(), groupingKeys));
+        if (graphHeads != null && vertices != null && edges != null) {
+            // in later iterations union the datasets of the grouped elements with the existing ones
+            graphHeads = graphHeads.union(newGraphHead);
+            vertices = vertices.union(groupedGraph.getVertices());
+            edges = edges.union(groupedGraph.getEdges());
+        } else {
+            // in the first iteration, fill the datasets
+            graphHeads = newGraphHead;
+            vertices = groupedGraph.getVertices();
+            edges = groupedGraph.getEdges();
+        }
+    }
+    // We initialized the DataSets with null, so it may be possible that they're still null here,
+    // so we should check and return an empty collection in this case.
+    // But the overhead of creating an empty collection should only be done, if at least one of the
+    // DataSets is null.
+    GraphCollection collection;
+    if (graphHeads != null && vertices != null && edges != null) {
+        collection = graph.getCollectionFactory().fromDataSets(graphHeads, vertices, edges);
+    } else {
+        collection = graph.getCollectionFactory().createEmptyCollection();
+    }
+    return collection;
+}

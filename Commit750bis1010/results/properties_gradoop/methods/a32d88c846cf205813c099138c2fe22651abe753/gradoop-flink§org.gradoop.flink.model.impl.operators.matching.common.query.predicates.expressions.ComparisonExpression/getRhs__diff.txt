@@ -1,0 +1,7 @@
+/**
+ * Returns the wrapped left hand side of the comparison
+ * @return wrapped left hand side
+ */
+public QueryComparable getRhs() {
+    return QueryComparable.createFrom(comparison.getComparableExpressions()[1]);
+}

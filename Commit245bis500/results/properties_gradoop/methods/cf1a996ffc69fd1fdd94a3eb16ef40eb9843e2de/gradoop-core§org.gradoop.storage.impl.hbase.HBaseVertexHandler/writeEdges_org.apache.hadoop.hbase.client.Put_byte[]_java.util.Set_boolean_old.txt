@@ -1,0 +1,20 @@
+/**
+ * Adds edgeDataSet to the the given HBase put.
+ *
+ * @param put          {@link org.apache.hadoop.hbase.client.Put} to
+ *                     write the
+ *                     edgeDataSet to
+ * @param columnFamily CF where the edgeDataSet shall be stored
+ * @param edgeDataSet  edgeDataSet to store
+ * @param isOutgoing   true, if the edge is an outgoing edge, false if
+ *                     incoming
+ * @return the updated put
+ */
+private Put writeEdges(Put put, final byte[] columnFamily, final Set<ED> edgeDataSet, boolean isOutgoing) {
+    if (edgeDataSet != null) {
+        for (EPGMEdge edge : edgeDataSet) {
+            put = writeEdge(put, columnFamily, edge, isOutgoing);
+        }
+    }
+    return put;
+}

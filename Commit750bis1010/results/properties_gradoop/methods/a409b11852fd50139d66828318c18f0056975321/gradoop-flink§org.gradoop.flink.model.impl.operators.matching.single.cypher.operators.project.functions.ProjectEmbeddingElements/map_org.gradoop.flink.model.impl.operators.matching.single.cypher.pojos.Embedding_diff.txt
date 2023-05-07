@@ -1,0 +1,10 @@
+@Override
+public Embedding map(Embedding embedding) throws Exception {
+    GradoopId[] idField = new GradoopId[projectionColumns.size()];
+    for (Map.Entry<Integer, Integer> projection : projectionColumns.entrySet()) {
+        idField[projection.getValue()] = embedding.getId(projection.getKey());
+    }
+    Embedding newEmbedding = new Embedding();
+    newEmbedding.addAll(idField);
+    return newEmbedding;
+}

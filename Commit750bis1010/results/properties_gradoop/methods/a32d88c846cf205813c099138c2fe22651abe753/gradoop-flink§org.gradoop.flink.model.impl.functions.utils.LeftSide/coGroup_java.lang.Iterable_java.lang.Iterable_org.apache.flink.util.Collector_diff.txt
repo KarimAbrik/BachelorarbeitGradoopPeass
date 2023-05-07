@@ -1,0 +1,8 @@
+@Override
+public void coGroup(Iterable<L> first, Iterable<R> second, Collector<L> out) throws Exception {
+    if (second.iterator().hasNext()) {
+        for (L x : first) {
+            out.collect(x);
+        }
+    }
+}

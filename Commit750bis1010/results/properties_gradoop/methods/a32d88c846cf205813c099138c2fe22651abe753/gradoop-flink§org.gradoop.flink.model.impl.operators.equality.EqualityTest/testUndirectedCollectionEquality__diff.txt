@@ -1,0 +1,19 @@
+@Test
+public void testUndirectedCollectionEquality() throws Exception {
+    FlinkAsciiGraphLoader loader = getTestGraphLoader();
+    CollectionEquality<EPGMGraphHead, EPGMVertex, EPGMEdge, LogicalGraph, GraphCollection> equality = new CollectionEquality<>(new GraphHeadToDataString<>(), new VertexToDataString<>(), new EdgeToDataString<>(), false);
+    GraphCollection gRef = loader.getGraphCollectionByVariables("gRef", "gEmpty");
+    GraphCollection gDiffId = loader.getGraphCollectionByVariables("gDiffId", "gEmpty");
+    GraphCollection gClone = loader.getGraphCollectionByVariables("gClone", "gEmpty");
+    GraphCollection gRev = loader.getGraphCollectionByVariables("gRev", "gEmpty");
+    GraphCollection gSmall = loader.getGraphCollectionByVariables("gRef");
+    GraphCollection gDiffData = loader.getGraphCollectionByVariables("gDiffData", "gEmpty");
+    GraphCollection gEmpty = getConfig().getGraphCollectionFactory().createEmptyCollection();
+    // direct operator call
+    collectAndAssertTrue(equality.execute(gRef, gDiffId));
+    collectAndAssertTrue(equality.execute(gRef, gRev));
+    collectAndAssertFalse(equality.execute(gRef, gClone));
+    collectAndAssertFalse(equality.execute(gRef, gDiffData));
+    collectAndAssertFalse(equality.execute(gRef, gSmall));
+    collectAndAssertFalse(equality.execute(gRef, gEmpty));
+}

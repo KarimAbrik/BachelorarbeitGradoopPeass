@@ -1,0 +1,10 @@
+/**
+ * Constructor
+ *
+ * @param transformationFunction  vertex modification function
+ * @param epgmVertexFactory         vertex factory
+ */
+public TransformVertex(TransformationFunction<V> transformationFunction, VertexFactory<V> epgmVertexFactory) {
+    super(transformationFunction);
+    this.vertexFactory = checkNotNull(epgmVertexFactory);
+}

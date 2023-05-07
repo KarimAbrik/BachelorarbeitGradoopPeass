@@ -1,0 +1,12 @@
+/**
+ * Test using edges in both directions.
+ *
+ * @throws Exception when the execution in Flink fails.
+ */
+@Test
+public void testUndirected() throws Exception {
+    LogicalGraph input = loader.getLogicalGraphByVariable("input");
+    UnaryGraphToGraphOperator operator = new ConnectNeighbors("Center", Neighborhood.EdgeDirection.UNDIRECTED, "V", "neighbor");
+    LogicalGraph expected = loader.getLogicalGraphByVariable("expectedUndirected");
+    collectAndAssertTrue(expected.equalsByData(input.callForGraph(operator)));
+}

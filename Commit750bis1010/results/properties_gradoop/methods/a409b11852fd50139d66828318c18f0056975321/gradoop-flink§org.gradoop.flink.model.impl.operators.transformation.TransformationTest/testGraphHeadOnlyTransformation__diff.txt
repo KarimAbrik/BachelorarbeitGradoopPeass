@@ -1,0 +1,8 @@
+@Test
+public void testGraphHeadOnlyTransformation() throws Exception {
+    FlinkAsciiGraphLoader loader = getLoaderFromString(testGraphString);
+    LogicalGraph original = loader.getLogicalGraphByVariable("g0");
+    LogicalGraph expected = loader.getLogicalGraphByVariable("g02");
+    LogicalGraph result = original.transformGraphHead(TransformationTest::transformGraphHead);
+    collectAndAssertTrue(result.equalsByData(expected));
+}

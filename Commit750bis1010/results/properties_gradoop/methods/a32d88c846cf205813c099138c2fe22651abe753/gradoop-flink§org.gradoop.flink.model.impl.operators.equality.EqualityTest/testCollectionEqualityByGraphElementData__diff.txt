@@ -1,0 +1,20 @@
+@Test
+public void testCollectionEqualityByGraphElementData() throws Exception {
+    FlinkAsciiGraphLoader loader = getTestGraphLoader();
+    CollectionEquality<EPGMGraphHead, EPGMVertex, EPGMEdge, LogicalGraph, GraphCollection> equality = new CollectionEquality<>(new GraphHeadToEmptyString<>(), new VertexToDataString<>(), new EdgeToDataString<>(), true);
+    GraphCollection gRef = loader.getGraphCollectionByVariables("gRef", "gClone", "gEmpty");
+    GraphCollection gClone = loader.getGraphCollectionByVariables("gClone", "gRef", "gEmpty");
+    GraphCollection gSmall = loader.getGraphCollectionByVariables("gRef", "gRef");
+    GraphCollection gDiffData = loader.getGraphCollectionByVariables("gRef", "gDiffData", "gEmpty");
+    GraphCollection gEmpty = getConfig().getGraphCollectionFactory().createEmptyCollection();
+    // direct operator call
+    collectAndAssertTrue(equality.execute(gRef, gClone));
+    collectAndAssertFalse(equality.execute(gRef, gDiffData));
+    collectAndAssertFalse(equality.execute(gRef, gSmall));
+    collectAndAssertFalse(equality.execute(gRef, gEmpty));
+    // convenience method
+    collectAndAssertTrue(gRef.equalsByGraphElementData(gClone));
+    collectAndAssertFalse(gRef.equalsByGraphElementData(gDiffData));
+    collectAndAssertFalse(gRef.equalsByGraphElementData(gSmall));
+    collectAndAssertFalse(gRef.equalsByGraphElementData(gEmpty));
+}

@@ -1,0 +1,6 @@
+@Override
+public void join(E left, E right, Collector<E> collector) {
+    if (left != null && right == null) {
+        collector.collect(left);
+    }
+}

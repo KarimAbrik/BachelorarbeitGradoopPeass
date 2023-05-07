@@ -1,0 +1,10 @@
+/**
+ * Creates a new temporal graph factory instance.
+ *
+ * @param config the temporal Gradoop config
+ */
+public TemporalGraphFactory(TemporalGradoopConfig config) {
+    this.config = Preconditions.checkNotNull(config);
+    this.layoutFactory = new TemporalGraphLayoutFactory();
+    this.layoutFactory.setGradoopFlinkConfig(config);
+}

@@ -1,0 +1,22 @@
+@Override
+public GraphCollection execute(LogicalGraph iig) {
+    DataSet<EPGMVertex> masterVertices = iig.getVertices().filter(new MasterData<>());
+    LogicalGraph transGraph = iig.vertexInducedSubgraph(new TransactionalData<>());
+    DataSet<EPGMVertex> transVertices = transGraph.getVertices();
+    DataSet<org.apache.flink.graph.Edge<GradoopId, NullValue>> transEdges = transGraph.getEdges().map(new ToGellyEdgeWithNullValue());
+    Graph<GradoopId, GradoopId, NullValue> gellyTransGraph = Graph.fromDataSet(transVertices.map(new VertexToGellyVertexWithGradoopId()), transEdges, iig.getConfig().getExecutionEnvironment());
+    gellyTransGraph = gellyTransGraph.getUndirected().runScatterGatherIteration(new BtgMessenger(), new BtgUpdater(), 100);
+    DataSet<Tuple2<GradoopId, GradoopIdSet>> btgVerticesMap = gellyTransGraph.getVerticesAsTuple2().map(new SwitchPair<>()).groupBy(0).reduceGroup(new CollectGradoopIds()).map(new ComponentToNewBtgId());
+    DataSet<Tuple2<GradoopId, GradoopId>> vertexBtgMap = btgVerticesMap.flatMap(new ExpandGradoopIds<>()).map(new SwitchPair<>());
+    DataSet<EPGMGraphHead> graphHeads = btgVerticesMap.map(new Value0Of2<>()).map(new NewBtgGraphHead<>(iig.getFactory().getGraphHeadFactory()));
+    // filter and update edges
+    DataSet<EPGMEdge> btgEdges = iig.getEdges().join(vertexBtgMap).where(new SourceId<>()).equalTo(0).with(new SetBtgId<>());
+    // update transactional vertices
+    transVertices = transVertices.join(vertexBtgMap).where(new Id<>()).equalTo(0).with(new SetBtgId<>());
+    // create master data BTG map
+    vertexBtgMap = btgEdges.map(new TargetIdBtgId<>()).join(masterVertices).where(0).equalTo(new Id<>()).with(new LeftSide<>()).distinct();
+    DataSet<Tuple2<GradoopId, GradoopIdSet>> vertexBtgsMap = vertexBtgMap.groupBy(0).//.combineGroup(new CollectGradoopIds())
+    reduceGroup(new CollectGradoopIds());
+    masterVertices = masterVertices.join(vertexBtgsMap).where(new Id<>()).equalTo(0).with(new SetBtgIds<>());
+    return iig.getCollectionFactory().fromDataSets(graphHeads, transVertices.union(masterVertices), btgEdges);
+}

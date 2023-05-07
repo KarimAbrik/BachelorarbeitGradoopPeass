@@ -1,0 +1,10 @@
+/**
+ * Transforms the edges of the base graph using the given transformation function.
+ * The identity of the edges is preserved.
+ *
+ * @param edgeTransformationFunction edge transformation function
+ * @return transformed base graph
+ */
+default LG transformEdges(TransformationFunction<E> edgeTransformationFunction) {
+    return transform(null, null, edgeTransformationFunction);
+}

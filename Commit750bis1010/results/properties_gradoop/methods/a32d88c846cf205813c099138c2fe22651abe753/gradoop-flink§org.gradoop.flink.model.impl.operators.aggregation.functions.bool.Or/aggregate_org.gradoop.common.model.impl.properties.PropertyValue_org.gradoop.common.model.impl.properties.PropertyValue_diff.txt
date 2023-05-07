@@ -1,0 +1,4 @@
+@Override
+default PropertyValue aggregate(PropertyValue aggregate, PropertyValue increment) {
+    return PropertyValueUtils.Boolean.or(aggregate, increment);
+}

@@ -1,0 +1,27 @@
+/**
+ * Creates a new node.
+ *
+ * @param leftChild left child representing the embeddings to expand
+ * @param rightChild right child representing the edges to expand with
+ * @param startVariable vertex variable on which to start the expansion
+ * @param pathVariable variable representing the path
+ * @param endVariable vertex variable on which to end the expansion
+ * @param lowerBound minimum number of expansions
+ * @param upperBound maximum number of expansions
+ * @param expandDirection edge direction in the expansion
+ * @param vertexStrategy morphism strategy for vertices
+ * @param edgeStrategy morphism strategy for edges
+ */
+public ExpandEmbeddingsNode(PlanNode leftChild, PlanNode rightChild, String startVariable, String pathVariable, String endVariable, int lowerBound, int upperBound, ExpandDirection expandDirection, MatchStrategy vertexStrategy, MatchStrategy edgeStrategy) {
+    super(leftChild, rightChild);
+    this.pathVariable = pathVariable;
+    this.startVariable = startVariable;
+    this.endVariable = endVariable;
+    this.lowerBound = lowerBound;
+    this.upperBound = upperBound == 0 ? Integer.MAX_VALUE : upperBound;
+    this.expandDirection = expandDirection;
+    this.vertexStrategy = vertexStrategy;
+    this.edgeStrategy = edgeStrategy;
+    this.expandColumn = leftChild.getEmbeddingMetaData().getEntryColumn(startVariable);
+    this.closingColumn = leftChild.getEmbeddingMetaData().containsEntryColumn(endVariable) ? leftChild.getEmbeddingMetaData().getEntryColumn(endVariable) : -1;
+}

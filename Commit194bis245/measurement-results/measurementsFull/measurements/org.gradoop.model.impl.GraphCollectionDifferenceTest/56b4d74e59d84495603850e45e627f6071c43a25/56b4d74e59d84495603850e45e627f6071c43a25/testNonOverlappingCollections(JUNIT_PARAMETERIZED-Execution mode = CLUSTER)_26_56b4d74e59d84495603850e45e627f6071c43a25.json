@@ -1,0 +1,68 @@
+{
+  "clazz" : "org.gradoop.model.impl.GraphCollectionDifferenceTest",
+  "methods" : [ {
+    "method" : "testNonOverlappingCollections",
+    "datacollectorResults" : [ {
+      "name" : "de.dagere.kopeme.datacollection.TimeDataCollectorNoGC",
+      "chunks" : [ ],
+      "results" : [ {
+        "value" : 1.0680032268000001E9,
+        "deviation" : 0.8065396479198297,
+        "min" : 5.65846746E8,
+        "max" : 3.465427743E9,
+        "warmup" : 0,
+        "iterations" : 10,
+        "repetitions" : 2,
+        "commit" : null,
+        "vmRunConfiguration" : {
+          "showStart" : false,
+          "executeBeforeClassInMeasurement" : false,
+          "redirectToTemp" : false,
+          "redirectToNull" : true,
+          "useKieker" : false
+        },
+        "parameters" : {
+          "JUNIT_PARAMETERIZED" : "Execution mode = CLUSTER"
+        },
+        "javaVersion" : "1.8.0_362",
+        "cpu" : "model name : Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz",
+        "memory" : "MemTotal: 16280544 kB",
+        "date" : 1680979588490,
+        "fulldata" : {
+          "fileName" : null,
+          "values" : [ {
+            "startTime" : 1680979577642,
+            "value" : 3465427743
+          }, {
+            "startTime" : 1680979581108,
+            "value" : 1219926157
+          }, {
+            "startTime" : 1680979582328,
+            "value" : 832956255
+          }, {
+            "startTime" : 1680979583161,
+            "value" : 786458916
+          }, {
+            "startTime" : 1680979583947,
+            "value" : 729204686
+          }, {
+            "startTime" : 1680979584677,
+            "value" : 565846746
+          }, {
+            "startTime" : 1680979585243,
+            "value" : 703357985
+          }, {
+            "startTime" : 1680979585946,
+            "value" : 722471049
+          }, {
+            "startTime" : 1680979586669,
+            "value" : 963871930
+          }, {
+            "startTime" : 1680979587632,
+            "value" : 690510801
+          } ]
+        }
+      } ]
+    } ]
+  } ]
+}

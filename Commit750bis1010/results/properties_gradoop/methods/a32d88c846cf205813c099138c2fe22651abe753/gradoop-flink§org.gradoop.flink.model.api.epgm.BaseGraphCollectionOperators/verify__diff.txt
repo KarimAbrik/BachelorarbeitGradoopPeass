@@ -1,0 +1,11 @@
+/**
+ * Verifies each graph of this collection, removing dangling edges, i.e. edges pointing to or from
+ * a vertex not contained in the graph.<br>
+ * This operator can be applied after an operator that has not checked these graphs validity.
+ * The graph heads of these base graphs remains unchanged.
+ *
+ * @return this graph collection with all dangling edges removed.
+ */
+default GC verify() {
+    return callForCollection(new VerifyCollection<>());
+}

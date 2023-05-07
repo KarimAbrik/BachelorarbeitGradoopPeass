@@ -1,0 +1,41 @@
+@Test
+public void testExecute() throws Exception {
+    GradoopId a = GradoopId.get();
+    GradoopId b = GradoopId.get();
+    GradoopId c = GradoopId.get();
+    GradoopId d = GradoopId.get();
+    GradoopId e = GradoopId.get();
+    GradoopId f = GradoopId.get();
+    EmbeddingMetaData leftInputMetaData = new EmbeddingMetaData();
+    leftInputMetaData.setEntryColumn("v1", EntryType.VERTEX, 0);
+    leftInputMetaData.setPropertyColumn("v1", "age", 0);
+    Embedding embedding1 = createEmbedding(singletonList(Pair.of(a, singletonList(42))));
+    Embedding embedding2 = createEmbedding(singletonList(Pair.of(b, singletonList(23))));
+    DataSet<Embedding> leftEmbeddings = getExecutionEnvironment().fromElements(embedding1, embedding2);
+    /*
+     * ----------------------------------
+     * |  v1   | e1    | v2    | v2.age |
+     * ----------------------------------
+     * | id(a) | id(c) | id(e) |  84    | -> Embedding 3
+     * ----------------------------------
+     * | id(b) | id(d) | id(f) |  77    | -> Embedding 4
+     * ----------------------------------
+     */
+    EmbeddingMetaData rightInputMetaData = new EmbeddingMetaData();
+    rightInputMetaData.setEntryColumn("v1", EntryType.VERTEX, 0);
+    rightInputMetaData.setEntryColumn("e1", EntryType.EDGE, 1);
+    rightInputMetaData.setEntryColumn("v2", EntryType.VERTEX, 2);
+    rightInputMetaData.setPropertyColumn("v2", "age", 0);
+    Embedding embedding3 = createEmbedding(asList(Pair.of(a, emptyList()), Pair.of(c, emptyList()), Pair.of(e, singletonList(84))));
+    Embedding embedding4 = createEmbedding(asList(Pair.of(b, emptyList()), Pair.of(d, emptyList()), Pair.of(f, singletonList(77))));
+    DataSet<Embedding> rightEmbeddings = getExecutionEnvironment().fromElements(embedding3, embedding4);
+    MockPlanNode leftChild = new MockPlanNode(leftEmbeddings, leftInputMetaData);
+    MockPlanNode rightChild = new MockPlanNode(rightEmbeddings, rightInputMetaData);
+    JoinEmbeddingsNode node = new JoinEmbeddingsNode(leftChild, rightChild, singletonList("v1"), MatchStrategy.ISOMORPHISM, MatchStrategy.ISOMORPHISM);
+    List<Embedding> result = node.execute().collect();
+    // sort by property value in column 0
+    result.sort(Comparator.comparing(o -> o.getProperty(0)));
+    assertThat(result.size(), is(2));
+    assertEmbedding(result.get(0), asList(b, d, f), asList(PropertyValue.create(23), PropertyValue.create(77)));
+    assertEmbedding(result.get(1), asList(a, c, e), asList(PropertyValue.create(42), PropertyValue.create(84)));
+}

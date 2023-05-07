@@ -1,0 +1,9 @@
+/**
+ * Computes the radius of the given connected graph.
+ *
+ * @param graph query graph (connected)
+ * @return diameter
+ */
+public static int getRadius(QueryHandler graph) {
+    return Collections.min(getEccentricity(graph).values());
+}

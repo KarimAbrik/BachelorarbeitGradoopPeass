@@ -1,0 +1,19 @@
+/**
+ * Test if the reoccurring header flag is working correctly.
+ *
+ * @throws Exception on failure
+ */
+@Test
+public void testReoccurringHeader() throws Exception {
+    String csvPathWithHeader = MinimalCSVImporterTest.class.getResource("/csv/input.csv").getPath();
+    String csvPathWithoutHeader = MinimalCSVImporterTest.class.getResource("/csv/inputWithoutHeader.csv").getPath();
+    //set the first line of the file as column property names and check file of reoccurring and skip
+    //header row as vertex
+    DataSource importerWithHeader = new MinimalCSVImporter(csvPathWithHeader, DELIMITER, getConfig(), true);
+    //read all rows of the csv files as vertices
+    List<String> columnNames = Arrays.asList("name", "value1", "value2", "value3");
+    DataSource importerWithoutHeader = new MinimalCSVImporter(csvPathWithoutHeader, DELIMITER, getConfig(), columnNames, false);
+    LogicalGraph resultWithHeader = importerWithHeader.getLogicalGraph();
+    LogicalGraph resultWithoutHeader = importerWithoutHeader.getLogicalGraph();
+    collectAndAssertTrue(resultWithHeader.equalsByElementData(resultWithoutHeader));
+}

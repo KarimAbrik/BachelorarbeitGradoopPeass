@@ -1,0 +1,5 @@
+@Override
+public EdgeGroupItem join(EdgeGroupItem edge, VertexWithSuperVertex idTuple) throws Exception {
+    edge.setField(idTuple.getSuperVertexId(), field);
+    return edge;
+}

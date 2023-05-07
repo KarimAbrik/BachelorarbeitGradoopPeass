@@ -1,0 +1,15 @@
+/**
+ * Test writing and reading the given graph to and from CSV
+ *
+ * @param tmpPath path to write csv
+ * @param input graph collection
+ * @throws Exception if the execution or IO fails.
+ */
+private void checkIndexedCSVWrite(String tmpPath, GraphCollection input) throws Exception {
+    DataSink indexedCSVDataSink = new IndexedCSVDataSink(tmpPath, getConfig());
+    indexedCSVDataSink.write(input, true);
+    getExecutionEnvironment().execute();
+    DataSource indexedCSVDataSource = new IndexedCSVDataSource(tmpPath, getConfig());
+    GraphCollection output = indexedCSVDataSource.getGraphCollection();
+    collectAndAssertTrue(input.equalsByGraphElementData(output));
+}

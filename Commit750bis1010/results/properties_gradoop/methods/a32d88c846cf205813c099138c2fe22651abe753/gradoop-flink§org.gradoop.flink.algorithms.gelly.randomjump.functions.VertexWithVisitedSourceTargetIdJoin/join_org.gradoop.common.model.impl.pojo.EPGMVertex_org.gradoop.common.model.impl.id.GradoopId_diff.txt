@@ -1,0 +1,7 @@
+@Override
+public EPGMVertex join(EPGMVertex vertex, GradoopId visitedId) throws Exception {
+    if (visitedId != null) {
+        vertex.setProperty(propertyKey, true);
+    }
+    return vertex;
+}

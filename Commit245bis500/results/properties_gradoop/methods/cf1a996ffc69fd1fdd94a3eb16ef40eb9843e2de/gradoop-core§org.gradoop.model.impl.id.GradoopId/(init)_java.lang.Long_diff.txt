@@ -1,0 +1,11 @@
+/**
+ * Initializes a GradoopId from the given parameter.
+ *
+ * @param identifier long identifier
+ */
+GradoopId(Long identifier) {
+    if (identifier == null) {
+        throw new IllegalArgumentException("Identifier must not be null.");
+    }
+    this.identifier = identifier;
+}

@@ -1,0 +1,14 @@
+/**
+ * Constructor for connected components with property key and a maximum number of iterations
+ * and a boolean to determine, if the component property is written to edges, too.
+ *
+ * @param propertyKey   Property key to store the component id in.
+ * @param maxIterations The maximum number of iterations.
+ * @param annotateEdges Whether to write the component property to the edges
+ */
+public AnnotateWeaklyConnectedComponents(String propertyKey, int maxIterations, boolean annotateEdges) {
+    super(new VertexToGellyVertexWithGradoopId(), new EdgeToGellyEdgeWithNullValue());
+    this.propertyKey = propertyKey;
+    this.maxIterations = maxIterations;
+    this.annotateEdges = annotateEdges;
+}

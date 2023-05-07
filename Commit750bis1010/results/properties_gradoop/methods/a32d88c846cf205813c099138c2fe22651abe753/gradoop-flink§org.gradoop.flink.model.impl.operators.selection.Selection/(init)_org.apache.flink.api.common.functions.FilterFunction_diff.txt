@@ -1,0 +1,8 @@
+/**
+ * Creates a new Selection operator.
+ *
+ * @param predicate user-defined predicate function
+ */
+public Selection(FilterFunction<G> predicate) {
+    this.predicate = Objects.requireNonNull(predicate, "Predicate function was null");
+}

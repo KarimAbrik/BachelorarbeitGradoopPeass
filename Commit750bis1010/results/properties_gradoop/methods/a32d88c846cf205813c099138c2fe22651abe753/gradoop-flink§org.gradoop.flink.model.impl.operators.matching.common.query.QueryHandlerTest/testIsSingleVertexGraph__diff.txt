@@ -1,0 +1,5 @@
+@Test
+public void testIsSingleVertexGraph() {
+    assertFalse(QUERY_HANDLER.isSingleVertexGraph());
+    assertTrue(new QueryHandler("(v0)").isSingleVertexGraph());
+}

@@ -1,0 +1,7 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public Iterator<GD> getGraphSpace() throws IOException {
+    return getGraphSpace(GConstants.HBASE_DEFAULT_SCAN_CACHE_SIZE);
+}

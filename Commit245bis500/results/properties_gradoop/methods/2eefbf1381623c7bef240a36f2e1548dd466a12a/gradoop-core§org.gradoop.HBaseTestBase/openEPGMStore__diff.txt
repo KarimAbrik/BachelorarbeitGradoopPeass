@@ -1,0 +1,9 @@
+/**
+ * Open EPGMStore for test purposes.
+ *
+ * @return EPGMStore with vertices and edges
+ */
+public static EPGMStore<VertexPojo, EdgePojo, GraphHeadPojo> openEPGMStore() {
+    Configuration config = utility.getConfiguration();
+    return HBaseEPGMStoreFactory.createOrOpenEPGMStore(config, GradoopHBaseConfig.getDefaultConfig());
+}

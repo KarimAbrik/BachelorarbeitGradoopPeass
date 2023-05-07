@@ -1,0 +1,13 @@
+@Test
+public void testVertex() {
+    Properties props = Properties.create();
+    props.set("k1", "v1");
+    props.set("k2", "v2");
+    props.set("k3", "v3");
+    Vertex vertex = new EPGMVertexFactory().initVertex(GradoopId.get(), "A", props);
+    TransformationFunction<Vertex> removeFunction = new RemoveProperties<>("k1", "k2");
+    removeFunction.apply(vertex, vertex);
+    assertEquals(1, vertex.getPropertyCount());
+    assertTrue(vertex.hasProperty("k3"));
+    assertEquals("v3", vertex.getPropertyValue("k3").getString());
+}

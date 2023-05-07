@@ -1,0 +1,11 @@
+/**
+ * Executes gelly algorithm and post process the result.
+ *
+ * @param graph The Gelly graph.
+ * @return List of VertexId and ComponentId.
+ * @throws Exception in case of failure.
+ */
+@Override
+public DataSet<Tuple2<Long, Long>> executeInGelly(Graph<Long, Long, NullValue> graph) throws Exception {
+    return new ConnectedComponents<Long, Long, NullValue>(maxIteration).run(graph).map(new MapVertexIdComponentId());
+}

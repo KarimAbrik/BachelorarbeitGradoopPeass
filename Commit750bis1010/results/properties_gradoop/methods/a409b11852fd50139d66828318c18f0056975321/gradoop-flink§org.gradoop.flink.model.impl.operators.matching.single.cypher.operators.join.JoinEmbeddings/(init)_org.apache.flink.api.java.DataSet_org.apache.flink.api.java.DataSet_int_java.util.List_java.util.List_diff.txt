@@ -1,0 +1,12 @@
+/**
+ * Instantiates a new join operator.
+ *
+ * @param left embeddings of the left side of the join
+ * @param right embeddings of the right side of the join
+ * @param rightColumns number of columns in the right side of the join
+ * @param leftJoinColumns specifies the join columns of the left side
+ * @param rightJoinColumns specifies the join columns of the right side
+ */
+public JoinEmbeddings(DataSet<Embedding> left, DataSet<Embedding> right, int rightColumns, List<Integer> leftJoinColumns, List<Integer> rightJoinColumns) {
+    this(left, right, rightColumns, leftJoinColumns, rightJoinColumns, Collections.emptyList(), Collections.emptyList(), Collections.emptyList(), Collections.emptyList());
+}

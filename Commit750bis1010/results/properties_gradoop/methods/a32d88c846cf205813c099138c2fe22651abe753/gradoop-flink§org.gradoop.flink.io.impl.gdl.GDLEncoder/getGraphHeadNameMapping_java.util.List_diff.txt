@@ -1,0 +1,15 @@
+/**
+ * Returns a mapping between the graph heads gradoop ids and the GDL variable names.
+ *
+ * @param graphHeads The graph heads.
+ * @return Mapping between graph head and GDL variable name.
+ */
+private Map<GradoopId, String> getGraphHeadNameMapping(List<G> graphHeads) {
+    Map<GradoopId, String> idToGraphHeadName = new HashMap<>(graphHeads.size());
+    for (int i = 0; i < graphHeads.size(); i++) {
+        G graphHead = graphHeads.get(i);
+        String gName = String.format("%s%s", GRAPH_VARIABLE_PREFIX, i);
+        idToGraphHeadName.put(graphHead.getId(), gName);
+    }
+    return idToGraphHeadName;
+}

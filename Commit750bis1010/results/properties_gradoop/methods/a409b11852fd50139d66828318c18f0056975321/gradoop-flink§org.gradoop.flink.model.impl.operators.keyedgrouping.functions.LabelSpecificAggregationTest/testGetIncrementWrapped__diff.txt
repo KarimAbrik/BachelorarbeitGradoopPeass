@@ -1,0 +1,16 @@
+/**
+ * Test if the increment is properly wrapped for values that should be aggregated.
+ */
+@Test
+public void testGetIncrementWrapped() {
+    final VertexFactory<EPGMVertex> vf = getConfig().getLogicalGraphFactory().getVertexFactory();
+    final EPGMVertex vertexWithLabel = vf.createVertex(expectedLabel);
+    final EPGMVertex vertexWithoutLabel = vf.createVertex("otherLabel");
+    assertEquals(NULL_VALUE, wrapped.getIncrement(vertexWithoutLabel));
+    final PropertyValue increment = wrapped.getIncrement(vertexWithLabel);
+    assertTrue(increment.isList());
+    final List<PropertyValue> listValue = increment.getList();
+    assertEquals(2, listValue.size());
+    assertEquals(PropertyValue.create((short) 1), listValue.get(0));
+    assertEquals(originalFunction.getIncrement(vertexWithLabel), listValue.get(1));
+}

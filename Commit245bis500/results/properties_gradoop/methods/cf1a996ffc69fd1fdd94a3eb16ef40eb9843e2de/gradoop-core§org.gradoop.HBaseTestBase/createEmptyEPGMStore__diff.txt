@@ -1,0 +1,5 @@
+public static EPGMStore<VertexPojo, EdgePojo, GraphHeadPojo> createEmptyEPGMStore() {
+    Configuration config = utility.getConfiguration();
+    HBaseEPGMStoreFactory.deleteEPGMStore(config);
+    return HBaseEPGMStoreFactory.createOrOpenEPGMStore(config, GradoopHBaseConfig.getDefaultConfig());
+}

@@ -1,0 +1,9 @@
+/**                                                                                                  |                                                                                                     
+* {@inheritDoc}                                                                                      |                                                                                                     
+*/                                                                                                   |                                                                                                     
+@Override                                                                                            |                                                                                                     
+public GraphHeadPojo createGraphHead(final Long id, final String label, Map&lt;String, Object&gt; pr |                                                                                                     
+checkId(id);                                                                                         |                                                                                                     
+checkLabel(label);                                                                                   |                                                                                                     
+return new GraphHeadPojo(id, label, properties);                                                     |                                                                                                     
+}                                                                                                    |                                                                                                     

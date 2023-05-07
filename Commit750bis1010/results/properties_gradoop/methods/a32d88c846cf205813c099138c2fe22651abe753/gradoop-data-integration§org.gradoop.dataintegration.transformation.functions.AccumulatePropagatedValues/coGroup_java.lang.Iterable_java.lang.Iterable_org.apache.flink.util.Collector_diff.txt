@@ -1,0 +1,23 @@
+@Override
+public void coGroup(Iterable<Tuple2<GradoopId, PropertyValue>> propertyValues, Iterable<V> elements, Collector<V> out) {
+    // should only contain one vertex, based on the uniqueness of gradoop ids
+    Iterator<V> iterator = elements.iterator();
+    if (!iterator.hasNext()) {
+        return;
+    }
+    V targetVertex = iterator.next();
+    // If the vertex is not whitelisted by the targetVertexLabels list,
+    // forward it without modification.
+    if (targetVertexLabels != null && !targetVertexLabels.contains(targetVertex.getLabel())) {
+        out.collect(targetVertex);
+        return;
+    }
+    // collect values of neighbors
+    List<PropertyValue> values = new ArrayList<>();
+    propertyValues.forEach(t -> values.add(t.f1));
+    // Add to vertex if and only if at least one property was propagated.
+    if (!values.isEmpty()) {
+        targetVertex.setProperty(targetVertexPropertyKey, PropertyValue.create(values));
+    }
+    out.collect(targetVertex);
+}

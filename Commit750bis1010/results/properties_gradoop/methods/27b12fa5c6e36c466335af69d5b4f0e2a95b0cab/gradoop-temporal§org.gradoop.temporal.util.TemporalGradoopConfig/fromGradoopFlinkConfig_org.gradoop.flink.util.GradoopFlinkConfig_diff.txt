@@ -1,0 +1,9 @@
+/**
+ * Create a new config from an existing {@link GradoopFlinkConfig}.
+ *
+ * @param config The existing configuration.
+ * @return A new temporal Gradoop config.
+ */
+public static TemporalGradoopConfig fromGradoopFlinkConfig(GradoopFlinkConfig config) {
+    return new TemporalGradoopConfig(config);
+}

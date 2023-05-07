@@ -1,0 +1,10 @@
+/**
+ * Returns the subgraph that is induced by the edges which fulfill the given filter function.
+ *
+ * @param edgeFilterFunction edge filter function
+ * @return edge-induced subgraph
+ */
+default LG edgeInducedSubgraph(FilterFunction<E> edgeFilterFunction) {
+    Objects.requireNonNull(edgeFilterFunction);
+    return callForGraph(new Subgraph<>(null, edgeFilterFunction, Subgraph.Strategy.EDGE_INDUCED));
+}

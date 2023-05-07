@@ -1,0 +1,9 @@
+@Override
+public Graph<Long, VCIVertexValue, Long> transformToGelly(LogicalGraph graph) {
+    this.currentGraph = graph;
+    indexToVertexIdMap = DataSetUtils.zipWithIndex(graph.getVertices().map(new Id<>()));
+    indexToEdgeIdMap = DataSetUtils.zipWithIndex(graph.getEdges().map(new Id<>()));
+    DataSet<Vertex<Long, VCIVertexValue>> vertices = indexToVertexIdMap.map(new LongIdToGellyVertexWithVCIValueMap());
+    DataSet<Edge<Long, Long>> edges = graph.getEdges().join(indexToVertexIdMap).where(new SourceId<>()).equalTo(1).with(new LongIdWithEdgeToTupleJoin()).join(indexToVertexIdMap).where(1).equalTo(1).with(new ReplaceTargetWithLongIdJoin()).join(indexToEdgeIdMap).where(2).equalTo(1).with(new LongIdTupleToGellyEdgeWithLongValueJoin());
+    return Graph.fromDataSet(vertices, edges, graph.getConfig().getExecutionEnvironment());
+}

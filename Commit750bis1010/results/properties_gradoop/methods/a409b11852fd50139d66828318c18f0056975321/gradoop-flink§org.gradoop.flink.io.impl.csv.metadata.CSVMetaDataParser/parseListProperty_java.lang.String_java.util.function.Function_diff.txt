@@ -1,0 +1,11 @@
+/**
+ * Parse function to translate string representation of a List to a list of PropertyValues
+ *
+ * @param s          the string to parse as list, e.g. "[myString1,myString2]"
+ * @param itemParser the function to parse the list items
+ * @return the list represented by the argument
+ */
+private static Object parseListProperty(String s, Function<String, Object> itemParser) {
+    s = s.substring(1, s.length() - 1);
+    return Arrays.stream(StringEscaper.split(s, CSVConstants.LIST_DELIMITER)).map(itemParser).map(PropertyValue::create).collect(Collectors.toList());
+}

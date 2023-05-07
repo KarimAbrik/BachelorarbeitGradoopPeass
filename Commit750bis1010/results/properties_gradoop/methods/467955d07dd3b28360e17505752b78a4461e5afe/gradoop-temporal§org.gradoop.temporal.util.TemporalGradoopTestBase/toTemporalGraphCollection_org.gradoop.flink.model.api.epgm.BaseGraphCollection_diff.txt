@@ -1,0 +1,9 @@
+/**
+ * Convert some graph collection to a {@link TemporalGraphCollection}.
+ *
+ * @param collection The graph collection.
+ * @return The resulting temporal graph collection.
+ */
+protected TemporalGraphCollection toTemporalGraphCollection(BaseGraphCollection<?, ?, ?, ?, ?> collection) {
+    return getConfig().getTemporalGraphCollectionFactory().fromNonTemporalGraphCollection(collection);
+}

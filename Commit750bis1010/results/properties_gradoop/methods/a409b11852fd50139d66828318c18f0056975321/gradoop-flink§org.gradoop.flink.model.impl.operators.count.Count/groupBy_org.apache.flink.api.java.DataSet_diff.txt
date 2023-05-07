@@ -1,0 +1,12 @@
+/**
+ * Groups the input dataset by the contained elements and counts the elements
+ * per group. Returns a {@link Tuple2} containing the group element and the
+ * corresponding count value.
+ *
+ * @param dataSet input dataset
+ * @param <T>     element type in input dataset
+ * @return {@link Tuple2} with group value and group count
+ */
+public static <T> DataSet<Tuple2<T, Long>> groupBy(DataSet<T> dataSet) {
+    return dataSet.map(new Tuple2WithObjectAnd1L<>()).groupBy(0).sum(1);
+}

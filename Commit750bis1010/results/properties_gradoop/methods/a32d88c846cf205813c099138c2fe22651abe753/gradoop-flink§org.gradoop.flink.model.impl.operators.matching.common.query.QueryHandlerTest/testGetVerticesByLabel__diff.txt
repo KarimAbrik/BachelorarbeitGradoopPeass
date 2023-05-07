@@ -1,0 +1,6 @@
+@Test
+public void testGetVerticesByLabel() throws Exception {
+    List<Vertex> bVertices = Lists.newArrayList(QUERY_HANDLER.getVerticesByLabel("B"));
+    List<Vertex> expected = Lists.newArrayList(GDL_HANDLER.getVertexCache().get("v2"), GDL_HANDLER.getVertexCache().get("v3"));
+    assertTrue(elementsEqual(bVertices, expected));
+}

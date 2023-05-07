@@ -1,0 +1,47 @@
+/**
+ * Run the actual bulk load job.
+ *
+ * @param conf          cluster config
+ * @param readerClass   class for reading input lines
+ * @param graphFileName input file
+ * @param outputDirName hfile output dir
+ * @param verbose       print job output
+ * @return true, iff the job succeeded
+ * @throws Exception
+ */
+private boolean runBulkLoad(final Configuration conf, final Class<? extends VertexLineReader> readerClass, final String graphFileName, final String outputDirName, final boolean verbose) throws Exception {
+    Path inputFile = new Path(graphFileName);
+    Path outputDir = new Path(outputDirName);
+    // set line reader to read lines in input splits
+    conf.setClass(BulkLoadEPG.VERTEX_LINE_READER, readerClass, VertexLineReader.class);
+    // set vertex handler that creates the hbase Puts
+    conf.setClass(BulkLoadEPG.VERTEX_HANDLER, EPGVertexHandler.class, VertexHandler.class);
+    // create job
+    Job job = Job.getInstance(conf, JOB_NAME);
+    job.setJarByClass(BulkLoadDriver.class);
+    // mapper the runs the HFile conversion
+    job.setMapperClass(BulkLoadEPG.class);
+    // input format for mapper (File)
+    job.setInputFormatClass(TextInputFormat.class);
+    // output key class of Mapper
+    job.setMapOutputKeyClass(ImmutableBytesWritable.class);
+    // output value class of Mapper
+    job.setMapOutputValueClass(Put.class);
+    // set input file
+    FileInputFormat.addInputPath(job, inputFile);
+    // set output directory
+    FileOutputFormat.setOutputPath(job, outputDir);
+    HTable htable = new HTable(conf, GConstants.DEFAULT_TABLE_VERTICES);
+    // auto configure partitioner and reducer based on table settings (e.g.
+    // number of regions)
+    HFileOutputFormat2.configureIncrementalLoad(job, htable);
+    // run job
+    if (!job.waitForCompletion(verbose)) {
+        LOG.error("Error during hfile creation, stopping job.");
+        return false;
+    }
+    // load created HFiles to the region servers
+    LoadIncrementalHFiles loader = new LoadIncrementalHFiles(conf);
+    loader.doBulkLoad(outputDir, htable);
+    return true;
+}

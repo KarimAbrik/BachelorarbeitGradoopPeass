@@ -1,0 +1,4 @@
+@Override                                                                                              @Override                                                                                           
+public String getAggregatePropertyKey() {                                                              public String getAggregatePropertyKey() {                                                           
+return "max_" + propertyKey;                                                                         | return PROPERTY_KEY_PREFIX_MAX + propertyKey;                                                       
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,11 @@
+/**
+ * Returns all edges that point to the source vertex of the given edge or
+ * {@code null} if the edge has no predecessors.
+ *
+ * @param edgeId edge id
+ * @return preceding edges or {@code null}
+ */
+public Collection<Edge> getPredecessors(Long edgeId) {
+    Collection<Edge> predecessors = getEdgesByTargetVertexId(getEdgeById(edgeId).getSourceVertexId());
+    return predecessors != null ? Lists.newArrayList(predecessors) : Lists.newArrayList();
+}

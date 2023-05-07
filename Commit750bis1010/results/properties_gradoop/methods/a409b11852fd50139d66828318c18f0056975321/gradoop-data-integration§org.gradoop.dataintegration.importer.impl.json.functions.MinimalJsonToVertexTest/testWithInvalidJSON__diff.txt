@@ -1,0 +1,9 @@
+/**
+ * Test if an invalid JSON throws an exception.
+ *
+ * @throws Exception if the execution fails or the JSON object is invalid.
+ */
+@Test(expected = JSONException.class)
+public void testWithInvalidJSON() throws Exception {
+    function.map("{");
+}

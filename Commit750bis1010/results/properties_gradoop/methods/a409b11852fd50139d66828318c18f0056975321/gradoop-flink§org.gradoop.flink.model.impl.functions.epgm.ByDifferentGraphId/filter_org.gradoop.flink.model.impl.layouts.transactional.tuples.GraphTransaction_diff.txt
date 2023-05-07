@@ -1,0 +1,4 @@
+@Override
+public boolean filter(GraphTransaction graphTransaction) throws Exception {
+    return !graphTransaction.getGraphHead().getId().equals(graphId);
+}

@@ -1,0 +1,12 @@
+                                                                                                     | /**                                                                                                 
+                                                                                                     | * constructor from multiple given ids                                                               
+                                                                                                     | * @param ids given ids                                                                              
+                                                                                                     | * @return gradoop ids                                                                               
+                                                                                                     | */                                                                                                  
+                                                                                                     | public static GradoopIds fromExisting(GradoopId... ids) {                                           
+                                                                                                     | GradoopIds gradoopIds = new GradoopIds();                                                           
+                                                                                                     | for (GradoopId id : ids) {                                                                          
+                                                                                                     | gradoopIds.add(id);                                                                                 
+                                                                                                     | }                                                                                                   
+                                                                                                     | return gradoopIds;                                                                                  
+                                                                                                     | }                                                                                                   

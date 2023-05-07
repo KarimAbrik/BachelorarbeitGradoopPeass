@@ -1,0 +1,4 @@
+@Override
+public GraphCollection fromGraph(LogicalGraphLayout<EPGMGraphHead, EPGMVertex, EPGMEdge> logicalGraphLayout) {
+    return new GraphCollection(layoutFactory.fromGraphLayout(logicalGraphLayout), config);
+}

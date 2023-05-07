@@ -1,0 +1,9 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public GraphHeadPojo createGraphHead(final GradoopId id, final String label, Map<String, Object> properties) {
+    checkId(id);
+    checkLabel(label);
+    return new GraphHeadPojo(id, label, properties);
+}

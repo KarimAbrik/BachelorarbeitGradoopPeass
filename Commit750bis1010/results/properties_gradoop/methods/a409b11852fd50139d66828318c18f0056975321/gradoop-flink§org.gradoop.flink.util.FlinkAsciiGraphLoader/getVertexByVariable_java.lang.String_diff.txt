@@ -1,0 +1,10 @@
+/**
+ * Returns the vertex which is identified by the given variable. If the
+ * variable cannot be found, the method returns {@code null}.
+ *
+ * @param variable vertex variable
+ * @return vertex or {@code null} if variable is not used
+ */
+public EPGMVertex getVertexByVariable(String variable) {
+    return loader.getVertexByVariable(variable);
+}

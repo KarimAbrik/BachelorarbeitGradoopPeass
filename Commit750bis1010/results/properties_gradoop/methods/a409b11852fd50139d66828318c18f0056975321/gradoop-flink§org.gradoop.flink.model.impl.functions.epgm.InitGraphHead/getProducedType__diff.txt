@@ -1,0 +1,4 @@
+@Override
+public TypeInformation<EPGMGraphHead> getProducedType() {
+    return TypeExtractor.createTypeInfo(graphHeadFactory.getType());
+}

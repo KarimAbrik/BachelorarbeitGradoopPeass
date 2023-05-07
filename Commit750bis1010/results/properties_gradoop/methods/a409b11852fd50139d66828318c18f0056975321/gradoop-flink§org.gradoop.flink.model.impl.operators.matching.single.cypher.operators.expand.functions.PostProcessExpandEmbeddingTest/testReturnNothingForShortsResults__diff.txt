@@ -1,0 +1,6 @@
+@Test
+public void testReturnNothingForShortsResults() throws Exception {
+    List<Embedding> result = new ArrayList<>();
+    new PostProcessExpandEmbedding(3, -1).flatMap(expandEmbedding(), new ListCollector<>(result));
+    assertEquals(0, result.size());
+}

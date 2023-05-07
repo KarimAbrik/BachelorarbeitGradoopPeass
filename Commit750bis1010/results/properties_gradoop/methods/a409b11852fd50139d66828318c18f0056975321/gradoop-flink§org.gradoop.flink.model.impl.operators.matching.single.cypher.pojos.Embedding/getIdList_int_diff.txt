@@ -1,0 +1,16 @@
+/**
+ * Returns the ID-List stored at the specified column
+ * @param column the entries index
+ * @return ID-List stored at the specified column
+ */
+public List<GradoopId> getIdList(int column) {
+    int offset = getIdListOffset(column);
+    int listSize = Ints.fromByteArray(ArrayUtils.subarray(idListData, offset, offset + Integer.BYTES));
+    offset += Integer.BYTES;
+    List<GradoopId> idList = new ArrayList<>(listSize);
+    for (int i = 0; i < listSize; i++) {
+        idList.add(GradoopId.fromByteArray(ArrayUtils.subarray(idListData, offset, offset + GradoopId.ID_SIZE)));
+        offset += GradoopId.ID_SIZE;
+    }
+    return idList;
+}

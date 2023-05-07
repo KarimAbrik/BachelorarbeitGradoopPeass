@@ -1,0 +1,5 @@
+@Test
+public void testFromLongs() throws Exception {
+    GradoopIds ids = GradoopIds.fromLongs(0L, 1L, 3L);
+    assertThat(ids.size(), is(3));
+}

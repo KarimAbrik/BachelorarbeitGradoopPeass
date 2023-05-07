@@ -1,0 +1,8 @@
+/**
+ * Returns the wrapped value as {@code short}.
+ *
+ * @return {@code short} value
+ */
+public short getShort() {
+    return Bytes.toShort(rawBytes, OFFSET);
+}

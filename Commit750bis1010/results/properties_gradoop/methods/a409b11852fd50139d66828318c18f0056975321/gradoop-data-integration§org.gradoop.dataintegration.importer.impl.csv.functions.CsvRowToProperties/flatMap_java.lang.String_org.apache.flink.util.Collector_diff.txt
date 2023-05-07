@@ -1,0 +1,22 @@
+@Override
+public void flatMap(String line, Collector<Properties> out) {
+    // Check if the line is an empty line
+    if (line.isEmpty()) {
+        return;
+    }
+    String[] propertyValues = line.split(tokenSeparator);
+    // If the line to read is equals to the header and the checkReoccurringHeader flag is set to
+    // TRUE, we do not import this line.
+    if (checkReoccurringHeader && propertyNames.containsAll(Arrays.asList(propertyValues))) {
+        return;
+    }
+    // clear the properties
+    reuseProperties.clear();
+    for (int i = 0; i < propertyValues.length; i++) {
+        // if a value is empty, do not add a property
+        if (!propertyValues[i].isEmpty()) {
+            reuseProperties.set(propertyNames.get(i), PropertyValue.create(propertyValues[i]));
+        }
+    }
+    out.collect(reuseProperties);
+}

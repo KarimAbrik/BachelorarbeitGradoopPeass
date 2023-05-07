@@ -1,0 +1,8 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public PropertyValue getPropertyValue(String key) {
+    // TODO: return PropertyValue.NULL_VALUE instead?
+    return (properties != null) ? properties.get(key) : null;
+}

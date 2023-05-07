@@ -1,0 +1,18 @@
+/**
+ * Initializes a cache for the given data where every key maps to exactly one element (injective).
+ * Key selector will be called on every element to extract the caches key.
+ * Value selector will be called on every element to extract the value.
+ * Returns a cache of type
+ * KT -> VT
+ *
+ * @param elements elements the cache will be build from
+ * @param keySelector key selector function extraction cache keys from elements
+ * @param valueSelector value selector function extraction cache values from elements
+ * @param <EL> the element type
+ * @param <KT> the cache key type
+ * @param <VT> the cache value type
+ * @return cache KT -> VT
+ */
+private <EL, KT, VT> Map<KT, VT> initCache(Collection<EL> elements, Function<EL, KT> keySelector, Function<EL, VT> valueSelector) {
+    return elements.stream().collect(Collectors.toMap(keySelector, valueSelector));
+}

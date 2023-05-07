@@ -1,0 +1,6 @@
+@Test
+public void testGetValue() throws Exception {
+    PropertyValue propertyValue = PropertyValue.create(10);
+    Property p = new Property("key", propertyValue);
+    assertEquals(propertyValue, p.getValue());
+}

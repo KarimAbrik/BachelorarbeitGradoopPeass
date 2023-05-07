@@ -1,0 +1,11 @@
+/**
+ * Set the grouping strategy. See {@link GroupingStrategy}.
+ *
+ * @param strategy grouping strategy
+ * @return this builder
+ */
+public GroupingBuilder setStrategy(GroupingStrategy strategy) {
+    Objects.requireNonNull(strategy);
+    this.strategy = strategy;
+    return this;
+}

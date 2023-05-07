@@ -1,0 +1,22 @@
+/**                                                                                                    /**                                                                                                 
+* Sets the wrapped value as {@code Map} value.                                                         * Sets the wrapped value as {@code Map} value.                                                      
+*                                                                                                      *                                                                                                   
+* @param map value                                                                                     * @param map value                                                                                  
+*/                                                                                                     */                                                                                                  
+public void setMap(Map&lt;PropertyValue, PropertyValue&gt; map) {                                      public void setMap(Map&lt;PropertyValue, PropertyValue&gt; map) {                                   
+int size = map.keySet().stream().mapToInt(PropertyValue::byteSize).sum() + map.values().stream().map   int size = map.keySet().stream().mapToInt(PropertyValue::byteSize).sum() + map.values().stream().map
+ByteArrayOutputStream byteStream = new ByteArrayOutputStream(size);                                    ByteArrayOutputStream byteStream = new ByteArrayOutputStream(size);                                 
+DataOutputStream outputStream = new DataOutputStream(byteStream);                                      DataOutputStream outputStream = new DataOutputStream(byteStream);                                   
+DataOutputView outputView = new DataOutputViewStreamWrapper(outputStream);                             DataOutputView outputView = new DataOutputViewStreamWrapper(outputStream);                          
+try {                                                                                                  try {                                                                                               
+outputStream.write(TYPE_MAP);                                                                          outputStream.write(TYPE_MAP);                                                                       
+for (Map.Entry&lt;PropertyValue, PropertyValue&gt; entry : map.entrySet()) {                           for (Map.Entry&lt;PropertyValue, PropertyValue&gt; entry : map.entrySet()) {                        
+entry.getKey().write(outputView);                                                                      entry.getKey().write(outputView);                                                                   
+entry.getValue().write(outputView);                                                                    entry.getValue().write(outputView);                                                                 
+}                                                                                                      }                                                                                                   
+} catch (IOException e) {                                                                              } catch (IOException e) {                                                                           
+throw new RuntimeException("Error writing PropertyValue");                                             throw new RuntimeException("Error writing PropertyValue");                                          
+}                                                                                                      }                                                                                                   
+this.rawBytes = byteStream.toByteArray();                                                              this.rawBytes = byteStream.toByteArray();                                                           
+validateBytesLength();                                                                               |                                                                                                     
+}                                                                                                      }                                                                                                   

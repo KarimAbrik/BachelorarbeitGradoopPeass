@@ -1,0 +1,12 @@
+/**
+ * Add an aggregate function which is applied on all edges represented by a single super edge
+ * which do not have a specific label group.
+ *
+ * @param aggregateFunction edge aggregate function
+ * @return this builder
+ */
+public GroupingBuilder addEdgeAggregateFunction(AggregateFunction aggregateFunction) {
+    Objects.requireNonNull(aggregateFunction, "Aggregate function must not be null");
+    defaultEdgeLabelGroup.addAggregateFunction(aggregateFunction);
+    return this;
+}

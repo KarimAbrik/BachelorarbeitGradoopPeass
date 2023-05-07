@@ -1,0 +1,14 @@
+/**
+ * Set the valid time tuple (valid-from, valid-to). Needed because of Flink's POJO rules.
+ *
+ * @param validTime a {@link Tuple2} representing the valid time interval
+ */
+public void setValidTime(Tuple2<Long, Long> validTime) {
+    Objects.requireNonNull(validTime);
+    Objects.requireNonNull(validTime.f0);
+    Objects.requireNonNull(validTime.f1);
+    if (validTime.f0 > validTime.f1) {
+        throw new IllegalArgumentException("valid-from time can not be after valid-to time");
+    }
+    this.validTime = validTime;
+}

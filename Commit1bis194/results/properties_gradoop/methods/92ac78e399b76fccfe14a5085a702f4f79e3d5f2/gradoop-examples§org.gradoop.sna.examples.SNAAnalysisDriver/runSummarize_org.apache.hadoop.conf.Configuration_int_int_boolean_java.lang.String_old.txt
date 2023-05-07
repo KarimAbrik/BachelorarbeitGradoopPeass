@@ -1,0 +1,29 @@
+private boolean runSummarize(Configuration conf, int scanCache, int reducers, boolean verbose, String path) throws IOException, ClassNotFoundException, InterruptedException {
+    Path outputPath = new Path(path);
+    /*
+     mapper settings
+      */
+    // vertex handler
+    conf.setClass(GConstants.VERTEX_HANDLER_CLASS, EPGVertexHandler.class, VertexHandler.class);
+    /*
+    reducer settings
+     */
+    // graph handler
+    conf.setClass(GConstants.GRAPH_HANDLER_CLASS, EPGGraphHandler.class, GraphHandler.class);
+    Job job = Job.getInstance(conf, JOB_PREFIX + Summarize.class.getName());
+    Scan scan = new Scan();
+    scan.setCaching(scanCache);
+    scan.setCacheBlocks(false);
+    // map
+    TableMapReduceUtil.initTableMapperJob(GConstants.DEFAULT_TABLE_VERTICES, scan, Summarize.SelectMapper.class, LongWritable.class, SummarizeWritable.class, job);
+    // reduce
+    //    TableMapReduceUtil.initTableReducerJob(GConstants.DEFAULT_TABLE_GRAPHS,
+    //      Summarize.TextReducer.class, job);
+    job.setReducerClass(Summarize.TextReducer.class);
+    job.setNumReduceTasks(reducers);
+    job.setOutputFormatClass(TextOutputFormat.class);
+    conf.set(TextOutputFormat.SEPERATOR, " ");
+    FileOutputFormat.setOutputPath(job, outputPath);
+    // run
+    return job.waitForCompletion(verbose);
+}

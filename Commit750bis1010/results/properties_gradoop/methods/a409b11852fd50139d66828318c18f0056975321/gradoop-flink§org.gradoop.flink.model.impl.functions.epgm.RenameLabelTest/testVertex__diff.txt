@@ -1,0 +1,15 @@
+@Test
+public void testVertex() {
+    GradoopId vertexId = GradoopId.get();
+    String label = "A";
+    Properties props = Properties.create();
+    props.set("k1", "v1");
+    props.set("k2", "v2");
+    Vertex vertex = new EPGMVertexFactory().initVertex(vertexId, label, props);
+    String newLabel = "B";
+    TransformationFunction<Vertex> renameFunction = new RenameLabel<>(label, newLabel);
+    renameFunction.apply(vertex, vertex);
+    assertEquals(newLabel, vertex.getLabel());
+    assertThat(vertex.getPropertyValue("k1").toString(), Is.<Object>is("v1"));
+    assertThat(vertex.getPropertyValue("k2").toString(), Is.<Object>is("v2"));
+}

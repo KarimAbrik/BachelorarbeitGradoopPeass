@@ -1,0 +1,11 @@
+/**
+ * New embeddings add operator
+ *
+ * @param input input embeddings
+ * @param count number of elements to add
+ */
+public AddEmbeddingsElements(DataSet<Embedding> input, int count) {
+    this.input = input;
+    this.count = count;
+    this.setName("AddEmbeddingsElements");
+}

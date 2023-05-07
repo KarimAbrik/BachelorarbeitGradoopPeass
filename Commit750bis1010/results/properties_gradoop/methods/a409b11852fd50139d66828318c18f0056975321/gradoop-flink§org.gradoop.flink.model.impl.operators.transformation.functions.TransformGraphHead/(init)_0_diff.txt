@@ -1,0 +1,10 @@
+/**
+ * Constructor
+ *
+ * @param transformationFunction  graph head modification function
+ * @param epgmGraphHeadFactory      graph head factory
+ */
+public TransformGraphHead(TransformationFunction<G> transformationFunction, GraphHeadFactory<G> epgmGraphHeadFactory) {
+    super(transformationFunction);
+    this.graphHeadFactory = checkNotNull(epgmGraphHeadFactory);
+}

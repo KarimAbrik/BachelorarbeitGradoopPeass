@@ -1,0 +1,8 @@
+/**
+ * factory method to create from a string representing a long value
+ * @param string long string
+ * @return new id
+ */
+public static GradoopId fromLongString(String string) {
+    return GradoopId.fromLong(Long.valueOf(string));
+}

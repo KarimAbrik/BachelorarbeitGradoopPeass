@@ -1,0 +1,11 @@
+/**
+ * Creates an Embedding with the given data
+ * @param idData id data stored in a byte array
+ * @param propertyData Properties stored in internal byte array format
+ * @param idListData IdLists stored in internal byte array format
+ */
+public Embedding(byte[] idData, byte[] propertyData, byte[] idListData) {
+    this.idData = idData;
+    this.propertyData = propertyData;
+    this.idListData = idListData;
+}

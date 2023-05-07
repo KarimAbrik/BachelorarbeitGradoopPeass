@@ -1,0 +1,8 @@
+@Override
+public G map(Tuple2<GradoopId, GradoopId> idTuple) {
+    G head = graphHeadFactory.initGraphHead(idTuple.f0);
+    Properties properties = Properties.createWithCapacity(1);
+    properties.set("lineage", idTuple.f1);
+    head.setProperties(properties);
+    return head;
+}

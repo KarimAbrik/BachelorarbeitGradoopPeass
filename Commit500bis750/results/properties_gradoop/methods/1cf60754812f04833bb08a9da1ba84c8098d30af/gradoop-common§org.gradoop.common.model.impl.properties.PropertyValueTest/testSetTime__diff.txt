@@ -1,0 +1,6 @@
+@Test
+public void testSetTime() throws Exception {
+    PropertyValue p = new PropertyValue();
+    p.setTime(TIME_VAL_c);
+    assertEquals(TIME_VAL_c, p.getTime());
+}

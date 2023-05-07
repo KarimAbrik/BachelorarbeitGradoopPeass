@@ -1,0 +1,11 @@
+/**
+ * Sets the wrapped value as {@code String} value.
+ *
+ * @param stringValue value
+ */
+public void setString(String stringValue) {
+    byte[] valueBytes = Bytes.toBytes(stringValue);
+    rawBytes = new byte[OFFSET + valueBytes.length];
+    rawBytes[0] = TYPE_STRING;
+    Bytes.putBytes(rawBytes, OFFSET, valueBytes, 0, valueBytes.length);
+}

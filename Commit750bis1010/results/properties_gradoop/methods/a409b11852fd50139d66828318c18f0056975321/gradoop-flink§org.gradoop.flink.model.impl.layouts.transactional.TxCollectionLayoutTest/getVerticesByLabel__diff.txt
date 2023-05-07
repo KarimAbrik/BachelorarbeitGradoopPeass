@@ -1,0 +1,5 @@
+@Test
+public void getVerticesByLabel() throws Exception {
+    TxCollectionLayout layout = new TxCollectionLayout(getExecutionEnvironment().fromElements(tx0, tx1));
+    GradoopTestUtils.validateGraphElementCollections(tx0.getVertices().stream().filter(v -> v.getLabel().equals("A")).collect(Collectors.toList()), layout.getVerticesByLabel("A").collect());
+}

@@ -1,0 +1,12 @@
+/**
+ * Creates a graph collection from the given arguments.
+ *
+ * @param layout Graph collection layout
+ * @param config Gradoop Flink configuration
+ */
+GraphCollection(GraphCollectionLayout layout, GradoopFlinkConfig config) {
+    Objects.requireNonNull(layout);
+    Objects.requireNonNull(config);
+    this.layout = layout;
+    this.config = config;
+}

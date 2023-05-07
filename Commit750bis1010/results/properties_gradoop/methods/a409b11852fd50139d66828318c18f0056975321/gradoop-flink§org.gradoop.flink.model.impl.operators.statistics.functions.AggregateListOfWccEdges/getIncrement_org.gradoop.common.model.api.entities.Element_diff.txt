@@ -1,0 +1,6 @@
+@Override
+public PropertyValue getIncrement(Element edge) {
+    List<PropertyValue> valueList = new ArrayList<>();
+    valueList.add(PropertyValue.create(edge.getPropertyValue(wccPropertyKey).toString()));
+    return PropertyValue.create(valueList);
+}

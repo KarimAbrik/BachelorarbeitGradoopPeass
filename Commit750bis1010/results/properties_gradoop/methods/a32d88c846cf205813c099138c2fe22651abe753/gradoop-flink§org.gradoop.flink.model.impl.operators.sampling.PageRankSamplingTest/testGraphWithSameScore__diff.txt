@@ -1,0 +1,13 @@
+/**
+ * Test special graph with the same page rank score for each vertex.
+ *
+ * @throws Exception on failure
+ */
+@Test
+public void testGraphWithSameScore() throws Exception {
+    // test special graph
+    LogicalGraph specialGraph = getLoaderFromString("(alice:Person {name : \"Alice\"})\n" + "(eve:Person {name : \"Eve\"})\n" + "g0:Community {interest : \"Friends\", vertexCount : 2} [\n" + "(eve)-[eka:knows {since : 2013}]->(alice)\n" + "(alice)-[ake:knows {since : 2013}]->(eve)]").getLogicalGraphByVariable("g0");
+    LogicalGraph sampledGraph = getSamplingOperator().sample(specialGraph);
+    validateGraph(specialGraph, sampledGraph);
+    validateSpecific(specialGraph, sampledGraph);
+}

@@ -1,0 +1,12 @@
+/**
+ * Initializes an edge using the specified parameters.
+ *
+ * @param out flat map collector
+ * @param graphHead graph head to assign edge to
+ * @param edgeId edge identifier
+ * @param sourceId source vertex identifier
+ * @param targetId target vertex identifier
+ */
+private void initEdge(Collector<Element> out, G graphHead, GradoopId edgeId, GradoopId sourceId, GradoopId targetId) {
+    initEdgeWithData(out, graphHead, edgeId, sourceId, targetId, null);
+}

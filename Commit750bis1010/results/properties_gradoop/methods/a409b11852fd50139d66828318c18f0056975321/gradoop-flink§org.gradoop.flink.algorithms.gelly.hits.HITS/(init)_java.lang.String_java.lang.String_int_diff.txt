@@ -1,0 +1,13 @@
+/**
+ * HITS with fixed number of iterations
+ *
+ * @param authorityPropertyKey Property key to store the authority score.
+ * @param hubPropertyKey       Property key to store the hub score.
+ * @param iterations           number of iterations
+ */
+public HITS(String authorityPropertyKey, String hubPropertyKey, int iterations) {
+    super(new VertexToGellyVertexWithNullValue(), new EdgeToGellyEdgeWithNullValue());
+    this.authorityPropertyKey = authorityPropertyKey;
+    this.hubPropertyKey = hubPropertyKey;
+    hits = new org.apache.flink.graph.library.linkanalysis.HITS<>(iterations, Double.MAX_VALUE);
+}

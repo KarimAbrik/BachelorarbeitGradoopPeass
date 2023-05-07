@@ -1,0 +1,6 @@
+@Test
+public void testSetGradoopId() throws Exception {
+    PropertyValue p = new PropertyValue();
+    p.setGradoopId(GRADOOP_ID_VAL_8);
+    assertEquals(GRADOOP_ID_VAL_8, p.getGradoopId());
+}

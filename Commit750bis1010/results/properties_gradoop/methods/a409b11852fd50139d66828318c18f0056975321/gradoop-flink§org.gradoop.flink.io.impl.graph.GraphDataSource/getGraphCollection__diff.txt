@@ -1,0 +1,5 @@
+@Override
+public GraphCollection getGraphCollection() throws IOException {
+    LogicalGraph logicalGraph = getLogicalGraph();
+    return logicalGraph.getCollectionFactory().fromGraph(logicalGraph);
+}

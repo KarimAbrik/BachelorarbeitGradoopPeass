@@ -1,0 +1,4 @@
+@Override
+public Tuple2<GradoopId, GradoopId> map(E e) throws Exception {
+    return new Tuple2<>(e.getTargetId(), e.getGraphIds().iterator().next());
+}

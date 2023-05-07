@@ -1,0 +1,11 @@
+/**
+ * Run the operator on a graph not containing the label.
+ *
+ * @throws Exception when the execution in Flink fails.
+ */
+@Test
+public void testWithUnknownLabel() throws Exception {
+    LogicalGraph socialGraph = getSocialNetworkLoader().getLogicalGraph();
+    LogicalGraph result = socialGraph.callForGraph(new VertexDeduplication<>("NotInTheGraph", Arrays.asList("a", "b")));
+    collectAndAssertTrue(socialGraph.equalsByData(result));
+}

@@ -1,0 +1,15 @@
+/**
+ * Creates a new filter instance.
+ *
+ * @param threshold The threshold for the PageRank-score (ranging between 0 and 1 when scaled),
+ *                  determining if a vertex is sampled, e.g. 0.5
+ * @param sampleGreaterThanThreshold Whether to sample vertices with PageRank-score
+ *                                   greater (true) or equal/smaller (false) the threshold
+ * @param keepVerticesIfSameScore Whether to sample all vertices (true) or none of them (false)
+ *                                in case all vertices got the same PageRank-score.
+ */
+public PageRankResultVertexFilter(double threshold, boolean sampleGreaterThanThreshold, boolean keepVerticesIfSameScore) {
+    this.threshold = threshold;
+    this.sampleGreaterThanThreshold = sampleGreaterThanThreshold;
+    this.keepVerticesIfSameScore = keepVerticesIfSameScore;
+}

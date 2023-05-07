@@ -1,0 +1,11 @@
+/**
+ * Check PageRank for included "zero-degree" vertices
+ *
+ * @throws Exception If the execution fails.
+ */
+@Test
+public void testPageRankWithZeroDegrees() throws Exception {
+    LogicalGraph resultGraph = new PageRank(propertyKey, 0.3, 20, true).execute(testGraph);
+    checkPageRankProperty(resultGraph);
+    assertEquals(resultGraph.getVertices().count(), testGraph.getVertices().count());
+}

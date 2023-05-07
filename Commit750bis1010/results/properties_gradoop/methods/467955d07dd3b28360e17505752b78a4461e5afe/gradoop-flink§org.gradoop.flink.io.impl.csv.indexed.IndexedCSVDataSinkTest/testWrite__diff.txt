@@ -1,0 +1,11 @@
+/**
+ * Test writing an indexed csv graph collection.
+ *
+ * @throws Exception if the execution or IO fails.
+ */
+@Test
+public void testWrite() throws Exception {
+    String tmpPath = temporaryFolder.getRoot().getPath();
+    GraphCollection input = getSocialNetworkLoader().getGraphCollection();
+    checkIndexedCSVWrite(tmpPath, input);
+}

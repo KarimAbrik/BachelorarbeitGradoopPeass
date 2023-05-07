@@ -1,0 +1,26 @@
+@Test
+public void testProjectionOfAvailableValues() throws Exception {
+    CNF predicates = predicateFromQuery("MATCH (a)-[e]->(b)");
+    Properties properties = Properties.create();
+    properties.set("name", "Alice");
+    properties.set("age", 25);
+    EPGMVertex a = vertexFactory.createVertex("Person", properties);
+    properties = Properties.create();
+    properties.set("name", "Bob");
+    properties.set("age", 24);
+    EPGMVertex b = vertexFactory.createVertex("Person", properties);
+    properties = Properties.create();
+    properties.set("since", 2013);
+    properties.set("active", true);
+    EPGMEdge e = edgeFactory.createEdge("knows", a.getId(), b.getId(), properties);
+    DataSet<Triple> triples = getExecutionEnvironment().fromElements(new Triple(a, e, b));
+    HashMap<String, List<String>> propertyKeys = new HashMap<>();
+    propertyKeys.put("a", Lists.newArrayList("name", "age"));
+    propertyKeys.put("e", Lists.newArrayList("since"));
+    propertyKeys.put("b", Lists.newArrayList("name"));
+    Embedding result = new FilterAndProjectTriples(triples, "a", "e", "b", predicates, propertyKeys, MatchStrategy.ISOMORPHISM).evaluate().collect().get(0);
+    assertEquals(result.getProperty(0), PropertyValue.create("Alice"));
+    assertEquals(result.getProperty(1), PropertyValue.create(25));
+    assertEquals(result.getProperty(2), PropertyValue.create(2013));
+    assertEquals(result.getProperty(3), PropertyValue.create("Bob"));
+}

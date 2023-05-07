@@ -1,0 +1,44 @@
+/**
+ * Stores some data and iterates over it. Checks correct amount.
+ *
+ * @throws InterruptedException
+ * @throws IOException
+ * @throws ClassNotFoundException
+ */
+@Test
+public void iteratorTest() throws InterruptedException, IOException, ClassNotFoundException {
+    EPGMStore<VertexPojo, EdgePojo, GraphHeadPojo> graphStore = createEmptyEPGMStore();
+    Collection<PersistentVertex<EdgePojo>> persistentVertexData = createPersistentSocialVertices();
+    Collection<PersistentEdge<VertexPojo>> persistentEdgeData = createPersistentSocialEdges();
+    Collection<PersistentGraphHead> persistentGraphData = createPersistentSocialGraphHead();
+    // store some data
+    for (PersistentGraphHead g : persistentGraphData) {
+        graphStore.writeGraphHead(g);
+    }
+    for (PersistentVertex<EdgePojo> v : persistentVertexData) {
+        graphStore.writeVertex(v);
+    }
+    for (PersistentEdge<VertexPojo> e : persistentEdgeData) {
+        graphStore.writeEdge(e);
+    }
+    graphStore.flush();
+    // check graph count
+    int cnt = 0;
+    for (Iterator<GraphHeadPojo> graphDataIterator = graphStore.getGraphSpace(); graphDataIterator.hasNext(); ) {
+        cnt++;
+    }
+    assertEquals("wrong graph count", persistentGraphData.size(), cnt);
+    // check vertex count
+    cnt = 0;
+    for (Iterator<VertexPojo> vertexDataIterator = graphStore.getVertexSpace(); vertexDataIterator.hasNext(); ) {
+        cnt++;
+    }
+    assertEquals("wrong vertex count", persistentVertexData.size(), cnt);
+    // check edge count
+    cnt = 0;
+    for (Iterator<EdgePojo> edgeDataIterator = graphStore.getEdgeSpace(); edgeDataIterator.hasNext(); ) {
+        cnt++;
+    }
+    assertEquals("wrong edge count", persistentEdgeData.size(), cnt);
+    graphStore.close();
+}

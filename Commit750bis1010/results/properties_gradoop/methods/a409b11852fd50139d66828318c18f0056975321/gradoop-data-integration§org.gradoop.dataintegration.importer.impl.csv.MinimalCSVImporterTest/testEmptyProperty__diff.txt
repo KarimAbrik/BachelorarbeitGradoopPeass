@@ -1,0 +1,29 @@
+/**
+ * Test if no property will be created if a row contains empty entries .
+ *
+ * @throws Exception on failure
+ */
+@Test
+public void testEmptyProperty() throws Exception {
+    String csvPath = MinimalCSVImporterTest.class.getResource("/csv/inputEmptyPropertyValues.csv").getPath();
+    DataSource importer = new MinimalCSVImporter(csvPath, DELIMITER, getConfig(), true);
+    LogicalGraph result = importer.getLogicalGraph();
+    List<EPGMVertex> lv = new ArrayList<>();
+    result.getVertices().output(new LocalCollectionOutputFormat<>(lv));
+    getExecutionEnvironment().execute();
+    for (EPGMVertex v : lv) {
+        if (v.hasProperty("name")) {
+            assertEquals(2, v.getPropertyCount());
+            assertFalse(v.hasProperty("value1"));
+            assertTrue(v.hasProperty("value2"));
+            assertFalse(v.hasProperty("value3"));
+        } else if (v.hasProperty("value1")) {
+            assertEquals(2, v.getPropertyCount());
+            assertFalse(v.hasProperty("name"));
+            assertFalse(v.hasProperty("value2"));
+            assertTrue(v.hasProperty("value3"));
+        } else {
+            fail();
+        }
+    }
+}

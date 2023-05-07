@@ -1,0 +1,9 @@
+/**
+ * Create a new config.
+ *
+ * @param executionEnvironment The Flink execution environment.
+ * @return A new temporal config.
+ */
+public static TemporalGradoopConfig createConfig(ExecutionEnvironment executionEnvironment) {
+    return new TemporalGradoopConfig(requireNonNull(executionEnvironment), new GVEGraphLayoutFactory(), new GVECollectionLayoutFactory());
+}

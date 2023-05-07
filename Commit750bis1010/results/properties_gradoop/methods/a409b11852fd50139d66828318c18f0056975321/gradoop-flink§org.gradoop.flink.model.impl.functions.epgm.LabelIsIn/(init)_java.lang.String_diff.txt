@@ -1,0 +1,8 @@
+/**
+ * Constructor for this filter using an array of labels.
+ *
+ * @param labels white list of labels
+ */
+public LabelIsIn(String... labels) {
+    this.labels = Sets.newHashSet(labels);
+}

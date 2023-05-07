@@ -1,0 +1,8 @@
+/**
+ * Returns the vertex labels available in the meta data.
+ *
+ * @return vertex labels
+ */
+public Set<String> getVertexLabels() {
+    return metaData.keySet().stream().filter(key -> key.f0.equals(CSVConstants.VERTEX_TYPE)).map(key -> key.f1).collect(Collectors.toSet());
+}

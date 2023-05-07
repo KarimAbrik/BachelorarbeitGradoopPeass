@@ -1,0 +1,24 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public void reduce(Iterable<Tuple2<Vertex, Vertex>> tuples, Collector<Vertex> collector) throws Exception {
+    PropertyValue propertyValue = PropertyValue.NULL_VALUE;
+    Vertex vertex = null;
+    Vertex edgeVertex;
+    boolean isFirst = true;
+    // aggregates the value of each opposite vertex of an edge
+    for (Tuple2<Vertex, Vertex> tuple : tuples) {
+        edgeVertex = tuple.f0;
+        if (isFirst) {
+            // the current vertex is the same for each tuple
+            vertex = tuple.f1;
+            isFirst = false;
+            propertyValue = getFunction().getVertexIncrement(edgeVertex);
+        } else {
+            propertyValue = getFunction().aggregate(propertyValue, getFunction().getVertexIncrement(edgeVertex));
+        }
+    }
+    vertex.setProperty(getFunction().getAggregatePropertyKey(), propertyValue);
+    collector.collect(vertex);
+}

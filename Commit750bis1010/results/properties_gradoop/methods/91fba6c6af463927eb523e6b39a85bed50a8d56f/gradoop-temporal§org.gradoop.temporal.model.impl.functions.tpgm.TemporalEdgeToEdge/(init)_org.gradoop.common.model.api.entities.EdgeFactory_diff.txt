@@ -1,0 +1,8 @@
+/**
+ * Creates an instance of this map function.
+ *
+ * @param edgeFactory A factory used to create EPGM edges.
+ */
+public TemporalEdgeToEdge(EdgeFactory<EPGMEdge> edgeFactory) {
+    this.reuse = Objects.requireNonNull(edgeFactory).createEdge(GradoopId.NULL_VALUE, GradoopId.NULL_VALUE);
+}

@@ -1,0 +1,13 @@
+@Test
+public void testProjectionOfAvailableValues() throws Exception {
+    CNF predicates = predicateFromQuery("MATCH (a:Person) WHERE a.name = \"Alice\"");
+    Properties properties = Properties.create();
+    properties.set("name", "Alice");
+    EPGMVertex person = new EPGMVertexFactory().createVertex("Person", properties);
+    DataSet<EPGMVertex> vertices = getExecutionEnvironment().fromElements(person);
+    List<String> projectionPropertyKeys = Lists.newArrayList("name");
+    Embedding result = new FilterAndProjectVertices<>(vertices, predicates, projectionPropertyKeys).evaluate().collect().get(0);
+    assertEquals(person.getId(), result.getId(0));
+    assertEquals(result.getId(0), person.getId());
+    assertEquals(result.getProperty(0), PropertyValue.create("Alice"));
+}

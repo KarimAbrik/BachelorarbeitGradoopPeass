@@ -1,0 +1,12 @@
+/**
+ * Constructor.
+ *
+ * @param csvPath directory to the CSV files
+ * @param config  Gradoop Flink configuration
+ */
+protected CSVBase(String csvPath, GradoopFlinkConfig config) {
+    Objects.requireNonNull(csvPath);
+    Objects.requireNonNull(config);
+    this.csvRoot = csvPath.endsWith(File.separator) ? csvPath : csvPath + File.separator;
+    this.config = config;
+}

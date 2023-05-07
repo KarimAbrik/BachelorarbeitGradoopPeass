@@ -1,0 +1,23 @@
+/**
+ * Returns all vertices that are adjacent to the given vertex (without
+ * considering edge direction).
+ *
+ * @param vertexId vertex id
+ * @return adjacent vertices
+ */
+public Collection<Vertex> getNeighbors(Long vertexId) {
+    Set<Vertex> neighbors = Sets.newHashSet();
+    Collection<Edge> outgoingEdges = getEdgesBySourceVertexId(vertexId);
+    if (outgoingEdges != null) {
+        for (Edge edge : outgoingEdges) {
+            neighbors.add(getVertexById(edge.getTargetVertexId()));
+        }
+    }
+    Collection<Edge> incomingEdges = getEdgesByTargetVertexId(vertexId);
+    if (incomingEdges != null) {
+        for (Edge edge : incomingEdges) {
+            neighbors.add(getVertexById(edge.getSourceVertexId()));
+        }
+    }
+    return neighbors;
+}

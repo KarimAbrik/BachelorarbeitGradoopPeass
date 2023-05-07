@@ -1,0 +1,7 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public Put writeSourceVertex(Put put, VD vertexData) throws IOException {
+    return put.add(CF_META_BYTES, COL_SOURCE_VERTEX_BYTES, createVertexIdentifier(vertexData));
+}

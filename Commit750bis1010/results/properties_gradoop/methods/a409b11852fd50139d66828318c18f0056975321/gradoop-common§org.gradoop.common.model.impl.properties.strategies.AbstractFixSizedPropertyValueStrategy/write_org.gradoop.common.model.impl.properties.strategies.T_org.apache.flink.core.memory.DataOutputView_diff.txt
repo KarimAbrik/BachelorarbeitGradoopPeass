@@ -1,0 +1,4 @@
+@Override
+public void write(T value, DataOutputView outputView) throws IOException {
+    outputView.write(getRawBytes(value));
+}

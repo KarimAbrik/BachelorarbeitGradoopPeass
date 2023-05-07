@@ -1,0 +1,13 @@
+/**
+ * Returns a collection with all base graphs that are contained in that
+ * collection but not in the other. Graph equality is based on their identifiers.
+ * <p>
+ * Alternate implementation that works faster if the intermediate result
+ * (list of graph identifiers) fits into the workers memory.
+ *
+ * @param otherCollection collection to subtract from that collection
+ * @return difference between that and the other collection
+ */
+default GC differenceWithSmallResult(GC otherCollection) {
+    return callForCollection(new DifferenceBroadcast<>(), otherCollection);
+}

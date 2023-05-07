@@ -1,0 +1,24 @@
+@Test
+public void testGetEdgesByGraphVariables() throws Exception {
+    AsciiGraphLoader<GraphHead, Vertex, Edge> asciiGraphLoader = AsciiGraphLoader.fromString("g[()-[a]->()<-[b]-()],h[()-[c]->()-[d]->()]", config);
+    validateCollections(asciiGraphLoader, 2, 6, 4);
+    validateCaches(asciiGraphLoader, 2, 0, 4);
+    Collection<Edge> edgesG = asciiGraphLoader.getEdgesByGraphVariables("g");
+    Collection<Edge> edgesH = asciiGraphLoader.getEdgesByGraphVariables("h");
+    Collection<Edge> edgesGH = asciiGraphLoader.getEdgesByGraphVariables("g", "h");
+    Edge a = asciiGraphLoader.getEdgeByVariable("a");
+    Edge b = asciiGraphLoader.getEdgeByVariable("b");
+    Edge c = asciiGraphLoader.getEdgeByVariable("c");
+    Edge d = asciiGraphLoader.getEdgeByVariable("d");
+    assertEquals("Wrong number of edges", 2, edgesG.size());
+    assertEquals("Wrong number of edges", 2, edgesH.size());
+    assertEquals("Wrong number of edges", 4, edgesGH.size());
+    assertTrue("Edge was not contained in graph", edgesG.contains(a));
+    assertTrue("Edge was not contained in graph", edgesG.contains(b));
+    assertTrue("Edge was not contained in graph", edgesH.contains(c));
+    assertTrue("Edge was not contained in graph", edgesH.contains(d));
+    assertTrue("Edge was not contained in graph", edgesGH.contains(a));
+    assertTrue("Edge was not contained in graph", edgesGH.contains(b));
+    assertTrue("Edge was not contained in graph", edgesGH.contains(c));
+    assertTrue("Edge was not contained in graph", edgesGH.contains(d));
+}

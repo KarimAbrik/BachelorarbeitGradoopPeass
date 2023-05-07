@@ -1,0 +1,8 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public GE map(GE graphElement) throws Exception {
+    graphElement.addGraphId(graphHeadId);
+    return graphElement;
+}

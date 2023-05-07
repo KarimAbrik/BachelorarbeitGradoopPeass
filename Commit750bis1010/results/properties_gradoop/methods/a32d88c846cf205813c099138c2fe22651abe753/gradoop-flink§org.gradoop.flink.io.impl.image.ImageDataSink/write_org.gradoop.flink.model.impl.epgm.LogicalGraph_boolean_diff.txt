@@ -1,0 +1,23 @@
+@Override
+public void write(LogicalGraph logicalGraph, boolean overwrite) throws IOException {
+    ImageOutputFormat pof = new ImageOutputFormat(path);
+    FileSystem.WriteMode writeMode = overwrite ? FileSystem.WriteMode.OVERWRITE : FileSystem.WriteMode.NO_OVERWRITE;
+    pof.setWriteMode(writeMode);
+    DataSet<EPGMVertex> vertices = scaleLayout(logicalGraph.getVertices());
+    DataSet<EPGMEdge> edges = prepareEdges(vertices, logicalGraph.getEdges());
+    ImageGenerator imgg = new ImageGenerator(this);
+    DataSet<byte[]> image = edges.combineGroup(imgg::combineEdges).reduce(imgg::mergeImages);
+    if (!ignoreVertices) {
+        DataSet<byte[]> vertexImage = vertices.combineGroup(imgg::combineVertices).reduce(imgg::mergeImages);
+        image = image.map(new RichMapFunction<byte[], byte[]>() {
+
+            @Override
+            public byte[] map(byte[] bufferedImage) throws Exception {
+                List<byte[]> vertexImage = this.getRuntimeContext().getBroadcastVariable("vertexImage");
+                return imgg.mergeImages(bufferedImage, vertexImage.get(0));
+            }
+        }).withBroadcastSet(vertexImage, "vertexImage");
+    }
+    image = image.map(imgg::addBackground);
+    image.output(pof).setParallelism(1);
+}

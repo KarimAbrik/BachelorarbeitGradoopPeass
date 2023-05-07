@@ -1,0 +1,22 @@
+/**
+ * Represents the time fields of the input element as a comma separated string.
+ * Default times result in an empty string for this field.
+ *
+ * @param element temporal element
+ * @return valid time and transaction time as of element as string
+ */
+protected String time(EL element) {
+    StringBuilder builder = new StringBuilder();
+    builder.append('(');
+    Long time = element.getValidFrom();
+    if (!time.equals(TemporalElement.DEFAULT_TIME_FROM)) {
+        builder.append(time);
+    }
+    builder.append(',');
+    time = element.getValidTo();
+    if (!time.equals(TemporalElement.DEFAULT_TIME_TO)) {
+        builder.append(time);
+    }
+    builder.append(')');
+    return builder.toString();
+}

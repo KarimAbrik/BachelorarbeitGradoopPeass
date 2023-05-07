@@ -1,0 +1,26 @@
+@Override
+public void reduce(Iterable<T> input, Collector<T> out) throws Exception {
+    T superVertexTuple = null;
+    GradoopId superVertexId = GradoopId.get();
+    for (T inputTuple : input) {
+        if (superVertexTuple == null) {
+            // Copy the first tuple to be used as the super-vertex tuple.
+            superVertexTuple = inputTuple.copy();
+        } else {
+            // Call aggregate functions for every other tuple of the group.
+            callAggregateFunctions(superVertexTuple, inputTuple);
+        }
+        // Assign the super-vertex ID.
+        inputTuple.setField(superVertexId, VERTEX_TUPLE_SUPERID);
+        // Return the updated tuple, used to extract the mapping later.
+        out.collect(inputTuple);
+    }
+    // Return the super vertex.
+    if (superVertexTuple == null) {
+        // This should not happen, since the reduce function can not be called on an empty group.
+        throw new IllegalStateException("Super-vertex was not initialized. Do not call this function on empty groups.");
+    }
+    superVertexTuple.setField(superVertexId, VERTEX_TUPLE_ID);
+    superVertexTuple.setField(superVertexId, VERTEX_TUPLE_SUPERID);
+    out.collect(superVertexTuple);
+}

@@ -1,0 +1,18 @@
+                                                                                                     | /**                                                                                                 
+                                                                                                     | * Build super edges by joining them with vertices and their super vertex.                           
+                                                                                                     | *                                                                                                   
+                                                                                                     | * @param edgeFactory edgeFactory                                                                    
+                                                                                                     | * @param edgesToGroup input edgesToGroup                                                            
+                                                                                                     | * @param vertexToRepresentativeMap dataset containing tuples of vertex id and super vertex id       
+                                                                                                     | * @return super edges                                                                               
+                                                                                                     | */                                                                                                  
+                                                                                                     | protected DataSet&lt;E&gt; buildSuperEdges(EdgeFactory&lt;E&gt; edgeFactory, DataSet&lt;E&gt; edgesT
+                                                                                                     | DataSet&lt;EdgeGroupItem&gt; edges = edgesToGroup.// build edge group items                         
+                                                                                                     | flatMap(new BuildEdgeGroupItem&lt;&gt;(useEdgeLabels(), getEdgeLabelGroups())).// join edges with ve
+                                                                                                     | join(vertexToRepresentativeMap).where(0).equalTo(0).with(new UpdateEdgeGroupItem(0)).withForwardedFi
+                                                                                                     | join(vertexToRepresentativeMap).where(1).equalTo(0).with(new UpdateEdgeGroupItem(1)).withForwardedFi
+                                                                                                     | // group + combine                                                                                  
+                                                                                                     | DataSet&lt;EdgeGroupItem&gt; combinedEdges = groupEdges(edges).combineGroup(new CombineEdgeGroupItem
+                                                                                                     | // group + reduce + build final edges                                                               
+                                                                                                     | return groupEdges(combinedEdges).reduceGroup(new ReduceEdgeGroupItems&lt;&gt;(useEdgeLabels(), edgeF
+                                                                                                     | }                                                                                                   

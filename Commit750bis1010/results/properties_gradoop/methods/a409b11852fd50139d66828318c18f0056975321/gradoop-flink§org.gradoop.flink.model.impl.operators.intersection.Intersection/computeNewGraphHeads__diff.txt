@@ -1,0 +1,10 @@
+/**
+ * Computes new subgraphs by grouping both graph collections by graph
+ * identifier and returning those graphs where the group contains more than one element.
+ *
+ * @return subgraph dataset of the resulting collection
+ */
+@Override
+protected DataSet<G> computeNewGraphHeads() {
+    return firstCollection.getGraphHeads().union(secondCollection.getGraphHeads()).groupBy(new Id<>()).reduceGroup(new GroupCountEquals<>(2));
+}

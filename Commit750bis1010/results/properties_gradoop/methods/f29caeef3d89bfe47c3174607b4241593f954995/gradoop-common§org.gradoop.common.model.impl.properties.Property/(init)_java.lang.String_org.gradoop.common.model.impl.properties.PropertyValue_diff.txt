@@ -1,0 +1,13 @@
+/**
+ * Creates a new property from the given arguments.
+ *
+ * @param key   property key
+ * @param value property value
+ */
+Property(String key, PropertyValue value) {
+    checkNotNull(key, "Property key was null");
+    checkNotNull(value, "Property value was null");
+    checkArgument(!key.isEmpty(), "Property key was empty");
+    this.key = key;
+    this.value = value;
+}

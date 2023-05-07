@@ -1,0 +1,7 @@
+@Override
+public LogicalGraph getLogicalGraph() {
+    DataSet<Tuple3<String, String, String>> metaData = MetaData.fromFile(getMetaDataPath(), getConfig());
+    DataSet<Vertex> vertices = getConfig().getExecutionEnvironment().readTextFile(getVertexCSVPath()).map(new CSVLineToVertex(getConfig().getVertexFactory())).withBroadcastSet(metaData, BC_METADATA);
+    DataSet<Edge> edges = getConfig().getExecutionEnvironment().readTextFile(getEdgeCSVPath()).map(new CSVLineToEdge(getConfig().getEdgeFactory())).withBroadcastSet(metaData, BC_METADATA);
+    return getConfig().getLogicalGraphFactory().fromDataSets(vertices, edges);
+}

@@ -1,0 +1,5 @@
+@Test
+public void testGetInt() throws Exception {
+    PropertyValue p = PropertyValue.create(INT_VAL_2);
+    assertEquals(INT_VAL_2, p.getInt());
+}

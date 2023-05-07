@@ -1,0 +1,10 @@
+/**                                                                                                    /**                                                                                                 
+* {@inheritDoc}                                                                                        * {@inheritDoc}                                                                                     
+*/                                                                                                     */                                                                                                  
+@Override                                                                                              @Override                                                                                           
+public Put writeVertices(final Put put, final PersistentGraphHead graphData) {                       | public Put writeVertices(final Put put, final PersistentGraphHead graphData) throws IOException {   
+for (Long vertexId : graphData.getVertices()) {                                                      | for (GradoopId vertexId : graphData.getVertexIds()) {                                               
+put.add(CF_VERTICES_BYTES, Bytes.toBytes(vertexId), null);                                           | put.add(CF_VERTICES_BYTES, Writables.getBytes(vertexId), null);                                     
+}                                                                                                      }                                                                                                   
+return put;                                                                                            return put;                                                                                         
+}                                                                                                      }                                                                                                   

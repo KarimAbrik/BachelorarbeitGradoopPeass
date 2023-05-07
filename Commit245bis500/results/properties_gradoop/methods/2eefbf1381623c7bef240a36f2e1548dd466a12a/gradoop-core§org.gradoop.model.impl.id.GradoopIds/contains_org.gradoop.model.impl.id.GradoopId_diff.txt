@@ -1,0 +1,9 @@
+/**
+ * Checks if the given GradoopId is contained in the set.
+ *
+ * @param identifier gradoop identifier
+ * @return true, iff the given identifier is in the set
+ */
+public boolean contains(GradoopId identifier) {
+    return identifiers.contains(identifier);
+}

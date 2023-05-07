@@ -1,0 +1,12 @@
+/**
+ * Returns the subgraph of the given supergraph that is defined by the
+ * vertices that fulfil the vertex filter function and edges that fulfill the edge filter function.
+ * <p>
+ * <b>Note:</b> The operator does not verify the consistency of the resulting graph.
+ *
+ * @param superGraph supergraph
+ * @return subgraph
+ */
+private LG subgraph(LG superGraph) {
+    return superGraph.getFactory().fromDataSets(superGraph.getGraphHead(), superGraph.getVertices().filter(vertexFilterFunction), superGraph.getEdges().filter(edgeFilterFunction));
+}

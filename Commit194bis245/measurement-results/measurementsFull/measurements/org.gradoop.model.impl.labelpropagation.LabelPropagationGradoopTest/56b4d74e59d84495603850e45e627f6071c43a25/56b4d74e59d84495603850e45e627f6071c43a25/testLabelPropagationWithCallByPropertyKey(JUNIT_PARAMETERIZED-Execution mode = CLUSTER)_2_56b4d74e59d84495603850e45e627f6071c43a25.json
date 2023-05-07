@@ -1,0 +1,68 @@
+{
+  "clazz" : "org.gradoop.model.impl.labelpropagation.LabelPropagationGradoopTest",
+  "methods" : [ {
+    "method" : "testLabelPropagationWithCallByPropertyKey",
+    "datacollectorResults" : [ {
+      "name" : "de.dagere.kopeme.datacollection.TimeDataCollectorNoGC",
+      "chunks" : [ ],
+      "results" : [ {
+        "value" : 4.4942518519E9,
+        "deviation" : 0.44329335146311516,
+        "min" : 3.256872198E9,
+        "max" : 9.957436043E9,
+        "warmup" : 0,
+        "iterations" : 10,
+        "repetitions" : 2,
+        "commit" : null,
+        "vmRunConfiguration" : {
+          "showStart" : false,
+          "executeBeforeClassInMeasurement" : false,
+          "redirectToTemp" : false,
+          "redirectToNull" : true,
+          "useKieker" : false
+        },
+        "parameters" : {
+          "JUNIT_PARAMETERIZED" : "Execution mode = CLUSTER"
+        },
+        "javaVersion" : "1.8.0_362",
+        "cpu" : "model name : Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz",
+        "memory" : "MemTotal: 16280544 kB",
+        "date" : 1680994087724,
+        "fulldata" : {
+          "fileName" : null,
+          "values" : [ {
+            "startTime" : 1680994042379,
+            "value" : 9957436043
+          }, {
+            "startTime" : 1680994052337,
+            "value" : 5235581255
+          }, {
+            "startTime" : 1680994057572,
+            "value" : 3850089070
+          }, {
+            "startTime" : 1680994061422,
+            "value" : 4111411572
+          }, {
+            "startTime" : 1680994065534,
+            "value" : 3783122693
+          }, {
+            "startTime" : 1680994069317,
+            "value" : 3669465323
+          }, {
+            "startTime" : 1680994072986,
+            "value" : 3947201802
+          }, {
+            "startTime" : 1680994076934,
+            "value" : 3675177880
+          }, {
+            "startTime" : 1680994080609,
+            "value" : 3256872198
+          }, {
+            "startTime" : 1680994083866,
+            "value" : 3456160683
+          } ]
+        }
+      } ]
+    } ]
+  } ]
+}

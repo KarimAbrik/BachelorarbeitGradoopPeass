@@ -1,0 +1,12 @@
+@Test
+public void testOutgoingVertexDegreeDistribution() throws Exception {
+    LogicalGraph db = getSocialNetworkLoader().getLogicalGraph();
+    List<WithCount<Long>> result = new OutgoingVertexDegreeDistribution().execute(db).collect();
+    assertThat(result.size(), is(4));
+    Map<Long, Long> cache = new HashMap<>(4);
+    result.forEach(e -> cache.put(e.getObject(), e.getCount()));
+    assertThat(cache.get(0L), is(3L));
+    assertThat(cache.get(2L), is(4L));
+    assertThat(cache.get(3L), is(2L));
+    assertThat(cache.get(5L), is(2L));
+}

@@ -1,0 +1,633 @@
+{
+  "commits" : [ {
+    "tag" : "6cbacb398a48475d77ad5df9b81d0651c7e5482a",
+    "comitter" : "Stephan Kemper <Venom590@users.noreply.github.com>",
+    "date" : "2017-06-23 09:50:20 +0200",
+    "message" : "     [#573] Add Neighborhood Methods          * this adds reduceOnEdges and reduceOnNeighbors methods to LogicalGraph being able to perform custom aggreagtion logic on incident edges / adjacent vertices and returning an updated LogicalGraph     * fixes #573 "
+  }, {
+    "tag" : "124eed136618c229f6ac980cb7298d041eb1cd20",
+    "comitter" : "Giacomo Bergami <giacomo@openmailbox.org>",
+    "date" : "2017-06-26 16:27:20 +0200",
+    "message" : "     [#627] Update VertexFusion          * fixes #627 "
+  }, {
+    "tag" : "365530ea9fa57f14d121ea07d43821443ad493ca",
+    "comitter" : "André Petermann <petermann@informatik.uni-leipzig.de>",
+    "date" : "2017-07-01 11:38:01 +0200",
+    "message" : "     [#635] Bugfix GradoopIdList equals          * made GradoopIdList.equals behave like List.equals     * adjusted test to check list properties     * fixed misuse of equals in test utils     * fixed misuse of equals in hbase test utils     * fixes #635 "
+  }, {
+    "tag" : "7c4a4b2eb0cb24cfcc222a563e380262e83ecb4d",
+    "comitter" : "Kevin Gómez <k.gomez@freenet.de>",
+    "date" : "2017-07-03 15:23:13 +0200",
+    "message" : "     [#640] added ignore annotation to unused long running tests          * fixes #640 "
+  }, {
+    "tag" : "599a870e9ad1b15eb630b12651c4f4b6e1205699",
+    "comitter" : "Stephan Kemper <Venom590@users.noreply.github.com>",
+    "date" : "2017-07-03 20:48:18 +0200",
+    "message" : "     [#642] Implement Label-specific grouping          * added label specific grouping.     * added label specific aggregators.     * fixes #642 "
+  }, {
+    "tag" : "5034e542a547a098253ddf5a5e055b2265c88276",
+    "comitter" : "Kevin Gómez <k.gomez@freenet.de>",
+    "date" : "2017-07-04 18:53:47 +0200",
+    "message" : "     [#615] update license to Apache License 2.0          * added new apache 2.0 license header     * added maven:license plugin     * fixes #615 "
+  }, {
+    "tag" : "9096fa96842cb4b4908e08ade2743be983d67ceb",
+    "comitter" : "Steffen Dienst <steffen.dienst@gmail.com>",
+    "date" : "2017-07-05 18:09:56 +0200",
+    "message" : "     [#643] Re-enabling build fail on checkstyle violation          * Checkstyle 2.16 needs explicit configuration to fail on violations     * let travis check for checkstyle violations     * fixes #643 "
+  }, {
+    "tag" : "25f8e326ea9cb53e70555da976e4150c1c7a6955",
+    "comitter" : "Stephan Kemper <Venom590@users.noreply.github.com>",
+    "date" : "2017-07-07 07:57:49 +0200",
+    "message" : "     [#613] Updated config file to be loaded from JSON string          * Changed config: nouns, cities etc. are now being loaded from resources     * Now throws an error when user specified a higher amount of companies/holdings than available     * Fixed bug that the nouns, cities etc. were not loaded from the resource location inside the jar     * Fixes #613 "
+  }, {
+    "tag" : "513ec7ba980feb80973c4fffac36705e4435c08a",
+    "comitter" : "Steffen Dienst <steffen.dienst@gmail.com>",
+    "date" : "2017-07-14 08:37:47 +0200",
+    "message" : "     [#633] Throw unchecked exception if binary representation of a property value is too large          * fixes #633 "
+  }, {
+    "tag" : "5683b0046e1a633cb8242729cf7d74045bebefbc",
+    "comitter" : "Steffen Dienst <steffen.dienst@gmail.com>",
+    "date" : "2017-07-31 08:48:52 +0200",
+    "message" : "     [#651] Render all Graphtransactions in Graphviz          DotDatasink wrote incorrect dotfiles:     - node/edge properties were written as graphviz properties (typically with no visual effect),     - vertices in multiple subgraphs were rendered only in the first subgraph     - individual GraphTransactions were not visible     - properties of graphheads, vertices, edges were not visible     - fixes #651 "
+  }, {
+    "tag" : "bad7a1f3bfa63f87a98568ba3c884478b8f347d5",
+    "comitter" : "Stephan Kemper <Venom590@users.noreply.github.com>",
+    "date" : "2017-07-31 16:21:20 +0200",
+    "message" : "     [#634] Update TLF (#649)          * moved all constants into single class     * Changed start and end tag     * removed intermediate TLF graph     * added support for label with spaces "
+  }, {
+    "tag" : "ceade14233f481b9901e4632c9fbadd3aaa12e88",
+    "comitter" : "Stephan Kemper <Venom590@users.noreply.github.com>",
+    "date" : "2017-08-01 08:19:22 +0200",
+    "message" : "     [#646] Add Drill-up operation          Drill-up is a convenience function for graph transformation that applies a UDF on a specific property and stores the old value. The previous property value is kept stored at the modified vertex / edge. Drill-up can be used as a pre-processor for structural aggregation via Graph Grouping.          * fixes #646 "
+  }, {
+    "tag" : "fc9f1a3f81d60f0286c4fd9bfcbda38dbbda3f91",
+    "comitter" : "Martin Junghanns <m.junghanns@mailbox.org>",
+    "date" : "2017-08-04 17:21:25 +0200",
+    "message" : "     [#658] Decouple graph representation from Graph and Collection          * extract graph / collection operations to interfaces     * introduced factories for LogicalGraph and GraphCollection     * de-coupled graph layout and  graph operations     * removed GraphTransactions     * added factories for graph layouts     * added GVELayout and TxCollectionLayout     * fixes #658 "
+  }, {
+    "tag" : "5c2948dbb391d7e799d4df45e1a44111962e3af2",
+    "comitter" : "Kevin Gómez <k.gomez@freenet.de>",
+    "date" : "2017-08-06 14:54:05 +0200",
+    "message" : "     [#524] Update Flink and HBase to 1.3.1          * added flink-hadoop and hbase-hadoop compatibility dependencies     * updated GradoopFlinkTestBase     * removed FlinkHBaseTestBase     * added TestSuite for gradoop-hbase tests     * added Ignore annotation to GraphStatisticsHDFSReaderTest     * fixes #524 "
+  }, {
+    "tag" : "e39020c87ef1456693ee726f6daaba8a4de083ed",
+    "comitter" : "Martin Junghanns <m.junghanns@mailbox.org>",
+    "date" : "2017-08-06 15:00:24 +0200",
+    "message" : "     [#533] Add IndexedGVELayout          * provides access to label-partitioned data sets     * required for performance optimizations in Cypher engine     * fixes #533 "
+  }, {
+    "tag" : "c5e731ba96b5012be2e541b9d7a1b3252e42a618",
+    "comitter" : "Martin Junghanns <m.junghanns@mailbox.org>",
+    "date" : "2017-08-06 17:24:39 +0200",
+    "message" : "     [#636] Remove redundant classes (#664)          * fixes #636 "
+  }, {
+    "tag" : "ee8694c09c2f3fd226cc277bd03e474c3a42541f",
+    "comitter" : "Steffen Dienst <steffen.dienst@gmail.com>",
+    "date" : "2017-08-09 16:03:07 +0200",
+    "message" : "     [#666] Escape all html4 entities in DOT labels          * fixes #666 "
+  }, {
+    "tag" : "26e9a3bea4a5688b241e3ef7f7ad25e9abb89c0a",
+    "comitter" : "Stephan Kemper <Venom590@users.noreply.github.com>",
+    "date" : "2017-08-09 20:15:05 +0200",
+    "message" : "     [#665] Fix LabelGroup mixup          * fixes #665 "
+  }, {
+    "tag" : "0857ef12325491bf4681ff899746093af34a8502",
+    "comitter" : "Stephan Kemper <Venom590@users.noreply.github.com>",
+    "date" : "2017-08-13 20:07:56 +0200",
+    "message" : "     [#647] Add drill down operator          * fixes #647 "
+  }, {
+    "tag" : "f3aa41cf99f46d0da257dc0b6fce1f9c09491eac",
+    "comitter" : "ammazza <ammazza@users.noreply.github.com>",
+    "date" : "2017-08-21 16:49:42 +1000",
+    "message" : "     [#676] Fix typo in SNA Benchmark/Example          * fixes #676 "
+  }, {
+    "tag" : "40b1c09fd01684ed7cc40362bdab6e5cd75db220",
+    "comitter" : "Martin Junghanns <m.junghanns@mailbox.org>",
+    "date" : "2017-08-21 17:17:54 +0200",
+    "message" : "     [#671] Push label predicates down to layout          * if a vertex/edge has a label predicate, the corresponding graph layout method will be called instead of loading all vertices/edges and applying a filter transformation     * ff used in combination with IndexedGVELayout, this avoids duplicating objects in a Flink dataflow caused by the filter transformation     * fixes #671 "
+  }, {
+    "tag" : "6cae668f57e2043eaf466ef603658325208f64d9",
+    "comitter" : "Martin Junghanns <m.junghanns@mailbox.org>",
+    "date" : "2017-08-21 17:18:13 +0200",
+    "message" : "     [#673] Add convenience method for Cypher matching          * fixes #673 "
+  }, {
+    "tag" : "20c72d1fff4005bfd12e1c033c596003ad998b88",
+    "comitter" : "Martin Junghanns <m.junghanns@mailbox.org>",
+    "date" : "2017-08-21 17:32:29 +0200",
+    "message" : "     [#668] Add Indexed CSV data source          * adds a CSV-based datasource that reads vertex/edge files partitioned by label     * fixes #668 "
+  }, {
+    "tag" : "094f7f2f4883f26f96b8528cab1d06e1e5c1a278",
+    "comitter" : "Martin Junghanns <m.junghanns@mailbox.org>",
+    "date" : "2017-09-01 23:31:11 +0200",
+    "message" : "     [#679] Add null checks around property access          * added @Nullable annotation to Element.getProperties to give compiler warnings     * fixes #679 "
+  }, {
+    "tag" : "f67a9f06b04048870158481c938873771aa4f515",
+    "comitter" : "Martin Junghanns <m.junghanns@mailbox.org>",
+    "date" : "2017-09-03 15:20:03 +0200",
+    "message" : "     [#685] Cache maven repos and skip install step          * fixes #685 "
+  }, {
+    "tag" : "3be1bf87c45fd0fa994caf52a841b19779277480",
+    "comitter" : "Martin Junghanns <m.junghanns@mailbox.org>",
+    "date" : "2017-09-04 18:44:10 +0200",
+    "message" : "     [#680] Change filter condition in Limit to InAnyGraph          * fixes #680 "
+  }, {
+    "tag" : "01216fe87d8be55f79c73a934909a5d31efea52e",
+    "comitter" : "Martin Junghanns <m.junghanns@mailbox.org>",
+    "date" : "2017-09-13 16:25:09 +0200",
+    "message" : "     [docs] Update readme          * added link to Flink Forward presentation "
+  }, {
+    "tag" : "94955519669df87616dca132e1ce4fd5d86a643f",
+    "comitter" : "Philip Fritzsche <p-f@users.noreply.github.com>",
+    "date" : "2017-09-22 08:57:33 +0200",
+    "message" : "     [#687] Fix containment computation of binary methods on derived graphs          * Exclusion and Overlap now use join to compute the resulting vertices / edges     * fixes #687 "
+  }, {
+    "tag" : "3c767954ebf982b92524e07b8f7cbb69273d4352",
+    "comitter" : "Philip Fritzsche <p-f@users.noreply.github.com>",
+    "date" : "2017-10-03 12:36:46 +0200",
+    "message" : "     [#689] Add Gelly Page Rank and generalize Gelly algorithm handling          * Remove type argument from gradoop to gelly mapper interfaces.          Type arguments are not valid here, because flink fails to detect the     actual types.     Interfaces will be replaced with 2 interfaces and 4 implementations:     - a common super interface for each vertices and edges     - an implementation mapping to NullValue     - an implementation mapping to PropertyValue          * Add missing implementations of gradoop to gelly mapper interfaces.     * Implement PageRank from Gelly + Checkstyle formatting     * Fixes #689 "
+  }, {
+    "tag" : "61d575d41e9a079a5baf55b98e2e5a6edf989142",
+    "comitter" : "Martin Junghanns <martin.junghanns@gmx.net>",
+    "date" : "2017-10-04 11:43:34 +0200",
+    "message" : "     [checkstyle] Add suppression for IllegalCatch in PageRank "
+  }, {
+    "tag" : "9d391b19cbc5b0ff7eef285e25cebc174055bb03",
+    "comitter" : "Kevin Gómez <k.gomez@freenet.de>",
+    "date" : "2017-10-07 10:47:57 +0200",
+    "message" : "     [#694] Update GDL dependency          * removes repository configuration from pom     * fixes #694 "
+  }, {
+    "tag" : "7e73bd4729f7cd5889d87d317253d2403dd7d6a4",
+    "comitter" : "Martin Junghanns <m.junghanns@mailbox.org>",
+    "date" : "2017-11-21 10:28:49 +0100",
+    "message" : "     [#703] Add basic graph construction via pattern          [#703] Add basic graph construction via pattern          filter embeddings by return pattern variables          debug outputs          implement add embedding functions based on a return pattern          bugfix(embedding): add got accidentally called twice in map function          remove debug outputs and enable outer right join in post processing          implement label mapping for epgm elements that were created for the return pattern          code cleanup          clean code and write documentation          refactor(CypherPatternMatching): label mapping contains newly created edges + vertices only          fix(tests): avoid nullpointer exception by initializing empty map          reformat code          add missing documentation "
+  }, {
+    "tag" : "874d08916e36b38f3dae37ab573cfa46927c0953",
+    "comitter" : "Martin Junghanns <m.junghanns@mailbox.org>",
+    "date" : "2017-12-19 18:26:02 +0100",
+    "message" : "     [#703] Refactor graph construction code and update docs          * simplified code in CypherPatternMatching     * moved helper parts to QueryHandler "
+  }, {
+    "tag" : "5d06a757bf24f0174c251461f357736effffdc5c",
+    "comitter" : "Martin Junghanns <m.junghanns@mailbox.org>",
+    "date" : "2017-12-21 15:26:49 +0100",
+    "message" : "     Merge pull request #715 from dbs-leipzig/graph_construction_poc          [#703] Add basic graph construction via pattern "
+  }, {
+    "tag" : "aad267342aeb8a47c49f9767afb724cef03cdd3a",
+    "comitter" : "Steffen Dienst <steffen.dienst@gmail.com>",
+    "date" : "2018-01-19 20:44:14 +0100",
+    "message" : "     [#681] Reenable set nature of GradoopIdList          * fixes #681 "
+  }, {
+    "tag" : "e401ac4a6d68cf1c6b704e4c148f57145d43c7f3",
+    "comitter" : "Steffen Dienst <steffen.dienst@gmail.com>",
+    "date" : "2018-01-22 11:05:19 +0100",
+    "message" : "     [#720] In ApplySubgraph: ignore vertices that are not part of the subgraph          * fixes #720 "
+  }, {
+    "tag" : "b02fb74ec8b0abf459f8c4697fca0aebc0141a8e",
+    "comitter" : "Kevin Gómez <k.gomez@freenet.de>",
+    "date" : "2018-01-26 15:26:57 +0100",
+    "message" : "     #722 reintegrated checkstyle-plugin  (#724)          [#722] reintegrated checkstyle-plugin     - added checkstyle plugin to gradoop-hbase and gradoop-common     - fixed typos and checkstyle errors     - force travis to install all artifacts so checkstyle gets run "
+  }, {
+    "tag" : "524aa60cb2306d27c5acf24ee0864e3d3cb304a3",
+    "comitter" : "moe <moritz.wilke@informatik.uni-leipzig.de>",
+    "date" : "2018-01-31 20:15:31 +0100",
+    "message" : "     [#729] Add wrapper for HITS algorithm          * fixes #729 "
+  }, {
+    "tag" : "a5b6b23cd2c77660c6333c3cfa1fd2ceb930d362",
+    "comitter" : "Steffen Dienst <steffen.dienst@gmail.com>",
+    "date" : "2018-02-03 16:03:21 +0100",
+    "message" : "     [#725] Prevent iterating over potentially large collections in GradoopIdSet          * fixes #725 "
+  }, {
+    "tag" : "e601c560d65a0aa24e0889526168676c9364425b",
+    "comitter" : "Kevin Gómez <k.gomez@freenet.de>",
+    "date" : "2018-02-08 13:54:47 +0100",
+    "message" : "     [#728] Update license header to 2018          * fixes #728 "
+  }, {
+    "tag" : "268c6a3a36b3f7a87954fc203f9066ffec14a8c9",
+    "comitter" : "cmoesler <35991643+cmoesler@users.noreply.github.com>",
+    "date" : "2018-02-17 09:13:28 +0100",
+    "message" : "     [ #731] Add wrapper for SingleSourceShortestPaths algorithm          * fixes #731 "
+  }, {
+    "tag" : "7c6817f85ab16ed24208c049caaa315f794db57f",
+    "comitter" : "手不要乱摸 <chpengzh@foxmail.com>",
+    "date" : "2018-02-26 00:59:10 +0800",
+    "message" : "     [#736] Replace mongo driver dependency with just bson          * fixes #736 "
+  }, {
+    "tag" : "7f6b7a9b89d079c01180945a3ffda8b0f17e9238",
+    "comitter" : "Kevin Gómez <k.gomez@freenet.de>",
+    "date" : "2018-02-26 18:18:32 +0100",
+    "message" : "     [#655] Set up deployment to maven central          * fixes #655 "
+  }, {
+    "tag" : "ad6cc5d15ccb425ad0dff78a7dd94b5fdacdb178",
+    "comitter" : "Martin Junghanns <m.junghanns@mailbox.org>",
+    "date" : "2018-02-27 10:04:03 +0100",
+    "message" : "     Update README.md "
+  }, {
+    "tag" : "9422f497aa229f547632e1602044e2bef4e0194d",
+    "comitter" : "Martin Junghanns <m.junghanns@mailbox.org>",
+    "date" : "2018-02-27 17:01:53 +0100",
+    "message" : "     [#742] Update version to 0.3.2-SNAPSHOT          * fixes #742 "
+  }, {
+    "tag" : "233fd55095b0cdba57fd82e762f30d6968bdaad4",
+    "comitter" : "André Petermann <petermann@informatik.uni-leipzig.de>",
+    "date" : "2018-02-27 17:15:12 +0100",
+    "message" : "     [#650] Adapt Foodbroker to graph transaction layout          * fixes #650 "
+  }, {
+    "tag" : "bcd69ad5b37b6da737e4d01ee869c1b1207e0cab",
+    "comitter" : "Kevin Gómez <k.gomez@freenet.de>",
+    "date" : "2018-02-28 17:01:06 +0100",
+    "message" : "     [#746] Fix deployment of parent artifact          * fixes #746 "
+  }, {
+    "tag" : "cfd1a0ef1182e1c34ee386c721938da7d606750f",
+    "comitter" : "Kevin Gómez <k.gomez@freenet.de>",
+    "date" : "2018-02-28 17:19:24 +0100",
+    "message" : "     [#748] Update version to 0.3.3-SNAPSHOT          * fixes #748 "
+  }, {
+    "tag" : "6b69470ff1c7264a7e700098fc3e06e03d633707",
+    "comitter" : "Kevin Gómez <k.gomez@freenet.de>",
+    "date" : "2018-02-28 19:03:30 +0100",
+    "message" : "     [#750] Add sonatype snapshot repository to readme information          * fixes #750 "
+  }, {
+    "tag" : "75c4d6087484210576e7dbe997ec9715bf3f61ac",
+    "comitter" : "Martin Junghanns <m.junghanns@mailbox.org>",
+    "date" : "2018-03-04 19:05:51 +0100",
+    "message" : "     [#752] Add minor changes to Gradoop examples          * Directory loading instead of explicit file loading in JSON Example     * Update communities examples     * Add method for DOT to PNG conversion using a system process calling `dot`     * fixes #752 "
+  }, {
+    "tag" : "53932b04467f97d950559b0ab7e449d1170f7303",
+    "comitter" : "Martin Junghanns <m.junghanns@mailbox.org>",
+    "date" : "2018-03-05 09:55:42 +0100",
+    "message" : "     [#744] Implement ApplyTransformation on Tx Collection Layout          * Move ApplyAggregation tests into own test class     * Automatically run ApplyAggregationTest on GVE and Tx Layout     * Automatically run ApplyTransformationTest on GVE and Tx Layout     * Enforce implementation for execution on GVE and Tx layout in Apply     * Implement ApplyTransformation for Transaction Layout     * Fixes #744 "
+  }, {
+    "tag" : "20837c38af9288993ebeecff97ba8b4d58201530",
+    "comitter" : "ChrizZz110 <110@posteo.de>",
+    "date" : "2018-03-07 14:26:38 +0100",
+    "message" : "     (#757) updated readme.md "
+  }, {
+    "tag" : "6ee2d316dc37417b02115f6b5d85962489ae504a",
+    "comitter" : "Kevin Gómez <k.gomez@freenet.de>",
+    "date" : "2018-03-07 14:36:02 +0100",
+    "message" : "     Merge pull request #758 from ChrizZz110/#757_remove_hbase_mention_from_readme          (#757) updated readme.md "
+  }, {
+    "tag" : "556a39cb0ab9c053033238a95a2b281e4a5f86d3",
+    "comitter" : "cmoesler <35991643+cmoesler@users.noreply.github.com>",
+    "date" : "2018-04-05 13:36:29 +0200",
+    "message" : "     [#741] Avoid overwriting metadata file in CSVDataSink          * fixes #741 "
+  }, {
+    "tag" : "289989a4bc79813da0b19e34ebe1e9d924abc958",
+    "comitter" : "cmoesler <35991643+cmoesler@users.noreply.github.com>",
+    "date" : "2018-04-05 14:06:28 +0200",
+    "message" : "     [ #733] Add wrapper for VertexDegrees algorithm          * fixes #733 "
+  }, {
+    "tag" : "cfbc4494541125809b95c62f1a501ac5b7b08e9d",
+    "comitter" : "André Petermann <petermann@informatik.uni-leipzig.de>",
+    "date" : "2018-05-03 09:00:12 +0200",
+    "message" : "     [#769] Fix randomly failing Foodbroker tests          * adds a test-specific FoodBroker config to fix random failure of FoodBrokerTest     * fixes some spelling mistakes, obsolete \"throws...\" and diamond contents "
+  }, {
+    "tag" : "75bc6ab772759a5e32942737dde29c02d9790970",
+    "comitter" : "Matthias Kricke <merando@gmx.de>",
+    "date" : "2018-05-08 14:10:19 +0200",
+    "message" : "     [#764] added ChangeLabel and ChangePropertyKeys UDFs (#772)          [#764] add ChangeLabel and ChangePropertyKeys UDFs "
+  }, {
+    "tag" : "445a07c90682a7d9dff2aac420d44302d49d7c76",
+    "comitter" : "moe <moritz.wilke@informatik.uni-leipzig.de>",
+    "date" : "2018-05-14 17:23:28 +0200",
+    "message" : "     [#766] Add JaccardIndex Algorithm (#767)          * configurable JaccardIndex          * running version of JaccardIndex          * Functions and package-info          * refactoring          * added denominator configuration          * documentation and reformatting of tests          * undirected test          * refactoring and documentation of functions          * refactoring according to checkstyle          * reverted accidental change in ExpandEmbeddingsNode          * requested changes from pr: documentation, naming and use of edge factory          * fixed checkstyle line length on link error "
+  }, {
+    "tag" : "3ffdb015df432ed188c7d4581d9739f987e1c3d4",
+    "comitter" : "Matthias Kricke <merando@gmx.de>",
+    "date" : "2018-05-15 16:41:13 +0200",
+    "message" : "     Revert \"[#766] Add JaccardIndex Algorithm (#767)\"          This reverts commit 445a07c90682a7d9dff2aac420d44302d49d7c76. "
+  }, {
+    "tag" : "2a9b6520539bf600351ab66d01007c18615e082e",
+    "comitter" : "Kevin Gómez <k.gomez@freenet.de>",
+    "date" : "2018-05-15 18:11:33 +0200",
+    "message" : "     Merge pull request #785 from dbs-leipzig/revert-767-ConfigurableJaccardIndex          Revert \"[#766] Add JaccardIndex Algorithm\" "
+  }, {
+    "tag" : "0b27a64617966f478a6b0557e1b131aeb98238ce",
+    "comitter" : "手不要乱摸 <chpengzh@foxmail.com>",
+    "date" : "2018-05-18 21:22:33 +0800",
+    "message" : "     [#737] Add apache accumulo store and test case (#759)          * add accumulo store implements and test unit          * update readme, rename confusing class name          * fix spelling mistake of test suite name "
+  }, {
+    "tag" : "6d0173340613a50a937e68aa11108df39e30c125",
+    "comitter" : "Philip Fritzsche <p-f@users.noreply.github.com>",
+    "date" : "2018-05-22 11:40:39 +0200",
+    "message" : "     Fix GDL syntax error in OverlapTest "
+  }, {
+    "tag" : "da50d148746d4b7765cf628a3f7abd69c26f1cf2",
+    "comitter" : "Philip Fritzsche <p-f@users.noreply.github.com>",
+    "date" : "2018-05-22 11:55:07 +0200",
+    "message" : "     Add a test case for two graphs with only their vertex set overlapping.     (Edge sets are disjoint.) "
+  }, {
+    "tag" : "a527afac168b0ed1fd0f1c87ba1154a7eb0322b0",
+    "comitter" : "Philip Fritzsche <p-f@users.noreply.github.com>",
+    "date" : "2018-05-22 11:58:05 +0200",
+    "message" : "     Reimplement overlap by getting the intersection of vertex and edge sets "
+  }, {
+    "tag" : "b57946cfa30dead6a9a6d38330c84bf11415d716",
+    "comitter" : "Kevin Gómez <k.gomez@freenet.de>",
+    "date" : "2018-05-22 19:20:11 +0200",
+    "message" : "     Merge pull request #787 from p-f/786-overlap-fix          Fix overlap operator for two graphs overlapping by vertex set only. "
+  }, {
+    "tag" : "ef856b87bb4f7e24d9e908f255061a0d6551bd27",
+    "comitter" : "cmoesler <35991643+cmoesler@users.noreply.github.com>",
+    "date" : "2018-05-28 21:31:09 +0200",
+    "message" : "     [#699] Refactor graph statistics to add a DataSink that creates all statistics          * fixes #699 "
+  }, {
+    "tag" : "fdc0d7fc7953d1dbb9e9ef6004327bf6dbd252f4",
+    "comitter" : "Steffen Dienst <steffen.dienst@gmail.com>",
+    "date" : "2018-05-29 10:38:35 +0200",
+    "message" : "     [#717] Vertex fusion for a collection of patterns          * fixes #717 "
+  }, {
+    "tag" : "9e426d15abb495c90d62ada2a8e707e8f2dcd89d",
+    "comitter" : "Philip Fritzsche <p-f@users.noreply.github.com>",
+    "date" : "2018-05-30 10:27:11 +0200",
+    "message" : "     [#776] Dynamically increase internal representation of PropertyValues          * fixes #776 "
+  }, {
+    "tag" : "130fc14ec141ffbb4cacdc7ab99d3eb606c2a62c",
+    "comitter" : "Kevin Gómez <k.gomez@freenet.de>",
+    "date" : "2018-06-01 10:42:22 +0200",
+    "message" : "     [#791] Include BSON in shaded jar          * fixes #791 "
+  }, {
+    "tag" : "64c46a0f623be29322e0714a59709386e4b0b029",
+    "comitter" : "Kevin Gómez <k.gomez@freenet.de>",
+    "date" : "2018-06-01 16:21:48 +0200",
+    "message" : "     [#793] Include GDL in shaded jar          * fixes #793 "
+  }, {
+    "tag" : "632f4da55a893fb29330dbedef29681327babe46",
+    "comitter" : "Martin Junghanns <m.junghanns@mailbox.org>",
+    "date" : "2018-06-02 11:22:51 +0200",
+    "message" : "     Add project strategy to edge induced subgraph          * also adds validation strategy for regular subgraph     * fixes #796 "
+  }, {
+    "tag" : "6fe007fe705845b1f9ce0857c1149932c06e20d6",
+    "comitter" : "Kevin Gómez <k.gomez@freenet.de>",
+    "date" : "2018-06-02 13:06:52 +0200",
+    "message" : "     Merge pull request #797 from s1ck/796_subgraph_extensions          Add project strategy to edge induced subgraph "
+  }, {
+    "tag" : "05021cd959253d8391d94e4735378ac7941012ef",
+    "comitter" : "ChrizZz110 <110@posteo.de>",
+    "date" : "2018-06-06 16:36:33 +0200",
+    "message" : "     [#802] fixed return class objects in getType function of PropertyValue class and added a test for this function "
+  }, {
+    "tag" : "a4ca58633321f79441002c75c3f73d89d54d3d0d",
+    "comitter" : "ChrizZz110 <110@posteo.de>",
+    "date" : "2018-06-06 17:49:33 +0200",
+    "message" : "     [#802] fixed code style issue "
+  }, {
+    "tag" : "5a7bf0555a46b30d0313886d194ff037046c877e",
+    "comitter" : "ChrizZz110 <110@posteo.de>",
+    "date" : "2018-06-07 10:30:18 +0200",
+    "message" : "     [#802] to clean cached maven dependencies "
+  }, {
+    "tag" : "2af6fc47012ebe9db9802b6193587500766c2957",
+    "comitter" : "ChrizZz110 <110@posteo.de>",
+    "date" : "2018-06-07 12:22:39 +0200",
+    "message" : "     [#802] rollback of travis cache cleanup setting "
+  }, {
+    "tag" : "632f79428658c49206d1295c7cf4760266a7ab1b",
+    "comitter" : "ChrizZz110 <110@posteo.de>",
+    "date" : "2018-06-08 10:19:23 +0200",
+    "message" : "     [#802] replaced conditions with map "
+  }, {
+    "tag" : "a5820f4c46b35a784bf766bccc9896b694f270a1",
+    "comitter" : "Kevin Gómez <k.gomez@freenet.de>",
+    "date" : "2018-06-08 11:21:58 +0200",
+    "message" : "     Merge pull request #803 from ChrizZz110/#802_propertyvalue_returns_wrong_types          [#802] fixed return class objects in getType function "
+  }, {
+    "tag" : "c1a135f1f0cff21432d1bdf60c612da327891f55",
+    "comitter" : "Kevin Gómez <k.gomez@freenet.de>",
+    "date" : "2018-06-08 11:24:55 +0200",
+    "message" : "     Merge pull request #804 from ChrizZz110/#800_csv_metadata_support_time_datatypes          [#800] extended MetaDataParser with time property types "
+  }, {
+    "tag" : "002f0a6441fb57f77d93c07c159a39c9c34f2589",
+    "comitter" : "Christopher Rost <18614530+ChrizZz110@users.noreply.github.com>",
+    "date" : "2018-06-14 14:29:38 +0200",
+    "message" : "     [#806] added 'List' to TestUtils properties and extended HBase Unit test with missing property types (#807) "
+  }, {
+    "tag" : "53e9bc2f6d92e1103a3ee1ddd9d77d5979f9fc9a",
+    "comitter" : "Christopher Rost <18614530+ChrizZz110@users.noreply.github.com>",
+    "date" : "2018-06-14 14:32:57 +0200",
+    "message" : "     #801 support list map bigd datatypes csv (#805)          * [#801] added support of Map, List and BigDeciaml datatype to CSV Metadata feature          * [#801] added support of dynamic types in Map and List          * [#801] usage of GradoopTestUtils added "
+  }, {
+    "tag" : "81fba58e1e7bc264574906a979c84537a6599d47",
+    "comitter" : "Christopher Rost <18614530+ChrizZz110@users.noreply.github.com>",
+    "date" : "2018-06-18 09:54:56 +0200",
+    "message" : "     [#810] added time data types to compare method of PropertyValue class (#813) "
+  }, {
+    "tag" : "1dbdd93c6e9a0a994a5db77468afaea3d6576801",
+    "comitter" : "Lucas Schons <schons@studserv.uni-leipzig.de>",
+    "date" : "2018-06-26 11:55:45 +0200",
+    "message" : "     Fix JavaDoc of aggregation functions     * package: package org.gradoop.flink.model.impl.operators.aggregation.functions "
+  }, {
+    "tag" : "4cb5d6795c767ff48619557d4b8b57b6210b6db0",
+    "comitter" : "Kevin Gómez <k.gomez@freenet.de>",
+    "date" : "2018-06-26 13:29:52 +0200",
+    "message" : "     Merge pull request #831 from Rascat/1-small-fixes          [#831] Fix JavaDoc of aggregation functions "
+  }, {
+    "tag" : "b0102ca1c6c23448c5fb6974f67bc868dd6bac42",
+    "comitter" : "Kevin Gómez <k.gomez@freenet.de>",
+    "date" : "2018-06-27 11:26:52 +0200",
+    "message" : "     [#677] added entity type to csv metadata (#834)          * [#677] introduces label and edge prefix used in csv metadata to distinguish between vertex and edge files.          * [#677] fixed typo "
+  }, {
+    "tag" : "4aff3cb2dc6f7d56a9bd16840e64f1af31132a01",
+    "comitter" : "Mohammad Ali Rostami <rostamiev@gmail.com>",
+    "date" : "2018-06-27 15:32:32 +0200",
+    "message" : "     [#836] rename RandomNodeSampling (#837)          fixes, #837 "
+  }, {
+    "tag" : "68313fd340d51e7a2f65cd4b8a6a2646692e1779",
+    "comitter" : "Timo <timo@timo-adameit.de>",
+    "date" : "2018-06-28 08:41:42 +0200",
+    "message" : "     [#830] Add PropertyValueUtilsTest and fix operator bugs (#832)          fixes #830 "
+  }, {
+    "tag" : "1cf60754812f04833bb08a9da1ba84c8098d30af",
+    "comitter" : "手不要乱摸 <chpengzh@foxmail.com>",
+    "date" : "2018-06-29 16:56:28 +0800",
+    "message" : "     gradoop store api and accumulo implements (#811)          * gradoop store api and accumulo implements          * [#812]remove meaningless generics definition for store api          * comment unused edege-in and edge-out record          * refactor code style and add test units          * handle compare runtime error          * fix comment mistake for disjunctive/conjunctive          * fix code style and add comment          * update configuration          * fix comment          * change negative function \"not\" -> \"negate\"          * remove read me and replace anonymous iterator "
+  }, {
+    "tag" : "c8e99d5ed218c142237d326a01a37d9f109799f9",
+    "comitter" : "Mohammad Ali Rostami <rostamiev@gmail.com>",
+    "date" : "2018-06-29 13:44:26 +0200",
+    "message" : "     [#838] add random edge sampling (#839)          fixes #839 "
+  }, {
+    "tag" : "5363bfa3d92893ac6dd2065cbef28b8c786e60bd",
+    "comitter" : "Kevin Gómez <k.gomez@freenet.de>",
+    "date" : "2018-06-29 13:54:02 +0200",
+    "message" : "     [#841] encoding entity type within csv field in csv metadata (#842)          fixes #841 "
+  }, {
+    "tag" : "5a31557254b3a539329dbe64fb9067001040899d",
+    "comitter" : "Kevin Gómez <k.gomez@freenet.de>",
+    "date" : "2018-06-29 14:37:09 +0200",
+    "message" : "     [#843] added a gradoop format converter (#844)          fixes #843 "
+  }, {
+    "tag" : "446204ff27e9e5002655b3ad57420eb4c8a4c80b",
+    "comitter" : "Kevin Gómez <k.gomez@freenet.de>",
+    "date" : "2018-07-02 13:11:03 +0200",
+    "message" : "     [#826] added indexed sink for csv (#846)          fixes #826 "
+  }, {
+    "tag" : "e5b7d0d5b35b17b4b688af4c449dfdc76cd37614",
+    "comitter" : "Mohammad Ali Rostami <rostamiev@gmail.com>",
+    "date" : "2018-07-03 15:58:05 +0200",
+    "message" : "     [#848] nonuniform vertex sampling (#849)          fixes #849 "
+  }, {
+    "tag" : "56c956adf170832693e300eb820b8dbde9878b85",
+    "comitter" : "Kevin Gómez <k.gomez@freenet.de>",
+    "date" : "2018-07-03 16:00:20 +0200",
+    "message" : "     [#851] mark json sink/source as deprecated (#852)          fixes #851 "
+  }, {
+    "tag" : "0a2b3e42815390e40c1b2296c39ee460c0a6df91",
+    "comitter" : "Timo <timo@timo-adameit.de>",
+    "date" : "2018-07-05 15:18:25 +0200",
+    "message" : "     [#398] Add support for comparison of different PropertyValue number types (#853)          * [398] Add support for comparing different number types          * [398] Minor changes          * [#398] Update outdated test "
+  }, {
+    "tag" : "d63348315cd1b2f99f851197c8c0b017e53df757",
+    "comitter" : "Kevin Gómez <k.gomez@freenet.de>",
+    "date" : "2018-07-06 11:06:52 +0200",
+    "message" : "     [#861] update licence handling (#863)          fixes #861 "
+  }, {
+    "tag" : "88978faea35e555f5fbc31c51c9122b182d2074a",
+    "comitter" : "Kevin Gómez <k.gomez@freenet.de>",
+    "date" : "2018-07-06 13:00:06 +0200",
+    "message" : "     [#859] upgrade flink to v1.5.0 (#860)          fixes #859 "
+  }, {
+    "tag" : "8ce8f0f34b10c93b8aa4f00ec89db8dc161174f0",
+    "comitter" : "Christopher Rost <18614530+ChrizZz110@users.noreply.github.com>",
+    "date" : "2018-07-06 14:23:25 +0200",
+    "message" : "     [#850] switched version to 0.4.0 in pom.xml's and updated README.md (#868)          fixes #850 "
+  }, {
+    "tag" : "fd3808008c449b5ae14e6f252f81d4d776941edf",
+    "comitter" : "Kevin Gómez <k.gomez@freenet.de>",
+    "date" : "2018-07-06 14:48:26 +0200",
+    "message" : "     [#867] update pom's + readme to 0.5-SNAPSHOT (#869)          fixes #867 "
+  }, {
+    "tag" : "486d573105c1d11bfe2fb68ec74d1d196d7bf4a1",
+    "comitter" : "Mohammad Ali Rostami <rostamiev@gmail.com>",
+    "date" : "2018-07-10 08:45:03 +0200",
+    "message" : "     [#854] vertex neighborhood sampling (#855)          fixes #854 "
+  }, {
+    "tag" : "b9debd52218d6cf5e9f27f2f2e250723e8990cea",
+    "comitter" : "Mohammad Ali Rostami <rostamiev@gmail.com>",
+    "date" : "2018-07-12 11:16:03 +0200",
+    "message" : "     [#870] add RandomVertexEdgeSampling (#873)          fixes #872 "
+  }, {
+    "tag" : "108d2c7a2d8c9736e3528db9ca6165b3093e815d",
+    "comitter" : "Timo <timo@timo-adameit.de>",
+    "date" : "2018-07-12 16:30:30 +0200",
+    "message" : "     [#865] Better handling of PropertyValues with non uniform types in CSVDataSink (#878)          Fixes #878 "
+  }, {
+    "tag" : "53e0529a03e637506b1f23d50c1fb0423509888a",
+    "comitter" : "Christopher Rost <18614530+ChrizZz110@users.noreply.github.com>",
+    "date" : "2018-07-13 11:39:50 +0200",
+    "message" : "     [#862] replaced deprecated api usage of hbase store  (#880)          * [#862] replaced deprecated api usage of hbase store and reordered params of HBase config class constructor     * fixes [#862] "
+  }, {
+    "tag" : "03a8f08a05ce06072cfbfee6baafbc76f4874734",
+    "comitter" : "Philip Fritzsche <p-f@users.noreply.github.com>",
+    "date" : "2018-07-13 15:23:57 +0200",
+    "message" : "     #808 Add a subinterface of filter to make filters combinable. (#847)          fixes #808 "
+  }, {
+    "tag" : "89672b47dc9424c1e371e5d4b391781df174926a",
+    "comitter" : "Christopher Rost <18614530+ChrizZz110@users.noreply.github.com>",
+    "date" : "2018-07-16 14:35:53 +0200",
+    "message" : "     [#885] upgraded hbase dependency to 1.4.3 and removed unused imports (#887)          fixes #885 "
+  }, {
+    "tag" : "accd8d280f5aeb5eef952181190e4098e0dac176",
+    "comitter" : "Christopher Rost <18614530+ChrizZz110@users.noreply.github.com>",
+    "date" : "2018-07-17 12:41:00 +0200",
+    "message" : "     [#814] hbase predicate pushdown support (1/3) (#871)          fixes #814 "
+  }, {
+    "tag" : "5a33964a431f6830824ba99881762ed9ad631288",
+    "comitter" : "Kevin Gómez <k.gomez@freenet.de>",
+    "date" : "2018-07-18 08:50:33 +0200",
+    "message" : "     [#819][#890] added javadoc construction plugins + added snapshot profile + cleanups          fixes #819     fixes #890 "
+  }, {
+    "tag" : "cdee070583baa0c80d3b6d30d6ea54b83259dfc8",
+    "comitter" : "Kevin Gómez <k.gomez@freenet.de>",
+    "date" : "2018-07-18 13:21:12 +0200",
+    "message" : "     [#884] fix licence block (#894)          fixes #884 "
+  }, {
+    "tag" : "0f2cb47c55e9ad5a016a167f0a7ee814a0810c64",
+    "comitter" : "Timo <timo@timo-adameit.de>",
+    "date" : "2018-07-19 08:29:26 +0200",
+    "message" : "     [#882] Separate csv metadata map by type (#891)          fixes #882 "
+  }, {
+    "tag" : "a9a1c80f09cfd132481ef0438764d1dd95165f00",
+    "comitter" : "手不要乱摸 <chpengzh@foxmail.com>",
+    "date" : "2018-07-20 16:48:11 +0800",
+    "message" : "     [#893] refactor gradoop-store to own sub package (#897)          fixes #893 "
+  }, {
+    "tag" : "4f2672beeb930a37944a4e8a47db7af5e30bfc45",
+    "comitter" : "2start <36307788+2start@users.noreply.github.com>",
+    "date" : "2018-07-20 14:56:58 +0200",
+    "message" : "     [#881] Fix runtime error empty edge set (#898)          fixes #881 "
+  }, {
+    "tag" : "e335675f1e9777b72b8533c03d858a908753c3b7",
+    "comitter" : "Matthias Täschner <matthias.taeschner@posteo.de>",
+    "date" : "2018-07-24 10:20:29 +0200",
+    "message" : "     [#875] add Random Limited Degree Vertex Sampling (#879)          * fixes #875 "
+  }, {
+    "tag" : "a644ab2c40ce8f3fadf02bdc3fb1d04ac6672799",
+    "comitter" : "Christopher Rost <18614530+ChrizZz110@users.noreply.github.com>",
+    "date" : "2018-07-24 14:44:47 +0200",
+    "message" : "     [#886] remove unused data hbase store (#899)          * fixes #886 "
+  }, {
+    "tag" : "68efc3d7f2037e02d8e0e0062096bcb9421ffdba",
+    "comitter" : "Rascat <ls80zyse@studserv.uni-leipzig.de>",
+    "date" : "2018-07-24 14:46:21 +0200",
+    "message" : "     [#874] Restructure pattern matching in LogicalGraph (#889)          fixes #874 "
+  }, {
+    "tag" : "1ede21b6c3956451d82cdce8d9c0468884615147",
+    "comitter" : "2start <36307788+2start@users.noreply.github.com>",
+    "date" : "2018-07-31 10:35:22 +0200",
+    "message" : "     [#877] added support for property value null (#908)          fixes #877 "
+  }, {
+    "tag" : "17603126e6682abc5ebacaee2d3762c86afd6ac6",
+    "comitter" : "Christopher Rost <18614530+ChrizZz110@users.noreply.github.com>",
+    "date" : "2018-07-31 15:39:31 +0200",
+    "message" : "     [#856] property pushdown hbase (#906)          fixes #856 "
+  }, {
+    "tag" : "9a1b288c1a461259422ca7b7aa77339c166a0edf",
+    "comitter" : "Timo <timo@timo-adameit.de>",
+    "date" : "2018-08-01 08:10:18 +0200",
+    "message" : "     [#864] Change examples to use csv (#905)          fixes #864 "
+  }, {
+    "tag" : "3cc8d0098e30cd16a957d7a9fa78ca84b21dce73",
+    "comitter" : "Timo <timo@timo-adameit.de>",
+    "date" : "2018-08-01 12:29:06 +0200",
+    "message" : "     [#494] Add Set support to PropertyValue (#916)          fixes #494 "
+  }, {
+    "tag" : "eebd270b5ce4e6bc1f3d0a35504ebf77c8f1b7ba",
+    "comitter" : "Philip Fritzsche <p-f@users.noreply.github.com>",
+    "date" : "2018-08-01 14:22:51 +0200",
+    "message" : "     [#888] Minor changes to Tuple-related functions. (#912)          fixes #888 "
+  }, {
+    "tag" : "6089d8ab65d42eecbd1ca4c9e47a11c6f4a0ca61",
+    "comitter" : "Rascat <ls80zyse@studserv.uni-leipzig.de>",
+    "date" : "2018-08-01 14:59:09 +0200",
+    "message" : "     [#779] Add code coverage for Gradoop (#914)          fixes #779 "
+  }, {
+    "tag" : "0d95fff8d96c21cbf3354d92770a1386a892cb7e",
+    "comitter" : "Timo <timo@timo-adameit.de>",
+    "date" : "2018-08-02 11:34:53 +0200",
+    "message" : "     [#702] Add support for graphs without edges to TLFDataSource (#921)          fixes #702 "
+  }, {
+    "tag" : "b4a2c33c24d0ba5c4729037bf4fe06a715d14c44",
+    "comitter" : "手不要乱摸 <chpengzh@foxmail.com>",
+    "date" : "2018-08-02 20:06:37 +0800",
+    "message" : "     [#909] Remove Flink dependency for store instance (#918)          fixes #909 "
+  }, {
+    "tag" : "e4c479792211f5dbc0195f6ab82a7c9369e44596",
+    "comitter" : "2start <36307788+2start@users.noreply.github.com>",
+    "date" : "2018-08-02 15:20:55 +0200",
+    "message" : "     [#876] added print for logical graph and graph collection (#913)          fixes #876 "
+  }, {
+    "tag" : "4e75ce474c3f50535cf289000792a7dae4de011b",
+    "comitter" : "Christopher Rost <18614530+ChrizZz110@users.noreply.github.com>",
+    "date" : "2018-08-03 09:01:54 +0200",
+    "message" : "     [#857] logical predicate chaining hbase (#920)          fixes #857 "
+  }, {
+    "tag" : "f47007f0359766b198b09844bb38a6a5dc8430f4",
+    "comitter" : "Kevin Gómez <k.gomez@freenet.de>",
+    "date" : "2018-08-06 14:20:05 +0200",
+    "message" : "     [#926] added argLine to maven properties (fix ide testing bug) (#929)          fixes #926 "
+  }, {
+    "tag" : "f7c8ad0bb1f841bf155b8f651482590faeb965c7",
+    "comitter" : "Kevin Gómez <k.gomez@freenet.de>",
+    "date" : "2018-08-07 16:30:25 +0200",
+    "message" : "     [#794] include new benchmark classes (#904)          fixes #794 "
+  } ]
+}

@@ -1,0 +1,7 @@
+@Override
+public void addKeyToElement(T element, Object key) {
+    if (!(key instanceof Long)) {
+        throw new IllegalArgumentException("Invalid type for key: " + key.getClass().getSimpleName());
+    }
+    element.setProperty(targetPropertyKey, PropertyValue.create(key));
+}

@@ -1,0 +1,16 @@
+@Test
+public void testDistinctVertexPropertyValuesByLabelAndPropertyName() throws Exception {
+    LogicalGraph db = getSocialNetworkLoader().getLogicalGraph();
+    List<WithCount<Tuple2<String, String>>> result = new DistinctVertexPropertiesByLabel().execute(db).collect();
+    Map<Tuple, Long> cache = new HashMap<>(5);
+    result.forEach(e -> cache.put(e.getObject(), e.getCount()));
+    assertThat(result.size(), is(8));
+    assertThat(cache.get(Tuple2.of("Person", "name")), is(6L));
+    assertThat(cache.get(Tuple2.of("Person", "gender")), is(2L));
+    assertThat(cache.get(Tuple2.of("Person", "city")), is(3L));
+    assertThat(cache.get(Tuple2.of("Person", "age")), is(4L));
+    assertThat(cache.get(Tuple2.of("Person", "speaks")), is(1L));
+    assertThat(cache.get(Tuple2.of("Person", "locIP")), is(1L));
+    assertThat(cache.get(Tuple2.of("Tag", "name")), is(3L));
+    assertThat(cache.get(Tuple2.of("Forum", "title")), is(2L));
+}

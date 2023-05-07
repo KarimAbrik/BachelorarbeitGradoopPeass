@@ -1,0 +1,7 @@
+@Override
+public EdgeString map(EdgeString edgeString) throws Exception {
+    GradoopId sourceId = edgeString.getSourceId();
+    edgeString.setSourceId(edgeString.getTargetId());
+    edgeString.setTargetId(sourceId);
+    return edgeString;
+}

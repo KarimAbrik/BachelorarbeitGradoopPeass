@@ -1,0 +1,12 @@
+@Override
+public List<PropertyValue> apply(EL entity) {
+    List<PropertyValue> propertyValueList = Lists.newArrayListWithCapacity(propertyKeys.size());
+    for (String propertyKey : propertyKeys) {
+        if (entity.hasProperty(propertyKey)) {
+            propertyValueList.add(entity.getPropertyValue(propertyKey));
+        } else {
+            propertyValueList.add(PropertyValue.NULL_VALUE);
+        }
+    }
+    return propertyValueList;
+}

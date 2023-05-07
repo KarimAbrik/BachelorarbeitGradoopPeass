@@ -1,0 +1,11 @@
+/**
+ * Creates a Gradoop Flink configuration using the given parameters.
+ *
+ * @param env Flink execution environment
+ * @param logicalGraphLayoutFactory factory to create logical graph layouts
+ * @param graphCollectionLayoutFactory factory to create graph collection layouts
+ * @return Gradoop Flink configuration
+ */
+public static GradoopFlinkConfig createConfig(ExecutionEnvironment env, LogicalGraphLayoutFactory<EPGMGraphHead, EPGMVertex, EPGMEdge> logicalGraphLayoutFactory, GraphCollectionLayoutFactory<EPGMGraphHead, EPGMVertex, EPGMEdge> graphCollectionLayoutFactory) {
+    return new GradoopFlinkConfig(env, logicalGraphLayoutFactory, graphCollectionLayoutFactory);
+}

@@ -1,0 +1,9 @@
+/**
+ * True, iff vertices without labels will be converted to individual groups/ supervertices.
+ * False, iff vertices without labels will be collapsed into a single group/ supervertice.
+ *
+ * @return true, iff vertices will be converted
+ */
+protected boolean isRetainingVerticesWithoutGroup() {
+    return retainVerticesWithoutGroup;
+}

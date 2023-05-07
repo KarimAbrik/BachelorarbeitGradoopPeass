@@ -1,0 +1,4 @@
+@Override
+public void open(Configuration parameters) throws Exception {
+    idSet = GradoopIdSet.fromExisting(getRuntimeContext().getBroadcastVariable(GRAPH_ID_SET));
+}

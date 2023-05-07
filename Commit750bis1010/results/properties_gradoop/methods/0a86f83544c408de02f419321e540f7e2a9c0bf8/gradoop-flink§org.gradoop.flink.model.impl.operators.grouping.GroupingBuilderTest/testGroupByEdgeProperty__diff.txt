@@ -1,0 +1,10 @@
+/**
+ * Tests successful call to {@link Grouping.GroupingBuilder#build()} when only grouping by
+ * one edge property.
+ */
+@Test
+public void testGroupByEdgeProperty() {
+    UnaryBaseGraphToBaseGraphOperator<LogicalGraph> grouping = new Grouping.GroupingBuilder().setStrategy(GroupingStrategy.GROUP_REDUCE).addEdgeGroupingKey("").build();
+    assertTrue(grouping instanceof Grouping);
+    assertTrue(((Grouping) grouping).useEdgeProperties());
+}

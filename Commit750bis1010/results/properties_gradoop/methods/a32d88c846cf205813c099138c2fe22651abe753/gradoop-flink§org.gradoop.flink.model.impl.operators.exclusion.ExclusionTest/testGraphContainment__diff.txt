@@ -1,0 +1,38 @@
+@Test
+public void testGraphContainment() throws Exception {
+    FlinkAsciiGraphLoader loader = getSocialNetworkLoader();
+    LogicalGraph g0 = loader.getLogicalGraphByVariable("g0");
+    LogicalGraph g2 = loader.getLogicalGraphByVariable("g2");
+    // use collections as data sink
+    Collection<EPGMVertex> vertices0 = new HashSet<>();
+    Collection<EPGMEdge> edges0 = new HashSet<>();
+    Collection<EPGMVertex> vertices2 = new HashSet<>();
+    Collection<EPGMEdge> edges2 = new HashSet<>();
+    Collection<EPGMVertex> resVertices = new HashSet<>();
+    Collection<EPGMEdge> resEdges = new HashSet<>();
+    LogicalGraph res = g2.exclude(g0);
+    g0.getVertices().output(new LocalCollectionOutputFormat<>(vertices0));
+    g0.getEdges().output(new LocalCollectionOutputFormat<>(edges0));
+    g2.getVertices().output(new LocalCollectionOutputFormat<>(vertices2));
+    g2.getEdges().output(new LocalCollectionOutputFormat<>(edges2));
+    res.getVertices().output(new LocalCollectionOutputFormat<>(resVertices));
+    res.getEdges().output(new LocalCollectionOutputFormat<>(resEdges));
+    getExecutionEnvironment().execute();
+    Set<EPGMGraphElement> inVertices = new HashSet<>();
+    for (EPGMVertex vertex : vertices2) {
+        if (!vertices0.contains(vertex)) {
+            inVertices.add(vertex);
+        }
+    }
+    for (EPGMEdge edge : edges2) {
+        if (!edges0.contains(edge)) {
+            inVertices.add(edge);
+        }
+    }
+    Set<EPGMGraphElement> outVertices = new HashSet<>();
+    inVertices.addAll(outVertices);
+    Set<EPGMGraphElement> outEdges = new HashSet<>();
+    Set<EPGMGraphElement> inEdges = new HashSet<>(resEdges);
+    checkElementMatches(inVertices, outVertices);
+    checkElementMatches(inEdges, outEdges);
+}

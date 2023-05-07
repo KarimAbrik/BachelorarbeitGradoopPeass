@@ -1,0 +1,19 @@
+@Test
+public void testFilterWithNoPredicates() throws Exception {
+    CNF predicates = predicateFromQuery("MATCH (a)-[e]->(b)");
+    Properties properties = Properties.create();
+    properties.set("name", "Alice");
+    EPGMVertex a = vertexFactory.createVertex("Person", properties);
+    properties = Properties.create();
+    properties.set("name", "Bob");
+    EPGMVertex b = vertexFactory.createVertex("Person", properties);
+    properties = Properties.create();
+    properties.set("since", "2013");
+    EPGMEdge e = edgeFactory.createEdge("knows", a.getId(), b.getId(), properties);
+    DataSet<Triple> triples = getExecutionEnvironment().fromElements(new Triple(a, e, b));
+    List<Embedding> result = new FilterAndProjectTriples(triples, "a", "e", "b", predicates, new HashMap<>(), MatchStrategy.ISOMORPHISM).evaluate().collect();
+    assertEquals(1, result.size());
+    assertEquals(result.get(0).getId(0), a.getId());
+    assertEquals(result.get(0).getId(1), e.getId());
+    assertEquals(result.get(0).getId(2), b.getId());
+}

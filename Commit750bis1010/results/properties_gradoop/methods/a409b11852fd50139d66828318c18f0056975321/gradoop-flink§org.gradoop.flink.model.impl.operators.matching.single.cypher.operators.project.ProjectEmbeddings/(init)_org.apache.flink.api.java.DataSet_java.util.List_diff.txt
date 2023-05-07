@@ -1,0 +1,10 @@
+/**
+ * Creates a new embedding projection operator
+ * @param input Embeddings that should be projected
+ * @param propertyWhiteList property columns in the embedding that are taken over to the output
+ */
+public ProjectEmbeddings(DataSet<Embedding> input, List<Integer> propertyWhiteList) {
+    this.input = input;
+    this.propertyWhiteList = propertyWhiteList.stream().sorted().collect(Collectors.toList());
+    this.name = "ProjectEmbeddings";
+}

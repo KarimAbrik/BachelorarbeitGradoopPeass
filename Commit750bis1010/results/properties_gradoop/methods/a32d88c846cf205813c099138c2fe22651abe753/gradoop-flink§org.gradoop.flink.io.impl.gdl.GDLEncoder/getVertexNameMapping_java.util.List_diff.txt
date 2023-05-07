@@ -1,0 +1,15 @@
+/**
+ * Returns a mapping between the vertex GradoopID and the GDL variable name.
+ *
+ * @param vertices The graph vertices.
+ * @return Mapping between vertex and GDL variable name.
+ */
+private Map<GradoopId, String> getVertexNameMapping(List<V> vertices) {
+    Map<GradoopId, String> idToVertexName = new HashMap<>(vertices.size());
+    for (int i = 0; i < vertices.size(); i++) {
+        V vertex = vertices.get(i);
+        String vName = String.format("%s_%s_%s", VERTEX_VARIABLE_PREFIX, vertex.getLabel(), i);
+        idToVertexName.put(vertex.getId(), vName);
+    }
+    return idToVertexName;
+}

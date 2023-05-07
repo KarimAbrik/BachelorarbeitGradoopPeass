@@ -1,0 +1,11 @@
+/**
+ * Creates a new estimator.
+ *
+ * @param queryHandler query handler
+ * @param graphStatistics graph statistics
+ */
+JoinEstimator(QueryHandler queryHandler, GraphStatistics graphStatistics) {
+    super(queryHandler, graphStatistics);
+    this.cardinalities = new HashMap<>();
+    this.distinctValues = new HashMap<>();
+}

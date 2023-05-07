@@ -1,0 +1,15 @@
+@Override
+public void coGroup(Iterable<EPGMEdge> edges, Iterable<EPGMVertex> vertex, Collector<Tuple2<EPGMVertex, List<NeighborhoodVertex>>> out) {
+    // should only contain one or no vertex
+    Iterator<EPGMVertex> vertexIterator = vertex.iterator();
+    if (vertexIterator.hasNext()) {
+        EPGMVertex v = vertexIterator.next();
+        List<NeighborhoodVertex> neighbors = new ArrayList<>();
+        for (EPGMEdge e : edges) {
+            neighbors.add(new NeighborhoodVertex(getNeighborId(v.getId(), e), e.getLabel()));
+        }
+        reuse.f0 = v;
+        reuse.f1 = neighbors;
+        out.collect(reuse);
+    }
+}

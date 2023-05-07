@@ -1,0 +1,18 @@
+/**
+ * Returns a logical graph containing the complete vertex and edge space of
+ * the database.
+ *
+ * @param withGraphContainment true, if vertices and edges shall be updated to
+ *                             be contained in the logical graph representing
+ *                             the database
+ * @return logical graph of vertex and edge space
+ */
+public LogicalGraph getLogicalGraph(boolean withGraphContainment) {
+    final LogicalGraphFactory factory = config.getLogicalGraphFactory();
+    if (withGraphContainment) {
+        return factory.fromCollections(getVertices(), getEdges()).transformGraphHead(new RenameLabel<>(GradoopConstants.DEFAULT_GRAPH_LABEL, GradoopConstants.DB_GRAPH_LABEL));
+    } else {
+        EPGMGraphHead graphHead = factory.getGraphHeadFactory().createGraphHead(GradoopConstants.DB_GRAPH_LABEL);
+        return factory.fromCollections(graphHead, getVertices(), getEdges());
+    }
+}

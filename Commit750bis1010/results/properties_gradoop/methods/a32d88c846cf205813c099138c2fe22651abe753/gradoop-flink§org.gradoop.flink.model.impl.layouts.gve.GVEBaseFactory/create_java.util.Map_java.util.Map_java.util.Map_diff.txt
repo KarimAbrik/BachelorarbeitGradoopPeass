@@ -1,0 +1,14 @@
+/**
+ * Creates a collection layout from the given datasets indexed by label.
+ *
+ * @param graphHeads Mapping from label to graph head dataset
+ * @param vertices Mapping from label to vertex dataset
+ * @param edges Mapping from label to edge dataset
+ * @return GVE layout
+ */
+GVELayout create(Map<String, DataSet<EPGMGraphHead>> graphHeads, Map<String, DataSet<EPGMVertex>> vertices, Map<String, DataSet<EPGMEdge>> edges) {
+    Objects.requireNonNull(graphHeads);
+    Objects.requireNonNull(vertices);
+    Objects.requireNonNull(edges);
+    return new GVELayout(graphHeads.values().stream().reduce(DataSet::union).orElseThrow(() -> new RuntimeException("Error during graph head union")), vertices.values().stream().reduce(DataSet::union).orElseThrow(() -> new RuntimeException("Error during vertex union")), edges.values().stream().reduce(createEdgeDataSet(Collections.EMPTY_LIST), DataSet::union));
+}

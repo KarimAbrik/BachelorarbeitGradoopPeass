@@ -1,0 +1,8 @@
+@Test
+public void testSplit2() throws Exception {
+    FlinkAsciiGraphLoader loader = getLoaderFromString("" + "input[" + "(v0 {key1 : 0})" + "(v1 {key1 : 1})" + "(v2 {key1 : 1})" + "(v3 {key1 : 0})" + "(v4 {key1 : 2})" + "(v5 {key1 : 2})" + "(v1)-[e1]->(v2)" + "(v3)-[e2]->(v0)" + "(v2)-[e3]->(v0)" + "]" + "graph1[" + "(v1)-[e1]->(v2)" + "]" + "graph2[" + "(v3)-[e2]->(v0)" + "]" + "graph3[" + "(v4)" + "(v5)" + "]");
+    LogicalGraph input = loader.getLogicalGraphByVariable("input");
+    GraphCollection result = input.callForCollection(new Split(SplitTest::getSplitValues));
+    GraphCollection expectation = loader.getGraphCollectionByVariables("graph1", "graph2", "graph3");
+    collectAndAssertTrue(result.equalsByGraphElementIds(expectation));
+}

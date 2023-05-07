@@ -1,0 +1,17 @@
+/**
+ * Creates an embedding from the given list of identifier and their associated properties. The
+ * order of the identifiers determines the order in the embedding.
+ *
+ * @param entries ids and their properties to be contained in the embedding
+ * @return embedding containing ids and properties
+ */
+public static Embedding createEmbedding(List<Pair<GradoopId, List<Object>>> entries) {
+    Embedding e = new Embedding();
+    for (Pair<GradoopId, List<Object>> entry : entries) {
+        e.add(entry.getLeft());
+        for (Object o : entry.getRight()) {
+            e.addPropertyValues(PropertyValue.create(o));
+        }
+    }
+    return e;
+}

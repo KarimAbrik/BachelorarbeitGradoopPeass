@@ -1,0 +1,27 @@
+/**
+ * New Expand One Operator
+ *
+ * @param input the embedding which should be expanded
+ * @param candidateEdges candidate edges along which we expand
+ * @param expandColumn specifies the input column that represents the vertex from which we expand
+ * @param lowerBound specifies the minimum hops we want to expand
+ * @param upperBound specifies the maximum hops we want to expand
+ * @param direction direction of the expansion (see {@link ExpandDirection})
+ * @param distinctVertexColumns indices of distinct input vertex columns
+ * @param distinctEdgeColumns indices of distinct input edge columns
+ * @param closingColumn defines the column which should be equal with the paths end
+ * @param joinHint join strategy
+ */
+public ExpandEmbeddings(DataSet<Embedding> input, DataSet<Embedding> candidateEdges, int expandColumn, int lowerBound, int upperBound, ExpandDirection direction, List<Integer> distinctVertexColumns, List<Integer> distinctEdgeColumns, int closingColumn, JoinOperatorBase.JoinHint joinHint) {
+    this.input = input;
+    this.candidateEdges = candidateEdges;
+    this.expandColumn = expandColumn;
+    this.lowerBound = lowerBound;
+    this.upperBound = upperBound;
+    this.direction = direction;
+    this.distinctVertexColumns = distinctVertexColumns;
+    this.distinctEdgeColumns = distinctEdgeColumns;
+    this.closingColumn = closingColumn;
+    this.joinHint = joinHint;
+    this.setName("ExpandEmbeddings");
+}

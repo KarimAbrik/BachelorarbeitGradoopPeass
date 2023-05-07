@@ -1,0 +1,8 @@
+/**
+ * Constructor
+ *
+ * @param transformationFunction element modification function
+ */
+protected TransformBase(TransformationFunction<EL> transformationFunction) {
+    this.transformationFunction = checkNotNull(transformationFunction);
+}

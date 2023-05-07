@@ -1,0 +1,12 @@
+@Test
+public void testGetVerticesByVariables() throws Exception {
+    AsciiGraphLoader<GraphHead, Vertex, Edge> asciiGraphLoader = AsciiGraphLoader.fromString("[(a),(b),(a)]", config);
+    validateCollections(asciiGraphLoader, 1, 2, 0);
+    validateCaches(asciiGraphLoader, 0, 2, 0);
+    Collection<Vertex> vertexs = asciiGraphLoader.getVerticesByVariables("a", "b");
+    Vertex a = asciiGraphLoader.getVertexByVariable("a");
+    Vertex b = asciiGraphLoader.getVertexByVariable("b");
+    assertEquals("Wrong number of vertices", 2, vertexs.size());
+    assertTrue("Vertex was not contained in result", vertexs.contains(a));
+    assertTrue("Vertex was not contained in result", vertexs.contains(b));
+}

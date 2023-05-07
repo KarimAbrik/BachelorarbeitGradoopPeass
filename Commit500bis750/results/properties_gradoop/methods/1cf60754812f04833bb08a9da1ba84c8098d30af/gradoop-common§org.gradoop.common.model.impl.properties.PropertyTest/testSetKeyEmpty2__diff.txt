@@ -1,0 +1,5 @@
+@Test(expected = IllegalArgumentException.class)
+public void testSetKeyEmpty2() {
+    Property property = new Property("key", PropertyValue.create(10));
+    property.setKey("");
+}

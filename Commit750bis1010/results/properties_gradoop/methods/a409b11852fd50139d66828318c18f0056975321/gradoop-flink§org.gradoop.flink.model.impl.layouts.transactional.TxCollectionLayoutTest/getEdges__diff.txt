@@ -1,0 +1,7 @@
+@Test
+public void getEdges() throws Exception {
+    TxCollectionLayout layout = new TxCollectionLayout(getExecutionEnvironment().fromElements(tx0, tx1));
+    Set<EPGMEdge> expected = Sets.newHashSet(tx0.getEdges());
+    expected.addAll(tx1.getEdges());
+    GradoopTestUtils.validateGraphElementCollections(expected, layout.getEdges().collect());
+}

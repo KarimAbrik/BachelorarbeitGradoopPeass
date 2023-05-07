@@ -1,0 +1,9 @@
+/**
+ * Updates the vertex cache.
+ *
+ * @param variable vertex variable used in GDL script
+ * @param v vertex from GDL loader
+ */
+private void updateVertexCache(String variable, org.s1ck.gdl.model.Vertex v) {
+    vertexCache.put(variable, vertices.get(vertexIds.get(v.getId())));
+}

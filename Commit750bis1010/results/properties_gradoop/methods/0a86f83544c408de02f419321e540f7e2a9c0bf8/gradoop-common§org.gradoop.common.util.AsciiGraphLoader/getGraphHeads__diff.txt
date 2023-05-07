@@ -1,0 +1,11 @@
+// ---------------------------------------------------------------------------
+//  Graph methods
+// ---------------------------------------------------------------------------
+/**
+ * Returns all GraphHeads contained in the ASCII graph.
+ *
+ * @return graphHeads
+ */
+public Collection<G> getGraphHeads() {
+    return new ImmutableSet.Builder<G>().addAll(graphHeads.values()).build();
+}

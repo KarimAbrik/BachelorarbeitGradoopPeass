@@ -1,0 +1,18 @@
+/**
+ * Write properties to the given json object.
+ *
+ * @param json       json object to write to
+ * @param attributed entity with attributes (graphs, vertex, edge)
+ * @return updated json object
+ * @throws JSONException
+ */
+private JSONObject writeProperties(final JSONObject json, final Attributed attributed) throws JSONException {
+    JSONObject properties = new JSONObject();
+    if (attributed.getPropertyCount() > 0) {
+        for (String propertyKey : attributed.getPropertyKeys()) {
+            properties.put(propertyKey, attributed.getProperty(propertyKey));
+        }
+        json.put(PROPERTIES, properties);
+    }
+    return json;
+}

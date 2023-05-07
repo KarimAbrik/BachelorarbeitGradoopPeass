@@ -1,0 +1,8 @@
+@Test
+public void testGetVertices() throws Exception {
+    FlinkAsciiGraphLoader loader = getSocialNetworkLoader();
+    Collection<EPGMVertex> inputVertices = loader.getVertices();
+    List<EPGMVertex> outputVertices = loader.getLogicalGraph(false).getVertices().collect();
+    validateElementCollections(inputVertices, outputVertices);
+    validateGraphElementCollections(inputVertices, outputVertices);
+}

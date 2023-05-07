@@ -1,0 +1,13 @@
+@Test
+public void trickyLooplessAndPatternToThirdmatch() throws Exception {
+    FlinkAsciiGraphLoader loader = getLoaderFromString("tricky:G {tricky : \"graph\"}[" + "(a:A {atype : \"avalue\"})-[alpha:AlphaEdge {alphatype : \"alphavalue\"}]->(b:B {btype : " + "\"bvalue\"})  " + "(d:D {dtype : \"dvalue\"})-[l:loop {ltype : \"lvalue\"}]->(b:B {btype : \"bvalue\"})  " + "(b:B {btype : \"bvalue\"})-->(c:C {ctype : \"cvalue\"})  " + "(c:C {ctype : \"cvalue\"})-->(e:E {etype : \"evalue\"})  " + "(c:C {ctype : \"cvalue\"})-[beta:BetaEdge {betatype : \"betavalue\"}]->(d:D {dtype : " + "\"dvalue\"})  " + "(d:D {dtype : \"dvalue\"})-->(e:E {etype : \"evalue\"}) " + "]" + "" + "looplessPattern:G {looplessPattern : \"graph\"}[" + "(a:A {atype : \"avalue\"})-[alpha:AlphaEdge {alphatype : \"alphavalue\"}]->(b:B {btype : " + "\"bvalue\"})  " + "(d:D {dtype : \"dvalue\"})" + "]" + "" + "thirdmatch:G {tricky : \"graph\"}[" + "(g2:G {looplessPattern : \"graph\"})-->(c2:C {ctype : \"cvalue\"})  " + "(g2:G {looplessPattern : \"graph\"})-->(e2:E {etype : \"evalue\"})  " + "(g2:G {looplessPattern : \"graph\"})-[:loop {ltype : \"lvalue\"}]->(g2:G {looplessPattern " + ": \"graph\"})  " + "(c2:C {ctype : \"cvalue\"})-[:BetaEdge {betatype : \"betavalue\"}]->(g2:G {looplessPattern" + " : \"graph\"})  " + "(c2:C {ctype : \"cvalue\"})-->(e2:E {etype : \"evalue\"}) " + "]" + "");
+    LogicalGraph searchGraph = loader.getLogicalGraphByVariable("tricky");
+    LogicalGraph patternGraph = loader.getLogicalGraphByVariable("looplessPattern");
+    VertexFusion f = new VertexFusion();
+    LogicalGraph output = f.execute(searchGraph, patternGraph);
+    LogicalGraph expected = loader.getLogicalGraphByVariable("thirdmatch");
+    collectAndAssertTrue(output.equalsByData(expected));
+    if (deepSearch) {
+        collectAndAssertTrue(VertexFusionUtils.myInducedEdgeSubgraphForFusion(searchGraph, expected).equalsByElementIds(VertexFusionUtils.myInducedEdgeSubgraphForFusion(expected, searchGraph)));
+    }
+}

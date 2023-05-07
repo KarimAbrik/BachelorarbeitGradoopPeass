@@ -1,0 +1,8 @@
+/**
+ * Constructor
+ *
+ * @param valueFunction extracts a value from an EPGM element
+ */
+ValueDistribution(MapFunction<EL, T> valueFunction) {
+    this.valueFunction = valueFunction;
+}

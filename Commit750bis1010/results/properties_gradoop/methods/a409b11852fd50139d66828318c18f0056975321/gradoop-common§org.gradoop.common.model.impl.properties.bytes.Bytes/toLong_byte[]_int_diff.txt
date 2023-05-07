@@ -1,0 +1,10 @@
+/**
+ * Converts a byte array to a long value. Assumes there will be {@link #SIZEOF_LONG} bytes available.
+ *
+ * @param bytes bytes
+ * @param offset offset
+ * @return the long value
+ */
+public static long toLong(byte[] bytes, int offset) {
+    return toLong(bytes, offset, SIZEOF_LONG);
+}

@@ -1,0 +1,15 @@
+@SuppressWarnings("unchecked")
+@Override
+public void open(Configuration parameters) throws Exception {
+    super.open(parameters);
+    if (getRuntimeContext().getBroadcastVariable(VALUE).isEmpty()) {
+        aggregateValues = defaultValues;
+    } else {
+        aggregateValues = (Map<String, PropertyValue>) getRuntimeContext().getBroadcastVariable(VALUE).get(0);
+        // Compute post-aggregate functions.
+        for (AggregateFunction function : aggregateFunctions) {
+            aggregateValues.computeIfPresent(function.getAggregatePropertyKey(), (k, v) -> function.postAggregate(v));
+        }
+        defaultValues.forEach(aggregateValues::putIfAbsent);
+    }
+}

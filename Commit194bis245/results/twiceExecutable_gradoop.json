@@ -1,0 +1,100 @@
+{
+  "url" : "https://github.com/dbs-leipzig/gradoop.git",
+  "commits" : {
+    "43e4669b985b39b10534c28574ca994fb6af772b" : { },
+    "d5bc5baeb00b670f64e09071bfaab76b4377c278" : { },
+    "c7b7778c3e9d9a36b9d9be77bb8ecbf7efe738cc" : { },
+    "d787db4c7ed78f9e64477fe053cb4832a44eba76" : { },
+    "92d80bf2b850b75293ea134466c78230b0a64ff0" : {
+      "predecessor" : "d787db4c7ed78f9e64477fe053cb4832a44eba76"
+    },
+    "4a6d0d5e37f46f18d788d0dc6acc48b9476a45df" : {
+      "testcases" : {
+        "gradoop-flink§org.gradoop.model.impl.EPGraphAggregateTest" : [ "aggregateEdgeCountTest" ],
+        "gradoop-flink§org.gradoop.model.impl.EPGraphCombineTest" : [ "testAssignment" ],
+        "gradoop-flink§org.gradoop.model.impl.FlinkGraphStoreTest" : [ "testFromJsonFile", "testGetDatabaseGraph" ]
+      },
+      "predecessor" : "92d80bf2b850b75293ea134466c78230b0a64ff0"
+    },
+    "b07a249b553b376afcebf4da4f0fcb49149aaf59" : {
+      "predecessor" : "4a6d0d5e37f46f18d788d0dc6acc48b9476a45df"
+    },
+    "3778a722f9a0cd1cb99caac12ec4ea726d4e4ce1" : {
+      "testcases" : {
+        "gradoop-flink§org.gradoop.model.impl.EPGMDatabaseTest" : [ "testFromJsonFile" ],
+        "gradoop-flink§org.gradoop.model.impl.LogicalGraphAggregateTest" : [ "aggregateEdgeCountTest" ],
+        "gradoop-flink§org.gradoop.model.impl.LogicalGraphCombineTest" : [ "testAssignment" ]
+      },
+      "predecessor" : "b07a249b553b376afcebf4da4f0fcb49149aaf59"
+    },
+    "5468cb526b03c33dc86df8183981248ca122aa76" : {
+      "testcases" : {
+        "gradoop-flink§org.gradoop.model.impl.LogicalGraphAggregateTest" : [ "aggregateEdgeCountTest" ],
+        "gradoop-flink§org.gradoop.model.impl.LogicalGraphCombineTest" : [ "testAssignment" ]
+      },
+      "predecessor" : "3778a722f9a0cd1cb99caac12ec4ea726d4e4ce1"
+    },
+    "797fa7af24b3ec7811d596a80d1c6c91395e3d4e" : {
+      "testcases" : {
+        "gradoop-flink§org.gradoop.model.impl.EPGMDatabaseHBaseTest" : [ "readFromHBaseTest", "writeToHBaseTest" ],
+        "gradoop-flink§org.gradoop.model.impl.EPGMDatabaseJSONTest" : [ "testFromJsonFile" ],
+        "gradoop-flink§org.gradoop.model.impl.LogicalGraphAggregateTest" : [ "aggregateEdgeCountTest" ],
+        "gradoop-flink§org.gradoop.model.impl.LogicalGraphCombineTest" : [ "testAssignment" ]
+      },
+      "predecessor" : "5468cb526b03c33dc86df8183981248ca122aa76"
+    },
+    "2d06b66cc681a2af19635fd666948b17ce716153" : {
+      "testcases" : {
+        "gradoop-flink§org.gradoop.model.impl.LogicalGraphProjectionTest" : [ "projectionTest" ]
+      },
+      "predecessor" : "797fa7af24b3ec7811d596a80d1c6c91395e3d4e"
+    },
+    "a7e7e392804af135958cfa8ae3489653b196ffcb" : { },
+    "01e10be480429be9c88c939e90b4d833fcf4a41d" : { },
+    "dcf00faf6918dd9a1436a29acfac76961ae65996" : { },
+    "fe5d2f00d532e10566890fe9d3bc404b233ede14" : { },
+    "d3d0ee5d21458378b8afa00ce0d278d500827baa" : { },
+    "b39d0cebc16067647235ebf3cc4d7fedbaae61b9" : { },
+    "56b4d74e59d84495603850e45e627f6071c43a25" : {
+      "testcases" : {
+        "gradoop-flink§org.gradoop.model.impl.EPGMDatabaseHBaseTest" : [ "readFromHBaseTest(JUNIT_PARAMETERIZED-Execution mode = CLUSTER)", "writeToHBaseTest(JUNIT_PARAMETERIZED-Execution mode = CLUSTER)" ],
+        "gradoop-flink§org.gradoop.model.impl.EPGMDatabaseJSONTest" : [ "testFromJsonFile(JUNIT_PARAMETERIZED-Execution mode = CLUSTER)", "testGetDatabaseGraph(JUNIT_PARAMETERIZED-Execution mode = CLUSTER)", "testWriteAsJsonFile(JUNIT_PARAMETERIZED-Execution mode = CLUSTER)" ],
+        "gradoop-flink§org.gradoop.model.impl.EPGMDatabaseTest" : [ "testGetCollection(JUNIT_PARAMETERIZED-Execution mode = CLUSTER)", "testGetExistingGraph(JUNIT_PARAMETERIZED-Execution mode = CLUSTER)", "testGetGraphs(JUNIT_PARAMETERIZED-Execution mode = CLUSTER)", "testNonExistingGraph(JUNIT_PARAMETERIZED-Execution mode = CLUSTER)" ],
+        "gradoop-flink§org.gradoop.model.impl.GraphCollectionDifferenceTest" : [ "testNonOverlappingCollections(JUNIT_PARAMETERIZED-Execution mode = CLUSTER)", "testOverlappingCollections(JUNIT_PARAMETERIZED-Execution mode = CLUSTER)", "testTotalOverlappingCollections(JUNIT_PARAMETERIZED-Execution mode = CLUSTER)" ],
+        "gradoop-flink§org.gradoop.model.impl.GraphCollectionIntersectTest" : [ "testNonOverlappingCollections(JUNIT_PARAMETERIZED-Execution mode = CLUSTER)", "testOverlappingCollections(JUNIT_PARAMETERIZED-Execution mode = CLUSTER)", "testOverlappingCollections2(JUNIT_PARAMETERIZED-Execution mode = CLUSTER)", "testTotalOverlappingCollections(JUNIT_PARAMETERIZED-Execution mode = CLUSTER)" ],
+        "gradoop-flink§org.gradoop.model.impl.GraphCollectionUnionTest" : [ "testNonOverlappingCollections(JUNIT_PARAMETERIZED-Execution mode = CLUSTER)", "testOverlappingCollections(JUNIT_PARAMETERIZED-Execution mode = CLUSTER)", "testTotalOverlappingCollections(JUNIT_PARAMETERIZED-Execution mode = CLUSTER)" ],
+        "gradoop-flink§org.gradoop.model.impl.LogicalGraphAggregateTest" : [ "aggregateEdgeCountTest(JUNIT_PARAMETERIZED-Execution mode = CLUSTER)" ],
+        "gradoop-flink§org.gradoop.model.impl.LogicalGraphCombineTest" : [ "testAssignment(JUNIT_PARAMETERIZED-Execution mode = CLUSTER)", "testNonOverlappingGraphs(JUNIT_PARAMETERIZED-Execution mode = CLUSTER)", "testNonOverlappingSwitchedGraphs(JUNIT_PARAMETERIZED-Execution mode = CLUSTER)", "testOverlappingGraphs(JUNIT_PARAMETERIZED-Execution mode = CLUSTER)", "testOverlappingSwitchedGraphs(JUNIT_PARAMETERIZED-Execution mode = CLUSTER)", "testSameGraph(JUNIT_PARAMETERIZED-Execution mode = CLUSTER)" ],
+        "gradoop-flink§org.gradoop.model.impl.LogicalGraphExcludeTest" : [ "testAssignment(JUNIT_PARAMETERIZED-Execution mode = CLUSTER)", "testNonOverlappingGraphs(JUNIT_PARAMETERIZED-Execution mode = CLUSTER)", "testNonOverlappingSwitchedGraphs(JUNIT_PARAMETERIZED-Execution mode = CLUSTER)", "testOverlappingGraphs(JUNIT_PARAMETERIZED-Execution mode = CLUSTER)", "testOverlappingSwitchedGraphs(JUNIT_PARAMETERIZED-Execution mode = CLUSTER)", "testSameGraph(JUNIT_PARAMETERIZED-Execution mode = CLUSTER)" ],
+        "gradoop-flink§org.gradoop.model.impl.LogicalGraphGetterTest" : [ "testGetEdges(JUNIT_PARAMETERIZED-Execution mode = CLUSTER)", "testGetOutgoingEdges(JUNIT_PARAMETERIZED-Execution mode = CLUSTER)", "testGetOutgoingEdges2(JUNIT_PARAMETERIZED-Execution mode = CLUSTER)", "testGetVertices(JUNIT_PARAMETERIZED-Execution mode = CLUSTER)", "testIncomingEdges(JUNIT_PARAMETERIZED-Execution mode = CLUSTER)", "testIncomingEdges2(JUNIT_PARAMETERIZED-Execution mode = CLUSTER)" ],
+        "gradoop-flink§org.gradoop.model.impl.LogicalGraphOverlapSplitByTest" : [ "testOverlappingResultGraphs(JUNIT_PARAMETERIZED-Execution mode = CLUSTER)" ],
+        "gradoop-flink§org.gradoop.model.impl.LogicalGraphOverlapTest" : [ "testAssignment(JUNIT_PARAMETERIZED-Execution mode = CLUSTER)", "testNonOverlappingGraphs(JUNIT_PARAMETERIZED-Execution mode = CLUSTER)", "testNonOverlappingSwitchedGraphs(JUNIT_PARAMETERIZED-Execution mode = CLUSTER)", "testOverlappingGraphs(JUNIT_PARAMETERIZED-Execution mode = CLUSTER)", "testOverlappingSwitchedGraphs(JUNIT_PARAMETERIZED-Execution mode = CLUSTER)", "testOverlappingVertexSetGraphs(JUNIT_PARAMETERIZED-Execution mode = CLUSTER)", "testOverlappingVertexSetSwitchedGraphs(JUNIT_PARAMETERIZED-Execution mode = CLUSTER)", "testSameGraph(JUNIT_PARAMETERIZED-Execution mode = CLUSTER)" ],
+        "gradoop-flink§org.gradoop.model.impl.LogicalGraphProjectionTest" : [ "projectionTest(JUNIT_PARAMETERIZED-Execution mode = CLUSTER)" ],
+        "gradoop-flink§org.gradoop.model.impl.LogicalGraphSplitByTest" : [ "testSplitBy(JUNIT_PARAMETERIZED-Execution mode = CLUSTER)" ],
+        "gradoop-flink§org.gradoop.model.impl.btg.BTGGradoopTest" : [ "testFromJsonFile(JUNIT_PARAMETERIZED-Execution mode = CLUSTER)" ],
+        "gradoop-flink§org.gradoop.model.impl.labelpropagation.EPGMLabelPropagationGradoopTest" : [ "testLabelPropagationWithCallByPropertyKey(JUNIT_PARAMETERIZED-Execution mode = CLUSTER)" ],
+        "gradoop-flink§org.gradoop.model.impl.labelpropagation.LabelPropagationGradoopTest" : [ "testLabelPropagationWithCallByPropertyKey(JUNIT_PARAMETERIZED-Execution mode = CLUSTER)" ]
+      },
+      "predecessor" : "b39d0cebc16067647235ebf3cc4d7fedbaae61b9"
+    },
+    "e56da032dc5cd886fe871f750231dd077f5ba7d6" : { },
+    "6209595896568bded13130a7921e4584df72ce8f" : {
+      "testcases" : {
+        "gradoop-flink§org.gradoop.model.impl.LogicalGraphCombineTest" : [ "testAssignment(JUNIT_PARAMETERIZED-Execution mode = CLUSTER)", "testNonOverlappingGraphs(JUNIT_PARAMETERIZED-Execution mode = CLUSTER)", "testNonOverlappingSwitchedGraphs(JUNIT_PARAMETERIZED-Execution mode = CLUSTER)", "testOverlappingGraphs(JUNIT_PARAMETERIZED-Execution mode = CLUSTER)", "testOverlappingSwitchedGraphs(JUNIT_PARAMETERIZED-Execution mode = CLUSTER)", "testSameGraph(JUNIT_PARAMETERIZED-Execution mode = CLUSTER)" ],
+        "gradoop-flink§org.gradoop.model.impl.LogicalGraphExcludeTest" : [ "testAssignment(JUNIT_PARAMETERIZED-Execution mode = CLUSTER)", "testNonOverlappingGraphs(JUNIT_PARAMETERIZED-Execution mode = CLUSTER)", "testNonOverlappingSwitchedGraphs(JUNIT_PARAMETERIZED-Execution mode = CLUSTER)", "testOverlappingGraphs(JUNIT_PARAMETERIZED-Execution mode = CLUSTER)", "testOverlappingSwitchedGraphs(JUNIT_PARAMETERIZED-Execution mode = CLUSTER)", "testSameGraph(JUNIT_PARAMETERIZED-Execution mode = CLUSTER)" ],
+        "gradoop-flink§org.gradoop.model.impl.LogicalGraphOverlapTest" : [ "testAssignment(JUNIT_PARAMETERIZED-Execution mode = CLUSTER)", "testNonOverlappingGraphs(JUNIT_PARAMETERIZED-Execution mode = CLUSTER)", "testNonOverlappingSwitchedGraphs(JUNIT_PARAMETERIZED-Execution mode = CLUSTER)", "testOverlappingGraphs(JUNIT_PARAMETERIZED-Execution mode = CLUSTER)", "testOverlappingSwitchedGraphs(JUNIT_PARAMETERIZED-Execution mode = CLUSTER)", "testOverlappingVertexSetGraphs(JUNIT_PARAMETERIZED-Execution mode = CLUSTER)", "testOverlappingVertexSetSwitchedGraphs(JUNIT_PARAMETERIZED-Execution mode = CLUSTER)", "testSameGraph(JUNIT_PARAMETERIZED-Execution mode = CLUSTER)" ]
+      },
+      "predecessor" : "e56da032dc5cd886fe871f750231dd077f5ba7d6"
+    },
+    "645eb1baa10fae290a3889480fec4febe1411921" : {
+      "testcases" : {
+        "gradoop-flink§org.gradoop.model.impl.LogicalGraphProjectionTest" : [ "projectionTest(JUNIT_PARAMETERIZED-Execution mode = CLUSTER)" ],
+        "gradoop-flink§org.gradoop.model.impl.LogicalGraphSplitByTest" : [ "testSplitBy(JUNIT_PARAMETERIZED-Execution mode = CLUSTER)" ],
+        "gradoop-flink§org.gradoop.model.impl.labelpropagation.EPGMLabelPropagationGradoopTest" : [ "testLabelPropagationWithCallByPropertyKey(JUNIT_PARAMETERIZED-Execution mode = CLUSTER)" ],
+        "gradoop-flink§org.gradoop.model.impl.labelpropagation.LabelPropagationGradoopTest" : [ "testLabelPropagationWithCallByPropertyKey(JUNIT_PARAMETERIZED-Execution mode = CLUSTER)" ]
+      },
+      "predecessor" : "6209595896568bded13130a7921e4584df72ce8f"
+    }
+  },
+  "android" : false
+}

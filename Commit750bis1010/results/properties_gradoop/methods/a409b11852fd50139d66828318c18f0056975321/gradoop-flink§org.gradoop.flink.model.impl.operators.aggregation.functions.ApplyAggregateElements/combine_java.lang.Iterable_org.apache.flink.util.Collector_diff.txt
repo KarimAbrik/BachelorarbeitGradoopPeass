@@ -1,0 +1,15 @@
+@Override
+public void combine(Iterable<Tuple2<GradoopId, T>> elements, Collector<Tuple2<GradoopId, Map<String, PropertyValue>>> out) {
+    Iterator<Tuple2<GradoopId, T>> iterator = elements.iterator();
+    Tuple2<GradoopId, T> graphIdElement = iterator.next();
+    Map<String, PropertyValue> aggregate = AggregateUtil.increment(new HashMap<>(), graphIdElement.f1, aggregateFunctions);
+    while (iterator.hasNext()) {
+        T element = iterator.next().f1;
+        aggregate = AggregateUtil.increment(aggregate, element, aggregateFunctions);
+    }
+    if (!aggregate.isEmpty()) {
+        reusePair.f0 = graphIdElement.f0;
+        reusePair.f1 = aggregate;
+        out.collect(reusePair);
+    }
+}

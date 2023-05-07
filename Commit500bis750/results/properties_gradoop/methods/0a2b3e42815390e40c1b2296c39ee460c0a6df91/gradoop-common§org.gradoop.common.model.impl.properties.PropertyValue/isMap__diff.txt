@@ -1,0 +1,8 @@
+/**
+ * True, if the wrapped value is of type {@code Map}.
+ *
+ * @return true, if {@code Map} value
+ */
+public boolean isMap() {
+    return rawBytes[0] == TYPE_MAP;
+}

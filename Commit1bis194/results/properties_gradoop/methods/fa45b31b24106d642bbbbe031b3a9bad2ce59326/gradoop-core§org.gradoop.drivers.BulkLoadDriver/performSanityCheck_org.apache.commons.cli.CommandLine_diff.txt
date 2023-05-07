@@ -1,0 +1,14 @@
+                                                                                                     | /**                                                                                                 
+                                                                                                     | * Checks if the given arguments are valid.                                                          
+                                                                                                     | *                                                                                                   
+                                                                                                     | * @param cmd command line                                                                           
+                                                                                                     | * @return true, iff the input is sane                                                               
+                                                                                                     | */                                                                                                  
+                                                                                                     | private static boolean performSanityCheck(final CommandLine cmd) {                                  
+                                                                                                     | boolean sane = true;                                                                                
+                                                                                                     | if (!cmd.hasOption(LoadConfUtils.OPTION_VERTEX_LINE_READER)) {                                      
+                                                                                                     | LOG.error("Choose the vertex line reader (-vlr)");                                                  
+                                                                                                     | sane = false;                                                                                       
+                                                                                                     | }                                                                                                   
+                                                                                                     | return sane;                                                                                        
+                                                                                                     | }                                                                                                   

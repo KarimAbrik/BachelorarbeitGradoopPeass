@@ -1,0 +1,29 @@
+/**
+ * Byte representation:
+ *
+ * byte 1       : type info
+ *
+ * for dynamic length types (e.g. String and BigDecimal)
+ * byte 2       : length (short)
+ * byte 3       : length (short)
+ * byte 4 - end : value bytes
+ *
+ * for fixed length types (e.g. int, long, float, ...)
+ * byte 2 - end : value bytes
+ *
+ * @param outputView data output to write data to
+ * @throws IOException
+ */
+@Override
+public void write(DataOutputView outputView) throws IOException {
+    // null?
+    // type
+    outputView.writeByte(rawBytes[0]);
+    // dynamic type?
+    if (rawBytes[0] == TYPE_STRING || rawBytes[0] == TYPE_BIG_DECIMAL || rawBytes[0] == TYPE_MAP || rawBytes[0] == TYPE_LIST) {
+        // write length
+        outputView.writeShort(rawBytes.length - OFFSET);
+    }
+    // write data
+    outputView.write(rawBytes, OFFSET, rawBytes.length - OFFSET);
+}

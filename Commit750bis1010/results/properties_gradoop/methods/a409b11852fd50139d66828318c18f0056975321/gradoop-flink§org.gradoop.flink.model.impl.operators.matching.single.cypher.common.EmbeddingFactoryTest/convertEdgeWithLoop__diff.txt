@@ -1,0 +1,15 @@
+@Test
+public void convertEdgeWithLoop() throws Exception {
+    Properties properties = new Properties();
+    properties.set("foo", 1);
+    properties.set("bar", "42");
+    properties.set("baz", false);
+    GradoopId a = GradoopId.get();
+    EPGMEdge edge = new EPGMEdgeFactory().createEdge("TestVertex", a, a, properties);
+    Embedding embedding = EmbeddingFactory.fromEdge(edge, Lists.newArrayList("foo", "bar"), true);
+    assertEquals(2, embedding.size());
+    assertEquals(edge.getSourceId(), embedding.getId(0));
+    assertEquals(edge.getId(), embedding.getId(1));
+    assertEquals(PropertyValue.create(1), embedding.getProperty(0));
+    assertEquals(PropertyValue.create("42"), embedding.getProperty(1));
+}

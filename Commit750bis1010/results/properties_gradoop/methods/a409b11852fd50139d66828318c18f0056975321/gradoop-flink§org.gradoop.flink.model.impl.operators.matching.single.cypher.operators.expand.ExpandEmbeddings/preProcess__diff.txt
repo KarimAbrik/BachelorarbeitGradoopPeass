@@ -1,0 +1,12 @@
+/**
+ * creates the initial working set from the edge candidates
+ *
+ * @return initial working set with the expand embeddings
+ */
+private DataSet<ExpandEmbedding> preProcess() {
+    if (direction == ExpandDirection.IN) {
+        candidateEdges = candidateEdges.map(new ReverseEdgeEmbedding()).name(getName() + " - Reverse Edges");
+    }
+    this.candidateEdgeTuples = candidateEdges.map(new ExtractKeyedCandidateEdges()).name(getName() + " - Create candidate edge tuples").partitionByHash(0).name(getName() + " - Partition edge tuples");
+    return input.join(candidateEdgeTuples, joinHint).where(new ExtractExpandColumn(expandColumn)).equalTo(0).with(new CreateExpandEmbedding(distinctVertexColumns, distinctEdgeColumns, closingColumn)).name(getName() + " - Initial expansion");
+}

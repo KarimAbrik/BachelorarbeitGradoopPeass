@@ -1,0 +1,8 @@
+/**
+ * Create a new CreateImportVertexCSV function
+ *
+ * @param vertexFactory the factory that is responsible for creating a vertex
+ */
+public PropertiesToVertex(VertexFactory<V> vertexFactory) {
+    this.vertex = vertexFactory.createVertex();
+}

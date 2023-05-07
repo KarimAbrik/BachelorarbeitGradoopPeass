@@ -1,0 +1,13 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public void flush() {
+    try {
+        vertexTable.flushCommits();
+        edgeTable.flushCommits();
+        graphHeadTable.flushCommits();
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}

@@ -1,0 +1,10 @@
+/**
+ * Creates a new instance of a base average aggregate function.
+ *
+ * @param propertyKey          The key of the property to aggregate.
+ * @param aggregatePropertyKey The propertyKey used to store the aggregate.
+ */
+public AverageProperty(String propertyKey, String aggregatePropertyKey) {
+    super(aggregatePropertyKey);
+    this.propertyKey = Objects.requireNonNull(propertyKey);
+}

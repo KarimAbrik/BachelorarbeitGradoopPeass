@@ -1,0 +1,44 @@
+//----------------------------------------------------------------------------
+// Setter
+//----------------------------------------------------------------------------
+/**
+ * Sets the given value as internal value if it has a supported type.
+ *
+ * @param value value
+ * @throws UnsupportedTypeException
+ */
+public void setObject(Object value) {
+    if (value == null) {
+        rawBytes = new byte[] { TYPE_NULL };
+    } else if (value instanceof Boolean) {
+        setBoolean((Boolean) value);
+    } else if (value instanceof Short) {
+        setShort((Short) value);
+    } else if (value instanceof Integer) {
+        setInt((Integer) value);
+    } else if (value instanceof Long) {
+        setLong((Long) value);
+    } else if (value instanceof Float) {
+        setFloat((Float) value);
+    } else if (value instanceof Double) {
+        setDouble((Double) value);
+    } else if (value instanceof String) {
+        setString((String) value);
+    } else if (value instanceof BigDecimal) {
+        setBigDecimal((BigDecimal) value);
+    } else if (value instanceof GradoopId) {
+        setGradoopId((GradoopId) value);
+    } else if (value instanceof Map) {
+        setMap((Map) value);
+    } else if (value instanceof List) {
+        setList((List) value);
+    } else if (value instanceof LocalDate) {
+        setDate((LocalDate) value);
+    } else if (value instanceof LocalTime) {
+        setTime((LocalTime) value);
+    } else if (value instanceof LocalDateTime) {
+        setDateTime((LocalDateTime) value);
+    } else {
+        throw new UnsupportedTypeException(value.getClass());
+    }
+}

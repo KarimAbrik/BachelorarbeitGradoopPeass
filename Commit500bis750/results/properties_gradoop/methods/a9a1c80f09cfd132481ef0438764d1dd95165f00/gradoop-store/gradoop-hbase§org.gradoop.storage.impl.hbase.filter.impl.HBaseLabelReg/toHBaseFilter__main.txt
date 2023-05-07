@@ -1,0 +1,5 @@
+@Nonnull
+@Override
+public Filter toHBaseFilter() {
+    return new SingleColumnValueFilter(Bytes.toBytesBinary(CF_META), Bytes.toBytesBinary(COL_LABEL), CompareFilter.CompareOp.EQUAL, new RegexStringComparator(getReg().pattern()));
+}

@@ -1,0 +1,20 @@
+@Test
+public void testGraphEqualityByData() throws Exception {
+    FlinkAsciiGraphLoader loader = getTestGraphLoader();
+    GraphEquality<EPGMGraphHead, EPGMVertex, EPGMEdge, LogicalGraph, GraphCollection> equality = new GraphEquality<>(new GraphHeadToDataString<>(), new VertexToDataString<>(), new EdgeToDataString<>(), true);
+    LogicalGraph gRef = loader.getLogicalGraphByVariable("gRef");
+    LogicalGraph gClone = loader.getLogicalGraphByVariable("gClone");
+    LogicalGraph gDiffId = loader.getLogicalGraphByVariable("gDiffId");
+    LogicalGraph gDiffData = loader.getLogicalGraphByVariable("gDiffData");
+    LogicalGraph gEmpty = loader.getLogicalGraphByVariable("gEmpty");
+    // direct operator call
+    collectAndAssertTrue(equality.execute(gRef, gDiffId));
+    collectAndAssertFalse(equality.execute(gRef, gClone));
+    collectAndAssertFalse(equality.execute(gRef, gDiffData));
+    collectAndAssertFalse(equality.execute(gRef, gEmpty));
+    // convenience method
+    collectAndAssertTrue(gRef.equalsByData(gDiffId));
+    collectAndAssertFalse(gRef.equalsByData(gClone));
+    collectAndAssertFalse(gRef.equalsByData(gDiffData));
+    collectAndAssertFalse(gRef.equalsByData(gEmpty));
+}

@@ -1,0 +1,44 @@
+/**
+ * Test if keys are added to elements correctly.
+ */
+@Test
+public void testAddKeyToElement() {
+    // For label 'a'
+    Tuple key = defaultKey.copy();
+    PropertyValue valueA = PropertyValue.create("otherValueA");
+    PropertyValue valueA2 = PropertyValue.create("otherValueA2");
+    key.setField(1, 0);
+    key.setField(Tuple2.of(valueA.copy().getRawBytes(), valueA2.copy().getRawBytes()), 2);
+    assertNotEquals(valueA, testVertex.getPropertyValue("valueForA"));
+    assertNotEquals(valueA2, testVertex.getPropertyValue("valueForA2"));
+    assertNotEquals("a", testVertex.getLabel());
+    testFunction.addKeyToElement(testVertex, key);
+    assertEquals("newA", testVertex.getLabel());
+    assertEquals(valueA, testVertex.getPropertyValue("forA"));
+    assertEquals(valueA2, testVertex.getPropertyValue("forA2"));
+    assertEquals(PropertyValue.create("valueForB"), testVertex.getPropertyValue("forB"));
+    assertEquals(PropertyValue.create("valueForC"), testVertex.getPropertyValue("forC"));
+    assertNull(testVertex.getPropertyValue("forDefault"));
+    // For label 'b', check if other fields have not changed
+    key = defaultKey.copy();
+    key.setField(2, 0);
+    testFunction.addKeyToElement(testVertex, key);
+    assertEquals("b", testVertex.getLabel());
+    assertEquals(valueA, testVertex.getPropertyValue("forA"));
+    assertEquals(valueA2, testVertex.getPropertyValue("forA2"));
+    assertEquals(PropertyValue.create("valueForB"), testVertex.getPropertyValue("forB"));
+    assertEquals(PropertyValue.create("valueForC"), testVertex.getPropertyValue("forC"));
+    assertNull(testVertex.getPropertyValue("forDefault"));
+    // For other labels
+    key = defaultKey.copy();
+    PropertyValue valueForDefault = PropertyValue.create(10000L);
+    key.setField(0, 0);
+    key.setField(Tuple2.of(valueForDefault.copy().getRawBytes(), "newLabel"), 1);
+    testFunction.addKeyToElement(testVertex, key);
+    assertEquals(valueA, testVertex.getPropertyValue("forA"));
+    assertEquals(valueA2, testVertex.getPropertyValue("forA2"));
+    assertEquals(PropertyValue.create("valueForB"), testVertex.getPropertyValue("forB"));
+    assertEquals(PropertyValue.create("valueForC"), testVertex.getPropertyValue("forC"));
+    assertEquals("newLabel", testVertex.getLabel());
+    assertEquals(valueForDefault, testVertex.getPropertyValue("forDefault"));
+}

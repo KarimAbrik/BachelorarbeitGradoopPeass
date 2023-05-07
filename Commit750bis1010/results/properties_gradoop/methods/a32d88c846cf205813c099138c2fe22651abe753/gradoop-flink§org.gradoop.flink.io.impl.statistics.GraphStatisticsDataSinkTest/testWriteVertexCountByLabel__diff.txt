@@ -1,0 +1,12 @@
+@Test
+public void testWriteVertexCountByLabel() throws Exception {
+    String tmpPath = temporaryFolder.getRoot().getPath();
+    LogicalGraph input = getSocialNetworkLoader().getLogicalGraph(true);
+    DataSink statisticDataSink = new GraphStatisticsDataSink(tmpPath);
+    statisticDataSink.write(input, true);
+    getExecutionEnvironment().execute();
+    GraphStatistics statistics = GraphStatisticsLocalFSReader.read(tmpPath);
+    assertThat(statistics.getVertexCount("Person"), is(6L));
+    assertThat(statistics.getVertexCount("Forum"), is(2L));
+    assertThat(statistics.getVertexCount("Tag"), is(3L));
+}

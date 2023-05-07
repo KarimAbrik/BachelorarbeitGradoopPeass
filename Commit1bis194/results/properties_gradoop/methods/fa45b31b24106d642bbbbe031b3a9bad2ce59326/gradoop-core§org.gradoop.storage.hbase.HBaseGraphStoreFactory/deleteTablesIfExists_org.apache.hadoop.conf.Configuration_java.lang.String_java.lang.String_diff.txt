@@ -1,0 +1,20 @@
+/**
+ * Deletes the tables defined by the config.
+ *
+ * @param config          Hadoop configuration
+ * @param vertexTableName vertex table name
+ * @param graphTableName  graph table name
+ * @throws IOException
+ */
+private static void deleteTablesIfExists(final Configuration config, final String vertexTableName, final String graphTableName) throws IOException {
+    HTableDescriptor verticesTableDescriptor = new HTableDescriptor(TableName.valueOf(vertexTableName));
+    HTableDescriptor graphsTableDescriptor = new HTableDescriptor(TableName.valueOf(graphTableName));
+    HBaseAdmin admin = new HBaseAdmin(config);
+    if (admin.tableExists(verticesTableDescriptor.getName())) {
+        deleteTable(admin, verticesTableDescriptor);
+    }
+    if (admin.tableExists(graphsTableDescriptor.getName())) {
+        deleteTable(admin, graphsTableDescriptor);
+    }
+    admin.close();
+}

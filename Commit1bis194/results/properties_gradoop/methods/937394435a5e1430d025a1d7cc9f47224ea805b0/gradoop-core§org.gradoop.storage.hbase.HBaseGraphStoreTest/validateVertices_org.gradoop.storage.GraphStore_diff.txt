@@ -1,0 +1,7 @@
+private void validateVertices(GraphStore graphStore) {
+    List<Vertex> vertexResult = Lists.newArrayListWithCapacity(EXTENDED_GRAPH.length);
+    for (long l = 0L; l < EXTENDED_GRAPH.length; l++) {
+        vertexResult.add(graphStore.readVertex(l));
+    }
+    validateExtendedGraphVertices(vertexResult);
+}

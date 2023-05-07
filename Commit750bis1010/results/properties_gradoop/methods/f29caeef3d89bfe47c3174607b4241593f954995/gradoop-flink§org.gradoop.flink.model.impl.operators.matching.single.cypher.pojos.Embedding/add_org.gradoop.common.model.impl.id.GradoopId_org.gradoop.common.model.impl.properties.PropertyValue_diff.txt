@@ -1,0 +1,13 @@
+// ---------------------------------------------------------------------------------------------
+//  Property handling
+// ---------------------------------------------------------------------------------------------
+/**
+ * Appends a GradoopId as well as the specified properties to the embedding.
+ * Both the id and the properties will be added to the end of the corresponding Lists
+ * @param id that will be added to the embedding
+ * @param properties list of property values
+ */
+public void add(GradoopId id, PropertyValue... properties) {
+    add(id);
+    addPropertyValues(properties);
+}

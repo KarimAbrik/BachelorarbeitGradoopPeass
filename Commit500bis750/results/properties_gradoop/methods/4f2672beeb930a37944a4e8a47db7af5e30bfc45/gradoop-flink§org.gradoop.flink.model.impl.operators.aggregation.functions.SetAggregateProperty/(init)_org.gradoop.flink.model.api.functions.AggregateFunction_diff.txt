@@ -1,0 +1,10 @@
+/**
+ * Constructor.
+ *
+ * @param aggregateFunction aggregate function
+ */
+public SetAggregateProperty(AggregateFunction aggregateFunction) {
+    checkNotNull(aggregateFunction);
+    this.propertyKey = aggregateFunction.getAggregatePropertyKey();
+    this.defaultValue = aggregateFunction instanceof AggregateDefaultValue ? ((AggregateDefaultValue) aggregateFunction).getDefaultValue() : PropertyValue.NULL_VALUE;
+}

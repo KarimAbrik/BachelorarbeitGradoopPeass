@@ -1,0 +1,15 @@
+/**
+ * Create a new instance of this grouping key function.
+ *
+ * @param timeDimension The time dimension to get the duration of.
+ * @param unit          The unit to get the duration as.
+ */
+public DurationKeyFunction(TimeDimension timeDimension, TemporalUnit unit) {
+    this.intervalExtractor = new TimeIntervalKeyFunction<>(timeDimension);
+    this.timeUnit = Objects.requireNonNull(unit);
+    if (unit instanceof ChronoUnit) {
+        calculateAsDate = ((ChronoUnit) unit).compareTo(ChronoUnit.DAYS) >= 0;
+    } else {
+        calculateAsDate = false;
+    }
+}

@@ -1,0 +1,14 @@
+/**
+ * Creates a {@code GradoopIDSet} from the long identifiers stored at the
+ * given graph element.
+ *
+ * @param e graph element
+ * @return GradoopIDSet for the given element
+ */
+private GradoopIds createGradoopIdSet(GraphElement e) {
+    GradoopIds result = new GradoopIds();
+    for (Long graphId : e.getGraphs()) {
+        result.add(graphHeadIds.get(graphId));
+    }
+    return result;
+}

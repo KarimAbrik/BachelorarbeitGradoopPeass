@@ -1,0 +1,4 @@
+@Override
+public EPGMGraphHead createGraphHead(String label, Properties properties) {
+    return initGraphHead(GradoopId.get(), label, properties);
+}

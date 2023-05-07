@@ -1,0 +1,4 @@
+@Override
+public String toString() {
+    return properties.entrySet().stream().map(e -> Property.create(e.getKey(), e.getValue()).toString()).collect(Collectors.joining(","));
+}

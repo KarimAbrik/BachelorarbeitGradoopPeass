@@ -1,0 +1,7 @@
+                                                                                                     | @Override                                                                                           
+                                                                                                     | public E join(E edge, Tuple2&lt;GradoopId, GradoopId&gt; mapping) {                                 
+                                                                                                     | if (mapping != null) {                                                                              
+                                                                                                     | edge.setSourceId(mapping.f1);                                                                       
+                                                                                                     | }                                                                                                   
+                                                                                                     | return edge;                                                                                        
+                                                                                                     | }                                                                                                   

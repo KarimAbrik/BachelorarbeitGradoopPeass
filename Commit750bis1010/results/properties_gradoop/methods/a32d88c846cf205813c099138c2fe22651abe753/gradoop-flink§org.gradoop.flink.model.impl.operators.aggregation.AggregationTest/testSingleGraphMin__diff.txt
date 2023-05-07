@@ -1,0 +1,20 @@
+/**
+ * Test MinProperty, VertexMinProperty and EdgeMinProperty with a single graph.
+ *
+ * @throws Exception if the execution fails.
+ */
+@Test
+public void testSingleGraphMin() throws Exception {
+    LogicalGraph graph = getLoaderFromString("org:Ga[" + "(:Va{p : 0.5f})-[:ea{p : 2}]->(:Vb{p : 3.1f})" + "(:Vc{p : 0.33f})-[:eb]->(:Vd{p : 0.0f})" + "]").getLogicalGraphByVariable("org");
+    MinVertexProperty minVertexProperty = new MinVertexProperty(PROPERTY, VERTEX_AGGREGATE_PROPERTY);
+    MinEdgeProperty minEdgeProperty = new MinEdgeProperty(PROPERTY, EDGE_AGGREGATE_PROPERTY);
+    MinProperty minProperty = new MinProperty(PROPERTY, ELEMENT_AGGREGATE_PROPERTY);
+    graph = graph.aggregate(minVertexProperty).aggregate(minEdgeProperty).aggregate(minProperty);
+    GraphHead graphHead = graph.getGraphHead().collect().get(0);
+    assertTrue("edge minimum not set", graphHead.hasProperty(minEdgeProperty.getAggregatePropertyKey()));
+    assertTrue("vertex minimum not set", graphHead.hasProperty(minVertexProperty.getAggregatePropertyKey()));
+    assertTrue("element minimum not set", graphHead.hasProperty(minProperty.getAggregatePropertyKey()));
+    assertEquals(2, graphHead.getPropertyValue(minEdgeProperty.getAggregatePropertyKey()).getInt());
+    assertEquals(0.0f, graphHead.getPropertyValue(minVertexProperty.getAggregatePropertyKey()).getFloat(), 0.00001f);
+    assertEquals(0.0f, graphHead.getPropertyValue(minProperty.getAggregatePropertyKey()).getFloat(), 0.00001f);
+}

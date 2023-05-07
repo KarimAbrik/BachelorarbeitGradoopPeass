@@ -1,0 +1,9 @@
+/**
+ * Applies edge aggregate functions to the partitions of an edge data set.
+ *
+ * @param edges edge data set
+ * @return partition aggregate values
+ */
+private DataSet<Map<String, PropertyValue>> aggregateEdges(DataSet<E> edges) {
+    return edges.combineGroup(new AggregateElements<>(aggregateFunctions.stream().filter(AggregateFunction::isEdgeAggregation).collect(Collectors.toSet())));
+}

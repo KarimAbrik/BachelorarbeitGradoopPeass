@@ -1,0 +1,9 @@
+@Test
+public void testToString() {
+    GradoopId[] idList = new GradoopId[] { GradoopId.get(), GradoopId.get(), GradoopId.get() };
+    Embedding embedding = new Embedding();
+    embedding.add(GradoopId.get());
+    embedding.add(GradoopId.get(), PropertyValue.create(42), PropertyValue.create("Foobar"));
+    embedding.add(idList);
+    assertNotNull(embedding.toString());
+}

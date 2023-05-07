@@ -1,0 +1,9 @@
+/**
+ * Constructor setting the filter to be combined with a logical {@code and}.
+ *
+ * @param filters The filters.
+ */
+@SafeVarargs
+public And(FilterFunction<? super T>... filters) {
+    super(filters);
+}

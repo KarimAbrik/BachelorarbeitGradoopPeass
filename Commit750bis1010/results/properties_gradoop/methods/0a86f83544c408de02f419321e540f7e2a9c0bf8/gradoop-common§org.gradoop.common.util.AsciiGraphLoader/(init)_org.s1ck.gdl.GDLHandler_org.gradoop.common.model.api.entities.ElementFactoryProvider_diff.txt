@@ -1,0 +1,20 @@
+/**
+ * Creates a new AsciiGraphLoader.
+ *
+ * @param gdlHandler GDL Handler
+ * @param elementFactoryProvider Factory provider for EPGM elements.
+ */
+private AsciiGraphLoader(GDLHandler gdlHandler, ElementFactoryProvider<G, V, E> elementFactoryProvider) {
+    this.gdlHandler = gdlHandler;
+    this.elementFactoryProvider = elementFactoryProvider;
+    this.graphHeads = Maps.newHashMap();
+    this.vertices = Maps.newHashMap();
+    this.edges = Maps.newHashMap();
+    this.graphHeadIds = Maps.newHashMap();
+    this.vertexIds = Maps.newHashMap();
+    this.edgeIds = Maps.newHashMap();
+    this.graphHeadCache = Maps.newHashMap();
+    this.vertexCache = Maps.newHashMap();
+    this.edgeCache = Maps.newHashMap();
+    init();
+}

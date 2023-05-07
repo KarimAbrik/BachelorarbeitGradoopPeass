@@ -1,0 +1,9 @@
+/**
+ * Creates a new instance of a AggregateListOfWccEdges aggregate function.
+ *
+ * @param wccPropertyKey Property key to retrieve property values
+ */
+public AggregateListOfWccEdges(String wccPropertyKey) {
+    this.wccPropertyKey = wccPropertyKey;
+    this.listOfWccIDsPropertyKey = "edges_" + this.wccPropertyKey;
+}

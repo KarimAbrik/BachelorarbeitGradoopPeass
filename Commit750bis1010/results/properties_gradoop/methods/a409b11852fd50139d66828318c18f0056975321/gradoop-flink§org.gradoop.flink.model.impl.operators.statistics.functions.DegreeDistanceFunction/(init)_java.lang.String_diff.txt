@@ -1,0 +1,9 @@
+/**
+ * Creates an instance of {@link DegreeDistanceFunction}
+ *
+ * @param broadcastName name of broadcast variable
+ */
+public DegreeDistanceFunction(String broadcastName) {
+    this.broadcastName = broadcastName;
+    this.reuse = new Tuple1<>();
+}

@@ -1,0 +1,25 @@
+/**
+ * Create a map between type strings and their corresponding classes.
+ *
+ * @return map between string types and corresponding classes
+ */
+private static Map<String, Class<?>> createStringToClassMap() {
+    Map<String, Class<?>> stringClassMap = new HashMap<>();
+    stringClassMap.put(Type.NULL.toString(), null);
+    stringClassMap.put(Type.SHORT.toString(), Short.class);
+    stringClassMap.put(Type.INTEGER.toString(), Integer.class);
+    stringClassMap.put(Type.LONG.toString(), Long.class);
+    stringClassMap.put(Type.FLOAT.toString(), Float.class);
+    stringClassMap.put(Type.DOUBLE.toString(), Double.class);
+    stringClassMap.put(Type.BOOLEAN.toString(), Boolean.class);
+    stringClassMap.put(Type.STRING.toString(), String.class);
+    stringClassMap.put(Type.BIG_DECIMAL.toString(), BigDecimal.class);
+    stringClassMap.put(Type.GRADOOP_ID.toString(), GradoopId.class);
+    stringClassMap.put(Type.MAP.toString(), Map.class);
+    stringClassMap.put(Type.LIST.toString(), List.class);
+    stringClassMap.put(Type.DATE.toString(), LocalDate.class);
+    stringClassMap.put(Type.TIME.toString(), LocalTime.class);
+    stringClassMap.put(Type.DATE_TIME.toString(), LocalDateTime.class);
+    stringClassMap.put(Type.SET.toString(), Set.class);
+    return Collections.unmodifiableMap(stringClassMap);
+}

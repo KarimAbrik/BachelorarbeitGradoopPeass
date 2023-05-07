@@ -1,0 +1,13 @@
+@Override
+public boolean filter(E e) throws Exception {
+    if (e.hasProperty(key)) {
+        if (value != null) {
+            if (e.getPropertyValue(key).equals(value)) {
+                return true;
+            }
+        } else {
+            return true;
+        }
+    }
+    return false;
+}

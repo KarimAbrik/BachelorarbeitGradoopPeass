@@ -1,0 +1,12 @@
+/**
+ * Test the {@link TemporalGraphCollection#getEdgesByLabel(String)} method.
+ */
+@Test
+public void testGetEdgesByLabel() throws Exception {
+    List<TemporalEdge> temporalEdges = Lists.newArrayList();
+    testTemporalCollection.getEdgesByLabel("knows").output(new LocalCollectionOutputFormat<>(temporalEdges));
+    getExecutionEnvironment().execute();
+    assertEquals(8, temporalEdges.size());
+    temporalEdges.forEach(e -> assertEquals("knows", e.getLabel()));
+    temporalEdges.forEach(this::checkDefaultTemporalElement);
+}

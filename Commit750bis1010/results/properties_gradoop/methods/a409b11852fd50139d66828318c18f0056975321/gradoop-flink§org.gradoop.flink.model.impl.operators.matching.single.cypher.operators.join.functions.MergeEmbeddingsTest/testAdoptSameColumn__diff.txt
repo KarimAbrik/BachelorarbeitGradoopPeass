@@ -1,0 +1,19 @@
+/**
+ * Tests keep all properties from the right side
+ */
+@Test
+public void testAdoptSameColumn() throws Exception {
+    GradoopId v0 = GradoopId.get();
+    GradoopId v1 = GradoopId.get();
+    // [(Id(v0)]
+    Embedding left = createEmbedding(v0);
+    Embedding right = new Embedding();
+    right.add(v0);
+    right.add(v1, PropertyValue.create("Alice"));
+    // join operator
+    MergeEmbeddings udf = new MergeEmbeddings(2, Lists.newArrayList(0), Lists.newArrayList(), Lists.newArrayList(), Lists.newArrayList(), Lists.newArrayList());
+    List<Embedding> result = new ArrayList<>();
+    // get results
+    udf.join(left, right, new ListCollector<>(result));
+    Assert.assertEquals(PropertyValue.create("Alice"), result.get(0).getProperty(0));
+}

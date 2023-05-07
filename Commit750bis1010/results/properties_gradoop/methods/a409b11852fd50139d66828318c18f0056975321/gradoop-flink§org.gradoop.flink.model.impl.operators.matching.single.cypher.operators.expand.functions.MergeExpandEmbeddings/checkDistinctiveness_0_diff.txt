@@ -1,0 +1,32 @@
+/**
+ * Checks the distinctiveness criteria for the expansion
+ * @param prev previous intermediate result
+ * @param edge edge along which we expand
+ * @return true if distinct criteria apply for the expansion
+ */
+private boolean checkDistinctiveness(ExpandEmbedding prev, EdgeWithTiePoint edge) {
+    if (distinctVertices.isEmpty() && distinctEdges.isEmpty()) {
+        return true;
+    }
+    // the new candidate is invalid under vertex isomorphism
+    if (edge.getSource().equals(edge.getTarget()) && !distinctVertices.isEmpty()) {
+        return false;
+    }
+    // check if there are any clashes in the path
+    for (GradoopId ref : prev.getPath()) {
+        if ((ref.equals(edge.getSource()) || ref.equals(edge.getTarget()) && !distinctVertices.isEmpty()) || (ref.equals(edge.getId()) && !distinctEdges.isEmpty())) {
+            return false;
+        }
+    }
+    List<GradoopId> ref;
+    // check for clashes with distinct vertices in the base
+    for (int i : distinctVertices) {
+        ref = prev.getBase().getIdAsList(i);
+        if ((ref.contains(edge.getTarget()) && i != closingColumn) || ref.contains(edge.getSource())) {
+            return false;
+        }
+    }
+    // check for clashes with distinct edges in the base
+    ref = prev.getBase().getIdsAsList(distinctEdges);
+    return !ref.contains(edge.getId());
+}

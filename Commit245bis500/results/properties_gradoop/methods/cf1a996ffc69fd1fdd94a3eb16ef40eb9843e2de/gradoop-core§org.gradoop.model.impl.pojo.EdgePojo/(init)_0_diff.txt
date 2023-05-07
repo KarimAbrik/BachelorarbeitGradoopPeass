@@ -1,0 +1,14 @@
+                                                                                                     | /**                                                                                                 
+                                                                                                     | * Creates an edge instance based on the given parameters.                                           
+                                                                                                     | *  @param id             the unique id of the edge                                                  
+                                                                                                     | * @param label          edge label                                                                  
+                                                                                                     | * @param sourceVertexId source vertex id                                                            
+                                                                                                     | * @param targetVertexId target vertex id                                                            
+                                                                                                     | * @param properties     edge properties                                                             
+                                                                                                     | * @param graphs         graphs that edge is contained in                                            
+                                                                                                     | */                                                                                                  
+                                                                                                     | EdgePojo(final GradoopId id, final String label, final GradoopId sourceVertexId, final GradoopId tar
+                                                                                                     | super(id, label, properties, graphs);                                                               
+                                                                                                     | this.sourceVertexId = sourceVertexId;                                                               
+                                                                                                     | this.targetVertexId = targetVertexId;                                                               
+                                                                                                     | }                                                                                                   

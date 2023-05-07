@@ -1,0 +1,6 @@
+@Override
+public EPGMGraphHead map(String csvLine) throws Exception {
+    String[] tokens = split(csvLine, 3);
+    String label = StringEscaper.unescape(tokens[1]);
+    return graphHeadFactory.initGraphHead(GradoopId.fromString(tokens[0]), label, parseProperties(MetaDataSource.GRAPH_TYPE, label, tokens[2]));
+}

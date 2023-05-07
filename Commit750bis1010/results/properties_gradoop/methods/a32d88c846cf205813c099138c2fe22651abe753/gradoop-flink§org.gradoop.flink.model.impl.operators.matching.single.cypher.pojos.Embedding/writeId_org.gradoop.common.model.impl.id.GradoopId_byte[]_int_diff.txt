@@ -1,0 +1,10 @@
+/**
+ * Writes the byte representation of a GradoopId into the target byte array
+ * starting at the specified offset
+ * @param value  GradoopId that will be written
+ * @param target Target byte array
+ * @param offset offset the value will be written to
+ */
+private void writeId(GradoopId value, byte[] target, int offset) {
+    System.arraycopy(value.toByteArray(), 0, target, offset, GradoopId.ID_SIZE);
+}

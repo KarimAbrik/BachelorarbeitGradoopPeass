@@ -1,0 +1,9 @@
+@Test
+public void testGetComponentsForSingleComponent() {
+    QueryHandler query = QUERY_HANDLER;
+    Set<String> allVertexVariables = query.getVertices().stream().map(Vertex::getVariable).collect(Collectors.toSet());
+    Map<Integer, Set<String>> components = GraphMetrics.getComponents(query);
+    assertEquals(1, components.size());
+    assertTrue(components.containsKey(0));
+    assertEquals(allVertexVariables, components.get(0));
+}

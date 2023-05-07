@@ -1,0 +1,7 @@
+/**
+ * Creates the mapper
+ */
+public BuildVertexWithSuperVertexBC() {
+    this.reuseTuple = new VertexWithSuperVertex();
+    this.cache = Maps.newConcurrentMap();
+}

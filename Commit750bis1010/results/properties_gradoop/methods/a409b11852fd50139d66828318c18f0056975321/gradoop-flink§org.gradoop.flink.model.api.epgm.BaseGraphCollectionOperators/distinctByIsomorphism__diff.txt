@@ -1,0 +1,9 @@
+/**
+ * Groups a graph collection by isomorphism.
+ * Graph equality is based on isomorphism including labels and properties.
+ *
+ * @return distinct graph collection
+ */
+default GC distinctByIsomorphism() {
+    return callForCollection(new DistinctByIsomorphism<>());
+}

@@ -1,0 +1,9 @@
+/**                                                                                                  |                                                                                                     
+* {@inheritDoc}                                                                                      |                                                                                                     
+*/                                                                                                   |                                                                                                     
+@Override                                                                                            |                                                                                                     
+public Vertex initVertex(final GradoopId id, final String label, final Properties properties, final  |                                                                                                     
+Preconditions.checkNotNull(id, "Identifier was null");                                               |                                                                                                     
+Preconditions.checkNotNull(label, "Label was null");                                                 |                                                                                                     
+return new Vertex(id, label, properties, graphs);                                                    |                                                                                                     
+}                                                                                                    |                                                                                                     

@@ -1,0 +1,5 @@
+@Override
+public PropertyValue execute(PropertyValue property) {
+    reuseProperty.setLong(property.getLong() / divisor);
+    return reuseProperty;
+}

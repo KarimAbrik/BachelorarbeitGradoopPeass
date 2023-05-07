@@ -1,0 +1,30 @@
+/**
+ * Get a strategy which corresponds the provided class. If there is no mapping for the provided
+ * class in the class-strategy map, or the value of the parameter is {@code null}, an instance of
+ * {@link NullStrategy} is returned.
+ *
+ * @param clazz some class
+ * @return strategy class which is able to handle the provided type.
+ * @throws UnsupportedTypeException when there is no matching strategy for the given class.
+ */
+public static PropertyValueStrategy get(Class clazz) throws UnsupportedTypeException {
+    if (clazz == null) {
+        return INSTANCE.nullStrategy;
+    }
+    PropertyValueStrategy strategy = INSTANCE.classStrategyMap.get(clazz);
+    // class could be some implementation of List/Map/Set that we don't register in the class-
+    // strategy map, so we need to check for that.
+    if (strategy == null) {
+        if (Map.class.isAssignableFrom(clazz)) {
+            strategy = INSTANCE.classStrategyMap.get(Map.class);
+        } else if (Set.class.isAssignableFrom(clazz)) {
+            strategy = INSTANCE.classStrategyMap.get(Set.class);
+        } else if (List.class.isAssignableFrom(clazz)) {
+            strategy = INSTANCE.classStrategyMap.get(List.class);
+        }
+    }
+    if (strategy == null) {
+        throw new UnsupportedTypeException("No strategy for class " + clazz);
+    }
+    return strategy;
+}

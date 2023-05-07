@@ -1,0 +1,4 @@
+@Test(expected = IllegalArgumentException.class)
+public void createWithNullLabelTest() {
+    new VertexPojoFactory().createVertex(0L, null);
+}

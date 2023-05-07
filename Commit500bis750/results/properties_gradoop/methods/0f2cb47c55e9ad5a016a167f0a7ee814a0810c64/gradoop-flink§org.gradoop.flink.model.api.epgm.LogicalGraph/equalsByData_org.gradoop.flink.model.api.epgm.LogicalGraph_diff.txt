@@ -1,0 +1,7 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public DataSet<Boolean> equalsByData(LogicalGraph other) {
+    return new GraphEquality(new GraphHeadToDataString(), new VertexToDataString(), new EdgeToDataString(), true).execute(this, other);
+}

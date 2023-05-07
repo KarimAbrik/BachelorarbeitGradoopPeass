@@ -1,0 +1,16 @@
+/**
+ * Creates a new greedy planner.
+ *
+ * @param graph search graph
+ * @param queryHandler query handler
+ * @param graphStatistics search graph statistics
+ * @param vertexStrategy morphism type for vertex mappings
+ * @param edgeStrategy morphism type for edge mappings
+ */
+public GreedyPlanner(LG graph, QueryHandler queryHandler, GraphStatistics graphStatistics, MatchStrategy vertexStrategy, MatchStrategy edgeStrategy) {
+    this.graph = graph;
+    this.queryHandler = queryHandler;
+    this.graphStatistics = graphStatistics;
+    this.vertexStrategy = vertexStrategy;
+    this.edgeStrategy = edgeStrategy;
+}

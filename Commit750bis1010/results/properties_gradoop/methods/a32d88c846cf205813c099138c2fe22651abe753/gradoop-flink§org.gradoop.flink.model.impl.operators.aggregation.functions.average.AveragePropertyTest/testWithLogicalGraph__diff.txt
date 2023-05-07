@@ -1,0 +1,17 @@
+/**
+ * Test the average aggregation on a graph with some values.
+ */
+@Test
+public void testWithLogicalGraph() throws Exception {
+    FlinkAsciiGraphLoader loader = getLoaderFromString("input[" + "(i1 {a: 1L, b: 2.4})-[e1{c: 3, d: 10.1}]->(i2 {a: 12.2, b: 12.3})-[e2{c: 6, d: 6.3}]->(i1)" + "(i3 {e: 44L})" + "]");
+    LogicalGraph result = loader.getLogicalGraphByVariable("input").aggregate(new AverageVertexProperty("a"), new AverageVertexProperty("b", "b_average"), new AverageVertexProperty("e"), new AverageVertexProperty("f"), new AverageEdgeProperty("c"), new AverageEdgeProperty("d"));
+    // We have to check the head instead of the full graph, to allow for double comparison with
+    // possible rounding errors.
+    Properties resultProperties = result.getGraphHead().collect().get(0).getProperties();
+    assertEquals(6.6d, resultProperties.get("avg_a").getDouble(), 0.001d);
+    assertEquals(7.35d, resultProperties.get("b_average").getDouble(), 0.001d);
+    assertEquals(4.5d, resultProperties.get("avg_c").getDouble(), 0d);
+    assertEquals(8.2d, resultProperties.get("avg_d").getDouble(), 0.001d);
+    assertEquals(44d, resultProperties.get("avg_e").getDouble(), 0d);
+    assertEquals(PropertyValue.NULL_VALUE, resultProperties.get("avg_f"));
+}

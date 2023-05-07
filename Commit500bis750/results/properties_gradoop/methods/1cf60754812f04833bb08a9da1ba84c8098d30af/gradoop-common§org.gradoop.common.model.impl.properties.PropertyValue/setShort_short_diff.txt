@@ -1,0 +1,10 @@
+                                                                                                     | /**                                                                                                 
+                                                                                                     | * Sets the wrapped value as {@code short} value.                                                    
+                                                                                                     | *                                                                                                   
+                                                                                                     | * @param shortValue value                                                                           
+                                                                                                     | */                                                                                                  
+                                                                                                     | public void setShort(short shortValue) {                                                            
+                                                                                                     | rawBytes = new byte[OFFSET + Bytes.SIZEOF_SHORT];                                                   
+                                                                                                     | rawBytes[0] = TYPE_SHORT;                                                                           
+                                                                                                     | Bytes.putShort(rawBytes, OFFSET, shortValue);                                                       
+                                                                                                     | }                                                                                                   

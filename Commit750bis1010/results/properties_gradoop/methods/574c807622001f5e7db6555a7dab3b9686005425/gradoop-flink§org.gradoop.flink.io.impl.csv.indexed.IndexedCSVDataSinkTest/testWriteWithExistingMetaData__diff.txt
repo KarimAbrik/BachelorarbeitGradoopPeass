@@ -1,0 +1,19 @@
+/**                                                                                                    /**                                                                                                 
+* Test writing and reading a graph with a existing metadata file instead of aggregating                * Test writing and reading a graph with a existing metadata file instead of aggregating             
+* new metadata from the graph.                                                                         * new metadata from the graph.                                                                      
+*                                                                                                      *                                                                                                   
+* @throws Exception if the execution or IO fails.                                                      * @throws Exception if the execution or IO fails.                                                   
+*/                                                                                                     */                                                                                                  
+@Test                                                                                                  @Test                                                                                               
+public void testWriteWithExistingMetaData() throws Exception {                                         public void testWriteWithExistingMetaData() throws Exception {                                      
+String tmpPath = temporaryFolder.getRoot().getPath();                                                  String tmpPath = temporaryFolder.getRoot().getPath();                                               
+String csvPath = getFilePath("/data/csv/input_indexed");                                             | String csvPath = getFilePath("/data/csv/input_indexed_graph_collection");                           
+String gdlPath = getFilePath("/data/csv/expected/expected_graph_collection.gdl");                      String gdlPath = getFilePath("/data/csv/expected/expected_graph_collection.gdl");                   
+GraphCollection input = getLoaderFromFile(gdlPath).getGraphCollectionByVariables("expected1", "expec   GraphCollection input = getLoaderFromFile(gdlPath).getGraphCollectionByVariables("expected1", "expec
+DataSink csvDataSink = new IndexedCSVDataSink(tmpPath, csvPath + "/metadata.csv", getConfig());        DataSink csvDataSink = new IndexedCSVDataSink(tmpPath, csvPath + "/metadata.csv", getConfig());     
+csvDataSink.write(input, true);                                                                        csvDataSink.write(input, true);                                                                     
+getExecutionEnvironment().execute();                                                                   getExecutionEnvironment().execute();                                                                
+DataSource csvDataSource = new IndexedCSVDataSource(tmpPath, getConfig());                             DataSource csvDataSource = new IndexedCSVDataSource(tmpPath, getConfig());                          
+GraphCollection output = csvDataSource.getGraphCollection();                                           GraphCollection output = csvDataSource.getGraphCollection();                                        
+collectAndAssertTrue(input.equalsByGraphElementData(output));                                          collectAndAssertTrue(input.equalsByGraphElementData(output));                                       
+}                                                                                                      }                                                                                                   

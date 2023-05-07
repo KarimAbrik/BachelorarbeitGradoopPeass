@@ -1,0 +1,14 @@
+/**
+ * Parses the CSV string that contains EPGMGraphHead ids.
+ *
+ * @param gradoopIdsString The csv token string.
+ * @return gradoop ids contained in the string
+ */
+protected GradoopIdSet parseGradoopIds(String gradoopIdsString) {
+    String[] gradoopIds = gradoopIdsString.substring(1, gradoopIdsString.length() - 1).split(CSVConstants.LIST_DELIMITER);
+    GradoopIdSet gradoopIdSet = new GradoopIdSet();
+    for (String g : gradoopIds) {
+        gradoopIdSet.add(GradoopId.fromString(g.trim()));
+    }
+    return gradoopIdSet;
+}

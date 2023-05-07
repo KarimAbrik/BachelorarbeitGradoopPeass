@@ -1,0 +1,19 @@
+/**
+ * Adds the list of properties to the embedding
+ *
+ * @param properties new properties
+ */
+public void addPropertyValues(PropertyValue... properties) {
+    int newPropertiesSize = propertyData.length;
+    for (PropertyValue property : properties) {
+        newPropertiesSize += property.getByteSize() + Integer.BYTES;
+    }
+    byte[] newPropertyData = new byte[newPropertiesSize];
+    System.arraycopy(propertyData, 0, newPropertyData, 0, propertyData.length);
+    int offset = propertyData.length;
+    for (PropertyValue property : properties) {
+        writeProperty(property, newPropertyData, offset);
+        offset += property.getByteSize() + Integer.BYTES;
+    }
+    this.propertyData = newPropertyData;
+}

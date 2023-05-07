@@ -1,0 +1,12 @@
+/**
+ * Returns the subgraph of the given supergraph that is induced by the
+ * edges that fulfil the given filter function.
+ *
+ * @param superGraph supergraph
+ * @return edge-induced subgraph
+ */
+private LG edgeInducedSubgraph(LG superGraph) {
+    DataSet<E> filteredEdges = superGraph.getEdges().filter(edgeFilterFunction);
+    DataSet<V> inducedVertices = filteredEdges.join(superGraph.getVertices()).where(new SourceId<>()).equalTo(new Id<>()).with(new RightSide<>()).union(filteredEdges.join(superGraph.getVertices()).where(new TargetId<>()).equalTo(new Id<>()).with(new RightSide<>())).distinct(new Id<>());
+    return superGraph.getFactory().fromDataSets(superGraph.getGraphHead(), inducedVertices, filteredEdges);
+}

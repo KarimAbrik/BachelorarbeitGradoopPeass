@@ -1,0 +1,8 @@
+@Before
+public void setup() {
+    File of = new File(getTestPath());
+    if (of.exists()) {
+        of.delete();
+    }
+    of.getParentFile().mkdirs();
+}

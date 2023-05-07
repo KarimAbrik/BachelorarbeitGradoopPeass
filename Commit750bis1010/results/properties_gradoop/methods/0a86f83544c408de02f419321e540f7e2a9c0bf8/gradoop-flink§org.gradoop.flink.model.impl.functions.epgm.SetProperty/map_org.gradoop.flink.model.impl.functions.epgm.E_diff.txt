@@ -1,0 +1,5 @@
+@Override
+public E map(E element) throws Exception {
+    element.setProperty(propertyKey, propertyValue);
+    return element;
+}

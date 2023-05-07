@@ -1,0 +1,8 @@
+/**
+ * Creates a CSVLineToGraphHead converter
+ *
+ * @param graphHeadFactory The factory class that is used to create the graph heads.
+ */
+public CSVLineToGraphHead(GraphHeadFactory<EPGMGraphHead> graphHeadFactory) {
+    this.graphHeadFactory = graphHeadFactory;
+}

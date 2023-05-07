@@ -1,0 +1,9 @@
+@Test
+public void testMultiColumn() throws Exception {
+    PropertyValue a = PropertyValue.create("Foo");
+    PropertyValue b = PropertyValue.create(42);
+    Embedding embedding = new Embedding();
+    embedding.add(GradoopId.get(), a, b);
+    ExtractPropertyJoinColumns udf = new ExtractPropertyJoinColumns(Arrays.asList(0, 1));
+    Assert.assertEquals(ArrayUtils.toString(embedding.getRawProperty(0)) + ArrayUtils.toString(embedding.getRawProperty(1)), udf.getKey(embedding));
+}

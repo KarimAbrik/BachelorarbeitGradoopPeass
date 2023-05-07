@@ -1,0 +1,8 @@
+/**
+ * Returns all variables contained in the pattern.
+ *
+ * @return all query variables
+ */
+public Set<String> getAllVariables() {
+    return Sets.union(getVertexVariables(), getEdgeVariables());
+}

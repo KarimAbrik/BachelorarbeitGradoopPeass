@@ -1,0 +1,5 @@
+@Override
+public EPGMVertex join(org.apache.flink.graph.Vertex<GradoopId, VCIVertexValue> gellyVertex, EPGMVertex epgmVertex) throws Exception {
+    epgmVertex.setProperty(propertyKey, gellyVertex.getValue().f0);
+    return epgmVertex;
+}

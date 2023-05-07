@@ -1,0 +1,9 @@
+@Test
+public void testOutOfBound() throws Exception {
+    FlinkAsciiGraphLoader loader = getSocialNetworkLoader();
+    GraphCollection inputCollection = loader.getGraphCollectionByVariables("g0", "g1");
+    int limit = 4;
+    int expectedCount = 2;
+    GraphCollection outputCollection = inputCollection.limit(limit);
+    assertEquals(expectedCount, outputCollection.getGraphHeads().count());
+}

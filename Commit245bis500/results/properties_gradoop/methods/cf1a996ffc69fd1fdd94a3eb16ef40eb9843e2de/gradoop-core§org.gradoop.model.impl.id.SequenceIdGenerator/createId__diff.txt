@@ -1,0 +1,4 @@
+@Override
+public GradoopId createId() {
+    return new GradoopId(offset.getAndIncrement());
+}

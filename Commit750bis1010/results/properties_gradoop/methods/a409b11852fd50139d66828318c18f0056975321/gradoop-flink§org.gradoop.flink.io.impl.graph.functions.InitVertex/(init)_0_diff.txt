@@ -1,0 +1,12 @@
+/**
+ * Creates a new map function
+ * @param epgmVertexFactory       vertex factory
+ * @param lineagePropertyKey  property key to store import identifier
+ *                            (can be {@code null})
+ * @param externalIdType         type info for the import vertex identifier
+ */
+public InitVertex(VertexFactory<EPGMVertex> epgmVertexFactory, String lineagePropertyKey, TypeInformation<K> externalIdType) {
+    super(lineagePropertyKey, externalIdType);
+    this.vertexFactory = epgmVertexFactory;
+    this.reuseTuple = new Tuple3<>();
+}

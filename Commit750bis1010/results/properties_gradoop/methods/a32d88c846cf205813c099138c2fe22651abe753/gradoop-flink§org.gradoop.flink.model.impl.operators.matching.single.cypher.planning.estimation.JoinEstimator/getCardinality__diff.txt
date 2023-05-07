@@ -1,0 +1,10 @@
+/**
+ * Computes the final cardinality according to the visited nodes.
+ *
+ * @return estimated cardinality
+ */
+long getCardinality() {
+    long numerator = cardinalities.values().stream().reduce((i, j) -> i * j).orElse(0L);
+    long denominator = distinctValues.values().stream().map(list -> list.stream().sorted().collect(Collectors.toList())).map(list -> list.subList(1, list.size())).flatMap(Collection::stream).reduce((i, j) -> i * j).orElse(1L);
+    return Math.round(1.0 * numerator / denominator);
+}

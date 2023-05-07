@@ -1,0 +1,4 @@
+@Override
+public GraphCollectionLayout<EPGMGraphHead, EPGMVertex, EPGMEdge> fromIndexedDataSets(Map<String, DataSet<EPGMGraphHead>> graphHeads, Map<String, DataSet<EPGMVertex>> vertices, Map<String, DataSet<EPGMEdge>> edges) {
+    return create(graphHeads, vertices, edges);
+}

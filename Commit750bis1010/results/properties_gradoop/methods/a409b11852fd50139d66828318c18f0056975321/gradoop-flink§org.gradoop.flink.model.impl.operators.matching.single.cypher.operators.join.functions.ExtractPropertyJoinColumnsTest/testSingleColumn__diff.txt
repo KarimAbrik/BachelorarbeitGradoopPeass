@@ -1,0 +1,9 @@
+@Test
+public void testSingleColumn() throws Exception {
+    PropertyValue a = PropertyValue.create("Foo");
+    PropertyValue b = PropertyValue.create(42);
+    Embedding embedding = new Embedding();
+    embedding.add(GradoopId.get(), a, b);
+    ExtractPropertyJoinColumns udf = new ExtractPropertyJoinColumns(Collections.singletonList(0));
+    Assert.assertEquals(ArrayUtils.toString(embedding.getRawProperty(0)), udf.getKey(embedding));
+}

@@ -1,0 +1,15 @@
+/**
+ * Deletes the graph store based on the given table names.
+ *
+ * @param config          Hadoop configuration
+ * @param vertexTableName vertex data table name
+ * @param edgeTableName   edge data table name
+ * @param graphTableName  graph data table name
+ */
+public static void deleteEPGMStore(final Configuration config, final String vertexTableName, final String edgeTableName, final String graphTableName) {
+    try {
+        deleteTablesIfExists(config, vertexTableName, edgeTableName, graphTableName);
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}

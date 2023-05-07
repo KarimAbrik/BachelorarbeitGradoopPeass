@@ -1,0 +1,7 @@
+@Override
+public Tuple3<E, GradoopIdSet, GradoopIdSet> join(Tuple2<E, GradoopIdSet> left, Tuple2<GradoopId, GradoopIdSet> right) throws Exception {
+    reuseTuple.f0 = left.f0;
+    reuseTuple.f1 = left.f1;
+    reuseTuple.f2 = right.f1;
+    return reuseTuple;
+}

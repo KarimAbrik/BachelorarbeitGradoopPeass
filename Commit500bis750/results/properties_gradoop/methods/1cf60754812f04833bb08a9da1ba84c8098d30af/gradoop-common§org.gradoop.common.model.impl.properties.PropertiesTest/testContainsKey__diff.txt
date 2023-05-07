@@ -1,0 +1,8 @@
+@Test
+public void testContainsKey() throws Exception {
+    Properties properties = Properties.create();
+    assertFalse("unexpected key found", properties.containsKey(KEY_1));
+    properties.set(KEY_1, BOOL_VAL_1);
+    assertTrue("key not found", properties.containsKey(KEY_1));
+    assertFalse("unexpected key found", properties.containsKey("1234"));
+}

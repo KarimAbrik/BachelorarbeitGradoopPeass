@@ -1,0 +1,13 @@
+/**
+ * Constructor
+ *
+ * @param propertyKey Property key to temporarily store the component id.
+ * @param maxIterations Maximum number of iterations for
+ *                      {@link AnnotateWeaklyConnectedComponents}.
+ * @param annotateEdges Whether to write the component property to the edges
+ */
+public ConnectedComponentsDistribution(String propertyKey, int maxIterations, boolean annotateEdges) {
+    this.propertyKey = propertyKey;
+    this.maxIterations = maxIterations;
+    this.annotateEdges = annotateEdges;
+}

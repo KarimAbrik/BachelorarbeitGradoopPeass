@@ -1,0 +1,23 @@
+/**
+ * Tests whether vertices are correctly deduplicated/condensed.
+ *
+ * @throws Exception If the data could not be loaded or collected properly.
+ */
+@Test
+public void cityDeduplicationTest() throws Exception {
+    LogicalGraph social = getSocialNetworkLoader().getLogicalGraph();
+    // this operation should create 3 vertices with the property values: Berlin, Dresden, Leipzig
+    // keep in mind that the default for condensation is 'true'
+    UnaryGraphToGraphOperator extOne = new ExtractPropertyFromVertex("Person", "city", "City", "name");
+    LogicalGraph extOneGraph = social.callForGraph(extOne);
+    List<EPGMVertex> city = extOneGraph.getVerticesByLabel("City").collect();
+    Set<String> cityNames = new HashSet<>();
+    for (EPGMVertex v : city) {
+        String cityName = v.getPropertyValue("name").getString();
+        Assert.assertTrue(cityName.equals("Dresden") || cityName.equals("Berlin") || cityName.equals("Leipzig"));
+        Assert.assertTrue(cityNames.add(cityName));
+    }
+    Assert.assertEquals(3, cityNames.size());
+    // The number of edges should be the same as before.
+    Assert.assertEquals(social.getEdges().count(), extOneGraph.getEdges().count());
+}

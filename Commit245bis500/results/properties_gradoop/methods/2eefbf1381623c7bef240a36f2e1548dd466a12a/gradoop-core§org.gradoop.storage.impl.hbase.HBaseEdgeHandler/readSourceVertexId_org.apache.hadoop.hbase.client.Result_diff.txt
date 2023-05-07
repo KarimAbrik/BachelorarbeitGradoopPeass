@@ -1,0 +1,9 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public GradoopId readSourceVertexId(Result res) throws IOException {
+    GradoopId sourceVertexId = new GradoopId();
+    Writables.getWritable(res.getValue(CF_META_BYTES, COL_SOURCE_VERTEX_BYTES), sourceVertexId);
+    return sourceVertexId;
+}

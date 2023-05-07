@@ -1,0 +1,10 @@
+@Test
+public void testSingleJoinPartners() throws Exception {
+    DataSet<Embedding> left = getExecutionEnvironment().fromElements(createEmbedding(v0, e0, v1), createEmbedding(v1, e2, v0));
+    DataSet<Embedding> right = getExecutionEnvironment().fromElements(createEmbedding(v0), createEmbedding(v1));
+    PhysicalOperator join = new JoinEmbeddings(left, right, 1, 0, 0);
+    DataSet<Embedding> result = join.evaluate();
+    assertEquals(2, result.count());
+    assertEmbeddingExists(result, v0, e0, v1);
+    assertEmbeddingExists(result, v1, e2, v0);
+}

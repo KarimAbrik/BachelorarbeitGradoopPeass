@@ -1,0 +1,18 @@
+/**
+ * This method will convert utf8 encoded bytes into a string. If the given byte array is null,
+ * this method will return null.
+ *
+ * @param b Presumed UTF-8 encoded byte array.
+ * @param off offset into array
+ * @param len length of utf-8 sequence
+ * @return String made from <code>b</code> or null
+ */
+public static String toString(final byte[] b, int off, int len) {
+    if (b == null) {
+        return null;
+    }
+    if (len == 0) {
+        return "";
+    }
+    return new String(b, off, len, StandardCharsets.UTF_8);
+}

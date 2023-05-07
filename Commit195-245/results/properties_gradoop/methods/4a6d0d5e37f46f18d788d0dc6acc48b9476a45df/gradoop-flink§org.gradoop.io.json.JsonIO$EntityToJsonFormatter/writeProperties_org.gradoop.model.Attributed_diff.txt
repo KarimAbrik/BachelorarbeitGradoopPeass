@@ -1,9 +1,0 @@
-protected JSONObject writeProperties(Attributed entity) throws JSONException {
-    JSONObject data = new JSONObject();
-    if (entity.getPropertyCount() > 0) {
-        for (String propertyKey : entity.getPropertyKeys()) {
-            data.put(propertyKey, entity.getProperty(propertyKey));
-        }
-    }
-    return data;
-}

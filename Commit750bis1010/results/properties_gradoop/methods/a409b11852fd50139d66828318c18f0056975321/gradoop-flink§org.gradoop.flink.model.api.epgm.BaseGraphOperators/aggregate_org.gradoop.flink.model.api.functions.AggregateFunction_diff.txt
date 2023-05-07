@@ -1,0 +1,10 @@
+/**
+ * Applies the given aggregate functions to the base graph and stores the
+ * result of those functions at the resulting graph using the given property keys.
+ *
+ * @param aggregateFunctions computes aggregates on the base graph
+ * @return base graph with additional properties storing the aggregates
+ */
+default LG aggregate(AggregateFunction... aggregateFunctions) {
+    return callForGraph(new Aggregation<>(aggregateFunctions));
+}

@@ -1,0 +1,6 @@
+@Override
+public void join(ExpandEmbedding base, EdgeWithTiePoint edge, Collector<ExpandEmbedding> out) throws Exception {
+    if (checkDistinctiveness(base, edge)) {
+        out.collect(base.grow(edge));
+    }
+}

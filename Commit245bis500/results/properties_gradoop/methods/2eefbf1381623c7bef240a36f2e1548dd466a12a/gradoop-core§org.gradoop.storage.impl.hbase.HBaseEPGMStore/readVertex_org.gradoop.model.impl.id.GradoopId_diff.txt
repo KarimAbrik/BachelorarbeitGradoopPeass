@@ -1,0 +1,18 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public VD readVertex(final GradoopId vertexId) {
+    VD vertexData = null;
+    try {
+        VertexHandler<VD, ED> vertexHandler = config.getVertexHandler();
+        byte[] rowKey = vertexHandler.getRowKey(vertexId);
+        Result res = vertexTable.get(new Get(rowKey));
+        if (!res.isEmpty()) {
+            vertexData = vertexHandler.readVertex(res);
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+    return vertexData;
+}

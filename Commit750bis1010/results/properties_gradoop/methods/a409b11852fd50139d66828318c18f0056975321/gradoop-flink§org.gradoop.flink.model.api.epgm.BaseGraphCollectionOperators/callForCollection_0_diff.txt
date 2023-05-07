@@ -1,0 +1,11 @@
+/**
+ * Calls the given binary collection to collection operator using this graph collection and the
+ * input graph collection.
+ *
+ * @param operator        binary collection to collection operator
+ * @param otherCollection second input collection for operator
+ * @return result of given operator
+ */
+default GC callForCollection(BinaryBaseGraphCollectionToBaseGraphCollectionOperator<GC> operator, GC otherCollection) {
+    return callForValue(operator, otherCollection);
+}

@@ -1,0 +1,35 @@
+/**
+ * A private convenience method for easier testing of different setups in the edge creation process.
+ *
+ * @param graph     The input graph for the tests.
+ * @param direction The edge direction the graph is tested for.
+ * @throws Exception Is thrown if the process cant be executed properly.
+ */
+private void testForEdgeDirection(LogicalGraph graph, EdgeDirection direction) throws Exception {
+    Set<String> cities = new HashSet<>(Arrays.asList("Dresden", "Berlin", "Leipzig"));
+    Set<String> persons = new HashSet<>(Arrays.asList("Eve", "Alice", "Frank", "Dave", "Bob", "Carol"));
+    UnaryGraphToGraphOperator extract = new ExtractPropertyFromVertex("Person", "city", "City", "name", direction, "newLabel");
+    LogicalGraph extractedGraph = graph.callForGraph(extract);
+    long expectedEdgeCount = direction.equals(EdgeDirection.BIDIRECTIONAL) ? 12 : 6;
+    Assert.assertEquals(expectedEdgeCount, extractedGraph.getEdgesByLabel("newLabel").count());
+    List<EPGMVertex> vertices = new ArrayList<>();
+    extractedGraph.getVertices().filter(new LabelIsIn<>("Person", "City")).output(new LocalCollectionOutputFormat<>(vertices));
+    List<EPGMEdge> newEdges = new ArrayList<>();
+    extractedGraph.getEdgesByLabel("newLabel").output(new LocalCollectionOutputFormat<>(newEdges));
+    getConfig().getExecutionEnvironment().execute();
+    Map<GradoopId, String> idMap = new HashMap<>();
+    vertices.forEach(v -> idMap.put(v.getId(), v.getPropertyValue("name").getString()));
+    for (EPGMEdge e : newEdges) {
+        String sourceName = idMap.get(e.getSourceId());
+        String targetName = idMap.get(e.getTargetId());
+        if (direction.equals(EdgeDirection.ORIGIN_TO_NEWVERTEX)) {
+            Assert.assertTrue("source: " + sourceName + " | target: " + targetName + " | edge direction: " + direction.name(), persons.contains(sourceName) && cities.contains(targetName));
+        } else if (direction.equals(EdgeDirection.NEWVERTEX_TO_ORIGIN)) {
+            Assert.assertTrue("source: " + sourceName + " | target: " + targetName + " | edge direction: " + direction.name(), cities.contains(sourceName) && persons.contains(targetName));
+        } else if (direction.equals(EdgeDirection.BIDIRECTIONAL)) {
+            boolean cityContainment = cities.contains(sourceName) || cities.contains(targetName);
+            boolean personContainment = persons.contains(sourceName) || persons.contains(targetName);
+            Assert.assertTrue("vertex name 1: " + sourceName + " | vertex name 2: " + targetName + " | edge direction: " + direction.name(), cityContainment && personContainment);
+        }
+    }
+}

@@ -1,0 +1,8 @@
+/**
+ * Executes the query plan and produces the resulting embeddings.
+ *
+ * @return embeddings representing the query result
+ */
+public DataSet<Embedding> execute() {
+    return root.execute();
+}

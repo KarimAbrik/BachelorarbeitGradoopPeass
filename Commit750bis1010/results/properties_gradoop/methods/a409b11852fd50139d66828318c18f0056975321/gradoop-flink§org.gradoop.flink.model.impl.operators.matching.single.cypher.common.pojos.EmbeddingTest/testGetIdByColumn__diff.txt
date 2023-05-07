@@ -1,0 +1,13 @@
+@Test
+public void testGetIdByColumn() {
+    GradoopId a = GradoopId.get();
+    GradoopId b = GradoopId.get();
+    GradoopId c = GradoopId.get();
+    Embedding embedding = new Embedding();
+    embedding.add(a);
+    embedding.add(b);
+    embedding.add(c);
+    assertEquals(a, embedding.getId(0));
+    assertEquals(b, embedding.getId(1));
+    assertEquals(c, embedding.getId(2));
+}

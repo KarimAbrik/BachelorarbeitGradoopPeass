@@ -1,0 +1,30 @@
+@Test
+public void variableMappingTest() throws Exception {
+    GradoopId v1 = GradoopId.get();
+    GradoopId v2 = GradoopId.get();
+    GradoopId v3 = GradoopId.get();
+    GradoopId e1 = GradoopId.get();
+    GradoopId e2 = GradoopId.get();
+    QueryHandler query = new QueryHandler("(a)-[e]->(b)-[f]->(c)");
+    Traverser traverser = new DFSTraverser();
+    traverser.setQueryHandler(query);
+    TraversalCode traversalCode = traverser.traverse();
+    ElementsFromEmbedding udf = new ElementsFromEmbedding(traversalCode, new EPGMGraphHeadFactory(), new EPGMVertexFactory(), new EPGMEdgeFactory(), query);
+    udf.open(new Configuration());
+    GradoopId[] vertexMapping = new GradoopId[] { v1, v2, v3 };
+    GradoopId[] edgeMapping = new GradoopId[] { e1, e2 };
+    Embedding<GradoopId> embedding = new Embedding<>();
+    embedding.setVertexMapping(vertexMapping);
+    embedding.setEdgeMapping(edgeMapping);
+    List<Element> result = new ArrayList<>();
+    udf.flatMap(Tuple1.of(embedding), new ListCollector<>(result));
+    EPGMGraphHead graphHead = (EPGMGraphHead) result.stream().filter(e -> e instanceof EPGMGraphHead).findFirst().orElseThrow(NoSuchElementException::new);
+    assertTrue(graphHead.hasProperty(PatternMatching.VARIABLE_MAPPING_KEY));
+    Map<PropertyValue, PropertyValue> variableMapping = graphHead.getPropertyValue(PatternMatching.VARIABLE_MAPPING_KEY).getMap();
+    for (Vertex queryVertex : query.getVertices()) {
+        assertEquals(variableMapping.get(PropertyValue.create(queryVertex.getVariable())), PropertyValue.create(vertexMapping[(int) queryVertex.getId()]));
+    }
+    for (Edge queryEdge : query.getEdges()) {
+        assertEquals(variableMapping.get(PropertyValue.create(queryEdge.getVariable())), PropertyValue.create(edgeMapping[(int) queryEdge.getId()]));
+    }
+}

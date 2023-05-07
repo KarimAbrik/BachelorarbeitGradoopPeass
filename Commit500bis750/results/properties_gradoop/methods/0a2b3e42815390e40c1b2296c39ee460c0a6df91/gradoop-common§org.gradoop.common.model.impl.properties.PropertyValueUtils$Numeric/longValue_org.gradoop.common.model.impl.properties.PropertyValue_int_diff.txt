@@ -1,0 +1,16 @@
+/**
+ * Converts a value of a lower domain numerical type to Long.
+ *
+ * @param value value
+ * @param type type
+ *
+ * @return converted value
+ */
+private static long longValue(PropertyValue value, int type) {
+    switch(type) {
+        case SHORT:
+            return value.getShort();
+        default:
+            return value.getInt();
+    }
+}

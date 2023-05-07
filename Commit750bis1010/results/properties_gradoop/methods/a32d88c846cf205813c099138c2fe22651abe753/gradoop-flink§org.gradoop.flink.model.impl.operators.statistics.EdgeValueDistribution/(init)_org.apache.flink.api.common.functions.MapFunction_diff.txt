@@ -1,0 +1,8 @@
+/**
+ * Constructor
+ *
+ * @param valueFunction extracts a value from a edge
+ */
+public EdgeValueDistribution(MapFunction<EPGMEdge, T> valueFunction) {
+    super(valueFunction);
+}

@@ -1,0 +1,11 @@
+/**
+ * Applies the modification function on the current element and its copy.
+ *
+ * @param element current element
+ * @return modified element
+ * @throws Exception on failure
+ */
+@Override
+public EL map(EL element) throws Exception {
+    return transformationFunction.apply(element, initFrom(element));
+}

@@ -1,0 +1,13 @@
+/**
+ * Updates the lineage info of the given EPGM element if necessary.
+ *
+ * @param element   EPGM element
+ * @param importKey import element identifier
+ * @return updated EPGM element
+ */
+protected EL updateLineage(EL element, K importKey) {
+    if (keepLineage) {
+        element.setProperty(lineagePropertyKey, importKey);
+    }
+    return element;
+}

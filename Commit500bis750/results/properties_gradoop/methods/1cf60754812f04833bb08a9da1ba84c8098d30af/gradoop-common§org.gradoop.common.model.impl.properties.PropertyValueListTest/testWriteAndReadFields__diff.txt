@@ -1,0 +1,6 @@
+@Test
+public void testWriteAndReadFields() throws Exception {
+    PropertyValueList p1 = PropertyValueList.fromPropertyValues(Lists.newArrayList(PropertyValue.create(GradoopTestUtils.NULL_VAL_0), PropertyValue.create(GradoopTestUtils.BOOL_VAL_1), PropertyValue.create(GradoopTestUtils.INT_VAL_2), PropertyValue.create(GradoopTestUtils.LONG_VAL_3), PropertyValue.create(GradoopTestUtils.FLOAT_VAL_4), PropertyValue.create(GradoopTestUtils.DOUBLE_VAL_5), PropertyValue.create(GradoopTestUtils.STRING_VAL_6), PropertyValue.create(GradoopTestUtils.BIG_DECIMAL_VAL_7)));
+    PropertyValueList p2 = writeAndReadFields(PropertyValueList.class, p1);
+    assertEquals(p1, p2);
+}

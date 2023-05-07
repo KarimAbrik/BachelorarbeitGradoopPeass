@@ -1,0 +1,10 @@
+@Test
+public void testDerivedOverlappingGraphs() throws Exception {
+    FlinkAsciiGraphLoader loader = getLoaderFromString("g[(a)]");
+    LogicalGraph baseGraph = loader.getLogicalGraphByVariable("g");
+    LogicalGraph derivedGraph1 = baseGraph.vertexInducedSubgraph(v -> true);
+    LogicalGraph derivedGraph2 = baseGraph.vertexInducedSubgraph(v -> true);
+    loader.appendToDatabaseFromString("expected[(a)]");
+    LogicalGraph expected = loader.getLogicalGraphByVariable("expected");
+    collectAndAssertTrue(derivedGraph1.overlap(derivedGraph2).equalsByElementIds(expected));
+}

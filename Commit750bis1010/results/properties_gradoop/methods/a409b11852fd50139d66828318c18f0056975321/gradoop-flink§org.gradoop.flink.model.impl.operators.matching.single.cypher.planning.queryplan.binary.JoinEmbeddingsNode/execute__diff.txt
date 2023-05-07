@@ -1,0 +1,6 @@
+@Override
+public DataSet<Embedding> execute() {
+    JoinEmbeddings op = new JoinEmbeddings(getLeftChild().execute(), getRightChild().execute(), getRightChild().getEmbeddingMetaData().getEntryCount(), getJoinColumnsLeft(), getJoinColumnsRight(), getDistinctVertexColumnsLeft(), getDistinctVertexColumnsRight(), getDistinctEdgeColumnsLeft(), getDistinctEdgeColumnsRight(), joinHint);
+    op.setName(toString());
+    return op.evaluate();
+}

@@ -1,0 +1,7 @@
+@Override
+public CSVGraphHead map(EPGMGraphHead graphHead) throws Exception {
+    csvGraphHead.setId(graphHead.getId().toString());
+    csvGraphHead.setLabel(StringEscaper.escape(graphHead.getLabel(), CSVConstants.ESCAPED_CHARACTERS));
+    csvGraphHead.setProperties(getPropertyString(graphHead, MetaDataSource.GRAPH_TYPE));
+    return csvGraphHead;
+}

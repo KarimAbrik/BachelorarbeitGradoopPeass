@@ -1,0 +1,13 @@
+/**
+ * Test the key function for a label with no specific key function defined.
+ */
+@Test
+public void testKeyFunctionForOtherLabel() {
+    testVertex.setLabel("d");
+    final PropertyValue value = PropertyValue.create(1234L);
+    testVertex.setProperty("forDefault", value);
+    final Tuple expected = defaultKey.copy();
+    expected.setField(0, 0);
+    expected.setField(Tuple2.of(value.getRawBytes(), "d"), 1);
+    assertTupleEquals(expected, testFunction.getKey(testVertex));
+}

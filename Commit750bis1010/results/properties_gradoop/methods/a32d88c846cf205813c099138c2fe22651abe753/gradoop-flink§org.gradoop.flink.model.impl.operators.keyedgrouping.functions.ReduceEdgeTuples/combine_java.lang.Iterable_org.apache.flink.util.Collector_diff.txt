@@ -1,0 +1,4 @@
+@Override
+public void combine(Iterable<T> values, Collector<T> out) throws Exception {
+    reduce(values, out);
+}

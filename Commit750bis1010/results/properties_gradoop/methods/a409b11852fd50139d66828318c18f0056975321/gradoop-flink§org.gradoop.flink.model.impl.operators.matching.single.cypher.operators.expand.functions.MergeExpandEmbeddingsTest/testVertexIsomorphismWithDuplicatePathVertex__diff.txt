@@ -1,0 +1,4 @@
+@Test
+public void testVertexIsomorphismWithDuplicatePathVertex() throws Exception {
+    testJoin(buildEdge(a, e2, a), Lists.newArrayList(0, 2), new ArrayList<>(), -1, false);
+}

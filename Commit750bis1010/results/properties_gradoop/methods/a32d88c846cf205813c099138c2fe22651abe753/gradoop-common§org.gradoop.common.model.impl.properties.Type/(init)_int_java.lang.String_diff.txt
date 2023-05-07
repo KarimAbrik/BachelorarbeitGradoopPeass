@@ -1,0 +1,10 @@
+/**
+ * Constructs an enum type that represents a supported type.
+ *
+ * @param typeByte byte representation as int, is casted to byte
+ * @param typeString string representation
+ */
+Type(int typeByte, String typeString) {
+    this.typeByte = (byte) typeByte;
+    this.typeString = typeString;
+}

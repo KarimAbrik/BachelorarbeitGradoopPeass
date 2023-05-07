@@ -1,0 +1,12 @@
+/**
+ * Creates a new data source. Paths can be local (file://) or HDFS (hdfs://).
+ *
+ * @param edgeListPath    Path to edge list file
+ * @param tokenSeparator  Id separator token
+ * @param config          Gradoop Flink configuration
+ */
+public EdgeListDataSource(String edgeListPath, String tokenSeparator, GradoopFlinkConfig config) {
+    this.edgeListPath = edgeListPath;
+    this.tokenSeparator = tokenSeparator;
+    this.config = config;
+}

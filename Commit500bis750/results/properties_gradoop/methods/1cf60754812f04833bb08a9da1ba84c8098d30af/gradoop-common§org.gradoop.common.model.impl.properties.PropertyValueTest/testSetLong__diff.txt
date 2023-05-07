@@ -1,0 +1,6 @@
+@Test
+public void testSetLong() throws Exception {
+    PropertyValue p = new PropertyValue();
+    p.setLong(LONG_VAL_3);
+    assertEquals(LONG_VAL_3, p.getLong());
+}

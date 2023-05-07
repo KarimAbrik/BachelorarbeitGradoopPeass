@@ -1,0 +1,13 @@
+@Override
+public GraphTransaction map(GraphTransaction graphTransaction) throws Exception {
+    String label;
+    for (EPGMEdge edge : graphTransaction.getEdges()) {
+        label = edgeDictionary.get(Integer.parseInt(edge.getLabel()));
+        if (label != null) {
+            edge.setLabel(label);
+        } else {
+            edge.setLabel(edge.getLabel() + TLFConstants.EMPTY_LABEL);
+        }
+    }
+    return graphTransaction;
+}

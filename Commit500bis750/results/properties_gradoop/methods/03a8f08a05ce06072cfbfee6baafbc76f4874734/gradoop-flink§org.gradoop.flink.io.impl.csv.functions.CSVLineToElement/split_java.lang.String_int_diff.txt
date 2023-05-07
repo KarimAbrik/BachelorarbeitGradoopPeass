@@ -1,0 +1,12 @@
+/**
+ * Splits the specified string.
+ *
+ * Note: Using {@link Pattern#split(CharSequence)} leads to a significant performance loss.
+ *
+ * @param s string
+ * @param limit resulting array length
+ * @return tokens
+ */
+public String[] split(String s, int limit) {
+    return s.split(CSVConstants.TOKEN_DELIMITER, limit);
+}

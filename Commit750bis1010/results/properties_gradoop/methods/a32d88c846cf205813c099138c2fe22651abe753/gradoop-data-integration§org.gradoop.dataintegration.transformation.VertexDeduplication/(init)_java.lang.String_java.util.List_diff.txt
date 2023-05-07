@@ -1,0 +1,10 @@
+/**
+ * Creates a new instance of this vertex deduplication operator.
+ *
+ * @param label        The label of vertices to deduplicate.
+ * @param propertyKeys The properties used to check if two (or more) vertices of that label are duplicates.
+ */
+public VertexDeduplication(String label, List<String> propertyKeys) {
+    this.label = Objects.requireNonNull(label);
+    this.propertyKeys = Objects.requireNonNull(propertyKeys);
+}

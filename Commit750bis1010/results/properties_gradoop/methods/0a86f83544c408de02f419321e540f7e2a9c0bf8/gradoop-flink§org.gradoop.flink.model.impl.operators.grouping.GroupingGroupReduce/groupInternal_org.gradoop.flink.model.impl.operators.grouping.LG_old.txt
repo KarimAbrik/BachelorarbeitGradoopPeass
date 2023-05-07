@@ -1,0 +1,17 @@
+@Override
+protected LG groupInternal(LG graph) {
+    DataSet<VertexGroupItem> verticesForGrouping = graph.getVertices().// map vertex to vertex group item
+    flatMap(new BuildVertexGroupItem<>(useVertexLabels(), getVertexLabelGroups()));
+    // group vertices by label / properties / both
+    DataSet<VertexGroupItem> vertexGroupItems = groupVertices(verticesForGrouping).// apply aggregate function
+    reduceGroup(new ReduceVertexGroupItems(useVertexLabels()));
+    DataSet<V> superVertices = vertexGroupItems.// filter group representative tuples
+    filter(new FilterSuperVertices()).// build super vertices
+    map(new BuildSuperVertex<>(useVertexLabels(), graph.getFactory().getVertexFactory()));
+    DataSet<VertexWithSuperVertex> vertexToRepresentativeMap = vertexGroupItems.// filter group element tuples
+    filter(new FilterRegularVertices()).// build vertex to group representative tuple
+    map(new BuildVertexWithSuperVertex());
+    // build super edges
+    DataSet<E> superEdges = buildSuperEdges(graph, vertexToRepresentativeMap);
+    return graph.getFactory().fromDataSets(superVertices, superEdges);
+}

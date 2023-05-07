@@ -1,0 +1,10 @@
+@Override
+public void close() throws IOException {
+    if (labelsToWriter != null) {
+        for (Entry<String, Writer> entry : labelsToWriter.entrySet()) {
+            entry.getValue().flush();
+            entry.getValue().close();
+        }
+    }
+    super.close();
+}

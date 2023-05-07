@@ -1,0 +1,33 @@
+@Override                                                                                              @Override                                                                                           
+protected LG groupInternal(LG graph) {                                                                 protected LG groupInternal(LG graph) {                                                              
+DataSet&lt;VertexGroupItem&gt; verticesForGrouping = graph.getVertices().// map vertex to vertex gro | DataSet&lt;V&gt; vertices = isRetainingVerticesWithoutGroup() ? graph.getVertices().filter(new Label
+flatMap(new BuildVertexGroupItem&lt;&gt;(useVertexLabels(), getVertexLabelGroups()));                | // map vertex to vertex group item                                                                  
+                                                                                                     | DataSet&lt;VertexGroupItem&gt; verticesForGrouping = vertices.flatMap(new BuildVertexGroupItem&lt;&g
+// group vertices by label / properties / both                                                         // group vertices by label / properties / both                                                      
+DataSet&lt;VertexGroupItem&gt; vertexGroupItems = groupVertices(verticesForGrouping).// apply aggreg   DataSet&lt;VertexGroupItem&gt; vertexGroupItems = groupVertices(verticesForGrouping).// apply aggreg
+reduceGroup(new ReduceVertexGroupItems(useVertexLabels()));                                            reduceGroup(new ReduceVertexGroupItems(useVertexLabels()));                                         
+DataSet&lt;V&gt; superVertices = vertexGroupItems.// filter group representative tuples                DataSet&lt;V&gt; superVertices = vertexGroupItems.// filter group representative tuples             
+filter(new FilterSuperVertices()).// build super vertices                                              filter(new FilterSuperVertices()).// build super vertices                                           
+map(new BuildSuperVertex&lt;&gt;(useVertexLabels(), graph.getFactory().getVertexFactory()));           map(new BuildSuperVertex&lt;&gt;(useVertexLabels(), graph.getFactory().getVertexFactory()));        
+DataSet&lt;VertexWithSuperVertex&gt; vertexToRepresentativeMap = vertexGroupItems.// filter group el   DataSet&lt;VertexWithSuperVertex&gt; vertexToRepresentativeMap = vertexGroupItems.// filter group el
+filter(new FilterRegularVertices()).// build vertex to group representative tuple                      filter(new FilterRegularVertices()).// build vertex to group representative tuple                   
+map(new BuildVertexWithSuperVertex());                                                                 map(new BuildVertexWithSuperVertex());                                                              
+// build super edges                                                                                 | DataSet&lt;E&gt; edgesToGroup = graph.getEdges();                                                   
+DataSet&lt;E&gt; superEdges = buildSuperEdges(graph, vertexToRepresentativeMap);                     | if (isRetainingVerticesWithoutGroup()) {                                                            
+                                                                                                     | LG retainedVerticesSubgraph = getSubgraphOfRetainedVertices(graph);                                 
+                                                                                                     | // To add support for grouped edges between retained vertices and supervertices,                    
+                                                                                                     | // vertices are their group representatives themselves                                              
+                                                                                                     | vertexToRepresentativeMap = updateVertexRepresentatives(vertexToRepresentativeMap, retainedVerticesS
+                                                                                                     | // don't execute grouping on edges between retained vertices                                        
+                                                                                                     | // but execute on edges between retained vertices and grouped vertices                              
+                                                                                                     | //   graph.getEdges() - retainedVerticesSubgraph.getEdges()                                         
+                                                                                                     | edgesToGroup = subtractEdges(graph.getEdges(), retainedVerticesSubgraph.getEdges());                
+                                                                                                     | }                                                                                                   
+                                                                                                     | DataSet&lt;E&gt; superEdges = buildSuperEdges(graph.getFactory().getEdgeFactory(), edgesToGroup, ver
+                                                                                                     | if (isRetainingVerticesWithoutGroup()) {                                                            
+                                                                                                     | LG retainedVerticesSubgraph = getSubgraphOfRetainedVertices(graph);                                 
+                                                                                                     | superVertices = superVertices.union(retainedVerticesSubgraph.getVertices());                        
+                                                                                                     | superEdges = superEdges.union(retainedVerticesSubgraph.getEdges());                                 
+                                                                                                     | }                                                                                                   
+return graph.getFactory().fromDataSets(superVertices, superEdges);                                     return graph.getFactory().fromDataSets(superVertices, superEdges);                                  
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,11 @@
+// ---------------------------------------------------------------------------
+//  Caches
+// ---------------------------------------------------------------------------
+/**
+ * Returns all graph heads that are bound to a variable in the GDL script.
+ *
+ * @return variable to graphHead mapping
+ */
+public Map<String, G> getGraphHeadCache() {
+    return new ImmutableMap.Builder<String, G>().putAll(graphHeadCache).build();
+}

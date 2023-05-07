@@ -1,0 +1,18 @@
+/**
+ * Creates a new graph reader.
+ *
+ * If the given {@code lineagePropertyKey} is {@code null}, no lineage info
+ * is stored.
+ *
+ * @param importVertices      vertices to import
+ * @param importEdges         edges to import
+ * @param lineagePropertyKey  property key to store import identifiers
+ *                            (can be {@code null})
+ * @param config              gradoop config
+ */
+public GraphDataSource(DataSet<ImportVertex<K>> importVertices, DataSet<ImportEdge<K>> importEdges, String lineagePropertyKey, GradoopFlinkConfig config) {
+    this.importVertices = checkNotNull(importVertices);
+    this.importEdges = checkNotNull(importEdges);
+    this.lineagePropertyKey = lineagePropertyKey;
+    this.config = checkNotNull(config);
+}

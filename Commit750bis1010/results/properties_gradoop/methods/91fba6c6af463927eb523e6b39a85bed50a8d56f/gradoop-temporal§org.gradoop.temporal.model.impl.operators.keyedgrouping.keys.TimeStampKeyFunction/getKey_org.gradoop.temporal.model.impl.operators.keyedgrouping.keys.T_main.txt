@@ -1,0 +1,36 @@
+@Override
+public Long getKey(T element) {
+    final Tuple2<Long, Long> interval;
+    switch(timeDimension) {
+        case TRANSACTION_TIME:
+            interval = element.getTransactionTime();
+            break;
+        case VALID_TIME:
+            interval = element.getValidTime();
+            break;
+        default:
+            throw new UnsupportedOperationException("Time interval not supported by this element: " + timeDimension);
+    }
+    final Long fieldValue;
+    switch(timeDimensionField) {
+        case FROM:
+            fieldValue = interval.f0;
+            if (fieldValue.equals(TemporalElement.DEFAULT_TIME_FROM) && (fieldOfTimeStamp != null)) {
+                return getDefaultKey();
+            }
+            break;
+        case TO:
+            fieldValue = interval.f1;
+            if (fieldValue.equals(TemporalElement.DEFAULT_TIME_TO) && (fieldOfTimeStamp != null)) {
+                return getDefaultKey();
+            }
+            break;
+        default:
+            throw new UnsupportedOperationException("Field is not supported: " + timeDimensionField);
+    }
+    if (fieldOfTimeStamp == null) {
+        return fieldValue;
+    }
+    final LocalDateTime date = LocalDateTime.ofInstant(Instant.ofEpochMilli(fieldValue), UTC);
+    return fieldOfTimeStamp.getFrom(date);
+}

@@ -1,0 +1,11 @@
+@Override
+public boolean equals(Object o) {
+    if (this == o) {
+        return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+        return false;
+    }
+    Property property = (Property) o;
+    return key.equals(property.key) && value.equals(property.value);
+}

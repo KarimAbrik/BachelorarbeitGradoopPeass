@@ -1,0 +1,14 @@
+//------------------------------------------------------------------------------------------------
+// Initialization
+//------------------------------------------------------------------------------------------------
+/**
+ * Creates the initial plan table entries according to the specified vertices and edges.
+ *
+ * @return initial plan table
+ */
+private PlanTable initPlanTable() {
+    PlanTable planTable = new PlanTable();
+    createVertexPlans(planTable);
+    createEdgePlans(planTable);
+    return planTable;
+}

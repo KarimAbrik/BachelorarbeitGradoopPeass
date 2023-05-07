@@ -1,0 +1,19 @@
+/**
+ * Parses the given property values according to the meta data associated with the specified
+ * label.
+ *
+ * @param label element label
+ * @param propertyValueString string representation of elements' property values
+ * @return parsed properties
+ */
+Properties parseProperties(String label, String propertyValueString) {
+    String[] propertyValues = propertyValueString.split(valueDelimiter);
+    List<PropertyMetaData> metaDataList = metaData.getPropertyMetaData(label);
+    properties.clear();
+    for (int i = 0; i < propertyValues.length; i++) {
+        if (propertyValues[i].length() > 0) {
+            properties.set(metaDataList.get(i).getKey(), metaDataList.get(i).getValueParser().apply(propertyValues[i]));
+        }
+    }
+    return properties;
+}

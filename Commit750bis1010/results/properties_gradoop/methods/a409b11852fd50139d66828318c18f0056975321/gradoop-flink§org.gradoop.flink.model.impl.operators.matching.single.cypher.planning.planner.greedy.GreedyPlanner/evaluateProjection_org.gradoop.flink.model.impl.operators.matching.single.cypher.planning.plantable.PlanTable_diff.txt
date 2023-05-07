@@ -1,0 +1,26 @@
+//------------------------------------------------------------------------------------------------
+// Filter embedding evaluation
+//------------------------------------------------------------------------------------------------
+/**
+ * The method checks if a filter can be applied on any of the entries in the specified table. If
+ * this is the case, a {@link ProjectEmbeddingsNode} is added to the query plan represented by the
+ * affected entries.
+ *
+ * @param currentTable query plan table
+ * @return input table with possibly updated entries
+ */
+private PlanTable evaluateProjection(PlanTable currentTable) {
+    PlanTable newTable = new PlanTable();
+    for (PlanTableEntry entry : currentTable) {
+        Set<Pair<String, String>> propertyPairs = entry.getPropertyPairs();
+        Set<Pair<String, String>> projectionPairs = entry.getProjectionPairs();
+        Set<Pair<String, String>> updatedPropertyPairs = propertyPairs.stream().filter(projectionPairs::contains).collect(Collectors.toSet());
+        if (updatedPropertyPairs.size() < propertyPairs.size()) {
+            ProjectEmbeddingsNode node = new ProjectEmbeddingsNode(entry.getQueryPlan().getRoot(), new ArrayList<>(updatedPropertyPairs));
+            newTable.add(new PlanTableEntry(GRAPH, Sets.newHashSet(entry.getProcessedVariables()), entry.getPredicates(), new QueryPlanEstimator(new QueryPlan(node), queryHandler, graphStatistics)));
+        } else {
+            newTable.add(entry);
+        }
+    }
+    return newTable;
+}

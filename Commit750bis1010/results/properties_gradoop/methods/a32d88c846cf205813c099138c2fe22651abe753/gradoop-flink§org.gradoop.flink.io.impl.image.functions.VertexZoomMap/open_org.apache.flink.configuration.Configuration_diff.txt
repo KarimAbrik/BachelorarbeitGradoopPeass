@@ -1,0 +1,12 @@
+@Override
+public void open(Configuration parameters) throws Exception {
+    super.open(parameters);
+    List<Tuple4<Integer, Integer, Integer, Integer>> minmaxlist = getRuntimeContext().getBroadcastVariable(ImageDataSink.BORDER_BROADCAST);
+    offsetX = minmaxlist.get(0).f0;
+    offsetY = minmaxlist.get(0).f1;
+    int maxX = minmaxlist.get(0).f2;
+    int maxY = minmaxlist.get(0).f3;
+    int xRange = maxX - offsetX;
+    int yRange = maxY - offsetY;
+    zoomFactor = (xRange > yRange) ? imageWidth / (double) xRange : imageHeight / (double) yRange;
+}

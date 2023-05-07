@@ -1,0 +1,15 @@
+/**
+ * Creates a new node.
+ *
+ * @param leftChild left input plan node
+ * @param rightChild right input plan node
+ * @param vertexStrategy morphism setting for vertices
+ * @param edgeStrategy morphism setting for edges
+ * @param crossHint Join hint for the Flink optimizer
+ */
+public CartesianProductNode(PlanNode leftChild, PlanNode rightChild, MatchStrategy vertexStrategy, MatchStrategy edgeStrategy, CrossOperatorBase.CrossHint crossHint) {
+    super(leftChild, rightChild);
+    this.vertexStrategy = vertexStrategy;
+    this.edgeStrategy = edgeStrategy;
+    this.crossHint = crossHint;
+}

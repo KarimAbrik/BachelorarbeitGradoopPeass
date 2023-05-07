@@ -1,0 +1,8 @@
+/**
+ * True, if the wrapped value is a subtype of {@code Number}.
+ *
+ * @return true, if {@code Number} value
+ */
+public boolean isNumber() {
+    return !isNull() && Number.class.isAssignableFrom(getType());
+}

@@ -1,0 +1,7 @@
+@Test
+public void testFromFile() throws Exception {
+    String file = getClass().getResource("/data/gdl/example.gdl").getFile();
+    AsciiGraphLoader<GraphHead, Vertex, Edge> asciiGraphLoader = AsciiGraphLoader.fromFile(file, config);
+    validateCollections(asciiGraphLoader, 1, 2, 1);
+    validateCaches(asciiGraphLoader, 0, 0, 0);
+}

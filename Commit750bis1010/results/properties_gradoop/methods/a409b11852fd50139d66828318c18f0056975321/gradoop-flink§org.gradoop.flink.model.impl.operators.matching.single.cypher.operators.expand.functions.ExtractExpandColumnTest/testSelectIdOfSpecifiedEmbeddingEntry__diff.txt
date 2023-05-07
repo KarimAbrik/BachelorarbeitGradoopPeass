@@ -1,0 +1,16 @@
+@Test
+public void testSelectIdOfSpecifiedEmbeddingEntry() throws Exception {
+    GradoopId a = GradoopId.get();
+    GradoopId b = GradoopId.get();
+    GradoopId c = GradoopId.get();
+    Embedding embedding = new Embedding();
+    embedding.add(a);
+    embedding.add(b);
+    embedding.add(c);
+    ExtractExpandColumn selector = new ExtractExpandColumn(0);
+    assertEquals(a, selector.getKey(embedding));
+    selector = new ExtractExpandColumn(1);
+    assertEquals(b, selector.getKey(embedding));
+    selector = new ExtractExpandColumn(2);
+    assertEquals(c, selector.getKey(embedding));
+}

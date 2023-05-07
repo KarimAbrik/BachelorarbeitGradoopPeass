@@ -1,0 +1,30 @@
+/**
+ * Creates a HBaseEPGMStore based on the given parameters. All parameters
+ * are mandatory and must not be {@code null}.
+ *
+ * @param vertexTable HBase table to store vertex data
+ * @param edgeTable   HBase table to store edge data
+ * @param graphHeadTable  HBase table to store graph data
+ * @param config          Gradoop Configuration
+ */
+HBaseEPGMStore(final HTable vertexTable, final HTable edgeTable, final HTable graphHeadTable, final GradoopHBaseConfig<VD, ED, GD> config) {
+    if (vertexTable == null) {
+        throw new IllegalArgumentException("vertexTable must not be null");
+    }
+    if (edgeTable == null) {
+        throw new IllegalArgumentException("edgeTable must not be null");
+    }
+    if (graphHeadTable == null) {
+        throw new IllegalArgumentException("graphHeadTable must not be null");
+    }
+    if (config == null) {
+        throw new IllegalArgumentException("Config must not be null");
+    }
+    this.config = config;
+    this.vertexTable = vertexTable;
+    this.edgeTable = edgeTable;
+    this.graphHeadTable = graphHeadTable;
+    this.vertexTable.setAutoFlush(DEFAULT_ENABLE_AUTO_FLUSH, DEFAULT_CLEAR_BUFFER_ON_FAIL);
+    this.edgeTable.setAutoFlush(DEFAULT_ENABLE_AUTO_FLUSH, DEFAULT_CLEAR_BUFFER_ON_FAIL);
+    this.graphHeadTable.setAutoFlush(DEFAULT_ENABLE_AUTO_FLUSH, DEFAULT_CLEAR_BUFFER_ON_FAIL);
+}

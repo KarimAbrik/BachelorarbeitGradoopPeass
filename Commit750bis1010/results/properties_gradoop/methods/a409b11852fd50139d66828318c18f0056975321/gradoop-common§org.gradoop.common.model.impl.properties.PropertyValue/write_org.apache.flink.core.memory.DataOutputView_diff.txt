@@ -1,0 +1,30 @@
+/**
+ * Byte representation:
+ *
+ * byte 1       : type info
+ *
+ * for dynamic length types (e.g. String and BigDecimal)
+ * byte 2       : length (short)
+ * byte 3       : length (short)
+ * byte 4 - end : value bytes
+ *
+ * If the size of the internal byte representation if larger than
+ * {@link #LARGE_PROPERTY_THRESHOLD} (i.e. if a {@code short} is too small to store the length),
+ * then the {@link #FLAG_LARGE} bit will be set in the first byte and the byte representation
+ * will be:
+ * byte 2       ; length (int)
+ * byte 3       : length (int)
+ * byte 4       : length (int)
+ * byte 5       : length (int)
+ * byte 6 - end : value bytes
+ *
+ * for fixed length types (e.g. int, long, float, ...)
+ * byte 2 - end : value bytes
+ *
+ * @param outputView data output to write data to
+ * @throws IOException if write to output view fails.
+ */
+@Override
+public void write(DataOutputView outputView) throws IOException {
+    PropertyValueStrategyFactory.get(value).write(value, outputView);
+}

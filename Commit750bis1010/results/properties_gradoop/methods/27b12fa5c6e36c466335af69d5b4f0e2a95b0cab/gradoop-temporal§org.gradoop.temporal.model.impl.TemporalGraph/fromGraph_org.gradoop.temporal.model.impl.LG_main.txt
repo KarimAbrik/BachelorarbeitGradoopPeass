@@ -1,0 +1,16 @@
+/**
+ * Convenience API function to create a {@link TemporalGraph} from an existing {@link BaseGraph} with
+ * default values for the temporal attributes.
+ *
+ * @param baseGraph the existing graph instance
+ * @param <G> The graph head type.
+ * @param <V> The vertex type.
+ * @param <E> The edge type.
+ * @param <LG> The type of the graph.
+ * @param <GC> The type of the Graph collection
+ * @return a temporal graph with default temporal values
+ * @see TemporalGraphFactory#fromNonTemporalGraph(BaseGraph)
+ */
+public static <G extends GraphHead, V extends Vertex, E extends Edge, LG extends BaseGraph<G, V, E, LG, GC>, GC extends BaseGraphCollection<G, V, E, LG, GC>> TemporalGraph fromGraph(LG baseGraph) {
+    return TemporalGradoopConfig.fromGradoopFlinkConfig(baseGraph.getConfig()).getTemporalGraphFactory().fromNonTemporalGraph(baseGraph);
+}

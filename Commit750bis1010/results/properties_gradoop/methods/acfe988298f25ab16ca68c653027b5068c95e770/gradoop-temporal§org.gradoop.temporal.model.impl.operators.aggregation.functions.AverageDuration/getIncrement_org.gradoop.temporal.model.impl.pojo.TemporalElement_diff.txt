@@ -1,0 +1,29 @@
+/**                                                                                                    /**                                                                                                 
+* Get the duration of a time dimension as the aggregate value from a temporal element.                 * Get the duration of a time dimension as the aggregate value from a temporal element.              
+* The duration will be returned in a format used by the {@link Average} aggregation.                   * The duration will be returned in a format used by the {@link Average} aggregation.                
+* The increment will be ignored, if the start of the end time of the time dimension is set             * The increment will be ignored, if the start of the end time of the time dimension is set          
+* to a default value.                                                                                  * to a default value.                                                                               
+*                                                                                                      *                                                                                                   
+* @param element The temporal element.                                                                 * @param element The temporal element.                                                              
+* @return The duration of the time dimension, in the internal representation used by {@link Average}   * @return The duration of the time dimension, in the internal representation used by {@link Average}
+*/                                                                                                     */                                                                                                  
+@Override                                                                                              @Override                                                                                           
+public PropertyValue getIncrement(TemporalElement element) {                                           public PropertyValue getIncrement(TemporalElement element) {                                        
+Tuple2&lt;Long, Long&gt; timeInterval;                                                               | PropertyValue duration = getDuration(element);                                                      
+switch(dimension) {                                                                                  | if (duration.getLong() == -1L) {                                                                    
+case TRANSACTION_TIME:                                                                               |                                                                                                     
+timeInterval = element.getTransactionTime();                                                         |                                                                                                     
+break;                                                                                               |                                                                                                     
+case VALID_TIME:                                                                                     |                                                                                                     
+timeInterval = element.getValidTime();                                                               |                                                                                                     
+break;                                                                                               |                                                                                                     
+default:                                                                                             |                                                                                                     
+throw new IllegalArgumentException("Temporal attribute " + dimension + " is not supported.");        |                                                                                                     
+}                                                                                                    |                                                                                                     
+if (timeInterval.f0 == null || timeInterval.f1 == null || timeInterval.f0.equals(TemporalElement.DEF |                                                                                                     
+return Average.IGNORED_VALUE;                                                                          return Average.IGNORED_VALUE;                                                                       
+} else {                                                                                             |                                                                                                     
+return PropertyValue.create(Arrays.asList(PropertyValue.create(timeInterval.f1 - timeInterval.f0), O |                                                                                                     
+}                                                                                                      }                                                                                                   
+                                                                                                     | return PropertyValue.create(Arrays.asList(duration, ONE));                                          
+}                                                                                                      }                                                                                                   

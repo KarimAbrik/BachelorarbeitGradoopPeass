@@ -1,0 +1,14 @@
+/**                                                                                                  |                                                                                                     
+* Adds the given gradoop id to the list.                                                             |                                                                                                     
+*                                                                                                    |                                                                                                     
+* @param id the id to add                                                                            |                                                                                                     
+*/                                                                                                   |                                                                                                     
+public void add(GradoopId id) {                                                                      |                                                                                                     
+if (isEmpty()) {                                                                                     |                                                                                                     
+bytes = id.toByteArray();                                                                            |                                                                                                     
+} else {                                                                                             |                                                                                                     
+byte[] extended = Arrays.copyOf(bytes, bytes.length + GradoopId.ID_SIZE);                            |                                                                                                     
+System.arraycopy(id.toByteArray(), 0, extended, bytes.length, GradoopId.ID_SIZE);                    |                                                                                                     
+this.bytes = extended;                                                                               |                                                                                                     
+}                                                                                                    |                                                                                                     
+}                                                                                                    |                                                                                                     

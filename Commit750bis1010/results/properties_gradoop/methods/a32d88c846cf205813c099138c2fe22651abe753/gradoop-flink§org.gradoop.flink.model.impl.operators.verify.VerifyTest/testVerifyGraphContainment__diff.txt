@@ -1,0 +1,14 @@
+/**
+ * Test {@link VerifyGraphContainment} on a logical graph.
+ *
+ * @throws Exception when the execution in Flink fails.
+ */
+@Test
+public void testVerifyGraphContainment() throws Exception {
+    FlinkAsciiGraphLoader loader = getSocialNetworkLoader();
+    LogicalGraph graph = loader.getLogicalGraphByVariable("g1");
+    graph = graph.verifyGraphContainment();
+    GradoopIdSet idSet = GradoopIdSet.fromExisting(graph.getGraphHead().map(new Id<>()).collect());
+    assertGraphContainment(idSet, graph.getVertices());
+    assertGraphContainment(idSet, graph.getEdges());
+}

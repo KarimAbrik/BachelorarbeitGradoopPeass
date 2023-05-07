@@ -1,0 +1,27 @@
+/**
+ * Tests joining edge embeddings on two columns.
+ *
+ * [Id(v0),Id(e0),Id(v1)]
+ * |><|(0=0 AND 2=2)
+ * [Id(v0),Id(e1),Id(v1)]
+ * ->
+ * [Id(v0),Id(e0),Id(v1),Id(e1)]
+ */
+@Test
+public void testEdgeJoinOnBoundaryColumns() throws Exception {
+    GradoopId v0 = GradoopId.get();
+    GradoopId v1 = GradoopId.get();
+    GradoopId e0 = GradoopId.get();
+    GradoopId e1 = GradoopId.get();
+    // [Id(v0),Id(e0),Id(v1)]
+    Embedding left = createEmbedding(v0, e0, v1);
+    // [Id(v0),Id(e1),Id(v1)]
+    Embedding right = createEmbedding(v0, e1, v1);
+    // join operator
+    MergeEmbeddings udf = new MergeEmbeddings(3, Lists.newArrayList(0, 2), Lists.newArrayList(), Lists.newArrayList(), Lists.newArrayList(), Lists.newArrayList());
+    List<Embedding> result = new ArrayList<>();
+    // get results
+    udf.join(left, right, new ListCollector<>(result));
+    // expected: [Id(v0),Id(e0),Id(v1),Id(e1)]
+    Assert.assertEquals(createEmbedding(v0, e0, v1, e1), result.get(0));
+}

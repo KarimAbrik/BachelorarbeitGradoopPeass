@@ -1,0 +1,23 @@
+/**
+ * generalization of label and properties string concatenation
+ * @param el graph head, vertex or edge
+ * @return string representation
+ */
+protected String label(EL el) {
+    String label = el.getLabel();
+    if (label == null) {
+        label = "";
+    }
+    label += "{";
+    Properties properties = el.getProperties();
+    if (properties != null) {
+        List<String> propertyLabels = new ArrayList<>();
+        for (Property property : el.getProperties()) {
+            propertyLabels.add(property.toString());
+        }
+        Collections.sort(propertyLabels);
+        label += StringUtils.join(propertyLabels, ",");
+    }
+    label += "}";
+    return label;
+}

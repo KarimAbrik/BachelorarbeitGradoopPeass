@@ -1,0 +1,12 @@
+/**
+ * Test the {@link TemporalGraphCollection#getGraphHeads()} method.
+ */
+@Test
+public void testGetGraphHeads() throws Exception {
+    List<TemporalGraphHead> temporalGraphHeads = new ArrayList<>();
+    testTemporalCollection.getGraphHeads().output(new LocalCollectionOutputFormat<>(temporalGraphHeads));
+    getExecutionEnvironment().execute();
+    assertEquals(2, temporalGraphHeads.size());
+    assertEquals("Community", temporalGraphHeads.get(0).getLabel());
+    temporalGraphHeads.forEach(this::checkDefaultTemporalElement);
+}

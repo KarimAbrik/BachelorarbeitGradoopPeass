@@ -1,0 +1,8 @@
+@Override
+public void flatMap(V vertex, Collector<VertexString> collector) {
+    GradoopId vertexId = vertex.getId();
+    String vertexLabel = "(" + labelWithProperties(vertex) + time(vertex) + ")";
+    for (GradoopId graphId : vertex.getGraphIds()) {
+        collector.collect(new VertexString(graphId, vertexId, vertexLabel));
+    }
+}

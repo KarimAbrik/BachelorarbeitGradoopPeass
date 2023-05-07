@@ -1,0 +1,27 @@
+/**
+ * Tests calculated component ids and checks if valid.
+ *
+ * @throws Exception in case of failure.
+ */
+@Test
+public void testValueConnectedComponents() throws Exception {
+    // Graph containing 3 WCC with: component - #vertices:
+    // comp1 - 3
+    // comp2 - 4
+    // comp3 - 2
+    String graphString = "g[" + "/* first component */" + "(v0 {id:0, value:\"A\"})" + "(v1 {id:1, value:\"B\"})" + "(v2 {id:2, value:\"C\"})" + "(v0)-[e0]->(v1)" + "(v1)-[e1]->(v2)" + "(v2)-[e2]->(v0)" + "/* second component */" + "(v3 {id:3, value:\"D\"})" + "(v4 {id:4, value:\"E\"})" + "(v5 {id:5, value:\"F\"})" + "(v6 {id:6, value:\"G\"})" + "(v3)-[e4]->(v4)" + "(v3)-[e5]->(v5)" + "(v3)-[e6]->(v6)" + "(v4)-[e7]->(v3)" + "(v4)-[e8]->(v5)" + "(v4)-[e9]->(v6)" + "(v5)-[e10]->(v3)" + "(v5)-[e11]->(v4)" + "(v5)-[e12]->(v6)" + "(v6)-[e13]->(v3)" + "(v6)-[e14]->(v4)" + "(v6)-[e15]->(v5)" + "/* third component */" + "(v7 {id:7, value:\"H\"})" + "(v8 {id:8, value:\"I\"})" + "(v7)-[e3]->(v8)" + "]";
+    // read graph
+    FlinkAsciiGraphLoader loader = new FlinkAsciiGraphLoader(getConfig());
+    loader.initDatabaseFromString(graphString);
+    LogicalGraph graph = loader.getLogicalGraphByVariable("g");
+    // execute Gelly ConnectedComponents.
+    DataSet<Tuple2<Long, Long>> cComponents = new ConnectedComponentsDistributionAsValues(Integer.MAX_VALUE).execute(graph);
+    List<Tuple2<Long, Long>> vertexComponentList = new ArrayList<>();
+    cComponents.output(new LocalCollectionOutputFormat<>(vertexComponentList));
+    // execute
+    getExecutionEnvironment().execute();
+    // get results map
+    Map<Long, Long> componentsMap = getMapOfComponents(vertexComponentList);
+    assertEquals("Wrong number of Vertices", 9, vertexComponentList.size());
+    assertEquals("Wrong number of components", 3, componentsMap.size());
+}

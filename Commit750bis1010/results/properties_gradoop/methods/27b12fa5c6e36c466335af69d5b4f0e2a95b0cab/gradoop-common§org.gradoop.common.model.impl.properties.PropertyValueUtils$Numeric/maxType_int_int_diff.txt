@@ -1,0 +1,11 @@
+/**
+ * Returns the maximum of two types, at least Integer.
+ *
+ * @param aType first type
+ * @param bType second type
+ *
+ * @return larger compatible type
+ */
+private static int maxType(int aType, int bType) {
+    return Math.max(Math.max(aType, bType), INT);
+}

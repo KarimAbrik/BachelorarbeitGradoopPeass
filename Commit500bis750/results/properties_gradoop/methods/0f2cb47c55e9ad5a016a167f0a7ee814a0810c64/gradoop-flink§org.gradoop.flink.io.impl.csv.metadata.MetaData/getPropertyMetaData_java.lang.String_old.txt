@@ -1,0 +1,9 @@
+/**
+ * Returns the property meta data associated with the specified label.
+ *
+ * @param label element label
+ * @return property meta data for the element
+ */
+public List<PropertyMetaData> getPropertyMetaData(String label) {
+    return metaData.get(label);
+}

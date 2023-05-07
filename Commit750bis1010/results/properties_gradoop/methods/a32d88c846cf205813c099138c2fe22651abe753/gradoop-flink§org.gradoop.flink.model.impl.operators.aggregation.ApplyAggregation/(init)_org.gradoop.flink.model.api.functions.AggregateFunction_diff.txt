@@ -1,0 +1,11 @@
+/**
+ * Creates a new operator instance.
+ *
+ * @param aggregateFunctions functions to compute aggregate values
+ */
+public ApplyAggregation(final AggregateFunction... aggregateFunctions) {
+    for (AggregateFunction aggFunc : aggregateFunctions) {
+        checkNotNull(aggFunc);
+    }
+    this.aggregateFunctions = new HashSet<>(Arrays.asList(aggregateFunctions));
+}

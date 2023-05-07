@@ -1,0 +1,10 @@
+/**                                                                                                    /**                                                                                                 
+* Creates a new query handler.                                                                         * Creates a new query handler.                                                                      
+*                                                                                                      *                                                                                                   
+* @param gdlString GDL query string                                                                    * @param gdlString GDL query string                                                                 
+*/                                                                                                     */                                                                                                  
+public QueryHandler(String gdlString) {                                                                public QueryHandler(String gdlString) {                                                             
+gdlHandler = new GDLHandler.Builder().setDefaultGraphLabel(GradoopConstants.DEFAULT_GRAPH_LABEL).set | gdlHandler = new GDLHandler.Builder().setDefaultGraphLabel(GradoopConstants.DEFAULT_GRAPH_LABEL).set
+edgeCache = gdlHandler.getEdgeCache(true, true);                                                       edgeCache = gdlHandler.getEdgeCache(true, true);                                                    
+vertexCache = gdlHandler.getVertexCache(true, true);                                                   vertexCache = gdlHandler.getVertexCache(true, true);                                                
+}                                                                                                      }                                                                                                   

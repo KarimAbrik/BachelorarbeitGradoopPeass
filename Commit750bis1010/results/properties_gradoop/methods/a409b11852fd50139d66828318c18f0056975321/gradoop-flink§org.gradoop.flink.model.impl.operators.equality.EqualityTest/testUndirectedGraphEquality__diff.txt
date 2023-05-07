@@ -1,0 +1,17 @@
+@Test
+public void testUndirectedGraphEquality() throws Exception {
+    FlinkAsciiGraphLoader loader = getTestGraphLoader();
+    GraphEquality<EPGMGraphHead, EPGMVertex, EPGMEdge, LogicalGraph, GraphCollection> equality = new GraphEquality<>(new GraphHeadToDataString<>(), new VertexToDataString<>(), new EdgeToDataString<>(), false);
+    LogicalGraph gRef = loader.getLogicalGraphByVariable("gRef");
+    LogicalGraph gClone = loader.getLogicalGraphByVariable("gClone");
+    LogicalGraph gDiffId = loader.getLogicalGraphByVariable("gDiffId");
+    LogicalGraph gDiffData = loader.getLogicalGraphByVariable("gDiffData");
+    LogicalGraph gRev = loader.getLogicalGraphByVariable("gRev");
+    LogicalGraph gEmpty = loader.getLogicalGraphByVariable("gEmpty");
+    // direct operator call
+    collectAndAssertTrue(equality.execute(gRef, gDiffId));
+    collectAndAssertTrue(equality.execute(gRef, gRev));
+    collectAndAssertFalse(equality.execute(gRef, gClone));
+    collectAndAssertFalse(equality.execute(gRef, gDiffData));
+    collectAndAssertFalse(equality.execute(gRef, gEmpty));
+}

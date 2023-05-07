@@ -1,0 +1,32 @@
+/**
+ * Tests joining embeddings on intermediate positions.
+ *
+ * [Id(v0),Id(e0),Id(v1),Id(e1),Id(v2)]
+ * |><|(2=2)
+ * [Id(v3),Id(e2),Id(v1),Id(e3),Id(v4)]
+ * ->
+ * [Id(v0),Id(e0),Id(v1),Id(e1),Id(v2),Id(v3),Id(e2),Id(e3),Id(v4)]
+ */
+@Test
+public void testPathJoinOnMidColumn() throws Exception {
+    GradoopId v0 = GradoopId.get();
+    GradoopId v1 = GradoopId.get();
+    GradoopId v2 = GradoopId.get();
+    GradoopId v3 = GradoopId.get();
+    GradoopId v4 = GradoopId.get();
+    GradoopId e0 = GradoopId.get();
+    GradoopId e1 = GradoopId.get();
+    GradoopId e2 = GradoopId.get();
+    GradoopId e3 = GradoopId.get();
+    // [Id(v0),Id(e0),Id(v1),Id(e1),Id(v2)]
+    Embedding left = createEmbedding(v0, e0, v1, e1, v2);
+    // [Id(v3),Id(e2),Id(v1),Id(e3),Id(v4)]
+    Embedding right = createEmbedding(v3, e2, v1, e3, v4);
+    // join operator
+    MergeEmbeddings udf = new MergeEmbeddings(5, Lists.newArrayList(2), Lists.newArrayList(), Lists.newArrayList(), Lists.newArrayList(), Lists.newArrayList());
+    List<Embedding> result = new ArrayList<>();
+    // get results
+    udf.join(left, right, new ListCollector<>(result));
+    // expected: [Id(v0),Id(e0),Id(v1),Id(e1),Id(v2),Id(v3),Id(e2),Id(e3),Id(v4)]
+    Assert.assertEquals(createEmbedding(v0, e0, v1, e1, v2, v3, e2, e3, v4), result.get(0));
+}

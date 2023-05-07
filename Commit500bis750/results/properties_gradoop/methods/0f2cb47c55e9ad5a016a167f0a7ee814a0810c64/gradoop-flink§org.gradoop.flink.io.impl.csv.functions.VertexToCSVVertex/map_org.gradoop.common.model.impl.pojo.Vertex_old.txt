@@ -1,0 +1,7 @@
+@Override
+public CSVVertex map(Vertex vertex) throws Exception {
+    csvVertex.setId(vertex.getId().toString());
+    csvVertex.setLabel(vertex.getLabel());
+    csvVertex.setProperties(getPropertyString(vertex));
+    return csvVertex;
+}

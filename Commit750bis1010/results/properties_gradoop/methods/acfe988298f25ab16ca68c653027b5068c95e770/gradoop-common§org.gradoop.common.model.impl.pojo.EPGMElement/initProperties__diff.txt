@@ -1,0 +1,8 @@
+/**
+ * Initializes the internal properties field if necessary.
+ */
+private void initProperties() {
+    if (this.properties == null) {
+        this.properties = Properties.create();
+    }
+}

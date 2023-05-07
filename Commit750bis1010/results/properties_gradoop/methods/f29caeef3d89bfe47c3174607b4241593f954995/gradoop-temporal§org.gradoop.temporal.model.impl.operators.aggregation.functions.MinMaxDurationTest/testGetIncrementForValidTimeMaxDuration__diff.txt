@@ -1,0 +1,16 @@
+/**
+ * Test the implementation of {@link MaxDuration#getIncrement(TemporalElement)} for valid time.
+ */
+@Test
+public void testGetIncrementForValidTimeMaxDuration() {
+    MaxDuration function = new MaxDuration("", VALID_TIME);
+    TemporalElement testElement = getVertexFactory().createVertex();
+    testElement.setValidTime(Tuple2.of(DEFAULT_TIME_FROM, DEFAULT_TIME_TO));
+    assertEquals(Long.MIN_VALUE, function.getIncrement(testElement).getLong());
+    testElement.setValidTime(Tuple2.of(DEFAULT_TIME_FROM, 6L));
+    assertEquals(Long.MIN_VALUE, function.getIncrement(testElement).getLong());
+    testElement.setValidTime(Tuple2.of(3L, DEFAULT_TIME_TO));
+    assertEquals(Long.MIN_VALUE, function.getIncrement(testElement).getLong());
+    testElement.setValidTime(Tuple2.of(2L, 7L));
+    assertEquals(5L, function.getIncrement(testElement).getLong());
+}

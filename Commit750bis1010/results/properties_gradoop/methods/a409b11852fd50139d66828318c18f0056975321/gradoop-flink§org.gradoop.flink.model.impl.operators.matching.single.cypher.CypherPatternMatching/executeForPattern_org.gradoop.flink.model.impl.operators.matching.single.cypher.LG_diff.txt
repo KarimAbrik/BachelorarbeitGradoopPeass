@@ -1,0 +1,14 @@
+@Override
+protected GC executeForPattern(LG graph) {
+    // Query planning
+    QueryHandler queryHandler = getQueryHandler();
+    QueryPlan plan = new GreedyPlanner<>(graph, queryHandler, graphStatistics, vertexStrategy, edgeStrategy).plan().getQueryPlan();
+    // Query execution
+    DataSet<Embedding> embeddings = plan.execute();
+    EmbeddingMetaData embeddingMetaData = plan.getRoot().getEmbeddingMetaData();
+    embeddings = log(embeddings, new PrintEmbedding(embeddingMetaData), getVertexMapping(), getEdgeMapping());
+    // Pattern construction (if necessary)
+    DataSet<Element> finalElements = this.constructionPattern != null ? constructFinalElements(graph, embeddings, embeddingMetaData) : embeddings.flatMap(new ElementsFromEmbedding<>(graph.getFactory().getGraphHeadFactory(), graph.getFactory().getVertexFactory(), graph.getFactory().getEdgeFactory(), embeddingMetaData, queryHandler.getSourceTargetVariables()));
+    // Post processing
+    return doAttachData() ? PostProcessor.extractGraphCollectionWithData(finalElements, graph, true) : PostProcessor.extractGraphCollection(finalElements, graph.getCollectionFactory(), true);
+}

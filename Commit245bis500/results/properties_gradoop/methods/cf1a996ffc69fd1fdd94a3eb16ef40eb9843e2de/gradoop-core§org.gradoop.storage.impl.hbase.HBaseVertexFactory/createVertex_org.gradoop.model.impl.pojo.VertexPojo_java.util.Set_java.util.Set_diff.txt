@@ -1,0 +1,9 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public HBaseVertex createVertex(VertexPojo inputVertexData, Set<EdgePojo> outgoingEdgeIds, Set<EdgePojo> incomingEdgeIds) {
+    HBaseVertex defaultPersistentVertexData = new HBaseVertex(inputVertexData, outgoingEdgeIds, incomingEdgeIds);
+    LOG.info("Created persistent vertex data: " + defaultPersistentVertexData);
+    return defaultPersistentVertexData;
+}

@@ -1,0 +1,15 @@
+/**
+ * Builds triples with long id's for every edge.
+ *
+ * @param edgeTuple intermediate join result.
+ * @param uniqueVertex unique vertex identifier.
+ * @return tuple {@code <vertexID<Long>,vertexID<GradoopID>,sourceID<Long>,targetID<Long>>}
+ */
+@Override
+public Tuple4<Long, GradoopId, Long, Long> join(Tuple4<Long, GradoopId, Long, GradoopId> edgeTuple, Tuple2<Long, GradoopId> uniqueVertex) {
+    reuse.f0 = edgeTuple.f0;
+    reuse.f1 = edgeTuple.f1;
+    reuse.f2 = edgeTuple.f2;
+    reuse.f3 = uniqueVertex.f0;
+    return reuse;
+}

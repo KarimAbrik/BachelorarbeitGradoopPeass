@@ -1,0 +1,15 @@
+@Test
+public void testGraphHead() {
+    GradoopId graphId = GradoopId.get();
+    String label = "A";
+    Properties props = Properties.create();
+    props.set("k1", "v1");
+    props.set("k2", "v2");
+    GraphHead graphHead = new EPGMGraphHeadFactory().initGraphHead(graphId, label, props);
+    String newLabel = "B";
+    TransformationFunction<GraphHead> renameFunction = new RenameLabel<>(label, newLabel);
+    renameFunction.apply(graphHead, graphHead);
+    assertEquals(newLabel, graphHead.getLabel());
+    assertThat(graphHead.getPropertyValue("k1").toString(), Is.<Object>is("v1"));
+    assertThat(graphHead.getPropertyValue("k2").toString(), Is.<Object>is("v2"));
+}

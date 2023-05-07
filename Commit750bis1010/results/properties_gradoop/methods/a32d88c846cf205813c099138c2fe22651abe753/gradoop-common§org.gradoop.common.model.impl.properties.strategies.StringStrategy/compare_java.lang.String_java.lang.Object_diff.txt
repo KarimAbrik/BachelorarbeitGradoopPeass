@@ -1,0 +1,7 @@
+@Override
+public int compare(String value, Object other) {
+    if (other instanceof String) {
+        return value.compareTo((String) other);
+    }
+    throw new IllegalArgumentException(String.format("Incompatible types: %s, %s", value.getClass(), other.getClass()));
+}

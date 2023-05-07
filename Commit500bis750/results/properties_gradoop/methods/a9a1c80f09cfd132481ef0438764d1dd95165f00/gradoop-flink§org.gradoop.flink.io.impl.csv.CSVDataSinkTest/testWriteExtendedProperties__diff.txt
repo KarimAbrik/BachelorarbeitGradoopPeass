@@ -1,0 +1,19 @@
+/**
+ * Test CSVDataSink to write a graph with all supported properties
+ *
+ * @throws Exception on failure
+ */
+@Test
+public void testWriteExtendedProperties() throws Exception {
+    String tmpPath = temporaryFolder.getRoot().getPath();
+    LogicalGraph logicalGraph = getExtendedLogicalGraph();
+    DataSink csvDataSink = new CSVDataSink(tmpPath, getConfig());
+    csvDataSink.write(logicalGraph, true);
+    getExecutionEnvironment().execute();
+    DataSource csvDataSource = new CSVDataSource(tmpPath, getConfig());
+    LogicalGraph sourceLogicalGraph = csvDataSource.getLogicalGraph();
+    collectAndAssertTrue(logicalGraph.equalsByElementData(sourceLogicalGraph));
+    collectAndAssertTrue(logicalGraph.equalsByData(sourceLogicalGraph));
+    sourceLogicalGraph.getEdges().collect().forEach(this::checkProperties);
+    sourceLogicalGraph.getVertices().collect().forEach(this::checkProperties);
+}

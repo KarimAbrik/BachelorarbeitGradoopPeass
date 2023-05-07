@@ -1,0 +1,13 @@
+/**
+ * Returns the vertex associated with the given id or {@code null} if the
+ * vertex does not exist.
+ *
+ * @param id vertex id
+ * @return vertex or {@code null}
+ */
+public Vertex getVertexById(Long id) {
+    if (idToVertexCache == null) {
+        idToVertexCache = initCache(getVertices(), Vertex::getId, Function.identity());
+    }
+    return idToVertexCache.get(id);
+}

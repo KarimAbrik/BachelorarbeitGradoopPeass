@@ -1,0 +1,10 @@
+/**
+ * Tests {@link Grouping.GroupingBuilder#build()} with strategy set to
+ * {@link GroupingStrategy#GROUP_COMBINE}.
+ */
+@Test
+public void testGroupCombineStrategy() {
+    UnaryBaseGraphToBaseGraphOperator<LogicalGraph> grouping = new Grouping.GroupingBuilder().setStrategy(GroupingStrategy.GROUP_COMBINE).useVertexLabel(true).build();
+    assertFalse(grouping instanceof GroupingGroupReduce);
+    assertTrue(grouping instanceof GroupingGroupCombine);
+}

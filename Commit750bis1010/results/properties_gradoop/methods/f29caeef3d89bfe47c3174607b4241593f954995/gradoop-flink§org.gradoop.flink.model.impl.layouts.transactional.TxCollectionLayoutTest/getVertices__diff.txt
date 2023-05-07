@@ -1,0 +1,7 @@
+@Test
+public void getVertices() throws Exception {
+    TxCollectionLayout layout = new TxCollectionLayout(getExecutionEnvironment().fromElements(tx0, tx1));
+    Set<EPGMVertex> expected = Sets.newHashSet(tx0.getVertices());
+    expected.addAll(tx1.getVertices());
+    GradoopTestUtils.validateGraphElementCollections(expected, layout.getVertices().collect());
+}

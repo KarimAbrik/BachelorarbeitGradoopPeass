@@ -1,0 +1,27 @@
+@Test
+public void testFilterByProperties() throws Exception {
+    CNF predicates = predicateFromQuery("MATCH (a)-[e]->(b) WHERE a.age >= b.age " + "AND e.since = 2013");
+    Properties properties = Properties.create();
+    properties.set("name", "Alice");
+    properties.set("age", "25");
+    EPGMVertex a = vertexFactory.createVertex("Person", properties);
+    properties = Properties.create();
+    properties.set("name", "Bob");
+    properties.set("age", "24");
+    EPGMVertex b = vertexFactory.createVertex("Person", properties);
+    properties = Properties.create();
+    properties.set("since", 2013);
+    EPGMEdge e1 = edgeFactory.createEdge("knows", a.getId(), b.getId(), properties);
+    properties = Properties.create();
+    properties.set("since", 2013);
+    EPGMEdge e2 = edgeFactory.createEdge("knows", b.getId(), a.getId(), properties);
+    properties = Properties.create();
+    properties.set("since", 2014);
+    EPGMEdge e3 = edgeFactory.createEdge("knows", a.getId(), b.getId(), properties);
+    DataSet<Triple> triples = getExecutionEnvironment().fromElements(new Triple(a, e1, b), new Triple(b, e2, a), new Triple(a, e3, b));
+    List<Embedding> result = new FilterAndProjectTriples(triples, "a", "e", "b", predicates, new HashMap<>(), MatchStrategy.ISOMORPHISM).evaluate().collect();
+    assertEquals(1, result.size());
+    assertEquals(result.get(0).getId(0), a.getId());
+    assertEquals(result.get(0).getId(1), e1.getId());
+    assertEquals(result.get(0).getId(2), b.getId());
+}

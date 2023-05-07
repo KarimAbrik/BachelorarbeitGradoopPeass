@@ -1,0 +1,14 @@
+/**
+ * The constructor to connect the neighbors of vertices with a certain label.
+ *
+ * @param sourceVertexLabel       The label of the vertices the neighborhood is connected.
+ * @param edgeDirection           The edge direction to consider.
+ * @param neighborhoodVertexLabel The label of the neighboring vertices that should be connected.
+ * @param newEdgeLabel            The label of the created edge between the neighbors.
+ */
+public ConnectNeighbors(String sourceVertexLabel, Neighborhood.EdgeDirection edgeDirection, String neighborhoodVertexLabel, String newEdgeLabel) {
+    this.sourceVertexLabel = Objects.requireNonNull(sourceVertexLabel);
+    this.edgeDirection = Objects.requireNonNull(edgeDirection);
+    this.neighborhoodVertexLabel = Objects.requireNonNull(neighborhoodVertexLabel);
+    this.newEdgeLabel = Objects.requireNonNull(newEdgeLabel);
+}

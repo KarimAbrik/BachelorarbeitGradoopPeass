@@ -1,0 +1,19 @@
+@Test
+public void testWriteWithoutEdgesWithDictionaries() throws Exception {
+    String tmpPath = temporaryFolder.getRoot().getPath();
+    String tlfFileImport = getFilePath("/data/tlf/io_test_string_without_edges.tlf");
+    String tlfFileExport = tmpPath + "/data/tlf/io_test_output";
+    String tlfVertexDictionaryFileExport = tmpPath + "/data/tlf/dictionaries/io_test_output_vertex_dictionary";
+    // read from inputfile
+    DataSource dataSource = new TLFDataSource(tlfFileImport, getConfig());
+    GraphCollection input = dataSource.getGraphCollection();
+    // write to ouput path
+    DataSink dataSink = new TLFDataSink(tlfFileExport, tlfVertexDictionaryFileExport, "", getConfig());
+    dataSink.write(input, true);
+    // read from output path
+    DataSource dataSource2 = new TLFDataSource(tlfFileExport, tlfVertexDictionaryFileExport, "", getConfig());
+    GraphCollection output = dataSource2.getGraphCollection();
+    getExecutionEnvironment().execute();
+    // compare original graph and written one
+    collectAndAssertTrue(input.equalsByGraphElementData(output));
+}

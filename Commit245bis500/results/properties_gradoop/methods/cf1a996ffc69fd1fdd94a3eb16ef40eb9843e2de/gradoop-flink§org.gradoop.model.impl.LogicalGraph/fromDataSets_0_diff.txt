@@ -1,0 +1,15 @@
+/**
+ * Creates a logical graph from the given arguments.
+ *
+ * @param vertices  Vertex DataSet
+ * @param edges     Edge DataSet
+ * @param graphData graph data associated with the logical graph
+ * @param config    Gradoop Flink configuration
+ * @param <VD>      EPGM vertex type
+ * @param <ED>      EPGM edge type
+ * @param <GD>      EPGM graph head graph head type
+ * @return logical graph
+ */
+public static <VD extends EPGMVertex, ED extends EPGMEdge, GD extends EPGMGraphHead> LogicalGraph<VD, ED, GD> fromDataSets(DataSet<VD> vertices, DataSet<ED> edges, GD graphData, GradoopFlinkConfig<VD, ED, GD> config) {
+    return new LogicalGraph<>(vertices, edges, graphData, config);
+}

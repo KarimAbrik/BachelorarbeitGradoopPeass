@@ -1,0 +1,18 @@
+/**
+ * Creates a parsing function for set property type.
+ *
+ * @param setTypeTokens string tokens of the set type and its item type, e.g. ["set", "string"]
+ * @return parsing function
+ */
+private static Function<String, Object> getSetValueParser(String[] setTypeTokens) {
+    // It's a set with one additional data type (type of set items).
+    if (setTypeTokens.length != 2) {
+        throw new IllegalArgumentException("Item type of Set type is missing");
+    }
+    final String itemType = setTypeTokens[1];
+    // check the validity of the set item type
+    if (!SIMPLE_TYPE_PARSER_MAP.containsKey(itemType)) {
+        throw new TypeNotPresentException(itemType, null);
+    }
+    return s -> parseSetProperty(s, SIMPLE_TYPE_PARSER_MAP.get(itemType));
+}

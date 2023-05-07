@@ -1,0 +1,14 @@
+/**
+ * Logical or of two boolean properties.
+ *
+ * @param a first value
+ * @param b second value
+ * @return a OR b
+ */
+public static PropertyValue or(PropertyValue a, PropertyValue b) {
+    checkNotNull(a, b);
+    checkBoolean(a);
+    checkBoolean(b);
+    a.setBoolean(a.getBoolean() || b.getBoolean());
+    return a;
+}

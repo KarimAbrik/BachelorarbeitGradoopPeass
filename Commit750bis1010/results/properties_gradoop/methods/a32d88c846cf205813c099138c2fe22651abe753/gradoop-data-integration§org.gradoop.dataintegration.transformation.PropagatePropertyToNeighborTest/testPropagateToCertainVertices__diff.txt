@@ -1,0 +1,19 @@
+/**
+ * Test the operator propagating only to vertices with a certain label.
+ *
+ * @throws Exception when the execution in Flink fails.
+ */
+@Test
+public void testPropagateToCertainVertices() throws Exception {
+    LogicalGraph input = loader.getLogicalGraphByVariable("input1");
+    UnaryGraphToGraphOperator operator = new PropagatePropertyToNeighbor("Source", "p1", "t", null, Collections.singleton("Target"));
+    LogicalGraph expected = input.transformVertices((v, c) -> {
+        if (!v.getLabel().equals("Target")) {
+            return v;
+        }
+        v.setProperty("t", Arrays.asList(PropertyValue.create(1L), PropertyValue.create("")));
+        return v;
+    }).callForGraph(new PropertyTransformation<>("t", pv -> pv, PropagatePropertyToNeighborTest::orderListProperty, pv -> pv));
+    LogicalGraph result = input.callForGraph(operator).callForGraph(new PropertyTransformation<>("t", pv -> pv, PropagatePropertyToNeighborTest::orderListProperty, pv -> pv));
+    collectAndAssertTrue(expected.equalsByData(result));
+}

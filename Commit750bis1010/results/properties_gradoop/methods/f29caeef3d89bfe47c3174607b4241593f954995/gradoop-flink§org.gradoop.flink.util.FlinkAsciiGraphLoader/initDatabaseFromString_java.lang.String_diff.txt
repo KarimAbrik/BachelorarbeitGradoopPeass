@@ -1,0 +1,11 @@
+/**
+ * Initializes the database from the given ASCII GDL string.
+ *
+ * @param asciiGraphs GDL string (must not be {@code null})
+ */
+public void initDatabaseFromString(String asciiGraphs) {
+    if (asciiGraphs == null) {
+        throw new IllegalArgumentException("AsciiGraph must not be null");
+    }
+    loader = AsciiGraphLoader.fromString(asciiGraphs, config.getLogicalGraphFactory());
+}

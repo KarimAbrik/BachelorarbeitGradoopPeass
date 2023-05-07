@@ -1,0 +1,9 @@
+/**
+ * Applies an aggregate function to the partitions of an edge data set.
+ *
+ * @param edges edge data set
+ * @return partition aggregate value
+ */
+private DataSet<PropertyValue> aggregateEdges(DataSet<Edge> edges) {
+    return edges.combineGroup(new AggregateEdges((EdgeAggregateFunction) aggregateFunction));
+}

@@ -1,0 +1,11 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public void write(DataOutputView outputView) throws IOException {
+    outputView.writeInt(properties.size());
+    for (Map.Entry<String, PropertyValue> entry : properties.entrySet()) {
+        outputView.writeUTF(entry.getKey());
+        entry.getValue().write(outputView);
+    }
+}

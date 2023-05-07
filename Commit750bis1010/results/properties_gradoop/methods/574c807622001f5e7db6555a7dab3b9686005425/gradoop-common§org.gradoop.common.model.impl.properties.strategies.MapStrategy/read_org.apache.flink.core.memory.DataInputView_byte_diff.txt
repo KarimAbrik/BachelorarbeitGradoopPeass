@@ -1,0 +1,6 @@
+@Override
+public Map<PropertyValue, PropertyValue> read(DataInputView inputView, byte typeByte) throws IOException {
+    byte[] rawBytes = readVariableSizedData(inputView, typeByte);
+    DataInputViewStreamWrapper internalInputView = createInputView(rawBytes);
+    return createMap(internalInputView);
+}

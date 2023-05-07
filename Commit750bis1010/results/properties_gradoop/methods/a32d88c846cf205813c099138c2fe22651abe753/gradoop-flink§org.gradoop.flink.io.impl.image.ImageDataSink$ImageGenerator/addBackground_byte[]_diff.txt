@@ -1,0 +1,16 @@
+/**
+ * Draw a background behind the image.
+ *
+ * @param arr Input image
+ * @return Input-image + black background
+ */
+public byte[] addBackground(byte[] arr) {
+    BufferedImage bufferedImage = arrToImg(arr);
+    BufferedImage out = new BufferedImage(plotter.imageWidth, plotter.imageHeight, BufferedImage.TYPE_INT_ARGB);
+    Graphics2D gfx = out.createGraphics();
+    gfx.setColor(plotter.backgroundColor);
+    gfx.fillRect(0, 0, plotter.imageWidth, plotter.imageHeight);
+    gfx.drawImage(bufferedImage, 0, 0, plotter.imageWidth, plotter.imageHeight, null);
+    gfx.dispose();
+    return imgToArr(out);
+}

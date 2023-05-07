@@ -1,0 +1,13 @@
+/**
+ * Method to check whether all aggregated durations had been default values.
+ *
+ * @param result the result of the MinDuration Aggregation
+ * @return null, if the minimum duration is {@link TemporalElement#DEFAULT_TIME_TO}
+ */
+@Override
+public PropertyValue postAggregate(PropertyValue result) {
+    if (result.getLong() == TemporalElement.DEFAULT_TIME_TO) {
+        return PropertyValue.NULL_VALUE;
+    }
+    return result;
+}

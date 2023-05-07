@@ -1,0 +1,12 @@
+/**
+ * Constructor
+ *
+ * @param graphHeads graph head dataset
+ * @param vertices vertex dataset
+ * @param edges edge dataset
+ */
+protected GVELayout(DataSet<EPGMGraphHead> graphHeads, DataSet<EPGMVertex> vertices, DataSet<EPGMEdge> edges) {
+    this.graphHeads = graphHeads;
+    this.vertices = vertices;
+    this.edges = edges;
+}

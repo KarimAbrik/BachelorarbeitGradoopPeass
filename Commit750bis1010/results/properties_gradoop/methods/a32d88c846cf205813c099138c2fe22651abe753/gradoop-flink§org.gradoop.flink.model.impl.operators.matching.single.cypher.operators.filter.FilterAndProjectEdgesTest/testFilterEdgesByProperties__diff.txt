@@ -1,0 +1,15 @@
+@Test
+public void testFilterEdgesByProperties() throws Exception {
+    CNF predicates = predicateFromQuery("MATCH ()-[a]->() WHERE a.since > 2013");
+    EPGMEdgeFactory edgeFactory = new EPGMEdgeFactory();
+    Properties properties = Properties.create();
+    properties.set("since", 2014);
+    EPGMEdge e1 = edgeFactory.createEdge("knows", GradoopId.get(), GradoopId.get(), properties);
+    properties = Properties.create();
+    properties.set("since", 2013);
+    EPGMEdge e2 = edgeFactory.createEdge("knows", GradoopId.get(), GradoopId.get(), properties);
+    DataSet<EPGMEdge> edges = getExecutionEnvironment().fromElements(e1, e2);
+    List<Embedding> result = new FilterAndProjectEdges<>(edges, predicates, new ArrayList<>(), false).evaluate().collect();
+    assertEquals(1, result.size());
+    assertEquals(result.get(0).getId(1), e1.getId());
+}

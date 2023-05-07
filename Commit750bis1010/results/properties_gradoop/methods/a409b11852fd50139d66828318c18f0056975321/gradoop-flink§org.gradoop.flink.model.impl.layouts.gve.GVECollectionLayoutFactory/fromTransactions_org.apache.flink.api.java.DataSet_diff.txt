@@ -1,0 +1,6 @@
+@Override
+public GraphCollectionLayout<EPGMGraphHead, EPGMVertex, EPGMEdge> fromTransactions(DataSet<GraphTransaction> transactions) {
+    GroupReduceFunction<EPGMVertex, EPGMVertex> vertexReducer = new First<>();
+    GroupReduceFunction<EPGMEdge, EPGMEdge> edgeReducer = new First<>();
+    return fromTransactions(transactions, vertexReducer, edgeReducer);
+}

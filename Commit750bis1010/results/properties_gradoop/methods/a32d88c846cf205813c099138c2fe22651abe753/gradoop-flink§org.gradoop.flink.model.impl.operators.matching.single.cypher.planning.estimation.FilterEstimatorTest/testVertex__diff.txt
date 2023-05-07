@@ -1,0 +1,10 @@
+@Test
+public void testVertex() throws Exception {
+    String query = "MATCH (n)";
+    QueryHandler queryHandler = new QueryHandler(query);
+    FilterAndProjectVerticesNode node = new FilterAndProjectVerticesNode(null, "n", queryHandler.getPredicates().getSubCNF("n"), Sets.newHashSet());
+    FilterEstimator elementEstimator = new FilterEstimator(queryHandler, STATS);
+    elementEstimator.visit(node);
+    assertThat(elementEstimator.getCardinality(), is(11L));
+    assertThat(elementEstimator.getSelectivity(), is(1d));
+}

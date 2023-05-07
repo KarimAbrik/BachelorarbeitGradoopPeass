@@ -1,0 +1,9 @@
+@Override
+public LocalTime read(DataInputView inputView, byte typeByte) throws IOException {
+    int length = DateTimeSerializer.SIZEOF_TIME;
+    byte[] rawBytes = new byte[length];
+    for (int i = 0; i < rawBytes.length; i++) {
+        rawBytes[i] = inputView.readByte();
+    }
+    return DateTimeSerializer.deserializeTime(rawBytes);
+}

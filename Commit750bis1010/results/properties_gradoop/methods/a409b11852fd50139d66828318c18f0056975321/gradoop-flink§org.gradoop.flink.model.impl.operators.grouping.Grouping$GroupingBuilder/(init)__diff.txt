@@ -1,0 +1,15 @@
+/**
+ * Creates a new grouping builder
+ */
+public GroupingBuilder() {
+    this.useVertexLabel = false;
+    this.useEdgeLabel = false;
+    this.vertexLabelGroups = new ArrayList<>();
+    this.edgeLabelGroups = new ArrayList<>();
+    this.globalVertexAggregateFunctions = new ArrayList<>();
+    this.globalEdgeAggregateFunctions = new ArrayList<>();
+    this.defaultVertexLabelGroup = new LabelGroup(Grouping.DEFAULT_VERTEX_LABEL_GROUP, GradoopConstants.DEFAULT_VERTEX_LABEL);
+    this.defaultEdgeLabelGroup = new LabelGroup(Grouping.DEFAULT_EDGE_LABEL_GROUP, GradoopConstants.DEFAULT_EDGE_LABEL);
+    vertexLabelGroups.add(defaultVertexLabelGroup);
+    edgeLabelGroups.add(defaultEdgeLabelGroup);
+}

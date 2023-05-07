@@ -1,0 +1,10 @@
+/**
+ * Converts a byte array to a double value.
+ *
+ * @param bytes byte array
+ * @param offset offset where double is
+ * @return Return double made from passed bytes.
+ */
+public static double toDouble(final byte[] bytes, final int offset) {
+    return Double.longBitsToDouble(toLong(bytes, offset, SIZEOF_LONG));
+}

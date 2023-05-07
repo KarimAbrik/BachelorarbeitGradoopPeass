@@ -1,0 +1,22 @@
+/**
+ * Sorts the given collections by element id and checks pairwise if elements
+ * are contained in the same graphs.
+ *
+ * @param collection1 first collection
+ * @param collection2 second collection
+ */
+public static void validateGraphElementCollections(Collection<? extends GraphElement> collection1, Collection<? extends GraphElement> collection2) {
+    assertNotNull("first collection was null", collection1);
+    assertNotNull("second collection was null", collection1);
+    List<? extends GraphElement> list1 = Lists.newArrayList(collection1);
+    List<? extends GraphElement> list2 = Lists.newArrayList(collection2);
+    Collections.sort(list1, ID_COMPARATOR);
+    Collections.sort(list2, ID_COMPARATOR);
+    Iterator<? extends GraphElement> it1 = list1.iterator();
+    Iterator<? extends GraphElement> it2 = list2.iterator();
+    while (it1.hasNext()) {
+        validateGraphElements(it1.next(), it2.next());
+    }
+    assertFalse("too many elements in first collection", it1.hasNext());
+    assertFalse("too many elements in second collection", it2.hasNext());
+}

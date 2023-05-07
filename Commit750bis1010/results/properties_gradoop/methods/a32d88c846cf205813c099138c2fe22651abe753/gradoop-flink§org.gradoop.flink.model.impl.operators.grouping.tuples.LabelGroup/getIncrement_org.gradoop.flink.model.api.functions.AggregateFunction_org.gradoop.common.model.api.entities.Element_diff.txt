@@ -1,0 +1,14 @@
+/**
+ * Returns the increment value for an aggregate function and an element.
+ *
+ * @param aggregateFunction aggregate function to create the increment
+ * @param element element used to create the increment
+ * @return increment value
+ */
+private static PropertyValue getIncrement(AggregateFunction aggregateFunction, Element element) {
+    PropertyValue increment = null;
+    if ((element instanceof Vertex && aggregateFunction.isVertexAggregation()) || (element instanceof Edge && aggregateFunction.isEdgeAggregation())) {
+        increment = aggregateFunction.getIncrement(element);
+    }
+    return increment == null ? AggregateUtil.getDefaultAggregate(aggregateFunction) : increment;
+}

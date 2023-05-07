@@ -1,0 +1,9 @@
+@Test
+public void testExistingSubgraph() throws Exception {
+    FlinkAsciiGraphLoader loader = getSocialNetworkLoader();
+    loader.appendToDatabaseFromString("expected:_DB[" + "(alice)-[akb]->(bob)-[bkc]->(carol)-[ckd]->(dave)" + "(alice)<-[bka]-(bob)<-[ckb]-(carol)<-[dkc]-(dave)" + "(eve)-[eka]->(alice)" + "(eve)-[ekb]->(bob)" + "(frank)-[fkc]->(carol)" + "(frank)-[fkd]->(dave)" + "]");
+    LogicalGraph input = loader.getLogicalGraph();
+    LogicalGraph expected = loader.getLogicalGraphByVariable("expected");
+    LogicalGraph output = input.subgraph(v -> v.getLabel().equals("Person"), e -> e.getLabel().equals("knows"));
+    collectAndAssertTrue(output.equalsByData(expected));
+}

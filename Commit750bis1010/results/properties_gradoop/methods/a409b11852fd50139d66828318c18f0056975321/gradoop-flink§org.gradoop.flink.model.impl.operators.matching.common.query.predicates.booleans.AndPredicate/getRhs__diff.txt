@@ -1,0 +1,7 @@
+/**
+ * Retruns the wrapped right hand side predicate
+ * @return the right hand side
+ */
+public QueryPredicate getRhs() {
+    return QueryPredicate.createFrom(and.getArguments()[1]);
+}

@@ -1,0 +1,8 @@
+/**
+ * Returns the query variables covered by this plan table entry
+ *
+ * @return covered variables
+ */
+public Set<String> getAllVariables() {
+    return new HashSet<>(estimator.getQueryPlan().getRoot().getEmbeddingMetaData().getVariables());
+}

@@ -1,0 +1,9 @@
+@Test
+public void testSelectionWithResult() throws Exception {
+    FlinkAsciiGraphLoader loader = getSocialNetworkLoader();
+    GraphCollection inputCollection = loader.getGraphCollectionByVariables("g0", "g1", "g2");
+    GraphCollection expectedOutputCollection = loader.getGraphCollectionByVariables("g0", "g1");
+    FilterFunction<EPGMGraphHead> predicateFunc = (FilterFunction<EPGMGraphHead>) entity -> entity.hasProperty("vertexCount") && entity.getPropertyValue("vertexCount").getInt() == 3;
+    GraphCollection outputCollection = inputCollection.select(predicateFunc);
+    collectAndAssertTrue(expectedOutputCollection.equalsByGraphElementIds(outputCollection));
+}

@@ -1,0 +1,8 @@
+@Override
+public E map(T tuple) throws Exception {
+    E edge = setAggregatePropertiesAndKeys(reuse, tuple);
+    edge.setId(GradoopId.get());
+    edge.setSourceId(tuple.getField(GroupingConstants.EDGE_TUPLE_SOURCEID));
+    edge.setTargetId(tuple.getField(GroupingConstants.EDGE_TUPLE_TARGETID));
+    return edge;
+}

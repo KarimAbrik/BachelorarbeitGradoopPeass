@@ -1,0 +1,14 @@
+/**
+ * Test reading a single file.
+ *
+ * @throws Exception when the execution in Flink fails.
+ */
+@Test
+public void testReadFile() throws Exception {
+    DataSource dataImport = new MinimalJSONImporter(filePath, getConfig());
+    LogicalGraph read = dataImport.getLogicalGraph();
+    LogicalGraph expected = loader.getLogicalGraphByVariable("expected2");
+    GraphCollection expectedCollection = expected.getCollectionFactory().fromGraph(expected);
+    collectAndAssertTrue(expected.equalsByElementData(read));
+    collectAndAssertTrue(dataImport.getGraphCollection().equalsByGraphElementData(expectedCollection));
+}

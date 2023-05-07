@@ -1,0 +1,12 @@
+/**
+ * Creates a new binary node
+ *
+ * @param leftChild left input node
+ * @param rightChild right input node
+ */
+public BinaryNode(PlanNode leftChild, PlanNode rightChild) {
+    Objects.requireNonNull(leftChild);
+    Objects.requireNonNull(rightChild);
+    this.leftChild = leftChild;
+    this.rightChild = rightChild;
+}

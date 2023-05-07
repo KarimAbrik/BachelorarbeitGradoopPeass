@@ -1,0 +1,6 @@
+@Override
+public Tuple2<B, A> map(Tuple2<A, B> pair) throws Exception {
+    reuse.f0 = pair.f1;
+    reuse.f1 = pair.f0;
+    return reuse;
+}

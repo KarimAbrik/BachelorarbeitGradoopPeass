@@ -1,0 +1,9 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public HBaseEdge createEdge(EdgePojo inputEdgeData, VertexPojo sourceVertexData, VertexPojo targetVertexData) {
+    HBaseEdge defaultPersistentEdgeData = new HBaseEdge(inputEdgeData, sourceVertexData, targetVertexData);
+    LOG.info("Created persistent edge data: " + defaultPersistentEdgeData);
+    return defaultPersistentEdgeData;
+}

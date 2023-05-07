@@ -1,0 +1,8 @@
+@Override
+public LogicalGraph sample(LogicalGraph graph) {
+    LogicalGraph pageRankGraph = new PageRank(SamplingConstants.PAGE_RANK_SCORE_PROPERTY_KEY, dampeningFactor, maxIteration, true).execute(graph);
+    graph = graph.getFactory().fromDataSets(graph.getGraphHead(), pageRankGraph.getVertices(), pageRankGraph.getEdges());
+    graph = graph.aggregate(new MinVertexProperty(SamplingConstants.PAGE_RANK_SCORE_PROPERTY_KEY), new MaxVertexProperty(SamplingConstants.PAGE_RANK_SCORE_PROPERTY_KEY), new SumVertexProperty(SamplingConstants.PAGE_RANK_SCORE_PROPERTY_KEY), new VertexCount());
+    DataSet<EPGMVertex> scaledVertices = graph.getVertices().crossWithTiny(graph.getGraphHead().first(1)).with(new AddPageRankScoresToVertexCrossFunction()).filter(new PageRankResultVertexFilter(threshold, sampleGreaterThanThreshold, keepVerticesIfSameScore));
+    return graph.getFactory().fromDataSets(scaledVertices, graph.getEdges()).verify();
+}

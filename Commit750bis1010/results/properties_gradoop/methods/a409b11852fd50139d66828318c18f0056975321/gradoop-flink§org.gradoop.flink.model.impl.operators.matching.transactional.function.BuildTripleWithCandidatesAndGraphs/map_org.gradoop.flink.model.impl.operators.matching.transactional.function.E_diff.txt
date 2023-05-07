@@ -1,0 +1,9 @@
+@Override
+public Tuple2<GradoopIdSet, TripleWithCandidates<GradoopId>> map(E e) throws Exception {
+    reuseTuple.f0 = e.getGraphIds();
+    reuseTuple.f1.setEdgeId(e.getId());
+    reuseTuple.f1.setSourceId(e.getSourceId());
+    reuseTuple.f1.setTargetId(e.getTargetId());
+    reuseTuple.f1.setCandidates(getCandidates(edgeCount, ElementMatcher.getMatches(e, queryEdges, DEFAULT_EDGE_LABEL)));
+    return reuseTuple;
+}

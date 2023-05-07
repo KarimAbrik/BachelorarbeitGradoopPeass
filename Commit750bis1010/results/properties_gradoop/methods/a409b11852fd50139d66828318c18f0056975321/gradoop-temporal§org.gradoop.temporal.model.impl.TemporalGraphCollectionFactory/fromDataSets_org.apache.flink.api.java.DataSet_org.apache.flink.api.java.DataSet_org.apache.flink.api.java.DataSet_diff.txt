@@ -1,0 +1,4 @@
+@Override
+public TemporalGraphCollection fromDataSets(DataSet<TemporalGraphHead> graphHeads, DataSet<TemporalVertex> vertices, DataSet<TemporalEdge> edges) {
+    return new TemporalGraphCollection(layoutFactory.fromDataSets(graphHeads, vertices, edges), config);
+}

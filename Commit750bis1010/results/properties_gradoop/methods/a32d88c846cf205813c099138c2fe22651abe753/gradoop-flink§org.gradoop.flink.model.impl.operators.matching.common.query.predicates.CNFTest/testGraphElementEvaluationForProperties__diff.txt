@@ -1,0 +1,12 @@
+@Test
+public void testGraphElementEvaluationForProperties() {
+    String queryString = "MATCH (a) WHERE a.name = \"Alice\" AND a.__label__=\"Person\"";
+    QueryHandler query = new QueryHandler(queryString);
+    CNF cnf = query.getPredicates();
+    Properties properties = new Properties();
+    properties.set("name", "Alice");
+    EPGMVertex vertex = new EPGMVertexFactory().createVertex("Person", properties);
+    assertTrue(cnf.evaluate(vertex));
+    properties.set("name", "Bob");
+    assertFalse(cnf.evaluate(vertex));
+}

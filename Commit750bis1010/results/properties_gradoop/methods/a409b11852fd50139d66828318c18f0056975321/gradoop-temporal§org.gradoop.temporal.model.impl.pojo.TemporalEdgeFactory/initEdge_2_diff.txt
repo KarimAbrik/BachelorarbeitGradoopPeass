@@ -1,0 +1,4 @@
+@Override
+public TemporalEdge initEdge(GradoopId id, String label, GradoopId sourceVertexId, GradoopId targetVertexId, Properties properties, GradoopIdSet graphIds) {
+    return initEdge(id, label, sourceVertexId, targetVertexId, properties, graphIds, null, null);
+}

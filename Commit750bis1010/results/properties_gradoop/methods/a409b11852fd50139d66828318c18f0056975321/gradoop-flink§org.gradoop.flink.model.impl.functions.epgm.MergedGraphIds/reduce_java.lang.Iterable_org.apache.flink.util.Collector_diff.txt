@@ -1,0 +1,10 @@
+@Override
+public void reduce(Iterable<GE> values, Collector<GE> out) throws Exception {
+    Iterator<GE> iterator = values.iterator();
+    GE result = iterator.next();
+    GradoopIdSet graphIds = result.getGraphIds();
+    while (iterator.hasNext()) {
+        graphIds.addAll(iterator.next().getGraphIds());
+    }
+    out.collect(result);
+}

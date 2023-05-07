@@ -1,0 +1,4 @@
+@Override
+public boolean filter(T value) throws Exception {
+    return !components[0].filter(value);
+}

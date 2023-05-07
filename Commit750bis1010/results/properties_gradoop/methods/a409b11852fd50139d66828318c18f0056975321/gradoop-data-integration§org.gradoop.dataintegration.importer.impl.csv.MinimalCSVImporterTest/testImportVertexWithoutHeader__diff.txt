@@ -1,0 +1,18 @@
+/**
+ * Test if the property import of the vertices works correct. In this case
+ * the file do not contain a header row. For this the user set a list with
+ * the column names.
+ *
+ * @throws Exception on failure
+ */
+@Test
+public void testImportVertexWithoutHeader() throws Exception {
+    String csvPath = MinimalCSVImporterTest.class.getResource("/csv/inputWithoutHeader.csv").getPath();
+    List<String> columnNames = Arrays.asList("name", "value1", "value2", "value3");
+    DataSource importer = new MinimalCSVImporter(csvPath, DELIMITER, getConfig(), columnNames, false);
+    DataSet<EPGMVertex> importVertex = importer.getLogicalGraph().getVertices();
+    List<EPGMVertex> lv = new ArrayList<>();
+    importVertex.output(new LocalCollectionOutputFormat<>(lv));
+    getExecutionEnvironment().execute();
+    checkImportedVertices(lv);
+}

@@ -1,0 +1,9 @@
+@Override
+public void copyTo(Embedding target) {
+    target.idData = new byte[idData.length];
+    target.propertyData = new byte[propertyData.length];
+    target.idListData = new byte[idListData.length];
+    System.arraycopy(this.idData, 0, target.idData, 0, this.idData.length);
+    System.arraycopy(this.propertyData, 0, target.propertyData, 0, this.propertyData.length);
+    System.arraycopy(this.idListData, 0, target.idListData, 0, this.idListData.length);
+}

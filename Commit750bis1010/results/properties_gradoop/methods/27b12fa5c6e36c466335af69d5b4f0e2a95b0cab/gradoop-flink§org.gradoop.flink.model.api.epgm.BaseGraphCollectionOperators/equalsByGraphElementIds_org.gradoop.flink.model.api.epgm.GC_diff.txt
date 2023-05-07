@@ -1,0 +1,9 @@
+/**
+ * Checks, if another collection contains the same graphs as this graph (by vertex and edge ids).
+ *
+ * @param otherCollection other graph
+ * @return 1-element dataset containing true, if equal by element ids
+ */
+default DataSet<Boolean> equalsByGraphElementIds(GC otherCollection) {
+    return callForValue(new CollectionEquality<>(new GraphHeadToEmptyString<>(), new VertexToIdString<>(), new EdgeToIdString<>(), true), otherCollection);
+}

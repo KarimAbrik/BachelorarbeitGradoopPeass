@@ -1,0 +1,9 @@
+/**
+ * Constructor
+ * @param id graph id
+ */
+public GraphWithCandidates(GradoopId id) {
+    this.setGraphId(id);
+    this.setVertexCandidates(new ArrayList<>());
+    this.setEdgeCandidates(new ArrayList<>());
+}

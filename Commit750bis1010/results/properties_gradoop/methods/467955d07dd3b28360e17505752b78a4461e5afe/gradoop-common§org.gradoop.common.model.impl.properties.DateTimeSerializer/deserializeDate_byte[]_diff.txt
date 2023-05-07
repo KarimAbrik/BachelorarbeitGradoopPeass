@@ -1,0 +1,13 @@
+/**
+ * Deserializes a {@code LocalDate} value.
+ *
+ * @param bytes serialized value
+ *
+ * @return {@code LocalDate} value
+ */
+public static LocalDate deserializeDate(byte[] bytes) {
+    int year = Bytes.toInt(bytes, 0, SIZEOF_INT);
+    int month = Bytes.toInt(bytes, SIZEOF_INT, SIZEOF_INT);
+    int day = Bytes.toInt(bytes, 2 * SIZEOF_INT, SIZEOF_INT);
+    return LocalDate.of(year, month, day);
+}

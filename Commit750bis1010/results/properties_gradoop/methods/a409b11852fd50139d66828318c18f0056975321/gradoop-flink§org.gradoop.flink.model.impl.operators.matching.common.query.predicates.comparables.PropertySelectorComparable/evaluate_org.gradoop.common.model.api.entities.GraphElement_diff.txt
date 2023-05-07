@@ -1,0 +1,7 @@
+@Override
+public PropertyValue evaluate(GraphElement element) {
+    if (propertySelector.getPropertyName().equals("__label__")) {
+        return PropertyValue.create(element.getLabel());
+    }
+    return element.hasProperty(propertySelector.getPropertyName()) ? element.getPropertyValue(propertySelector.getPropertyName()) : PropertyValue.NULL_VALUE;
+}

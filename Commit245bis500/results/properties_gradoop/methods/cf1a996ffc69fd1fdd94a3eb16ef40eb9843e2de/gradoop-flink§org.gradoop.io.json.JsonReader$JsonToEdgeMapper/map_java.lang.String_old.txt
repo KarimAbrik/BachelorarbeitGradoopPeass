@@ -1,0 +1,18 @@
+/**
+ * Creates an edge from JSON string representation.
+ *
+ * @param s json string
+ * @return Gelly edge storing gradoop edge data
+ * @throws Exception
+ */
+@Override
+public ED map(String s) throws Exception {
+    JSONObject jsonEdge = new JSONObject(s);
+    Long edgeID = getID(jsonEdge);
+    String edgeLabel = getLabel(jsonEdge);
+    Long sourceID = getSourceVertexID(jsonEdge);
+    Long targetID = getTargetVertexID(jsonEdge);
+    Map<String, Object> properties = getProperties(jsonEdge);
+    Set<Long> graphs = getGraphs(jsonEdge);
+    return edgeFactory.createEdge(edgeID, edgeLabel, sourceID, targetID, properties, graphs);
+}

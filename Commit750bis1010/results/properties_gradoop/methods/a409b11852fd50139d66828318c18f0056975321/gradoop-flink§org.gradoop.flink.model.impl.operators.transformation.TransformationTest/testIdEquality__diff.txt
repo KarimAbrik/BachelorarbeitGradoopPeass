@@ -1,0 +1,22 @@
+@Test
+public void testIdEquality() throws Exception {
+    FlinkAsciiGraphLoader loader = getLoaderFromString(testGraphString);
+    List<GradoopId> expectedGraphHeadIds = Lists.newArrayList();
+    List<GradoopId> expectedVertexIds = Lists.newArrayList();
+    List<GradoopId> expectedEdgeIds = Lists.newArrayList();
+    LogicalGraph inputGraph = loader.getLogicalGraphByVariable("g0");
+    inputGraph.getGraphHead().map(new Id<>()).output(new LocalCollectionOutputFormat<>(expectedGraphHeadIds));
+    inputGraph.getVertices().map(new Id<>()).output(new LocalCollectionOutputFormat<>(expectedVertexIds));
+    inputGraph.getEdges().map(new Id<>()).output(new LocalCollectionOutputFormat<>(expectedEdgeIds));
+    LogicalGraph result = inputGraph.transform(TransformationTest::transformGraphHead, TransformationTest::transformVertex, TransformationTest::transformEdge);
+    List<GradoopId> resultGraphHeadIds = Lists.newArrayList();
+    List<GradoopId> resultVertexIds = Lists.newArrayList();
+    List<GradoopId> resultEdgeIds = Lists.newArrayList();
+    result.getGraphHead().map(new Id<>()).output(new LocalCollectionOutputFormat<>(resultGraphHeadIds));
+    result.getVertices().map(new Id<>()).output(new LocalCollectionOutputFormat<>(resultVertexIds));
+    result.getEdges().map(new Id<>()).output(new LocalCollectionOutputFormat<>(resultEdgeIds));
+    getExecutionEnvironment().execute();
+    validateIdEquality(expectedGraphHeadIds, resultGraphHeadIds);
+    validateIdEquality(expectedVertexIds, resultVertexIds);
+    validateIdEquality(expectedEdgeIds, resultEdgeIds);
+}

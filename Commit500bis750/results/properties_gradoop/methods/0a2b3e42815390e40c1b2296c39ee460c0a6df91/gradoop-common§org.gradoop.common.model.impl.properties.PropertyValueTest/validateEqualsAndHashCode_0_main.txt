@@ -1,0 +1,8 @@
+private void validateEqualsAndHashCode(PropertyValue p1, PropertyValue p2, PropertyValue p3) {
+    assertEquals(p1, p1);
+    assertEquals(p1, p2);
+    assertNotEquals(p1, p3);
+    assertEquals(p1.hashCode(), p1.hashCode());
+    assertEquals(p1.hashCode(), p2.hashCode());
+    assertNotEquals(p1.hashCode(), p3.hashCode());
+}

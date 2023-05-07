@@ -1,0 +1,21 @@
+/**
+ * Creates a new Configuration.
+ *
+ * @param vertexHandler     vertex handler
+ * @param edgeHandler       edge handler
+ * @param graphHeadHandler  graph head handler
+ */
+public GradoopConfig(VertexHandler<VD, ED> vertexHandler, EdgeHandler<ED, VD> edgeHandler, GraphHeadHandler<GD> graphHeadHandler) {
+    if (vertexHandler == null) {
+        throw new IllegalArgumentException("Vertex handler must not be null");
+    }
+    if (edgeHandler == null) {
+        throw new IllegalArgumentException("Edge handler must not be null");
+    }
+    if (graphHeadHandler == null) {
+        throw new IllegalArgumentException("Graph head handler must not be null");
+    }
+    this.vertexHandler = vertexHandler;
+    this.edgeHandler = edgeHandler;
+    this.graphHeadHandler = graphHeadHandler;
+}

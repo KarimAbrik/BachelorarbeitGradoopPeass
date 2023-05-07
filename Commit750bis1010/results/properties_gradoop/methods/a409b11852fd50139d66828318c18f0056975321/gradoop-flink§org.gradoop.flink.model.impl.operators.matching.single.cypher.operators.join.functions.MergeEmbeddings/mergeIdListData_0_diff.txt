@@ -1,0 +1,11 @@
+/**
+ * Merges the idListData columns of the left and right embeddings
+ * All entries from both sides are kept.
+ *
+ * @param left the left hand side embedding
+ * @param right the right hand side embedding
+ * @return the merged data represented as byte array
+ */
+private byte[] mergeIdListData(Embedding left, Embedding right) {
+    return ArrayUtils.addAll(left.getIdListData(), right.getIdListData());
+}

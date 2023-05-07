@@ -1,0 +1,9 @@
+/**
+ * Updates the graph cache.
+ *
+ * @param variable graph variable used in GDL script
+ * @param g graph from GDL loader
+ */
+private void updateGraphCache(String variable, Graph g) {
+    graphHeadCache.put(variable, graphHeads.get(graphHeadIds.get(g.getId())));
+}

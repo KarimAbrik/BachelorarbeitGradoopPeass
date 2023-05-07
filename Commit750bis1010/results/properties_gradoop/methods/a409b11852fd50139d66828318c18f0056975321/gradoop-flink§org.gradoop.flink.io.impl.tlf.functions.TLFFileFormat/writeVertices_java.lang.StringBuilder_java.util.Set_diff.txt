@@ -1,0 +1,22 @@
+/**
+ * Converts the vertices into the following format and adds this to the
+ * StringBuilder:
+ * <p>
+ * v 0 vertexLabel
+ * v 1 vertexLabel
+ * v 2 vertexLabel
+ * </p>
+ *
+ * @param builder StringBuilder to build the whole string representation
+ * @param vertices set of vertices
+ * @return builder with appended vertex representations
+ */
+private StringBuilder writeVertices(StringBuilder builder, Set<EPGMVertex> vertices) {
+    long vertexId = 0;
+    for (EPGMVertex vertex : vertices) {
+        vertexIdMap.put(vertex.getId(), vertexId);
+        builder.append(String.format("%s %s %s%n", TLFConstants.VERTEX_SYMBOL, vertexId, vertex.getLabel()));
+        vertexId++;
+    }
+    return builder;
+}

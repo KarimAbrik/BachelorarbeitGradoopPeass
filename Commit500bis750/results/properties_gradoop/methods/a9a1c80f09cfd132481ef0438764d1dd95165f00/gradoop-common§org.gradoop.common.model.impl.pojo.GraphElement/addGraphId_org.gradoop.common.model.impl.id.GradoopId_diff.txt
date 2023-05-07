@@ -1,0 +1,10 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public void addGraphId(GradoopId graphId) {
+    if (graphIds == null) {
+        graphIds = new GradoopIdSet();
+    }
+    graphIds.add(graphId);
+}

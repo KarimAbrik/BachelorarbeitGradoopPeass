@@ -1,0 +1,6 @@
+@Override
+public org.apache.flink.graph.Edge<GradoopId, NullValue> map(EPGMEdge epgmEdge) throws Exception {
+    reuseEdge.setSource(epgmEdge.getSourceId());
+    reuseEdge.setTarget(epgmEdge.getTargetId());
+    return reuseEdge;
+}

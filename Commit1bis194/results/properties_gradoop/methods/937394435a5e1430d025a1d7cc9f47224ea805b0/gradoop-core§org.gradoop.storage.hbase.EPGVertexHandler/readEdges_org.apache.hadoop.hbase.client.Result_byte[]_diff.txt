@@ -1,0 +1,28 @@
+/**
+ * Reads edges from a given HBase row result.
+ *
+ * @param res          {@link org.apache.hadoop.hbase.client.Result} to read
+ *                     edges from
+ * @param columnFamily column family where the edges are stored
+ * @return edges
+ */
+private Iterable<Edge> readEdges(final Result res, final byte[] columnFamily) {
+    final List<Edge> edges = Lists.newArrayList();
+    for (Map.Entry<byte[], byte[]> edgeColumn : res.getFamilyMap(columnFamily).entrySet()) {
+        byte[] edgeKey = edgeColumn.getKey();
+        Map<String, Object> edgeProperties = null;
+        String propertyString = Bytes.toString(edgeColumn.getValue());
+        if (propertyString.length() > 0) {
+            edgeProperties = new HashMap<>();
+            String[] tokens = PROPERTY_TOKEN_SEPARATOR_PATTERN.split(propertyString);
+            for (int i = 0; i < tokens.length; i += 3) {
+                String propertyKey = tokens[i];
+                byte propertyType = Byte.parseByte(tokens[i + 1]);
+                Object propertyValue = decodeValueFromString(propertyType, tokens[i + 2]);
+                edgeProperties.put(propertyKey, propertyValue);
+            }
+        }
+        edges.add(readEdge(edgeKey, edgeProperties));
+    }
+    return edges;
+}

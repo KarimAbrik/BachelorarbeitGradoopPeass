@@ -1,0 +1,4 @@
+void assertCounts(EPGMGraphHead graphHead, long expectedVertexCount, long expectedEdgeCount) {
+    assertEquals("wrong vertex count", expectedVertexCount, graphHead.getPropertyValue(new VertexCount().getAggregatePropertyKey()).getLong());
+    assertEquals("wrong edge count", expectedEdgeCount, graphHead.getPropertyValue(new EdgeCount().getAggregatePropertyKey()).getLong());
+}

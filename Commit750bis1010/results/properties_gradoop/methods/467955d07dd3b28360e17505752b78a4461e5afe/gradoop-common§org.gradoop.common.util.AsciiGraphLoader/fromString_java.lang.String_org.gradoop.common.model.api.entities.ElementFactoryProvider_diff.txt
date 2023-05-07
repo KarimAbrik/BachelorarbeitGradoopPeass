@@ -1,0 +1,14 @@
+/**
+ * Creates an AsciiGraphLoader from the given ASCII GDL string.
+ *
+ * @param asciiGraph GDL string
+ * @param elementFactoryProvider Factory provider for graph elements.
+ * @param <G> graph head type
+ * @param <V> vertex type
+ * @param <E> edge type
+ *
+ * @return AsciiGraphLoader
+ */
+public static <G extends GraphHead, V extends Vertex, E extends Edge> AsciiGraphLoader<G, V, E> fromString(String asciiGraph, ElementFactoryProvider<G, V, E> elementFactoryProvider) {
+    return new AsciiGraphLoader<>(new GDLHandler.Builder().setDefaultGraphLabel(GradoopConstants.DEFAULT_GRAPH_LABEL).setDefaultVertexLabel(GradoopConstants.DEFAULT_VERTEX_LABEL).setDefaultEdgeLabel(GradoopConstants.DEFAULT_EDGE_LABEL).buildFromString(asciiGraph), elementFactoryProvider);
+}

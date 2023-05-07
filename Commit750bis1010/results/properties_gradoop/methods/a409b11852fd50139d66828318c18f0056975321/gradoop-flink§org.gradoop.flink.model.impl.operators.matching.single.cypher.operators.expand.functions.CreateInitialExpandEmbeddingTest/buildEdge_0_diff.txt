@@ -1,0 +1,14 @@
+/**
+ * Builds an Embedding with the three entries resembling an edge
+ * @param src the edges source id
+ * @param edgeId the edges id
+ * @param tgt the edges target id
+ * @return Embedding resembling the edge
+ */
+private Embedding buildEdge(GradoopId src, GradoopId edgeId, GradoopId tgt) {
+    Embedding edge = new Embedding();
+    edge.add(src);
+    edge.add(edgeId);
+    edge.add(tgt);
+    return edge;
+}

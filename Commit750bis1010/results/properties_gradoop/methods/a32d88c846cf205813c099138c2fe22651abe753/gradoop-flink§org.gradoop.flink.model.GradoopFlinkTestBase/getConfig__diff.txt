@@ -1,0 +1,11 @@
+/**
+ * Returns the configuration for the test
+ *
+ * @return Gradoop Flink configuration
+ */
+protected GradoopFlinkConfig getConfig() {
+    if (config == null) {
+        setConfig(GradoopFlinkConfig.createConfig(getExecutionEnvironment(), graphLayoutFactory, collectionLayoutFactory));
+    }
+    return config;
+}

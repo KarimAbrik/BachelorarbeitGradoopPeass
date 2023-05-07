@@ -1,0 +1,10 @@
+/**
+ * Returns the internal representation of the property stored at the specified column
+ * @param column the properties index in the property list
+ * @return Internal representation of the property stored at the specified column
+ */
+public byte[] getRawProperty(int column) {
+    int offset = getPropertyOffset(column);
+    int entryLength = Ints.fromByteArray(ArrayUtils.subarray(propertyData, offset, offset + Integer.BYTES));
+    return ArrayUtils.subarray(propertyData, offset, offset + Integer.BYTES + entryLength);
+}

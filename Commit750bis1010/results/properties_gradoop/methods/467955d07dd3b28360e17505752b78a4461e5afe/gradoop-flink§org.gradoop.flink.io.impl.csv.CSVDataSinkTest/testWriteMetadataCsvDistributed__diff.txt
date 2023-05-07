@@ -1,0 +1,19 @@
+/**
+ * Test the content of the metadata.csv file, written distributed
+ *
+ * @throws Exception if the execution or IO fails.
+ */
+@Test
+public void testWriteMetadataCsvDistributed() throws Exception {
+    String tmpPath = temporaryFolder.getRoot().getPath();
+    LogicalGraph logicalGraph = getExtendedLogicalGraph();
+    DataSink csvDataSink = new CSVDataSink(tmpPath, getConfig());
+    csvDataSink.write(logicalGraph, true);
+    getExecutionEnvironment().execute();
+    String metadataFile = tmpPath + "/metadata.csv";
+    String line;
+    BufferedReader br = new BufferedReader(new FileReader(metadataFile));
+    while ((line = br.readLine()) != null) {
+        checkMetadataCsvLine(line);
+    }
+}

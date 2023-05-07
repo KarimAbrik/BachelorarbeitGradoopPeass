@@ -1,0 +1,14 @@
+/**
+ * Turns a QueryComparable into a {@code Pair<Variable, PropertyKey>}
+ * @param comparable query comparable
+ * @return join property
+ */
+private Pair<String, String> extractJoinProperty(QueryComparable comparable) {
+    if (comparable instanceof PropertySelectorComparable) {
+        PropertySelectorComparable propertySelector = (PropertySelectorComparable) comparable;
+        return Pair.of(propertySelector.getVariable(), propertySelector.getPropertyKey());
+    } else {
+        //TODO #580 Include ElementSelector -> ID needs to be projected as property
+        throw new RuntimeException("Comparable " + comparable + "cant be used for ValueJoin");
+    }
+}

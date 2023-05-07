@@ -1,0 +1,12 @@
+/**
+ * Returns the specified property as property value
+ *
+ * @param embedding the embedding holding the data
+ * @param metaData meta data describing the embedding
+ * @return the property value
+ */
+@Override
+public PropertyValue evaluate(Embedding embedding, EmbeddingMetaData metaData) {
+    int propertyColumn = metaData.getPropertyColumn(propertySelector.getVariable(), propertySelector.getPropertyName());
+    return embedding.getProperty(propertyColumn);
+}

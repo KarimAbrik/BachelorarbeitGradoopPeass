@@ -1,0 +1,26 @@
+/**
+ * Calculate the final aggregate values by calling post-processing functions and set them
+ * to the element. Also set grouping keys as properties on the element.
+ *
+ * @param element   The element to store the properties.
+ * @param tupleData The internal tuple-based representation of the element.
+ * @return The final element with all set properties.
+ */
+E setAggregatePropertiesAndKeys(E element, T tupleData) {
+    element.setLabel("");
+    element.setProperties(Properties.create());
+    // Set grouping keys.
+    for (int i = 0; i < keyFunctions.size(); i++) {
+        final Object groupingKey = tupleData.getField(tupleDataOffset + i);
+        keyFunctions.get(i).addKeyToElement(element, groupingKey);
+    }
+    // Calculate aggregate values and set them.
+    for (int i = 0; i < aggregateFunctions.size(); i++) {
+        final AggregateFunction function = aggregateFunctions.get(i);
+        final PropertyValue postAggregateValue = function.postAggregate(tupleData.getField(tupleDataOffset + keyFunctions.size() + i));
+        if (postAggregateValue != null) {
+            element.setProperty(function.getAggregatePropertyKey(), postAggregateValue.isNull() ? AggregateUtil.getDefaultAggregate(function) : postAggregateValue);
+        }
+    }
+    return element;
+}

@@ -1,0 +1,4 @@
+@Override
+public DataSet<Embedding> evaluate() {
+    return left.cross(right).flatMap(new MergeEmbeddings(rightColumns, Lists.newArrayListWithCapacity(0), distinctVertexColumnsLeft, distinctVertexColumnsRight, distinctEdgeColumnsLeft, distinctEdgeColumnsRight)).name(getName());
+}

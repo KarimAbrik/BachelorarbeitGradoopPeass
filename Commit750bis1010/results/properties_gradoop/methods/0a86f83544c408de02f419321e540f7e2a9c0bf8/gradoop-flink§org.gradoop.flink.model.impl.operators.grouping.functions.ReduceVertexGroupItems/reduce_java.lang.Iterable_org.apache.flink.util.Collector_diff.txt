@@ -1,0 +1,29 @@
+@Override
+public void reduce(Iterable<VertexGroupItem> vertexGroupItems, Collector<VertexGroupItem> collector) throws Exception {
+    GradoopId superVertexId = null;
+    String groupLabel = null;
+    PropertyValueList groupPropertyValues = null;
+    VertexGroupItem reuseTuple = getReuseVertexGroupItem();
+    boolean isFirst = true;
+    for (VertexGroupItem groupItem : vertexGroupItems) {
+        if (isFirst) {
+            superVertexId = GradoopId.get();
+            groupLabel = groupItem.getGroupLabel();
+            groupPropertyValues = groupItem.getGroupingValues();
+            reuseTuple.setGroupLabel(groupLabel);
+            reuseTuple.setGroupingValues(groupPropertyValues);
+            reuseTuple.setSuperVertexId(superVertexId);
+            reuseTuple.setAggregateValues(groupItem.getAggregateValues());
+            reuseTuple.setSuperVertex(groupItem.isSuperVertex());
+            reuseTuple.setLabelGroup(groupItem.getLabelGroup());
+            isFirst = false;
+        }
+        reuseTuple.setVertexId(groupItem.getVertexId());
+        // collect updated vertex item
+        collector.collect(reuseTuple);
+        reuseTuple.getLabelGroup().aggregate(groupItem.getAggregateValues());
+    }
+    VertexGroupItem superVertex = createSuperVertexTuple(superVertexId, groupLabel, groupPropertyValues, reuseTuple.getLabelGroup().getAggregateValueList());
+    superVertex.getLabelGroup().resetAggregateValues();
+    collector.collect(superVertex);
+}

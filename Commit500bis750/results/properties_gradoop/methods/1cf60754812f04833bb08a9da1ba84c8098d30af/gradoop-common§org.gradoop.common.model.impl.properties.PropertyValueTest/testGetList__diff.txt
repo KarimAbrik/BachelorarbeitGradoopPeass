@@ -1,0 +1,5 @@
+@Test
+public void testGetList() throws Exception {
+    PropertyValue p = PropertyValue.create(LIST_VAL_a);
+    assertEquals(LIST_VAL_a, p.getList());
+}

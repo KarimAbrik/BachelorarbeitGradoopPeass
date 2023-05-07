@@ -1,0 +1,23 @@
+/**
+ * New value join operator
+ *
+ * @param left left hand side data set
+ * @param right right hand side data set
+ * @param rightColumns size of the right embedding
+ * @param distinctVertexColumnsLeft distinct vertex columns of the left embedding
+ * @param distinctVertexColumnsRight distinct vertex columns of the right embedding
+ * @param distinctEdgeColumnsLeft distinct edge columns of the left embedding
+ * @param distinctEdgeColumnsRight distinct edge columns of the right embedding
+ * @param crossHint cross hint
+ */
+public CartesianProduct(DataSet<Embedding> left, DataSet<Embedding> right, int rightColumns, List<Integer> distinctVertexColumnsLeft, List<Integer> distinctVertexColumnsRight, List<Integer> distinctEdgeColumnsLeft, List<Integer> distinctEdgeColumnsRight, CrossOperatorBase.CrossHint crossHint) {
+    this.left = left;
+    this.right = right;
+    this.rightColumns = rightColumns;
+    this.distinctVertexColumnsLeft = distinctVertexColumnsLeft;
+    this.distinctVertexColumnsRight = distinctVertexColumnsRight;
+    this.distinctEdgeColumnsLeft = distinctEdgeColumnsLeft;
+    this.distinctEdgeColumnsRight = distinctEdgeColumnsRight;
+    this.crossHint = crossHint;
+    this.setName("CartesianProduct");
+}

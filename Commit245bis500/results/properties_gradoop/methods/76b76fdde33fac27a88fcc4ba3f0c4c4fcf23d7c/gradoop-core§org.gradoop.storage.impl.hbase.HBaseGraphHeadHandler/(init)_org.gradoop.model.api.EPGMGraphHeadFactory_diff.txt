@@ -1,0 +1,8 @@
+/**
+ * Creates a graph handler.
+ *
+ * @param graphHeadFactory used to create runtime graph data objects
+ */
+public HBaseGraphHeadHandler(EPGMGraphHeadFactory<GD> graphHeadFactory) {
+    this.graphHeadFactory = graphHeadFactory;
+}

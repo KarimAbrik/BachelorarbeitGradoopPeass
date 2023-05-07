@@ -1,0 +1,5 @@
+@Override
+public Tuple2<EPGMVertex, GradoopId> map(EPGMVertex value) throws Exception {
+    reusable.f0 = value;
+    return reusable;
+}

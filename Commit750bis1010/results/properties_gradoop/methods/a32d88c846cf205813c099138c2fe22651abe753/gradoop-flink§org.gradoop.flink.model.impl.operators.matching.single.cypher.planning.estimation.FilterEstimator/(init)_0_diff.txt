@@ -1,0 +1,10 @@
+/**
+ * Creates a new estimator.
+ *
+ * @param queryHandler query handler
+ * @param graphStatistics graph statistics
+ */
+FilterEstimator(QueryHandler queryHandler, GraphStatistics graphStatistics) {
+    super(queryHandler, graphStatistics);
+    this.selectivity = 1f;
+}

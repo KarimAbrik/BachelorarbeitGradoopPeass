@@ -1,0 +1,10 @@
+/**
+ * Applies the property transformation functions on the given input graph.
+ *
+ * @param graph input graph
+ * @return transformed logical graph
+ */
+@Override
+public LG execute(LG graph) {
+    return new Transformation<G, V, E, LG, GC>(graphHeadTransformationFunction == null ? null : new BasePropertyTransformationFunction<>(propertyKey, graphHeadTransformationFunction, label, newPropertyKey, keepHistory), vertexTransformationFunction == null ? null : new BasePropertyTransformationFunction<>(propertyKey, vertexTransformationFunction, label, newPropertyKey, keepHistory), edgeTransformationFunction == null ? null : new BasePropertyTransformationFunction<>(propertyKey, edgeTransformationFunction, label, newPropertyKey, keepHistory)).execute(graph);
+}

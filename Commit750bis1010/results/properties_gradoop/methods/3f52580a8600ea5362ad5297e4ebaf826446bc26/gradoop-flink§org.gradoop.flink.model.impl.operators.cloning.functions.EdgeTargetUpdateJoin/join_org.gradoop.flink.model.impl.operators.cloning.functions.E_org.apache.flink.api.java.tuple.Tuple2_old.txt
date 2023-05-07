@@ -1,0 +1,5 @@
+@Override
+public E join(E e, Tuple2<GradoopId, GradoopId> vertexTuple) {
+    e.setTargetId(vertexTuple.f1);
+    return e;
+}

@@ -1,0 +1,13 @@
+/**
+ * Serializes a {@code LocalDate} value.
+ *
+ * @param date {@code LocalDate} value
+ *
+ * @return serialized value
+ */
+public static byte[] serializeDate(LocalDate date) {
+    int year = date.getYear();
+    int month = date.getMonth().getValue();
+    int day = date.getDayOfMonth();
+    return serialize(new int[] { year, month, day });
+}

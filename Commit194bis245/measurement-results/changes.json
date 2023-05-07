@@ -1,0 +1,71 @@
+{
+  "commitCount" : 6,
+  "changeCount" : 5,
+  "testcaseCount" : 33,
+  "statisticsConfig" : {
+    "type1error" : 0.01,
+    "type2error" : 0.01,
+    "outlierFactor" : 3.29,
+    "statisticTest" : "T_TEST"
+  },
+  "commitChanges" : {
+    "6209595896568bded13130a7921e4584df72ce8f" : {
+      "testcaseChanges" : {
+        "gradoop-flink§org.gradoop.model.impl.LogicalGraphCombineTest" : [ {
+          "diff" : "view_6209595896568bded13130a7921e4584df72ce8f/diffs/LogicalGraphCombineTest#testAssignment.txt",
+          "method" : "testAssignment",
+          "params" : "JUNIT_PARAMETERIZED-Execution mode = CLUSTER",
+          "oldTime" : 3.4042352444666666E8,
+          "changePercent" : 6.464747502131322,
+          "tvalue" : 4.476897633278939,
+          "mannWhitneyUStatistic" : 5.1013909260081074E-5,
+          "vms" : 30
+        } ],
+        "gradoop-flink§org.gradoop.model.impl.LogicalGraphExcludeTest" : [ {
+          "diff" : "view_6209595896568bded13130a7921e4584df72ce8f/diffs/LogicalGraphExcludeTest#testAssignment.txt",
+          "method" : "testAssignment",
+          "params" : "JUNIT_PARAMETERIZED-Execution mode = CLUSTER",
+          "oldTime" : 3.7286858390666664E8,
+          "changePercent" : 9.04626072093802,
+          "tvalue" : 7.6176961880745,
+          "mannWhitneyUStatistic" : 1.2555706904068767E-8,
+          "vms" : 30
+        } ],
+        "gradoop-flink§org.gradoop.model.impl.LogicalGraphOverlapTest" : [ {
+          "diff" : "view_6209595896568bded13130a7921e4584df72ce8f/diffs/LogicalGraphOverlapTest#testAssignment.txt",
+          "method" : "testAssignment",
+          "params" : "JUNIT_PARAMETERIZED-Execution mode = CLUSTER",
+          "oldTime" : 3.4355464484E8,
+          "changePercent" : 6.3674404587139914,
+          "tvalue" : 4.259259461384069,
+          "mannWhitneyUStatistic" : 2.320278143607131E-4,
+          "vms" : 30
+        } ]
+      }
+    },
+    "645eb1baa10fae290a3889480fec4febe1411921" : {
+      "testcaseChanges" : {
+        "gradoop-flink§org.gradoop.model.impl.LogicalGraphProjectionTest" : [ {
+          "diff" : "view_645eb1baa10fae290a3889480fec4febe1411921/diffs/LogicalGraphProjectionTest#projectionTest.txt",
+          "method" : "projectionTest",
+          "params" : "JUNIT_PARAMETERIZED-Execution mode = CLUSTER",
+          "oldTime" : 3.4786703882E8,
+          "changePercent" : 18.93090152012811,
+          "tvalue" : 12.5260656568528,
+          "mannWhitneyUStatistic" : 4.734020684198927E-11,
+          "vms" : 30
+        } ],
+        "gradoop-flink§org.gradoop.model.impl.LogicalGraphSplitByTest" : [ {
+          "diff" : "view_645eb1baa10fae290a3889480fec4febe1411921/diffs/LogicalGraphSplitByTest#testSplitBy.txt",
+          "method" : "testSplitBy",
+          "params" : "JUNIT_PARAMETERIZED-Execution mode = CLUSTER",
+          "oldTime" : 5.4930750136E8,
+          "changePercent" : 7.702113795142298,
+          "tvalue" : 9.053607470750958,
+          "mannWhitneyUStatistic" : 2.5515076130333382E-9,
+          "vms" : 30
+        } ]
+      }
+    }
+  }
+}

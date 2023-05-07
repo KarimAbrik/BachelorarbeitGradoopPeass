@@ -1,0 +1,12 @@
+/**
+ * Checks if two given EPGM graph elements are equal by considering the
+ * graphs they are contained in.
+ *
+ * @param element1 first element
+ * @param element2 second element
+ */
+public static void validateGraphElements(GraphElement element1, GraphElement element2) {
+    assertNotNull("first element was null", element1);
+    assertNotNull("second element was null", element2);
+    assertTrue(String.format("graph containment mismatch. expected: %s actual: %s", element1.getGraphIds(), element2.getGraphIds()), element1.getGraphIds().containsAll(element2.getGraphIds()) && element2.getGraphIds().containsAll(element1.getGraphIds()));
+}

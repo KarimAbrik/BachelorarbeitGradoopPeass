@@ -1,0 +1,8 @@
+@Test
+public void createWithIDTest() {
+    Long vertexID = 0L;
+    EPGMVertex v = new VertexPojoFactory().createVertex(vertexID);
+    assertThat(v.getId(), is(vertexID));
+    assertThat(v.getPropertyCount(), is(0));
+    assertThat(v.getGraphCount(), is(0));
+}

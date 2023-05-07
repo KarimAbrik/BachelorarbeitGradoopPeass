@@ -1,0 +1,7 @@
+private Embedding buildEdge(GradoopId src, GradoopId edgeId, GradoopId tgt) {
+    Embedding edge = new Embedding();
+    edge.add(src);
+    edge.add(edgeId);
+    edge.add(tgt);
+    return edge;
+}

@@ -1,0 +1,7 @@
+private Embedding createEmbedding(int size) {
+    Embedding embedding = new Embedding();
+    for (long i = 0; i < size; i++) {
+        embedding.add(GradoopId.get());
+    }
+    return embedding;
+}

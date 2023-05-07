@@ -1,0 +1,8 @@
+/**
+ * Returns the machine identifier component of the id.
+ *
+ * @return the machine identifier
+ */
+private int getMachineIdentifier() {
+    return makeInt((byte) 0, bytes[4], bytes[5], bytes[6]);
+}

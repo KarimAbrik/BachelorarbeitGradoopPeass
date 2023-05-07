@@ -1,0 +1,33 @@
+/**
+ * Checks data consistency with {@code createPersistentVertexData()}.
+ *
+ * @param graphStore graph store
+ */
+public static void validateVertex(EPGMStore<VertexPojo, EdgePojo, GraphHeadPojo> graphStore) {
+    // vertex 0
+    EPGMVertex v = graphStore.readVertex(GradoopId.fromLong(0L));
+    assertNotNull(v);
+    assertEquals("A", v.getLabel());
+    List<String> propertyKeys = Lists.newArrayList(v.getPropertyKeys());
+    assertEquals(2, propertyKeys.size());
+    for (String key : propertyKeys) {
+        if (key.equals("k1")) {
+            assertEquals("v1", v.getProperty("k1"));
+        } else if (key.equals("v2")) {
+            assertEquals("v2", v.getProperty("k2"));
+        }
+    }
+    assertEquals(2, v.getGraphCount());
+    assertTrue(v.getGraphIds().contains(GradoopId.fromLong(0L)));
+    assertTrue(v.getGraphIds().contains(GradoopId.fromLong(1L)));
+    // vertex 1
+    v = graphStore.readVertex(GradoopId.fromLong(1L));
+    assertNotNull(v);
+    assertEquals("B", v.getLabel());
+    propertyKeys = Lists.newArrayList(v.getPropertyKeys());
+    assertEquals(1, propertyKeys.size());
+    assertEquals("v1", v.getProperty("k1"));
+    assertEquals(2, v.getGraphCount());
+    assertTrue(v.getGraphIds().contains(GradoopId.fromLong(1L)));
+    assertTrue(v.getGraphIds().contains(GradoopId.fromLong(2L)));
+}

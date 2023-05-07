@@ -1,0 +1,12 @@
+/**
+ * Evaluates the comparisson for the given embedding
+ *
+ * @param embedding the embedding record holding the data
+ * @param metaData the embedding meta data
+ * @return evaluation result
+ */
+public boolean evaluate(Embedding embedding, EmbeddingMetaData metaData) {
+    PropertyValue lhsValue = getLhs().evaluate(embedding, metaData);
+    PropertyValue rhsValue = getRhs().evaluate(embedding, metaData);
+    return compare(lhsValue, rhsValue);
+}

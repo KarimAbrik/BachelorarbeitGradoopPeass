@@ -1,0 +1,19 @@
+@Test
+public void testIsNull() throws Exception {
+    PropertyValue p = PropertyValue.create(null);
+    assertTrue(p.isNull());
+    assertFalse(p.isBoolean());
+    assertFalse(p.isShort());
+    assertFalse(p.isInt());
+    assertFalse(p.isLong());
+    assertFalse(p.isFloat());
+    assertFalse(p.isDouble());
+    assertFalse(p.isString());
+    assertFalse(p.isBigDecimal());
+    assertFalse(p.isGradoopId());
+    assertFalse(p.isMap());
+    assertFalse(p.isList());
+    assertFalse(p.isDate());
+    assertFalse(p.isTime());
+    assertFalse(p.isDateTime());
+}

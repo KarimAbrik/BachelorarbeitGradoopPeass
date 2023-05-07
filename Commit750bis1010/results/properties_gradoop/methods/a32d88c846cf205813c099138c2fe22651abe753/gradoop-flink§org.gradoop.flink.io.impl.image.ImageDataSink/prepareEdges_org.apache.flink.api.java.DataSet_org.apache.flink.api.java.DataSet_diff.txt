@@ -1,0 +1,12 @@
+/**
+ * Prepare the given edges for drawing. Assign them start- and end-coordinates from their
+ * vertices.
+ *
+ * @param vertices The vertices to take the edge-coordinates from
+ * @param edges    The raw edges
+ * @return The prepared edges
+ */
+protected DataSet<EPGMEdge> prepareEdges(DataSet<EPGMVertex> vertices, DataSet<EPGMEdge> edges) {
+    edges = edges.join(vertices).where(new SourceId<>()).equalTo(new Id<>()).with(new SourceCoordinateJoin()).join(vertices).where(new TargetId<>()).equalTo(new Id<>()).with(new TargetCoordinateJoin());
+    return edges;
+}

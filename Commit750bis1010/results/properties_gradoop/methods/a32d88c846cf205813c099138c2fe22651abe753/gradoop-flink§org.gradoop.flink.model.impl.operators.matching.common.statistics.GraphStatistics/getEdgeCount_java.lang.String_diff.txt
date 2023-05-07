@@ -1,0 +1,9 @@
+/**
+ * Returns the number of edges with the specified label.
+ *
+ * @param edgeLabel edge label
+ * @return number of edges with the given label
+ */
+public long getEdgeCount(String edgeLabel) {
+    return edgeCountByLabel.getOrDefault(edgeLabel, 0L);
+}

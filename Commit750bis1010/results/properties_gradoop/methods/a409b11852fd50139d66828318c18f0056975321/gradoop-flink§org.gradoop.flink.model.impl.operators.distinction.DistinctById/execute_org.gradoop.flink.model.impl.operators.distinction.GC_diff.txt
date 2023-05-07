@@ -1,0 +1,4 @@
+@Override
+public GC execute(GC collection) {
+    return collection.getFactory().fromDataSets(collection.getGraphHeads().distinct(new Id<>()), collection.getVertices(), collection.getEdges());
+}

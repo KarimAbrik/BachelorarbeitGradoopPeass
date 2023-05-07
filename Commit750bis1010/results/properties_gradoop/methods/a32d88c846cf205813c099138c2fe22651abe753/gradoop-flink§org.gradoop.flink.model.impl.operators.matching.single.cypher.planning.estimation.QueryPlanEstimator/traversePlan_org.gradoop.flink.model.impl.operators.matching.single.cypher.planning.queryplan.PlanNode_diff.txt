@@ -1,0 +1,20 @@
+/**
+ * Visits the node if necessary and traverses the plan further if possible.
+ *
+ * @param node plan node
+ */
+private void traversePlan(PlanNode node) {
+    if (node instanceof JoinNode) {
+        this.joinEstimator.visit((JoinNode) node);
+    }
+    if (node instanceof FilterNode) {
+        this.filterEstimator.visit((FilterNode) node);
+    }
+    if (node instanceof BinaryNode) {
+        traversePlan(((BinaryNode) node).getLeftChild());
+        traversePlan(((BinaryNode) node).getRightChild());
+    }
+    if (node instanceof UnaryNode) {
+        traversePlan(((UnaryNode) node).getChildNode());
+    }
+}

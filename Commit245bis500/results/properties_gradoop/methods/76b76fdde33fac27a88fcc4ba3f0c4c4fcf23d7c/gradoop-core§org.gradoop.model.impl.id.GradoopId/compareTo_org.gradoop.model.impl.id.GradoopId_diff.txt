@@ -1,0 +1,7 @@
+@Override
+public int compareTo(GradoopId otherId) {
+    if (this == otherId) {
+        return 0;
+    }
+    return this.identifier.compareTo(otherId.identifier);
+}

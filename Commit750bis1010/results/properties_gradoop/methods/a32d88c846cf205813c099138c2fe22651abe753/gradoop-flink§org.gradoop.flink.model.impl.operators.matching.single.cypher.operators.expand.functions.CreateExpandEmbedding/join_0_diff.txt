@@ -1,0 +1,7 @@
+@Override
+public void join(Embedding input, EdgeWithTiePoint edge, Collector<ExpandEmbedding> out) throws Exception {
+    if (checkDistinctiveness(input, edge)) {
+        GradoopId[] path = new GradoopId[] { edge.getId(), edge.getTarget() };
+        out.collect(new ExpandEmbedding(input, path));
+    }
+}

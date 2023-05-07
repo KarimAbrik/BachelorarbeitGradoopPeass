@@ -1,0 +1,4 @@
+@Override
+LogicalGraph applyGrouping(LogicalGraph graph, List<String> groupingKeys) {
+    return graph.groupBy(groupingKeys, vertexAggregateFunctions, edgeGroupingKeys, edgeAggregateFunctions, strategy);
+}

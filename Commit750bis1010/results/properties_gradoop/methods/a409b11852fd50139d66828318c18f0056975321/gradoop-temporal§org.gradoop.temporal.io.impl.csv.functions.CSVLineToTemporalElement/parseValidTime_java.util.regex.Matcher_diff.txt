@@ -1,0 +1,9 @@
+/**
+ * Parses the valid time from the temporal data matched by the given matcher instance.
+ *
+ * @param matcher the matcher instance containing the temporal data
+ * @return a tuple containing the valid time
+ */
+Tuple2<Long, Long> parseValidTime(Matcher matcher) {
+    return new Tuple2<>(Long.valueOf(matcher.group(3)), Long.valueOf(matcher.group(4)));
+}

@@ -1,0 +1,8 @@
+/**
+ * Returns an uninitialized loader with the test config.
+ *
+ * @return uninitialized Flink Ascii graph loader
+ */
+private FlinkAsciiGraphLoader getNewLoader() {
+    return new FlinkAsciiGraphLoader(getConfig());
+}

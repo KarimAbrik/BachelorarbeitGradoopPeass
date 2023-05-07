@@ -1,0 +1,9 @@
+/**
+ * Create a new plotter output format
+ *
+ * @param path The output-image location
+ */
+public ImageOutputFormat(String path) {
+    super(new Path(path));
+    this.path = path;
+}

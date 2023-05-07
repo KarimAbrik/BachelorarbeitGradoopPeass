@@ -1,0 +1,4 @@
+@Override
+public GradoopId join(Long edgeLongId, Tuple2<Long, GradoopId> indexToEdgeId) throws Exception {
+    return indexToEdgeId.f1;
+}

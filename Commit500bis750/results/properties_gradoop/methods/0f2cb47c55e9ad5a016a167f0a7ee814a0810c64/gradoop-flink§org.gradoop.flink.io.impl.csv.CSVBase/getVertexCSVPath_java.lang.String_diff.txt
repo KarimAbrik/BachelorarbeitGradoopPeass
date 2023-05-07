@@ -1,0 +1,10 @@
+/**
+ * Returns the path to the vertex file containing only vertices with the specified label.
+ *
+ * @param label vertex label
+ * @return path to csv file
+ */
+protected String getVertexCSVPath(String label) {
+    Objects.requireNonNull(label);
+    return csvRoot + VERTEX_PATH + CSVConstants.DIRECTORY_SEPARATOR + label + CSVConstants.DIRECTORY_SEPARATOR + CSVConstants.SIMPLE_FILE;
+}

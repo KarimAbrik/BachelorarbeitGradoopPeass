@@ -1,0 +1,12 @@
+/**
+ * Adds graph head information to the specified builder.
+ *
+ * Output: label="label";
+ * @param transaction graph transaction
+ * @param builder string builder to append
+ */
+private void writeGraphHead(GraphTransaction transaction, StringBuilder builder) {
+    EPGMGraphHead graphHead = transaction.getGraphHead();
+    writeLabel(builder, graphHead);
+    builder.append(";\n");
+}

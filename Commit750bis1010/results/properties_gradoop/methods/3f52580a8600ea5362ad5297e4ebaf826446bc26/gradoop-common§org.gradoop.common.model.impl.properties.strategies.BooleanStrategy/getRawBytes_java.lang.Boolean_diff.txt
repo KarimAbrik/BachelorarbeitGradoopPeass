@@ -1,0 +1,13 @@
+/**
+ * {@inheritDoc}
+ *
+ * Warning: Please note that if {@code null} is passed as an argument, it is going to be evaluated
+ * as if it was false.
+ */
+@Override
+public byte[] getRawBytes(Boolean value) {
+    byte[] rawBytes = new byte[PropertyValue.OFFSET + Bytes.SIZEOF_BOOLEAN];
+    rawBytes[0] = getRawType();
+    Bytes.putByte(rawBytes, PropertyValue.OFFSET, (byte) (value ? -1 : 0));
+    return rawBytes;
+}

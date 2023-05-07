@@ -1,0 +1,15 @@
+/**
+ * Creates an edge instance based on the given parameters.
+ *
+ * @param id          edge identifier
+ * @param label       edge label
+ * @param sourceId    source vertex id
+ * @param targetId    target vertex id
+ * @param properties  edge properties
+ * @param graphIds    graphs that edge is contained in
+ */
+public Edge(final GradoopId id, final String label, final GradoopId sourceId, final GradoopId targetId, final Properties properties, GradoopIdList graphIds) {
+    super(id, label, properties, graphIds);
+    this.sourceId = sourceId;
+    this.targetId = targetId;
+}

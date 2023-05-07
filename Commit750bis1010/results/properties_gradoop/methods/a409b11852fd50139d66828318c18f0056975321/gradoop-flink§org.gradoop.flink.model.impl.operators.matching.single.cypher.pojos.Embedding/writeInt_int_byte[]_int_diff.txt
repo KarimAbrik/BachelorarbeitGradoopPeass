@@ -1,0 +1,10 @@
+/**
+ * Writes the byte representation of an Integer into the target byte array starting at the
+ * specified offset
+ * @param value Integer that will be written
+ * @param target Target byte array
+ * @param offset offset the value will be written to
+ */
+private void writeInt(int value, byte[] target, int offset) {
+    System.arraycopy(Ints.toByteArray(value), 0, target, offset, Integer.BYTES);
+}

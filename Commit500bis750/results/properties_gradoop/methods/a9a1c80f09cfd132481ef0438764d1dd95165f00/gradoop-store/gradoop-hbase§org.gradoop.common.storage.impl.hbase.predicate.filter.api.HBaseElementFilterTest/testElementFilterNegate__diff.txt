@@ -1,0 +1,9 @@
+/**
+ * Test that calling the 'negate' function of an HBaseElementFilter instance throws the
+ * expected NotImplementedException.
+ */
+@Test(expected = NotImplementedException.class)
+public void testElementFilterNegate() {
+    DummyElementFilter<Edge> filter = new DummyElementFilter<>();
+    filter.negate();
+}

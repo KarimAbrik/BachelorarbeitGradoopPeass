@@ -1,0 +1,27 @@
+/**
+ * Instantiates a new join operator.
+ *
+ * @param left embeddings of the left side of the join
+ * @param right embeddings of the right side of the join
+ * @param rightColumns number of columns in the right side of the join
+ * @param leftJoinColumns specifies the join columns of the left side
+ * @param rightJoinColumns specifies the join columns of the right side
+ * @param distinctVertexColumnsLeft distinct vertex columns of the left embedding
+ * @param distinctVertexColumnsRight distinct vertex columns of the right embedding
+ * @param distinctEdgeColumnsLeft distinct edge columns of the left embedding
+ * @param distinctEdgeColumnsRight distinct edge columns of the right embedding
+ * @param joinHint join strategy
+ */
+public JoinEmbeddings(DataSet<Embedding> left, DataSet<Embedding> right, int rightColumns, List<Integer> leftJoinColumns, List<Integer> rightJoinColumns, List<Integer> distinctVertexColumnsLeft, List<Integer> distinctVertexColumnsRight, List<Integer> distinctEdgeColumnsLeft, List<Integer> distinctEdgeColumnsRight, JoinOperatorBase.JoinHint joinHint) {
+    this.left = left;
+    this.right = right;
+    this.rightColumns = rightColumns;
+    this.leftJoinColumns = leftJoinColumns;
+    this.rightJoinColumns = rightJoinColumns;
+    this.distinctVertexColumnsLeft = distinctVertexColumnsLeft;
+    this.distinctVertexColumnsRight = distinctVertexColumnsRight;
+    this.distinctEdgeColumnsLeft = distinctEdgeColumnsLeft;
+    this.distinctEdgeColumnsRight = distinctEdgeColumnsRight;
+    this.joinHint = joinHint;
+    this.setName("JoinEmbeddings");
+}

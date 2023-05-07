@@ -1,0 +1,7 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public Edge initEdge(GradoopId id, String label, GradoopId sourceVertexId, GradoopId targetVertexId, Properties properties) {
+    return initEdge(id, label, sourceVertexId, targetVertexId, properties, null);
+}

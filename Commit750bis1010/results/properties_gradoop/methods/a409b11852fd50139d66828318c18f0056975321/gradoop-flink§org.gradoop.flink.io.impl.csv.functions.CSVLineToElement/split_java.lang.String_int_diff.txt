@@ -1,0 +1,10 @@
+/**
+ * Splits the specified string.
+ *
+ * @param s     string
+ * @param limit resulting array length
+ * @return tokens
+ */
+public String[] split(String s, int limit) {
+    return StringEscaper.split(s, CSVConstants.TOKEN_DELIMITER, limit);
+}

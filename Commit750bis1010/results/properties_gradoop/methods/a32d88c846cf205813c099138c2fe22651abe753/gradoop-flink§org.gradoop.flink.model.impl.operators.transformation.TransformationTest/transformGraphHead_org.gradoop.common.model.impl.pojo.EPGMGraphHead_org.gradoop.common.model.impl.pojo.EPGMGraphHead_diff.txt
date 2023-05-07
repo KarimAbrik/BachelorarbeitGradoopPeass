@@ -1,0 +1,5 @@
+static EPGMGraphHead transformGraphHead(EPGMGraphHead current, EPGMGraphHead transformed) {
+    transformed.setLabel(current.getLabel());
+    transformed.setProperty("a", current.getPropertyValue("a").getInt() + 1);
+    return transformed;
+}

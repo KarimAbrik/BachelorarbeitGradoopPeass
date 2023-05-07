@@ -1,0 +1,6 @@
+@Test
+public void testFromString() throws Exception {
+    AsciiGraphLoader<GraphHead, Vertex, Edge> asciiGraphLoader = AsciiGraphLoader.fromString("[()-->()]", config);
+    validateCollections(asciiGraphLoader, 1, 2, 1);
+    validateCaches(asciiGraphLoader, 0, 0, 0);
+}

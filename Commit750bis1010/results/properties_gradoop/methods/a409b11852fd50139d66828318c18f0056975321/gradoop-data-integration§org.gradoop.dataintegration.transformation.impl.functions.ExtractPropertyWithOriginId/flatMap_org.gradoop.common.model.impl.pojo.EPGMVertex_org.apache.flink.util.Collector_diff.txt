@@ -1,0 +1,16 @@
+@Override
+public void flatMap(EPGMVertex vertex, Collector<Tuple2<PropertyValue, GradoopId>> out) {
+    if (vertex.getProperties() != null && vertex.getProperties().containsKey(originalPropertyName)) {
+        PropertyValue pv = vertex.getPropertyValue(originalPropertyName);
+        reuseTuple.f1 = vertex.getId();
+        if (pv.isList()) {
+            for (PropertyValue value : pv.getList()) {
+                reuseTuple.f0 = value;
+                out.collect(reuseTuple);
+            }
+        } else {
+            reuseTuple.f0 = pv;
+            out.collect(reuseTuple);
+        }
+    }
+}

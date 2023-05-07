@@ -1,0 +1,4 @@
+@Test
+public void testMatchTwoHops() throws Exception {
+    assertCardinalities("MATCH (:Tag)<--()-->(:Person)", 26, 18);
+}

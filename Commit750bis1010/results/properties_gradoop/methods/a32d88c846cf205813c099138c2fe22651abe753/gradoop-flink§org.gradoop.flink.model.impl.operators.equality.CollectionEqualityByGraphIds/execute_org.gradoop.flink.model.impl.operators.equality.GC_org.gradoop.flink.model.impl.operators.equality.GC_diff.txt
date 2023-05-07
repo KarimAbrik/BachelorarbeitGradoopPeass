@@ -1,0 +1,7 @@
+@Override
+public DataSet<Boolean> execute(GC firstCollection, GC secondCollection) {
+    DataSet<Tuple1<GradoopId>> distinctFirstGraphIds = firstCollection.getGraphHeads().map(new Id<>()).distinct().map(new ObjectTo1<>());
+    DataSet<Tuple1<GradoopId>> distinctSecondGraphIds = secondCollection.getGraphHeads().map(new Id<>()).distinct().map(new ObjectTo1<>());
+    DataSet<Boolean> d = distinctFirstGraphIds.fullOuterJoin(distinctSecondGraphIds).where(0).equalTo(0).with(new OneSideEmpty<Tuple1<GradoopId>, Tuple1<GradoopId>>()).union(firstCollection.getConfig().getExecutionEnvironment().fromElements(false));
+    return Not.map(Or.reduce(d));
+}

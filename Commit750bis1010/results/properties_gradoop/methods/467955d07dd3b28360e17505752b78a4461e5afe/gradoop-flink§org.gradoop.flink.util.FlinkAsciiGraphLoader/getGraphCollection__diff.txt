@@ -1,0 +1,11 @@
+/**
+ * Returns a collection of all logical graph contained in the database.
+ *
+ * @return collection of all logical graphs
+ */
+public GraphCollection getGraphCollection() {
+    ExecutionEnvironment env = config.getExecutionEnvironment();
+    DataSet<EPGMVertex> newVertices = env.fromCollection(getVertices()).filter(vertex -> vertex.getGraphCount() > 0);
+    DataSet<EPGMEdge> newEdges = env.fromCollection(getEdges()).filter(edge -> edge.getGraphCount() > 0);
+    return config.getGraphCollectionFactory().fromDataSets(env.fromCollection(getGraphHeads()), newVertices, newEdges);
+}

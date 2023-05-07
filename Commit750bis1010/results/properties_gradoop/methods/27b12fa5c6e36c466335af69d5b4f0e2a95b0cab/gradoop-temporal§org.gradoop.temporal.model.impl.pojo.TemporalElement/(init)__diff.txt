@@ -1,0 +1,7 @@
+/**
+ * Default constructor. Needed because of Flink's POJO rules and serialization.
+ */
+public TemporalElement() {
+    transactionTime = new Tuple2<>();
+    validTime = new Tuple2<>();
+}

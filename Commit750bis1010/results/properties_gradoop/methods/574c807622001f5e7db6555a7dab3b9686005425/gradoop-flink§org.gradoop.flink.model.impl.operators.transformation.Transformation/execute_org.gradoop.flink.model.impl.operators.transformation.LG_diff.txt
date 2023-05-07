@@ -1,0 +1,4 @@
+@Override
+public LG execute(LG graph) {
+    return executeInternal(graph.getGraphHead(), graph.getVertices(), graph.getEdges(), graph.getFactory());
+}

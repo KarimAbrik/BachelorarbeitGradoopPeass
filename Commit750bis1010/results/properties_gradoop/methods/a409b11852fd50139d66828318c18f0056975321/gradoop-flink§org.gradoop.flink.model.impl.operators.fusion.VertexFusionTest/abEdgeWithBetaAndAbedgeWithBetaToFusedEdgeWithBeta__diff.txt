@@ -1,0 +1,13 @@
+@Test
+public void abEdgeWithBetaAndAbedgeWithBetaToFusedEdgeWithBeta() throws Exception {
+    FlinkAsciiGraphLoader loader = getLoaderFromString("ab_edgeWithBeta:G {ab_edgeWithBeta : \"graph\"}[" + "(a:A {atype : \"avalue\"})-[beta:BetaEdge {betatype : \"betavalue\"}]->(b:B {btype : " + "\"bvalue\"}) " + "]" + "" + "fused_edgeWithBeta:G {ab_edgeWithBeta : \"graph\"}[(:G {ab_edgeWithBeta : \"graph\"})]");
+    LogicalGraph searchGraph = loader.getLogicalGraphByVariable("ab_edgeWithBeta");
+    LogicalGraph patternGraph = loader.getLogicalGraphByVariable("ab_edgeWithBeta");
+    VertexFusion f = new VertexFusion();
+    LogicalGraph output = f.execute(searchGraph, patternGraph);
+    LogicalGraph expected = loader.getLogicalGraphByVariable("fused_edgeWithBeta");
+    collectAndAssertTrue(output.equalsByData(expected));
+    if (deepSearch) {
+        collectAndAssertTrue(VertexFusionUtils.myInducedEdgeSubgraphForFusion(searchGraph, expected).equalsByElementIds(VertexFusionUtils.myInducedEdgeSubgraphForFusion(expected, searchGraph)));
+    }
+}

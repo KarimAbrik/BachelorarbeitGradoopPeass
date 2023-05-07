@@ -1,0 +1,16 @@
+/**
+ * Convert a BufferedImage to byte[]
+ *
+ * @param img The image to convert
+ * @return byte[] representation of the image
+ */
+protected static byte[] imgToArr(BufferedImage img) {
+    try {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        ImageIO.write(img, INTERMEDIATE_ENCODING, baos);
+        return baos.toByteArray();
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+    return null;
+}

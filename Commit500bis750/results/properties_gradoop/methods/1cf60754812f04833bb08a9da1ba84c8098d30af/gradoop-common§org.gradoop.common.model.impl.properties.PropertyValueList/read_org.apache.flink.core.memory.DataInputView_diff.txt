@@ -1,0 +1,5 @@
+@Override
+public void read(DataInputView dataInput) throws IOException {
+    bytes = new byte[dataInput.readShort()];
+    dataInput.readFully(bytes);
+}

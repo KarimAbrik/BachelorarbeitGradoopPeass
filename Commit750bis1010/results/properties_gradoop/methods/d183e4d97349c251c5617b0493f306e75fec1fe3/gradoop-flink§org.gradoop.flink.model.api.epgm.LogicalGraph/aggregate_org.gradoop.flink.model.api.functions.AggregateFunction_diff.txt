@@ -1,0 +1,7 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public LogicalGraph aggregate(AggregateFunction aggregateFunc) {
+    return callForGraph(new Aggregation(aggregateFunc));
+}

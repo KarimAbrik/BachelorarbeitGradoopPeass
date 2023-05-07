@@ -1,0 +1,14 @@
+/**
+ * Creates a parsing function for the given property type.
+ *
+ * @param type property type
+ * @return parsing function
+ */
+private static Function<String, Object> getValueParser(String type) {
+    type = type.toLowerCase();
+    if (TYPE_PARSER_MAP.containsKey(type)) {
+        return TYPE_PARSER_MAP.get(type);
+    } else {
+        throw new IllegalArgumentException("Type " + type + " is not supported");
+    }
+}

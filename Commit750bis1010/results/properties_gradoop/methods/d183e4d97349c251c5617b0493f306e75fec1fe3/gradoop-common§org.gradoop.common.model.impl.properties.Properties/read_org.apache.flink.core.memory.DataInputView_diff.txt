@@ -1,0 +1,16 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public void read(DataInputView inputView) throws IOException {
+    int propertyCount = inputView.readInt();
+    this.properties = new HashMap<>(propertyCount);
+    String key;
+    PropertyValue value;
+    for (int i = 0; i < propertyCount; i++) {
+        key = inputView.readUTF();
+        value = new PropertyValue();
+        value.read(inputView);
+        properties.put(key, value);
+    }
+}

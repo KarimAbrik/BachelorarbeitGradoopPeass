@@ -1,0 +1,4 @@
+@Override
+public DataSet<WithCount<GradoopId>> execute(LogicalGraph graph) {
+    return new OutgoingVertexDegrees().execute(graph).join(new IncomingVertexDegrees().execute(graph)).where(0).equalTo(0).with(new SumCounts<>());
+}

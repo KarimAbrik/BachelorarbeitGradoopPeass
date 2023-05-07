@@ -1,0 +1,5 @@
+private void validateCollections(AsciiGraphLoader<GraphHead, Vertex, Edge> asciiGraphLoader, int expectedGraphHeadCount, int expectedVertexCount, int expectedEdgeCount) {
+    assertEquals("wrong graph head count", expectedGraphHeadCount, asciiGraphLoader.getGraphHeads().size());
+    assertEquals("wrong vertex count", expectedVertexCount, asciiGraphLoader.getVertices().size());
+    assertEquals("wrong edge count", expectedEdgeCount, asciiGraphLoader.getEdges().size());
+}

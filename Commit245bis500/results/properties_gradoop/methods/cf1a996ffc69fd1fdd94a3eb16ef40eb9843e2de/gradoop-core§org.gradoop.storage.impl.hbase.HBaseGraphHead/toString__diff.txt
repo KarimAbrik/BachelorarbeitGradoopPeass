@@ -1,0 +1,12 @@
+/**                                                                                                    /**                                                                                                 
+* {@inheritDoc}                                                                                        * {@inheritDoc}                                                                                     
+*/                                                                                                     */                                                                                                  
+@Override                                                                                              @Override                                                                                           
+public String toString() {                                                                             public String toString() {                                                                          
+final StringBuilder sb = new StringBuilder("HBaseGraphHead{");                                         final StringBuilder sb = new StringBuilder("HBaseGraphHead{");                                      
+sb.append("super=").append(super.toString());                                                          sb.append("super=").append(super.toString());                                                       
+sb.append(", vertices=").append(vertices);                                                           | sb.append(", vertexIds=").append(vertexIds);                                                        
+sb.append(", edges=").append(edges);                                                                 | sb.append(", edgeIds=").append(edgeIds);                                                            
+sb.append('}');                                                                                        sb.append('}');                                                                                     
+return sb.toString();                                                                                  return sb.toString();                                                                               
+}                                                                                                      }                                                                                                   

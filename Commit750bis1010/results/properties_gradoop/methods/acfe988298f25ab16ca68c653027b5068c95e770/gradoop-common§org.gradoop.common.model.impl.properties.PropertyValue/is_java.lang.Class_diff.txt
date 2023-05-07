@@ -1,0 +1,13 @@
+//----------------------------------------------------------------------------
+// Type checking
+//----------------------------------------------------------------------------
+/**
+ * Check if the property value type is an instance of a certain class.
+ *
+ * @param clazz class to check against
+ * @return true if the attribute {@code value} is an object of the provided class, false
+ * otherwise
+ */
+public boolean is(Class clazz) {
+    return PropertyValueStrategyFactory.get(clazz).is(value);
+}

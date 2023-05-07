@@ -1,0 +1,6 @@
+@Override
+public org.apache.flink.graph.Vertex<GradoopId, PropertyValue> map(EPGMVertex epgmVertex) throws Exception {
+    reuseVertex.setId(epgmVertex.getId());
+    reuseVertex.setValue(epgmVertex.getPropertyValue(propertyKey));
+    return reuseVertex;
+}

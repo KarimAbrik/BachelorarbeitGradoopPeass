@@ -1,0 +1,10 @@
+@Test
+public void testRead() throws Exception {
+    String edgeListFile = getFilePath("/data/edgelist/basic/input");
+    String gdlFile = getFilePath("/data/edgelist/basic/expected.gdl");
+    DataSource dataSource = new EdgeListDataSource(edgeListFile, ",", getConfig());
+    LogicalGraph result = dataSource.getLogicalGraph();
+    FlinkAsciiGraphLoader loader = getLoaderFromFile(gdlFile);
+    LogicalGraph expected = loader.getLogicalGraphByVariable("expected");
+    collectAndAssertTrue(expected.equalsByElementData(result));
+}

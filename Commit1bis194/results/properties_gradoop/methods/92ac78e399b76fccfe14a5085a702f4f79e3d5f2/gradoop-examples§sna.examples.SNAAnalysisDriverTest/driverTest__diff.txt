@@ -1,0 +1,27 @@
+@Test                                                                                                  @Test                                                                                               
+public void driverTest() throws Exception {                                                            public void driverTest() throws Exception {                                                         
+Configuration conf = utility.getConfiguration();                                                       Configuration conf = utility.getConfiguration();                                                    
+String nodeFile = "person.csv";                                                                        String nodeFile = "person.csv";                                                                     
+String edgeFile = "person_knows_person.csv";                                                           String edgeFile = "person_knows_person.csv";                                                        
+URL resourceUrl = getClass().getResource("/person_meta.csv");                                          URL resourceUrl = getClass().getResource("/person_meta.csv");                                       
+String[] args = new String[] { "-" + SNAAnalysisDriver.LoadConfUtils.OPTION_DROP_TABLES, "-" + SNAAn | String[] args = new String[] { "-" + SNAAnalysisDriver.LoadConfUtils.OPTION_DROP_TABLES, "-" + SNAAn
+copyFromLocal(nodeFile);                                                                               copyFromLocal(nodeFile);                                                                            
+copyFromLocal(edgeFile);                                                                               copyFromLocal(edgeFile);                                                                            
+SNAAnalysisDriver snaAnalysisDriver = new SNAAnalysisDriver();                                         SNAAnalysisDriver snaAnalysisDriver = new SNAAnalysisDriver();                                      
+snaAnalysisDriver.setConf(conf);                                                                       snaAnalysisDriver.setConf(conf);                                                                    
+//run the pipeline                                                                                     //run the pipeline                                                                                  
+int exitCode = snaAnalysisDriver.run(args);                                                            int exitCode = snaAnalysisDriver.run(args);                                                         
+//test                                                                                                 //test                                                                                              
+assertThat(exitCode, is(0));                                                                           assertThat(exitCode, is(0));                                                                        
+GraphStore graphStore = openGraphStore();                                                              GraphStore graphStore = openGraphStore();                                                           
+// Label Propagation Result                                                                            // Label Propagation Result                                                                         
+validateLabelPropagation(graphStore);                                                                  validateLabelPropagation(graphStore);                                                               
+graphStore.close();                                                                                    graphStore.close();                                                                                 
+String destination = resourceUrl.getPath();                                                          |                                                                                                     
+LOG.info("###CopyToLocal");                                                                          |                                                                                                     
+FileSystem fs = utility.getTestFileSystem();                                                         |                                                                                                     
+Path src = new Path("/output/summarize");                                                            |                                                                                                     
+Path dest = new Path(destination);                                                                   |                                                                                                     
+fs.copyToLocalFile(src, dest);                                                                       |                                                                                                     
+validateMapReduceOutput(destination);                                                                |                                                                                                     
+}                                                                                                      }                                                                                                   

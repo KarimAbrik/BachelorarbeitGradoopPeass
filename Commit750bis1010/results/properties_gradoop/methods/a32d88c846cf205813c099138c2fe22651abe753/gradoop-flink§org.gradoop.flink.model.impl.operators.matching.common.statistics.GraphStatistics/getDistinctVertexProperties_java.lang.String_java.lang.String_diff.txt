@@ -1,0 +1,11 @@
+/**
+ * Returns the number of distinct property values for given vertex label property name pair<br>
+ * Eg {@code (Person, name) -> 20}
+ *
+ * @param vertexLabel vertex label
+ * @param propertyName property name
+ * @return number of distinct property values for label property name pair
+ */
+public long getDistinctVertexProperties(String vertexLabel, String propertyName) {
+    return distinctVertexPropertiesByLabel.containsKey(vertexLabel) ? distinctVertexPropertiesByLabel.get(vertexLabel).getOrDefault(propertyName, 0L) : 0;
+}

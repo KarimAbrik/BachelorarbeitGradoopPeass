@@ -1,0 +1,4 @@
+@Override
+public GraphCollectionLayout<EPGMGraphHead, EPGMVertex, EPGMEdge> fromCollections(Collection<EPGMGraphHead> graphHeads, Collection<EPGMVertex> vertices, Collection<EPGMEdge> edges) {
+    return fromDataSets(createGraphHeadDataSet(Objects.requireNonNull(graphHeads, "EPGMGraphHead collection was null")), createVertexDataSet(Objects.requireNonNull(vertices, "EPGMVertex collection was null")), createEdgeDataSet(Objects.requireNonNull(edges, "EPGMEdge collection was null")));
+}

@@ -1,0 +1,6 @@
+@Override
+public WithCount<T> map(Tuple2<T, Long> value) throws Exception {
+    reuseTuple.setObject(value.f0);
+    reuseTuple.setCount(value.f1);
+    return reuseTuple;
+}

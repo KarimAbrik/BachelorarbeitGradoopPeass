@@ -1,0 +1,24 @@
+@Test
+public void testExecute() throws Exception {
+    GradoopId sourceId = GradoopId.get();
+    GradoopId targetId = GradoopId.get();
+    GradoopId edge1Id = GradoopId.get();
+    Map<String, Object> edge1Props = new HashMap<>();
+    edge1Props.put("foo", 23);
+    GradoopId edge2Id = GradoopId.get();
+    Map<String, Object> edge2Props = new HashMap<>();
+    edge2Props.put("foo", 42);
+    EPGMEdge e1 = new EPGMEdge(edge1Id, "a", sourceId, targetId, Properties.createFromMap(edge1Props), new GradoopIdSet());
+    EPGMEdge e2 = new EPGMEdge(edge2Id, "b", sourceId, targetId, Properties.createFromMap(edge2Props), new GradoopIdSet());
+    DataSet<EPGMEdge> edges = getExecutionEnvironment().fromElements(e1, e2);
+    String query = "MATCH (a)-[e]->(b) WHERE e.foo = 23";
+    QueryHandler queryHandler = new QueryHandler(query);
+    CNF filterPredicate = queryHandler.getPredicates().getSubCNF(Sets.newHashSet("e"));
+    Set<String> projectionKeys = queryHandler.getPredicates().getPropertyKeys("e");
+    FilterAndProjectEdgesNode<EPGMEdge> node = new FilterAndProjectEdgesNode<>(edges, "a", "e", "b", filterPredicate, projectionKeys, false);
+    List<Embedding> filteredEdges = node.execute().collect();
+    assertThat(filteredEdges.size(), is(1));
+    assertThat(filteredEdges.get(0).getId(0).equals(sourceId), is(true));
+    assertThat(filteredEdges.get(0).getId(1).equals(edge1Id), is(true));
+    assertThat(filteredEdges.get(0).getId(2).equals(targetId), is(true));
+}

@@ -1,0 +1,5 @@
+@Override
+public byte[] getKey(T element) {
+    final PropertyValue value = element.getPropertyValue(propertyKey);
+    return value == null ? PropertyValue.NULL_VALUE.getRawBytes() : value.getRawBytes();
+}

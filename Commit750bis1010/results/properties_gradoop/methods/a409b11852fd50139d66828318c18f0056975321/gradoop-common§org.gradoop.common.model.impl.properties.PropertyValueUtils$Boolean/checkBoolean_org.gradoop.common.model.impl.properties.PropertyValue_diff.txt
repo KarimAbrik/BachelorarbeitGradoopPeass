@@ -1,0 +1,10 @@
+/**
+ * Checks if a property value is boolean.
+ *
+ * @param value property value
+ */
+private static void checkBoolean(PropertyValue value) {
+    if (!value.isBoolean()) {
+        throw new UnsupportedTypeException(value.getObject().getClass());
+    }
+}

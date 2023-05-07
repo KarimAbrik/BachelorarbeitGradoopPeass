@@ -1,0 +1,10 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public Put writeEdges(Put put, PersistentGraphHead graphData) throws IOException {
+    for (GradoopId edgeId : graphData.getEdgeIds()) {
+        put.add(CF_EDGES_BYTES, Writables.getBytes(edgeId), null);
+    }
+    return put;
+}

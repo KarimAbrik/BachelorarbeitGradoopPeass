@@ -1,0 +1,12 @@
+/**
+ * Checks if the given embedding contains the expected entries and the expected property values in
+ * the same order as determined by the specified lists.
+ *
+ * @param embedding embedding
+ * @param expectedEntries expected id entries
+ * @param expectedProperties expected property value
+ */
+public static void assertEmbedding(Embedding embedding, List<GradoopId> expectedEntries, List<PropertyValue> expectedProperties) {
+    expectedEntries.forEach(entry -> assertThat(embedding.getId(expectedEntries.indexOf(entry)), is(entry)));
+    expectedProperties.forEach(value -> assertThat(embedding.getProperty(expectedProperties.indexOf(value)), is(value)));
+}

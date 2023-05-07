@@ -1,0 +1,11 @@
+@Override
+public boolean equals(Object o) {
+    if (this == o) {
+        return true;
+    }
+    if (!(o instanceof PropertyValue)) {
+        return false;
+    }
+    PropertyValue that = (PropertyValue) o;
+    return Arrays.equals(rawBytes, that.rawBytes);
+}

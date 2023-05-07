@@ -1,0 +1,12 @@
+/**
+ * Converts the predicate into conjunctive normal form
+ * @return predicate in cnf
+ */
+@Override
+public CNF asCNF() {
+    CNF cnf = new CNF();
+    CNFElement cnfElement = new CNFElement();
+    cnfElement.addPredicate(this);
+    cnf.addPredicate(cnfElement);
+    return cnf;
+}

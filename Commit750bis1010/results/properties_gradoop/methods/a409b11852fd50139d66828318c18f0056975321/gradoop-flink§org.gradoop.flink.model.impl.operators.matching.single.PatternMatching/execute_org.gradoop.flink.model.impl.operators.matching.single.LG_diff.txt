@@ -1,0 +1,13 @@
+@Override
+public GC execute(LG graph) {
+    if (log.isDebugEnabled()) {
+        initDebugMappings(graph);
+    }
+    GC result;
+    if (queryHandler.isSingleVertexGraph()) {
+        result = executeForVertex(graph);
+    } else {
+        result = executeForPattern(graph);
+    }
+    return result;
+}

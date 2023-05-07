@@ -1,0 +1,9 @@
+/**
+ * True, if the wrapped value is of type {@code BigDecimal}.
+ *
+ * @return true, if {@code BigDecimal} value
+ * @see BigDecimal
+ */
+public boolean isBigDecimal() {
+    return rawBytes[0] == TYPE_BIG_DECIMAL;
+}

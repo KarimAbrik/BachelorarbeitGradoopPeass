@@ -1,0 +1,6 @@
+@Override
+public LG execute(GC collection) {
+    DataSet<G> graphHeads = collection.getGraphHeads();
+    DataSet<GradoopId> graphIDs = graphHeads.map(new Id<>());
+    return collection.getGraphFactory().fromDataSets(getVertices(collection.getVertices(), graphIDs), getEdges(collection.getEdges(), graphIDs));
+}

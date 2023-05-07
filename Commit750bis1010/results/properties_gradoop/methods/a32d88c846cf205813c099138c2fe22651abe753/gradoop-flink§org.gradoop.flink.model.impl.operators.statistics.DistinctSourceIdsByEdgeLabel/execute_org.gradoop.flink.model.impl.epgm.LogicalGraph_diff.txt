@@ -1,0 +1,4 @@
+@Override
+public DataSet<WithCount<String>> execute(LogicalGraph graph) {
+    return graph.getEdges().map(new ToSourceIdWithLabel<>()).groupBy(0, 1).first(1).<Tuple1<String>>project(1).map(new Tuple2FromTupleWithObjectAnd1L<>()).groupBy(0).sum(1).map(new Tuple2ToWithCount<>());
+}

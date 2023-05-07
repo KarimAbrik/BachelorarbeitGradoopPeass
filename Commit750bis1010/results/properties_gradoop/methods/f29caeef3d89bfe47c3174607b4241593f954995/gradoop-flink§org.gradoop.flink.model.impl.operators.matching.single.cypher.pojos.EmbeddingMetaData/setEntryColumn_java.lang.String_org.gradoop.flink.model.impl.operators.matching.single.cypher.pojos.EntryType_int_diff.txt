@@ -1,0 +1,10 @@
+/**
+ * Inserts or updates a column mapping entry
+ *
+ * @param variable referenced variable
+ * @param entryType entry type
+ * @param column corresponding embedding entry index
+ */
+public void setEntryColumn(String variable, EntryType entryType, int column) {
+    entryMapping.put(Pair.of(variable, entryType), column);
+}

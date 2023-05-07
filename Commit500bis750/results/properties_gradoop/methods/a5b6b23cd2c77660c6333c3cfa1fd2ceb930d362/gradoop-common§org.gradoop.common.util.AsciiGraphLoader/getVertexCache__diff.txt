@@ -1,0 +1,8 @@
+/**
+ * Returns all vertices that are bound to a variable in the GDL script.
+ *
+ * @return variable to vertex mapping
+ */
+public Map<String, V> getVertexCache() {
+    return new ImmutableMap.Builder<String, V>().putAll(vertexCache).build();
+}

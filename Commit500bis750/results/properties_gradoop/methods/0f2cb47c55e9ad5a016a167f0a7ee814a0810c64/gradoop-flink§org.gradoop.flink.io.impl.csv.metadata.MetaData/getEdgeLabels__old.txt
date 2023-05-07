@@ -1,0 +1,8 @@
+/**
+ * Returns the edge labels available in the meta data.
+ *
+ * @return edge labels
+ */
+public Set<String> getEdgeLabels() {
+    return labelType.keySet().stream().filter(l -> labelType.get(l).equals(CSVConstants.EDGE_TYPE)).collect(Collectors.toSet());
+}

@@ -1,0 +1,14 @@
+protected void checkElementMatches(Set<EPGMGraphElement> inElements, Set<EPGMGraphElement> outElements) {
+    for (EPGMGraphElement outElement : outElements) {
+        boolean match = false;
+        String elementClassName = outElement.getClass().getSimpleName();
+        for (EPGMGraphElement inVertex : inElements) {
+            if (outElement.getId().equals(inVertex.getId())) {
+                assertEquals("wrong number of graphs for " + elementClassName, inVertex.getGraphCount() + 1, outElement.getGraphCount());
+                match = true;
+                break;
+            }
+        }
+        assertTrue("expected " + elementClassName + " not found", match);
+    }
+}

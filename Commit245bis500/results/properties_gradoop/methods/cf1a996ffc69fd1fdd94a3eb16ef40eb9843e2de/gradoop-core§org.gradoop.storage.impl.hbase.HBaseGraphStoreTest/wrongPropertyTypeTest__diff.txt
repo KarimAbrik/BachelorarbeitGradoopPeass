@@ -1,0 +1,20 @@
+/**                                                                                                    /**                                                                                                 
+* Tries to add an unsupported property type {@link List} as property value.                            * Tries to add an unsupported property type {@link List} as property value.                         
+*/                                                                                                     */                                                                                                  
+@Test(expected = UnsupportedTypeException.class)                                                       @Test(expected = UnsupportedTypeException.class)                                                    
+public void wrongPropertyTypeTest() {                                                                  public void wrongPropertyTypeTest() {                                                               
+EPGMStore&lt;VertexPojo, EdgePojo, GraphHeadPojo&gt; graphStore = createEmptyEPGMStore();              EPGMStore&lt;VertexPojo, EdgePojo, GraphHeadPojo&gt; graphStore = createEmptyEPGMStore();           
+PersistentVertexFactory&lt;VertexPojo, EdgePojo, HBaseVertex&gt; persistentVertexFactory = new HBase   PersistentVertexFactory&lt;VertexPojo, EdgePojo, HBaseVertex&gt; persistentVertexFactory = new HBase
+EPGMVertexFactory&lt;VertexPojo&gt; vertexFactory = new VertexPojoFactory();                           EPGMVertexFactory&lt;VertexPojo&gt; vertexFactory = new VertexPojoFactory();                        
+// list is not supported by                                                                            // list is not supported by                                                                         
+final List&lt;String&gt; value = Lists.newArrayList();                                                 final List&lt;String&gt; value = Lists.newArrayList();                                              
+Long vertexID = 0L;                                                                                  | GradoopId vertexID = GradoopId.fromLong(0L);                                                        
+final String label = "A";                                                                              final String label = "A";                                                                           
+final Map&lt;String, Object&gt; properties = new HashMap&lt;&gt;();                                    final Map&lt;String, Object&gt; properties = new HashMap&lt;&gt;();                                 
+properties.put("k1", value);                                                                           properties.put("k1", value);                                                                        
+final Set&lt;EdgePojo&gt; outEdges = Sets.newHashSetWithExpectedSize(0);                               final Set&lt;EdgePojo&gt; outEdges = Sets.newHashSetWithExpectedSize(0);                            
+final Set&lt;EdgePojo&gt; inEdges = Sets.newHashSetWithExpectedSize(0);                                final Set&lt;EdgePojo&gt; inEdges = Sets.newHashSetWithExpectedSize(0);                             
+final Set&lt;Long&gt; graphs = Sets.newHashSetWithExpectedSize(0);                                   | final GradoopIds graphs = new GradoopIds();                                                         
+PersistentVertex&lt;EdgePojo&gt; v = persistentVertexFactory.createVertex(vertexFactory.createVertex   PersistentVertex&lt;EdgePojo&gt; v = persistentVertexFactory.createVertex(vertexFactory.createVertex
+graphStore.writeVertex(v);                                                                             graphStore.writeVertex(v);                                                                          
+}                                                                                                      }                                                                                                   

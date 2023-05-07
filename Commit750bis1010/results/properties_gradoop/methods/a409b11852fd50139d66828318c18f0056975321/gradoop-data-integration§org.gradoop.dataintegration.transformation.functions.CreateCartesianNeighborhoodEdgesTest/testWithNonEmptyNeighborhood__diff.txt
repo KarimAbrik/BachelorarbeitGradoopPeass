@@ -1,0 +1,24 @@
+/**
+ * Test the function using a non-empty neighborhood.
+ *
+ * @throws Exception when the execution in Flink fails.
+ */
+@Test
+public void testWithNonEmptyNeighborhood() throws Exception {
+    EPGMVertex someVertex = vertexFactory.createVertex();
+    final int count = 10;
+    List<GradoopId> ids = Stream.generate(GradoopId::get).limit(count).collect(Collectors.toList());
+    // Create some dummy neighborhood vertex pojos.
+    List<NeighborhoodVertex> vertexPojos = ids.stream().map(id -> new NeighborhoodVertex(id, "")).collect(Collectors.toList());
+    Tuple2<EPGMVertex, List<NeighborhoodVertex>> inputNonEmpty = new Tuple2<>(someVertex, vertexPojos);
+    List<EPGMEdge> result = getExecutionEnvironment().fromElements(inputNonEmpty).flatMap(toTest).collect();
+    // Connect each neighbor with another neighbor, except for itself.
+    assertEquals(count * (count - 1), result.size());
+    // The result should not contain loops
+    for (EPGMEdge edge : result) {
+        assertNotEquals(edge.getSourceId(), edge.getTargetId());
+    }
+    // or duplicate edges.
+    long disctinctCount = result.stream().map(e -> new Tuple2<>(e.getSourceId(), e.getTargetId())).distinct().count();
+    assertEquals((long) result.size(), disctinctCount);
+}

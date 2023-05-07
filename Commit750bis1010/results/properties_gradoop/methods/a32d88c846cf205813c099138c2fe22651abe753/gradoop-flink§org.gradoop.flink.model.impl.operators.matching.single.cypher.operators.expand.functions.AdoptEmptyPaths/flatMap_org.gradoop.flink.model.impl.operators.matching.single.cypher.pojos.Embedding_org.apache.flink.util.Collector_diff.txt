@@ -1,0 +1,9 @@
+@Override
+public void flatMap(Embedding value, Collector<Embedding> out) {
+    if (closingColumn >= 0 && !ArrayUtils.isEquals(value.getRawId(expandColumn), value.getRawId(closingColumn))) {
+        return;
+    }
+    value.add();
+    value.add(value.getId(expandColumn));
+    out.collect(value);
+}

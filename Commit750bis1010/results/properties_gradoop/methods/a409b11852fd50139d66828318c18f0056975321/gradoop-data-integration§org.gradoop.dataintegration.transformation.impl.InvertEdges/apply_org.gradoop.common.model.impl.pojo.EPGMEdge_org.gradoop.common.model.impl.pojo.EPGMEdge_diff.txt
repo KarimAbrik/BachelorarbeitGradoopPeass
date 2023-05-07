@@ -1,0 +1,11 @@
+@Override
+public EPGMEdge apply(EPGMEdge current, EPGMEdge transformed) {
+    if (current.getLabel().equals(forEdgeLabel)) {
+        GradoopId source = current.getSourceId();
+        GradoopId target = current.getTargetId();
+        current.setSourceId(target);
+        current.setTargetId(source);
+        current.setLabel(newLabel);
+    }
+    return current;
+}

@@ -1,0 +1,11 @@
+/**
+ * Creates a new base graph containing only vertices and edges that exist in that graph
+ * but not in the other graph. Vertex and edge equality is based on their identifiers.
+ * The graph head of this graph is retained.
+ *
+ * @param otherGraph base graph to exclude from that graph
+ * @return base that contains only vertices and edges that are not in the other graph
+ */
+default LG exclude(LG otherGraph) {
+    return callForGraph(new Exclusion<>(), otherGraph);
+}

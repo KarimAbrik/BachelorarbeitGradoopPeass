@@ -1,0 +1,9 @@
+@Override
+public void addKeyToElement(T element, Object key) {
+    if (!(key instanceof Tuple)) {
+        throw new IllegalArgumentException("Invalid type for key: " + key.getClass().getSimpleName());
+    }
+    for (int nr = 0; nr < componentFunctions.size(); nr++) {
+        componentFunctions.get(nr).addKeyToElement(element, ((Tuple) key).getField(nr));
+    }
+}

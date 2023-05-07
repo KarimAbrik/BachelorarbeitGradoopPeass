@@ -1,0 +1,5 @@
+@Override                                                                                              @Override                                                                                           
+public Edge map(String csvLine) throws Exception {                                                     public Edge map(String csvLine) throws Exception {                                                  
+String[] tokens = split(csvLine, 5);                                                                   String[] tokens = split(csvLine, 5);                                                                
+return edgeFactory.initEdge(GradoopId.fromString(tokens[0]), tokens[3], GradoopId.fromString(tokens[ | return edgeFactory.initEdge(GradoopId.fromString(tokens[0]), tokens[3], GradoopId.fromString(tokens[
+}                                                                                                      }                                                                                                   

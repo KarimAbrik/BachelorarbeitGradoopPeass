@@ -1,0 +1,4 @@
+protected void collectAndAssertEquals(DataSet<Boolean> result) {
+    List<Boolean> collectedResult = collectAndAssertSizeOne(result);
+    assertTrue("expected equality", collectedResult.get(0));
+}

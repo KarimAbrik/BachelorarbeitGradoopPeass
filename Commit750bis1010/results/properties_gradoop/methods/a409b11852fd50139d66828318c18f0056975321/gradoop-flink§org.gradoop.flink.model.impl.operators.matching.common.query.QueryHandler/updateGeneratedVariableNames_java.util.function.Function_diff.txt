@@ -1,0 +1,30 @@
+/**
+ * Update variable names of vertices and edges with a generated variable name.
+ * This will also update the vertex- and edge-caches of this handler.
+ *
+ * @param renameFunction The renaming function, mapping old to new variable names.
+ */
+public void updateGeneratedVariableNames(Function<String, String> renameFunction) {
+    Set<String> generatedEdgeVariables = gdlHandler.getEdgeCache(false, true).keySet();
+    Set<String> generatedVertexVariables = gdlHandler.getVertexCache(false, true).keySet();
+    Map<String, Vertex> newVertexCache = new HashMap<>();
+    Map<String, Edge> newEdgeCache = new HashMap<>();
+    // Update vertices.
+    for (Vertex vertex : getVertices()) {
+        final String variable = vertex.getVariable();
+        if (generatedVertexVariables.contains(variable)) {
+            vertex.setVariable(renameFunction.apply(variable));
+        }
+        newVertexCache.put(vertex.getVariable(), vertex);
+    }
+    // Update edges.
+    for (Edge edge : getEdges()) {
+        final String variable = edge.getVariable();
+        if (generatedEdgeVariables.contains(variable)) {
+            edge.setVariable(renameFunction.apply(variable));
+        }
+        newEdgeCache.put(edge.getVariable(), edge);
+    }
+    vertexCache = Collections.unmodifiableMap(newVertexCache);
+    edgeCache = Collections.unmodifiableMap(newEdgeCache);
+}

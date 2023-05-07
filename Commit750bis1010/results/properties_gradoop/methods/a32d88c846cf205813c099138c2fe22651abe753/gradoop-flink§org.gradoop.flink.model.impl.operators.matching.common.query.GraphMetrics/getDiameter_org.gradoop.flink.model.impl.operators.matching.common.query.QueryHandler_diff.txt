@@ -1,0 +1,9 @@
+/**
+ * Computes the diameter of the given connected graph using.
+ *
+ * @param graph query graph (connected)
+ * @return diameter
+ */
+public static int getDiameter(QueryHandler graph) {
+    return Collections.max(getEccentricity(graph).values());
+}

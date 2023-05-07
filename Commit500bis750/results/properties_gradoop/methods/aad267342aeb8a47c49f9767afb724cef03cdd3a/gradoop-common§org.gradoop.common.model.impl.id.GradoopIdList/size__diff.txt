@@ -1,0 +1,8 @@
+/**                                                                                                  |                                                                                                     
+* Returns the number of contained gradoop ids                                                        |                                                                                                     
+*                                                                                                    |                                                                                                     
+* @return number of elements in the list                                                             |                                                                                                     
+*/                                                                                                   |                                                                                                     
+public int size() {                                                                                  |                                                                                                     
+return bytes != null ? bytes.length / GradoopId.ID_SIZE : 0;                                         |                                                                                                     
+}                                                                                                    |                                                                                                     

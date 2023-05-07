@@ -1,0 +1,8 @@
+/**
+ * Unary function to apply the projection on the edges
+ *
+ * @return unary vertex to vertex function
+ */
+protected UnaryFunction<ED, ED> getEdgeFunc() {
+    return this.edgeFunc;
+}

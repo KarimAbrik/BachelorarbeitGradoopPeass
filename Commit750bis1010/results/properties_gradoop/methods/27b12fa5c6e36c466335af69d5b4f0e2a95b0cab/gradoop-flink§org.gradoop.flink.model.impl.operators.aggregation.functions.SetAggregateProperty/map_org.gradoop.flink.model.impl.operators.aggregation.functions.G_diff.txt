@@ -1,0 +1,5 @@
+@Override
+public G map(G graphHead) throws Exception {
+    aggregateValues.forEach(graphHead::setProperty);
+    return graphHead;
+}

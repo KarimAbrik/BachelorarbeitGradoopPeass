@@ -1,0 +1,7 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public VD readVertex(final Result res) throws IOException {
+    return vertexFactory.createVertex(readId(res), readLabel(res), readProperties(res), readGraphIds(res));
+}

@@ -1,0 +1,22 @@
+@SuppressWarnings("ArraysAsListWithZeroOrOneArgument")
+@Test
+public void testGetJoinProperties() throws Exception {
+    EmbeddingMetaData leftInputMetaData = new EmbeddingMetaData();
+    leftInputMetaData.setEntryColumn("v1", EntryType.VERTEX, 0);
+    leftInputMetaData.setEntryColumn("e1", EntryType.EDGE, 1);
+    leftInputMetaData.setEntryColumn("v2", EntryType.VERTEX, 2);
+    leftInputMetaData.setPropertyColumn("v1", "age", 0);
+    leftInputMetaData.setPropertyColumn("e1", "since", 1);
+    EmbeddingMetaData rightInputMetaData = new EmbeddingMetaData();
+    rightInputMetaData.setEntryColumn("v3", EntryType.VERTEX, 0);
+    rightInputMetaData.setEntryColumn("e2", EntryType.EDGE, 1);
+    rightInputMetaData.setEntryColumn("v4", EntryType.VERTEX, 2);
+    rightInputMetaData.setPropertyColumn("v3", "age", 0);
+    rightInputMetaData.setPropertyColumn("e2", "since", 1);
+    rightInputMetaData.setPropertyColumn("v4", "age", 2);
+    PlanNode leftChild = new MockPlanNode(null, leftInputMetaData);
+    PlanNode rightChild = new MockPlanNode(null, rightInputMetaData);
+    ValueJoinNode node = new ValueJoinNode(leftChild, rightChild, singletonList(Pair.of("v1", "age")), singletonList(Pair.of("v4", "age")), MatchStrategy.ISOMORPHISM, MatchStrategy.ISOMORPHISM);
+    assertThat(call(ValueJoinNode.class, node, "getJoinPropertiesLeft"), is(asList(0)));
+    assertThat(call(ValueJoinNode.class, node, "getJoinPropertiesRight"), is(asList(2)));
+}

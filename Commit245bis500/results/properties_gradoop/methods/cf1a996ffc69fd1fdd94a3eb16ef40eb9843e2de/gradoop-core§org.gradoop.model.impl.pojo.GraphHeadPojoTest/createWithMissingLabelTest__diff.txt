@@ -1,0 +1,7 @@
+@Test                                                                                                  @Test                                                                                               
+public void createWithMissingLabelTest() {                                                             public void createWithMissingLabelTest() {                                                          
+EPGMGraphHead g = new GraphHeadPojoFactory().createGraphHead(0L);                                    | GradoopIdGenerator idGen = new SequenceIdGenerator();                                               
+                                                                                                     | GradoopId graphID = idGen.createId();                                                               
+                                                                                                     | EPGMGraphHead g = new GraphHeadPojoFactory().createGraphHead(graphID);                              
+assertThat(g.getLabel(), is(GConstants.DEFAULT_GRAPH_LABEL));                                          assertThat(g.getLabel(), is(GConstants.DEFAULT_GRAPH_LABEL));                                       
+}                                                                                                      }                                                                                                   

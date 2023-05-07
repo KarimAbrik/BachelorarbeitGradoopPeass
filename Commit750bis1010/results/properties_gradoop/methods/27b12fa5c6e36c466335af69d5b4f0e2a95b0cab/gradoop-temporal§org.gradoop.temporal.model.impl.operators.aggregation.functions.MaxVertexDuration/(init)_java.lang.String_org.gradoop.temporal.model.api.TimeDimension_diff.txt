@@ -1,0 +1,9 @@
+/**
+ * Creates a new instance of this aggregate function.
+ *
+ * @param aggregatePropertyKey aggregate property key
+ * @param dimension the time dimension to consider
+ */
+public MaxVertexDuration(String aggregatePropertyKey, TimeDimension dimension) {
+    super(aggregatePropertyKey, dimension);
+}

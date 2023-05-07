@@ -1,0 +1,18 @@
+/**
+ * Get byte array representation of the provided object. The object is serialized according to the
+ * {@link PropertyValue} standard.
+ * If the given type is not supported, an {@code UnsupportedTypeException} will be thrown.
+ *
+ * @param value to be serialized.
+ * @return byte array representation of the provided object.
+ */
+public static byte[] getRawBytes(Object value) {
+    if (value != null) {
+        try {
+            return get(value.getClass()).getRawBytes(value);
+        } catch (IOException e) {
+            throw new RuntimeException("Error while serializing object.", e);
+        }
+    }
+    return new byte[] { Type.NULL.getTypeByte() };
+}

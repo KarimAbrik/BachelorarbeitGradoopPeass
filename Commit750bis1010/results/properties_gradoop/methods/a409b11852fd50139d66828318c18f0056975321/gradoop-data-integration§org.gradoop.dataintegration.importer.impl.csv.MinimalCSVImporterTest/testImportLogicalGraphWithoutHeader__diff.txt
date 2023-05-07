@@ -1,0 +1,18 @@
+/**
+ * Test if the import and creation of a logical graph works correct. In this case
+ * the file do not contain a header row. For this the user set a list with
+ * the column names.
+ *
+ * @throws Exception on failure
+ */
+@Test
+public void testImportLogicalGraphWithoutHeader() throws Exception {
+    String csvPath = MinimalCSVImporterTest.class.getResource("/csv/inputWithoutHeader.csv").getPath();
+    String gdlPath = MinimalCSVImporterTest.class.getResource("/csv/expected.gdl").getPath();
+    FlinkAsciiGraphLoader loader = getLoaderFromFile(gdlPath);
+    List<String> columnNames = Arrays.asList("name", "value1", "value2", "value3");
+    DataSource importVertexImporter = new MinimalCSVImporter(csvPath, DELIMITER, getConfig(), columnNames, false);
+    LogicalGraph resultGraph = importVertexImporter.getLogicalGraph();
+    LogicalGraph expectedGraph = loader.getLogicalGraphByVariable("expected");
+    collectAndAssertTrue(expectedGraph.equalsByElementData(resultGraph));
+}

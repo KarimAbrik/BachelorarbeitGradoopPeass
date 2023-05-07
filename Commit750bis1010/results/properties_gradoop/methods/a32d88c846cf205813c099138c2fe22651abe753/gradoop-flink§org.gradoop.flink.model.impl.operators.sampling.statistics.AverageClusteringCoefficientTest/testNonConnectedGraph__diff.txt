@@ -1,0 +1,12 @@
+/**
+ * Test for a graph with no connections
+ */
+@Test
+public void testNonConnectedGraph() throws Exception {
+    LogicalGraph graph = loader.getLogicalGraphByVariable("nonConnected");
+    LogicalGraph result = graph.callForGraph(new AverageClusteringCoefficient());
+    validateGraphProperties(result);
+    EPGMGraphHead head = result.getGraphHead().collect().get(0);
+    double average = head.getPropertyValue(AverageClusteringCoefficient.PROPERTY_KEY_AVERAGE).getDouble();
+    assertEquals("Wrong average value for not connected graph, should be 0.0", 0.0, average, 0.0);
+}

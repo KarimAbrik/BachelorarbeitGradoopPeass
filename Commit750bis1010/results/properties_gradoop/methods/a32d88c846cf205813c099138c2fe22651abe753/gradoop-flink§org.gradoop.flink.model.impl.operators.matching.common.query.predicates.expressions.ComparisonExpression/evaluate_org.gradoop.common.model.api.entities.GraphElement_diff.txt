@@ -1,0 +1,11 @@
+/**
+ * Evaluates the comparison for the given graph element
+ *
+ * @param element EPGMGraphElement under which the comparison will be evaluated
+ * @return evaluation result
+ */
+public boolean evaluate(GraphElement element) {
+    PropertyValue lhsValue = getLhs().evaluate(element);
+    PropertyValue rhsValue = getRhs().evaluate(element);
+    return compare(lhsValue, rhsValue);
+}

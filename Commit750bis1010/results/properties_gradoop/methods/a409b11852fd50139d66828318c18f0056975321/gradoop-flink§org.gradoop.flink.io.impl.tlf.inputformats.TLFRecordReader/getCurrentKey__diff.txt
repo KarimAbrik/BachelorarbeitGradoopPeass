@@ -1,0 +1,11 @@
+/**
+ * Returns the current key.
+ *
+ * @return the current key.
+ * @throws IOException on failure
+ * @throws InterruptedException if interrupted
+ */
+@Override
+public LongWritable getCurrentKey() throws IOException, InterruptedException {
+    return currentKey;
+}

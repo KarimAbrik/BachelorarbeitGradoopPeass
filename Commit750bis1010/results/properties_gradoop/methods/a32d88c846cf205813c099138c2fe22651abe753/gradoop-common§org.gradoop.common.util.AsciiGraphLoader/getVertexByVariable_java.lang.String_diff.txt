@@ -1,0 +1,9 @@
+/**
+ * Returns vertex by its given variable.
+ *
+ * @param variable variable used in GDL script
+ * @return vertex or {@code null} if not present
+ */
+public V getVertexByVariable(String variable) {
+    return vertexCache.get(variable);
+}

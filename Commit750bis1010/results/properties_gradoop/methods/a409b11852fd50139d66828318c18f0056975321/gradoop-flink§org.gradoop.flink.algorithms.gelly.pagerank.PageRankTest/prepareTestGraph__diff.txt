@@ -1,0 +1,9 @@
+/**
+ * Initialize the graph for testing
+ */
+@Before
+public void prepareTestGraph() {
+    String graphString = "graph[" + "(v0 {id:0, value:\"A\"})" + "(v1 {id:1, value:\"B\"})" + "(v2 {id:2, value:\"C\"})" + "(v3 {id:3, value:\"D\"})" + "(v0)-[e0]->(v1)" + "(v1)-[e1]->(v0)" + "(v0)-[e2]->(v2)" + "(v2)-[e3]->(v0)" + "(v1)-[e4]->(v2)" + "(v2)-[e5]->(v1)" + "]";
+    FlinkAsciiGraphLoader loader = getLoaderFromString(graphString);
+    testGraph = loader.getLogicalGraphByVariable("graph");
+}

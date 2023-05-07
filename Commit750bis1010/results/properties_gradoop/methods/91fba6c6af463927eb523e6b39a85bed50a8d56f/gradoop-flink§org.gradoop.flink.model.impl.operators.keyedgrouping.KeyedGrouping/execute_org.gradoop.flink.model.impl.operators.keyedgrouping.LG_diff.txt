@@ -1,0 +1,20 @@
+@Override
+public LG execute(LG graph) {
+    /* First we create tuple representations of each vertex.
+       Those tuples will then be grouped by the respective key fields (the fields containing the values
+       extracted by the key functions) and reduced to assign a super vertex and to calculate aggregates. */
+    DataSet<Tuple> verticesWithSuperVertex = graph.getVertices().map(new BuildTuplesFromVertices<>(vertexGroupingKeys, vertexAggregateFunctions)).groupBy(getInternalVertexGroupingKeys()).reduceGroup(new ReduceVertexTuples<>(GroupingConstants.VERTEX_TUPLE_RESERVED + vertexGroupingKeys.size(), vertexAggregateFunctions));
+    /* Extract a mapping from vertex-ID to super-vertex-ID from the result of the vertex-reduce step. */
+    DataSet<Tuple2<GradoopId, GradoopId>> idToSuperId = verticesWithSuperVertex.filter(new Not<>(new FilterSuperVertices<>())).project(GroupingConstants.VERTEX_TUPLE_ID, GroupingConstants.VERTEX_TUPLE_SUPERID);
+    /* Create tuple representations of each edge and update the source- and target-ids of those tuples with
+       with the mapping extracted in the previous step. Edges will then point from and to super-vertices. */
+    DataSet<Tuple> edgesWithUpdatedIds = graph.getEdges().map(new BuildTuplesFromEdges<>(edgeGroupingKeys, edgeAggregateFunctions)).join(idToSuperId).where(GroupingConstants.EDGE_TUPLE_SOURCEID).equalTo(GroupingConstants.VERTEX_TUPLE_ID).with(new UpdateIdField<>(GroupingConstants.EDGE_TUPLE_SOURCEID)).join(idToSuperId).where(GroupingConstants.EDGE_TUPLE_TARGETID).equalTo(GroupingConstants.VERTEX_TUPLE_ID).with(new UpdateIdField<>(GroupingConstants.EDGE_TUPLE_TARGETID));
+    /* Group the edge-tuples by the key fields and vertex IDs and reduce them to single elements. */
+    DataSet<Tuple> superEdgeTuples = edgesWithUpdatedIds.groupBy(getInternalEdgeGroupingKeys()).reduceGroup(new ReduceEdgeTuples<>(GroupingConstants.EDGE_TUPLE_RESERVED + edgeGroupingKeys.size(), edgeAggregateFunctions)).setCombinable(useGroupCombine);
+    /* Rebuild super-vertices from vertex-tuples. Those new vertices contain the data extracted by the key
+       functions and aggregated by the aggregate functions. */
+    DataSet<V> superVertices = verticesWithSuperVertex.filter(new FilterSuperVertices<>()).map(new BuildSuperVertexFromTuple<>(vertexGroupingKeys, vertexAggregateFunctions, graph.getFactory().getVertexFactory()));
+    /* Rebuild super-edges from edge-tuples. */
+    DataSet<E> superEdges = superEdgeTuples.map(new BuildSuperEdgeFromTuple<>(edgeGroupingKeys, edgeAggregateFunctions, graph.getFactory().getEdgeFactory()));
+    return graph.getFactory().fromDataSets(superVertices, superEdges);
+}

@@ -1,0 +1,21 @@
+@Test
+public void driverTest() throws Exception {
+    Configuration conf = utility.getConfiguration();
+    String graphFile = "btg2.graph";
+    String[] args = new String[] { "-" + ConfigurationUtils.OPTION_WORKERS, "1", "-" + ConfigurationUtils.OPTION_REDUCERS, "1", "-" + ConfigurationUtils.OPTION_HBASE_SCAN_CACHE, "500", "-" + ConfigurationUtils.OPTION_GRAPH_INPUT_PATH, graphFile, "-" + ConfigurationUtils.OPTION_GRAPH_OUTPUT_PATH, "/output/import/biiig", "-" + ConfigurationUtils.OPTION_DROP_TABLES };
+    copyFromLocal(graphFile);
+    BTGAnalysisDriver btgAnalysisDriver = new BTGAnalysisDriver();
+    btgAnalysisDriver.setConf(conf);
+    // run the pipeline
+    int exitCode = btgAnalysisDriver.run(args);
+    // tests
+    assertThat(exitCode, is(0));
+    GraphStore graphStore = openGraphStore();
+    // BTG results
+    validateBTGComputation(graphStore);
+    // Select and Aggregate results
+    validateSelectAndAggregate(graphStore);
+    // sort results
+    validateSort(conf);
+    graphStore.close();
+}

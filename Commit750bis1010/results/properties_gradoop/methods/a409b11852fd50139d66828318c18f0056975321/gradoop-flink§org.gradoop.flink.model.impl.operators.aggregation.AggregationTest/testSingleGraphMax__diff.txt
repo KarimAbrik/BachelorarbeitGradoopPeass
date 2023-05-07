@@ -1,0 +1,20 @@
+/**
+ * Test MaxProperty, VertexMaxProperty and EdgeMaxProperty with a single graph.
+ *
+ * @throws Exception if the execution fails.
+ */
+@Test
+public void testSingleGraphMax() throws Exception {
+    LogicalGraph graph = getLoaderFromString("org:Ga[" + "(:Va{p : 0.5f})-[:ea{p : 2}]->(:Vb{p : 3.1f})" + "(:Vc{p : 0.33f})-[:eb]->(:Vd{p : 0.0f})" + "]").getLogicalGraphByVariable("org");
+    MaxVertexProperty maxVertexProperty = new MaxVertexProperty(PROPERTY, VERTEX_AGGREGATE_PROPERTY);
+    MaxEdgeProperty maxEdgeProperty = new MaxEdgeProperty(PROPERTY, EDGE_AGGREGATE_PROPERTY);
+    MaxProperty maxProperty = new MaxProperty(PROPERTY, ELEMENT_AGGREGATE_PROPERTY);
+    graph = graph.aggregate(maxVertexProperty).aggregate(maxEdgeProperty).aggregate(maxProperty);
+    GraphHead graphHead = graph.getGraphHead().collect().get(0);
+    assertTrue("vertex maximum not set", graphHead.hasProperty(maxEdgeProperty.getAggregatePropertyKey()));
+    assertEquals(3.1f, graphHead.getPropertyValue(maxVertexProperty.getAggregatePropertyKey()).getFloat(), 0.00001f);
+    assertTrue("edge maximum not set", graphHead.hasProperty(maxVertexProperty.getAggregatePropertyKey()));
+    assertEquals(2, graphHead.getPropertyValue(maxEdgeProperty.getAggregatePropertyKey()).getInt());
+    assertTrue("element maximum not set", graphHead.hasProperty(maxProperty.getAggregatePropertyKey()));
+    assertEquals(3.1f, graphHead.getPropertyValue(maxProperty.getAggregatePropertyKey()).getFloat(), 0.00001f);
+}

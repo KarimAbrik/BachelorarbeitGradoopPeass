@@ -1,0 +1,11 @@
+@Override
+public boolean equals(Object o) {
+    if (this == o) {
+        return true;
+    }
+    if (!(o instanceof GradoopId)) {
+        return false;
+    }
+    GradoopId gradoopId = (GradoopId) o;
+    return Objects.equals(identifier, gradoopId.identifier);
+}

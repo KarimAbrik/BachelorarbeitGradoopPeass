@@ -1,0 +1,12 @@
+/**                                                                                                    /**                                                                                                 
+* {@inheritDoc}                                                                                        * {@inheritDoc}                                                                                     
+*/                                                                                                     */                                                                                                  
+@Override                                                                                              @Override                                                                                           
+public Tuple2&lt;LongWritable, Mutation&gt; map(PED persistentEdgeData) throws Exception {           | public Tuple2&lt;GradoopId, Mutation&gt; map(PED persistentEdgeData) throws Exception {             
+LongWritable key = new LongWritable(persistentEdgeData.getId());                                     | GradoopId key = persistentEdgeData.getId();                                                         
+Put put = new Put(edgeHandler.getRowKey(persistentEdgeData.getId()));                                  Put put = new Put(edgeHandler.getRowKey(persistentEdgeData.getId()));                               
+put = edgeHandler.writeEdge(put, persistentEdgeData);                                                  put = edgeHandler.writeEdge(put, persistentEdgeData);                                               
+reuseTuple.f0 = key;                                                                                   reuseTuple.f0 = key;                                                                                
+reuseTuple.f1 = put;                                                                                   reuseTuple.f1 = put;                                                                                
+return reuseTuple;                                                                                     return reuseTuple;                                                                                  
+}                                                                                                      }                                                                                                   

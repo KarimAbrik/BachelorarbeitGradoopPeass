@@ -1,0 +1,12 @@
+/**
+ * Adds a vertex label group which defines the grouping keys for a specific label.
+ * Note that a label may be used multiple times.
+ *
+ * @param label vertex label
+ * @param superVertexLabel label of the group and therefore of the new super vertex
+ * @param groupingKeys keys used for grouping
+ * @return this builder
+ */
+public GroupingBuilder addVertexLabelGroup(String label, String superVertexLabel, List<String> groupingKeys) {
+    return addVertexLabelGroup(label, superVertexLabel, groupingKeys, new ArrayList<>());
+}

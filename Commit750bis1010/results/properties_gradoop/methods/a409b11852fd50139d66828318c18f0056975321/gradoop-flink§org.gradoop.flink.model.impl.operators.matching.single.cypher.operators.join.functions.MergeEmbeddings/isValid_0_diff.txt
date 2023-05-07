@@ -1,0 +1,24 @@
+/**
+ * Checks if the merged embedding would hold under morphism setting
+ * @param left left embedding
+ * @param right right embedding
+ * @return true if the morphism condition holds
+ */
+protected boolean isValid(Embedding left, Embedding right) {
+    boolean collect = false;
+    // Vertex-Homomorphism + Edge-Homomorphism
+    if (!checkDistinctVertices && !checkDistinctEdges) {
+        collect = true;
+        // Vertex-Homomorphism + Edge-Isomorphism
+    } else if (!checkDistinctVertices) {
+        if (isDistinct(distinctEdgeColumnsLeft, distinctEdgeColumnsRight, left, right)) {
+            collect = true;
+        }
+        // Vertex-Isomorphism + Edge-Isomorphism
+    } else {
+        if (isDistinct(distinctVertexColumnsLeft, distinctVertexColumnsRight, left, right) && isDistinct(distinctEdgeColumnsLeft, distinctEdgeColumnsRight, left, right)) {
+            collect = true;
+        }
+    }
+    return collect;
+}

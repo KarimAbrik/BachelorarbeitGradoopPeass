@@ -1,0 +1,11 @@
+@Override
+public void addKeyToElement(T element, Object key) {
+    if (!(key instanceof Tuple)) {
+        throw new IllegalArgumentException("Invalid type for key: " + key.getClass().getSimpleName());
+    }
+    Integer index = ((Tuple) key).getField(0);
+    keyFunctions.get(index).addKeyToElement(element, ((Tuple) key).getField(1 + index));
+    if (index != 0) {
+        element.setLabel(targetLabels[index]);
+    }
+}

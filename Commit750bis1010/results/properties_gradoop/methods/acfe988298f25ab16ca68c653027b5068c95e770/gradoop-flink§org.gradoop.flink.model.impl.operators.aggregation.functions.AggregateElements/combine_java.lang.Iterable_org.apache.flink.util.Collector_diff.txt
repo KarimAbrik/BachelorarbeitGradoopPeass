@@ -1,0 +1,10 @@
+@Override
+public void combine(Iterable<T> elements, Collector<Map<String, PropertyValue>> out) {
+    Map<String, PropertyValue> aggregate = new HashMap<>();
+    for (T element : elements) {
+        aggregate = AggregateUtil.increment(aggregate, element, aggregateFunctions);
+    }
+    if (!aggregate.isEmpty()) {
+        out.collect(aggregate);
+    }
+}

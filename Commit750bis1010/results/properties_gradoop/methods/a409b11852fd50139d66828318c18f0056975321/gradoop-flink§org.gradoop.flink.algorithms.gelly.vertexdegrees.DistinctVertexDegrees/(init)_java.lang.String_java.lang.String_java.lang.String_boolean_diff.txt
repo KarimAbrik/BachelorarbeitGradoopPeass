@@ -1,0 +1,16 @@
+/**
+ * Constructor for vertex degree with fixed set of whether to output vertices with an in-degree of zero.
+ *
+ * @param propertyKey Property key to store the sum of in- and out-degrees in.
+ * @param propertyKeyIn Property key to store the in-degree in.
+ * @param propertyKeyOut Property key to store the out-degree in.
+ * @param includeZeroDegreeVertices whether to output vertices with an
+ *                                  in-degree of zero
+ */
+public DistinctVertexDegrees(String propertyKey, String propertyKeyIn, String propertyKeyOut, boolean includeZeroDegreeVertices) {
+    super(new VertexToGellyVertexWithNullValue(), new EdgeToGellyEdgeWithNullValue());
+    this.propertyKey = propertyKey;
+    this.propertyKeyIn = propertyKeyIn;
+    this.propertyKeyOut = propertyKeyOut;
+    this.includeZeroDegreeVertices = includeZeroDegreeVertices;
+}

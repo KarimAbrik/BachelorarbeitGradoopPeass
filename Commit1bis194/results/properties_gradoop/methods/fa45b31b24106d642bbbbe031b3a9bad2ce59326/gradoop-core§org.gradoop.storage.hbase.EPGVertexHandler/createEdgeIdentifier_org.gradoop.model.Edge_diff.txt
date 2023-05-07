@@ -1,0 +1,16 @@
+/**
+ * Serializes an edge to an edge identifier in the following format:
+ * <p/>
+ * <edge-identifier> ::= <otherID><index><label>
+ *
+ * @param edge edge to create identifier for
+ * @return string representation of the edge identifier
+ */
+private byte[] createEdgeIdentifier(final Edge edge) {
+    byte[] labelBytes = Bytes.toBytes(edge.getLabel());
+    byte[] edgeKey = new byte[2 * Bytes.SIZEOF_LONG + labelBytes.length];
+    Bytes.putLong(edgeKey, 0, edge.getOtherID());
+    Bytes.putLong(edgeKey, Bytes.SIZEOF_LONG, edge.getIndex());
+    Bytes.putBytes(edgeKey, Bytes.SIZEOF_LONG * 2, labelBytes, 0, labelBytes.length);
+    return edgeKey;
+}

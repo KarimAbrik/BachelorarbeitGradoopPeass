@@ -1,0 +1,20 @@
+/**
+ * Creates a new data source. Paths can be local (file://) or HDFS (hdfs://).
+ *
+ * @param tlfPath tlf data file
+ * @param tlfVertexDictionaryPath tlf vertex dictionary file
+ * @param tlfEdgeDictionaryPath tlf edge dictionary file
+ * @param config Gradoop Flink configuration
+ */
+public TLFDataSource(String tlfPath, String tlfVertexDictionaryPath, String tlfEdgeDictionaryPath, GradoopFlinkConfig config) {
+    super(tlfPath, tlfVertexDictionaryPath, tlfEdgeDictionaryPath, config);
+    ExecutionEnvironment env = config.getExecutionEnvironment();
+    if (hasVertexDictionary()) {
+        DataSet<Map<Integer, String>> dictionary = env.createInput(HadoopInputs.readHadoopFile(new TextInputFormat(), LongWritable.class, Text.class, getTLFVertexDictionaryPath())).filter(t -> !t.f1.toString().isEmpty()).map(new DictionaryEntry()).reduceGroup(new Dictionary());
+        setVertexDictionary(dictionary);
+    }
+    if (hasEdgeDictionary()) {
+        DataSet<Map<Integer, String>> dictionary = env.createInput(HadoopInputs.readHadoopFile(new TextInputFormat(), LongWritable.class, Text.class, getTLFEdgeDictionaryPath())).filter(t -> !t.f1.toString().isEmpty()).map(new DictionaryEntry()).reduceGroup(new Dictionary());
+        setEdgeDictionary(dictionary);
+    }
+}

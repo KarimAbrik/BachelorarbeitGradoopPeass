@@ -1,0 +1,23 @@
+@SuppressWarnings("ArraysAsListWithZeroOrOneArgument")
+@Test
+public void testGetDistinctColumnsHomomorphism() throws Exception {
+    EmbeddingMetaData leftInputMetaData = new EmbeddingMetaData();
+    leftInputMetaData.setEntryColumn("v1", EntryType.VERTEX, 0);
+    leftInputMetaData.setEntryColumn("e1", EntryType.EDGE, 1);
+    leftInputMetaData.setEntryColumn("v2", EntryType.VERTEX, 2);
+    leftInputMetaData.setEntryColumn("e2", EntryType.EDGE, 3);
+    leftInputMetaData.setEntryColumn("v3", EntryType.VERTEX, 4);
+    EmbeddingMetaData rightInputMetaData = new EmbeddingMetaData();
+    rightInputMetaData.setEntryColumn("v4", EntryType.VERTEX, 0);
+    rightInputMetaData.setEntryColumn("e3", EntryType.EDGE, 1);
+    rightInputMetaData.setEntryColumn("v5", EntryType.VERTEX, 2);
+    rightInputMetaData.setEntryColumn("e4", EntryType.EDGE, 3);
+    rightInputMetaData.setEntryColumn("v6", EntryType.VERTEX, 4);
+    PlanNode leftChild = new MockPlanNode(null, leftInputMetaData);
+    PlanNode rightChild = new MockPlanNode(null, rightInputMetaData);
+    ValueJoinNode node = new ValueJoinNode(leftChild, rightChild, Lists.newArrayList(), Lists.newArrayList(), MatchStrategy.HOMOMORPHISM, MatchStrategy.HOMOMORPHISM);
+    assertThat(call(ValueJoinNode.class, node, "getDistinctVertexColumnsLeft"), is(asList()));
+    assertThat(call(ValueJoinNode.class, node, "getDistinctVertexColumnsRight"), is(asList()));
+    assertThat(call(ValueJoinNode.class, node, "getDistinctEdgeColumnsLeft"), is(asList()));
+    assertThat(call(ValueJoinNode.class, node, "getDistinctEdgeColumnsRight"), is(asList()));
+}

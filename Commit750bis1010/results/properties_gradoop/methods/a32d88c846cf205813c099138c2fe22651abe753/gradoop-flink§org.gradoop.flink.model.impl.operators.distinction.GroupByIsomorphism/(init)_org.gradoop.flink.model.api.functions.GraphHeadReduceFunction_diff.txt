@@ -1,0 +1,8 @@
+/**
+ * Constructor.
+ *
+ * @param function reduce function to merge multiple heads of isomorphic graphs
+ */
+public GroupByIsomorphism(GraphHeadReduceFunction<G> function) {
+    this.function = function;
+}

@@ -1,0 +1,13 @@
+/**
+ * Creates an instance of VCIComputeFunction.
+ *
+ * @param jumpProbability Probability for jumping to random vertex instead of walking to random
+ *                        neighbor.
+ * @param verticesToVisit Number of vertices to visit via walk or jump.
+ */
+public VCIComputeFunction(double jumpProbability, long verticesToVisit) {
+    this.jumpProbability = jumpProbability;
+    this.verticesToVisit = verticesToVisit;
+    this.visitedVerticesAggregator = new LongSumAggregator();
+    this.currentVisitedCount = 0L;
+}

@@ -1,0 +1,8 @@
+@Override
+public Embedding map(Embedding embedding) {
+    for (int i = 0; i < count; i++) {
+        GradoopId id = GradoopId.get();
+        embedding.add(id);
+    }
+    return embedding;
+}

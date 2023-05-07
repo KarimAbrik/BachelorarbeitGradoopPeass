@@ -1,0 +1,21 @@
+/**
+ * Creates a parsing function for the given property type.
+ *
+ * @param propertyType string specifying the property type
+ * @return parsing function for the specific type
+ */
+static Function<String, Object> getPropertyValueParser(String propertyType) {
+    String[] typeTokens = StringEscaper.split(propertyType.toLowerCase(), PropertyMetaData.PROPERTY_TOKEN_DELIMITER);
+    String mainType = typeTokens[0];
+    if (mainType.equals(Type.LIST.toString())) {
+        return getListValueParser(typeTokens);
+    } else if (mainType.equals(Type.SET.toString())) {
+        return getSetValueParser(typeTokens);
+    } else if (mainType.equals(Type.MAP.toString())) {
+        return getMapValueParser(typeTokens);
+    } else if (SIMPLE_TYPE_PARSER_MAP.containsKey(mainType)) {
+        return SIMPLE_TYPE_PARSER_MAP.get(mainType);
+    } else {
+        throw new TypeNotPresentException(mainType, null);
+    }
+}

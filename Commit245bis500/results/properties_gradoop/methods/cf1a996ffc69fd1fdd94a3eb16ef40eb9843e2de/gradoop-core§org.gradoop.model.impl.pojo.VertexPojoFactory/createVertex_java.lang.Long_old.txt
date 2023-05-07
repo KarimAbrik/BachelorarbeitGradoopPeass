@@ -1,0 +1,7 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public VertexPojo createVertex(final Long vertexID) {
+    return createVertex(vertexID, GConstants.DEFAULT_VERTEX_LABEL, null, null);
+}

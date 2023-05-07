@@ -1,0 +1,8 @@
+/**
+ * Get the valid time tuple (valid-from, valid-to). Needed because of Flink's POJO rules.
+ *
+ * @return a {@link Tuple2} representing the valid time interval
+ */
+public Tuple2<Long, Long> getValidTime() {
+    return validTime;
+}

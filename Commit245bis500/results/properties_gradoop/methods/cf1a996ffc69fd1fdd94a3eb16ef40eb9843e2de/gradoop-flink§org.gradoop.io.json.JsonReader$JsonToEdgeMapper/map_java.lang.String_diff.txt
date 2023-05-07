@@ -1,0 +1,18 @@
+/**                                                                                                    /**                                                                                                 
+* Creates an edge from JSON string representation.                                                     * Creates an edge from JSON string representation.                                                  
+*                                                                                                      *                                                                                                   
+* @param s json string                                                                                 * @param s json string                                                                              
+* @return Gelly edge storing gradoop edge data                                                         * @return Gelly edge storing gradoop edge data                                                      
+* @throws Exception                                                                                    * @throws Exception                                                                                 
+*/                                                                                                     */                                                                                                  
+@Override                                                                                              @Override                                                                                           
+public ED map(String s) throws Exception {                                                             public ED map(String s) throws Exception {                                                          
+JSONObject jsonEdge = new JSONObject(s);                                                               JSONObject jsonEdge = new JSONObject(s);                                                            
+Long edgeID = getID(jsonEdge);                                                                       | GradoopId edgeID = getID(jsonEdge);                                                                 
+String edgeLabel = getLabel(jsonEdge);                                                                 String edgeLabel = getLabel(jsonEdge);                                                              
+Long sourceID = getSourceVertexID(jsonEdge);                                                         | GradoopId sourceID = getSourceVertexID(jsonEdge);                                                   
+Long targetID = getTargetVertexID(jsonEdge);                                                         | GradoopId targetID = getTargetVertexID(jsonEdge);                                                   
+Map&lt;String, Object&gt; properties = getProperties(jsonEdge);                                        Map&lt;String, Object&gt; properties = getProperties(jsonEdge);                                     
+Set&lt;Long&gt; graphs = getGraphs(jsonEdge);                                                        | GradoopIds graphs = getGraphs(jsonEdge);                                                            
+return edgeFactory.createEdge(edgeID, edgeLabel, sourceID, targetID, properties, graphs);              return edgeFactory.createEdge(edgeID, edgeLabel, sourceID, targetID, properties, graphs);           
+}                                                                                                      }                                                                                                   

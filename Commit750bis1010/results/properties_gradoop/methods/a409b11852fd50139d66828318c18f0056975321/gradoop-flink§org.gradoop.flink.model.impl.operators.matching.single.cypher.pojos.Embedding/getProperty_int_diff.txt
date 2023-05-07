@@ -1,0 +1,11 @@
+/**
+ * Returns the property stored at the specified column
+ * @param column the properties index in the property list
+ * @return the property stored at the specified index
+ */
+public PropertyValue getProperty(int column) {
+    int offset = getPropertyOffset(column);
+    int entryLength = Ints.fromByteArray(ArrayUtils.subarray(propertyData, offset, offset + Integer.BYTES));
+    offset += Integer.BYTES;
+    return PropertyValue.fromRawBytes(ArrayUtils.subarray(propertyData, offset, offset + entryLength));
+}

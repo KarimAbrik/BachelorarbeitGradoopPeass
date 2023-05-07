@@ -1,0 +1,20 @@
+/**
+ * Constructor.
+ *
+ * @param graphHeadFactory      graph head factory
+ * @param vertexFactory         vertex factory
+ * @param edgeFactory           edge factory
+ * @param embeddingMetaData     meta data for the embedding
+ * @param sourceTargetVariables source and target vertex variables by edge variable
+ * @param labelMapping          mapping between newElementVariables and its labels
+ */
+public ElementsFromEmbedding(GraphHeadFactory<G> graphHeadFactory, VertexFactory<V> vertexFactory, EdgeFactory<E> edgeFactory, EmbeddingMetaData embeddingMetaData, Map<String, Pair<String, String>> sourceTargetVariables, Map<String, String> labelMapping) {
+    this.graphHeadFactory = graphHeadFactory;
+    this.vertexFactory = vertexFactory;
+    this.edgeFactory = edgeFactory;
+    this.metaData = embeddingMetaData;
+    this.sourceTargetVariables = sourceTargetVariables;
+    this.labelMapping = labelMapping;
+    this.variableMapping = new HashMap<>(embeddingMetaData.getEntryCount());
+    this.processedIds = new HashSet<>(embeddingMetaData.getEntryCount());
+}

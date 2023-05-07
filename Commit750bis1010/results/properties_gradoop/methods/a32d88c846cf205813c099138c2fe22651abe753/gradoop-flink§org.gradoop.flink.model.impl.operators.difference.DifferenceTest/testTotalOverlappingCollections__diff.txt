@@ -1,0 +1,10 @@
+@Test
+public void testTotalOverlappingCollections() throws Exception {
+    FlinkAsciiGraphLoader loader = getSocialNetworkLoader();
+    GraphCollection col01 = loader.getGraphCollectionByVariables("g0", "g1");
+    GraphCollection expectation = col01.getFactory().createEmptyCollection();
+    GraphCollection result = col01.difference(col01);
+    checkAssertions(expectation, result, "total");
+    result = col01.differenceWithSmallResult(col01);
+    checkAssertions(expectation, result, "small total");
+}

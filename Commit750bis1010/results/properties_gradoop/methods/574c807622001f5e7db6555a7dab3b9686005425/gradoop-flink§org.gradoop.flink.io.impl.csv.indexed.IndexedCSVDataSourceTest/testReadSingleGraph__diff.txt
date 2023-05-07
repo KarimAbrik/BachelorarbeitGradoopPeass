@@ -1,0 +1,15 @@
+/**                                                                                                    /**                                                                                                 
+* Test reading a single logical indexed csv graph.                                                     * Test reading a single logical indexed csv graph.                                                  
+*                                                                                                      *                                                                                                   
+* @throws Exception on failure                                                                         * @throws Exception on failure                                                                      
+*/                                                                                                     */                                                                                                  
+@Test                                                                                                  @Test                                                                                               
+public void testReadSingleGraph() throws Exception {                                                   public void testReadSingleGraph() throws Exception {                                                
+String csvPath = getFilePath("/data/csv/input_indexed");                                               String csvPath = getFilePath("/data/csv/input_indexed");                                            
+String gdlPath = getFilePath("/data/csv/expected/expected_graph_collection.gdl");                    | String gdlPath = getFilePath("/data/csv/expected/expected.gdl");                                    
+DataSource dataSource = new IndexedCSVDataSource(csvPath, getConfig());                                DataSource dataSource = new IndexedCSVDataSource(csvPath, getConfig());                             
+LogicalGraph input = dataSource.getLogicalGraph();                                                     LogicalGraph input = dataSource.getLogicalGraph();                                                  
+GraphCollection graphCollection = getLoaderFromFile(gdlPath).getGraphCollectionByVariables("expected | LogicalGraph expected = getLoaderFromFile(gdlPath).getLogicalGraphByVariable("expected");           
+LogicalGraph expected = graphCollection.reduce(new ReduceCombination&lt;&gt;());                     | collectAndAssertTrue(input.equalsByData(expected));                                                 
+collectAndAssertTrue(input.equalsByElementData(expected));                                           |                                                                                                     
+}                                                                                                      }                                                                                                   

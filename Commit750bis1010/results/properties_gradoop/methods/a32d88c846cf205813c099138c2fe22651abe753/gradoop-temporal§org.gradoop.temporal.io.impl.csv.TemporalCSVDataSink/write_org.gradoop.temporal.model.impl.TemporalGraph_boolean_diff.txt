@@ -1,0 +1,4 @@
+@Override
+public void write(TemporalGraph temporalGraph, boolean overwrite) {
+    write(temporalGraph.getCollectionFactory().fromGraph(temporalGraph), overwrite);
+}

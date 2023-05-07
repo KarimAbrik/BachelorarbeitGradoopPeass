@@ -1,0 +1,6 @@
+@Override
+public EPGMVertex map(EPGMVertex vertex) throws Exception {
+    vertex.setProperty(X_COORDINATE_PROPERTY, rng.nextInt(maxX - minX) + minX);
+    vertex.setProperty(Y_COORDINATE_PROPERTY, rng.nextInt(maxY - minY) + minY);
+    return vertex;
+}

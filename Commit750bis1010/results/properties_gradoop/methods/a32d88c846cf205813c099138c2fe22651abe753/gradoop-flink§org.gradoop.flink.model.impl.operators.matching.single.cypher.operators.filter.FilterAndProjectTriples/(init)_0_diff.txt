@@ -1,0 +1,21 @@
+/**
+ * New vertex filter operator
+ *
+ * @param input Candidate vertices
+ * @param sourceVariable Variable assigned to the vertex
+ * @param edgeVariable Variable assigned to the vertex
+ * @param targetVariable Variable assigned to the vertex
+ * @param predicates Predicates used to filter vertices
+ * @param projectionPropertyKeys Property keys used for projection
+ * @param vertexMatchStrategy Vertex match strategy
+ */
+public FilterAndProjectTriples(DataSet<Triple> input, String sourceVariable, String edgeVariable, String targetVariable, CNF predicates, Map<String, List<String>> projectionPropertyKeys, MatchStrategy vertexMatchStrategy) {
+    this.input = input;
+    this.sourceVariable = sourceVariable;
+    this.edgeVariable = edgeVariable;
+    this.targetVariable = targetVariable;
+    this.predicates = predicates;
+    this.projectionPropertyKeys = projectionPropertyKeys;
+    this.vertexMatchStrategy = vertexMatchStrategy;
+    this.setName("FilterAndProjectTriples");
+}

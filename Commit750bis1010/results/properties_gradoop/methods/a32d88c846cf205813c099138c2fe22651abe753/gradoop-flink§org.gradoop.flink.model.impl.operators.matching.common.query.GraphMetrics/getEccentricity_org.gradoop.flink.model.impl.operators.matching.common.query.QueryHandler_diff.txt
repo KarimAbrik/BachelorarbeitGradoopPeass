@@ -1,0 +1,15 @@
+/**
+ * Computes the eccentricity for each vertex in the given connected graph.
+ *
+ * ecc(v) is the longest shortest path between the v and any other vertex.
+ *
+ * @param graph query graph (connected)
+ * @return eccentricity for each vertex
+ */
+public static Map<Long, Integer> getEccentricity(QueryHandler graph) {
+    Map<Long, Integer> ecc = Maps.newHashMap();
+    for (Vertex v : graph.getVertices()) {
+        ecc.put(v.getId(), getEccentricity(graph, v));
+    }
+    return ecc;
+}

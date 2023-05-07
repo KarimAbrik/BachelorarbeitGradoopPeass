@@ -1,0 +1,19 @@
+/**
+ * Creates a new BasePropertyTransformationFunction which can be used in the property
+ * transformation operator.
+ *
+ * @param propertyKey                property key
+ * @param transformationFunction     transformation function which shall be applied to a property
+ * @param label                      label of the element whose property shall be transformed
+ * @param newPropertyKey             new property key
+ * @param keepHistory                flag to enable versioning
+ */
+public BasePropertyTransformationFunction(String propertyKey, PropertyTransformationFunction transformationFunction, String label, String newPropertyKey, boolean keepHistory) {
+    Objects.requireNonNull(propertyKey);
+    Objects.requireNonNull(transformationFunction);
+    this.label = label;
+    this.propertyKey = propertyKey;
+    this.transformationFunction = transformationFunction;
+    this.newPropertyKey = newPropertyKey;
+    this.keepHistory = keepHistory;
+}

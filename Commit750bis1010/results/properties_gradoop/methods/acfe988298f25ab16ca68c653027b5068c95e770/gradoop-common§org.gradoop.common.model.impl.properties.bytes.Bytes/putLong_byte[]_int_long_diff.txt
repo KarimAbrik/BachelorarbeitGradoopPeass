@@ -1,0 +1,25 @@
+/**
+ * Put a long value out to the specified byte array position.
+ *
+ * @param bytes the byte array
+ * @param offset position in the array
+ * @param val long to write out
+ * @return incremented offset
+ * @throws IllegalArgumentException if the byte array given doesn't have
+ * enough room at the offset specified.
+ */
+public static int putLong(byte[] bytes, int offset, long val) {
+    if (bytes.length - offset < SIZEOF_LONG) {
+        throw new IllegalArgumentException("Not enough room to put a long at" + " offset " + offset + " in a " + bytes.length + " byte array");
+    }
+    if (UNSAFE_UNALIGNED) {
+        return putLongUnsafe(bytes, offset, val);
+    } else {
+        for (int i = offset + 7; i > offset; i--) {
+            bytes[i] = (byte) val;
+            val >>>= 8;
+        }
+        bytes[offset] = (byte) val;
+        return offset + SIZEOF_LONG;
+    }
+}

@@ -1,0 +1,11 @@
+@Test
+public void testWithSubsetGraphContainment() throws Exception {
+    FlinkAsciiGraphLoader loader = getSocialNetworkLoader();
+    loader.appendToDatabaseFromString("g1[(eve)]");
+    GraphCollection originalCollection = loader.getGraphCollectionByVariables("g1");
+    DataSet<GraphTransaction> transactions = originalCollection.getGraphTransactions();
+    GraphCollection restoredCollection = originalCollection.getFactory().fromTransactions(transactions, new First<>(), new First<>());
+    collectAndAssertTrue(originalCollection.equalsByGraphIds(restoredCollection));
+    collectAndAssertTrue(originalCollection.equalsByGraphElementIds(restoredCollection));
+    collectAndAssertTrue(originalCollection.equalsByGraphData(restoredCollection));
+}

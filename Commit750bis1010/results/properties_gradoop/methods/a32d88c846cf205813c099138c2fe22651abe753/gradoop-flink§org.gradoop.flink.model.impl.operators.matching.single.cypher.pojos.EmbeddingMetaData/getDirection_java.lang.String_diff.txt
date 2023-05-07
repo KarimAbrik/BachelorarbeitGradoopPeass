@@ -1,0 +1,15 @@
+/**
+ * Returns the direction in which the path associated with the specified variable is stored
+ * in the embedding.
+ *
+ * @param variable variable associated with a variable length path
+ * @return direction
+ * @throws NoSuchElementException if the variable has no assigned direction
+ */
+public ExpandDirection getDirection(String variable) {
+    ExpandDirection expandDirection = directionMapping.get(variable);
+    if (expandDirection == null) {
+        throw new NoSuchElementException("No direction for: " + variable);
+    }
+    return expandDirection;
+}

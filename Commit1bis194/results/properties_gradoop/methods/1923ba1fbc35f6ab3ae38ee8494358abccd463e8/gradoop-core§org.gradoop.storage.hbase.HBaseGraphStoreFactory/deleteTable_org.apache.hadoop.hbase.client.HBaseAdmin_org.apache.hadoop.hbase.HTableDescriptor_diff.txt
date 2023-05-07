@@ -1,0 +1,12 @@
+/**
+ * Deletes a single EPG table.
+ *
+ * @param admin           HBase admin
+ * @param tableDescriptor descriptor for the table to delete
+ * @throws IOException
+ */
+private static void deleteTable(final HBaseAdmin admin, final HTableDescriptor tableDescriptor) throws IOException {
+    LOG.info("deleting table: " + tableDescriptor.getNameAsString());
+    admin.disableTable(tableDescriptor.getName());
+    admin.deleteTable(tableDescriptor.getName());
+}

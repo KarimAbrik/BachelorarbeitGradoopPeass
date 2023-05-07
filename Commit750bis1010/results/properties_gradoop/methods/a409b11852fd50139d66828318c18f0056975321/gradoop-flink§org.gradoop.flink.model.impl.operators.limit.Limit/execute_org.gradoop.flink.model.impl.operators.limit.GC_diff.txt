@@ -1,0 +1,5 @@
+@Override
+public GC execute(GC collection) {
+    DataSet<G> graphHeads = collection.getGraphHeads().first(limit);
+    return selectVerticesAndEdges(collection, graphHeads);
+}

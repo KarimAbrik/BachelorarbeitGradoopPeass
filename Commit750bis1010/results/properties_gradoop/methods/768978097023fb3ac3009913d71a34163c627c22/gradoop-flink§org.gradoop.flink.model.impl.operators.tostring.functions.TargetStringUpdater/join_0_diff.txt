@@ -1,0 +1,5 @@
+@Override
+public EdgeString join(EdgeString edgeString, VertexString targetLabel) throws Exception {
+    edgeString.setTargetLabel(targetLabel.getLabel());
+    return edgeString;
+}

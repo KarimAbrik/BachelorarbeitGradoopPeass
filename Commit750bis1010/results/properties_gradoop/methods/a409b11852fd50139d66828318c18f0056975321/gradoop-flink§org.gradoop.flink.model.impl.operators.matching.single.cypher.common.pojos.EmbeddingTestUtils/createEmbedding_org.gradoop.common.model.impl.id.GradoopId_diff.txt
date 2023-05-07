@@ -1,0 +1,12 @@
+/**
+ * Creates an embedding from the given list of identifiers. The order of the identifiers
+ * determines the order in the embedding.
+ *
+ * @param ids identifies to be contained in the embedding
+ * @return embedding containing the specified ids
+ */
+public static Embedding createEmbedding(GradoopId... ids) {
+    Embedding embedding = new Embedding();
+    Arrays.stream(ids).forEach(embedding::add);
+    return embedding;
+}

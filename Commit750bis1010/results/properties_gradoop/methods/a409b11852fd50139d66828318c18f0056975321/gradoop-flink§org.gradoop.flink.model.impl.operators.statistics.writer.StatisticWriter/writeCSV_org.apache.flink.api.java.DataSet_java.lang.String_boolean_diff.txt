@@ -1,0 +1,11 @@
+/**
+ * Writes tuples as CSV file in a filepath.
+ * @param tuples the tuples to write (one row per tuple, tuple fields separated by
+ * GraphStatisticsReader.TOKEN_SEPARATOR).
+ * @param filePath the path to write the tuples in.
+ * @param overWrite should the target file be overwritten if it already exists?
+ * @param <T> the tuple containing statistics
+ */
+public static <T extends Tuple> void writeCSV(final DataSet<T> tuples, final String filePath, final boolean overWrite) {
+    tuples.writeAsCsv(filePath, System.lineSeparator(), GraphStatisticsReader.TOKEN_SEPARATOR, overWrite ? WriteMode.OVERWRITE : WriteMode.NO_OVERWRITE).setParallelism(1);
+}

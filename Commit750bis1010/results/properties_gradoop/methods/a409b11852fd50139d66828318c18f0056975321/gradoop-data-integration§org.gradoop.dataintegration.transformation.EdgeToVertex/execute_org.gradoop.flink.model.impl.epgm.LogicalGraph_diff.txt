@@ -1,0 +1,10 @@
+@Override
+public LogicalGraph execute(LogicalGraph graph) {
+    DataSet<EPGMEdge> relevantEdges = graph.getEdgesByLabel(edgeLabel);
+    // create new vertices
+    DataSet<Tuple3<EPGMVertex, GradoopId, GradoopId>> newVerticesAndOriginIds = relevantEdges.map(new CreateVertexFromEdges<>(newVertexLabel, graph.getFactory().getVertexFactory()));
+    DataSet<EPGMVertex> newVertices = newVerticesAndOriginIds.map(new Value0Of3<>()).map(new AddToGraphBroadcast<>()).withBroadcastSet(graph.getGraphHead().map(new Id<>()), AddToGraphBroadcast.GRAPH_ID).union(graph.getVertices());
+    // create edges to the newly created vertex
+    DataSet<EPGMEdge> newEdges = newVerticesAndOriginIds.flatMap(new CreateEdgesFromTriple<>(graph.getFactory().getEdgeFactory(), edgeLabelSourceToNew, edgeLabelNewToTarget)).map(new AddToGraphBroadcast<>()).withBroadcastSet(graph.getGraphHead().map(new Id<>()), AddToGraphBroadcast.GRAPH_ID).union(graph.getEdges());
+    return graph.getFactory().fromDataSets(graph.getGraphHead(), newVertices, newEdges);
+}

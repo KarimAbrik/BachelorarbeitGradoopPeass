@@ -1,0 +1,19 @@
+/**
+ * Test writing and reading a graph with a existing metadata file instead of aggregating
+ * new metadata from the graph.
+ *
+ * @throws Exception if the execution or IO fails.
+ */
+@Test
+public void testWriteWithExistingMetaData() throws Exception {
+    String tmpPath = temporaryFolder.getRoot().getPath();
+    String csvPath = getFilePath("/data/csv/input_indexed");
+    String gdlPath = getFilePath("/data/csv/expected/expected_graph_collection.gdl");
+    GraphCollection input = getLoaderFromFile(gdlPath).getGraphCollectionByVariables("expected1", "expected2");
+    DataSink csvDataSink = new IndexedCSVDataSink(tmpPath, csvPath + "/metadata.csv", getConfig());
+    csvDataSink.write(input, true);
+    getExecutionEnvironment().execute();
+    DataSource csvDataSource = new IndexedCSVDataSource(tmpPath, getConfig());
+    GraphCollection output = csvDataSource.getGraphCollection();
+    collectAndAssertTrue(input.equalsByGraphElementData(output));
+}

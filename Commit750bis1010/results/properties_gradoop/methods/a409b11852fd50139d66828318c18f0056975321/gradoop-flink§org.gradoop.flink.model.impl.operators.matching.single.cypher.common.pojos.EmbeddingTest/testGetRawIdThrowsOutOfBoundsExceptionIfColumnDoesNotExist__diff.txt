@@ -1,0 +1,5 @@
+@Test(expected = IndexOutOfBoundsException.class)
+public void testGetRawIdThrowsOutOfBoundsExceptionIfColumnDoesNotExist() {
+    Embedding embedding = createEmbedding(4);
+    embedding.getRawId(4);
+}

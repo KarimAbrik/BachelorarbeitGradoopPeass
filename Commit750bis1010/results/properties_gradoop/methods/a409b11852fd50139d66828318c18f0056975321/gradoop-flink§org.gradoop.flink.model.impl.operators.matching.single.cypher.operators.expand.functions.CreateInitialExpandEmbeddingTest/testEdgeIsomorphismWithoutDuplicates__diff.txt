@@ -1,0 +1,5 @@
+//EdgeIsomorphism
+@Test
+public void testEdgeIsomorphismWithoutDuplicates() throws Exception {
+    testJoin(buildEdge(n, e1, a), new ArrayList<>(), Lists.newArrayList(0, 1), -1, true);
+}

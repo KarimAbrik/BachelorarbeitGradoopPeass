@@ -1,0 +1,29 @@
+/**
+ * The common graph validation used by all graph samplings
+ *
+ * @param input The input graph
+ * @param output The sampled graph
+ * @throws Exception on failure
+ */
+void validateGraph(LogicalGraph input, LogicalGraph output) throws Exception {
+    dbVertices = Lists.newArrayList();
+    dbEdges = Lists.newArrayList();
+    newVertices = Lists.newArrayList();
+    newEdges = Lists.newArrayList();
+    input.getVertices().output(new LocalCollectionOutputFormat<>(dbVertices));
+    input.getEdges().output(new LocalCollectionOutputFormat<>(dbEdges));
+    output.getVertices().output(new LocalCollectionOutputFormat<>(newVertices));
+    output.getEdges().output(new LocalCollectionOutputFormat<>(newEdges));
+    getExecutionEnvironment().execute();
+    assertNotNull("graph was null", output);
+    newVertexIDs = new HashSet<>();
+    for (EPGMVertex vertex : newVertices) {
+        assertTrue("sampled vertex is not part of the original graph", dbVertices.contains(vertex));
+        newVertexIDs.add(vertex.getId());
+    }
+    for (EPGMEdge edge : newEdges) {
+        assertTrue("sampled edge is not part of the original graph", dbEdges.contains(edge));
+        assertTrue("sampled edge has source vertex which is not part of the sampled graph", newVertexIDs.contains(edge.getSourceId()));
+        assertTrue("sampled edge has target vertex which is not part of the sampled graph", newVertexIDs.contains(edge.getTargetId()));
+    }
+}

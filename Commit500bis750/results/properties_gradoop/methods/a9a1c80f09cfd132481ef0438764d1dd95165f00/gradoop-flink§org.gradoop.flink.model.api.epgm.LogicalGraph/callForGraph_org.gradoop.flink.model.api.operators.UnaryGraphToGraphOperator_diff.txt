@@ -1,0 +1,10 @@
+//----------------------------------------------------------------------------
+// Auxiliary Operators
+//----------------------------------------------------------------------------
+/**
+ * {@inheritDoc}
+ */
+@Override
+public LogicalGraph callForGraph(UnaryGraphToGraphOperator operator) {
+    return operator.execute(this);
+}

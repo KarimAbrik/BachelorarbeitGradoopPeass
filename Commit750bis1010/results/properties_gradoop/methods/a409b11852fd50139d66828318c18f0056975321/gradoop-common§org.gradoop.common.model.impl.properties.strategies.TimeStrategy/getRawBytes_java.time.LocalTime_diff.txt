@@ -1,0 +1,8 @@
+@Override
+public byte[] getRawBytes(LocalTime value) {
+    byte[] valueBytes = DateTimeSerializer.serializeTime(value);
+    byte[] rawBytes = new byte[PropertyValue.OFFSET + DateTimeSerializer.SIZEOF_TIME];
+    rawBytes[0] = getRawType();
+    Bytes.putBytes(rawBytes, PropertyValue.OFFSET, valueBytes, 0, valueBytes.length);
+    return rawBytes;
+}

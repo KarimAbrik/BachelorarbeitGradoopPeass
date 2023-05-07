@@ -1,0 +1,8 @@
+@Override
+public void flatMap(Vertex vertex, Collector<VertexString> collector) throws Exception {
+    GradoopId vertexId = vertex.getId();
+    String vertexLabel = "(" + vertex.getId() + ")";
+    for (GradoopId graphId : vertex.getGraphIds()) {
+        collector.collect(new VertexString(graphId, vertexId, vertexLabel));
+    }
+}

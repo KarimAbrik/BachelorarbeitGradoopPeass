@@ -1,0 +1,6 @@
+@Test
+public void testDistinctSourceIds() throws Exception {
+    LogicalGraph db = getSocialNetworkLoader().getLogicalGraph();
+    Long result = new DistinctSourceIds().execute(db).collect().get(0);
+    assertThat(result, is(8L));
+}

@@ -1,0 +1,17 @@
+/**
+ * Deserializes a {@code LocalDateTime} value.
+ *
+ * @param bytes serialized value
+ *
+ * @return {@code LocalDateTime} value
+ */
+public static LocalDateTime deserializeDateTime(byte[] bytes) {
+    int year = Bytes.toInt(bytes, 0, SIZEOF_INT);
+    int month = Bytes.toInt(bytes, SIZEOF_INT, SIZEOF_INT);
+    int day = Bytes.toInt(bytes, 2 * SIZEOF_INT, SIZEOF_INT);
+    int hour = Bytes.toInt(bytes, 3 * SIZEOF_INT, SIZEOF_INT);
+    int minute = Bytes.toInt(bytes, 4 * SIZEOF_INT, SIZEOF_INT);
+    int second = Bytes.toInt(bytes, 5 * SIZEOF_INT, SIZEOF_INT);
+    int nano = Bytes.toInt(bytes, 6 * SIZEOF_INT, SIZEOF_INT);
+    return LocalDateTime.of(year, month, day, hour, minute, second, nano);
+}

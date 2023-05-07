@@ -1,0 +1,14 @@
+/**
+ * Converts a byte array to an long value (Unsafe version)
+ *
+ * @param bytes byte array
+ * @param offset offset into array
+ * @return the long value
+ */
+private static long toLongUnsafe(byte[] bytes, int offset) {
+    if (LexicographicalComparerHolder.UnsafeComparer.LITTLE_ENDIAN) {
+        return Long.reverseBytes(LexicographicalComparerHolder.UnsafeComparer.UNSAFE.getLong(bytes, (long) offset + LexicographicalComparerHolder.UnsafeComparer.BYTE_ARRAY_BASE_OFFSET));
+    } else {
+        return LexicographicalComparerHolder.UnsafeComparer.UNSAFE.getLong(bytes, (long) offset + LexicographicalComparerHolder.UnsafeComparer.BYTE_ARRAY_BASE_OFFSET);
+    }
+}

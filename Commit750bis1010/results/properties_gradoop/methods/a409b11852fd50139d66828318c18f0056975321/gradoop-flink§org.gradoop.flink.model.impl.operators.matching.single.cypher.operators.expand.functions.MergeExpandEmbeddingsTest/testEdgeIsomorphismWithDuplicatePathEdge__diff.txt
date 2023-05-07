@@ -1,0 +1,4 @@
+@Test
+public void testEdgeIsomorphismWithDuplicatePathEdge() throws Exception {
+    testJoin(buildEdge(a, e1, b), new ArrayList<>(), Lists.newArrayList(0, 1), -1, false);
+}

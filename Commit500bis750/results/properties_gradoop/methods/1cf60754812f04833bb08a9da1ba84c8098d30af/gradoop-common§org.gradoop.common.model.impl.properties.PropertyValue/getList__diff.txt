@@ -1,0 +1,25 @@
+/**
+ * Returns the wrapped List as {@code List<PropertyValue>}.
+ *
+ * @return {@code List<PropertyValue>} value
+ */
+public List<PropertyValue> getList() {
+    PropertyValue entry;
+    List<PropertyValue> list = new ArrayList<>();
+    ByteArrayInputStream byteStream = new ByteArrayInputStream(rawBytes);
+    DataInputStream inputStream = new DataInputStream(byteStream);
+    DataInputView inputView = new DataInputViewStreamWrapper(inputStream);
+    try {
+        if (inputStream.skipBytes(OFFSET) != OFFSET) {
+            throw new RuntimeException("Malformed entry in PropertyValue List");
+        }
+        while (inputStream.available() > 0) {
+            entry = new PropertyValue();
+            entry.read(inputView);
+            list.add(entry);
+        }
+    } catch (IOException e) {
+        throw new RuntimeException("Error reading PropertyValue");
+    }
+    return list;
+}

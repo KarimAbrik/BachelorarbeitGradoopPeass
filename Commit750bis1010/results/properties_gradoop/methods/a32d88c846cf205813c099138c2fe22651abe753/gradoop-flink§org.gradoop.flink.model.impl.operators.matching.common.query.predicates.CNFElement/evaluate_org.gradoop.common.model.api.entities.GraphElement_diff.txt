@@ -1,0 +1,9 @@
+@Override
+public boolean evaluate(GraphElement element) {
+    for (ComparisonExpression comparisonExpression : predicates) {
+        if (comparisonExpression.evaluate(element)) {
+            return true;
+        }
+    }
+    return false;
+}

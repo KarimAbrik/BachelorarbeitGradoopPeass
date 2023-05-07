@@ -1,0 +1,7 @@
+@Test(expected = NoSuchElementException.class)                                                         @Test(expected = NoSuchElementException.class)                                                      
+public void testIteratorException() throws Exception {                                                 public void testIteratorException() throws Exception {                                              
+GradoopIds ids = new GradoopIds();                                                                   | GradoopIdSet ids = new GradoopIdSet();                                                              
+Iterator&lt;GradoopId&gt; idsIterator = ids.iterator();                                                Iterator&lt;GradoopId&gt; idsIterator = ids.iterator();                                             
+assertFalse(idsIterator.hasNext());                                                                    assertFalse(idsIterator.hasNext());                                                                 
+idsIterator.next();                                                                                    idsIterator.next();                                                                                 
+}                                                                                                      }                                                                                                   

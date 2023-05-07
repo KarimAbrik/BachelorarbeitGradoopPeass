@@ -1,0 +1,14 @@
+/**
+ * Creates a collection layout from the given datasets.
+ *
+ * @param graphHeads EPGMGraphHead DataSet
+ * @param vertices EPGMVertex DataSet
+ * @param edges EPGMEdge DataSet
+ * @return GVE layout
+ */
+GVELayout create(DataSet<EPGMGraphHead> graphHeads, DataSet<EPGMVertex> vertices, DataSet<EPGMEdge> edges) {
+    Objects.requireNonNull(graphHeads, "EPGMGraphHead DataSet was null");
+    Objects.requireNonNull(vertices, "EPGMVertex DataSet was null");
+    Objects.requireNonNull(edges, "EPGMEdge DataSet was null");
+    return new GVELayout(graphHeads, vertices, edges);
+}

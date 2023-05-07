@@ -1,0 +1,24 @@
+@Test                                                                                                  @Test                                                                                               
+public void testGetVerticesByGraphIds() throws Exception {                                             public void testGetVerticesByGraphIds() throws Exception {                                          
+AsciiGraphLoader&lt;GraphHead, Vertex, Edge&gt; asciiGraphLoader = AsciiGraphLoader.fromString("g[(a   AsciiGraphLoader&lt;GraphHead, Vertex, Edge&gt; asciiGraphLoader = AsciiGraphLoader.fromString("g[(a
+validateCollections(asciiGraphLoader, 2, 3, 0);                                                        validateCollections(asciiGraphLoader, 2, 3, 0);                                                     
+validateCaches(asciiGraphLoader, 2, 3, 0);                                                             validateCaches(asciiGraphLoader, 2, 3, 0);                                                          
+GraphHead g = asciiGraphLoader.getGraphHeadByVariable("g");                                            GraphHead g = asciiGraphLoader.getGraphHeadByVariable("g");                                         
+GraphHead h = asciiGraphLoader.getGraphHeadByVariable("h");                                            GraphHead h = asciiGraphLoader.getGraphHeadByVariable("h");                                         
+Collection&lt;Vertex&gt; vertexsG = asciiGraphLoader.getVerticesByGraphIds(GradoopIds.fromExisting(g | Collection&lt;Vertex&gt; vertexsG = asciiGraphLoader.getVerticesByGraphIds(GradoopIdSet.fromExisting
+Collection&lt;Vertex&gt; vertexsH = asciiGraphLoader.getVerticesByGraphIds(GradoopIds.fromExisting(h | Collection&lt;Vertex&gt; vertexsH = asciiGraphLoader.getVerticesByGraphIds(GradoopIdSet.fromExisting
+Collection&lt;Vertex&gt; vertexsGH = asciiGraphLoader.getVerticesByGraphIds(GradoopIds.fromExisting( | Collection&lt;Vertex&gt; vertexsGH = asciiGraphLoader.getVerticesByGraphIds(GradoopIdSet.fromExistin
+Vertex a = asciiGraphLoader.getVertexByVariable("a");                                                  Vertex a = asciiGraphLoader.getVertexByVariable("a");                                               
+Vertex b = asciiGraphLoader.getVertexByVariable("b");                                                  Vertex b = asciiGraphLoader.getVertexByVariable("b");                                               
+Vertex c = asciiGraphLoader.getVertexByVariable("c");                                                  Vertex c = asciiGraphLoader.getVertexByVariable("c");                                               
+assertEquals("Wrong number of vertices", 2, vertexsG.size());                                          assertEquals("Wrong number of vertices", 2, vertexsG.size());                                       
+assertEquals("Wrong number of vertices", 2, vertexsH.size());                                          assertEquals("Wrong number of vertices", 2, vertexsH.size());                                       
+assertEquals("Wrong number of vertices", 3, vertexsGH.size());                                         assertEquals("Wrong number of vertices", 3, vertexsGH.size());                                      
+assertTrue("Vertex was not contained in graph", vertexsG.contains(a));                                 assertTrue("Vertex was not contained in graph", vertexsG.contains(a));                              
+assertTrue("Vertex was not contained in graph", vertexsG.contains(b));                                 assertTrue("Vertex was not contained in graph", vertexsG.contains(b));                              
+assertTrue("Vertex was not contained in graph", vertexsH.contains(a));                                 assertTrue("Vertex was not contained in graph", vertexsH.contains(a));                              
+assertTrue("Vertex was not contained in graph", vertexsH.contains(c));                                 assertTrue("Vertex was not contained in graph", vertexsH.contains(c));                              
+assertTrue("Vertex was not contained in graph", vertexsGH.contains(a));                                assertTrue("Vertex was not contained in graph", vertexsGH.contains(a));                             
+assertTrue("Vertex was not contained in graph", vertexsGH.contains(b));                                assertTrue("Vertex was not contained in graph", vertexsGH.contains(b));                             
+assertTrue("Vertex was not contained in graph", vertexsGH.contains(c));                                assertTrue("Vertex was not contained in graph", vertexsGH.contains(c));                             
+}                                                                                                      }                                                                                                   

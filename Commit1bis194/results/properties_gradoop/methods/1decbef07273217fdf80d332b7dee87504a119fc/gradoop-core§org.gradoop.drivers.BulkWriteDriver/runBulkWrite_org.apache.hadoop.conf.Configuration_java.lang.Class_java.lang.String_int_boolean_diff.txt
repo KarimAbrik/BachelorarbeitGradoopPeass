@@ -1,0 +1,35 @@
+/**
+ * Setups and runs the job.
+ *
+ * @param conf           cluster config
+ * @param writerClass    writer class for vertex conversion
+ * @param outputDirName  directory to store output
+ * @param hbaseScanCache hbase scan cache
+ * @param verbose        print job output
+ * @return true, iff the job succeeded
+ * @throws IOException
+ * @throws ClassNotFoundException
+ * @throws InterruptedException
+ */
+private boolean runBulkWrite(final Configuration conf, final Class<? extends VertexLineWriter> writerClass, final String outputDirName, final int hbaseScanCache, final boolean verbose) throws IOException, ClassNotFoundException, InterruptedException {
+    // setup job
+    conf.setClass(BulkWriteEPG.VERTEX_LINE_WRITER, writerClass, VertexLineWriter.class);
+    conf.setClass(BulkWriteEPG.VERTEX_HANDLER, EPGVertexHandler.class, VertexHandler.class);
+    Job job = Job.getInstance(conf, JOB_NAME);
+    job.setJarByClass(BulkWriteDriver.class);
+    // setup scan to read from htable
+    Scan scan = new Scan();
+    if (hbaseScanCache > 0) {
+        scan.setCaching(hbaseScanCache);
+    }
+    scan.setCacheBlocks(false);
+    // setup map tasks
+    TableMapReduceUtil.initTableMapperJob(GConstants.DEFAULT_TABLE_VERTICES, scan, BulkWriteEPG.class, Text.class, NullWritable.class, job);
+    // no reduce needed for that job
+    job.setNumReduceTasks(0);
+    // set output path
+    Path outputDir = new Path(outputDirName);
+    FileOutputFormat.setOutputPath(job, outputDir);
+    // run
+    return job.waitForCompletion(verbose);
+}

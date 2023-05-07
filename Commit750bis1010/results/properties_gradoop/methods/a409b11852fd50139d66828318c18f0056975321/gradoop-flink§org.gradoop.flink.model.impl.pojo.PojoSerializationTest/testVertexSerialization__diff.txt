@@ -1,0 +1,5 @@
+@Test
+public void testVertexSerialization() throws Exception {
+    Vertex vertexIn = new EPGMVertexFactory().createVertex("Person", Properties.createFromMap(GradoopTestUtils.SUPPORTED_PROPERTIES), GradoopIdSet.fromExisting(GradoopId.get()));
+    Assert.assertEquals("Vertex POJOs were not equal", vertexIn, GradoopFlinkTestUtils.writeAndRead(vertexIn));
+}

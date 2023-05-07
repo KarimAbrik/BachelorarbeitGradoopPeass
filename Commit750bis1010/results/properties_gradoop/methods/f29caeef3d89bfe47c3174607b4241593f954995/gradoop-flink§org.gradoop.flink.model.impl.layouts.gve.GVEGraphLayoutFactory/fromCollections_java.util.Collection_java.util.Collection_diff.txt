@@ -1,0 +1,6 @@
+@Override
+public LogicalGraphLayout<EPGMGraphHead, EPGMVertex, EPGMEdge> fromCollections(Collection<EPGMVertex> vertices, Collection<EPGMEdge> edges) {
+    Objects.requireNonNull(vertices, "EPGMVertex collection was null");
+    Objects.requireNonNull(edges, "EPGMEdge collection was null");
+    return fromDataSets(createVertexDataSet(vertices), createEdgeDataSet(edges));
+}

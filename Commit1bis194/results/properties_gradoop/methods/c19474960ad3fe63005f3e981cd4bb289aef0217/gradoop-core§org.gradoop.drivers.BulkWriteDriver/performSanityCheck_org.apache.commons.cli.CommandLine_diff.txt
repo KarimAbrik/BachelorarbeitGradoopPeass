@@ -1,0 +1,18 @@
+                                                                                                     | /**                                                                                                 
+                                                                                                     | * Checks if the given arguments are valid.                                                          
+                                                                                                     | *                                                                                                   
+                                                                                                     | * @param cmd command line                                                                           
+                                                                                                     | * @return true, iff the input is sane                                                               
+                                                                                                     | */                                                                                                  
+                                                                                                     | private static boolean performSanityCheck(final CommandLine cmd) {                                  
+                                                                                                     | boolean sane = true;                                                                                
+                                                                                                     | if (!cmd.hasOption(LoadConfUtils.OPTION_VERTEX_LINE_WRITER)) {                                      
+                                                                                                     | LOG.error("Choose the vertex line writer (-vlw)");                                                  
+                                                                                                     | sane = false;                                                                                       
+                                                                                                     | }                                                                                                   
+                                                                                                     | if (!cmd.hasOption(OPTION_GRAPH_OUTPUT_PATH)) {                                                     
+                                                                                                     | LOG.error("Choose the graph output path (-gop)");                                                   
+                                                                                                     | sane = false;                                                                                       
+                                                                                                     | }                                                                                                   
+                                                                                                     | return sane;                                                                                        
+                                                                                                     | }                                                                                                   

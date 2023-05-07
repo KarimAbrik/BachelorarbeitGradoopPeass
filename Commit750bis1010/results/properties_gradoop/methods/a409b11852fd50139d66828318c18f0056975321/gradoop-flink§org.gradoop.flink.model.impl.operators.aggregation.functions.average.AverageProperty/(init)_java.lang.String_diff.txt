@@ -1,0 +1,9 @@
+/**
+ * Creates a new instance of a base average aggregate function with a default aggregate property
+ * key (will be the original property key with prefix {@code avg_}).
+ *
+ * @param propertyKey The key of the property to aggregate.
+ */
+public AverageProperty(String propertyKey) {
+    this(propertyKey, "avg_" + propertyKey);
+}

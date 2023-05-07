@@ -1,0 +1,9 @@
+@Override
+public WithCount<GradoopId> join(WithCount<GradoopId> first, GradoopId second) throws Exception {
+    if (first == null) {
+        reuseTuple.setObject(second);
+        return reuseTuple;
+    } else {
+        return first;
+    }
+}

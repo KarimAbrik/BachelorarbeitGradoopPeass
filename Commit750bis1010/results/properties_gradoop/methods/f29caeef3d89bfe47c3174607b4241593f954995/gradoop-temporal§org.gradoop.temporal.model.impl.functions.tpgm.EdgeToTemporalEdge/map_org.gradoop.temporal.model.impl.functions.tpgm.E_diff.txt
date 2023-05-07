@@ -1,0 +1,13 @@
+@Override
+public TemporalEdge map(E value) throws Exception {
+    reuse.setId(value.getId());
+    reuse.setLabel(value.getLabel());
+    reuse.setSourceId(value.getSourceId());
+    reuse.setTargetId(value.getTargetId());
+    reuse.setProperties(value.getProperties());
+    reuse.setGraphIds(value.getGraphIds());
+    if (timeIntervalExtractor != null) {
+        reuse.setValidTime(timeIntervalExtractor.map(value));
+    }
+    return reuse;
+}

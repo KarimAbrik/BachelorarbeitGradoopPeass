@@ -1,0 +1,7 @@
+@Override
+public EPGMVertex join(org.apache.flink.graph.Vertex<GradoopId, Degrees> degree, EPGMVertex vertex) throws Exception {
+    vertex.setProperty(vertexDegreesProperty, PropertyValue.create(degree.getValue().getDegree().getValue()));
+    vertex.setProperty(vertexInDegreeProperty, PropertyValue.create(degree.getValue().getInDegree().getValue()));
+    vertex.setProperty(vertexOutDegreeProperty, PropertyValue.create(degree.getValue().getOutDegree().getValue()));
+    return vertex;
+}

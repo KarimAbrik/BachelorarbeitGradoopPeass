@@ -1,0 +1,15 @@
+/**
+ * Checks if the the id at the specified index has been processed before.
+ *
+ * @param mapping id mapping
+ * @param i index
+ * @return true, iff the element at position i is present at a position between 0 and i
+ */
+private boolean isProcessed(GradoopId[] mapping, int i) {
+    for (int j = 0; j < i; j++) {
+        if (mapping[j].equals(mapping[i])) {
+            return true;
+        }
+    }
+    return false;
+}

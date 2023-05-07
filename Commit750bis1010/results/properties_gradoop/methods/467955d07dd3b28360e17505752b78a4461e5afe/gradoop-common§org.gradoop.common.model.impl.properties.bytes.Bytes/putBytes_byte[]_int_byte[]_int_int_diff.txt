@@ -1,0 +1,14 @@
+/**
+ * Put bytes at the specified byte array position.
+ *
+ * @param tgtBytes the byte array
+ * @param tgtOffset position in the array
+ * @param srcBytes array to write out
+ * @param srcOffset source offset
+ * @param srcLength source length
+ * @return incremented offset
+ */
+public static int putBytes(byte[] tgtBytes, int tgtOffset, byte[] srcBytes, int srcOffset, int srcLength) {
+    System.arraycopy(srcBytes, srcOffset, tgtBytes, tgtOffset, srcLength);
+    return tgtOffset + srcLength;
+}

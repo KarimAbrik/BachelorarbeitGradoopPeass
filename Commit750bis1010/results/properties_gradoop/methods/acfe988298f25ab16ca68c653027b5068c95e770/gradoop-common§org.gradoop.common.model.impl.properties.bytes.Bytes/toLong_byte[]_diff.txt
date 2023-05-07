@@ -1,0 +1,9 @@
+/**
+ * Converts a byte array to a long value.
+ *
+ * @param bytes array
+ * @return the long value
+ */
+public static long toLong(byte[] bytes) {
+    return toLong(bytes, 0, SIZEOF_LONG);
+}

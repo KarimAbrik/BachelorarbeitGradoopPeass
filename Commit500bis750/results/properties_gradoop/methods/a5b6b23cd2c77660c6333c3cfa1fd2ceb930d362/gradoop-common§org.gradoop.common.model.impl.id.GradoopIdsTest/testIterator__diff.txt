@@ -1,0 +1,12 @@
+@Test                                                                                                  @Test                                                                                               
+public void testIterator() throws Exception {                                                          public void testIterator() throws Exception {                                                       
+GradoopId id1 = GradoopId.get();                                                                       GradoopId id1 = GradoopId.get();                                                                    
+GradoopId id2 = GradoopId.get();                                                                       GradoopId id2 = GradoopId.get();                                                                    
+GradoopIds ids = GradoopIds.fromExisting(id1, id2);                                                  | GradoopIdSet ids = GradoopIdSet.fromExisting(id1, id2);                                             
+Iterator&lt;GradoopId&gt; idsIterator = ids.iterator();                                                Iterator&lt;GradoopId&gt; idsIterator = ids.iterator();                                             
+assertTrue(idsIterator.hasNext());                                                                     assertTrue(idsIterator.hasNext());                                                                  
+assertNotNull(idsIterator.next());                                                                     assertNotNull(idsIterator.next());                                                                  
+assertTrue(idsIterator.hasNext());                                                                     assertTrue(idsIterator.hasNext());                                                                  
+assertNotNull(idsIterator.next());                                                                     assertNotNull(idsIterator.next());                                                                  
+assertFalse(idsIterator.hasNext());                                                                    assertFalse(idsIterator.hasNext());                                                                 
+}                                                                                                      }                                                                                                   

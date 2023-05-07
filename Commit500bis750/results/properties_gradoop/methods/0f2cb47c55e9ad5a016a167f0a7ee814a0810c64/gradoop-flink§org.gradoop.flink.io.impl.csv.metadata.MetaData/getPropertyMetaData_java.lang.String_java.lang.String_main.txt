@@ -1,0 +1,10 @@
+/**
+ * Returns the property meta data associated with the specified label and type.
+ *
+ * @param type element type
+ * @param label element label
+ * @return property meta data for the element
+ */
+public List<PropertyMetaData> getPropertyMetaData(String type, String label) {
+    return metaData.getOrDefault(new Tuple2<>(type, label), new ArrayList<>());
+}

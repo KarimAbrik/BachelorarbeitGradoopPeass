@@ -1,0 +1,13 @@
+/**
+ * Test the aggregation with a post-processing step on a logical graph.
+ *
+ * @throws Exception when the execution in Flink fails.
+ */
+@Test
+public void testAggregationWithPostAggregateForGraph() throws Exception {
+    FlinkAsciiGraphLoader loader = getLoaderFromString("input [" + "(i1 {a: 1L}) (i2 {a: 2L}) (i3 {a: -1L}) (i4 {a: 3L})" + "] expected {sum_a: 5L, sum_a_plusone: 6L} [" + "(i1)(i2)(i3)(i4)" + "]");
+    LogicalGraph input = loader.getLogicalGraphByVariable("input");
+    LogicalGraph expected = loader.getLogicalGraphByVariable("expected");
+    LogicalGraph result = input.aggregate(new SumVertexProperty("a", "sum_a"), new SumPlusOne("a", "sum_a_plusone"));
+    collectAndAssertTrue(expected.equalsByData(result));
+}

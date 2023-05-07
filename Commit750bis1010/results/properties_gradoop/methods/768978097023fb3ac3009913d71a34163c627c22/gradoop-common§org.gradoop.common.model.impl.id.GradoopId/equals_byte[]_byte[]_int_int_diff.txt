@@ -1,0 +1,32 @@
+/**
+ * Checks if the Gradoop ids stored at the specified positions are equal.
+ *
+ * Note: The order in which the id components are compared is taken from
+ * {@link ObjectId#equals(Object)}. However, we compare the values of the byte arrays directly.
+ *
+ * @param first first gradoop id
+ * @param second second gradoop id
+ * @param firstPos start index in the first byte array
+ * @param secondPos start index in the second byte array
+ *
+ * @return true, iff first is equal to second
+ */
+static boolean equals(byte[] first, byte[] second, int firstPos, int secondPos) {
+    // compare counter (byte 9 to 11)
+    if (!equalsInRange(first, second, firstPos + 9, secondPos + 9, 3)) {
+        return false;
+    }
+    // compare machine identifier (byte 4 to 6)
+    if (!equalsInRange(first, second, firstPos + 4, secondPos + 4, 2)) {
+        return false;
+    }
+    // compare process identifier (byte 7 to 8)
+    if (!equalsInRange(first, second, firstPos + 7, secondPos + 7, 1)) {
+        return false;
+    }
+    // compare timestamp (byte 0 to 3)
+    if (!equalsInRange(first, second, firstPos, secondPos, 3)) {
+        return false;
+    }
+    return true;
+}

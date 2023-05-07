@@ -1,0 +1,12 @@
+/**
+ * Constructor
+ *
+ * @param graphMetaData  a map between each graph label and its property metadata
+ * @param vertexMetaData a map between each vertex label and its property metadata
+ * @param edgeMetaData   a map between each edge label and its property metadata
+ */
+protected MetaData(Map<String, List<PropertyMetaData>> graphMetaData, Map<String, List<PropertyMetaData>> vertexMetaData, Map<String, List<PropertyMetaData>> edgeMetaData) {
+    this.graphMetaData = graphMetaData;
+    this.vertexMetaData = vertexMetaData;
+    this.edgeMetaData = edgeMetaData;
+}

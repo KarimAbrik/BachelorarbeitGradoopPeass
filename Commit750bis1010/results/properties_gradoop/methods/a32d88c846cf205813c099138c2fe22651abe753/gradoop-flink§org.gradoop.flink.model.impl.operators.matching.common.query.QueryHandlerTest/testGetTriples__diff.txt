@@ -1,0 +1,7 @@
+@Test
+public void testGetTriples() throws Exception {
+    Set<Triple> expected = Sets.newHashSet(new Triple(GDL_HANDLER.getVertexCache().get("v1"), GDL_HANDLER.getEdgeCache().get("e1"), GDL_HANDLER.getVertexCache().get("v2")), new Triple(GDL_HANDLER.getVertexCache().get("v2"), GDL_HANDLER.getEdgeCache().get("e2"), GDL_HANDLER.getVertexCache().get("v3")), new Triple(GDL_HANDLER.getVertexCache().get("v2"), GDL_HANDLER.getEdgeCache().get("e3"), GDL_HANDLER.getVertexCache().get("v1")), new Triple(GDL_HANDLER.getVertexCache().get("v3"), GDL_HANDLER.getEdgeCache().get("e4"), GDL_HANDLER.getVertexCache().get("v3")));
+    Collection<Triple> triples = QUERY_HANDLER.getTriples();
+    assertEquals(expected.size(), triples.size());
+    assertTrue(expected.containsAll(triples));
+}

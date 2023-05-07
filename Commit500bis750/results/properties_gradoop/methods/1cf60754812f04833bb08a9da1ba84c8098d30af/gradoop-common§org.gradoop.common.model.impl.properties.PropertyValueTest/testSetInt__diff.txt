@@ -1,0 +1,6 @@
+@Test
+public void testSetInt() throws Exception {
+    PropertyValue p = new PropertyValue();
+    p.setInt(INT_VAL_2);
+    assertEquals(INT_VAL_2, p.getInt());
+}

@@ -1,0 +1,68 @@
+{
+  "clazz" : "org.gradoop.model.impl.labelpropagation.LabelPropagationGradoopTest",
+  "methods" : [ {
+    "method" : "testLabelPropagationWithCallByPropertyKey",
+    "datacollectorResults" : [ {
+      "name" : "de.dagere.kopeme.datacollection.TimeDataCollectorNoGC",
+      "chunks" : [ ],
+      "results" : [ {
+        "value" : 4.4881319539E9,
+        "deviation" : 0.4288861344675715,
+        "min" : 3.254454459E9,
+        "max" : 9.773670397E9,
+        "warmup" : 0,
+        "iterations" : 10,
+        "repetitions" : 2,
+        "commit" : null,
+        "vmRunConfiguration" : {
+          "showStart" : false,
+          "executeBeforeClassInMeasurement" : false,
+          "redirectToTemp" : false,
+          "redirectToNull" : true,
+          "useKieker" : false
+        },
+        "parameters" : {
+          "JUNIT_PARAMETERIZED" : "Execution mode = CLUSTER"
+        },
+        "javaVersion" : "1.8.0_362",
+        "cpu" : "model name : Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz",
+        "memory" : "MemTotal: 16280544 kB",
+        "date" : 1681002135987,
+        "fulldata" : {
+          "fileName" : null,
+          "values" : [ {
+            "startTime" : 1681002090412,
+            "value" : 9773670397
+          }, {
+            "startTime" : 1681002100186,
+            "value" : 5191463946
+          }, {
+            "startTime" : 1681002105378,
+            "value" : 3734938006
+          }, {
+            "startTime" : 1681002109113,
+            "value" : 4017591490
+          }, {
+            "startTime" : 1681002113130,
+            "value" : 3964662279
+          }, {
+            "startTime" : 1681002117095,
+            "value" : 3564145514
+          }, {
+            "startTime" : 1681002120659,
+            "value" : 3807268889
+          }, {
+            "startTime" : 1681002124467,
+            "value" : 3666006063
+          }, {
+            "startTime" : 1681002128133,
+            "value" : 3254454459
+          }, {
+            "startTime" : 1681002131387,
+            "value" : 3907118496
+          } ]
+        }
+      } ]
+    } ]
+  } ]
+}

@@ -1,0 +1,10 @@
+/**
+ * Returns a logical graph containing the complete vertex and edge space of
+ * the database.
+ * This is equivalent to {@link #getLogicalGraph(boolean) getLogicalGraph(true)}.
+ *
+ * @return logical graph of vertex and edge space
+ */
+public LogicalGraph getLogicalGraph() {
+    return getLogicalGraph(true);
+}

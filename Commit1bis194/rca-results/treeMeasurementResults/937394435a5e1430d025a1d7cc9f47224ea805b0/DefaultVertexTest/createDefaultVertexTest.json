@@ -1,0 +1,254 @@
+{
+  "measurementConfig" : {
+    "vms" : 30,
+    "earlyStop" : false,
+    "warmup" : 5,
+    "iterations" : 5,
+    "repetitions" : 2,
+    "logFullData" : true,
+    "useGC" : false,
+    "callSyncBetweenVMs" : true,
+    "waitTimeBetweenVMs" : 1000,
+    "maxLogSizeInMb" : 100,
+    "kiekerConfig" : {
+      "useKieker" : true,
+      "useSourceInstrumentation" : true,
+      "useSelectiveInstrumentation" : true,
+      "useAggregation" : true,
+      "useCircularQueue" : false,
+      "enableAdaptiveMonitoring" : false,
+      "adaptiveInstrumentation" : false,
+      "kiekerAggregationInterval" : 5000,
+      "record" : "DURATION",
+      "onlyOneCallRecording" : false,
+      "extractMethod" : false,
+      "traceSizeInMb" : 100,
+      "kiekerQueueSize" : 10000000,
+      "createDefaultConstructor" : true,
+      "kiekerWaitTime" : 5,
+      "writingType" : "BinaryAggregated",
+      "excludeForTracing" : [ "new org.eclipse.jetty.logging.JettyLevel.<init>(..)", "* org.eclipse.jetty.logging.JettyLevel.*(..)", "*[] org.eclipse.jetty.logging.JettyLevel.*(..)", "*.* org.eclipse.jetty.logging.JettyLevel.*(..)", "*.*.* org.eclipse.jetty.logging.JettyLevel.*(..)", "*.*.*.* org.eclipse.jetty.logging.JettyLevel.*(..)", "*.*.*.*.* org.eclipse.jetty.logging.JettyLevel.*(..)", "new org.eclipse.jetty.logging.JettyLoggerConfiguration.<init>(..)", "* org.eclipse.jetty.logging.JettyLoggerConfiguration.*(..)", "*[] org.eclipse.jetty.logging.JettyLoggerConfiguration.*(..)", "*.* org.eclipse.jetty.logging.JettyLoggerConfiguration.*(..)", "*.*.* org.eclipse.jetty.logging.JettyLoggerConfiguration.*(..)", "*.*.*.* org.eclipse.jetty.logging.JettyLoggerConfiguration.*(..)", "*.*.*.*.* org.eclipse.jetty.logging.JettyLoggerConfiguration.*(..)", "new org.eclipse.jetty.logging.JettyLoggingServiceProvider.<init>(..)", "* org.eclipse.jetty.logging.JettyLoggingServiceProvider.*(..)", "*[] org.eclipse.jetty.logging.JettyLoggingServiceProvider.*(..)", "*.* org.eclipse.jetty.logging.JettyLoggingServiceProvider.*(..)", "*.*.* org.eclipse.jetty.logging.JettyLoggingServiceProvider.*(..)", "*.*.*.* org.eclipse.jetty.logging.JettyLoggingServiceProvider.*(..)", "*.*.*.*.* org.eclipse.jetty.logging.JettyLoggingServiceProvider.*(..)", "new org.eclipse.jetty.logging.JettyLoggerFactory.<init>(..)", "* org.eclipse.jetty.logging.JettyLoggerFactory.*(..)", "*[] org.eclipse.jetty.logging.JettyLoggerFactory.*(..)", "*.* org.eclipse.jetty.logging.JettyLoggerFactory.*(..)", "*.*.* org.eclipse.jetty.logging.JettyLoggerFactory.*(..)", "*.*.*.* org.eclipse.jetty.logging.JettyLoggerFactory.*(..)", "*.*.*.*.* org.eclipse.jetty.logging.JettyLoggerFactory.*(..)", "new org.eclipse.jetty.logging.StdErrAppender.<init>(..)", "* org.eclipse.jetty.logging.StdErrAppender.*(..)", "*[] org.eclipse.jetty.logging.StdErrAppender.*(..)", "*.* org.eclipse.jetty.logging.StdErrAppender.*(..)", "*.*.* org.eclipse.jetty.logging.StdErrAppender.*(..)", "*.*.*.* org.eclipse.jetty.logging.StdErrAppender.*(..)", "*.*.*.*.* org.eclipse.jetty.logging.StdErrAppender.*(..)", "new org.eclipse.jetty.logging.Timestamp.<init>(..)", "* org.eclipse.jetty.logging.Timestamp.*(..)", "*[] org.eclipse.jetty.logging.Timestamp.*(..)", "*.* org.eclipse.jetty.logging.Timestamp.*(..)", "*.*.* org.eclipse.jetty.logging.Timestamp.*(..)", "*.*.*.* org.eclipse.jetty.logging.Timestamp.*(..)", "*.*.*.*.* org.eclipse.jetty.logging.Timestamp.*(..)", "new org.eclipse.jetty.logging.Timestamp$Tick.<init>(..)", "* org.eclipse.jetty.logging.Timestamp$Tick.*(..)", "*[] org.eclipse.jetty.logging.Timestamp$Tick.*(..)", "*.* org.eclipse.jetty.logging.Timestamp$Tick.*(..)", "*.*.* org.eclipse.jetty.logging.Timestamp$Tick.*(..)", "*.*.*.* org.eclipse.jetty.logging.Timestamp$Tick.*(..)", "*.*.*.*.* org.eclipse.jetty.logging.Timestamp$Tick.*(..)", "new org.eclipse.jetty.logging.JettyLogger.<init>(..)", "* org.eclipse.jetty.logging.JettyLogger.*(..)", "*[] org.eclipse.jetty.logging.JettyLogger.*(..)", "*.* org.eclipse.jetty.logging.JettyLogger.*(..)", "*.*.* org.eclipse.jetty.logging.JettyLogger.*(..)", "*.*.*.* org.eclipse.jetty.logging.JettyLogger.*(..)", "*.*.*.*.* org.eclipse.jetty.logging.JettyLogger.*(..)" ]
+    },
+    "saveAll" : true,
+    "javaVersion" : "1.8.0_362",
+    "measurementStrategy" : "PARALLEL",
+    "statisticsConfig" : {
+      "type1error" : 0.2,
+      "type2error" : 0.1,
+      "outlierFactor" : 3.29,
+      "statisticTest" : "MANN_WHITNEY_TEST"
+    },
+    "executionConfig" : {
+      "timeout" : 300000,
+      "linearizeHistory" : true,
+      "redirectSubprocessOutputToFile" : true,
+      "useTieredCompilation" : false,
+      "removeSnapshots" : false,
+      "useAlternativeBuildfile" : false,
+      "excludeLog4jSlf4jImpl" : false,
+      "excludeLog4jToSlf4j" : false,
+      "executeBeforeClassInMeasurement" : false,
+      "clearMockitoCaches" : false,
+      "onlyMeasureWorkload" : false,
+      "showStart" : false,
+      "redirectToNull" : true,
+      "createDetailDebugFiles" : true
+    },
+    "fixedCommitConfig" : {
+      "commit" : "937394435a5e1430d025a1d7cc9f47224ea805b0",
+      "commitOld" : "d916ecc90a9a75ba35470bd137a48b944570ba8b"
+    }
+  },
+  "causeConfig" : {
+    "splitAggregated" : true,
+    "minTime" : 0.1,
+    "ignoreEOIs" : true,
+    "rcaStrategy" : "UNTIL_SOURCE_CHANGE",
+    "levels" : 1,
+    "testCase" : {
+      "clazz" : "org.gradoop.model.impl.DefaultVertexTest",
+      "method" : "createDefaultVertexTest",
+      "module" : "gradoop-core",
+      "params" : null
+    },
+    "propertyFolder" : "/home/abrik/peass/results/properties_gradoop"
+  },
+  "nodes" : {
+    "call" : "org.gradoop.model.impl.DefaultVertexTest#createDefaultVertexTest",
+    "kiekerPattern" : "public void org.gradoop.model.impl.DefaultVertexTest.createDefaultVertexTest()",
+    "otherKiekerPattern" : "public void org.gradoop.model.impl.DefaultVertexTest.createDefaultVertexTest()",
+    "module" : "gradoop-core",
+    "statistic" : {
+      "meanOld" : 1589269.3965517238,
+      "meanCurrent" : 1385643.4428571428,
+      "deviationOld" : 318055.54374567687,
+      "deviationCurrent" : 168877.6199964965,
+      "vms" : 28,
+      "callsOld" : 150,
+      "calls" : 150,
+      "tvalue" : 3.0331816945300605
+    },
+    "childs" : [ {
+      "call" : "org.gradoop.model.impl.EdgeFactory#createDefaultEdge",
+      "kiekerPattern" : "public static org.gradoop.model.Edge org.gradoop.model.impl.EdgeFactory.createDefaultEdge(java.lang.Long,java.lang.Long)",
+      "otherKiekerPattern" : "public static org.gradoop.model.Edge org.gradoop.model.impl.EdgeFactory.createDefaultEdge(java.lang.Long,java.lang.Long)",
+      "module" : "gradoop-core",
+      "statistic" : {
+        "meanOld" : 43722.73620689656,
+        "meanCurrent" : 40215.52678571429,
+        "deviationOld" : 13151.403098821997,
+        "deviationCurrent" : 6161.1616356870145,
+        "vms" : 28,
+        "callsOld" : 1050,
+        "calls" : 1050,
+        "tvalue" : 1.2963170861311404
+      },
+      "childs" : [ {
+        "call" : "org.gradoop.model.impl.EdgeFactory#createDefaultEdgeWithLabel",
+        "kiekerPattern" : "public static org.gradoop.model.Edge org.gradoop.model.impl.EdgeFactory.createDefaultEdgeWithLabel(java.lang.Long,java.lang.String,java.lang.Long)",
+        "otherKiekerPattern" : "public static org.gradoop.model.Edge org.gradoop.model.impl.EdgeFactory.createDefaultEdgeWithLabel(java.lang.Long,java.lang.String,java.lang.Long)",
+        "module" : "gradoop-core",
+        "statistic" : {
+          "meanOld" : 39144.42068965517,
+          "meanCurrent" : 36041.608035714286,
+          "deviationOld" : 12993.666989060182,
+          "deviationCurrent" : 5908.980354307762,
+          "vms" : 28,
+          "callsOld" : 1050,
+          "calls" : 1050,
+          "tvalue" : 1.1670226440137894
+        },
+        "childs" : [ {
+          "call" : "org.gradoop.model.impl.EdgeFactory#createDefaultEdge",
+          "kiekerPattern" : "public static org.gradoop.model.Edge org.gradoop.model.impl.EdgeFactory.createDefaultEdge(java.lang.Long,java.lang.String,java.lang.Long,java.util.Map)",
+          "otherKiekerPattern" : "public static org.gradoop.model.Edge org.gradoop.model.impl.EdgeFactory.createDefaultEdge(java.lang.Long,java.lang.String,java.lang.Long,java.util.Map)",
+          "module" : "gradoop-core",
+          "statistic" : {
+            "meanOld" : 34934.24137931034,
+            "meanCurrent" : 31992.293749999997,
+            "deviationOld" : 12902.899373649716,
+            "deviationCurrent" : 5593.110020065464,
+            "vms" : 28,
+            "callsOld" : 1050,
+            "calls" : 1050,
+            "tvalue" : 1.1233963011979642
+          },
+          "childs" : [ {
+            "call" : "org.gradoop.model.impl.SingleLabeledPropertyContainer#<init>",
+            "kiekerPattern" : "protected new org.gradoop.model.impl.SingleLabeledPropertyContainer.<init>(java.lang.String,java.util.Map)",
+            "otherKiekerPattern" : "protected new org.gradoop.model.impl.LabeledPropertyContainer.<init>(java.lang.Long,java.lang.String,java.util.Map)",
+            "module" : "gradoop-core",
+            "statistic" : {
+              "meanOld" : 438.46500000000003,
+              "meanCurrent" : 729.68,
+              "deviationOld" : 135.74266151498733,
+              "deviationCurrent" : 141.27115009185655,
+              "vms" : 30,
+              "callsOld" : 1050,
+              "calls" : 1350,
+              "tvalue" : -8.14144457553963
+            },
+            "childs" : [ ]
+          }, {
+            "call" : "org.gradoop.model.impl.DefaultEdge#<init>",
+            "kiekerPattern" : "new org.gradoop.model.impl.DefaultEdge.<init>(java.lang.Long,java.lang.String,java.lang.Long,java.util.Map)",
+            "otherKiekerPattern" : "new org.gradoop.model.impl.DefaultEdge.<init>(java.lang.Long,java.lang.String,java.lang.Long,java.util.Map)",
+            "module" : "gradoop-core",
+            "statistic" : {
+              "meanOld" : 506.03333333333325,
+              "meanCurrent" : 379.4216666666666,
+              "deviationOld" : 177.59433655507368,
+              "deviationCurrent" : 119.84504232357811,
+              "vms" : 30,
+              "callsOld" : 1050,
+              "calls" : 1050,
+              "tvalue" : 3.236799459736087
+            },
+            "childs" : [ ]
+          } ]
+        } ]
+      } ]
+    }, {
+      "call" : "org.gradoop.model.impl.VertexFactory#createDefaultVertex",
+      "kiekerPattern" : "public static org.gradoop.model.Vertex org.gradoop.model.impl.VertexFactory.createDefaultVertex(java.lang.Long,java.lang.Iterable,java.util.Map,java.lang.Iterable,java.lang.Iterable,java.lang.Iterable)",
+      "otherKiekerPattern" : "public static org.gradoop.model.Vertex org.gradoop.model.impl.VertexFactory.createDefaultVertex(java.lang.Long,java.lang.String,java.util.Map,java.lang.Iterable,java.lang.Iterable,java.lang.Iterable)",
+      "module" : "gradoop-core",
+      "statistic" : {
+        "meanOld" : 275498.9620689655,
+        "meanCurrent" : 241020.05666666673,
+        "deviationOld" : 56041.24110630755,
+        "deviationCurrent" : 42906.43369042476,
+        "vms" : 29,
+        "callsOld" : 150,
+        "calls" : 150,
+        "tvalue" : 2.647038905853766
+      },
+      "childs" : [ ]
+    }, {
+      "call" : "org.gradoop.model.impl.MultiLabeledPropertyContainer#getLabelCount",
+      "kiekerPattern" : "public int org.gradoop.model.impl.MultiLabeledPropertyContainer.getLabelCount()",
+      "otherKiekerPattern" : "public java.lang.String org.gradoop.model.impl.LabeledPropertyContainer.getLabel()",
+      "module" : "gradoop-core",
+      "statistic" : {
+        "meanOld" : 1175.0966666666668,
+        "meanCurrent" : 362.8899999999999,
+        "deviationOld" : 502.6463605574093,
+        "deviationCurrent" : 56.23021859070638,
+        "vms" : 30,
+        "callsOld" : 150,
+        "calls" : 150,
+        "tvalue" : 8.795570283258261
+      },
+      "childs" : [ ]
+    }, {
+      "call" : "org.gradoop.model.impl.MultiLabeledPropertyContainer#getLabels",
+      "kiekerPattern" : "public java.lang.Iterable org.gradoop.model.impl.MultiLabeledPropertyContainer.getLabels()",
+      "otherKiekerPattern" : "ADDED",
+      "module" : "gradoop-core",
+      "statistic" : {
+        "meanOld" : "NaN",
+        "meanCurrent" : "NaN",
+        "deviationOld" : "NaN",
+        "deviationCurrent" : "NaN",
+        "vms" : 0,
+        "callsOld" : 0,
+        "calls" : 0,
+        "tvalue" : -1.0,
+        "change" : true
+      },
+      "childs" : [ ]
+    }, {
+      "call" : "org.gradoop.model.impl.MultiLabeledPropertyContainer#getID",
+      "kiekerPattern" : "public java.lang.Long org.gradoop.model.impl.MultiLabeledPropertyContainer.getID()",
+      "otherKiekerPattern" : "public java.lang.Long org.gradoop.model.impl.LabeledPropertyContainer.getID()",
+      "module" : "gradoop-core",
+      "statistic" : {
+        "meanOld" : 585.0933333333332,
+        "meanCurrent" : 353.19310344827585,
+        "deviationOld" : 377.4038593568848,
+        "deviationCurrent" : 60.94441806758071,
+        "vms" : 29,
+        "callsOld" : 150,
+        "calls" : 150,
+        "tvalue" : 3.3210492074608657
+      },
+      "childs" : [ ]
+    }, {
+      "call" : "org.gradoop.model.impl.DefaultEdge#equals",
+      "kiekerPattern" : "public boolean org.gradoop.model.impl.DefaultEdge.equals(java.lang.Object)",
+      "otherKiekerPattern" : "public boolean org.gradoop.model.impl.DefaultEdge.equals(java.lang.Object)",
+      "module" : "gradoop-core",
+      "statistic" : {
+        "meanOld" : 900.9527777777779,
+        "meanCurrent" : 903.354022988506,
+        "deviationOld" : 163.6751875888577,
+        "deviationCurrent" : 181.66729333963406,
+        "vms" : 29,
+        "callsOld" : 1650,
+        "calls" : 1650,
+        "tvalue" : -0.05328186110540631
+      },
+      "childs" : [ ]
+    } ]
+  }
+}

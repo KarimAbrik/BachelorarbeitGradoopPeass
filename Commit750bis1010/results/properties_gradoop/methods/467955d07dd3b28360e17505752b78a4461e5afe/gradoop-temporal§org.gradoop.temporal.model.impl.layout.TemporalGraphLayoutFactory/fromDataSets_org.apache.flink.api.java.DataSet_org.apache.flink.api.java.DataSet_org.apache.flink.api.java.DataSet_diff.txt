@@ -1,0 +1,7 @@
+@Override
+public LogicalGraphLayout<TemporalGraphHead, TemporalVertex, TemporalEdge> fromDataSets(DataSet<TemporalGraphHead> graphHead, DataSet<TemporalVertex> vertices, DataSet<TemporalEdge> edges) {
+    requireNonNull(graphHead, "Temporal graphHead DataSet is null.");
+    requireNonNull(vertices, "Temporal vertex DataSet is null.");
+    requireNonNull(edges, "Temporal edge DataSet is null.");
+    return new TemporalGVELayout(graphHead, vertices, edges);
+}

@@ -1,0 +1,7 @@
+@Override
+public LG execute(GC collection) {
+    DataSet<GradoopId> excludedGraphIds = collection.getGraphHeads().filter(new ByDifferentId<>(startId)).map(new Id<>());
+    DataSet<V> vertices = collection.getVertices().filter(new InGraph<>(startId)).filter(new NotInGraphsBroadcast<>()).withBroadcastSet(excludedGraphIds, NotInGraphsBroadcast.GRAPH_IDS);
+    DataSet<E> edges = collection.getEdges().filter(new InGraph<>(startId)).filter(new NotInGraphsBroadcast<>()).withBroadcastSet(excludedGraphIds, NotInGraphsBroadcast.GRAPH_IDS);
+    return collection.getGraphFactory().fromDataSets(collection.getGraphHeads().filter(new BySameId<>(startId)), vertices, edges);
+}

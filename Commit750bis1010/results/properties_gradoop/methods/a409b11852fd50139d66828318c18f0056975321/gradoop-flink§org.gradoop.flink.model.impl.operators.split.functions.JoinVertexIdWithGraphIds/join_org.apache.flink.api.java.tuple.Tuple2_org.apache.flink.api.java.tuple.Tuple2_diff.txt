@@ -1,0 +1,5 @@
+@Override
+public Tuple2<GradoopId, GradoopId> join(Tuple2<GradoopId, PropertyValue> vertexSplitKey, Tuple2<PropertyValue, GradoopId> splitKeyGradoopId) {
+    reuseTuple.setFields(vertexSplitKey.f0, splitKeyGradoopId.f1);
+    return reuseTuple;
+}

@@ -1,0 +1,16 @@
+/**
+ * Returns the Unsafe-using Comparer, or falls back to the pure-Java implementation if unable to do so.
+ *
+ * @return Unsafe comparer if available, else a pure java comparer
+ */
+static Comparer<byte[]> getBestComparer() {
+    try {
+        Class<?> theClass = Class.forName(UNSAFE_COMPARER_NAME);
+        // yes, UnsafeComparer does implement Comparer<byte[]>
+        @SuppressWarnings("unchecked")
+        Comparer<byte[]> comparer = (Comparer<byte[]>) theClass.getEnumConstants()[0];
+        return comparer;
+    } catch (ClassNotFoundException t) {
+        return lexicographicalComparerJavaImpl();
+    }
+}

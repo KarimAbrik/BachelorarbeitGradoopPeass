@@ -1,0 +1,8 @@
+@Test
+public void testAppendSingleId() {
+    GradoopId id = GradoopId.get();
+    Embedding embedding = new Embedding();
+    embedding.add(id);
+    assertEquals(1, embedding.size());
+    assertEquals(id, embedding.getId(0));
+}

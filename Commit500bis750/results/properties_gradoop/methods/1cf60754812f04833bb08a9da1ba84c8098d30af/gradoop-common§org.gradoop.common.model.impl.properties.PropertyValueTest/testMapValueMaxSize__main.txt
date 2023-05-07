@@ -1,0 +1,10 @@
+@Test
+public void testMapValueMaxSize() {
+    Map<PropertyValue, PropertyValue> m = new HashMap<>();
+    // 8 bytes per double + 1 byte overhead
+    for (int i = 0; i < PropertyValue.LARGE_PROPERTY_THRESHOLD / 18; i++) {
+        PropertyValue p = create(Math.random());
+        m.put(p, p);
+    }
+    create(m);
+}

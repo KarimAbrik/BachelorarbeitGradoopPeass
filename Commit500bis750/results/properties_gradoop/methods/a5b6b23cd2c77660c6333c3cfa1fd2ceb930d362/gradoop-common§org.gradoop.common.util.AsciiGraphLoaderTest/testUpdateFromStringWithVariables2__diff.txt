@@ -1,0 +1,14 @@
+@Test
+public void testUpdateFromStringWithVariables2() {
+    AsciiGraphLoader<GraphHead, Vertex, Edge> asciiGraphLoader = AsciiGraphLoader.fromString("g[(a)-[e]->(b)]", config);
+    validateCollections(asciiGraphLoader, 1, 2, 1);
+    validateCaches(asciiGraphLoader, 1, 2, 1);
+    asciiGraphLoader.appendFromString("g[(a)-[f]->(c)]");
+    validateCollections(asciiGraphLoader, 1, 3, 2);
+    validateCaches(asciiGraphLoader, 1, 3, 2);
+    GraphHead g = asciiGraphLoader.getGraphHeadByVariable("g");
+    Vertex c = asciiGraphLoader.getVertexByVariable("c");
+    Edge f = asciiGraphLoader.getEdgeByVariable("f");
+    assertTrue("Vertex not in graph", c.getGraphIds().contains(g.getId()));
+    assertTrue("Edge not in graph", f.getGraphIds().contains(g.getId()));
+}

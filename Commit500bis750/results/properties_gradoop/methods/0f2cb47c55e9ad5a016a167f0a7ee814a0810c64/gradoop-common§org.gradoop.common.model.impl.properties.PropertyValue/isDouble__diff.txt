@@ -1,0 +1,8 @@
+/**
+ * True, if the wrapped value is of type {@code double}.
+ *
+ * @return true, if {@code double} value
+ */
+public boolean isDouble() {
+    return rawBytes[0] == TYPE_DOUBLE;
+}

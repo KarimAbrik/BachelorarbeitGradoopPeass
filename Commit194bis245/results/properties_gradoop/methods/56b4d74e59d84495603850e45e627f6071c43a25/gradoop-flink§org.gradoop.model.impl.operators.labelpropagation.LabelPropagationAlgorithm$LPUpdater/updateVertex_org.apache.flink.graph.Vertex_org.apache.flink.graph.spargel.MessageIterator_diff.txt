@@ -1,0 +1,39 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public void updateVertex(Vertex<Long, LabelPropagationValue> vertex, MessageIterator<Long> msg) throws Exception {
+    if (getSuperstepNumber() == 1) {
+        //Todo: Use Broadcast to set ChangeMax
+        vertex.getValue().setChangeMax(20);
+        vertex.getValue().setCurrentCommunity(vertex.getId());
+        setNewVertexValue(vertex.getValue());
+    } else {
+        long currentCommunity = vertex.getValue().getCurrentCommunity();
+        long lastCommunity = vertex.getValue().getLastCommunity();
+        int stabilizationRound = vertex.getValue().getStabilizationCounter();
+        long newCommunity = getNewCommunity(vertex, msg);
+        boolean changed = currentCommunity != newCommunity;
+        boolean lastEqualsNew = lastCommunity == newCommunity;
+        if (changed && lastEqualsNew) {
+            //Counts the amount of community swaps between 2 communities
+            stabilizationRound++;
+            vertex.getValue().setStabilizationCounter(stabilizationRound);
+            boolean maximalChanges = stabilizationRound <= vertex.getValue().getChangeMax();
+            if (maximalChanges) {
+                vertex.getValue().setLastCommunity(currentCommunity);
+                vertex.getValue().setCurrentCommunity(newCommunity);
+                setNewVertexValue(vertex.getValue());
+            } else {
+                vertex.getValue().setCurrentCommunity(Math.min(currentCommunity, newCommunity));
+                vertex.getValue().setLastCommunity(vertex.getValue().getCurrentCommunity());
+                setNewVertexValue(vertex.getValue());
+            }
+        }
+        if (changed && !lastEqualsNew) {
+            vertex.getValue().setLastCommunity(currentCommunity);
+            vertex.getValue().setCurrentCommunity(newCommunity);
+            setNewVertexValue(vertex.getValue());
+        }
+    }
+}

@@ -1,0 +1,9 @@
+/**
+ * Get the file extension of a file
+ *
+ * @param path The name/path of the file
+ * @return The extension (without dot)
+ */
+private String getFileExtension(String path) {
+    return path.substring(path.lastIndexOf('.') + 1);
+}

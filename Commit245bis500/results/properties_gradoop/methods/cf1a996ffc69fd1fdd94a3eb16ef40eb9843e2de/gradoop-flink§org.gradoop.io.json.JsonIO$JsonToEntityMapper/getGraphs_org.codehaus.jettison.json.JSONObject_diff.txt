@@ -1,0 +1,16 @@
+/**                                                                                                    /**                                                                                                 
+* Reads a set of graph identifiers from the json object.                                               * Reads a set of graph identifiers from the json object.                                            
+*                                                                                                      *                                                                                                   
+* @param object json object                                                                            * @param object json object                                                                         
+* @return graph identifiers                                                                            * @return graph identifiers                                                                         
+* @throws JSONException                                                                                * @throws JSONException                                                                             
+*/                                                                                                     */                                                                                                  
+protected Set&lt;Long&gt; getGraphs(JSONObject object) throws JSONException {                        | protected GradoopIds getGraphs(JSONObject object) throws JSONException {                            
+Set&lt;Long&gt; result;                                                                              | GradoopIds result;                                                                                  
+if (!object.getJSONObject(META).has(GRAPHS)) {                                                         if (!object.getJSONObject(META).has(GRAPHS)) {                                                      
+result = Sets.newHashSetWithExpectedSize(0);                                                         | result = new GradoopIds();                                                                          
+} else {                                                                                               } else {                                                                                            
+result = getArrayValues(object.getJSONObject(META).getJSONArray(GRAPHS));                              result = getArrayValues(object.getJSONObject(META).getJSONArray(GRAPHS));                           
+}                                                                                                      }                                                                                                   
+return result;                                                                                         return result;                                                                                      
+}                                                                                                      }                                                                                                   

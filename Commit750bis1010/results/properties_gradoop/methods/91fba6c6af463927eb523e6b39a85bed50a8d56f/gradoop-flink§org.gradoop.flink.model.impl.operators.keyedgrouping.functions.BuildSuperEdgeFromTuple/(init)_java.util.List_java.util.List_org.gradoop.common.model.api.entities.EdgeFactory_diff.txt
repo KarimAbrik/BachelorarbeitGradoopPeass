@@ -1,0 +1,12 @@
+/**
+ * Initialize this function.
+ *
+ * @param groupingKeys       The grouping key functions.
+ * @param aggregateFunctions The aggregate functions.
+ * @param edgeFactory        A factory used to create new edges.
+ */
+public BuildSuperEdgeFromTuple(List<KeyFunction<E, ?>> groupingKeys, List<AggregateFunction> aggregateFunctions, EdgeFactory<E> edgeFactory) {
+    super(GroupingConstants.EDGE_TUPLE_RESERVED, groupingKeys, aggregateFunctions);
+    reuse = Objects.requireNonNull(edgeFactory).createEdge(GradoopId.NULL_VALUE, GradoopId.NULL_VALUE);
+    edgeType = edgeFactory.getType();
+}

@@ -1,0 +1,11 @@
+/**
+ * Test writing a logical csv graph.
+ *
+ * @throws Exception if the execution or IO fails.
+ */
+@Test
+public void testWriteLogicalGraph() throws Exception {
+    String tmpPath = temporaryFolder.getRoot().getPath();
+    LogicalGraph input = getSocialNetworkLoader().getLogicalGraph(true);
+    checkIndexedCSVWrite(tmpPath, input);
+}

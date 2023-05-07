@@ -1,0 +1,12 @@
+/**
+ * Computes the resulting vertices by collecting a list of resulting
+ * subgraphs and checking if the vertex is contained in that list.
+ *
+ * @param newGraphHeads graph dataset of the resulting graph collection
+ * @return vertex set of the resulting graph collection
+ */
+@Override
+protected DataSet<V> computeNewVertices(DataSet<G> newGraphHeads) {
+    DataSet<GradoopId> identifiers = newGraphHeads.map(new Id<>());
+    return firstCollection.getVertices().filter(new InAnyGraphBroadcast<>()).withBroadcastSet(identifiers, GraphsContainmentFilterBroadcast.GRAPH_IDS);
+}

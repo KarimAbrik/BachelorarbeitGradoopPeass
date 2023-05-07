@@ -1,0 +1,4 @@
+@Override
+public DataSet<EPGMGraphHead> getGraphHeadsByLabel(String label) {
+    return getGraphHeads().filter(new ByLabel<>(label));
+}

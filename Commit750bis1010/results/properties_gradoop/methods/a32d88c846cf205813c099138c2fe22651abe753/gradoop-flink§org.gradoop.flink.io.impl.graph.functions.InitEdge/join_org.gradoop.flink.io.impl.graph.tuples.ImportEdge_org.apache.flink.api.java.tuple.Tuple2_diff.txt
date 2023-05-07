@@ -1,0 +1,16 @@
+/**
+ * Outputs a pair of import target vertex id and new EPGM edge. The target
+ * vertex id is used for further joining the tuple with the import vertices.
+ *
+ * @param importEdge    import edge
+ * @param vertexIdPair  pair of import id and corresponding Gradoop vertex id
+ * @return pair of import target vertex id and EPGM edge
+ * @throws Exception on failure
+ */
+@Override
+public Tuple2<K, EPGMEdge> join(ImportEdge<K> importEdge, Tuple2<K, GradoopId> vertexIdPair) throws Exception {
+    reuseTuple.f0 = importEdge.getTargetId();
+    EPGMEdge edge = edgeFactory.createEdge(importEdge.getLabel(), vertexIdPair.f1, GradoopId.get(), importEdge.getProperties());
+    reuseTuple.f1 = updateLineage(edge, importEdge.getId());
+    return reuseTuple;
+}

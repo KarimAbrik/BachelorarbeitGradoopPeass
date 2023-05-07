@@ -1,0 +1,10 @@
+@Nonnull
+@Override
+public Filter toHBaseFilter() {
+    FilterList filterList = new FilterList(FilterList.Operator.MUST_PASS_ONE);
+    for (String label : getLabels()) {
+        SingleColumnValueFilter valueFilter = new SingleColumnValueFilter(Bytes.toBytesBinary(CF_META), Bytes.toBytesBinary(COL_LABEL), CompareFilter.CompareOp.EQUAL, Bytes.toBytesBinary(label));
+        filterList.addFilter(valueFilter);
+    }
+    return filterList;
+}

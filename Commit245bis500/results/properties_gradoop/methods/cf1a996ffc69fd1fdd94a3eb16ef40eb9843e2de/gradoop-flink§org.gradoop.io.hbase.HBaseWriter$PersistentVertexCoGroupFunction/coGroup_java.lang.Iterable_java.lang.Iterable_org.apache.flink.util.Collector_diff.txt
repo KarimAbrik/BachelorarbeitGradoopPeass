@@ -1,0 +1,18 @@
+/**                                                                                                    /**                                                                                                 
+* {@inheritDoc}                                                                                        * {@inheritDoc}                                                                                     
+*/                                                                                                     */                                                                                                  
+@Override                                                                                              @Override                                                                                           
+public void coGroup(Iterable&lt;Tuple2&lt;VD, Set&lt;ED&gt;&gt;&gt; iterable, Iterable&lt;Tuple2&lt; | public void coGroup(Iterable&lt;Tuple2&lt;VD, Set&lt;ED&gt;&gt;&gt; iterable, Iterable&lt;Tuple2&lt;
+VD vertex = null;                                                                                      VD vertex = null;                                                                                   
+Set&lt;ED&gt; outgoingEdgeData = null;                                                                 Set&lt;ED&gt; outgoingEdgeData = null;                                                              
+Set&lt;ED&gt; incomingEdgeData = null;                                                                 Set&lt;ED&gt; incomingEdgeData = null;                                                              
+for (Tuple2&lt;VD, Set&lt;ED&gt;&gt; left : iterable) {                                                for (Tuple2&lt;VD, Set&lt;ED&gt;&gt; left : iterable) {                                             
+vertex = left.f0;                                                                                      vertex = left.f0;                                                                                   
+outgoingEdgeData = left.f1;                                                                            outgoingEdgeData = left.f1;                                                                         
+}                                                                                                      }                                                                                                   
+for (Tuple2&lt;Long, Set&lt;ED&gt;&gt; right : iterable1) {                                          | for (Tuple2&lt;GradoopId, Set&lt;ED&gt;&gt; right : iterable1) {                                    
+incomingEdgeData = right.f1;                                                                           incomingEdgeData = right.f1;                                                                        
+}                                                                                                      }                                                                                                   
+assert vertex != null;                                                                                 assert vertex != null;                                                                              
+collector.collect(vertexFactory.createVertex(vertex, outgoingEdgeData, incomingEdgeData));             collector.collect(vertexFactory.createVertex(vertex, outgoingEdgeData, incomingEdgeData));          
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,10 @@
+/**
+ * Creates the meta data for the specified data set of EPGM elements.
+ *
+ * @param elements EPGM elements
+ * @param <E> EPGM element type
+ * @return meta data information
+ */
+protected <E extends Element> DataSet<Tuple3<String, String, String>> createMetaData(DataSet<E> elements) {
+    return elements.map(new ElementToPropertyMetaData<>()).groupBy(1).combineGroup(new ReducePropertyMetaData()).groupBy(1).reduceGroup(new ReducePropertyMetaData()).map(tuple -> Tuple3.of(tuple.f0, tuple.f1, MetaDataParser.getPropertiesMetaData(tuple.f2))).returns(new TupleTypeInfo<>(BasicTypeInfo.STRING_TYPE_INFO, BasicTypeInfo.STRING_TYPE_INFO, BasicTypeInfo.STRING_TYPE_INFO)).withForwardedFields("f0", "f1");
+}

@@ -1,0 +1,22 @@
+@Test
+public void createVertexPojoTest() {
+    GradoopId vertexID = GradoopId.get();
+    String label = "A";
+    Properties props = Properties.create();
+    props.set("k1", "v1");
+    props.set("k2", "v2");
+    GradoopId graphId1 = GradoopId.get();
+    GradoopId graphId2 = GradoopId.get();
+    GradoopIdList graphIds = new GradoopIdList();
+    graphIds.add(graphId1);
+    graphIds.add(graphId2);
+    EPGMVertex vertex = new VertexFactory().initVertex(vertexID, label, props, graphIds);
+    assertThat(vertex.getId(), is(vertexID));
+    assertEquals(label, vertex.getLabel());
+    assertThat(vertex.getPropertyCount(), is(2));
+    assertThat(vertex.getPropertyValue("k1").getString(), Is.<Object>is("v1"));
+    assertThat(vertex.getPropertyValue("k2").getString(), Is.<Object>is("v2"));
+    assertThat(vertex.getGraphCount(), is(2));
+    assertTrue(vertex.getGraphIds().contains(graphId1));
+    assertTrue(vertex.getGraphIds().contains(graphId2));
+}

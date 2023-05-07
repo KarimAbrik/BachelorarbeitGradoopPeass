@@ -1,0 +1,12 @@
+/**                                                                                                    /**                                                                                                 
+* {@inheritDoc}                                                                                        * {@inheritDoc}                                                                                     
+*/                                                                                                     */                                                                                                  
+@Override                                                                                              @Override                                                                                           
+public GradoopIds readGraphIds(Result res) throws IOException {                                        public GradoopIds readGraphIds(Result res) throws IOException {                                     
+byte[] graphBytes = res.getValue(CF_META_BYTES, COL_GRAPHS_BYTES);                                     byte[] graphBytes = res.getValue(CF_META_BYTES, COL_GRAPHS_BYTES);                                  
+GradoopIds graphIds = null;                                                                          | GradoopIds graphIds = new GradoopIds();                                                             
+                                                                                                     | if (graphBytes != null) {                                                                           
+Writables.getWritable(graphBytes, graphIds);                                                           Writables.getWritable(graphBytes, graphIds);                                                        
+                                                                                                     | }                                                                                                   
+return graphIds;                                                                                       return graphIds;                                                                                    
+}                                                                                                      }                                                                                                   

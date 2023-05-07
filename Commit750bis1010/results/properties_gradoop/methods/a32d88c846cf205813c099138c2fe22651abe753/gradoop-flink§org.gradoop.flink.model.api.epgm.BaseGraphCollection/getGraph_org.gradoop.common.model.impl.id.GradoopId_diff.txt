@@ -1,0 +1,11 @@
+//----------------------------------------------------------------------------
+// Base Graph / Graph Head Getters
+//----------------------------------------------------------------------------
+@Override
+default LG getGraph(final GradoopId graphID) {
+    // filter vertices and edges based on given graph id
+    DataSet<G> graphHead = getGraphHeads().filter(new BySameId<>(graphID));
+    DataSet<V> vertices = getVertices().filter(new InGraph<>(graphID));
+    DataSet<E> edges = getEdges().filter(new InGraph<>(graphID));
+    return getGraphFactory().fromDataSets(graphHead, vertices, edges);
+}

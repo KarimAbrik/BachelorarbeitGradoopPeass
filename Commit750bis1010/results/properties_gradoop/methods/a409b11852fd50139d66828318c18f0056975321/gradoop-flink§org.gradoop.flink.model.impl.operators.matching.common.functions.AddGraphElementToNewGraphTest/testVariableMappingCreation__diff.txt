@@ -1,0 +1,9 @@
+@Test
+public void testVariableMappingCreation() throws Exception {
+    AddGraphElementToNewGraph<EPGMVertex, EPGMGraphHead> udf = new AddGraphElementToNewGraph<>(new EPGMGraphHeadFactory(), "a");
+    EPGMVertex vertex = new EPGMVertexFactory().createVertex();
+    Tuple2<EPGMVertex, EPGMGraphHead> result = udf.map(vertex);
+    assertTrue(result.f1.hasProperty(PatternMatching.VARIABLE_MAPPING_KEY));
+    Map<PropertyValue, PropertyValue> variableMapping = result.f1.getPropertyValue(PatternMatching.VARIABLE_MAPPING_KEY).getMap();
+    assertEquals(vertex.getId(), variableMapping.get(PropertyValue.create("a")).getGradoopId());
+}

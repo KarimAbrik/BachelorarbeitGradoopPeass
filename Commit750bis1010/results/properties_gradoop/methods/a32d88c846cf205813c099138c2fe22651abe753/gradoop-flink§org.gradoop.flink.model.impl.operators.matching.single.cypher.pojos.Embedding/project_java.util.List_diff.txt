@@ -1,0 +1,15 @@
+// ---------------------------------------------------------------------------------------------
+//  Utilities
+// ---------------------------------------------------------------------------------------------
+/**
+ * Projects the stored Properties. Only the white-listed properties will be kept
+ * @param propertyWhiteList list of property indices
+ * @return Embedding with the projected property list
+ */
+public Embedding project(List<Integer> propertyWhiteList) {
+    byte[] newPropertyData = new byte[0];
+    for (int index : propertyWhiteList) {
+        newPropertyData = ArrayUtils.addAll(newPropertyData, getRawProperty(index));
+    }
+    return new Embedding(idData, newPropertyData, idListData);
+}

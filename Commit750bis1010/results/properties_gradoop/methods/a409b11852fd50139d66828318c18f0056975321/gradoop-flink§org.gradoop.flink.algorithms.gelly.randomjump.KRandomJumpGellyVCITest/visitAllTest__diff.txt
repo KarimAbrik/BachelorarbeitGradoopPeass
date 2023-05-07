@@ -1,0 +1,9 @@
+/**
+ * Test with social graph, with 1 starting vertex and all of the vertices to visit.
+ */
+@Test
+public void visitAllTest() throws Exception {
+    LogicalGraph result = new KRandomJumpGellyVCI(1, 1000, 0.15, 1.0).execute(socialGraph);
+    commonValidation(socialGraph, result);
+    resultVertices.forEach(vertex -> assertTrue("vertex " + vertex.getId() + " was not visited, all vertices should be", vertex.getPropertyValue(SamplingConstants.PROPERTY_KEY_SAMPLED).getBoolean()));
+}

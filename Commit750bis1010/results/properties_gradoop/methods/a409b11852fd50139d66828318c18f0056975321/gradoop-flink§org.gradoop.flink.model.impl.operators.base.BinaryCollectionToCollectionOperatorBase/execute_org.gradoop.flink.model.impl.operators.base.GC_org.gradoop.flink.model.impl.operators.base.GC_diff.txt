@@ -1,0 +1,10 @@
+@Override
+public GC execute(GC firstCollection, GC secondCollection) {
+    // do some init stuff for the actual operator
+    this.firstCollection = firstCollection;
+    this.secondCollection = secondCollection;
+    final DataSet<G> newGraphHeads = computeNewGraphHeads();
+    final DataSet<V> newVertices = computeNewVertices(newGraphHeads);
+    final DataSet<E> newEdges = computeNewEdges(newVertices);
+    return firstCollection.getFactory().fromDataSets(newGraphHeads, newVertices, newEdges);
+}

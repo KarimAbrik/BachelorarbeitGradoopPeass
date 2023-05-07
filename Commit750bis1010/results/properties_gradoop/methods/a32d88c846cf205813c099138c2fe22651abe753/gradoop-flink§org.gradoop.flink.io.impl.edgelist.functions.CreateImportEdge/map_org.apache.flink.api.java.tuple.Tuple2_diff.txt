@@ -1,0 +1,15 @@
+/**
+ * Method to create ImportEdge
+ *
+ * @param idTuple    tuple that contains unique line id + source and target ids
+ * @return           initialized reuseEdge
+ * @throws Exception on failure
+ */
+@Override
+public ImportEdge<K> map(Tuple2<K, Tuple2<K, K>> idTuple) throws Exception {
+    reuseEdge.setId(idTuple.f0);
+    reuseEdge.setProperties(Properties.create());
+    reuseEdge.setSourceId(idTuple.f1.f0);
+    reuseEdge.setTargetId(idTuple.f1.f1);
+    return reuseEdge;
+}

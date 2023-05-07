@@ -1,0 +1,9 @@
+/**
+ * Updates the cardinality of the variable.
+ *
+ * @param variable query variable
+ * @param cardinality cardinality
+ */
+private void updateCardinality(String variable, long cardinality) {
+    cardinalities.put(variable, cardinalities.getOrDefault(variable, 1L) * cardinality);
+}

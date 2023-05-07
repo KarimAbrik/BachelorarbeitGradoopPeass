@@ -1,0 +1,68 @@
+{
+  "clazz" : "org.gradoop.model.impl.labelpropagation.LabelPropagationGradoopTest",
+  "methods" : [ {
+    "method" : "testLabelPropagationWithCallByPropertyKey",
+    "datacollectorResults" : [ {
+      "name" : "de.dagere.kopeme.datacollection.TimeDataCollectorNoGC",
+      "chunks" : [ ],
+      "results" : [ {
+        "value" : 4.4589123506E9,
+        "deviation" : 0.4178633061223428,
+        "min" : 3.121323011E9,
+        "max" : 9.561930519E9,
+        "warmup" : 0,
+        "iterations" : 10,
+        "repetitions" : 2,
+        "commit" : null,
+        "vmRunConfiguration" : {
+          "showStart" : false,
+          "executeBeforeClassInMeasurement" : false,
+          "redirectToTemp" : false,
+          "redirectToNull" : true,
+          "useKieker" : false
+        },
+        "parameters" : {
+          "JUNIT_PARAMETERIZED" : "Execution mode = CLUSTER"
+        },
+        "javaVersion" : "1.8.0_362",
+        "cpu" : "model name : Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz",
+        "memory" : "MemTotal: 16280544 kB",
+        "date" : 1681002758652,
+        "fulldata" : {
+          "fileName" : null,
+          "values" : [ {
+            "startTime" : 1681002713454,
+            "value" : 9561930519
+          }, {
+            "startTime" : 1681002723016,
+            "value" : 5109721678
+          }, {
+            "startTime" : 1681002728126,
+            "value" : 4028181211
+          }, {
+            "startTime" : 1681002732154,
+            "value" : 4091173467
+          }, {
+            "startTime" : 1681002736245,
+            "value" : 3692166057
+          }, {
+            "startTime" : 1681002739937,
+            "value" : 3586449044
+          }, {
+            "startTime" : 1681002743524,
+            "value" : 3794298767
+          }, {
+            "startTime" : 1681002747318,
+            "value" : 3891039039
+          }, {
+            "startTime" : 1681002751209,
+            "value" : 3121323011
+          }, {
+            "startTime" : 1681002754331,
+            "value" : 3712840713
+          } ]
+        }
+      } ]
+    } ]
+  } ]
+}

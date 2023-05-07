@@ -1,0 +1,21 @@
+/**
+ * Test SumProperty, VertexSumProperty and EdgeSumProperty with a single graph
+ * and empty properties.
+ *
+ * @throws Exception if the execution fails.
+ */
+@Test
+public void testSumWithEmptyProperties() throws Exception {
+    LogicalGraph graph = getLoaderFromString("org:Ga[(:Va)-[:ea]->(:Vb)]").getLogicalGraphByVariable("org");
+    SumVertexProperty sumVertexProperty = new SumVertexProperty(PROPERTY, VERTEX_AGGREGATE_PROPERTY);
+    SumEdgeProperty sumEdgeProperty = new SumEdgeProperty(PROPERTY, EDGE_AGGREGATE_PROPERTY);
+    SumProperty sumProperty = new SumProperty(PROPERTY, ELEMENT_AGGREGATE_PROPERTY);
+    graph = graph.aggregate(sumVertexProperty).aggregate(sumEdgeProperty).aggregate(sumProperty);
+    GraphHead graphHead = graph.getGraphHead().collect().get(0);
+    assertTrue("edge sum not set", graphHead.hasProperty(sumEdgeProperty.getAggregatePropertyKey()));
+    assertTrue("vertex sum not set", graphHead.hasProperty(sumVertexProperty.getAggregatePropertyKey()));
+    assertTrue("element sum not set", graphHead.hasProperty(sumProperty.getAggregatePropertyKey()));
+    assertEquals(PropertyValue.NULL_VALUE, graphHead.getPropertyValue(sumEdgeProperty.getAggregatePropertyKey()));
+    assertEquals(PropertyValue.NULL_VALUE, graphHead.getPropertyValue(sumVertexProperty.getAggregatePropertyKey()));
+    assertEquals(PropertyValue.NULL_VALUE, graphHead.getPropertyValue(sumProperty.getAggregatePropertyKey()));
+}

@@ -1,0 +1,5 @@
+@Test
+public void createWithMissingLabelTest() {
+    EPGMGraphHead g = new GraphHeadPojoFactory().createGraphHead(0L);
+    assertThat(g.getLabel(), is(GConstants.DEFAULT_GRAPH_LABEL));
+}

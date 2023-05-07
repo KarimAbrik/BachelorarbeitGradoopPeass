@@ -1,0 +1,20 @@
+@Override
+public void coGroup(Iterable<G> left, Iterable<Tuple2<GradoopId, Map<String, PropertyValue>>> right, Collector<G> out) {
+    for (G leftElem : left) {
+        boolean rightEmpty = true;
+        for (Tuple2<GradoopId, Map<String, PropertyValue>> rightElem : right) {
+            Map<String, PropertyValue> values = rightElem.f1;
+            // Apply post-aggregation step.
+            for (AggregateFunction function : aggregateFunctions) {
+                values.computeIfPresent(function.getAggregatePropertyKey(), (k, v) -> function.postAggregate(v));
+            }
+            values.forEach(leftElem::setProperty);
+            out.collect(leftElem);
+            rightEmpty = false;
+        }
+        if (rightEmpty) {
+            defaultValues.forEach(leftElem::setProperty);
+            out.collect(leftElem);
+        }
+    }
+}

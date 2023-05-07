@@ -1,0 +1,24 @@
+/**
+ * Creates a map with data read from an {@link DataInputViewStreamWrapper}.
+ *
+ * @param inputView {@link DataInputViewStreamWrapper} containing data
+ * @return a map containing the deserialized data
+ * @throws IOException on failure to read input view
+ */
+private Map<PropertyValue, PropertyValue> createMap(DataInputViewStreamWrapper inputView) throws IOException {
+    PropertyValue key;
+    PropertyValue value;
+    Map<PropertyValue, PropertyValue> map = new HashMap<>();
+    try {
+        while (inputView.available() > 0) {
+            key = new PropertyValue();
+            key.read(inputView);
+            value = new PropertyValue();
+            value.read(inputView);
+            map.put(key, value);
+        }
+    } catch (IOException e) {
+        throw new IOException("Error reading PropertyValue with MapStrategy.", e);
+    }
+    return map;
+}

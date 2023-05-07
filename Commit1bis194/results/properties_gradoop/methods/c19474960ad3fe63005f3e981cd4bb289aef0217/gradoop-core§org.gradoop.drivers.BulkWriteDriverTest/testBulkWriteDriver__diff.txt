@@ -1,0 +1,21 @@
+@Test                                                                                                  @Test                                                                                               
+public void testBulkWriteDriver() throws Exception {                                                   public void testBulkWriteDriver() throws Exception {                                                
+GraphStore store = createEmptyGraphStore();                                                            GraphStore store = createEmptyGraphStore();                                                         
+for (Vertex v : createBasicGraphVertices()) {                                                          for (Vertex v : createBasicGraphVertices()) {                                                       
+store.writeVertex(v);                                                                                  store.writeVertex(v);                                                                               
+}                                                                                                      }                                                                                                   
+store.close();                                                                                         store.close();                                                                                      
+String outputDirName = "/output/export/extended-graph";                                                String outputDirName = "/output/export/extended-graph";                                             
+String[] args = new String[] { "-" + BulkWriteDriver.ConfUtils.OPTION_VERTEX_LINE_WRITER, SimpleVert | String[] args = new String[] { "-" + BulkWriteDriver.LoadConfUtils.OPTION_VERTEX_LINE_WRITER, Simple
+BulkWriteDriver bulkWriteDriver = new BulkWriteDriver();                                               BulkWriteDriver bulkWriteDriver = new BulkWriteDriver();                                            
+bulkWriteDriver.setConf(utility.getConfiguration());                                                   bulkWriteDriver.setConf(utility.getConfiguration());                                                
+// run the bulk write                                                                                  // run the bulk write                                                                               
+int exitCode = bulkWriteDriver.run(args);                                                              int exitCode = bulkWriteDriver.run(args);                                                           
+// testing                                                                                             // testing                                                                                          
+assertThat(exitCode, is(0));                                                                           assertThat(exitCode, is(0));                                                                        
+// read map output                                                                                     // read map output                                                                                  
+Path outputFile = new Path(outputDirName, "part-m-00000");                                             Path outputFile = new Path(outputDirName, "part-m-00000");                                          
+String[] fileContent = readGraphFromFile(outputFile, BASIC_GRAPH.length);                              String[] fileContent = readGraphFromFile(outputFile, BASIC_GRAPH.length);                           
+// validate text output with input graph                                                               // validate text output with input graph                                                            
+validateBasicGraphVertices(fileContent);                                                               validateBasicGraphVertices(fileContent);                                                            
+}                                                                                                      }                                                                                                   

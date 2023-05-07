@@ -1,0 +1,11 @@
+/**
+ * Returns all edges that start at the target vertex of the given edge or
+ * {@code null} if the edge has no successors.
+ *
+ * @param edgeId edge id
+ * @return succeeding edges or {@code null}
+ */
+public Collection<Edge> getSuccessors(Long edgeId) {
+    Collection<Edge> successors = getEdgesBySourceVertexId(getEdgeById(edgeId).getTargetVertexId());
+    return successors != null ? Lists.newArrayList(successors) : Lists.newArrayList();
+}

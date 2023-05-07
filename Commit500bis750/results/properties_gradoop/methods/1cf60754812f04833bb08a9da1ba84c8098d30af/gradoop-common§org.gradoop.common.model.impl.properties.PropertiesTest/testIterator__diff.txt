@@ -1,0 +1,8 @@
+@Test
+public void testIterator() throws Exception {
+    Properties properties = Properties.createFromMap(SUPPORTED_PROPERTIES);
+    for (Property property : properties) {
+        assertTrue(SUPPORTED_PROPERTIES.containsKey(property.getKey()));
+        assertEquals(SUPPORTED_PROPERTIES.get(property.getKey()), property.getValue().getObject());
+    }
+}

@@ -1,0 +1,9 @@
+/**
+ * Adds the given gradoop ids to the set.
+ *
+ * @param ids the ids to add
+ */
+@Override
+public boolean addAll(Collection<? extends GradoopId> ids) {
+    return this.ids.addAll(ids);
+}

@@ -1,0 +1,23 @@
+/**
+ * Test the {@link MinDuration#postAggregate(PropertyValue)} and the
+ * {@link MaxDuration#postAggregate(PropertyValue)} functions. If all the time data of temporal elements in
+ * a graph is set to default, all the duration aggregate functions return null
+ *
+ * @throws Exception when the execution in Flink fails.
+ */
+@Test
+public void testDurationWithDefaultValues() throws Exception {
+    LogicalGraph logicalGraph = getSocialNetworkLoader().getLogicalGraph();
+    TemporalGraph temporalGraph = TemporalGraph.fromLogicalGraph(logicalGraph);
+    temporalGraph = temporalGraph.aggregate(new MinDuration("minDur", VALID_TIME), new MaxDuration("maxDur", VALID_TIME));
+    LogicalGraph result = temporalGraph.toLogicalGraph();
+    List<EPGMGraphHead> graphHead = new ArrayList<>();
+    result.getGraphHead().output(new LocalCollectionOutputFormat<>(graphHead));
+    getExecutionEnvironment().execute();
+    PropertyValue test = graphHead.get(0).getPropertyValue("minDur");
+    assertNotNull(test);
+    assertEquals(PropertyValue.NULL_VALUE, test);
+    test = graphHead.get(0).getPropertyValue("maxDur");
+    assertNotNull(test);
+    assertEquals(PropertyValue.NULL_VALUE, test);
+}

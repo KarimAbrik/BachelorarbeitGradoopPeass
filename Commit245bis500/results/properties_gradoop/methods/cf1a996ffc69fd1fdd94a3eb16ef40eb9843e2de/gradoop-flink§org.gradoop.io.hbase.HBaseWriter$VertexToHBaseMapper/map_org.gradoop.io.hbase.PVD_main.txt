@@ -1,0 +1,12 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public Tuple2<GradoopId, Mutation> map(PVD persistentVertexData) throws Exception {
+    GradoopId key = persistentVertexData.getId();
+    Put put = new Put(vertexHandler.getRowKey(persistentVertexData.getId()));
+    put = vertexHandler.writeVertex(put, persistentVertexData);
+    reuseTuple.f0 = key;
+    reuseTuple.f1 = put;
+    return reuseTuple;
+}

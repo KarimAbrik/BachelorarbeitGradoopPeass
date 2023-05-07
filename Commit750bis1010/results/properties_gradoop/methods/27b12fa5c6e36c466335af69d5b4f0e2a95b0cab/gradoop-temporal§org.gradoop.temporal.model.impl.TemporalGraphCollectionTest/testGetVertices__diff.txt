@@ -1,0 +1,11 @@
+/**
+ * Test the {@link TemporalGraphCollection#getVertices()} method.
+ */
+@Test
+public void testGetVertices() throws Exception {
+    List<TemporalVertex> temporalVertices = new ArrayList<>();
+    testTemporalCollection.getVertices().output(new LocalCollectionOutputFormat<>(temporalVertices));
+    getExecutionEnvironment().execute();
+    assertEquals(5, temporalVertices.size());
+    temporalVertices.forEach(this::checkDefaultTemporalElement);
+}

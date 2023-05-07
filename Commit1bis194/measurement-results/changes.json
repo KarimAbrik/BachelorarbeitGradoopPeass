@@ -1,0 +1,81 @@
+{
+  "commitCount" : 10,
+  "changeCount" : 6,
+  "testcaseCount" : 29,
+  "statisticsConfig" : {
+    "type1error" : 0.01,
+    "type2error" : 0.01,
+    "outlierFactor" : 3.29,
+    "statisticTest" : "T_TEST"
+  },
+  "commitChanges" : {
+    "bde56c2abc9485c8deec1a06d840ea4e14249a90" : {
+      "testcaseChanges" : {
+        "gradoop-core§org.gradoop.io.reader.SimpleVertexReaderTest" : [ {
+          "diff" : "view_bde56c2abc9485c8deec1a06d840ea4e14249a90/diffs/SimpleVertexReaderTest#readBasicGraphTest.txt",
+          "method" : "readBasicGraphTest",
+          "oldTime" : 1.00225134272E9,
+          "changePercent" : -15.607349905744544,
+          "tvalue" : -12.171766340846103,
+          "mannWhitneyUStatistic" : 5.228316026526551E-11,
+          "vms" : 30
+        } ]
+      }
+    },
+    "1decbef07273217fdf80d332b7dee87504a119fc" : {
+      "testcaseChanges" : {
+        "gradoop-core§org.gradoop.io.reader.SimpleVertexReaderTest" : [ {
+          "diff" : "view_1decbef07273217fdf80d332b7dee87504a119fc/diffs/SimpleVertexReaderTest#readBasicGraphTest.txt",
+          "method" : "readBasicGraphTest",
+          "oldTime" : 243983.6551724138,
+          "changePercent" : 11.307467458956411,
+          "tvalue" : 2.8507961640825887,
+          "mannWhitneyUStatistic" : 0.00697260040628055,
+          "vms" : 29
+        } ]
+      }
+    },
+    "1d0ec13a4f6cd5db01007b656c36378913edd21c" : {
+      "testcaseChanges" : {
+        "org.gradoop.sna.io.reader.CSVReaderTest" : [ {
+          "diff" : "view_1d0ec13a4f6cd5db01007b656c36378913edd21c/diffs/CSVReaderTest#checkEdgeCSVInputTest.txt",
+          "method" : "checkEdgeCSVInputTest",
+          "oldTime" : 1.364390746E7,
+          "changePercent" : 22.73853553875297,
+          "tvalue" : 7.358104456127306,
+          "mannWhitneyUStatistic" : 1.6265541563876905E-8,
+          "vms" : 30
+        } ]
+      }
+    },
+    "937394435a5e1430d025a1d7cc9f47224ea805b0" : {
+      "testcaseChanges" : {
+        "gradoop-core§org.gradoop.model.impl.DefaultVertexTest" : [ {
+          "diff" : "view_937394435a5e1430d025a1d7cc9f47224ea805b0/diffs/DefaultVertexTest#createDefaultVertexTest.txt",
+          "method" : "createDefaultVertexTest",
+          "oldTime" : 149732.05333333334,
+          "changePercent" : 10.779664723758996,
+          "tvalue" : 2.7835758766768315,
+          "mannWhitneyUStatistic" : 0.01009698661285167,
+          "vms" : 30
+        }, {
+          "diff" : "view_937394435a5e1430d025a1d7cc9f47224ea805b0/diffs/DefaultVertexTest#createWithIDLabelsEdgesTest.txt",
+          "method" : "createWithIDLabelsEdgesTest",
+          "oldTime" : 122180.24,
+          "changePercent" : 17.266409036354815,
+          "tvalue" : 5.16695216884556,
+          "mannWhitneyUStatistic" : 1.0541422260885139E-5,
+          "vms" : 30
+        }, {
+          "diff" : "view_937394435a5e1430d025a1d7cc9f47224ea805b0/diffs/DefaultVertexTest#createWithIDTest.txt",
+          "method" : "createWithIDTest",
+          "oldTime" : 100106.98620689654,
+          "changePercent" : 9.849241979942416,
+          "tvalue" : 2.79334425942475,
+          "mannWhitneyUStatistic" : 0.004538129460029197,
+          "vms" : 29
+        } ]
+      }
+    }
+  }
+}

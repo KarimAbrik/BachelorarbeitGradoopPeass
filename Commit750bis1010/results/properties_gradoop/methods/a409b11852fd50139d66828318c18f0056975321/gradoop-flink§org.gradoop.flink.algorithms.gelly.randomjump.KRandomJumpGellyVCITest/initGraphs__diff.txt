@@ -1,0 +1,9 @@
+/**
+ * Initialize graphs for testing
+ */
+@Before
+public void initGraphs() throws Exception {
+    socialGraph = getSocialNetworkLoader().getLogicalGraph();
+    String graphString = "graph[" + "/* no edges graph */" + "(v0 {id:0, value:\"A\"})" + "(v1 {id:1, value:\"B\"})" + "(v2 {id:2, value:\"C\"})" + "]";
+    customGraph = getLoaderFromString(graphString).getLogicalGraphByVariable("graph");
+}

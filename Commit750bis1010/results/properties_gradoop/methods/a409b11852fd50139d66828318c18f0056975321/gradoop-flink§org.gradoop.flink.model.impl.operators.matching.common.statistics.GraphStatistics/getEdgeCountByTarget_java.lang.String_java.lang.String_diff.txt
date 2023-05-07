@@ -1,0 +1,10 @@
+/**
+ * Returns the number of edges with a specified target vertex label and edge label.
+ *
+ * @param vertexLabel target vertex label
+ * @param edgeLabel edge label
+ * @return number of edges with the specified labels
+ */
+public long getEdgeCountByTarget(String vertexLabel, String edgeLabel) {
+    return (edgeCountByTargetVertexAndEdgeLabel.containsKey(vertexLabel)) ? edgeCountByTargetVertexAndEdgeLabel.get(vertexLabel).getOrDefault(edgeLabel, 0L) : 0L;
+}

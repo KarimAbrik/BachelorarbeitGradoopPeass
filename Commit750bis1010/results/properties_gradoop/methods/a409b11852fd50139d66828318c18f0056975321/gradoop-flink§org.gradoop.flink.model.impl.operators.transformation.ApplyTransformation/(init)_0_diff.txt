@@ -1,0 +1,10 @@
+/**
+ * Creates a new operator instance.
+ *
+ * @param graphHeadModFunc graph head transformation function
+ * @param vertexModFunc    vertex transformation function
+ * @param edgeModFunc      edge transformation function
+ */
+public ApplyTransformation(TransformationFunction<G> graphHeadModFunc, TransformationFunction<V> vertexModFunc, TransformationFunction<E> edgeModFunc) {
+    super(graphHeadModFunc, vertexModFunc, edgeModFunc);
+}

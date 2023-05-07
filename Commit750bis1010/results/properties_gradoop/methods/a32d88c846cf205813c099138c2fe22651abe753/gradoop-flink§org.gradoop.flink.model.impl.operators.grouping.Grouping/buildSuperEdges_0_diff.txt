@@ -1,0 +1,18 @@
+/**
+ * Build super edges by joining them with vertices and their super vertex.
+ *
+ * @param edgeFactory edgeFactory
+ * @param edgesToGroup input edgesToGroup
+ * @param vertexToRepresentativeMap dataset containing tuples of vertex id and super vertex id
+ * @return super edges
+ */
+protected DataSet<E> buildSuperEdges(EdgeFactory<E> edgeFactory, DataSet<E> edgesToGroup, DataSet<VertexWithSuperVertex> vertexToRepresentativeMap) {
+    DataSet<EdgeGroupItem> edges = edgesToGroup.// build edge group items
+    flatMap(new BuildEdgeGroupItem<>(useEdgeLabels(), getEdgeLabelGroups())).// join edges with vertex-group-map on source-id == vertex-id
+    join(vertexToRepresentativeMap).where(0).equalTo(0).with(new UpdateEdgeGroupItem(0)).withForwardedFieldsFirst("f1;f2;f3;f4").withForwardedFieldsSecond("f1->f0").// join result with vertex-group-map on target-id == vertex-id
+    join(vertexToRepresentativeMap).where(1).equalTo(0).with(new UpdateEdgeGroupItem(1)).withForwardedFieldsFirst("f0;f2;f3;f4").withForwardedFieldsSecond("f1->f1");
+    // group + combine
+    DataSet<EdgeGroupItem> combinedEdges = groupEdges(edges).combineGroup(new CombineEdgeGroupItems(useEdgeLabels()));
+    // group + reduce + build final edges
+    return groupEdges(combinedEdges).reduceGroup(new ReduceEdgeGroupItems<>(useEdgeLabels(), edgeFactory));
+}

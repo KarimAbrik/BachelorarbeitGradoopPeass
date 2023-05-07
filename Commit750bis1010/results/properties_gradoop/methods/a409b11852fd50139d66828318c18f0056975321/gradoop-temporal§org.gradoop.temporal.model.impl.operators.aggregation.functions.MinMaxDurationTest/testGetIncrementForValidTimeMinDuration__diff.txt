@@ -1,0 +1,16 @@
+/**
+ * Test the implementation of {@link MinDuration#getIncrement(TemporalElement)} for valid time.
+ */
+@Test
+public void testGetIncrementForValidTimeMinDuration() {
+    MinDuration function = new MinDuration("", VALID_TIME);
+    TemporalElement testElement = getVertexFactory().createVertex();
+    testElement.setValidTime(Tuple2.of(DEFAULT_TIME_FROM, DEFAULT_TIME_TO));
+    assertEquals(DEFAULT_TIME_TO.longValue(), function.getIncrement(testElement).getLong());
+    testElement.setValidTime(Tuple2.of(DEFAULT_TIME_FROM, 6L));
+    assertEquals(DEFAULT_TIME_TO.longValue(), function.getIncrement(testElement).getLong());
+    testElement.setValidTime(Tuple2.of(3L, DEFAULT_TIME_TO));
+    assertEquals(DEFAULT_TIME_TO.longValue(), function.getIncrement(testElement).getLong());
+    testElement.setValidTime(Tuple2.of(2L, 7L));
+    assertEquals(5L, function.getIncrement(testElement).getLong());
+}

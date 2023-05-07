@@ -1,0 +1,26 @@
+/**
+ * Tests whether label and property value strings are being escaped according to java string rules.
+ */
+@Test
+public void testStringEscaping() {
+    EPGMGraphHead graphHead = new EPGMGraphHeadFactory().initGraphHead(GradoopId.fromString("aaaaaaaaaaaaaaaaaaaaaaaa"), "graph");
+    String key = "Title";
+    String value = "Why was Wojo occasionally known to say \"I'm too lazy!\"?";
+    // init vertex 1
+    Map<String, Object> propertiesMap1 = new HashMap<>();
+    propertiesMap1.put(key, value);
+    GradoopId idVertex1 = GradoopId.fromString("bbbbbbbbbbbbbbbbbbbbbbbb");
+    EPGMVertex vertex1 = new EPGMVertexFactory().initVertex(idVertex1, "weird\nlabe\"l", Properties.createFromMap(propertiesMap1));
+    // create vertex set
+    Set<EPGMVertex> vertices = new HashSet<>();
+    vertices.add(vertex1);
+    // create empty edge set
+    Set<EPGMEdge> edges = new HashSet<>();
+    GraphTransaction transactionMock = mock(GraphTransaction.class);
+    when(transactionMock.getGraphHead()).thenReturn(graphHead);
+    when(transactionMock.getVertices()).thenReturn(vertices);
+    when(transactionMock.getEdges()).thenReturn(edges);
+    DotFileFormatSimple dotFileFormatSimple = new DotFileFormatSimple(true);
+    String expected = "subgraph cluster_gaaaaaaaaaaaaaaaaaaaaaaaa{\n" + "label=\"graph\";\n" + "vbbbbbbbbbbbbbbbbbbbbbbbbaaaaaaaaaaaaaaaaaaaaaaaa [label=\"weird\\nlabe\\\"l\"," + "Title=\"Why was Wojo occasionally known to say \\\"I'm too lazy!\\\"?\"];\n" + "}\n";
+    assertEquals(expected, dotFileFormatSimple.format(transactionMock));
+}

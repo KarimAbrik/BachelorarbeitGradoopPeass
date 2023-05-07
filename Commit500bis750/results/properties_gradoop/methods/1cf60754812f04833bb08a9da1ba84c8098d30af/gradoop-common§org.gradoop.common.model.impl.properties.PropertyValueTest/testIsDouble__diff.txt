@@ -1,0 +1,19 @@
+@Test                                                                                                  @Test                                                                                               
+public void testIsDouble() throws Exception {                                                          public void testIsDouble() throws Exception {                                                       
+PropertyValue p = PropertyValue.create(DOUBLE_VAL_5);                                                  PropertyValue p = PropertyValue.create(DOUBLE_VAL_5);                                               
+assertFalse(p.isNull());                                                                               assertFalse(p.isNull());                                                                            
+assertFalse(p.isBoolean());                                                                            assertFalse(p.isBoolean());                                                                         
+                                                                                                     | assertFalse(p.isShort());                                                                           
+assertFalse(p.isInt());                                                                                assertFalse(p.isInt());                                                                             
+assertFalse(p.isLong());                                                                               assertFalse(p.isLong());                                                                            
+assertFalse(p.isFloat());                                                                              assertFalse(p.isFloat());                                                                           
+assertTrue(p.isDouble());                                                                              assertTrue(p.isDouble());                                                                           
+assertFalse(p.isString());                                                                             assertFalse(p.isString());                                                                          
+assertFalse(p.isBigDecimal());                                                                         assertFalse(p.isBigDecimal());                                                                      
+assertFalse(p.isGradoopId());                                                                          assertFalse(p.isGradoopId());                                                                       
+assertFalse(p.isMap());                                                                                assertFalse(p.isMap());                                                                             
+assertFalse(p.isList());                                                                               assertFalse(p.isList());                                                                            
+assertFalse(p.isDate());                                                                               assertFalse(p.isDate());                                                                            
+assertFalse(p.isTime());                                                                               assertFalse(p.isTime());                                                                            
+assertFalse(p.isDateTime());                                                                           assertFalse(p.isDateTime());                                                                        
+}                                                                                                      }                                                                                                   

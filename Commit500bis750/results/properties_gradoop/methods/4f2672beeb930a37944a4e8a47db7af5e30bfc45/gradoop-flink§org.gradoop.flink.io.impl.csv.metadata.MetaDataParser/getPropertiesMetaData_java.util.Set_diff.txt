@@ -1,0 +1,9 @@
+/**
+ * Sorts and concatenates the specified meta data entries.
+ *
+ * @param propertyMetaDataSet set of property meta data strings
+ * @return sorted and concatenated string
+ */
+public static String getPropertiesMetaData(Set<String> propertyMetaDataSet) {
+    return propertyMetaDataSet.stream().sorted().collect(Collectors.joining(PROPERTY_DELIMITER));
+}

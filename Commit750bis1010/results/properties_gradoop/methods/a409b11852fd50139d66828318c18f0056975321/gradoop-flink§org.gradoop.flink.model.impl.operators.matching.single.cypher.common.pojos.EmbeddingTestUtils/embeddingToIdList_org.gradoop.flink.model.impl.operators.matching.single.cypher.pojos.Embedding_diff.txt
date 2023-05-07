@@ -1,0 +1,11 @@
+/**
+ * Converts the given embedding to a list of identifiers.
+ *
+ * @param embedding embedding
+ * @return id list
+ */
+public static List<GradoopId> embeddingToIdList(Embedding embedding) {
+    List<GradoopId> idList = new ArrayList<>();
+    IntStream.range(0, embedding.size()).forEach(i -> idList.addAll(embedding.getIdAsList(i)));
+    return idList;
+}

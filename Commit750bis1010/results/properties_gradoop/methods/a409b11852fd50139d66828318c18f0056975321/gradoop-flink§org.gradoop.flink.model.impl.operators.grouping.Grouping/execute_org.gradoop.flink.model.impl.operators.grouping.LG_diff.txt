@@ -1,0 +1,10 @@
+@Override
+public LG execute(LG graph) {
+    LG result;
+    if (!useVertexProperties() && !useEdgeProperties() && !useVertexLabels() && !useEdgeLabels()) {
+        result = graph;
+    } else {
+        result = groupInternal(graph);
+    }
+    return result;
+}

@@ -1,0 +1,13 @@
+/**
+ * Tests the data in the resulting graph.
+ *
+ * @throws Exception on failure
+ */
+@Test
+public void testDataEquality() throws Exception {
+    FlinkAsciiGraphLoader loader = getLoaderFromString(testGraphString);
+    LogicalGraph original = loader.getLogicalGraphByVariable("g0");
+    LogicalGraph expected = loader.getLogicalGraphByVariable("g01");
+    LogicalGraph result = original.transform(TransformationTest::transformGraphHead, TransformationTest::transformVertex, TransformationTest::transformEdge);
+    collectAndAssertTrue(result.equalsByData(expected));
+}

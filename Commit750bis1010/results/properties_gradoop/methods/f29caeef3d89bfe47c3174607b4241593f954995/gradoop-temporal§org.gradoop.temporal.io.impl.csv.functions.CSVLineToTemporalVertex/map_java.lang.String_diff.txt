@@ -1,0 +1,11 @@
+@Override
+public TemporalVertex map(String csvLine) throws Exception {
+    String[] tokens = split(csvLine, 5);
+    String label = StringEscaper.unescape(tokens[2]);
+    TemporalVertex vertex = vertexFactory.initVertex(GradoopId.fromString(tokens[0]), label, parseProperties(MetaDataSource.VERTEX_TYPE, label, tokens[3]), parseGradoopIds(tokens[1]));
+    Matcher matcher = TEMPORAL_PATTERN.matcher(tokens[4]);
+    validateTemporalData(matcher);
+    vertex.setTransactionTime(parseTransactionTime(matcher));
+    vertex.setValidTime(parseValidTime(matcher));
+    return vertex;
+}

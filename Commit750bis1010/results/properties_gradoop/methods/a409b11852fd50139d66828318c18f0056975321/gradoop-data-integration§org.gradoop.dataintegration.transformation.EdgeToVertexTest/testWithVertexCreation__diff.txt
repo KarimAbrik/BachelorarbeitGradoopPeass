@@ -1,0 +1,12 @@
+/**
+ * Test the {@link EdgeToVertex} operator where one new vertex is created.
+ *
+ * @throws Exception when the execution in Flink fails.
+ */
+@Test
+public void testWithVertexCreation() throws Exception {
+    UnaryGraphToGraphOperator operator = new EdgeToVertex("edgeToTransform", "VertexFromEdge", "fromSource", "toTarget");
+    LogicalGraph result = loader.getLogicalGraphByVariable("input").callForGraph(operator);
+    LogicalGraph expected = loader.getLogicalGraphByVariable("expected");
+    collectAndAssertTrue(result.equalsByData(expected));
+}

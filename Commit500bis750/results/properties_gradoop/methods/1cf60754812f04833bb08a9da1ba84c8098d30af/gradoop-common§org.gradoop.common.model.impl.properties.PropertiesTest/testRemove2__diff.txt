@@ -1,0 +1,13 @@
+@Test
+public void testRemove2() throws Exception {
+    Properties properties = Properties.create();
+    PropertyValue removed;
+    properties.set(KEY_1, BOOL_VAL_1);
+    removed = properties.remove(Property.create(KEY_1, BOOL_VAL_1));
+    assertEquals(0, properties.size());
+    assertNotNull(removed);
+    properties.set(KEY_1, BOOL_VAL_1);
+    removed = properties.remove(Property.create(KEY_2, BOOL_VAL_1));
+    assertEquals(1, properties.size());
+    assertNull(removed);
+}

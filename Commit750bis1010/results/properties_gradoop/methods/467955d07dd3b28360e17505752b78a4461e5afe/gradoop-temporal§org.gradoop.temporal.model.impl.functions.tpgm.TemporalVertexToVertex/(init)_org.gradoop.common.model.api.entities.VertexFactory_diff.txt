@@ -1,0 +1,8 @@
+/**
+ * Creates an new instance of this map function.
+ *
+ * @param vertexFactory A factory used to create EPGM vertices.
+ */
+public TemporalVertexToVertex(VertexFactory<EPGMVertex> vertexFactory) {
+    this.reuse = Objects.requireNonNull(vertexFactory).createVertex();
+}

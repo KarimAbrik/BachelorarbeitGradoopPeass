@@ -1,0 +1,8 @@
+/**
+ * Creates a new instance of a SumProperty aggregate function.
+ *
+ * @param propertyKey property key to aggregate
+ */
+public SumProperty(String propertyKey) {
+    this(propertyKey, "sum_" + propertyKey);
+}

@@ -1,0 +1,4 @@
+@Override
+public PropertyValue removeProperty(String key) {
+    return this.properties != null ? properties.remove(key) : null;
+}

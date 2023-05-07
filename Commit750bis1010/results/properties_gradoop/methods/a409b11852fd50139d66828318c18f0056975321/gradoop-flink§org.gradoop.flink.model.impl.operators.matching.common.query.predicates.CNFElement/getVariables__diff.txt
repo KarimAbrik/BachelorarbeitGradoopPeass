@@ -1,0 +1,8 @@
+@Override
+public Set<String> getVariables() {
+    Set<String> variables = new HashSet<>();
+    for (ComparisonExpression comparisonExpression : predicates) {
+        variables.addAll(comparisonExpression.getVariables());
+    }
+    return variables;
+}

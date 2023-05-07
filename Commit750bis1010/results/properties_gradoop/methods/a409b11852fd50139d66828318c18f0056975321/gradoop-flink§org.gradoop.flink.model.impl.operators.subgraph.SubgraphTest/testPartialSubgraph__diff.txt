@@ -1,0 +1,12 @@
+/**
+ * Extracts a subgraph where only vertices fulfill the filter function.
+ */
+@Test
+public void testPartialSubgraph() throws Exception {
+    FlinkAsciiGraphLoader loader = getSocialNetworkLoader();
+    loader.appendToDatabaseFromString("expected:_DB[" + "(alice),(bob),(carol),(dave),(eve),(frank)" + "]");
+    LogicalGraph input = loader.getLogicalGraph();
+    LogicalGraph expected = loader.getLogicalGraphByVariable("expected");
+    LogicalGraph output = input.subgraph(v -> v.getLabel().equals("Person"), e -> e.getLabel().equals("friendOf"));
+    collectAndAssertTrue(output.equalsByData(expected));
+}

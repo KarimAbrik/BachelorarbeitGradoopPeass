@@ -1,0 +1,11 @@
+/**
+ * Selects GradoopId as key
+ *
+ * @param gradoopIdResult HITS Algorithm result
+ * @return selects gradoop id
+ * @throws Exception on failure
+ */
+@Override
+public GradoopId getKey(HITS.Result<GradoopId> gradoopIdResult) throws Exception {
+    return gradoopIdResult.getVertexId0();
+}

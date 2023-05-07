@@ -1,0 +1,24 @@
+/**
+ * Method to create query plan, determining how patterns are grown.
+ *
+ * @return plan for walk through
+ */
+private int[] buildQueryPlan() {
+    int[] queryPlan = new int[handler.getVertices().size()];
+    int step = 0;
+    Set<Long> alreadyVisited = new HashSet<>();
+    Stack<Vertex> stack = new Stack<>();
+    stack.push(handler.getVertexById(0L));
+    alreadyVisited.add(0L);
+    while (!stack.isEmpty()) {
+        Vertex current = stack.pop();
+        Collection<Vertex> neighbors = handler.getNeighbors(current.getId());
+        queryPlan[step] = (int) current.getId();
+        step++;
+        neighbors.stream().filter(neighbor -> !alreadyVisited.contains(neighbor.getId())).forEach(neighbor -> {
+            alreadyVisited.add(neighbor.getId());
+            stack.push(neighbor);
+        });
+    }
+    return queryPlan;
+}

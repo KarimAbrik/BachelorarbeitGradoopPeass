@@ -1,0 +1,26 @@
+                                                                                                     | private void initializeAndReadFirstLine(String line) {                                              
+                                                                                                     | Log.info("###INITIALIZE");                                                                          
+                                                                                                     | vList = Lists.newArrayList();                                                                       
+                                                                                                     | labels = Lists.newArrayList();                                                                      
+                                                                                                     | Log.info("###ReadFirstLine");                                                                       
+                                                                                                     | this.properties = getTokens(line);                                                                  
+                                                                                                     | for (int i = 0; i &lt; properties.length; i++) {                                                    
+                                                                                                     | Log.info(properties[i]);                                                                            
+                                                                                                     | }                                                                                                   
+                                                                                                     | String metaData = conf.get(META_DATA);                                                              
+                                                                                                     | labels.add(conf.get(LABEL));                                                                        
+                                                                                                     | //    this.types =                                                                                  
+                                                                                                     | //      new String[]{"long", "string", "string", "string", "string", "string",                      
+                                                                                                     | //                   "string", "string",};                                                          
+                                                                                                     | try {                                                                                               
+                                                                                                     | BufferedReader in = new BufferedReader(new FileReader(metaData));                                   
+                                                                                                     | String datLine;                                                                                     
+                                                                                                     | while ((datLine = in.readLine()) != null) {                                                         
+                                                                                                     | this.types = getTokens(datLine);                                                                    
+                                                                                                     | }                                                                                                   
+                                                                                                     | } catch (IOException e) {                                                                           
+                                                                                                     | e.printStackTrace();                                                                                
+                                                                                                     | }                                                                                                   
+                                                                                                     | checkType();                                                                                        
+                                                                                                     | once = false;                                                                                       
+                                                                                                     | }                                                                                                   

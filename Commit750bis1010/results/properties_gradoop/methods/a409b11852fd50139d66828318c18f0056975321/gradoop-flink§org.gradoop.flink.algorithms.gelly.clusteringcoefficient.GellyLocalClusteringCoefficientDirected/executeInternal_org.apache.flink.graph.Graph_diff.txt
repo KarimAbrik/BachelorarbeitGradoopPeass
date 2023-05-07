@@ -1,0 +1,10 @@
+/**
+ * {@inheritDoc}
+ *
+ * Calls Flink Gelly algorithms to compute the local clustering coefficients for a directed graph.
+ */
+@Override
+protected LogicalGraph executeInternal(Graph<GradoopId, NullValue, NullValue> gellyGraph) throws Exception {
+    DataSet<EPGMVertex> resultVertices = new org.apache.flink.graph.library.clustering.directed.LocalClusteringCoefficient<GradoopId, NullValue, NullValue>().run(gellyGraph).map(new LocalDirectedCCResultToTupleMap()).join(currentGraph.getVertices()).where(0).equalTo(new Id<>()).with(new LocalCCResultTupleToVertexJoin());
+    return currentGraph.getFactory().fromDataSets(currentGraph.getGraphHead(), resultVertices, currentGraph.getEdges());
+}

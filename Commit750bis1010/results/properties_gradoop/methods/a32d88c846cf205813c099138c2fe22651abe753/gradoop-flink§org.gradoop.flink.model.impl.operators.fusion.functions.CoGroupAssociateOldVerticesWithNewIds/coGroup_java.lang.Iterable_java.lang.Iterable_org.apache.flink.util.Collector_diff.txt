@@ -1,0 +1,12 @@
+@Override
+public void coGroup(Iterable<Tuple2<EPGMVertex, GradoopId>> first, Iterable<Tuple2<EPGMVertex, GradoopId>> second, Collector<Tuple2<EPGMVertex, GradoopId>> out) throws Exception {
+    reusableList.clear();
+    second.forEach(x -> reusableList.add(x.f0.getId()));
+    for (Tuple2<EPGMVertex, GradoopId> x : first) {
+        for (GradoopId y : reusableList) {
+            reusable.f0 = x.f0;
+            reusable.f1 = y;
+            out.collect(reusable);
+        }
+    }
+}

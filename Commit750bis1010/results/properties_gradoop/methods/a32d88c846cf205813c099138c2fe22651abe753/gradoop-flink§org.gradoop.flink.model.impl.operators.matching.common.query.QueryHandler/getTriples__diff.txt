@@ -1,0 +1,8 @@
+/**
+ * Returns the query graph as a collection of triples.
+ *
+ * @return triples
+ */
+public Collection<Triple> getTriples() {
+    return getEdges().stream().map(e -> new Triple(getVertexById(e.getSourceVertexId()), e, getVertexById(e.getTargetVertexId()))).collect(Collectors.toList());
+}

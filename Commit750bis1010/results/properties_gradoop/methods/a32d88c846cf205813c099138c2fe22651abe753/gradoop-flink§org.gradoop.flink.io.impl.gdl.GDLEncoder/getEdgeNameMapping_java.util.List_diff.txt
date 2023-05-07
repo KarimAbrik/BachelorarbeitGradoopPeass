@@ -1,0 +1,15 @@
+/**
+ * Returns a mapping between the edge GradoopId and the GDL variable name.
+ *
+ * @param edges The graph edges.
+ * @return Mapping between edge and GDL variable name.
+ */
+private Map<GradoopId, String> getEdgeNameMapping(List<E> edges) {
+    Map<GradoopId, String> idToEdgeName = new HashMap<>(edges.size());
+    for (int i = 0; i < edges.size(); i++) {
+        E edge = edges.get(i);
+        String eName = String.format("%s_%s_%s", EDGE_VARIABLE_PREFIX, edge.getLabel(), i);
+        idToEdgeName.put(edge.getId(), eName);
+    }
+    return idToEdgeName;
+}

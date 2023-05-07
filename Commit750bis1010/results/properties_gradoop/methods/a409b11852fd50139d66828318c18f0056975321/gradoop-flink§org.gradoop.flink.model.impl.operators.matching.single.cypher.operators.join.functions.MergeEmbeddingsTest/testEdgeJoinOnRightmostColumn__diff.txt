@@ -1,0 +1,20 @@
+//------------------------------------------------------------------------------------------------
+// Test embedding extensions
+//------------------------------------------------------------------------------------------------
+@Test
+public void testEdgeJoinOnRightmostColumn() throws Exception {
+    GradoopId v0 = GradoopId.get();
+    GradoopId v1 = GradoopId.get();
+    GradoopId e0 = GradoopId.get();
+    // [Id(v0)]
+    Embedding left = createEmbedding(v0);
+    // [Id(v0),Id(e0),Id(v1)]
+    Embedding right = createEmbedding(v0, e0, v1);
+    // join operator
+    MergeEmbeddings udf = new MergeEmbeddings(3, Lists.newArrayList(0), Lists.newArrayList(), Lists.newArrayList(), Lists.newArrayList(), Lists.newArrayList());
+    List<Embedding> result = new ArrayList<>();
+    // get results
+    udf.join(left, right, new ListCollector<>(result));
+    // expected: [Id(v0),Id(e0),Id(v1)]
+    Assert.assertEquals(createEmbedding(v0, e0, v1), result.get(0));
+}

@@ -1,0 +1,12 @@
+@Override
+public void reduce(Iterable<T> input, Collector<T> out) throws Exception {
+    T first = null;
+    for (T inputTuple : input) {
+        if (first == null) {
+            first = inputTuple;
+            continue;
+        }
+        callAggregateFunctions(first, inputTuple);
+    }
+    out.collect(first);
+}

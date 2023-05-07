@@ -1,0 +1,4 @@
+@Override
+public GraphCollection fromDataSets(DataSet<EPGMGraphHead> graphHeads, DataSet<EPGMVertex> vertices, DataSet<EPGMEdge> edges) {
+    return new GraphCollection(layoutFactory.fromDataSets(graphHeads, vertices, edges), config);
+}

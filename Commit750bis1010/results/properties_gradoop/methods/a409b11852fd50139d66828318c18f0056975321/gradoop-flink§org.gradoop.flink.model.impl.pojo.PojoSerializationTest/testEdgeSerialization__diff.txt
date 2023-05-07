@@ -1,0 +1,5 @@
+@Test
+public void testEdgeSerialization() throws Exception {
+    Edge edgeIn = new EPGMEdgeFactory().createEdge("knows", GradoopId.get(), GradoopId.get(), Properties.createFromMap(GradoopTestUtils.SUPPORTED_PROPERTIES), GradoopIdSet.fromExisting(GradoopId.get(), GradoopId.get()));
+    Assert.assertEquals("Edge POJOs were not equal", edgeIn, GradoopFlinkTestUtils.writeAndRead(edgeIn));
+}

@@ -1,0 +1,9 @@
+/**
+ * Computes the column indices of the left embeddings join properties according to its
+ * associated meta data.
+ *
+ * @return join property columns of the left embedding
+ */
+private List<Integer> getJoinPropertiesLeft() {
+    return leftJoinProperties.stream().map(p -> getLeftChild().getEmbeddingMetaData().getPropertyColumn(p.getKey(), p.getValue())).collect(Collectors.toList());
+}

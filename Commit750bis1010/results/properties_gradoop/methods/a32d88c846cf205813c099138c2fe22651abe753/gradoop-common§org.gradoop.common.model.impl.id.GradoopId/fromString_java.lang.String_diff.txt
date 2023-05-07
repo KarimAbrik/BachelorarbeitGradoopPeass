@@ -1,0 +1,18 @@
+/**
+ * Returns the Gradoop ID represented by a specified hexadecimal string.
+ * <p>
+ * Note: Implementation taken from org.bson.types.ObjectId
+ *
+ * @param string hexadecimal GradoopId representation
+ * @return GradoopId
+ */
+public static GradoopId fromString(String string) {
+    if (!GradoopId.isValid(string)) {
+        throw new IllegalArgumentException("invalid hexadecimal representation of a GradoopId: [" + string + "]");
+    }
+    byte[] b = new byte[12];
+    for (int i = 0; i < b.length; i++) {
+        b[i] = (byte) Integer.parseInt(string.substring(i * 2, i * 2 + 2), 16);
+    }
+    return new GradoopId(b);
+}

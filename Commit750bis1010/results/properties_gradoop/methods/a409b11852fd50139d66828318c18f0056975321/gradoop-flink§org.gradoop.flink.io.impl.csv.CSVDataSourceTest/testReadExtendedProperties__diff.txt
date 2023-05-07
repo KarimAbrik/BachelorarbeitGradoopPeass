@@ -1,0 +1,16 @@
+/**
+ * Test reading a logical graph from csv files with properties
+ * that are supported by csv source and sink
+ *
+ * @throws Exception on failure
+ */
+@Test
+public void testReadExtendedProperties() throws Exception {
+    LogicalGraph expected = getExtendedLogicalGraph();
+    String csvPath = getFilePath("/data/csv/input_extended_properties");
+    DataSource dataSource = new CSVDataSource(csvPath, getConfig());
+    LogicalGraph sourceLogicalGraph = dataSource.getLogicalGraph();
+    collectAndAssertTrue(sourceLogicalGraph.equalsByElementData(expected));
+    dataSource.getLogicalGraph().getEdges().collect().forEach(this::checkProperties);
+    dataSource.getLogicalGraph().getVertices().collect().forEach(this::checkProperties);
+}

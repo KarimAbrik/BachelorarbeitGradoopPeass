@@ -1,0 +1,10 @@
+/**
+ * Convert some graph to a {@link TemporalGraph}.
+ *
+ * @see org.gradoop.temporal.model.impl.TemporalGraphFactory#fromNonTemporalGraph(BaseGraph)
+ * @param graph The graph.
+ * @return The resulting temporal graph.
+ */
+protected TemporalGraph toTemporalGraph(BaseGraph<?, ?, ?, ?, ?> graph) {
+    return getConfig().getTemporalGraphFactory().fromNonTemporalGraph(graph);
+}

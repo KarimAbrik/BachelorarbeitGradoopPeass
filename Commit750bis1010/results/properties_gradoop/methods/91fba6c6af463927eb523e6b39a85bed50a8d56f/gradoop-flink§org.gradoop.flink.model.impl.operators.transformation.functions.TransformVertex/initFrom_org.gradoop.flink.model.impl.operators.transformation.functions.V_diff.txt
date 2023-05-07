@@ -1,0 +1,4 @@
+@Override
+protected V initFrom(V element) {
+    return vertexFactory.initVertex(element.getId(), GradoopConstants.DEFAULT_VERTEX_LABEL, element.getGraphIds());
+}

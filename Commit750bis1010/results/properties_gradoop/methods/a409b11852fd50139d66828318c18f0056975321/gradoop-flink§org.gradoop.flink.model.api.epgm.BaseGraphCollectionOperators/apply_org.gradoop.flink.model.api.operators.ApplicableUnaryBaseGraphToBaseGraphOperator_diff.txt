@@ -1,0 +1,10 @@
+/**
+ * Applies a given unary graph to graph operator (e.g., aggregate) on each
+ * base graph in the graph collection.
+ *
+ * @param operator applicable unary graph to graph operator
+ * @return collection with resulting logical graphs
+ */
+default GC apply(ApplicableUnaryBaseGraphToBaseGraphOperator<GC> operator) {
+    return callForValue(operator);
+}

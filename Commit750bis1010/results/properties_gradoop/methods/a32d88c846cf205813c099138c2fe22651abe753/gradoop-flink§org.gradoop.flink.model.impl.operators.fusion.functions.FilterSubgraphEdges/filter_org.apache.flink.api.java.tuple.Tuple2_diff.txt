@@ -1,0 +1,4 @@
+@Override
+public boolean filter(Tuple2<GradoopId, EPGMEdge> value) throws Exception {
+    return value.f1.getGraphIds().contains(value.f0);
+}

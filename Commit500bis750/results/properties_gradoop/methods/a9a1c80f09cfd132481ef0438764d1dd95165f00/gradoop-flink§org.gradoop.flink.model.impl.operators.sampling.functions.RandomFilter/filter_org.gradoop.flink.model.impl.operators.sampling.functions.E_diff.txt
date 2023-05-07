@@ -1,0 +1,7 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public boolean filter(E e) throws Exception {
+    return randomGenerator.nextFloat() <= threshold;
+}

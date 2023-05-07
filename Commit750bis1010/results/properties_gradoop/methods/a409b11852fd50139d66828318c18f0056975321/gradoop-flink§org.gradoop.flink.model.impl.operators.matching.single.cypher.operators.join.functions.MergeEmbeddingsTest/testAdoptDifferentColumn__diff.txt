@@ -1,0 +1,22 @@
+/**
+ * Test keep properties from both sides
+ */
+@Test
+public void testAdoptDifferentColumn() throws Exception {
+    GradoopId v0 = GradoopId.get();
+    GradoopId e0 = GradoopId.get();
+    GradoopId v1 = GradoopId.get();
+    Embedding left = new Embedding();
+    left.add(v0);
+    left.add(e0);
+    left.add(v1, PropertyValue.create("Alice"));
+    Embedding right = new Embedding();
+    right.add(v1, PropertyValue.create(42));
+    // join operator
+    MergeEmbeddings udf = new MergeEmbeddings(1, Lists.newArrayList(0), Lists.newArrayList(), Lists.newArrayList(), Lists.newArrayList(), Lists.newArrayList());
+    List<Embedding> result = new ArrayList<>();
+    // get results
+    udf.join(left, right, new ListCollector<>(result));
+    Assert.assertEquals(PropertyValue.create("Alice"), result.get(0).getProperty(0));
+    Assert.assertEquals(PropertyValue.create(42), result.get(0).getProperty(1));
+}

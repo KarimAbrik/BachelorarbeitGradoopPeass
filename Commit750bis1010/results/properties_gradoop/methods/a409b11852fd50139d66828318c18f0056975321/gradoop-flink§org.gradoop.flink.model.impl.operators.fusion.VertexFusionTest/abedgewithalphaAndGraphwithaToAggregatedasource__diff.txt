@@ -1,0 +1,13 @@
+@Test
+public void abedgewithalphaAndGraphwithaToAggregatedasource() throws Exception {
+    FlinkAsciiGraphLoader loader = getLoaderFromString("ab_edgeWithAlpha:G {ab_edgeWithAlpha : \"graph\"}[" + "(a:A {atype : \"avalue\"})-[alpha:AlphaEdge {alphatype : \"alphavalue\"}]->(b:B {btype :" + " \"bvalue\"}) " + "]" + "graphWithA:G {graphWithA : \"graph\"}[(a:A {atype : \"avalue\"})]" + "aggregatedASource:G {ab_edgeWithAlpha : \"graph\"}[" + "(:G {graphWithA : \"graph\"})-[:AlphaEdge {alphatype : \"alphavalue\"}]->(:B {btype : " + "\"bvalue\"}) " + "]");
+    LogicalGraph searchGraph = loader.getLogicalGraphByVariable("ab_edgeWithAlpha");
+    LogicalGraph patternGraph = loader.getLogicalGraphByVariable("graphWithA");
+    VertexFusion f = new VertexFusion();
+    LogicalGraph output = f.execute(searchGraph, patternGraph);
+    LogicalGraph expected = loader.getLogicalGraphByVariable("aggregatedASource");
+    collectAndAssertTrue(output.equalsByData(expected));
+    if (deepSearch) {
+        collectAndAssertTrue(VertexFusionUtils.myInducedEdgeSubgraphForFusion(searchGraph, expected).equalsByElementIds(VertexFusionUtils.myInducedEdgeSubgraphForFusion(expected, searchGraph)));
+    }
+}

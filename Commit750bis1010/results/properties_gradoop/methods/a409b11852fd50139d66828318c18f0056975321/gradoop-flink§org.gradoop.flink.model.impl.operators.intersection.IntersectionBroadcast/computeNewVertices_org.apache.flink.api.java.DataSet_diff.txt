@@ -1,0 +1,5 @@
+@Override
+protected DataSet<V> computeNewVertices(DataSet<G> newSubgraphs) {
+    DataSet<GradoopId> ids = secondCollection.getGraphHeads().map(new Id<>());
+    return firstCollection.getVertices().filter(new InAnyGraphBroadcast<>()).withBroadcastSet(ids, GraphsContainmentFilterBroadcast.GRAPH_IDS);
+}

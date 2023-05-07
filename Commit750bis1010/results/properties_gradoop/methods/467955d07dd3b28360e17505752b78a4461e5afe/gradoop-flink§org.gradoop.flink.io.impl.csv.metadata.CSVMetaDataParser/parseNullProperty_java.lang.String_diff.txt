@@ -1,0 +1,14 @@
+/**
+ * Parse function to create null from the null string representation.
+ *
+ * @param nullString The string representing null.
+ * @return Returns null
+ * @throws IllegalArgumentException The string that is passed has to represent null.
+ */
+private static Object parseNullProperty(String nullString) throws IllegalArgumentException {
+    if (nullString != null && nullString.equalsIgnoreCase(Type.NULL.toString())) {
+        return null;
+    } else {
+        throw new IllegalArgumentException("Only null represents a null string.");
+    }
+}

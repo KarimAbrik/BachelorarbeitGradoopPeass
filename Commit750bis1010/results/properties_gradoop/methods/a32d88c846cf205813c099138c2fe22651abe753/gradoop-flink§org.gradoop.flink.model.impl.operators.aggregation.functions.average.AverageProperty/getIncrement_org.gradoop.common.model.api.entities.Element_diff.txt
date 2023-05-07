@@ -1,0 +1,11 @@
+@Override
+public PropertyValue getIncrement(Element element) {
+    PropertyValue value = element.getPropertyValue(propertyKey);
+    if (value == null) {
+        return Average.IGNORED_VALUE;
+    } else if (!value.isNumber()) {
+        throw new IllegalArgumentException("Property value has to be a number.");
+    } else {
+        return PropertyValue.create(Arrays.asList(value, ONE));
+    }
+}

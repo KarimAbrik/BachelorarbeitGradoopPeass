@@ -1,0 +1,11 @@
+/**
+ * Creates a collection layout from the given datasets.
+ *
+ * @param graphHeads  GraphHead DataSet
+ * @param vertices    Vertex DataSet
+ * @param edges       Edge DataSet
+ * @return Graph collection
+ */
+public GraphCollection fromDataSets(DataSet<GraphHead> graphHeads, DataSet<Vertex> vertices, DataSet<Edge> edges) {
+    return new GraphCollection(layoutFactory.fromDataSets(graphHeads, vertices, edges), config);
+}

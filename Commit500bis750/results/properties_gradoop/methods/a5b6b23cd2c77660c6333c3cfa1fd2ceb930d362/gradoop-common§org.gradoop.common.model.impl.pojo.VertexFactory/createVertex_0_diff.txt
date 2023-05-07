@@ -1,0 +1,7 @@
+                                                                                                     | /**                                                                                                 
+                                                                                                     | * {@inheritDoc}                                                                                     
+                                                                                                     | */                                                                                                  
+                                                                                                     | @Override                                                                                           
+                                                                                                     | public Vertex createVertex(String label, Properties properties, GradoopIdSet graphIds) {            
+                                                                                                     | return initVertex(GradoopId.get(), label, properties, graphIds);                                    
+                                                                                                     | }                                                                                                   

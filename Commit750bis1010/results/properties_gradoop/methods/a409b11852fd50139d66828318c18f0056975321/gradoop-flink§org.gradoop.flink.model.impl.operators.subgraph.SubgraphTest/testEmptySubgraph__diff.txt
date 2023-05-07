@@ -1,0 +1,14 @@
+/**
+ * Extracts a subgraph which is empty.
+ *
+ * @throws Exception on failure
+ */
+@Test
+public void testEmptySubgraph() throws Exception {
+    FlinkAsciiGraphLoader loader = getSocialNetworkLoader();
+    loader.appendToDatabaseFromString("expected:_DB[]");
+    LogicalGraph input = loader.getLogicalGraph();
+    LogicalGraph expected = loader.getLogicalGraphByVariable("expected");
+    LogicalGraph output = input.subgraph(v -> v.getLabel().equals("User"), e -> e.getLabel().equals("friendOf"));
+    collectAndAssertTrue(output.equalsByData(expected));
+}

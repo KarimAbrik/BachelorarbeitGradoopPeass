@@ -1,0 +1,13 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public VD readVertex(final Result res) {
+    VD vertex = null;
+    try {
+        vertex = vertexFactory.createVertex(readId(res), readLabel(res), readProperties(res), readGraphIds(res));
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+    return vertex;
+}

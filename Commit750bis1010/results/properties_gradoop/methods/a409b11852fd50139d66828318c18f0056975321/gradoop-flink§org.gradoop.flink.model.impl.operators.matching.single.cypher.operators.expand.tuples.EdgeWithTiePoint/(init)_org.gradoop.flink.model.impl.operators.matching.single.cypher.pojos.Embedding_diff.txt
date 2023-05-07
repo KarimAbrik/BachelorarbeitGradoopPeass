@@ -1,0 +1,9 @@
+/**
+ * Creates a new Edge with extracted tie point from the given edge
+ * @param edge edge embedding
+ */
+public EdgeWithTiePoint(Embedding edge) {
+    this.f0 = edge.getId(0);
+    this.f1 = edge.getId(1);
+    this.f2 = edge.getId(2);
+}

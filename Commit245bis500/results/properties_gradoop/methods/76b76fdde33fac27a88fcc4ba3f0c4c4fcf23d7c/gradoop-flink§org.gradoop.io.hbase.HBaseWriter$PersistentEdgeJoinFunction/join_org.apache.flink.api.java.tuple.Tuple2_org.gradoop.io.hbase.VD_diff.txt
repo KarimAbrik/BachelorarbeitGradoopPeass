@@ -1,0 +1,7 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public PersistentEdge<VD> join(Tuple2<VD, ED> sourceVertexAndEdge, VD targetVertex) throws Exception {
+    return edgeFactory.createEdge(sourceVertexAndEdge.f1, sourceVertexAndEdge.f0, targetVertex);
+}

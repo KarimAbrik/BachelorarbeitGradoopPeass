@@ -1,0 +1,4 @@
+@Override
+public Float get(byte[] bytes) {
+    return Bytes.toFloat(bytes, PropertyValue.OFFSET);
+}

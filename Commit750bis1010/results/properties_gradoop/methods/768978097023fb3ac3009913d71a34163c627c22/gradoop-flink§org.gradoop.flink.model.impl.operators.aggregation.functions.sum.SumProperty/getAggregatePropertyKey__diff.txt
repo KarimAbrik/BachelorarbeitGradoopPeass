@@ -1,0 +1,4 @@
+@Override                                                                                              @Override                                                                                           
+public String getAggregatePropertyKey() {                                                              public String getAggregatePropertyKey() {                                                           
+return "sum_" + propertyKey;                                                                         | return PROPERTY_KEY_PREFIX_SUM + propertyKey;                                                       
+}                                                                                                      }                                                                                                   

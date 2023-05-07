@@ -1,0 +1,18 @@
+/**
+ * Import each row of the file as a vertex and create a logical graph from it.
+ * If no column property names are set, read the first line of the file as header and set this
+ * values as column names.
+ *
+ * @return a logical graph with a vertex per csv line and no edges
+ * @throws IOException on failure
+ */
+@Override
+public LogicalGraph getLogicalGraph() throws IOException {
+    DataSet<EPGMVertex> vertices;
+    if (columnNames == null) {
+        vertices = readCSVFile(readHeaderRow(), checkReoccurringHeader);
+    } else {
+        vertices = readCSVFile(columnNames, checkReoccurringHeader);
+    }
+    return config.getLogicalGraphFactory().fromDataSets(vertices);
+}

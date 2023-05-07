@@ -1,0 +1,11 @@
+/**                                                                                                    /**                                                                                                 
+* Returns the class for the given class name parameter.                                                * Returns the class for the given class name parameter.                                             
+*                                                                                                      *                                                                                                   
+* @param readerClassName full qualified class name of the reader                                       * @param readerClassName full qualified class name of the reader                                    
+* @return reader class instance                                                                        * @return reader class instance                                                                     
+* @throws java.lang.ClassNotFoundException                                                             * @throws java.lang.ClassNotFoundException                                                          
+*/                                                                                                     */                                                                                                  
+private Class&lt;? extends VertexLineReader&gt; getLineReaderClass(final String readerClassName) thr   private Class&lt;? extends VertexLineReader&gt; getLineReaderClass(final String readerClassName) thr
+                                                                                                     | LOG.info("###getLineReader: " + Class.forName(readerClassName).asSubclass(VertexLineReader.class)); 
+return Class.forName(readerClassName).asSubclass(VertexLineReader.class);                              return Class.forName(readerClassName).asSubclass(VertexLineReader.class);                           
+}                                                                                                      }                                                                                                   

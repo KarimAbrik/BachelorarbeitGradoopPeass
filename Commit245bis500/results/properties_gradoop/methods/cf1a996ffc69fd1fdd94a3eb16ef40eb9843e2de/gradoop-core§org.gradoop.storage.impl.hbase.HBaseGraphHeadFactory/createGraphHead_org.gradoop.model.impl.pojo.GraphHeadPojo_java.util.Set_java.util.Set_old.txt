@@ -1,0 +1,9 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public HBaseGraphHead createGraphHead(GraphHeadPojo inputGraphData, Set<Long> vertices, Set<Long> edges) {
+    HBaseGraphHead defaultPersistentGraphData = new HBaseGraphHead(inputGraphData, vertices, edges);
+    LOG.info("Created persistent graph data: " + defaultPersistentGraphData);
+    return defaultPersistentGraphData;
+}

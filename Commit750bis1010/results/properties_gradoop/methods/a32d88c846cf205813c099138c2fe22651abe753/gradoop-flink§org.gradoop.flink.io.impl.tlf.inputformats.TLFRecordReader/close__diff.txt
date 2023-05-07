@@ -1,0 +1,10 @@
+/**
+ * Closes open buffers
+ *
+ * @throws IOException on failure
+ */
+@Override
+public void close() throws IOException {
+    fsin.close();
+    buffer.close();
+}

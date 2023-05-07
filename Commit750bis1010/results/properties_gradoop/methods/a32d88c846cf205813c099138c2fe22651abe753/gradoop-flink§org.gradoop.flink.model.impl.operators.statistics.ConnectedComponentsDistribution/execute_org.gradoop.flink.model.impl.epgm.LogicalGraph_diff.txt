@@ -1,0 +1,9 @@
+@Override
+public DataSet<Tuple3<String, Long, Long>> execute(LogicalGraph graph) {
+    LogicalGraph graphWithWccIds = graph.callForGraph(new AnnotateWeaklyConnectedComponents(propertyKey, maxIterations, annotateEdges));
+    graphWithWccIds = graphWithWccIds.aggregate(new AggregateListOfWccVertices(propertyKey));
+    if (annotateEdges) {
+        graphWithWccIds = graphWithWccIds.aggregate(new AggregateListOfWccEdges(propertyKey));
+    }
+    return graphWithWccIds.getGraphHead().flatMap(new GetConnectedComponentDistributionFlatMap(propertyKey, annotateEdges));
+}

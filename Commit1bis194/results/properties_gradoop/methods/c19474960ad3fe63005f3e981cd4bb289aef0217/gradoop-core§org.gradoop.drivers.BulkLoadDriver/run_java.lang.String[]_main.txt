@@ -1,0 +1,30 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public int run(String[] args) throws Exception {
+    int check = parseArgs(args);
+    if (check == 0) {
+        return 0;
+    }
+    CommandLine cmd = LoadConfUtils.parseArgs(args);
+    if (cmd == null) {
+        return 0;
+    }
+    boolean sane = performSanityCheck(cmd);
+    if (!sane) {
+        return -1;
+    }
+    Configuration conf = getGiraphConf();
+    String inputPath = getInputPath();
+    String outputPath = getOutputPath();
+    boolean verbose = getVerbose();
+    boolean dropTables = cmd.hasOption(LoadConfUtils.OPTION_DROP_TABLES);
+    String readerClassName = cmd.getOptionValue(LoadConfUtils.OPTION_VERTEX_LINE_READER);
+    Class<? extends VertexLineReader> readerClass = getLineReaderClass(readerClassName);
+    createGraphStore(conf, dropTables);
+    if (!runBulkLoad(conf, readerClass, inputPath, outputPath, verbose)) {
+        return -1;
+    }
+    return 0;
+}

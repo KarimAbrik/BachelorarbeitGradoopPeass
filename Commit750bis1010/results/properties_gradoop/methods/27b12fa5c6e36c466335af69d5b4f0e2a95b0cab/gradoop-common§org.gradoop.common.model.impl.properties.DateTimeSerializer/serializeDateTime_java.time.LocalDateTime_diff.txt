@@ -1,0 +1,17 @@
+/**
+ * Serializes a {@code LocalDateTime} value.
+ *
+ * @param dateTime {@code LocalDateTime} value
+ *
+ * @return serialized value
+ */
+public static byte[] serializeDateTime(LocalDateTime dateTime) {
+    int year = dateTime.getYear();
+    int month = dateTime.getMonth().getValue();
+    int day = dateTime.getDayOfMonth();
+    int hour = dateTime.getHour();
+    int minute = dateTime.getMinute();
+    int second = dateTime.getSecond();
+    int nano = dateTime.getNano();
+    return serialize(new int[] { year, month, day, hour, minute, second, nano });
+}

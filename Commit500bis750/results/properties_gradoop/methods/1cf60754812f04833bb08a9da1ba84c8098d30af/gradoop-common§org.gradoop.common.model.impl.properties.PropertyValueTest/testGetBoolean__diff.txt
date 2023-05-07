@@ -1,0 +1,5 @@
+@Test
+public void testGetBoolean() throws Exception {
+    PropertyValue p = PropertyValue.create(BOOL_VAL_1);
+    assertEquals(BOOL_VAL_1, p.getBoolean());
+}

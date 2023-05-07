@@ -1,0 +1,6 @@
+protected DataSet<EPGMVertex> createVerticesWithProperties(List<String> propertyNames) {
+    Properties properties = getProperties(propertyNames);
+    EPGMVertexFactory vertexFactory = new EPGMVertexFactory();
+    List<EPGMVertex> vertices = Lists.newArrayList(vertexFactory.createVertex("Label1", properties), vertexFactory.createVertex("Label2", properties));
+    return getExecutionEnvironment().fromCollection(vertices);
+}

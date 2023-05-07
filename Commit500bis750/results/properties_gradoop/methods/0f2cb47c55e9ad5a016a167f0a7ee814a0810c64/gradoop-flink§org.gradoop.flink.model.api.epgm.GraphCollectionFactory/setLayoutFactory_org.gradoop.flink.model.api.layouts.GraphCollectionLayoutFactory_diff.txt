@@ -1,0 +1,10 @@
+/**
+ * Sets the layout factory that is responsible for creating a graph collection layout.
+ *
+ * @param layoutFactory graph collection layout factory
+ */
+public void setLayoutFactory(GraphCollectionLayoutFactory layoutFactory) {
+    Objects.requireNonNull(layoutFactory);
+    this.layoutFactory = layoutFactory;
+    this.layoutFactory.setGradoopFlinkConfig(config);
+}

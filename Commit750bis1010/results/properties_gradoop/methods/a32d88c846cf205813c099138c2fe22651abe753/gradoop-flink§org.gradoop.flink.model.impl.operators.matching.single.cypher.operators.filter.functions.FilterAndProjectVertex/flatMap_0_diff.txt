@@ -1,0 +1,6 @@
+@Override
+public void flatMap(V vertex, Collector<Embedding> out) throws Exception {
+    if (predicates.evaluate(vertex)) {
+        out.collect(EmbeddingFactory.fromVertex(vertex, projectionPropertyKeys));
+    }
+}

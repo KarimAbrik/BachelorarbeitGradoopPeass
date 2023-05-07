@@ -1,0 +1,16 @@
+@Override
+public void reduce(Iterable<Map<String, PropertyValue>> partitionAggregates, Collector<Map<String, PropertyValue>> out) throws Exception {
+    Iterator<Map<String, PropertyValue>> iterator = partitionAggregates.iterator();
+    Map<String, PropertyValue> aggregate = iterator.next();
+    while (iterator.hasNext()) {
+        Map<String, PropertyValue> next = iterator.next();
+        for (AggregateFunction aggFunc : aggregateFunctions) {
+            String propertyKey = aggFunc.getAggregatePropertyKey();
+            PropertyValue nextAgg = next.get(propertyKey);
+            if (nextAgg != null) {
+                aggregate.compute(propertyKey, (key, agg) -> agg == null ? nextAgg : aggFunc.aggregate(agg, nextAgg));
+            }
+        }
+    }
+    out.collect(aggregate);
+}

@@ -1,0 +1,20 @@
+@Override
+public GraphCollection getGraphCollection() throws IOException {
+    ExecutionEnvironment env = getConfig().getExecutionEnvironment();
+    //--------------------------------------------------------------------------
+    // generate tuple that contains all information
+    //--------------------------------------------------------------------------
+    DataSet<Tuple2<Long, Long>> lineTuples = env.readCsvFile(getEdgeListPath()).fieldDelimiter(getTokenSeparator()).types(Long.class, Long.class);
+    //--------------------------------------------------------------------------
+    // generate vertices
+    //--------------------------------------------------------------------------
+    DataSet<ImportVertex<Long>> importVertices = lineTuples.<Tuple1<Long>>project(0).union(lineTuples.project(1)).distinct().map(new CreateImportVertex<>());
+    //--------------------------------------------------------------------------
+    // generate edges
+    //--------------------------------------------------------------------------
+    DataSet<ImportEdge<Long>> importEdges = DataSetUtils.zipWithUniqueId(lineTuples).map(new CreateImportEdge<>());
+    //--------------------------------------------------------------------------
+    // create graph data source
+    //--------------------------------------------------------------------------
+    return new GraphDataSource<>(importVertices, importEdges, getConfig()).getGraphCollection();
+}

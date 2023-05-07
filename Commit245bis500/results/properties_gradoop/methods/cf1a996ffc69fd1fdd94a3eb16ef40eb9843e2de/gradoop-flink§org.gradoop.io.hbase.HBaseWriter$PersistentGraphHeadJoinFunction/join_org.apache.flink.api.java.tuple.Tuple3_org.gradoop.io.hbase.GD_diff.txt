@@ -1,0 +1,7 @@
+/**                                                                                                    /**                                                                                                 
+* {@inheritDoc}                                                                                        * {@inheritDoc}                                                                                     
+*/                                                                                                     */                                                                                                  
+@Override                                                                                              @Override                                                                                           
+public PersistentGraphHead join(Tuple3&lt;Long, Set&lt;Long&gt;, Set&lt;Long&gt;&gt; longSetSetTuple | public PersistentGraphHead join(Tuple3&lt;GradoopId, GradoopIds, GradoopIds&gt; longSetSetTuple3, GD
+return graphHeadFactory.createGraphHead(graphHead, longSetSetTuple3.f1, longSetSetTuple3.f2);          return graphHeadFactory.createGraphHead(graphHead, longSetSetTuple3.f1, longSetSetTuple3.f2);       
+}                                                                                                      }                                                                                                   

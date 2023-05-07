@@ -1,0 +1,14 @@
+/**
+ * Creates a parsing function for list property type.
+ *
+ * @param listItemType string representation of the list item type, e.g. "String"
+ * @return parsing function
+ */
+private static Function<String, Object> getListValueParser(String listItemType) {
+    final String itemType = listItemType.toLowerCase();
+    // check the validity of the list item type
+    if (!TYPE_PARSER_MAP.containsKey(itemType)) {
+        throw new TypeNotPresentException(itemType, null);
+    }
+    return s -> parseListProperty(s, TYPE_PARSER_MAP.get(itemType));
+}

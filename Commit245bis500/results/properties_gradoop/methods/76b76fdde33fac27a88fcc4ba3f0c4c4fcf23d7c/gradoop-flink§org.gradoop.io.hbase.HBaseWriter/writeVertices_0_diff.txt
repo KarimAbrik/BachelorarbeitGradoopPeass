@@ -1,0 +1,82 @@
+/**
+ * Converts runtime vertex data to persistent vertex data (includes
+ * incoming and outgoing edge data) and writes it to HBase.
+ *
+ * @param epgmDatabase                EPGM database instance
+ * @param vertexHandler           vertex data handler
+ * @param persistentVertexFactory persistent vertex data factory
+ * @param vertexDataTableName         HBase vertex data table name
+ * @param <PVD>                       persistent vertex data type
+ * @throws Exception
+ */
+public <PVD extends PersistentVertex<ED>> void writeVertices(final EPGMDatabase<VD, ED, GD> epgmDatabase, final VertexHandler<VD, ED> vertexHandler, final PersistentVertexFactory<VD, ED, PVD> persistentVertexFactory, final String vertexDataTableName) throws Exception {
+    final LogicalGraph<VD, ED, GD> graph = epgmDatabase.getDatabaseGraph();
+    // group edges by source vertex id (vertex-id, [out-edge-data])
+    DataSet<Tuple2<GradoopId, Set<ED>>> vertexToOutgoingEdges = graph.getEdges().groupBy(new EdgeSourceVertexKeySelector<ED>()).reduceGroup(new GroupReduceFunction<ED, Tuple2<GradoopId, Set<ED>>>() {
+
+        @Override
+        public void reduce(Iterable<ED> edgeIterable, Collector<Tuple2<GradoopId, Set<ED>>> collector) throws Exception {
+            Set<ED> outgoingEdgeData = Sets.newHashSet();
+            GradoopId vertexId = null;
+            boolean initialized = false;
+            for (ED edge : edgeIterable) {
+                if (!initialized) {
+                    vertexId = edge.getSourceVertexId();
+                    initialized = true;
+                }
+                outgoingEdgeData.add(edge);
+            }
+            collector.collect(new Tuple2<>(vertexId, outgoingEdgeData));
+        }
+    });
+    // group edges by target vertex id (vertex-id, [in-edge-data])
+    DataSet<Tuple2<GradoopId, Set<ED>>> vertexToIncomingEdges = graph.getEdges().groupBy(new EdgeTargetVertexKeySelector<ED>()).reduceGroup(new GroupReduceFunction<ED, Tuple2<GradoopId, Set<ED>>>() {
+
+        @Override
+        public void reduce(Iterable<ED> edgeIterable, Collector<Tuple2<GradoopId, Set<ED>>> collector) throws Exception {
+            Set<ED> outgoingEdgeData = Sets.newHashSet();
+            GradoopId vertexId = null;
+            boolean initialized = false;
+            for (ED edge : edgeIterable) {
+                if (!initialized) {
+                    vertexId = edge.getTargetVertexId();
+                    initialized = true;
+                }
+                outgoingEdgeData.add(edge);
+            }
+            collector.collect(new Tuple2<>(vertexId, outgoingEdgeData));
+        }
+    });
+    // co-group (vertex-data) with (vertex-id, [out-edge-data]) to simulate left
+    // outer join
+    DataSet<Tuple2<VD, Set<ED>>> vertexDataWithOutgoingEdges = graph.getVertices().coGroup(vertexToOutgoingEdges).where("id").equalTo(0).with(new CoGroupFunction<VD, Tuple2<GradoopId, Set<ED>>, Tuple2<VD, Set<ED>>>() {
+
+        @Override
+        public void coGroup(Iterable<VD> vertexIterable, Iterable<Tuple2<GradoopId, Set<ED>>> outEdgesIterable, Collector<Tuple2<VD, Set<ED>>> collector) throws Exception {
+            VD vertex = null;
+            Set<ED> outgoingEdgeData = null;
+            // read vertex data from left group
+            for (VD v : vertexIterable) {
+                vertex = v;
+            }
+            // read outgoing edge from right group (may be empty)
+            for (Tuple2<GradoopId, Set<ED>> oEdges : outEdgesIterable) {
+                outgoingEdgeData = oEdges.f1;
+            }
+            collector.collect(new Tuple2<>(vertex, outgoingEdgeData));
+        }
+    });
+    // co-group (vertex-data, (vertex-id, [out-edge-data])) with (vertex-id,
+    // [in-edge-data]) to simulate left outer join
+    DataSet<PersistentVertex<ED>> persistentVertexDataSet = vertexDataWithOutgoingEdges.coGroup(vertexToIncomingEdges).where(new KeySelector<Tuple2<VD, Set<ED>>, GradoopId>() {
+
+        @Override
+        public GradoopId getKey(Tuple2<VD, Set<ED>> vdSetTuple2) throws Exception {
+            return vdSetTuple2.f0.getId();
+        }
+    }).equalTo(0).with(new PersistentVertexCoGroupFunction<>(persistentVertexFactory));
+    // write (persistent-vertex-data) to HBase table
+    Job job = Job.getInstance();
+    job.getConfiguration().set(TableOutputFormat.OUTPUT_TABLE, vertexDataTableName);
+    persistentVertexDataSet.map(new VertexToHBaseMapper<>(vertexHandler)).output(new HadoopOutputFormat<>(new TableOutputFormat<GradoopId>(), job));
+}

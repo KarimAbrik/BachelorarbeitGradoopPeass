@@ -1,0 +1,7 @@
+@Test
+public void testGetGraphHead() throws Exception {
+    FlinkAsciiGraphLoader loader = getSocialNetworkLoader();
+    EPGMGraphHead inputGraphHead = loader.getGraphHeadByVariable("g0");
+    EPGMGraphHead outputGraphHead = loader.getLogicalGraphByVariable("g0").getGraphHead().collect().get(0);
+    assertEquals("GraphHeads were not equal", inputGraphHead, outputGraphHead);
+}

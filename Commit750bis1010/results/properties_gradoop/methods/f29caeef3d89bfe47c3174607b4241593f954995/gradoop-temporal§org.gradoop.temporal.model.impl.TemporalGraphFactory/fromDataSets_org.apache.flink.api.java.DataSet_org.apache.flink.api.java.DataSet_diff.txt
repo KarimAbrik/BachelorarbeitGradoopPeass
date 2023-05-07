@@ -1,0 +1,4 @@
+@Override
+public TemporalGraph fromDataSets(DataSet<TemporalVertex> vertices, DataSet<TemporalEdge> edges) {
+    return new TemporalGraph(this.layoutFactory.fromDataSets(vertices, edges), config);
+}

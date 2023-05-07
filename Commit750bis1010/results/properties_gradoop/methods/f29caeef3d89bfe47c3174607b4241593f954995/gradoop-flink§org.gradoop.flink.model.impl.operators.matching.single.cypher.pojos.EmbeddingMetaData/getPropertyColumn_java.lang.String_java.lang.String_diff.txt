@@ -1,0 +1,15 @@
+/**
+ * Returns the position of the PropertyValue corresponding to the Variable-PropertyKey-Pair.
+ *
+ * @param variable variable name
+ * @param propertyKey property key
+ * @return the position of the corresponding property value
+ * @throws NoSuchElementException if there is no column mapped to the given variable and key
+ */
+public int getPropertyColumn(String variable, String propertyKey) {
+    Integer column = propertyMapping.get(Pair.of(variable, propertyKey));
+    if (column == null) {
+        throw new NoSuchElementException(String.format("no value for property %s.%s", variable, propertyKey));
+    }
+    return column;
+}

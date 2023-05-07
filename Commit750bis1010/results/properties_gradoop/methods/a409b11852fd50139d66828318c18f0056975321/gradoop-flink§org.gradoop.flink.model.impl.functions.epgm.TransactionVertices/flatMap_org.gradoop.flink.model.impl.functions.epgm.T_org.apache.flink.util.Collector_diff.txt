@@ -1,0 +1,4 @@
+@Override
+public void flatMap(T graphTriple, Collector<EPGMVertex> collector) throws Exception {
+    graphTriple.f1.forEach(collector::collect);
+}

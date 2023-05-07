@@ -1,0 +1,12 @@
+                                                                                                     | /**                                                                                                 
+                                                                                                     | * Creates an object from the given parameters. Can only be called by                                
+                                                                                                     | * inheriting classes.                                                                               
+                                                                                                     | *  @param id         entity identifier                                                              
+                                                                                                     | * @param label      label                                                                           
+                                                                                                     | * @param properties key-value properties                                                            
+                                                                                                     | */                                                                                                  
+                                                                                                     | protected ElementPojo(GradoopId id, String label, Map&lt;String, Object&gt; properties) {           
+                                                                                                     | this.id = id;                                                                                       
+                                                                                                     | this.label = label;                                                                                 
+                                                                                                     | this.properties = properties;                                                                       
+                                                                                                     | }                                                                                                   

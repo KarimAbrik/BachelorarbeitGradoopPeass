@@ -1,0 +1,4 @@
+@Override
+public <T> T callForValue(BinaryBaseGraphToValueOperator<LogicalGraph, T> operator, LogicalGraph otherGraph) {
+    return operator.execute(this, otherGraph);
+}

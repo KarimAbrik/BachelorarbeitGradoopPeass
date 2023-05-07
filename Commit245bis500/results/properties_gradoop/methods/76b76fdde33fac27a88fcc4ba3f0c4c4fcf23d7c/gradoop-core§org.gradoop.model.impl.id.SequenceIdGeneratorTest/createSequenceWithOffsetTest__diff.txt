@@ -1,0 +1,7 @@
+@Test
+public void createSequenceWithOffsetTest() {
+    SequenceIdGenerator generator = new SequenceIdGenerator(10L);
+    for (long id = 10L; id < 20L; id++) {
+        Assert.assertEquals(generator.createId(), new GradoopId(id));
+    }
+}

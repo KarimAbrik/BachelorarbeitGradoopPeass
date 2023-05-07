@@ -1,0 +1,11 @@
+//----------------------------------------------------------------------------
+// Type checking
+//----------------------------------------------------------------------------
+/**
+ * True, if the value represents {@code null}.
+ *
+ * @return true, if {@code null} value
+ */
+public boolean isNull() {
+    return rawBytes[0] == TYPE_NULL;
+}

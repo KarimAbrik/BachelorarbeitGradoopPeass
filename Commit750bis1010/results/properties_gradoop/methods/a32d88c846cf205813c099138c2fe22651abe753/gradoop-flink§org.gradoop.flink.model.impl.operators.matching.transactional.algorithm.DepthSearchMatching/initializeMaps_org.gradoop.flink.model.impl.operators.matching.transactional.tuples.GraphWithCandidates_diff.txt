@@ -1,0 +1,23 @@
+/**
+ * Build HashMaps for faster access.
+ *
+ * @param graph graphs with candidate sets
+ */
+private void initializeMaps(GraphWithCandidates graph) {
+    for (IdWithCandidates<GradoopId> vertex : graph.getVertexCandidates()) {
+        vertexDict.put(vertex.getId(), vertex.getCandidates());
+    }
+    for (TripleWithCandidates<GradoopId> edge : graph.getEdgeCandidates()) {
+        edgeDict.put(edge.getEdgeId(), new Tuple3<>(edge.getSourceId(), edge.getTargetId(), edge.getCandidates()));
+    }
+    for (TripleWithCandidates<GradoopId> edge : graph.getEdgeCandidates()) {
+        if (!sourceDict.containsKey(edge.getSourceId())) {
+            sourceDict.put(edge.getSourceId(), new HashSet<>());
+        }
+        sourceDict.get(edge.getSourceId()).add(edge.getEdgeId());
+        if (!targetDict.containsKey(edge.getTargetId())) {
+            targetDict.put(edge.getTargetId(), new HashSet<>());
+        }
+        targetDict.get(edge.getTargetId()).add(edge.getEdgeId());
+    }
+}

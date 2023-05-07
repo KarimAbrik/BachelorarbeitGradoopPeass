@@ -1,0 +1,8 @@
+@Test
+public void testReduceOnNeighborsSumAggBothEdges() throws Exception {
+    FlinkAsciiGraphLoader loader = getLoaderFromString("input[" + "(v0:Blue {a : 3})" + "(v1:Blue {a : 2})" + "(v2:Blue {a : 4})" + "(v0)-[{b : 2}]->(v1)" + "(v0)-[{b : 1}]->(v2)" + "(v1)-[{b : 3}]->(v2)" + "(v2)-[{b : 4}]->(v0)" + "]");
+    LogicalGraph input = loader.getLogicalGraphByVariable("input");
+    loader.appendToDatabaseFromString("expected[" + "(v00:Blue {a : 3,sum_a : 10})" + "(v01:Blue {a : 2,sum_a : 7})" + "(v02:Blue {a : 4,sum_a : 8})" + "(v00)-[{b : 2}]->(v01)" + "(v00)-[{b : 1}]->(v02)" + "(v01)-[{b : 3}]->(v02)" + "(v02)-[{b : 4}]->(v00)" + "]");
+    LogicalGraph output = input.reduceOnNeighbors(new SumVertexProperty("a"), Neighborhood.EdgeDirection.BOTH);
+    collectAndAssertTrue(output.equalsByElementData(loader.getLogicalGraphByVariable("expected")));
+}

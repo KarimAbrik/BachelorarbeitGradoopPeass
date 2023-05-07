@@ -1,0 +1,12 @@
+@Test
+public void testSize() throws Exception {
+    Properties properties = Properties.create();
+    assertEquals("wrong size", 0, properties.size());
+    properties.set(KEY_1, BOOL_VAL_1);
+    assertEquals("wrong size", 1, properties.size());
+    properties.set(KEY_2, INT_VAL_2);
+    assertEquals("wrong size", 2, properties.size());
+    // add existing
+    properties.set(KEY_2, LONG_VAL_3);
+    assertEquals("wrong size", 2, properties.size());
+}

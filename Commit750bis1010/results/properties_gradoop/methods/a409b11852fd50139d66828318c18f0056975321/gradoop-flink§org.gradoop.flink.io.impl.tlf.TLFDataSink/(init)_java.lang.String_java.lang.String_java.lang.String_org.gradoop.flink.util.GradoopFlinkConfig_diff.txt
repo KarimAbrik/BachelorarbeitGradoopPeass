@@ -1,0 +1,11 @@
+/**
+ * Creates a new data sink. Paths can be local (file://) or HDFS (hdfs://).
+ *
+ * @param tlfPath tlf data file
+ * @param tlfVertexDictionaryPath tlf vertex dictionary file
+ * @param tlfEdgeDictionaryPath tlf edge dictionary file
+ * @param config Gradoop Flink configuration
+ */
+public TLFDataSink(String tlfPath, String tlfVertexDictionaryPath, String tlfEdgeDictionaryPath, GradoopFlinkConfig config) {
+    super(tlfPath, tlfVertexDictionaryPath, tlfEdgeDictionaryPath, config);
+}

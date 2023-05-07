@@ -1,0 +1,20 @@
+/**
+ * Tests for vertex isomorphism and edge homomorphism
+ * <p>
+ * Expected Output:
+ * <p>
+ * 0 0 1 0
+ * 0 0 1 1
+ * 0 1 1 0
+ * 0 1 1 1
+ */
+@Test
+public void testVertexIsomorphismEdgeHomomorphism() throws Exception {
+    List<Integer> emptyList = Collections.emptyList();
+    // vertex columns
+    testMorphisms(// vertex columns
+    Arrays.asList(0, 2), // vertex columns
+    emptyList, // edge columns
+    emptyList, // edge columns
+    emptyList, Lists.newArrayList(createEmbedding(vertex0, edge0, vertex1, edge0), createEmbedding(vertex0, edge0, vertex1, edge1), createEmbedding(vertex0, edge1, vertex1, edge0), createEmbedding(vertex0, edge1, vertex1, edge1)));
+}

@@ -1,0 +1,11 @@
+@Override
+public TemporalVertex map(V value) throws Exception {
+    reuse.setId(value.getId());
+    reuse.setLabel(value.getLabel());
+    reuse.setProperties(value.getProperties());
+    reuse.setGraphIds(value.getGraphIds());
+    if (timeIntervalExtractor != null) {
+        reuse.setValidTime(timeIntervalExtractor.map(value));
+    }
+    return reuse;
+}

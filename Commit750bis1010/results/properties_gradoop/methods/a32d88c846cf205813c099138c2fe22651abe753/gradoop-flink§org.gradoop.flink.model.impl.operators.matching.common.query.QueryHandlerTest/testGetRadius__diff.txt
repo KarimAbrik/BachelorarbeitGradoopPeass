@@ -1,0 +1,5 @@
+@Test
+public void testGetRadius() {
+    assertEquals(1, QUERY_HANDLER.getRadius());
+    assertEquals(0, new QueryHandler("(v0)").getRadius());
+}

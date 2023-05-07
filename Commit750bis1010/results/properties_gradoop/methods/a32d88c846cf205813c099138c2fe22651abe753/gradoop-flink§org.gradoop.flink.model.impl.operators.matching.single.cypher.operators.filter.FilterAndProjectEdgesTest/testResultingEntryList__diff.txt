@@ -1,0 +1,12 @@
+@Test
+public void testResultingEntryList() throws Exception {
+    CNF predicates = predicateFromQuery("MATCH ()-[a]->() WHERE a.name = \"Alice\"");
+    Properties properties = Properties.create();
+    properties.set("name", "Alice");
+    EPGMEdge edge = new EPGMEdgeFactory().createEdge("Label", GradoopId.get(), GradoopId.get(), properties);
+    DataSet<EPGMEdge> edges = getExecutionEnvironment().fromElements(edge);
+    List<Embedding> result = new FilterAndProjectEdges<>(edges, predicates, new ArrayList<>(), false).evaluate().collect();
+    assertEquals(edge.getSourceId(), result.get(0).getId(0));
+    assertEquals(edge.getId(), result.get(0).getId(1));
+    assertEquals(edge.getTargetId(), result.get(0).getId(2));
+}

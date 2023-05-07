@@ -1,0 +1,8 @@
+@Override
+public Tuple3<String, String, Set<String>> reduce(Tuple3<String, String, Set<String>> first, Tuple3<String, String, Set<String>> second) throws Exception {
+    tuple.f0 = first.f0;
+    tuple.f1 = first.f1;
+    tuple.f2 = new HashSet<>(first.f2);
+    tuple.f2.addAll(second.f2);
+    return tuple;
+}

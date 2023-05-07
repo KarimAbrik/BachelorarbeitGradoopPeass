@@ -1,0 +1,12 @@
+/**                                                                                                    /**                                                                                                 
+* Group by a time stamp. The time stamp will be in milliseconds.                                       * Group by a time stamp. The time stamp will be in milliseconds.                                    
+*                                                                                                      *                                                                                                   
+* @param interval      The time interval to consider.                                                  * @param interval      The time interval to consider.                                               
+* @param intervalField The field of that time interval to consider.                                    * @param intervalField The field of that time interval to consider.                                 
+* @param &lt;T&gt; The type of the elements to group.                                                  * @param &lt;T&gt; The type of the elements to group.                                               
+* @return The grouping key function extracting a time stamp.                                           * @return The grouping key function extracting a time stamp.                                        
+* @see TimeStampKeyFunction                                                                            * @see TimeStampKeyFunction                                                                         
+*/                                                                                                     */                                                                                                  
+public static &lt;T extends TemporalElement&gt; KeyFunction&lt;T, Long&gt; timeStamp(TimeDimension i | public static &lt;T extends TemporalElement&gt; KeyFunctionWithDefaultValue&lt;T, Long&gt; timeStamp
+return timeStamp(interval, intervalField, null);                                                       return timeStamp(interval, intervalField, null);                                                    
+}                                                                                                      }                                                                                                   

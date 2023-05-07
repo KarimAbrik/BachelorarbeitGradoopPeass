@@ -1,0 +1,11 @@
+@Override
+public Long getKey(T element) {
+    final Tuple2<Long, Long> interval = intervalExtractor.getKey(element);
+    final Instant start = Instant.ofEpochMilli(interval.f0);
+    final Instant end = Instant.ofEpochMilli(interval.f1);
+    if (calculateAsDate) {
+        return LocalDateTime.ofInstant(start, UTC).until(LocalDateTime.ofInstant(end, UTC), timeUnit);
+    } else {
+        return start.until(end, timeUnit);
+    }
+}

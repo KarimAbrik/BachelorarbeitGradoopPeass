@@ -1,0 +1,18 @@
+@Test
+public void testGraphHead() throws Exception {
+    GradoopId graphID = GradoopId.get();
+    String label = "A";
+    Properties props = Properties.create();
+    props.set("k1", "v1");
+    props.set("k2", "v2");
+    GraphHead graphHead = new EPGMGraphHeadFactory().initGraphHead(graphID, label, props);
+    HashMap<String, String> newProps = new HashMap<>();
+    newProps.put("k1", "new_k1");
+    TransformationFunction<GraphHead> renameFunction = new RenamePropertyKeys<>(newProps);
+    renameFunction.apply(graphHead, graphHead);
+    assertThat(graphHead.getPropertyCount(), is(2));
+    assertEquals(label, graphHead.getLabel());
+    assertThat(graphHead.getPropertyValue("new_k1").toString(), Is.<Object>is("v1"));
+    assertThat(graphHead.getPropertyValue("k2").toString(), Is.<Object>is("v2"));
+    assertNull(graphHead.getPropertyValue("k1"));
+}

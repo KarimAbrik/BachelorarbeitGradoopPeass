@@ -1,0 +1,8 @@
+/**
+ * Creates a new Configuration.
+ */
+protected BaseFactory() {
+    this.graphHeadFactory = new EPGMGraphHeadFactory();
+    this.vertexFactory = new EPGMVertexFactory();
+    this.edgeFactory = new EPGMEdgeFactory();
+}

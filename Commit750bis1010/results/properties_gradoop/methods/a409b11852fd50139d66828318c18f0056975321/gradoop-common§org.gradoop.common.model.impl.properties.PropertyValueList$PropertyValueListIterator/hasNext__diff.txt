@@ -1,0 +1,16 @@
+@Override
+public boolean hasNext() {
+    boolean hasNext;
+    if (byteStream.available() > 0) {
+        hasNext = true;
+    } else {
+        // close the stream if no more data is available
+        try {
+            inputStream.close();
+        } catch (IOException e) {
+            // Ignore this exception because, it is not critical in this case
+        }
+        hasNext = false;
+    }
+    return hasNext;
+}

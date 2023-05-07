@@ -1,0 +1,13 @@
+@Test
+public void testEdge() throws Exception {
+    String query = "MATCH (n)-[e]->(m)-[f:knows]->(o)";
+    QueryHandler queryHandler = new QueryHandler(query);
+    LeafNode eNode = new FilterAndProjectEdgesNode(null, "n", "e", "m", queryHandler.getPredicates().getSubCNF("e"), Sets.newHashSet(), false);
+    LeafNode fNode = new FilterAndProjectEdgesNode(null, "m", "f", "o", queryHandler.getPredicates().getSubCNF("f"), Sets.newHashSet(), false);
+    QueryPlan queryPlan = new QueryPlan(eNode);
+    QueryPlanEstimator estimator = new QueryPlanEstimator(queryPlan, queryHandler, STATS);
+    assertThat(estimator.getCardinality(), is(24L));
+    queryPlan = new QueryPlan(fNode);
+    estimator = new QueryPlanEstimator(queryPlan, queryHandler, STATS);
+    assertThat(estimator.getCardinality(), is(10L));
+}

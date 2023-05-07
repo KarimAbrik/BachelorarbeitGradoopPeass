@@ -1,0 +1,9 @@
+@Test
+public void testEdgeInducedSubgraphProjectFirst() throws Exception {
+    FlinkAsciiGraphLoader loader = getSocialNetworkLoader();
+    loader.appendToDatabaseFromString("expected:_DB[" + "(databases)<-[ghtd]-(gdbs)-[ghtg1]->(graphs)" + "(graphs)<-[ghtg2]-(gps)-[ghth]->(hadoop)" + "]");
+    LogicalGraph input = loader.getLogicalGraph();
+    LogicalGraph expected = loader.getLogicalGraphByVariable("expected");
+    LogicalGraph output = input.subgraph(null, e -> e.getLabel().equals("hasTag"), Subgraph.Strategy.EDGE_INDUCED_PROJECT_FIRST);
+    collectAndAssertTrue(output.equalsByData(expected));
+}

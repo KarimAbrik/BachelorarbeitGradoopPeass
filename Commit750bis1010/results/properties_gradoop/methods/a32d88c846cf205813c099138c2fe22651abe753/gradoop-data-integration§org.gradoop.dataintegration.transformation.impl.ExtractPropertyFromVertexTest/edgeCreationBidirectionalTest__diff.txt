@@ -1,0 +1,10 @@
+/**
+ * Tests whether edges are created properly according to bidrectional configuration.
+ *
+ * @throws Exception If the data could not be loaded or collected properly.
+ */
+@Test
+public void edgeCreationBidirectionalTest() throws Exception {
+    LogicalGraph social = getSocialNetworkLoader().getLogicalGraph();
+    testForEdgeDirection(social, EdgeDirection.BIDIRECTIONAL);
+}

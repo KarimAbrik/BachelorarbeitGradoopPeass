@@ -1,0 +1,9 @@
+@Override
+public LogicalGraph execute(LogicalGraph graph) {
+    this.currentGraph = graph;
+    try {
+        return executeInGelly(transformToGelly(graph));
+    } catch (Exception e) {
+        throw new RuntimeException(e);
+    }
+}

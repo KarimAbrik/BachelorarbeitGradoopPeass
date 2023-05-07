@@ -1,0 +1,11 @@
+/**
+ * Test the function using a JSON object with an string property.
+ *
+ * @throws Exception if the execution fails or the JSON object is invalid.
+ */
+@Test
+public void testWithString() throws Exception {
+    Vertex vertex = function.map("{\"someString\": \"test\"}");
+    expectedValue.setProperty("someString", "test");
+    assertVertexEquals(expectedValue, vertex);
+}

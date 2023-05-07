@@ -1,0 +1,18 @@
+/**
+ * Creates a new Edge from the GDL Loader.
+ *
+ * @param e edge from GDL loader
+ * @return edge
+ */
+private E initEdge(org.s1ck.gdl.model.Edge e) {
+    E edge;
+    if (!edgeIds.containsKey(e.getId())) {
+        edge = elementFactoryProvider.getEdgeFactory().createEdge(e.getLabel(), vertexIds.get(e.getSourceVertexId()), vertexIds.get(e.getTargetVertexId()), Properties.createFromMap(e.getProperties()), createGradoopIdSet(e));
+        edgeIds.put(e.getId(), edge.getId());
+        edges.put(edge.getId(), edge);
+    } else {
+        edge = edges.get(edgeIds.get(e.getId()));
+        edge.setGraphIds(createGradoopIdSet(e));
+    }
+    return edge;
+}

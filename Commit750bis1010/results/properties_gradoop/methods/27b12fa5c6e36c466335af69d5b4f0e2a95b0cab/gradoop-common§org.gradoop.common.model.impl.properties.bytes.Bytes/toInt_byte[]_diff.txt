@@ -1,0 +1,9 @@
+/**
+ * Converts a byte array to an int value
+ *
+ * @param bytes byte array
+ * @return the int value
+ */
+public static int toInt(byte[] bytes) {
+    return toInt(bytes, 0, SIZEOF_INT);
+}

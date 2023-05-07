@@ -1,0 +1,4 @@
+@Override
+public BaseGraphFactory<TemporalGraphHead, TemporalVertex, TemporalEdge, TemporalGraph, TemporalGraphCollection> getFactory() {
+    return this.config.getTemporalGraphFactory();
+}

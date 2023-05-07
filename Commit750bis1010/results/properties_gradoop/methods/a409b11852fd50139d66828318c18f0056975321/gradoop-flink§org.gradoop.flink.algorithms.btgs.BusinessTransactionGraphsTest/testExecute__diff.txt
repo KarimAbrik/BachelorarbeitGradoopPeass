@@ -1,0 +1,9 @@
+@Test
+public void testExecute() throws Exception {
+    FlinkAsciiGraphLoader loader = new FlinkAsciiGraphLoader(getConfig());
+    loader.initDatabaseFromFile(getFilePath("/data/gdl/iig_btgs.gdl"));
+    LogicalGraph iig = loader.getLogicalGraphByVariable("iig");
+    GraphCollection expectation = loader.getGraphCollectionByVariables("btg1", "btg2", "btg3", "btg4");
+    GraphCollection result = iig.callForCollection(new BusinessTransactionGraphs());
+    collectAndAssertTrue(expectation.equalsByGraphElementData(result));
+}

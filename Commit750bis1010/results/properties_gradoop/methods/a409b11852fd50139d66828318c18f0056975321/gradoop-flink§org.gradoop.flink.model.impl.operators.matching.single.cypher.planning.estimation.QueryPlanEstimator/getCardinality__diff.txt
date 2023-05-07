@@ -1,0 +1,15 @@
+/**
+ * Traverses the query plan and computes the estimated cardinality according to the nodes.
+ *
+ * @return estimated cardinality of the specified plan
+ */
+public long getCardinality() {
+    traversePlan(queryPlan.getRoot());
+    long cardinality = joinEstimator.getCardinality();
+    if (cardinality == 0) {
+        // plan contains only a leaf node
+        cardinality = filterEstimator.getCardinality();
+    }
+    double selectivity = filterEstimator.getSelectivity();
+    return Math.round(cardinality * selectivity);
+}

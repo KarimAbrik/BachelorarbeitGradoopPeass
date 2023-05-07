@@ -1,0 +1,5 @@
+@Override
+public GraphCollection getGraphCollection() {
+    GraphCollectionFactory collectionFactory = getConfig().getGraphCollectionFactory();
+    return getCollection(new CSVLineToGraphHead(collectionFactory.getGraphHeadFactory()), new CSVLineToVertex(collectionFactory.getVertexFactory()), new CSVLineToEdge(collectionFactory.getEdgeFactory()), collectionFactory);
+}

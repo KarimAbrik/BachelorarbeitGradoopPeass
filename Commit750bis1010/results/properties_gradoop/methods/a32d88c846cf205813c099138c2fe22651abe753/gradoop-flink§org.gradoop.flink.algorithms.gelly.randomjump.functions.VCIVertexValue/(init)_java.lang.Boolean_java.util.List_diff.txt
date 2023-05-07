@@ -1,0 +1,10 @@
+/**
+ * Creates an instance of VCIVertexValue with the given values.
+ *
+ * @param visited {@code Boolean} determining if a vertex was visited ({@code true})
+ *                or not ({@code false}).
+ * @param visitedOutEdgeIds {@code List} containing the ids of all visited outgoing edges.
+ */
+VCIVertexValue(Boolean visited, List<Long> visitedOutEdgeIds) {
+    super(visited, visitedOutEdgeIds);
+}

@@ -1,0 +1,7 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public PersistentGraphHead join(Tuple3<Long, Set<Long>, Set<Long>> longSetSetTuple3, GD graphHead) throws Exception {
+    return graphHeadFactory.createGraphHead(graphHead, longSetSetTuple3.f1, longSetSetTuple3.f2);
+}

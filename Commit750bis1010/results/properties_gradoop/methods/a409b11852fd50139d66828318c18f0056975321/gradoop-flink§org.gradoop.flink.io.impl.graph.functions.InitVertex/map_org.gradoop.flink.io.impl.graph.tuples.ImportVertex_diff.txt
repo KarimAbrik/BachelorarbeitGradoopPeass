@@ -1,0 +1,16 @@
+/**
+ * Outputs a triple containing of the import vertex identifier, the new EPGM
+ * vertex identifier and the EPGM vertex.
+ *
+ * @param importVertex import vertex
+ * @return triple containing import and EPGM id as well as the EPGM vertex
+ * @throws Exception on failure
+ */
+@Override
+public Tuple3<K, GradoopId, EPGMVertex> map(ImportVertex<K> importVertex) throws Exception {
+    reuseTuple.f0 = importVertex.getId();
+    EPGMVertex vertex = vertexFactory.createVertex(importVertex.getLabel(), importVertex.getProperties());
+    reuseTuple.f1 = vertex.getId();
+    reuseTuple.f2 = updateLineage(vertex, importVertex.getId());
+    return reuseTuple;
+}

@@ -1,0 +1,20 @@
+/**
+ * Converts a value of a lower domain numerical type to Double.
+ *
+ * @param value value
+ * @param type type
+ *
+ * @return converted value
+ */
+private static double doubleValue(PropertyValue value, int type) {
+    switch(type) {
+        case SHORT:
+            return value.getShort();
+        case INT:
+            return value.getInt();
+        case LONG:
+            return value.getLong();
+        default:
+            return value.getFloat();
+    }
+}

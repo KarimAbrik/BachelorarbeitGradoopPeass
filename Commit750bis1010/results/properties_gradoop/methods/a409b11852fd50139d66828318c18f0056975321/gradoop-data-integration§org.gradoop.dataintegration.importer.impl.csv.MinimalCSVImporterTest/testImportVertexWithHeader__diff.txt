@@ -1,0 +1,16 @@
+/**
+ * Test if the property import of the vertices works correct. Set the first line of the file as
+ * the column property names.
+ *
+ * @throws Exception on failure
+ */
+@Test
+public void testImportVertexWithHeader() throws Exception {
+    String csvPath = MinimalCSVImporterTest.class.getResource("/csv/input.csv").getPath();
+    DataSource importVertexImporter = new MinimalCSVImporter(csvPath, DELIMITER, getConfig(), true);
+    DataSet<EPGMVertex> importVertex = importVertexImporter.getLogicalGraph().getVertices();
+    List<EPGMVertex> lv = new ArrayList<>();
+    importVertex.output(new LocalCollectionOutputFormat<>(lv));
+    getExecutionEnvironment().execute();
+    checkImportedVertices(lv);
+}

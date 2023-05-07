@@ -1,0 +1,37 @@
+{
+  "overallScore" : 0,
+  "selected" : false,
+  "testcase" : {
+    "clazz" : "org.gradoop.sna.examples.SNAAnalysisDriverTest",
+    "method" : "driverTest",
+    "module" : "gradoop-examples",
+    "params" : null
+  },
+  "callCounts" : {
+    "gradoop-examples§org.gradoop.sna.examples.SNAAnalysisDriver#run(java.lang.String[])" : 1,
+    "gradoop-core§org.gradoop.drivers.BulkDriver$ConfUtils#parseArgs(java.lang.String[])" : 2,
+    "gradoop-core§org.gradoop.storage.hbase.BasicHandler#<init>" : 4,
+    "gradoop-core§org.gradoop.storage.hbase.HBaseGraphStore#<init>(org.apache.hadoop.hbase.client.HTable,org.apache.hadoop.hbase.client.HTable,org.gradoop.storage.hbase.VertexHandler,org.gradoop.storage.hbase.GraphHandler)" : 2,
+    "gradoop-core§org.gradoop.storage.hbase.HBaseGraphStoreFactory#deleteGraphStore(org.apache.hadoop.conf.Configuration,java.lang.String,java.lang.String)" : 1,
+    "gradoop-examples§org.gradoop.sna.examples.SNAAnalysisDriverTest#driverTest" : 1,
+    "gradoop-core§org.gradoop.drivers.BulkDriver#<init>" : 1,
+    "gradoop-core§org.gradoop.storage.hbase.HBaseGraphStoreFactory#createOrOpenGraphStore(org.apache.hadoop.conf.Configuration,org.gradoop.storage.hbase.VertexHandler,org.gradoop.storage.hbase.GraphHandler,java.lang.String,java.lang.String)" : 2,
+    "gradoop-core§org.gradoop.storage.hbase.HBaseGraphStoreFactory#deleteTable(org.apache.hadoop.hbase.client.HBaseAdmin,org.apache.hadoop.hbase.HTableDescriptor)" : 2,
+    "gradoop-examples§org.gradoop.sna.examples.SNAAnalysisDriver#runBulkLoad(org.apache.hadoop.conf.Configuration,java.lang.String,java.lang.String,boolean)" : 1,
+    "gradoop-core§org.gradoop.storage.hbase.EPGVertexHandler#createTable(org.apache.hadoop.hbase.client.HBaseAdmin,org.apache.hadoop.hbase.HTableDescriptor)" : 2,
+    "gradoop-core§org.gradoop.storage.hbase.EPGGraphHandler#<init>" : 2,
+    "gradoop-core§org.gradoop.storage.hbase.HBaseGraphStoreFactory#createOrOpenGraphStore(org.apache.hadoop.conf.Configuration,org.gradoop.storage.hbase.VertexHandler,org.gradoop.storage.hbase.GraphHandler)" : 2,
+    "gradoop-core§org.gradoop.GradoopClusterTest#copyFromLocal(java.lang.String)" : 2,
+    "gradoop-examples§org.gradoop.sna.examples.SNAAnalysisDriver#<init>" : 1,
+    "gradoop-core§org.gradoop.storage.hbase.HBaseGraphStoreFactory#createTablesIfNotExists(org.apache.hadoop.conf.Configuration,org.gradoop.storage.hbase.VertexHandler,org.gradoop.storage.hbase.GraphHandler,java.lang.String,java.lang.String)" : 2,
+    "gradoop-core§org.gradoop.drivers.BulkDriver$ConfUtils#<init>" : 1,
+    "gradoop-core§org.gradoop.storage.hbase.EPGVertexHandler#<init>" : 2,
+    "gradoop-core§org.gradoop.storage.hbase.HBaseGraphStoreFactory#deleteGraphStore(org.apache.hadoop.conf.Configuration)" : 1,
+    "gradoop-core§org.gradoop.storage.hbase.HBaseGraphStoreFactory#deleteTablesIfExists(org.apache.hadoop.conf.Configuration,java.lang.String,java.lang.String)" : 1,
+    "gradoop-examples§org.gradoop.sna.examples.SNAAnalysisDriver$LoadConfUtils#<init>" : 1,
+    "gradoop-core§org.gradoop.drivers.BulkDriver#parseArgs(java.lang.String[])" : 1,
+    "gradoop-core§org.gradoop.drivers.BulkDriver#getHadoopConf" : 1,
+    "gradoop-core§org.gradoop.storage.hbase.EPGGraphHandler#createTable(org.apache.hadoop.hbase.client.HBaseAdmin,org.apache.hadoop.hbase.HTableDescriptor)" : 2
+  },
+  "selectedChanges" : [ ]
+}

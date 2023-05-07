@@ -1,0 +1,9 @@
+/**
+ * Creates a new instance of this base aggregate function.
+ *
+ * @param aggregatePropertyKey the given aggregate property key
+ * @param dimension the time dimension to consider
+ */
+public MaxDuration(String aggregatePropertyKey, TimeDimension dimension) {
+    super(aggregatePropertyKey, dimension);
+}

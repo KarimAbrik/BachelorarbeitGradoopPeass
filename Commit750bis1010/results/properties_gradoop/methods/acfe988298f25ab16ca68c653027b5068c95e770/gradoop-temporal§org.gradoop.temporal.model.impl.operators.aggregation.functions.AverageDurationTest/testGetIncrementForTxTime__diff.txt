@@ -1,0 +1,17 @@
+/**
+ * Test the implementation of {@link AverageDuration#getIncrement(TemporalElement)} for transaction time.
+ */
+@Test
+public void testGetIncrementForTxTime() {
+    AverageDuration function = new AverageDuration("", TRANSACTION_TIME);
+    TemporalElement testElement = getVertexFactory().createVertex();
+    testElement.setTransactionTime(Tuple2.of(DEFAULT_TIME_FROM, DEFAULT_TIME_TO));
+    // This will produce an overflow, which is currently ignored.
+    assertEquals(IGNORED_VALUE, function.getIncrement(testElement));
+    testElement.setTransactionTime(Tuple2.of(DEFAULT_TIME_FROM, 7L));
+    assertEquals(IGNORED_VALUE, function.getIncrement(testElement));
+    testElement.setTransactionTime(Tuple2.of(4L, DEFAULT_TIME_TO));
+    assertEquals(IGNORED_VALUE, function.getIncrement(testElement));
+    testElement.setTransactionTime(Tuple2.of(1L, 11L));
+    assertEquals(create(Arrays.asList(create(10L), create(1L))), function.getIncrement(testElement));
+}

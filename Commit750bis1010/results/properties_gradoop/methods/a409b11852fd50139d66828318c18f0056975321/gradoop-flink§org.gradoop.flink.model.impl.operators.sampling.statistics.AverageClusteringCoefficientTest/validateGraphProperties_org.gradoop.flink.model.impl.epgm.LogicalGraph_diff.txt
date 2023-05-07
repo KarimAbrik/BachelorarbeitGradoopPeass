@@ -1,0 +1,9 @@
+/**
+ * Checks if clustering coefficient properties are written to graph head
+ *
+ * @param graph Graph with properties
+ */
+private void validateGraphProperties(LogicalGraph graph) throws Exception {
+    EPGMGraphHead head = graph.getGraphHead().collect().get(0);
+    assertTrue("No average value stored in graph head", head.hasProperty(AverageClusteringCoefficient.PROPERTY_KEY_AVERAGE));
+}

@@ -1,0 +1,9 @@
+/**
+ * Returns a CSV string representation of a collection.
+ *
+ * @param collection collection
+ * @return CSV string
+ */
+protected String collectionToCsvString(Collection<?> collection) {
+    return collection.stream().map(o -> o instanceof PropertyValue ? escape((PropertyValue) o) : o.toString()).collect(Collectors.joining(CSVConstants.LIST_DELIMITER, "[", "]"));
+}

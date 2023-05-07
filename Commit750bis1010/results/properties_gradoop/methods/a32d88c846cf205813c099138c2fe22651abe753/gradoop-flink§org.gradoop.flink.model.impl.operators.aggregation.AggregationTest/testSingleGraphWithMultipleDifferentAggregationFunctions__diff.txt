@@ -1,0 +1,16 @@
+/**
+ * Test using multiple vertex and edge aggregation functions in one call.
+ *
+ * @throws Exception if the execution or IO fails.
+ */
+@Test
+public void testSingleGraphWithMultipleDifferentAggregationFunctions() throws Exception {
+    LogicalGraph graph = getSocialNetworkLoader().getLogicalGraph();
+    MinVertexProperty minVertexProperty = new MinVertexProperty("age");
+    SumEdgeProperty sumEdgeProperty = new SumEdgeProperty("since");
+    MaxEdgeProperty maxEdgeProperty = new MaxEdgeProperty("since");
+    MaxProperty maxProperty = new MaxProperty("since", "max2_since");
+    LogicalGraph expected = graph.aggregate(minVertexProperty).aggregate(sumEdgeProperty).aggregate(maxEdgeProperty).aggregate(maxProperty);
+    LogicalGraph output = graph.aggregate(minVertexProperty, sumEdgeProperty, maxEdgeProperty, maxProperty);
+    collectAndAssertTrue(expected.equalsByData(output));
+}

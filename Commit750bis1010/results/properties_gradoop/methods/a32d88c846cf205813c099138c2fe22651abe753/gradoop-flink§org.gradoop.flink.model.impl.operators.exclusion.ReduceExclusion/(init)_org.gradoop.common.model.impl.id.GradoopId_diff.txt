@@ -1,0 +1,10 @@
+/**
+ * Creates an operator instance which can be applied on a graph collection. As
+ * exclusion is not a commutative operation, a start graph needs to be set
+ * from which the remaining graphs will be excluded.
+ *
+ * @param startId graph id from which other graphs will be exluded from
+ */
+public ReduceExclusion(GradoopId startId) {
+    this.startId = startId;
+}

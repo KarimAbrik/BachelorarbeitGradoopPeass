@@ -1,0 +1,16 @@
+/**
+ * Adds a property key to the vertex grouping keys for vertices which do not have a specific
+ * label group.
+ *
+ * @param key property key
+ * @return this builder
+ */
+public GroupingBuilder addVertexGroupingKey(String key) {
+    Objects.requireNonNull(key);
+    if (key.equals(Grouping.LABEL_SYMBOL)) {
+        useVertexLabel(true);
+    } else {
+        defaultVertexLabelGroup.addPropertyKey(key);
+    }
+    return this;
+}

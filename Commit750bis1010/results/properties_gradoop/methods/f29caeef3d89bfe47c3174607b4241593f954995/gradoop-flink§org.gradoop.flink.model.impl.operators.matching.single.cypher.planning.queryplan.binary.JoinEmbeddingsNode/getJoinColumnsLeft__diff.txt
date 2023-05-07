@@ -1,0 +1,8 @@
+/**
+ * Computes the join columns of the left embedding according to its associated meta data.
+ *
+ * @return join columns of the left embedding
+ */
+private List<Integer> getJoinColumnsLeft() {
+    return joinVariables.stream().map(var -> getLeftChild().getEmbeddingMetaData().getEntryColumn(var)).collect(Collectors.toList());
+}

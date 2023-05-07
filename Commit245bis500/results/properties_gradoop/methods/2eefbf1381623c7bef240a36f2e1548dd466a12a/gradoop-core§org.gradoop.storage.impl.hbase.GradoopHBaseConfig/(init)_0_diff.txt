@@ -1,0 +1,25 @@
+/**
+ * Creates a new Configuration.
+ *
+ * @param vertexHandler    vertex handler
+ * @param edgeHandler      edge handler
+ * @param graphHeadHandler graph head handler
+ * @param vertexTableName vertex table name
+ * @param edgeTableName   edge table name
+ * @param graphTableName  graph table name
+ */
+private GradoopHBaseConfig(VertexHandler<VD, ED> vertexHandler, EdgeHandler<ED, VD> edgeHandler, GraphHeadHandler<GD> graphHeadHandler, String vertexTableName, String edgeTableName, String graphTableName) {
+    super(vertexHandler, edgeHandler, graphHeadHandler);
+    if (StringUtils.isEmpty(vertexTableName)) {
+        throw new IllegalArgumentException("Vertex table name must not be null or empty");
+    }
+    if (StringUtils.isEmpty(edgeTableName)) {
+        throw new IllegalArgumentException("Edge table name must not be null or empty");
+    }
+    if (StringUtils.isEmpty(graphTableName)) {
+        throw new IllegalArgumentException("Graph table name must not be null or empty");
+    }
+    this.vertexTableName = vertexTableName;
+    this.edgeTableName = edgeTableName;
+    this.graphTableName = graphTableName;
+}

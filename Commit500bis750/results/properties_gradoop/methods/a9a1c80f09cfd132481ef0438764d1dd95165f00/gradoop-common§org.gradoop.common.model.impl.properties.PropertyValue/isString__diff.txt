@@ -1,0 +1,8 @@
+/**
+ * True, if the wrapped value is of type {@code String}.
+ *
+ * @return true, if {@code String} value
+ */
+public boolean isString() {
+    return rawBytes[0] == TYPE_STRING;
+}

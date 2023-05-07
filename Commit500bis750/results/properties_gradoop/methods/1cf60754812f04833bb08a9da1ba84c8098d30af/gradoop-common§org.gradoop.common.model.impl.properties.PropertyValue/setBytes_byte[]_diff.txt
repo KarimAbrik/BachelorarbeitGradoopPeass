@@ -1,0 +1,9 @@
+/**                                                                                                    /**                                                                                                 
+* Set internal byte representation                                                                     * Set internal byte representation                                                                  
+* @param bytes array                                                                                   * @param bytes array                                                                                
+*/                                                                                                     */                                                                                                  
+@SuppressWarnings("EI_EXPOSE_REP")                                                                     @SuppressWarnings("EI_EXPOSE_REP")                                                                  
+public void setBytes(byte[] bytes) {                                                                   public void setBytes(byte[] bytes) {                                                                
+this.rawBytes = bytes;                                                                                 this.rawBytes = bytes;                                                                              
+validateBytesLength();                                                                               |                                                                                                     
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,7 @@
+/**                                                                                                  |                                                                                                     
+* {@inheritDoc}                                                                                      |                                                                                                     
+*/                                                                                                   |                                                                                                     
+@Override                                                                                            |                                                                                                     
+public Iterator&lt;GradoopId&gt; iterator() {                                                        |                                                                                                     
+return new GradoopIdListIterator(this.bytes);                                                        |                                                                                                     
+}                                                                                                    |                                                                                                     

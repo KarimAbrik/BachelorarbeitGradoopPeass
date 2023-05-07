@@ -1,0 +1,14 @@
+/**
+ * Test using multiple element aggregation functions in one call.
+ *
+ * @throws Exception if the execution or IO fails.
+ */
+@Test
+public void testSingleGraphWithMultipleElementAggregationFunctions() throws Exception {
+    LogicalGraph graph = getSocialNetworkLoader().getLogicalGraph();
+    SumProperty sumProperty = new SumProperty("since");
+    MaxProperty maxProperty = new MaxProperty("since");
+    LogicalGraph expected = graph.aggregate(sumProperty).aggregate(maxProperty);
+    LogicalGraph output = graph.aggregate(sumProperty, maxProperty);
+    collectAndAssertTrue(expected.equalsByData(output));
+}

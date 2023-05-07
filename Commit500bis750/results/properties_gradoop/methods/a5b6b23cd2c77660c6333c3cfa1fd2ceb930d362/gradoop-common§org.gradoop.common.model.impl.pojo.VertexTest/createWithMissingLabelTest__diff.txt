@@ -1,0 +1,6 @@
+@Test
+public void createWithMissingLabelTest() {
+    GradoopId vertexID = GradoopId.get();
+    EPGMVertex v = new VertexFactory().initVertex(vertexID);
+    assertThat(v.getLabel(), is(GradoopConstants.DEFAULT_VERTEX_LABEL));
+}

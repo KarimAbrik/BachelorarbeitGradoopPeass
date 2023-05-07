@@ -1,0 +1,18 @@
+/**
+ * Initializes a cache for the given elements where every key maps to multiple elements.
+ * Key selector will be called on every element to extract the caches key.
+ * Value selector will be called on every element to extract the value.
+ * Returns a cache of the form
+ * KT -> Set<VT>
+ *
+ * @param elements elements the cache will be build from
+ * @param keySelector key selector function extraction cache keys from elements
+ * @param valueSelector value selector function extraction cache values from elements
+ * @param <EL> the element type
+ * @param <KT> the cache key type
+ * @param <VT> the cache value type
+ * @return cache KT -> Set<VT>
+ */
+private <EL, KT, VT> Map<KT, Set<VT>> initSetCache(Collection<EL> elements, Function<EL, KT> keySelector, Function<EL, VT> valueSelector) {
+    return elements.stream().collect(Collectors.groupingBy(keySelector, Collectors.mapping(valueSelector, Collectors.toSet())));
+}

@@ -1,0 +1,6 @@
+@Test
+public void testWrite() throws Exception {
+    String tmpPath = temporaryFolder.getRoot().getPath();
+    GraphCollection graphCollection = getSocialNetworkLoader().getGraphCollection();
+    checkCSVWrite(tmpPath, graphCollection);
+}

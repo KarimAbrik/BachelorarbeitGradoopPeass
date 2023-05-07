@@ -1,0 +1,9 @@
+/**
+ * Initializes the debug mappings between vertices/edges and their debug id.
+ *
+ * @param graph data graph
+ */
+private void initDebugMappings(LG graph) {
+    vertexMapping = graph.getVertices().map(new PairElementWithPropertyValue<>("id"));
+    edgeMapping = graph.getEdges().map(new PairElementWithPropertyValue<>("id"));
+}

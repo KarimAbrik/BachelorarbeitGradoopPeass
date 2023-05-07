@@ -1,0 +1,11 @@
+                                                                                                     | /**                                                                                                 
+                                                                                                     | * Will use a single graph head of the collection as final graph head for the graph.                 
+                                                                                                     | * Issue #1217 (https://github.com/dbs-leipzig/gradoop/issues/1217) will optimize further.           
+                                                                                                     | *                                                                                                   
+                                                                                                     | * {@inheritDoc}                                                                                     
+                                                                                                     | */                                                                                                  
+@Override                                                                                              @Override                                                                                           
+public LogicalGraph getLogicalGraph() throws IOException {                                             public LogicalGraph getLogicalGraph() throws IOException {                                          
+return getGraphCollection().reduce(new ReduceCombination&lt;&gt;());                                 | GraphCollection collection = getGraphCollection();                                                  
+                                                                                                     | return collection.getGraphFactory().fromDataSets(collection.getGraphHeads().first(1), collection.get
+}                                                                                                      }                                                                                                   

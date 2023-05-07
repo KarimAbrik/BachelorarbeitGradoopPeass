@@ -1,0 +1,11 @@
+/**
+ * According to the specified {@link #edgeStrategy} and the specified
+ * {@link EmbeddingMetaData}, the method returns the columns that need to contain distinct
+ * entries.
+ *
+ * @param metaData meta data for the embedding
+ * @return distinct edge columns
+ */
+private List<Integer> getDistinctEdgeColumns(EmbeddingMetaData metaData) {
+    return edgeStrategy == MatchStrategy.ISOMORPHISM ? metaData.getEdgeVariables().stream().map(metaData::getEntryColumn).collect(Collectors.toList()) : Collections.emptyList();
+}

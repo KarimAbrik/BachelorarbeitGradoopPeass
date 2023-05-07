@@ -1,0 +1,64 @@
+@Test
+public void testSetAndGetObject() throws Exception {
+    PropertyValue p = new PropertyValue();
+    // null
+    p.setObject(null);
+    assertTrue(p.isNull());
+    assertNull(p.getObject());
+    // boolean
+    p.setObject(BOOL_VAL_1);
+    assertTrue(p.isBoolean());
+    assertEquals(BOOL_VAL_1, p.getObject());
+    // short
+    p.setObject(SHORT_VAL_e);
+    assertTrue(p.isShort());
+    assertEquals(SHORT_VAL_e, p.getObject());
+    // int
+    p.setObject(INT_VAL_2);
+    assertTrue(p.isInt());
+    assertEquals(INT_VAL_2, p.getObject());
+    // long
+    p.setObject(LONG_VAL_3);
+    assertTrue(p.isLong());
+    assertEquals(LONG_VAL_3, p.getObject());
+    // float
+    p.setObject(FLOAT_VAL_4);
+    assertTrue(p.isFloat());
+    assertEquals(FLOAT_VAL_4, p.getObject());
+    // double
+    p.setObject(DOUBLE_VAL_5);
+    assertTrue(p.isDouble());
+    assertEquals(DOUBLE_VAL_5, p.getObject());
+    // String
+    p.setObject(STRING_VAL_6);
+    assertTrue(p.isString());
+    assertEquals(STRING_VAL_6, p.getObject());
+    // BigDecimal
+    p.setObject(BIG_DECIMAL_VAL_7);
+    assertTrue(p.isBigDecimal());
+    assertEquals(BIG_DECIMAL_VAL_7, p.getObject());
+    // GradoopId
+    p.setObject(GRADOOP_ID_VAL_8);
+    assertTrue(p.isGradoopId());
+    assertEquals(GRADOOP_ID_VAL_8, p.getObject());
+    // Map
+    p.setObject(MAP_VAL_9);
+    assertTrue(p.isMap());
+    assertEquals(MAP_VAL_9, p.getObject());
+    // List
+    p.setObject(LIST_VAL_a);
+    assertTrue(p.isList());
+    assertEquals(LIST_VAL_a, p.getObject());
+    //Date
+    p.setObject(DATE_VAL_b);
+    assertTrue(p.isDate());
+    assertEquals(DATE_VAL_b, p.getDate());
+    //Time
+    p.setObject(TIME_VAL_c);
+    assertTrue(p.isTime());
+    assertEquals(TIME_VAL_c, p.getTime());
+    //DateTime
+    p.setObject(DATETIME_VAL_d);
+    assertTrue(p.isDateTime());
+    assertEquals(DATETIME_VAL_d, p.getDateTime());
+}

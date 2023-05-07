@@ -1,0 +1,5 @@
+@Override
+public GraphCollection toGraphCollection() {
+    final GraphCollectionFactory collectionFactory = this.config.getGraphCollectionFactory();
+    return collectionFactory.fromDataSets(getGraphHeads().map(new TemporalGraphHeadToGraphHead(collectionFactory.getGraphHeadFactory())), getVertices().map(new TemporalVertexToVertex(collectionFactory.getVertexFactory())), getEdges().map(new TemporalEdgeToEdge(collectionFactory.getEdgeFactory())));
+}

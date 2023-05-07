@@ -1,0 +1,11 @@
+/**
+ * Returns one subgraph for each of the given super graphs.
+ * The subgraphs are defined by the vertices that fulfil the vertex filter function.
+ *
+ * @param collection collection of supergraphs
+ * @return collection of vertex-induced subgraphs
+ */
+private GC vertexInducedSubgraph(GC collection) {
+    DataSet<V> filteredVertices = collection.getVertices().filter(vertexFilterFunction);
+    return collection.getFactory().fromDataSets(collection.getGraphHeads(), filteredVertices, collection.getEdges()).verify();
+}

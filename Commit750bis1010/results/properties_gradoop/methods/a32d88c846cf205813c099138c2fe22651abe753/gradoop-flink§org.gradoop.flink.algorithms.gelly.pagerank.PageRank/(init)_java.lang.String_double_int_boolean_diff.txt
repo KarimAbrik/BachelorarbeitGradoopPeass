@@ -1,0 +1,16 @@
+/**
+ * Constructor for Page Rank with fixed number of iterations.
+ *
+ * @param propertyKey Property key to store the page rank in.
+ * @param dampingFactor Damping factor.
+ * @param iterations    Number of iterations.
+ * @param includeZeroDegrees Whether to include "zero-degree" vertices in the PageRank
+ *                                  computation and result.
+ */
+public PageRank(String propertyKey, double dampingFactor, int iterations, boolean includeZeroDegrees) {
+    super(new VertexToGellyVertexWithNullValue(), new EdgeToGellyEdgeWithNullValue());
+    this.propertyKey = propertyKey;
+    this.dampingFactor = dampingFactor;
+    this.iterations = iterations;
+    this.includeZeroDegrees = includeZeroDegrees;
+}

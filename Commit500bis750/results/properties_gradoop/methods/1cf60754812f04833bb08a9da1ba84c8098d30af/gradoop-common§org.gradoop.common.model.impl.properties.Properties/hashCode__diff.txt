@@ -1,0 +1,10 @@
+/**
+ * Two properties collections have identical hash codes, if they contain the
+ * same properties in the same order.
+ *
+ * @return hash code
+ */
+@Override
+public int hashCode() {
+    return properties != null ? properties.hashCode() : 0;
+}

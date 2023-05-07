@@ -1,0 +1,10 @@
+/**
+ * Returns the property meta data string for the specified property. The string consists of the
+ * property key and the property value type, e.g. "foo:int".
+ *
+ * @param property property
+ * @return property meta data
+ */
+public static String getPropertyMetaData(Property property) {
+    return String.format("%s%s%s", property.getKey(), PROPERTY_TOKEN_DELIMITER, getTypeString(property.getValue()));
+}

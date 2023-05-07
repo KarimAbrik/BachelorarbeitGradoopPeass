@@ -1,0 +1,10 @@
+@Override
+public EPGMVertex map(EPGMVertex v) {
+    int x = v.getPropertyValue(LayoutingAlgorithm.X_COORDINATE_PROPERTY).getInt();
+    int y = v.getPropertyValue(LayoutingAlgorithm.Y_COORDINATE_PROPERTY).getInt();
+    x = (int) ((x - offsetX) * zoomFactor) + zoomBorder;
+    y = (int) ((y - offsetY) * zoomFactor) + zoomBorder;
+    v.setProperty(LayoutingAlgorithm.X_COORDINATE_PROPERTY, x);
+    v.setProperty(LayoutingAlgorithm.Y_COORDINATE_PROPERTY, y);
+    return v;
+}

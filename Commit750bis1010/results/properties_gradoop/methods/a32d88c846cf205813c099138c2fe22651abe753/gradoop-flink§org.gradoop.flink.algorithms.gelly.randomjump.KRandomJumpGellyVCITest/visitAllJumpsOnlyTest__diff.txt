@@ -1,0 +1,9 @@
+/**
+ * Test with unconnected custom graph, with 1 starting vertex and all of the vertices to visit.
+ */
+@Test
+public void visitAllJumpsOnlyTest() throws Exception {
+    LogicalGraph result = new KRandomJumpGellyVCI(1, 1000, 0.15, 1.0).execute(customGraph);
+    commonValidation(customGraph, result);
+    resultVertices.forEach(vertex -> assertTrue("vertex " + vertex.getId() + " was not visited, all vertices should be", vertex.getPropertyValue(SamplingConstants.PROPERTY_KEY_SAMPLED).getBoolean()));
+}

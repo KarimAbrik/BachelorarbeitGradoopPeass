@@ -1,0 +1,11 @@
+@Test
+public void testProjectLoop() throws Exception {
+    CNF predicates = predicateFromQuery("MATCH (a)-[b]->(a)");
+    GradoopId a = GradoopId.get();
+    EPGMEdge edge = new EPGMEdgeFactory().createEdge(a, a);
+    DataSet<EPGMEdge> edges = getExecutionEnvironment().fromElements(edge);
+    Embedding result = new FilterAndProjectEdges<>(edges, predicates, Collections.emptyList(), true).evaluate().collect().get(0);
+    assertEquals(result.size(), 2);
+    assertEquals(a, result.getId(0));
+    assertEquals(edge.getId(), result.getId(1));
+}

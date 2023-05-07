@@ -1,0 +1,13 @@
+/**
+ * Helper function to test count aggregators.
+ * Asserts the count for vertices, edges and all elements.
+ *
+ * @param graphHead graph head containing the aggregate properties
+ * @param expectedVertexCount expected vertex count
+ * @param expectedEdgeCount expected edge count
+ */
+void assertCounts(GraphHead graphHead, long expectedVertexCount, long expectedEdgeCount) {
+    assertEquals("wrong vertex count", expectedVertexCount, graphHead.getPropertyValue(new VertexCount().getAggregatePropertyKey()).getLong());
+    assertEquals("wrong edge count", expectedEdgeCount, graphHead.getPropertyValue(new EdgeCount().getAggregatePropertyKey()).getLong());
+    assertEquals("wrong element count", expectedEdgeCount + expectedVertexCount, graphHead.getPropertyValue(new Count().getAggregatePropertyKey()).getLong());
+}

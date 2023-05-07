@@ -1,0 +1,31 @@
+@Test
+public void testWriteAndReadFields() throws IOException {
+    PropertyValue p = create(NULL_VAL_0);
+    assertEquals(p, writeAndReadFields(PropertyValue.class, p));
+    p = create(BOOL_VAL_1);
+    assertEquals(p, writeAndReadFields(PropertyValue.class, p));
+    p = create(INT_VAL_2);
+    assertEquals(p, writeAndReadFields(PropertyValue.class, p));
+    p = create(LONG_VAL_3);
+    assertEquals(p, writeAndReadFields(PropertyValue.class, p));
+    p = create(FLOAT_VAL_4);
+    assertEquals(p, writeAndReadFields(PropertyValue.class, p));
+    p = create(DOUBLE_VAL_5);
+    assertEquals(p, writeAndReadFields(PropertyValue.class, p));
+    p = create(STRING_VAL_6);
+    assertEquals(p, writeAndReadFields(PropertyValue.class, p));
+    p = create(BIG_DECIMAL_VAL_7);
+    assertEquals(p, writeAndReadFields(PropertyValue.class, p));
+    p = create(GRADOOP_ID_VAL_8);
+    assertEquals(p, writeAndReadFields(PropertyValue.class, p));
+    p = create(MAP_VAL_9);
+    assertEquals(p, writeAndReadFields(PropertyValue.class, p));
+    p = create(LIST_VAL_a);
+    assertEquals(p, writeAndReadFields(PropertyValue.class, p));
+    p = create(DATE_VAL_b);
+    assertEquals(p, writeAndReadFields(PropertyValue.class, p));
+    p = create(TIME_VAL_c);
+    assertEquals(p, writeAndReadFields(PropertyValue.class, p));
+    p = create(DATETIME_VAL_d);
+    assertEquals(p, writeAndReadFields(PropertyValue.class, p));
+}

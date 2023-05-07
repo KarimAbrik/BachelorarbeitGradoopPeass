@@ -1,0 +1,5 @@
+@Override
+public void combine(Iterable<Tuple2<K, Set<PropertyValue>>> values, Collector<Tuple2<K, Set<PropertyValue>>> out) throws Exception {
+    List<Tuple2<K, Set<PropertyValue>>> pairs = Lists.newArrayList(values);
+    out.collect(Tuple2.of(pairs.get(0).f0, combineSets(pairs)));
+}

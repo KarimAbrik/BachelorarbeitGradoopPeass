@@ -1,0 +1,8 @@
+/**
+ * True, if the wrapped value is of type {@code long}.
+ *
+ * @return true, if {@code long} value
+ */
+public boolean isLong() {
+    return rawBytes[0] == TYPE_LONG;
+}

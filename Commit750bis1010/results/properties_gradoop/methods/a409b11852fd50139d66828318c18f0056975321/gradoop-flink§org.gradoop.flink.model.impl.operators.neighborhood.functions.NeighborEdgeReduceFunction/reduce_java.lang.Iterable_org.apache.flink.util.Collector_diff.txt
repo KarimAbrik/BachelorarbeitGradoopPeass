@@ -1,0 +1,22 @@
+@Override
+public void reduce(Iterable<Tuple2<E, V>> tuples, Collector<V> collector) throws Exception {
+    PropertyValue propertyValue = PropertyValue.NULL_VALUE;
+    V vertex = null;
+    E edge;
+    boolean isFirst = true;
+    for (Tuple2<E, V> tuple : tuples) {
+        edge = tuple.f0;
+        if (isFirst) {
+            //each tuple contains the same vertex
+            vertex = tuple.f1;
+            isFirst = false;
+            propertyValue = getFunction().getIncrement(edge);
+        } else {
+            propertyValue = getFunction().aggregate(propertyValue, getFunction().getIncrement(edge));
+        }
+    }
+    if (vertex != null) {
+        vertex.setProperty(getFunction().getAggregatePropertyKey(), propertyValue);
+        collector.collect(vertex);
+    }
+}

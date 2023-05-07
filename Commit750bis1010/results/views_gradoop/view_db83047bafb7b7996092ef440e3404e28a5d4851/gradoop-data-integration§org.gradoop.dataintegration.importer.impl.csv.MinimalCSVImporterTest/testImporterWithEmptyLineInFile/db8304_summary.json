@@ -1,0 +1,30 @@
+{
+  "overallScore" : 0,
+  "selected" : false,
+  "testcase" : {
+    "clazz" : "org.gradoop.dataintegration.importer.impl.csv.MinimalCSVImporterTest",
+    "method" : "testImporterWithEmptyLineInFile",
+    "module" : "gradoop-data-integration",
+    "params" : null
+  },
+  "callCounts" : {
+    "gradoop-flink§org.gradoop.flink.util.GradoopFlinkConfig#<init>(org.apache.flink.api.java.ExecutionEnvironment,org.gradoop.flink.model.api.layouts.LogicalGraphLayoutFactory,org.gradoop.flink.model.api.layouts.GraphCollectionLayoutFactory)" : 1,
+    "gradoop-flink§org.gradoop.flink.model.impl.layouts.common.BaseFactory#setGradoopFlinkConfig(org.gradoop.flink.util.GradoopFlinkConfig)" : 2,
+    "gradoop-flink§org.gradoop.flink.model.impl.epgm.GraphCollectionFactory#setLayoutFactory(org.gradoop.flink.model.api.layouts.GraphCollectionLayoutFactory)" : 1,
+    "gradoop-flink§org.gradoop.flink.model.GradoopFlinkTestBase#getConfig" : 1,
+    "gradoop-flink§org.gradoop.flink.util.GradoopFlinkConfig#createConfig(org.apache.flink.api.java.ExecutionEnvironment,org.gradoop.flink.model.api.layouts.LogicalGraphLayoutFactory,org.gradoop.flink.model.api.layouts.GraphCollectionLayoutFactory)" : 1,
+    "gradoop-flink§org.gradoop.flink.model.GradoopFlinkTestBase#setConfig(org.gradoop.flink.util.GradoopFlinkConfig)" : 1,
+    "gradoop-data-integration§org.gradoop.dataintegration.importer.impl.csv.MinimalCSVImporter#<init>(java.lang.String,java.lang.String,org.gradoop.flink.util.GradoopFlinkConfig,java.lang.String,boolean)" : 1,
+    "gradoop-flink§org.gradoop.flink.model.impl.epgm.LogicalGraphFactory#<init>(org.gradoop.flink.util.GradoopFlinkConfig)" : 1,
+    "gradoop-flink§org.gradoop.flink.model.impl.epgm.GraphCollectionFactory#<init>(org.gradoop.flink.util.GradoopFlinkConfig)" : 1,
+    "gradoop-data-integration§org.gradoop.dataintegration.importer.impl.csv.MinimalCSVImporterTest#checkExceptions(org.gradoop.flink.io.api.DataSource,java.io.File)" : 1,
+    "gradoop-data-integration§org.gradoop.dataintegration.importer.impl.csv.MinimalCSVImporter#readHeaderRow" : 1,
+    "gradoop-data-integration§org.gradoop.dataintegration.importer.impl.csv.MinimalCSVImporter#getLogicalGraph" : 1,
+    "gradoop-data-integration§org.gradoop.dataintegration.importer.impl.csv.MinimalCSVImporterTest#testImporterWithEmptyLineInFile" : 1,
+    "gradoop-flink§org.gradoop.flink.model.impl.epgm.LogicalGraphFactory#setLayoutFactory(org.gradoop.flink.model.api.layouts.LogicalGraphLayoutFactory)" : 1,
+    "gradoop-data-integration§org.gradoop.dataintegration.importer.impl.csv.MinimalCSVImporter#<init>(java.lang.String,java.lang.String,org.gradoop.flink.util.GradoopFlinkConfig,boolean)" : 1,
+    "gradoop-common§org.gradoop.common.config.GradoopConfig#<init>" : 1,
+    "gradoop-flink§org.gradoop.flink.model.GradoopFlinkTestBase#getExecutionEnvironment" : 1
+  },
+  "selectedChanges" : [ ]
+}

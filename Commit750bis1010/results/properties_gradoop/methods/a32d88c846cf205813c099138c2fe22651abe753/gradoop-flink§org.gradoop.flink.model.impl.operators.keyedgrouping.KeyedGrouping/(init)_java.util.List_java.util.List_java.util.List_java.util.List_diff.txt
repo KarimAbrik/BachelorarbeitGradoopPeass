@@ -1,0 +1,20 @@
+/**
+ * Instantiate this grouping function.
+ *
+ * @param vertexGroupingKeys       The vertex grouping keys.
+ * @param vertexAggregateFunctions The vertex aggregate functions.
+ * @param edgeGroupingKeys         The edge grouping keys.
+ * @param edgeAggregateFunctions   The edge aggregate functions.
+ */
+public KeyedGrouping(List<KeyFunction<V, ?>> vertexGroupingKeys, List<AggregateFunction> vertexAggregateFunctions, List<KeyFunction<E, ?>> edgeGroupingKeys, List<AggregateFunction> edgeAggregateFunctions) {
+    if (vertexGroupingKeys == null || vertexGroupingKeys.isEmpty()) {
+        // Grouping with no keys is not supported, we therefore add a custom key function that returns a
+        // constant as a pseudo-key for every element.
+        this.vertexGroupingKeys = Collections.singletonList(GroupingKeys.nothing());
+    } else {
+        this.vertexGroupingKeys = vertexGroupingKeys;
+    }
+    this.vertexAggregateFunctions = vertexAggregateFunctions == null ? Collections.emptyList() : vertexAggregateFunctions;
+    this.edgeGroupingKeys = edgeGroupingKeys == null ? Collections.emptyList() : edgeGroupingKeys;
+    this.edgeAggregateFunctions = edgeAggregateFunctions == null ? Collections.emptyList() : edgeAggregateFunctions;
+}

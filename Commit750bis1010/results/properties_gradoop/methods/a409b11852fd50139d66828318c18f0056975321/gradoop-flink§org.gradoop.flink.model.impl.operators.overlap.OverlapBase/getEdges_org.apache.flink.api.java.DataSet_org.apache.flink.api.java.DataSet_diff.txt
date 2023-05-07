@@ -1,0 +1,10 @@
+/**
+ * Filters edges based on the given graph identifiers.
+ *
+ * @param edges edges
+ * @param ids   graph identifiers
+ * @return filtered edges
+ */
+protected DataSet<E> getEdges(DataSet<E> edges, DataSet<GradoopId> ids) {
+    return edges.filter(new InAllGraphsBroadcast<>()).withBroadcastSet(ids, InAllGraphsBroadcast.GRAPH_IDS);
+}

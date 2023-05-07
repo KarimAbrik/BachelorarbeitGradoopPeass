@@ -1,0 +1,12 @@
+/**
+ * Creates a new EPGMGraph from the GDL Loader.
+ *
+ * @param g graph from GDL Loader
+ * @return EPGM graph head
+ */
+private G initGraphHead(Graph g) {
+    G graphHead = (G) config.getGraphHeadFactory().createGraphHead(g.getLabel(), Properties.createFromMap(g.getProperties()));
+    graphHeadIds.put(g.getId(), graphHead.getId());
+    graphHeads.put(graphHead.getId(), graphHead);
+    return graphHead;
+}

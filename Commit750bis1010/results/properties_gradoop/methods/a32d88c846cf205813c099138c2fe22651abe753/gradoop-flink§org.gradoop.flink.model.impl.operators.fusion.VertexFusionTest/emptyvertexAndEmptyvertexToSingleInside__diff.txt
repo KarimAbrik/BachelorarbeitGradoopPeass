@@ -1,0 +1,13 @@
+@Test
+public void emptyvertexAndEmptyvertexToSingleInside() throws Exception {
+    FlinkAsciiGraphLoader loader = getLoaderFromString("emptyVertex:G {emptyVertex : \"graph\"}[()]" + "singleInside:G {emptyVertex : \"graph\"}[(u:G {emptyVertex : \"graph\"})]");
+    LogicalGraph searchGraph = loader.getLogicalGraphByVariable("emptyVertex");
+    LogicalGraph patternGraph = loader.getLogicalGraphByVariable("emptyVertex");
+    VertexFusion f = new VertexFusion();
+    LogicalGraph output = f.execute(searchGraph, patternGraph);
+    LogicalGraph expected = loader.getLogicalGraphByVariable("singleInside");
+    collectAndAssertTrue(output.equalsByData(expected));
+    if (deepSearch) {
+        collectAndAssertTrue(VertexFusionUtils.myInducedEdgeSubgraphForFusion(searchGraph, expected).equalsByElementIds(VertexFusionUtils.myInducedEdgeSubgraphForFusion(expected, searchGraph)));
+    }
+}

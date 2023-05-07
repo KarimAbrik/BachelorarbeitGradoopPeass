@@ -1,0 +1,28 @@
+/**
+ * Updates the state according to the edge statistics.
+ *
+ * @param sourceVariable source vertex variable
+ * @param edgeVariable edge variable
+ * @param targetVariable target vertex variable
+ */
+private void processEdge(String sourceVariable, String edgeVariable, String targetVariable) {
+    String edgeLabel = getLabel(edgeVariable, false);
+    long distinctSourceCount = getGraphStatistics().getDistinctSourceVertexCount(edgeLabel);
+    if (distinctSourceCount == 0L) {
+        distinctSourceCount = getGraphStatistics().getDistinctSourceVertexCount();
+    }
+    long distinctTargetCount = getGraphStatistics().getDistinctTargetVertexCount(edgeLabel);
+    if (distinctTargetCount == 0L) {
+        distinctTargetCount = getGraphStatistics().getDistinctTargetVertexCount();
+    }
+    Edge queryEdge = getQueryHandler().getEdgeByVariable(edgeVariable);
+    if (queryEdge.getUpperBound() > 1) {
+        // variable case: n-hop edge
+        updateCardinality(edgeVariable, getPathCardinality(getCardinality(edgeLabel, false), queryEdge.getLowerBound(), queryEdge.getUpperBound(), distinctSourceCount, distinctTargetCount));
+    } else {
+        // static case: 1-hop edge
+        updateCardinality(edgeVariable, getCardinality(edgeLabel, false));
+    }
+    updateDistinctValues(sourceVariable, distinctSourceCount);
+    updateDistinctValues(targetVariable, distinctTargetCount);
+}

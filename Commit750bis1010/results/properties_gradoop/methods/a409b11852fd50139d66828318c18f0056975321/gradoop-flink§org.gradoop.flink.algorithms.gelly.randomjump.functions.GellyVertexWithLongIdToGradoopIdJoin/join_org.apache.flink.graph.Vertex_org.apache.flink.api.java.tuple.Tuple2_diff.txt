@@ -1,0 +1,6 @@
+@Override
+public Vertex<GradoopId, VCIVertexValue> join(Vertex<Long, VCIVertexValue> gellyVertexWithLongId, Tuple2<Long, GradoopId> indexToGradoopId) throws Exception {
+    reuseVertex.setId(indexToGradoopId.f1);
+    reuseVertex.setValue(gellyVertexWithLongId.getValue());
+    return reuseVertex;
+}

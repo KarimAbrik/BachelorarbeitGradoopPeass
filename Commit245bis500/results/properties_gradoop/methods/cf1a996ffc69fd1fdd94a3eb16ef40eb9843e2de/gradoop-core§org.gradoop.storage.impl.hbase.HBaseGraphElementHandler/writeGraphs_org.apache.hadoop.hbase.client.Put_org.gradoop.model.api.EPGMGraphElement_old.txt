@@ -1,0 +1,18 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public Put writeGraphs(Put put, EPGMGraphElement graphElement) {
+    int graphCount = graphElement.getGraphCount();
+    if (graphCount > 0) {
+        byte[] graphs = new byte[Bytes.SIZEOF_INT + graphCount * Bytes.SIZEOF_LONG];
+        Bytes.putInt(graphs, 0, graphCount);
+        int offset = Bytes.SIZEOF_INT;
+        for (Long graphId : graphElement.getGraphs()) {
+            Bytes.putLong(graphs, offset, graphId);
+            offset += Bytes.SIZEOF_LONG;
+        }
+        put = put.add(CF_META_BYTES, COL_GRAPHS_BYTES, graphs);
+    }
+    return put;
+}

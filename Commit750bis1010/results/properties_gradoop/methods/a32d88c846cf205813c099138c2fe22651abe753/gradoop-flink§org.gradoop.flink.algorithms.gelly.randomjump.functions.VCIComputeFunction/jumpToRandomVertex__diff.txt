@@ -1,0 +1,8 @@
+/**
+ * Jumps to a random vertex in the graph by sending a message to this vertex.
+ */
+private void jumpToRandomVertex() {
+    int randomIndex = ThreadLocalRandom.current().nextInt(vertexIndices.size());
+    Long randomVertexIndex = vertexIndices.get(randomIndex);
+    sendMessageTo(randomVertexIndex, new NullValue());
+}

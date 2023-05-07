@@ -1,0 +1,13 @@
+@Test
+public void testOutgoingVertexDegrees() throws Exception {
+    LogicalGraph db = getSocialNetworkLoader().getLogicalGraph();
+    List<WithCount<GradoopId>> result = new OutgoingVertexDegrees().execute(db).collect();
+    assertThat(result.size(), is(11));
+    Map<Long, Integer> dist = new HashMap<>(4);
+    result.forEach(e -> dist.put(e.getCount(), dist.getOrDefault(e.getCount(), 0) + 1));
+    assertThat(dist.size(), is(4));
+    assertThat(dist.get(0L), is(3));
+    assertThat(dist.get(2L), is(4));
+    assertThat(dist.get(3L), is(2));
+    assertThat(dist.get(5L), is(2));
+}

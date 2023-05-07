@@ -1,0 +1,18 @@
+@Test
+public void createVertexPojoTest() {
+    Long vertexID = 0L;
+    String label = "A";
+    Map<String, Object> props = Maps.newHashMapWithExpectedSize(2);
+    props.put("k1", "v1");
+    props.put("k2", "v2");
+    Set<Long> graphs = Sets.newHashSet(0L, 1L);
+    EPGMVertex vertex = new VertexPojoFactory().createVertex(vertexID, label, props, graphs);
+    assertThat(vertex.getId(), is(vertexID));
+    assertEquals(label, vertex.getLabel());
+    assertThat(vertex.getPropertyCount(), is(2));
+    assertThat(vertex.getProperty("k1"), Is.<Object>is("v1"));
+    assertThat(vertex.getProperty("k2"), Is.<Object>is("v2"));
+    assertThat(vertex.getGraphCount(), is(2));
+    assertTrue(vertex.getGraphs().contains(0L));
+    assertTrue(vertex.getGraphs().contains(1L));
+}

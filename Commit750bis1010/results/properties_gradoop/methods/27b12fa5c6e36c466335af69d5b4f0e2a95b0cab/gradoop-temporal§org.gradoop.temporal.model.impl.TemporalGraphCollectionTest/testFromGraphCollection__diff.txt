@@ -1,0 +1,31 @@
+/**                                                                                                    /**                                                                                                 
+* Test the {@link TemporalGraphCollection#fromGraphCollection(GraphCollection)} method.              | * Test the {@link TemporalGraphCollection#fromGraphCollection(BaseGraphCollection)} method.         
+*/                                                                                                     */                                                                                                  
+@Test                                                                                                  @Test                                                                                               
+public void testFromGraphCollection() throws Exception {                                               public void testFromGraphCollection() throws Exception {                                            
+TemporalGraphCollection temporalCollection = TemporalGraphCollection.fromGraphCollection(testCollect   TemporalGraphCollection temporalCollection = TemporalGraphCollection.fromGraphCollection(testCollect
+Collection&lt;TemporalGraphHead&gt; loadedGraphHeads = new ArrayList&lt;&gt;();                        Collection&lt;TemporalGraphHead&gt; loadedGraphHeads = new ArrayList&lt;&gt;();                     
+Collection&lt;TemporalVertex&gt; loadedVertices = new ArrayList&lt;&gt;();                             Collection&lt;TemporalVertex&gt; loadedVertices = new ArrayList&lt;&gt;();                          
+Collection&lt;TemporalEdge&gt; loadedEdges = new ArrayList&lt;&gt;();                                  Collection&lt;TemporalEdge&gt; loadedEdges = new ArrayList&lt;&gt;();                               
+temporalCollection.getGraphHeads().output(new LocalCollectionOutputFormat&lt;&gt;(loadedGraphHeads))   temporalCollection.getGraphHeads().output(new LocalCollectionOutputFormat&lt;&gt;(loadedGraphHeads))
+temporalCollection.getVertices().output(new LocalCollectionOutputFormat&lt;&gt;(loadedVertices));      temporalCollection.getVertices().output(new LocalCollectionOutputFormat&lt;&gt;(loadedVertices));   
+temporalCollection.getEdges().output(new LocalCollectionOutputFormat&lt;&gt;(loadedEdges));            temporalCollection.getEdges().output(new LocalCollectionOutputFormat&lt;&gt;(loadedEdges));         
+Collection&lt;EPGMGraphHead&gt; epgmGraphHeads = new ArrayList&lt;&gt;();                              Collection&lt;EPGMGraphHead&gt; epgmGraphHeads = new ArrayList&lt;&gt;();                           
+Collection&lt;EPGMVertex&gt; epgmVertices = new ArrayList&lt;&gt;();                                   Collection&lt;EPGMVertex&gt; epgmVertices = new ArrayList&lt;&gt;();                                
+Collection&lt;EPGMEdge&gt; epgmEdges = new ArrayList&lt;&gt;();                                        Collection&lt;EPGMEdge&gt; epgmEdges = new ArrayList&lt;&gt;();                                     
+testCollection.getGraphHeads().output(new LocalCollectionOutputFormat&lt;&gt;(epgmGraphHeads));        testCollection.getGraphHeads().output(new LocalCollectionOutputFormat&lt;&gt;(epgmGraphHeads));     
+testCollection.getVertices().output(new LocalCollectionOutputFormat&lt;&gt;(epgmVertices));            testCollection.getVertices().output(new LocalCollectionOutputFormat&lt;&gt;(epgmVertices));         
+testCollection.getEdges().output(new LocalCollectionOutputFormat&lt;&gt;(epgmEdges));                  testCollection.getEdges().output(new LocalCollectionOutputFormat&lt;&gt;(epgmEdges));               
+getExecutionEnvironment().execute();                                                                   getExecutionEnvironment().execute();                                                                
+assertFalse(loadedGraphHeads.isEmpty());                                                               assertFalse(loadedGraphHeads.isEmpty());                                                            
+assertFalse(loadedVertices.isEmpty());                                                                 assertFalse(loadedVertices.isEmpty());                                                              
+assertFalse(loadedEdges.isEmpty());                                                                    assertFalse(loadedEdges.isEmpty());                                                                 
+validateElementCollections(epgmGraphHeads, loadedGraphHeads);                                          validateElementCollections(epgmGraphHeads, loadedGraphHeads);                                       
+validateElementCollections(epgmVertices, loadedVertices);                                              validateElementCollections(epgmVertices, loadedVertices);                                           
+validateElementCollections(epgmEdges, loadedEdges);                                                    validateElementCollections(epgmEdges, loadedEdges);                                                 
+validateGraphElementCollections(epgmVertices, loadedVertices);                                         validateGraphElementCollections(epgmVertices, loadedVertices);                                      
+validateGraphElementCollections(epgmEdges, loadedEdges);                                               validateGraphElementCollections(epgmEdges, loadedEdges);                                            
+loadedGraphHeads.forEach(this::checkDefaultTemporalElement);                                           loadedGraphHeads.forEach(this::checkDefaultTemporalElement);                                        
+loadedVertices.forEach(this::checkDefaultTemporalElement);                                             loadedVertices.forEach(this::checkDefaultTemporalElement);                                          
+loadedEdges.forEach(this::checkDefaultTemporalElement);                                                loadedEdges.forEach(this::checkDefaultTemporalElement);                                             
+}                                                                                                      }                                                                                                   

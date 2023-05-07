@@ -1,0 +1,12 @@
+/**
+ * Creates a new data source. Paths can be local (file://) or HDFS (hdfs://).
+ *
+ * @param edgeListPath    Path to edge list file
+ * @param tokenSeparator  Separator token
+ * @param propertyKey     Property key for storing the vertex value
+ * @param config          Gradoop Flink configuration
+ */
+public VertexLabeledEdgeListDataSource(String edgeListPath, String tokenSeparator, String propertyKey, GradoopFlinkConfig config) {
+    super(edgeListPath, tokenSeparator, config);
+    this.propertyKey = propertyKey;
+}

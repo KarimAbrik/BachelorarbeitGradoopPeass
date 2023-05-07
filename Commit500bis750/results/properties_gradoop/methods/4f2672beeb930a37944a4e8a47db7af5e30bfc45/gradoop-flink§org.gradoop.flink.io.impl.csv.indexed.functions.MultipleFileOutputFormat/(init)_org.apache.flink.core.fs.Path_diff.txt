@@ -1,0 +1,8 @@
+/**
+ * Create a new instance of a MultipleFileOutputFormat.
+ * @param outputPath The path to the file system.
+ */
+public MultipleFileOutputFormat(Path outputPath) {
+    this.outputFilePath = outputPath;
+    this.streams = new HashMap<>();
+}

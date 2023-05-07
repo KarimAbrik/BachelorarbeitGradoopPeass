@@ -1,0 +1,9 @@
+/**
+ * Create an instance of the {@link AverageEdgeDuration} aggregate function.
+ *
+ * @param aggregatePropertyKey The aggregate property key.
+ * @param dimension            The time dimension to consider.
+ */
+public AverageEdgeDuration(String aggregatePropertyKey, TimeDimension dimension) {
+    super(aggregatePropertyKey, dimension);
+}

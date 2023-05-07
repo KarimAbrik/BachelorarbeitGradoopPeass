@@ -1,0 +1,5 @@
+@Override
+public TypeInformation<Tuple3<V, GradoopId, GradoopId>> getProducedType() {
+    final TypeInformation<GradoopId> idType = TypeInformation.of(GradoopId.class);
+    return new TupleTypeInfo<>(TypeInformation.of(factory.getType()), idType, idType);
+}

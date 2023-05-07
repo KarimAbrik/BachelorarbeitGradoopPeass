@@ -1,0 +1,11 @@
+/**                                                                                                  |                                                                                                     
+* Convenience API function to create a {@link TemporalGraphCollection} from an existing              |                                                                                                     
+* {@link GraphCollection} with default values for the temporal attributes.                           |                                                                                                     
+*                                                                                                    |                                                                                                     
+* @param graphCollection the existing graph collection instance                                      |                                                                                                     
+* @return a temporal graph colection with default temporal values                                    |                                                                                                     
+* @see TemporalGraphCollectionFactory#fromNonTemporalGraphCollection(BaseGraphCollection)            |                                                                                                     
+*/                                                                                                   |                                                                                                     
+public static TemporalGraphCollection fromGraphCollection(GraphCollection graphCollection) {         |                                                                                                     
+return TemporalGradoopConfig.fromGradoopFlinkConfig(graphCollection.getConfig()).getTemporalGraphCol |                                                                                                     
+}                                                                                                    |                                                                                                     

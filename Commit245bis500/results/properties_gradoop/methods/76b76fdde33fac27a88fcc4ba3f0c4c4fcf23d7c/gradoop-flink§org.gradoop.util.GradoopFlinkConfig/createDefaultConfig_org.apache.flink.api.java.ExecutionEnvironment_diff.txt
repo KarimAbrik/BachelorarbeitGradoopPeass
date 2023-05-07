@@ -1,0 +1,13 @@
+/**
+ * Creates a default Gradoop Flink configuration using POJO handlers.
+ *
+ * @param env Flink execution environment.
+ *
+ * @return Gradoop Flink configuration
+ */
+public static GradoopFlinkConfig<VertexPojo, EdgePojo, GraphHeadPojo> createDefaultConfig(ExecutionEnvironment env) {
+    HBaseVertexHandler<VertexPojo, EdgePojo> vertexHandler = new HBaseVertexHandler<>(new VertexPojoFactory());
+    HBaseEdgeHandler<EdgePojo, VertexPojo> edgeHandler = new HBaseEdgeHandler<>(new EdgePojoFactory());
+    HBaseGraphHeadHandler<GraphHeadPojo> graphHandler = new HBaseGraphHeadHandler<>(new GraphHeadPojoFactory());
+    return new GradoopFlinkConfig<>(vertexHandler, edgeHandler, graphHandler, env);
+}

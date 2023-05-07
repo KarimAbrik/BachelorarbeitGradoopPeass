@@ -1,0 +1,12 @@
+/**
+ * Stores the in, out and sum of in and out degrees of a vertex.
+ *
+ * @param vertexDegreesProperty property key to store sum degree
+ * @param vertexInDegreesProperty property key to store in degree
+ * @param vertexOutDegreesProperty property key to store out degree
+ */
+public DistinctVertexDegreesToAttribute(String vertexDegreesProperty, String vertexInDegreesProperty, String vertexOutDegreesProperty) {
+    this.vertexDegreesProperty = vertexDegreesProperty;
+    this.vertexInDegreeProperty = vertexInDegreesProperty;
+    this.vertexOutDegreeProperty = vertexOutDegreesProperty;
+}

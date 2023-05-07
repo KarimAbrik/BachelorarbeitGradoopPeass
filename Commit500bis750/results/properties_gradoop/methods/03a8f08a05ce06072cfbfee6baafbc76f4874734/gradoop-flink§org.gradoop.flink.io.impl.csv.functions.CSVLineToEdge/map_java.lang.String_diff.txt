@@ -1,0 +1,5 @@
+@Override
+public Edge map(String csvLine) throws Exception {
+    String[] tokens = split(csvLine, 5);
+    return edgeFactory.initEdge(GradoopId.fromString(tokens[0]), tokens[3], GradoopId.fromString(tokens[1]), GradoopId.fromString(tokens[2]), parseProperties(tokens[3], tokens[4]));
+}

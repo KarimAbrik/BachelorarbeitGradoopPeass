@@ -1,0 +1,4 @@
+@Test
+public void getGraphHead() throws Exception {
+    GradoopTestUtils.validateElementCollections(Sets.newHashSet(g0), from(singletonList(g0), asList(v0, v1), singletonList(e0)).getGraphHead().collect());
+}

@@ -1,0 +1,31 @@
+/**
+ * Checks if two given EPGM elements are equal by considering their label and
+ * properties.
+ *
+ * @param element1 first element
+ * @param element2 second element
+ */
+public static void validateElements(Element element1, Element element2) {
+    assertNotNull("first element was null", element1);
+    assertNotNull("second element was null", element2);
+    assertEquals("id mismatch", element1.getId(), element2.getId());
+    assertEquals("label mismatch", element1.getLabel(), element2.getLabel());
+    if (element1.getPropertyCount() == 0) {
+        assertEquals("property count mismatch", element1.getPropertyCount(), element2.getPropertyCount());
+    } else {
+        List<String> keys1 = Lists.newArrayList(element1.getPropertyKeys());
+        Collections.sort(keys1);
+        List<String> keys2 = Lists.newArrayList(element2.getPropertyKeys());
+        Collections.sort(keys2);
+        Iterator<String> it1 = keys1.iterator();
+        Iterator<String> it2 = keys2.iterator();
+        while (it1.hasNext() && it2.hasNext()) {
+            String key1 = it1.next();
+            String key2 = it2.next();
+            assertEquals("property key mismatch", key1, key2);
+            assertEquals("property value mismatch", element1.getPropertyValue(key1), element2.getPropertyValue(key2));
+        }
+        assertFalse("too many properties in first element", it1.hasNext());
+        assertFalse("too many properties in second element", it2.hasNext());
+    }
+}

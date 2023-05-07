@@ -1,0 +1,40 @@
+@Override
+public void write(GraphCollection graphCollection, boolean overWrite) throws IOException {
+    FileSystem.WriteMode writeMode = overWrite ? FileSystem.WriteMode.OVERWRITE : FileSystem.WriteMode.NO_OVERWRITE;
+    DataSet<GraphTransaction> graphTransactions = graphCollection.getGraphTransactions();
+    DataSet<GraphTransaction> simpleLabelTransaction;
+    DataSet<Map<String, Integer>> vertexDictionary = null;
+    DataSet<Map<String, Integer>> edgeDictionary = null;
+    // if the graph transaction vertex labels are set by a dictionary
+    if (hasVertexDictionary()) {
+        vertexDictionary = graphTransactions.// get a vertex dictionary for each transaction
+        flatMap(new VertexLabelList()).distinct().// reduce them to one dictionary without duplicates
+        reduceGroup(new TLFDictionaryMapGroupReducer());
+        // write the vertex dictionary
+        vertexDictionary.writeAsFormattedText(getTLFVertexDictionaryPath(), writeMode, new TLFDictionaryFileFormat());
+    }
+    if (hasEdgeDictionary()) {
+        edgeDictionary = graphTransactions.// get an edge dictionary for each transaction
+        flatMap(new EdgeLabelList()).distinct().// reduce them to one dictionary without duplicates
+        reduceGroup(new TLFDictionaryMapGroupReducer());
+        // write the edge dictionary
+        edgeDictionary.writeAsFormattedText(getTLFEdgeDictionaryPath(), writeMode, new TLFDictionaryFileFormat());
+    }
+    if (hasVertexDictionary() || hasEdgeDictionary()) {
+        if (hasVertexDictionary() && hasEdgeDictionary()) {
+            simpleLabelTransaction = graphTransactions.// map the simple integer-like labels
+            map(new ElementLabelEncoder(hasVertexDictionary(), hasEdgeDictionary())).withBroadcastSet(vertexDictionary, TLFConstants.VERTEX_DICTIONARY).withBroadcastSet(edgeDictionary, TLFConstants.EDGE_DICTIONARY);
+        } else if (hasVertexDictionary()) {
+            simpleLabelTransaction = graphTransactions.// map the simple integer-like labels
+            map(new ElementLabelEncoder(hasVertexDictionary(), hasEdgeDictionary())).withBroadcastSet(vertexDictionary, TLFConstants.VERTEX_DICTIONARY);
+        } else {
+            simpleLabelTransaction = graphTransactions.// map the simple integer-like labels
+            map(new ElementLabelEncoder(hasVertexDictionary(), hasEdgeDictionary())).withBroadcastSet(edgeDictionary, TLFConstants.EDGE_DICTIONARY);
+        }
+        // write the TLF format adjusted graphs to file
+        simpleLabelTransaction.writeAsFormattedText(getTLFPath(), writeMode, new TLFFileFormat());
+        // if there was no dictionary used the graphs can simply be written
+    } else {
+        graphTransactions.writeAsFormattedText(getTLFPath(), writeMode, new TLFFileFormat());
+    }
+}

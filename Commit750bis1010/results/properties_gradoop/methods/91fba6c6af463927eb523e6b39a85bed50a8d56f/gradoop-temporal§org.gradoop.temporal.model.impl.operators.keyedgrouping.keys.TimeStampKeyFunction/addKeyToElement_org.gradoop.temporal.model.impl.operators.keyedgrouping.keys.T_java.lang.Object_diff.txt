@@ -1,0 +1,10 @@
+@Override                                                                                              @Override                                                                                           
+public void addKeyToElement(T element, Object key) {                                                   public void addKeyToElement(T element, Object key) {                                                
+if (!(key instanceof Long)) {                                                                          if (!(key instanceof Long)) {                                                                       
+throw new IllegalArgumentException("Invalid type for key: " + key.getClass().getSimpleName());         throw new IllegalArgumentException("Invalid type for key: " + key.getClass().getSimpleName());      
+}                                                                                                      }                                                                                                   
+                                                                                                     | // Do not set the key if field extraction is enabled and the key is -1                              
+                                                                                                     | if (fieldOfTimeStamp == null || !getDefaultKey().equals(key)) {                                     
+element.setProperty(targetPropertyKey, PropertyValue.create(key));                                     element.setProperty(targetPropertyKey, PropertyValue.create(key));                                  
+}                                                                                                      }                                                                                                   
+                                                                                                     | }                                                                                                   

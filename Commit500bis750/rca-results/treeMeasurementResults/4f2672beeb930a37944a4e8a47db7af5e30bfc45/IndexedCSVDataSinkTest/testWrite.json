@@ -1,0 +1,701 @@
+{
+  "measurementConfig" : {
+    "vms" : 30,
+    "earlyStop" : false,
+    "warmup" : 5,
+    "iterations" : 5,
+    "repetitions" : 2,
+    "logFullData" : true,
+    "useGC" : false,
+    "callSyncBetweenVMs" : true,
+    "waitTimeBetweenVMs" : 1000,
+    "maxLogSizeInMb" : 100,
+    "kiekerConfig" : {
+      "useKieker" : true,
+      "useSourceInstrumentation" : true,
+      "useSelectiveInstrumentation" : true,
+      "useAggregation" : true,
+      "useCircularQueue" : false,
+      "enableAdaptiveMonitoring" : false,
+      "adaptiveInstrumentation" : false,
+      "kiekerAggregationInterval" : 5000,
+      "record" : "DURATION",
+      "onlyOneCallRecording" : false,
+      "extractMethod" : false,
+      "traceSizeInMb" : 100,
+      "kiekerQueueSize" : 10000000,
+      "createDefaultConstructor" : true,
+      "kiekerWaitTime" : 5,
+      "writingType" : "BinaryAggregated",
+      "excludeForTracing" : [ "new org.eclipse.jetty.logging.JettyLevel.<init>(..)", "* org.eclipse.jetty.logging.JettyLevel.*(..)", "*[] org.eclipse.jetty.logging.JettyLevel.*(..)", "*.* org.eclipse.jetty.logging.JettyLevel.*(..)", "*.*.* org.eclipse.jetty.logging.JettyLevel.*(..)", "*.*.*.* org.eclipse.jetty.logging.JettyLevel.*(..)", "*.*.*.*.* org.eclipse.jetty.logging.JettyLevel.*(..)", "new org.eclipse.jetty.logging.JettyLoggerConfiguration.<init>(..)", "* org.eclipse.jetty.logging.JettyLoggerConfiguration.*(..)", "*[] org.eclipse.jetty.logging.JettyLoggerConfiguration.*(..)", "*.* org.eclipse.jetty.logging.JettyLoggerConfiguration.*(..)", "*.*.* org.eclipse.jetty.logging.JettyLoggerConfiguration.*(..)", "*.*.*.* org.eclipse.jetty.logging.JettyLoggerConfiguration.*(..)", "*.*.*.*.* org.eclipse.jetty.logging.JettyLoggerConfiguration.*(..)", "new org.eclipse.jetty.logging.JettyLoggingServiceProvider.<init>(..)", "* org.eclipse.jetty.logging.JettyLoggingServiceProvider.*(..)", "*[] org.eclipse.jetty.logging.JettyLoggingServiceProvider.*(..)", "*.* org.eclipse.jetty.logging.JettyLoggingServiceProvider.*(..)", "*.*.* org.eclipse.jetty.logging.JettyLoggingServiceProvider.*(..)", "*.*.*.* org.eclipse.jetty.logging.JettyLoggingServiceProvider.*(..)", "*.*.*.*.* org.eclipse.jetty.logging.JettyLoggingServiceProvider.*(..)", "new org.eclipse.jetty.logging.JettyLoggerFactory.<init>(..)", "* org.eclipse.jetty.logging.JettyLoggerFactory.*(..)", "*[] org.eclipse.jetty.logging.JettyLoggerFactory.*(..)", "*.* org.eclipse.jetty.logging.JettyLoggerFactory.*(..)", "*.*.* org.eclipse.jetty.logging.JettyLoggerFactory.*(..)", "*.*.*.* org.eclipse.jetty.logging.JettyLoggerFactory.*(..)", "*.*.*.*.* org.eclipse.jetty.logging.JettyLoggerFactory.*(..)", "new org.eclipse.jetty.logging.StdErrAppender.<init>(..)", "* org.eclipse.jetty.logging.StdErrAppender.*(..)", "*[] org.eclipse.jetty.logging.StdErrAppender.*(..)", "*.* org.eclipse.jetty.logging.StdErrAppender.*(..)", "*.*.* org.eclipse.jetty.logging.StdErrAppender.*(..)", "*.*.*.* org.eclipse.jetty.logging.StdErrAppender.*(..)", "*.*.*.*.* org.eclipse.jetty.logging.StdErrAppender.*(..)", "new org.eclipse.jetty.logging.Timestamp.<init>(..)", "* org.eclipse.jetty.logging.Timestamp.*(..)", "*[] org.eclipse.jetty.logging.Timestamp.*(..)", "*.* org.eclipse.jetty.logging.Timestamp.*(..)", "*.*.* org.eclipse.jetty.logging.Timestamp.*(..)", "*.*.*.* org.eclipse.jetty.logging.Timestamp.*(..)", "*.*.*.*.* org.eclipse.jetty.logging.Timestamp.*(..)", "new org.eclipse.jetty.logging.Timestamp$Tick.<init>(..)", "* org.eclipse.jetty.logging.Timestamp$Tick.*(..)", "*[] org.eclipse.jetty.logging.Timestamp$Tick.*(..)", "*.* org.eclipse.jetty.logging.Timestamp$Tick.*(..)", "*.*.* org.eclipse.jetty.logging.Timestamp$Tick.*(..)", "*.*.*.* org.eclipse.jetty.logging.Timestamp$Tick.*(..)", "*.*.*.*.* org.eclipse.jetty.logging.Timestamp$Tick.*(..)", "new org.eclipse.jetty.logging.JettyLogger.<init>(..)", "* org.eclipse.jetty.logging.JettyLogger.*(..)", "*[] org.eclipse.jetty.logging.JettyLogger.*(..)", "*.* org.eclipse.jetty.logging.JettyLogger.*(..)", "*.*.* org.eclipse.jetty.logging.JettyLogger.*(..)", "*.*.*.* org.eclipse.jetty.logging.JettyLogger.*(..)", "*.*.*.*.* org.eclipse.jetty.logging.JettyLogger.*(..)" ]
+    },
+    "saveAll" : true,
+    "javaVersion" : "1.8.0_362",
+    "measurementStrategy" : "PARALLEL",
+    "statisticsConfig" : {
+      "type1error" : 0.2,
+      "type2error" : 0.1,
+      "outlierFactor" : 3.29,
+      "statisticTest" : "MANN_WHITNEY_TEST"
+    },
+    "executionConfig" : {
+      "timeout" : 300000,
+      "linearizeHistory" : true,
+      "redirectSubprocessOutputToFile" : true,
+      "useTieredCompilation" : false,
+      "removeSnapshots" : false,
+      "useAlternativeBuildfile" : false,
+      "excludeLog4jSlf4jImpl" : false,
+      "excludeLog4jToSlf4j" : false,
+      "executeBeforeClassInMeasurement" : false,
+      "clearMockitoCaches" : false,
+      "onlyMeasureWorkload" : false,
+      "showStart" : false,
+      "redirectToNull" : true,
+      "createDetailDebugFiles" : true
+    },
+    "fixedCommitConfig" : {
+      "commit" : "4f2672beeb930a37944a4e8a47db7af5e30bfc45",
+      "commitOld" : "a9a1c80f09cfd132481ef0438764d1dd95165f00"
+    }
+  },
+  "causeConfig" : {
+    "splitAggregated" : true,
+    "minTime" : 0.1,
+    "ignoreEOIs" : true,
+    "rcaStrategy" : "UNTIL_SOURCE_CHANGE",
+    "levels" : 1,
+    "testCase" : {
+      "clazz" : "org.gradoop.flink.io.impl.csv.indexed.IndexedCSVDataSinkTest",
+      "method" : "testWrite",
+      "module" : "gradoop-flink",
+      "params" : null
+    },
+    "propertyFolder" : "/home/abrik/peass/results/properties_gradoop"
+  },
+  "nodes" : {
+    "call" : "org.gradoop.flink.io.impl.csv.indexed.IndexedCSVDataSinkTest#testWrite",
+    "kiekerPattern" : "public void org.gradoop.flink.io.impl.csv.indexed.IndexedCSVDataSinkTest.testWrite()",
+    "otherKiekerPattern" : "public void org.gradoop.flink.io.impl.csv.indexed.IndexedCSVDataSinkTest.testWrite()",
+    "module" : "gradoop-flink",
+    "statistic" : {
+      "meanOld" : 1.610844367992143E10,
+      "meanCurrent" : 1.6247685318428572E10,
+      "deviationOld" : 2.3312946168231705E8,
+      "deviationCurrent" : 2.73441813043856E8,
+      "vms" : 28,
+      "callsOld" : 145,
+      "calls" : 145,
+      "tvalue" : -2.0504621984354325
+    },
+    "childs" : [ {
+      "call" : "org.gradoop.flink.util.FlinkAsciiGraphLoader#getDatabase",
+      "kiekerPattern" : "public org.gradoop.flink.model.impl.EPGMDatabase org.gradoop.flink.util.FlinkAsciiGraphLoader.getDatabase()",
+      "otherKiekerPattern" : "public org.gradoop.flink.model.impl.EPGMDatabase org.gradoop.flink.util.FlinkAsciiGraphLoader.getDatabase()",
+      "module" : "gradoop-flink",
+      "statistic" : {
+        "meanOld" : 2130549.303448276,
+        "meanCurrent" : 2109783.1571428576,
+        "deviationOld" : 208334.59885283865,
+        "deviationCurrent" : 271043.97286550776,
+        "vms" : 28,
+        "callsOld" : 145,
+        "calls" : 145,
+        "tvalue" : 0.32350850547513227
+      },
+      "childs" : [ {
+        "call" : "org.gradoop.common.util.AsciiGraphLoader#getVertices",
+        "kiekerPattern" : "public java.util.Collection org.gradoop.common.util.AsciiGraphLoader.getVertices()",
+        "otherKiekerPattern" : "public java.util.Collection org.gradoop.common.util.AsciiGraphLoader.getVertices()",
+        "module" : "gradoop-common",
+        "statistic" : {
+          "meanOld" : 28658.420689655173,
+          "meanCurrent" : 28249.103448275862,
+          "deviationOld" : 2087.702446877789,
+          "deviationCurrent" : 2776.874593917562,
+          "vms" : 29,
+          "callsOld" : 145,
+          "calls" : 145,
+          "tvalue" : 0.6344739357101474
+        },
+        "childs" : [ {
+          "call" : "ADDED",
+          "kiekerPattern" : "ADDED",
+          "otherKiekerPattern" : "public boolean org.gradoop.common.model.impl.pojo.Element.equals(java.lang.Object)",
+          "statistic" : {
+            "meanOld" : "NaN",
+            "meanCurrent" : "NaN",
+            "deviationOld" : "NaN",
+            "deviationCurrent" : "NaN",
+            "vms" : 0,
+            "callsOld" : 0,
+            "calls" : 0,
+            "tvalue" : -1.0,
+            "change" : true
+          },
+          "childs" : [ ]
+        } ]
+      } ]
+    }, {
+      "call" : "org.gradoop.flink.io.impl.csv.indexed.IndexedCSVDataSinkTest#checkIndexedCSVWrite",
+      "kiekerPattern" : "private void org.gradoop.flink.io.impl.csv.indexed.IndexedCSVDataSinkTest.checkIndexedCSVWrite(java.lang.String,org.gradoop.flink.model.api.epgm.LogicalGraph)",
+      "otherKiekerPattern" : "private void org.gradoop.flink.io.impl.csv.indexed.IndexedCSVDataSinkTest.checkIndexedCSVWrite(java.lang.String,org.gradoop.flink.model.api.epgm.LogicalGraph)",
+      "module" : "gradoop-flink",
+      "statistic" : {
+        "meanOld" : 1.6074626913007141E10,
+        "meanCurrent" : 1.6205384598792854E10,
+        "deviationOld" : 2.2169809405941862E8,
+        "deviationCurrent" : 3.065020694152678E8,
+        "vms" : 28,
+        "callsOld" : 145,
+        "calls" : 145,
+        "tvalue" : -1.829094701795202
+      },
+      "childs" : [ {
+        "call" : "org.gradoop.common.model.impl.pojo.Vertex#toString",
+        "kiekerPattern" : "public java.lang.String org.gradoop.common.model.impl.pojo.Vertex.toString()",
+        "otherKiekerPattern" : "public java.lang.String org.gradoop.common.model.impl.pojo.Vertex.toString()",
+        "module" : "gradoop-common",
+        "statistic" : {
+          "meanOld" : 207612.09983457567,
+          "meanCurrent" : 201588.9169900261,
+          "deviationOld" : 24191.49514869384,
+          "deviationCurrent" : 17504.491296262295,
+          "vms" : 28,
+          "callsOld" : 1559,
+          "calls" : 1579,
+          "tvalue" : 1.0673610483645695
+        },
+        "childs" : [ {
+          "call" : "org.gradoop.common.model.impl.pojo.GraphElement#toString",
+          "kiekerPattern" : "public java.lang.String org.gradoop.common.model.impl.pojo.GraphElement.toString()",
+          "otherKiekerPattern" : "public java.lang.String org.gradoop.common.model.impl.pojo.GraphElement.toString()",
+          "module" : "gradoop-common",
+          "statistic" : {
+            "meanOld" : 141233.32902283687,
+            "meanCurrent" : 123348.43027034776,
+            "deviationOld" : 16670.36516166945,
+            "deviationCurrent" : 8954.438616414514,
+            "vms" : 28,
+            "callsOld" : 2847,
+            "calls" : 3457,
+            "tvalue" : 5.001193088084724
+          },
+          "childs" : [ {
+            "call" : "org.gradoop.common.model.impl.pojo.Element#toString",
+            "kiekerPattern" : "public java.lang.String org.gradoop.common.model.impl.pojo.Element.toString()",
+            "otherKiekerPattern" : "public java.lang.String org.gradoop.common.model.impl.pojo.Element.toString()",
+            "module" : "gradoop-common",
+            "statistic" : {
+              "meanOld" : 85643.34299232913,
+              "meanCurrent" : 79301.08760276654,
+              "deviationOld" : 7861.847587748655,
+              "deviationCurrent" : 5549.972305511275,
+              "vms" : 28,
+              "callsOld" : 4587,
+              "calls" : 5197,
+              "tvalue" : 3.50749177809038
+            },
+            "childs" : [ {
+              "call" : "org.gradoop.common.model.impl.properties.Properties#toString",
+              "kiekerPattern" : "public java.lang.String org.gradoop.common.model.impl.properties.Properties.toString()",
+              "otherKiekerPattern" : "public java.lang.String org.gradoop.common.model.impl.properties.Properties.toString()",
+              "module" : "gradoop-common",
+              "statistic" : {
+                "meanOld" : 99380.62778865416,
+                "meanCurrent" : 97682.57321888342,
+                "deviationOld" : 14574.937445722873,
+                "deviationCurrent" : 8571.919938192377,
+                "vms" : 28,
+                "callsOld" : 2847,
+                "calls" : 2877,
+                "tvalue" : 0.5337667353194153
+              },
+              "childs" : [ {
+                "call" : "org.gradoop.common.model.impl.properties.Property#toString",
+                "kiekerPattern" : "public java.lang.String org.gradoop.common.model.impl.properties.Property.toString()",
+                "otherKiekerPattern" : "public java.lang.String org.gradoop.common.model.impl.properties.Property.toString()",
+                "module" : "gradoop-common",
+                "statistic" : {
+                  "meanOld" : 32471.0557609555,
+                  "meanCurrent" : 30394.14105226223,
+                  "deviationOld" : 8195.279381739456,
+                  "deviationCurrent" : 8725.400951328822,
+                  "vms" : 28,
+                  "callsOld" : 28787,
+                  "calls" : 28765,
+                  "tvalue" : 0.9255929600108028
+                },
+                "childs" : [ {
+                  "call" : "org.gradoop.common.model.impl.properties.PropertyValue#toString",
+                  "kiekerPattern" : "public java.lang.String org.gradoop.common.model.impl.properties.PropertyValue.toString()",
+                  "otherKiekerPattern" : "public java.lang.String org.gradoop.common.model.impl.properties.PropertyValue.toString()",
+                  "module" : "gradoop-common",
+                  "statistic" : {
+                    "meanOld" : 16015.165287477881,
+                    "meanCurrent" : 12889.177229867357,
+                    "deviationOld" : 5625.013550993312,
+                    "deviationCurrent" : 4114.633968350665,
+                    "vms" : 29,
+                    "callsOld" : 40969,
+                    "calls" : 40953,
+                    "tvalue" : 2.4154487934260747
+                  },
+                  "childs" : [ {
+                    "call" : "org.gradoop.common.model.impl.properties.PropertyValue#getObject",
+                    "kiekerPattern" : "public java.lang.Object org.gradoop.common.model.impl.properties.PropertyValue.getObject()",
+                    "otherKiekerPattern" : "public java.lang.Object org.gradoop.common.model.impl.properties.PropertyValue.getObject()",
+                    "module" : "gradoop-common",
+                    "statistic" : {
+                      "meanOld" : 1244.3701406959933,
+                      "meanCurrent" : 1184.8108355993559,
+                      "deviationOld" : 258.8494769090094,
+                      "deviationCurrent" : 125.63707093319223,
+                      "vms" : 28,
+                      "callsOld" : 82090,
+                      "calls" : 82045,
+                      "tvalue" : 1.095331715052007
+                    },
+                    "childs" : [ {
+                      "call" : "ADDED",
+                      "kiekerPattern" : "ADDED",
+                      "otherKiekerPattern" : "public int org.gradoop.common.model.impl.properties.PropertyValue.getInt()",
+                      "statistic" : {
+                        "meanOld" : "NaN",
+                        "meanCurrent" : "NaN",
+                        "deviationOld" : "NaN",
+                        "deviationCurrent" : "NaN",
+                        "vms" : 0,
+                        "callsOld" : 0,
+                        "calls" : 0,
+                        "tvalue" : -1.0,
+                        "change" : true
+                      },
+                      "childs" : [ ]
+                    } ]
+                  } ]
+                } ]
+              } ]
+            } ]
+          } ]
+        } ]
+      }, {
+        "call" : "org.gradoop.common.model.impl.pojo.Edge#toString",
+        "kiekerPattern" : "public java.lang.String org.gradoop.common.model.impl.pojo.Edge.toString()",
+        "otherKiekerPattern" : "public java.lang.String org.gradoop.common.model.impl.pojo.Edge.toString()",
+        "module" : "gradoop-common",
+        "statistic" : {
+          "meanOld" : 88974.70240431633,
+          "meanCurrent" : 78796.8868183168,
+          "deviationOld" : 16893.887120549694,
+          "deviationCurrent" : 5242.89979422793,
+          "vms" : 28,
+          "callsOld" : 1143,
+          "calls" : 1733,
+          "tvalue" : 3.093687939203824
+        },
+        "childs" : [ {
+          "call" : "org.gradoop.common.model.impl.pojo.GraphElement#toString",
+          "kiekerPattern" : "public java.lang.String org.gradoop.common.model.impl.pojo.GraphElement.toString()",
+          "otherKiekerPattern" : "public java.lang.String org.gradoop.common.model.impl.pojo.GraphElement.toString()",
+          "module" : "gradoop-common",
+          "statistic" : {
+            "meanOld" : 141233.32902283687,
+            "meanCurrent" : 123348.43027034776,
+            "deviationOld" : 16670.36516166945,
+            "deviationCurrent" : 8954.438616414514,
+            "vms" : 28,
+            "callsOld" : 2847,
+            "calls" : 3457,
+            "tvalue" : 5.001193088084724
+          },
+          "childs" : [ {
+            "call" : "org.gradoop.common.model.impl.pojo.Element#toString",
+            "kiekerPattern" : "public java.lang.String org.gradoop.common.model.impl.pojo.Element.toString()",
+            "otherKiekerPattern" : "public java.lang.String org.gradoop.common.model.impl.pojo.Element.toString()",
+            "module" : "gradoop-common",
+            "statistic" : {
+              "meanOld" : 85643.34299232913,
+              "meanCurrent" : 79301.08760276654,
+              "deviationOld" : 7861.847587748655,
+              "deviationCurrent" : 5549.972305511275,
+              "vms" : 28,
+              "callsOld" : 4587,
+              "calls" : 5197,
+              "tvalue" : 3.50749177809038
+            },
+            "childs" : [ {
+              "call" : "org.gradoop.common.model.impl.properties.Properties#toString",
+              "kiekerPattern" : "public java.lang.String org.gradoop.common.model.impl.properties.Properties.toString()",
+              "otherKiekerPattern" : "public java.lang.String org.gradoop.common.model.impl.properties.Properties.toString()",
+              "module" : "gradoop-common",
+              "statistic" : {
+                "meanOld" : 99380.62778865416,
+                "meanCurrent" : 97682.57321888342,
+                "deviationOld" : 14574.937445722873,
+                "deviationCurrent" : 8571.919938192377,
+                "vms" : 28,
+                "callsOld" : 2847,
+                "calls" : 2877,
+                "tvalue" : 0.5337667353194153
+              },
+              "childs" : [ {
+                "call" : "ADDED",
+                "kiekerPattern" : "ADDED",
+                "otherKiekerPattern" : "public static org.gradoop.common.model.impl.properties.Property org.gradoop.common.model.impl.properties.Property.create(java.lang.String,org.gradoop.common.model.impl.properties.PropertyValue)",
+                "statistic" : {
+                  "meanOld" : "NaN",
+                  "meanCurrent" : "NaN",
+                  "deviationOld" : "NaN",
+                  "deviationCurrent" : "NaN",
+                  "vms" : 0,
+                  "callsOld" : 0,
+                  "calls" : 0,
+                  "tvalue" : -1.0,
+                  "change" : true
+                },
+                "childs" : [ ]
+              }, {
+                "call" : "ADDED",
+                "kiekerPattern" : "ADDED",
+                "otherKiekerPattern" : "public java.lang.String org.gradoop.common.model.impl.properties.Property.toString()",
+                "statistic" : {
+                  "meanOld" : "NaN",
+                  "meanCurrent" : "NaN",
+                  "deviationOld" : "NaN",
+                  "deviationCurrent" : "NaN",
+                  "vms" : 0,
+                  "callsOld" : 0,
+                  "calls" : 0,
+                  "tvalue" : -1.0,
+                  "change" : true
+                },
+                "childs" : [ ]
+              } ]
+            } ]
+          } ]
+        } ]
+      }, {
+        "call" : "org.gradoop.flink.io.impl.csv.indexed.IndexedCSVDataSource#getLogicalGraph",
+        "kiekerPattern" : "public org.gradoop.flink.model.api.epgm.LogicalGraph org.gradoop.flink.io.impl.csv.indexed.IndexedCSVDataSource.getLogicalGraph()",
+        "otherKiekerPattern" : "public org.gradoop.flink.model.api.epgm.LogicalGraph org.gradoop.flink.io.impl.csv.indexed.IndexedCSVDataSource.getLogicalGraph()",
+        "module" : "gradoop-flink",
+        "statistic" : {
+          "meanOld" : 3.9514340924137935E7,
+          "meanCurrent" : 4.0190292599999994E7,
+          "deviationOld" : 3291370.60991607,
+          "deviationCurrent" : 4619708.847275432,
+          "vms" : 29,
+          "callsOld" : 145,
+          "calls" : 145,
+          "tvalue" : -0.64173616615623
+        },
+        "childs" : [ {
+          "call" : "org.gradoop.flink.model.api.epgm.LogicalGraphFactory#fromIndexedDataSets",
+          "kiekerPattern" : "public org.gradoop.flink.model.api.epgm.LogicalGraph org.gradoop.flink.model.api.epgm.LogicalGraphFactory.fromIndexedDataSets(java.util.Map,java.util.Map)",
+          "otherKiekerPattern" : "public org.gradoop.flink.model.api.epgm.LogicalGraph org.gradoop.flink.model.api.epgm.LogicalGraphFactory.fromIndexedDataSets(java.util.Map,java.util.Map)",
+          "module" : "gradoop-flink",
+          "statistic" : {
+            "meanOld" : 3793990.35,
+            "meanCurrent" : 4585181.358620691,
+            "deviationOld" : 343494.55523794616,
+            "deviationCurrent" : 521683.2815716484,
+            "vms" : 28,
+            "callsOld" : 145,
+            "calls" : 145,
+            "tvalue" : -6.784786853055087
+          },
+          "childs" : [ {
+            "call" : "org.gradoop.flink.model.impl.layouts.gve.GVEGraphLayoutFactory#fromIndexedDataSets",
+            "kiekerPattern" : "public org.gradoop.flink.model.api.layouts.LogicalGraphLayout org.gradoop.flink.model.impl.layouts.gve.GVEGraphLayoutFactory.fromIndexedDataSets(java.util.Map,java.util.Map)",
+            "otherKiekerPattern" : "public org.gradoop.flink.model.api.layouts.LogicalGraphLayout org.gradoop.flink.model.impl.layouts.gve.GVEGraphLayoutFactory.fromIndexedDataSets(java.util.Map,java.util.Map)",
+            "module" : "gradoop-flink",
+            "statistic" : {
+              "meanOld" : 3512255.578571428,
+              "meanCurrent" : 4271725.664285714,
+              "deviationOld" : 281951.0891871554,
+              "deviationCurrent" : 471131.59915507474,
+              "vms" : 28,
+              "callsOld" : 145,
+              "calls" : 145,
+              "tvalue" : -7.319372195353903
+            },
+            "childs" : [ {
+              "call" : "org.gradoop.flink.model.impl.layouts.gve.GVEBaseFactory#create",
+              "kiekerPattern" : "org.gradoop.flink.model.impl.layouts.gve.GVELayout org.gradoop.flink.model.impl.layouts.gve.GVEBaseFactory.create(java.util.Map,java.util.Map,java.util.Map)",
+              "otherKiekerPattern" : "org.gradoop.flink.model.impl.layouts.gve.GVELayout org.gradoop.flink.model.impl.layouts.gve.GVEBaseFactory.create(java.util.Map,java.util.Map,java.util.Map)",
+              "module" : "gradoop-flink",
+              "statistic" : {
+                "meanOld" : 569658.9241379311,
+                "meanCurrent" : 1346040.9071428576,
+                "deviationOld" : 44415.89893856909,
+                "deviationCurrent" : 164120.02562390894,
+                "vms" : 28,
+                "callsOld" : 145,
+                "calls" : 145,
+                "tvalue" : -24.191114125885935
+              },
+              "childs" : [ {
+                "call" : "ADDED",
+                "kiekerPattern" : "ADDED",
+                "otherKiekerPattern" : "protected org.apache.flink.api.java.DataSet org.gradoop.flink.model.impl.layouts.common.BaseFactory.createEdgeDataSet(java.util.Collection)",
+                "statistic" : {
+                  "meanOld" : "NaN",
+                  "meanCurrent" : "NaN",
+                  "deviationOld" : "NaN",
+                  "deviationCurrent" : "NaN",
+                  "vms" : 0,
+                  "callsOld" : 0,
+                  "calls" : 0,
+                  "tvalue" : -1.0,
+                  "change" : true
+                },
+                "childs" : [ ]
+              } ]
+            } ]
+          } ]
+        } ]
+      }, {
+        "call" : "org.gradoop.flink.model.GradoopFlinkTestBase#collectAndAssertTrue",
+        "kiekerPattern" : "protected void org.gradoop.flink.model.GradoopFlinkTestBase.collectAndAssertTrue(org.apache.flink.api.java.DataSet)",
+        "otherKiekerPattern" : "protected void org.gradoop.flink.model.GradoopFlinkTestBase.collectAndAssertTrue(org.apache.flink.api.java.DataSet)",
+        "module" : "gradoop-flink",
+        "statistic" : {
+          "meanOld" : 1.4048944306500002E10,
+          "meanCurrent" : 1.4173054591021431E10,
+          "deviationOld" : 1.9679259963803855E8,
+          "deviationCurrent" : 2.611701982787344E8,
+          "vms" : 28,
+          "callsOld" : 145,
+          "calls" : 145,
+          "tvalue" : -2.0082713061023942
+        },
+        "childs" : [ {
+          "call" : "org.gradoop.common.model.impl.pojo.Vertex#toString",
+          "kiekerPattern" : "public java.lang.String org.gradoop.common.model.impl.pojo.Vertex.toString()",
+          "otherKiekerPattern" : "public java.lang.String org.gradoop.common.model.impl.pojo.Vertex.toString()",
+          "module" : "gradoop-common",
+          "statistic" : {
+            "meanOld" : 207612.09983457567,
+            "meanCurrent" : 201588.9169900261,
+            "deviationOld" : 24191.49514869384,
+            "deviationCurrent" : 17504.491296262295,
+            "vms" : 28,
+            "callsOld" : 1559,
+            "calls" : 1579,
+            "tvalue" : 1.0673610483645695
+          },
+          "childs" : [ {
+            "call" : "org.gradoop.common.model.impl.pojo.GraphElement#toString",
+            "kiekerPattern" : "public java.lang.String org.gradoop.common.model.impl.pojo.GraphElement.toString()",
+            "otherKiekerPattern" : "public java.lang.String org.gradoop.common.model.impl.pojo.GraphElement.toString()",
+            "module" : "gradoop-common",
+            "statistic" : {
+              "meanOld" : 141233.32902283687,
+              "meanCurrent" : 123348.43027034776,
+              "deviationOld" : 16670.36516166945,
+              "deviationCurrent" : 8954.438616414514,
+              "vms" : 28,
+              "callsOld" : 2847,
+              "calls" : 3457,
+              "tvalue" : 5.001193088084724
+            },
+            "childs" : [ {
+              "call" : "org.gradoop.common.model.impl.pojo.Element#toString",
+              "kiekerPattern" : "public java.lang.String org.gradoop.common.model.impl.pojo.Element.toString()",
+              "otherKiekerPattern" : "public java.lang.String org.gradoop.common.model.impl.pojo.Element.toString()",
+              "module" : "gradoop-common",
+              "statistic" : {
+                "meanOld" : 85643.34299232913,
+                "meanCurrent" : 79301.08760276654,
+                "deviationOld" : 7861.847587748655,
+                "deviationCurrent" : 5549.972305511275,
+                "vms" : 28,
+                "callsOld" : 4587,
+                "calls" : 5197,
+                "tvalue" : 3.50749177809038
+              },
+              "childs" : [ {
+                "call" : "org.gradoop.common.model.impl.properties.Properties#toString",
+                "kiekerPattern" : "public java.lang.String org.gradoop.common.model.impl.properties.Properties.toString()",
+                "otherKiekerPattern" : "public java.lang.String org.gradoop.common.model.impl.properties.Properties.toString()",
+                "module" : "gradoop-common",
+                "statistic" : {
+                  "meanOld" : 99380.62778865416,
+                  "meanCurrent" : 97682.57321888342,
+                  "deviationOld" : 14574.937445722873,
+                  "deviationCurrent" : 8571.919938192377,
+                  "vms" : 28,
+                  "callsOld" : 2847,
+                  "calls" : 2877,
+                  "tvalue" : 0.5337667353194153
+                },
+                "childs" : [ {
+                  "call" : "org.gradoop.common.model.impl.properties.Property#toString",
+                  "kiekerPattern" : "public java.lang.String org.gradoop.common.model.impl.properties.Property.toString()",
+                  "otherKiekerPattern" : "public java.lang.String org.gradoop.common.model.impl.properties.Property.toString()",
+                  "module" : "gradoop-common",
+                  "statistic" : {
+                    "meanOld" : 32471.0557609555,
+                    "meanCurrent" : 30394.14105226223,
+                    "deviationOld" : 8195.279381739456,
+                    "deviationCurrent" : 8725.400951328822,
+                    "vms" : 28,
+                    "callsOld" : 28787,
+                    "calls" : 28765,
+                    "tvalue" : 0.9255929600108028
+                  },
+                  "childs" : [ {
+                    "call" : "org.gradoop.common.model.impl.properties.PropertyValue#toString",
+                    "kiekerPattern" : "public java.lang.String org.gradoop.common.model.impl.properties.PropertyValue.toString()",
+                    "otherKiekerPattern" : "public java.lang.String org.gradoop.common.model.impl.properties.PropertyValue.toString()",
+                    "module" : "gradoop-common",
+                    "statistic" : {
+                      "meanOld" : 16015.165287477881,
+                      "meanCurrent" : 12889.177229867357,
+                      "deviationOld" : 5625.013550993312,
+                      "deviationCurrent" : 4114.633968350665,
+                      "vms" : 29,
+                      "callsOld" : 40969,
+                      "calls" : 40953,
+                      "tvalue" : 2.4154487934260747
+                    },
+                    "childs" : [ {
+                      "call" : "org.gradoop.common.model.impl.properties.PropertyValue#getObject",
+                      "kiekerPattern" : "public java.lang.Object org.gradoop.common.model.impl.properties.PropertyValue.getObject()",
+                      "otherKiekerPattern" : "public java.lang.Object org.gradoop.common.model.impl.properties.PropertyValue.getObject()",
+                      "module" : "gradoop-common",
+                      "statistic" : {
+                        "meanOld" : 1244.3701406959933,
+                        "meanCurrent" : 1184.8108355993559,
+                        "deviationOld" : 258.8494769090094,
+                        "deviationCurrent" : 125.63707093319223,
+                        "vms" : 28,
+                        "callsOld" : 82090,
+                        "calls" : 82045,
+                        "tvalue" : 1.095331715052007
+                      },
+                      "childs" : [ {
+                        "call" : "ADDED",
+                        "kiekerPattern" : "ADDED",
+                        "otherKiekerPattern" : "public int org.gradoop.common.model.impl.properties.PropertyValue.getInt()",
+                        "statistic" : {
+                          "meanOld" : "NaN",
+                          "meanCurrent" : "NaN",
+                          "deviationOld" : "NaN",
+                          "deviationCurrent" : "NaN",
+                          "vms" : 0,
+                          "callsOld" : 0,
+                          "calls" : 0,
+                          "tvalue" : -1.0,
+                          "change" : true
+                        },
+                        "childs" : [ ]
+                      } ]
+                    } ]
+                  } ]
+                } ]
+              } ]
+            } ]
+          } ]
+        }, {
+          "call" : "org.gradoop.common.model.impl.pojo.Edge#toString",
+          "kiekerPattern" : "public java.lang.String org.gradoop.common.model.impl.pojo.Edge.toString()",
+          "otherKiekerPattern" : "public java.lang.String org.gradoop.common.model.impl.pojo.Edge.toString()",
+          "module" : "gradoop-common",
+          "statistic" : {
+            "meanOld" : 88974.70240431633,
+            "meanCurrent" : 78796.8868183168,
+            "deviationOld" : 16893.887120549694,
+            "deviationCurrent" : 5242.89979422793,
+            "vms" : 28,
+            "callsOld" : 1143,
+            "calls" : 1733,
+            "tvalue" : 3.093687939203824
+          },
+          "childs" : [ {
+            "call" : "org.gradoop.common.model.impl.pojo.GraphElement#toString",
+            "kiekerPattern" : "public java.lang.String org.gradoop.common.model.impl.pojo.GraphElement.toString()",
+            "otherKiekerPattern" : "public java.lang.String org.gradoop.common.model.impl.pojo.GraphElement.toString()",
+            "module" : "gradoop-common",
+            "statistic" : {
+              "meanOld" : 141233.32902283687,
+              "meanCurrent" : 123348.43027034776,
+              "deviationOld" : 16670.36516166945,
+              "deviationCurrent" : 8954.438616414514,
+              "vms" : 28,
+              "callsOld" : 2847,
+              "calls" : 3457,
+              "tvalue" : 5.001193088084724
+            },
+            "childs" : [ {
+              "call" : "org.gradoop.common.model.impl.pojo.Element#toString",
+              "kiekerPattern" : "public java.lang.String org.gradoop.common.model.impl.pojo.Element.toString()",
+              "otherKiekerPattern" : "public java.lang.String org.gradoop.common.model.impl.pojo.Element.toString()",
+              "module" : "gradoop-common",
+              "statistic" : {
+                "meanOld" : 85643.34299232913,
+                "meanCurrent" : 79301.08760276654,
+                "deviationOld" : 7861.847587748655,
+                "deviationCurrent" : 5549.972305511275,
+                "vms" : 28,
+                "callsOld" : 4587,
+                "calls" : 5197,
+                "tvalue" : 3.50749177809038
+              },
+              "childs" : [ {
+                "call" : "org.gradoop.common.model.impl.properties.Properties#toString",
+                "kiekerPattern" : "public java.lang.String org.gradoop.common.model.impl.properties.Properties.toString()",
+                "otherKiekerPattern" : "public java.lang.String org.gradoop.common.model.impl.properties.Properties.toString()",
+                "module" : "gradoop-common",
+                "statistic" : {
+                  "meanOld" : 99380.62778865416,
+                  "meanCurrent" : 97682.57321888342,
+                  "deviationOld" : 14574.937445722873,
+                  "deviationCurrent" : 8571.919938192377,
+                  "vms" : 28,
+                  "callsOld" : 2847,
+                  "calls" : 2877,
+                  "tvalue" : 0.5337667353194153
+                },
+                "childs" : [ {
+                  "call" : "ADDED",
+                  "kiekerPattern" : "ADDED",
+                  "otherKiekerPattern" : "public static org.gradoop.common.model.impl.properties.Property org.gradoop.common.model.impl.properties.Property.create(java.lang.String,org.gradoop.common.model.impl.properties.PropertyValue)",
+                  "statistic" : {
+                    "meanOld" : "NaN",
+                    "meanCurrent" : "NaN",
+                    "deviationOld" : "NaN",
+                    "deviationCurrent" : "NaN",
+                    "vms" : 0,
+                    "callsOld" : 0,
+                    "calls" : 0,
+                    "tvalue" : -1.0,
+                    "change" : true
+                  },
+                  "childs" : [ ]
+                }, {
+                  "call" : "ADDED",
+                  "kiekerPattern" : "ADDED",
+                  "otherKiekerPattern" : "public java.lang.String org.gradoop.common.model.impl.properties.Property.toString()",
+                  "statistic" : {
+                    "meanOld" : "NaN",
+                    "meanCurrent" : "NaN",
+                    "deviationOld" : "NaN",
+                    "deviationCurrent" : "NaN",
+                    "vms" : 0,
+                    "callsOld" : 0,
+                    "calls" : 0,
+                    "tvalue" : -1.0,
+                    "change" : true
+                  },
+                  "childs" : [ ]
+                } ]
+              } ]
+            } ]
+          } ]
+        } ]
+      } ]
+    } ]
+  }
+}

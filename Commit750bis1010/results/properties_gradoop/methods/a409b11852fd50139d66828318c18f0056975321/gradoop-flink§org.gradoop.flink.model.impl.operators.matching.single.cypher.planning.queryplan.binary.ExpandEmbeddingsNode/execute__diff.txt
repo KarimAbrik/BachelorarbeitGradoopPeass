@@ -1,0 +1,6 @@
+@Override
+public DataSet<Embedding> execute() {
+    ExpandEmbeddings op = new ExpandEmbeddingsBulk(getLeftChild().execute(), getRightChild().execute(), expandColumn, lowerBound, upperBound, expandDirection, getDistinctVertexColumns(getLeftChild().getEmbeddingMetaData()), getDistinctEdgeColumns(getLeftChild().getEmbeddingMetaData()), closingColumn, JoinOperatorBase.JoinHint.OPTIMIZER_CHOOSES);
+    op.setName(toString());
+    return op.evaluate();
+}

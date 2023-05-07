@@ -1,0 +1,7 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public String toString() {
+    return toList().stream().map(Property::toString).collect(Collectors.joining(","));
+}

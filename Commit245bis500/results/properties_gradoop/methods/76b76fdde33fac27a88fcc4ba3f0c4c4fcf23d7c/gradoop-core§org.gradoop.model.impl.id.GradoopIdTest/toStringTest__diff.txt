@@ -1,0 +1,6 @@
+@Test
+public void toStringTest() {
+    GradoopId id = new GradoopId(0L);
+    Assert.assertNotNull(id);
+    Assert.assertEquals("0", id.toString());
+}

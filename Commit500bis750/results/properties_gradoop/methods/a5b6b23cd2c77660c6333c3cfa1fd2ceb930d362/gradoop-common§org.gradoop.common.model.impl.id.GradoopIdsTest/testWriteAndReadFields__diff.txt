@@ -1,0 +1,18 @@
+@Test                                                                                                  @Test                                                                                               
+public void testWriteAndReadFields() throws Exception {                                                public void testWriteAndReadFields() throws Exception {                                             
+GradoopId id1 = GradoopId.get();                                                                       GradoopId id1 = GradoopId.get();                                                                    
+GradoopId id2 = GradoopId.get();                                                                       GradoopId id2 = GradoopId.get();                                                                    
+GradoopIds idsWrite = GradoopIds.fromExisting(id1, id2);                                             | GradoopIdSet idsWrite = GradoopIdSet.fromExisting(id1, id2);                                        
+// write to byte[]                                                                                     // write to byte[]                                                                                  
+ByteArrayOutputStream out = new ByteArrayOutputStream();                                               ByteArrayOutputStream out = new ByteArrayOutputStream();                                            
+DataOutputView dataOutputView = new DataOutputViewStreamWrapper(out);                                  DataOutputView dataOutputView = new DataOutputViewStreamWrapper(out);                               
+idsWrite.write(dataOutputView);                                                                        idsWrite.write(dataOutputView);                                                                     
+// read from byte[]                                                                                    // read from byte[]                                                                                 
+GradoopIds idsRead = new GradoopIds();                                                               | GradoopIdSet idsRead = new GradoopIdSet();                                                          
+ByteArrayInputStream in = new ByteArrayInputStream(out.toByteArray());                                 ByteArrayInputStream in = new ByteArrayInputStream(out.toByteArray());                              
+DataInputView dataInputView = new DataInputViewStreamWrapper(in);                                      DataInputView dataInputView = new DataInputViewStreamWrapper(in);                                   
+idsRead.read(dataInputView);                                                                           idsRead.read(dataInputView);                                                                        
+assertThat(idsRead.size(), is(2));                                                                     assertThat(idsRead.size(), is(2));                                                                  
+assertTrue(idsRead.contains(id1));                                                                     assertTrue(idsRead.contains(id1));                                                                  
+assertTrue(idsRead.contains(id2));                                                                     assertTrue(idsRead.contains(id2));                                                                  
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,11 @@
+/**
+ * Builds a label from the current fields. If the label is split by whitespaces the last fields
+ * which represent the label will be concatenated.
+ *
+ * @param fields graph element fields
+ * @param labelStart field where the label starts
+ * @return full label
+ */
+private String getLabel(String[] fields, int labelStart) {
+    return Arrays.stream(fields).skip(labelStart).collect(Collectors.joining(" "));
+}

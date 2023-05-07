@@ -1,0 +1,14 @@
+/**
+ * Test using multiple vertex aggregation functions in one call.
+ *
+ * @throws Exception if the execution or IO fails.
+ */
+@Test
+public void testSingleGraphWithMultipleVertexAggregationFunctions() throws Exception {
+    LogicalGraph graph = getSocialNetworkLoader().getLogicalGraph();
+    SumVertexProperty sumVertexProperty = new SumVertexProperty("age");
+    MaxVertexProperty maxVertexProperty = new MaxVertexProperty("age");
+    LogicalGraph expected = graph.aggregate(sumVertexProperty).aggregate(maxVertexProperty);
+    LogicalGraph output = graph.aggregate(sumVertexProperty, maxVertexProperty);
+    collectAndAssertTrue(expected.equalsByData(output));
+}

@@ -1,0 +1,10 @@
+/**
+ * Checks if the given identifier is valid.
+ *
+ * @param id identifier
+ */
+protected void checkId(final GradoopId id) {
+    if (id == null) {
+        throw new IllegalArgumentException("id must not be null");
+    }
+}

@@ -1,0 +1,8 @@
+@Test
+public void orConjunctionTest() {
+    QueryHandler query = new QueryHandler("MATCH (a),(b),(c) WHERE a=b AND b=c");
+    CNF cnf1 = query.getPredicates();
+    query = new QueryHandler("MATCH (n),(m),(o) WHERE n=m AND m=o");
+    CNF cnf2 = query.getPredicates();
+    assertEquals("((a = b OR n = m) AND (a = b OR m = o) AND (b = c OR n = m) AND (b = c OR m = o))", cnf1.or(cnf2).toString());
+}

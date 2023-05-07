@@ -1,0 +1,22 @@
+/**
+ * Creates a new UDF instance.
+ *
+ * @param rightColumns number of columns in the right embedding
+ * @param joinColumnsRight join columns of the right side
+ * @param distinctVertexColumnsLeft distinct vertex columns of the left embedding
+ * @param distinctVertexColumnsRight distinct vertex columns of the right embedding
+ * @param distinctEdgeColumnsLeft distinct edge columns of the left embedding
+ * @param distinctEdgeColumnsRight distinct edge columns of the right embedding
+ */
+public MergeEmbeddings(int rightColumns, List<Integer> joinColumnsRight, List<Integer> distinctVertexColumnsLeft, List<Integer> distinctVertexColumnsRight, List<Integer> distinctEdgeColumnsLeft, List<Integer> distinctEdgeColumnsRight) {
+    this.nonJoinColumnsRight = IntStream.range(0, rightColumns).filter(col -> !joinColumnsRight.contains(col)).toArray();
+    this.joinColumnsRightSize = joinColumnsRight.size();
+    ToIntFunction<Integer> f = i -> i;
+    this.distinctVertexColumnsLeft = distinctVertexColumnsLeft.stream().mapToInt(f).toArray();
+    this.distinctVertexColumnsRight = distinctVertexColumnsRight.stream().mapToInt(f).toArray();
+    this.distinctEdgeColumnsLeft = distinctEdgeColumnsLeft.stream().mapToInt(f).toArray();
+    this.distinctEdgeColumnsRight = distinctEdgeColumnsRight.stream().mapToInt(f).toArray();
+    this.checkDistinctVertices = distinctVertexColumnsLeft.size() > 0 || distinctVertexColumnsRight.size() > 0;
+    this.checkDistinctEdges = distinctEdgeColumnsLeft.size() > 0 || distinctEdgeColumnsRight.size() > 0;
+    this.reuseEmbedding = new Embedding();
+}

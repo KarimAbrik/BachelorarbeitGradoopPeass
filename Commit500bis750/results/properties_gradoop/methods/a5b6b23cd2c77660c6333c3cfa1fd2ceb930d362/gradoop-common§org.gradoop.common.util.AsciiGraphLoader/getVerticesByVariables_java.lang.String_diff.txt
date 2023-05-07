@@ -1,0 +1,16 @@
+/**
+ * Returns vertices by their given variables.
+ *
+ * @param variables variables used in GDL script
+ * @return vertices
+ */
+public Collection<V> getVerticesByVariables(String... variables) {
+    Collection<V> result = Sets.newHashSetWithExpectedSize(variables.length);
+    for (String variable : variables) {
+        V vertex = getVertexByVariable(variable);
+        if (vertex != null) {
+            result.add(vertex);
+        }
+    }
+    return result;
+}

@@ -1,0 +1,8 @@
+/**
+ * Returns all (variable,key) pairs needed for further query processing.
+ *
+ * @return (variable,key) pairs needed for further processing
+ */
+public Set<Pair<String, String>> getProjectionPairs() {
+    return predicates.getVariables().stream().flatMap(var -> predicates.getPropertyKeys(var).stream().map(key -> Pair.of(var, key))).collect(Collectors.toSet());
+}

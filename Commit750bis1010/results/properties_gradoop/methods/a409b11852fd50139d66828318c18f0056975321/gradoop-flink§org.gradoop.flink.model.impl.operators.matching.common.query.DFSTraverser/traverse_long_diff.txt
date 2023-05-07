@@ -1,0 +1,36 @@
+@Override
+public TraversalCode traverse(long rootVertex) {
+    Set<Long> vertexVisited = Sets.newHashSetWithExpectedSize(queryHandler.getVertexCount());
+    Set<Long> edgeVisited = Sets.newHashSetWithExpectedSize(queryHandler.getEdgeCount());
+    TraversalCode traversalCode = new TraversalCode();
+    long current = rootVertex;
+    vertexVisited.add(current);
+    Deque<Edge> edgeStack = new ArrayDeque<>(queryHandler.getEdgesByVertexId(current));
+    while (!edgeStack.isEmpty()) {
+        Edge edge = edgeStack.removeLast();
+        long via = edge.getId();
+        if (!edgeVisited.contains(via)) {
+            long source = edge.getSourceVertexId();
+            long target = edge.getTargetVertexId();
+            // backtrack?
+            if (current != source && current != target) {
+                current = vertexVisited.contains(source) ? source : target;
+            }
+            // do step
+            boolean isOutgoing = current == source;
+            long from = isOutgoing ? source : target;
+            long to = isOutgoing ? target : source;
+            traversalCode.add(new Step(from, via, to, isOutgoing));
+            // go deeper
+            boolean visitedFrom = vertexVisited.contains(from);
+            boolean visitedTo = vertexVisited.contains(to);
+            if (!visitedFrom || !visitedTo) {
+                current = visitedFrom ? to : from;
+                edgeStack.addAll(queryHandler.getEdgesByVertexId(current));
+            }
+            vertexVisited.add(current);
+            edgeVisited.add(via);
+        }
+    }
+    return traversalCode;
+}

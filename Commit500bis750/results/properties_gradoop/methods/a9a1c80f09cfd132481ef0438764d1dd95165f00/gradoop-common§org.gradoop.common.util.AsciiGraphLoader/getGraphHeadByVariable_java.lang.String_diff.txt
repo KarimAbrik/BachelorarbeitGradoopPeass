@@ -1,0 +1,9 @@
+/**
+ * Returns EPGMGraphHead by given variable.
+ *
+ * @param variable variable used in GDL script
+ * @return graphHead or {@code null} if graph is not cached
+ */
+public G getGraphHeadByVariable(String variable) {
+    return getGraphHeadCache().get(variable);
+}

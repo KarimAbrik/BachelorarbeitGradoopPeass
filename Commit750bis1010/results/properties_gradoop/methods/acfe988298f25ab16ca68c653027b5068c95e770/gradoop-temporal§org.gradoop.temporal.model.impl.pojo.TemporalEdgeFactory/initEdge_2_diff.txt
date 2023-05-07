@@ -1,0 +1,4 @@
+@Override
+public TemporalEdge initEdge(GradoopId id, GradoopId sourceVertexId, GradoopId targetVertexId) {
+    return initEdge(id, GradoopConstants.DEFAULT_EDGE_LABEL, sourceVertexId, targetVertexId);
+}

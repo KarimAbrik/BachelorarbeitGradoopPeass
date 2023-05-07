@@ -1,0 +1,6 @@
+@Test
+public void testEdgeCount() throws Exception {
+    LogicalGraph db = getSocialNetworkLoader().getLogicalGraph();
+    Long edgeCount = new EdgeCount().execute(db).collect().get(0);
+    assertThat(edgeCount, is(24L));
+}

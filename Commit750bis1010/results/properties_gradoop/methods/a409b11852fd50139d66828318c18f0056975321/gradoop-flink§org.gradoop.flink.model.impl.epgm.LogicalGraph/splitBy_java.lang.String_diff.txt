@@ -1,0 +1,4 @@
+@Override
+public GraphCollection splitBy(String propertyKey) {
+    return callForCollection(new Split(new PropertyGetter<>(Lists.newArrayList(propertyKey))));
+}

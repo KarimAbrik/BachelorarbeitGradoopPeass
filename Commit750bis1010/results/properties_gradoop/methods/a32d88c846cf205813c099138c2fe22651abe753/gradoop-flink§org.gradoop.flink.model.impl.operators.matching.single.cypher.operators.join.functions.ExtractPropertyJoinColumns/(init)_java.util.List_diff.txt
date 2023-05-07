@@ -1,0 +1,9 @@
+/**
+ * Creates the key selector
+ *
+ * @param properties columns to create hash code from
+ */
+public ExtractPropertyJoinColumns(List<Integer> properties) {
+    this.properties = properties;
+    this.sb = new StringBuilder();
+}

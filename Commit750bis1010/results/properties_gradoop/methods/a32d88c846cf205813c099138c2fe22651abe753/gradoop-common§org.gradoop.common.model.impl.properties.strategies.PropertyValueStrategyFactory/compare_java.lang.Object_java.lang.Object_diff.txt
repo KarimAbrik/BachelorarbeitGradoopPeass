@@ -1,0 +1,21 @@
+/**
+ * Compares two values.<br>
+ * {@link PropertyValue#NULL_VALUE} is considered to be less than all other properties.
+ * <p>
+ * If {@code other} is not comparable to {@code value}, the used {@link PropertyValueStrategy} will throw an
+ * {@code IllegalArgumentException}. This behavior violates the requirements of
+ * {@link Comparable#compareTo}.
+ *
+ * @param value first value.
+ * @param other second value.
+ * @return a negative integer, zero, or a positive integer as {@code value} is less than, equal
+ * to, or greater than {@code other}.
+ */
+public static int compare(Object value, Object other) {
+    if (value == null || other == null) {
+        return INSTANCE.nullStrategy.compare(value, other);
+    } else {
+        PropertyValueStrategy strategy = get(value.getClass());
+        return strategy.compare(value, other);
+    }
+}

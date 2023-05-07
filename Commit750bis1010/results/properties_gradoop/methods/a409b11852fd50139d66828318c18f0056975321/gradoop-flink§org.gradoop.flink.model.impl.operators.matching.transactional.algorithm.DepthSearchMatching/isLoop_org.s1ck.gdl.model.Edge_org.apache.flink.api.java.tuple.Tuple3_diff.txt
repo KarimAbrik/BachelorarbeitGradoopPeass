@@ -1,0 +1,16 @@
+/**
+ * If both the pattern edge and the edge candidate are loops and the candidate
+ * matches the pattern, return true.
+ *
+ * @param patternEdge pattern edge
+ * @param edgeCandidate edge candidate
+ * @return true iff both are loops and the candidate matches the pattern edge
+ */
+private boolean isLoop(Edge patternEdge, Tuple3<GradoopId, GradoopId, boolean[]> edgeCandidate) {
+    if (patternEdge.getSourceVertexId().equals(patternEdge.getTargetVertexId())) {
+        if (edgeCandidate.f0.equals(edgeCandidate.f1)) {
+            return edgeCandidate.f2[(int) patternEdge.getId()];
+        }
+    }
+    return false;
+}

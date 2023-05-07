@@ -1,0 +1,13 @@
+/**
+ * Creates new node.
+ *
+ * @param childNode input plan node
+ * @param projectionKeys property keys whose associated values are projected to the output
+ */
+public ProjectEmbeddingsNode(PlanNode childNode, List<Pair<String, String>> projectionKeys) {
+    super(childNode);
+    this.projectionKeys = projectionKeys;
+    EmbeddingMetaData childMetaData = childNode.getEmbeddingMetaData();
+    // compute columns of projected properties
+    whiteListColumns = projectionKeys.stream().map(pair -> childMetaData.getPropertyColumn(pair.getLeft(), pair.getRight())).collect(Collectors.toList());
+}

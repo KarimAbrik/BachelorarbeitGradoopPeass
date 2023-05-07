@@ -1,0 +1,17 @@
+/**
+ * Get the duration of a time dimension as the aggregate value from a temporal element.
+ * The duration will be returned in a format used by the {@link Average} aggregation.
+ * The increment will be ignored, if the start of the end time of the time dimension is set
+ * to a default value.
+ *
+ * @param element The temporal element.
+ * @return The duration of the time dimension, in the internal representation used by {@link Average}.
+ */
+@Override
+public PropertyValue getIncrement(TemporalElement element) {
+    PropertyValue duration = getDuration(element);
+    if (duration.getLong() == -1L) {
+        return Average.IGNORED_VALUE;
+    }
+    return PropertyValue.create(Arrays.asList(duration, ONE));
+}

@@ -1,0 +1,35 @@
+/**
+ * Tests joining edge embeddings on two mid-columns.
+ *
+ * [Id(v0),Id(e0),Id(v1),Id(e1),Id(v2),Id(e2),Id(v3)]
+ * |><|(2=2 AND 4=4)
+ * [Id(v4),Id(e3),Id(v1),Id(e4),Id(v2),Id(e5),Id(v5)]
+ * ->
+ * [Id(v0),Id(e0),Id(v1),Id(e1),Id(v2),Id(e2),Id(v3),Id(v4),Id(e3),Id(e4),Id(e5),Id(v5)]
+ */
+@Test
+public void testPathJoinOnMidColumns() throws Exception {
+    GradoopId v0 = GradoopId.get();
+    GradoopId v1 = GradoopId.get();
+    GradoopId v2 = GradoopId.get();
+    GradoopId v3 = GradoopId.get();
+    GradoopId v4 = GradoopId.get();
+    GradoopId v5 = GradoopId.get();
+    GradoopId e0 = GradoopId.get();
+    GradoopId e1 = GradoopId.get();
+    GradoopId e2 = GradoopId.get();
+    GradoopId e3 = GradoopId.get();
+    GradoopId e4 = GradoopId.get();
+    GradoopId e5 = GradoopId.get();
+    // [Id(v0),Id(e0),Id(v1),Id(e1),Id(v2),Id(e2),Id(v3)]
+    Embedding left = createEmbedding(v0, e0, v1, e1, v2, e2, v3);
+    // [Id(v4),Id(e3),Id(v1),Id(e4),Id(v2),Id(e5),Id(v5)]
+    Embedding right = createEmbedding(v4, e3, v1, e4, v2, e5, v5);
+    // join operator
+    MergeEmbeddings udf = new MergeEmbeddings(7, Lists.newArrayList(2, 4), Lists.newArrayList(), Lists.newArrayList(), Lists.newArrayList(), Lists.newArrayList());
+    List<Embedding> result = new ArrayList<>();
+    // get results
+    udf.join(left, right, new ListCollector<>(result));
+    // expected: [Id(v0),Id(e0),Id(v1),Id(e1),Id(v2),Id(e2),Id(v3),Id(v4),Id(e3),Id(e4),Id(e5),Id(v5)]
+    Assert.assertEquals(createEmbedding(v0, e0, v1, e1, v2, e2, v3, v4, e3, e4, e5, v5), result.get(0));
+}

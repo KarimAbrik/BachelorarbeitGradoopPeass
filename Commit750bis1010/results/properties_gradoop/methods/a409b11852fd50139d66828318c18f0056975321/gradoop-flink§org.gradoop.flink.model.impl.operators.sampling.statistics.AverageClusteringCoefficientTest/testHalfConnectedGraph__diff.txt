@@ -1,0 +1,12 @@
+/**
+ * Test for a half connected graph
+ */
+@Test
+public void testHalfConnectedGraph() throws Exception {
+    LogicalGraph graph = loader.getLogicalGraphByVariable("halfConnected");
+    LogicalGraph result = graph.callForGraph(new AverageClusteringCoefficient());
+    validateGraphProperties(result);
+    EPGMGraphHead head = result.getGraphHead().collect().get(0);
+    double average = head.getPropertyValue(AverageClusteringCoefficient.PROPERTY_KEY_AVERAGE).getDouble();
+    assertEquals("graph has wrong average value, should be 0.2916", ((1d / 6d) + (1d / 2d) + (1d / 2d) + 0d) / 4d, average, 0.00001);
+}

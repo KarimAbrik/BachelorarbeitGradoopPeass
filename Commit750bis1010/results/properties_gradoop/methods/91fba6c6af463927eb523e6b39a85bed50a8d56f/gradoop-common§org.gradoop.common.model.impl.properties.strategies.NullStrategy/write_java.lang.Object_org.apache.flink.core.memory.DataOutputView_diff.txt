@@ -1,0 +1,4 @@
+@Override
+public void write(Object value, DataOutputView outputView) throws IOException {
+    outputView.write(new byte[] { getRawType() });
+}

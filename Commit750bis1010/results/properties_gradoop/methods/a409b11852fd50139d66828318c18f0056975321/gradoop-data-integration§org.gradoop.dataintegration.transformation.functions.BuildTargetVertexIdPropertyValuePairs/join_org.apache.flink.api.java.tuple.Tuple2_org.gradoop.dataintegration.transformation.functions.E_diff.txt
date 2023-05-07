@@ -1,0 +1,5 @@
+@Override
+public Tuple2<GradoopId, PropertyValue> join(Tuple2<GradoopId, PropertyValue> t, E e) {
+    t.f0 = e.getTargetId();
+    return t;
+}

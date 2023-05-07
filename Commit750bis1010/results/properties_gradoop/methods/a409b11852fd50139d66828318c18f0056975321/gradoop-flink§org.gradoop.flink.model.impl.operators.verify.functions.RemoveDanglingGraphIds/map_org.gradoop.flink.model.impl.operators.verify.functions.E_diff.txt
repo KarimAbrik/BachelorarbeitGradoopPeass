@@ -1,0 +1,7 @@
+@Override
+public E map(E element) {
+    GradoopIdSet graphIds = element.getGraphIds();
+    graphIds.retainAll(idSet);
+    element.setGraphIds(graphIds);
+    return element;
+}

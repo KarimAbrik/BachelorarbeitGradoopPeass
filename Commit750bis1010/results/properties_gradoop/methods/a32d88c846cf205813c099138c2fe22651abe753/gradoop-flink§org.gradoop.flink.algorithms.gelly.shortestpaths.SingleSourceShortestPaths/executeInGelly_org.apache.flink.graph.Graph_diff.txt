@@ -1,0 +1,5 @@
+@Override
+public LogicalGraph executeInGelly(Graph<GradoopId, NullValue, Double> graph) {
+    DataSet<EPGMVertex> newVertices = new org.apache.flink.graph.library.SingleSourceShortestPaths<GradoopId, NullValue>(srcVertexId, iterations).run(graph).join(currentGraph.getVertices()).where(0).equalTo(new Id<>()).with(new SingleSourceShortestPathsAttribute(propertyKeyVertex));
+    return currentGraph.getFactory().fromDataSets(currentGraph.getGraphHead(), newVertices, currentGraph.getEdges());
+}

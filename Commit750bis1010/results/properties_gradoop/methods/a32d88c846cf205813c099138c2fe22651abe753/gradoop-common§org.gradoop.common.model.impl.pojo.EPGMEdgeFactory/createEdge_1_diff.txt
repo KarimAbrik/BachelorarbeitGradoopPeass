@@ -1,0 +1,4 @@
+@Override
+public EPGMEdge createEdge(String label, GradoopId sourceVertexId, GradoopId targetVertexId, Properties properties) {
+    return initEdge(GradoopId.get(), label, sourceVertexId, targetVertexId, properties);
+}

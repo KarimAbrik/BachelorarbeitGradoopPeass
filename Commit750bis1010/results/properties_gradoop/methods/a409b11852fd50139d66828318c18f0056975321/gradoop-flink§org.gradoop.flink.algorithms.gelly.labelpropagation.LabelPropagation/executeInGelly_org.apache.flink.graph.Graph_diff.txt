@@ -1,0 +1,6 @@
+@Override
+public LogicalGraph executeInGelly(Graph<GradoopId, PropertyValue, NullValue> graph) {
+    DataSet<EPGMVertex> labeledVertices = executeInternal(graph).join(currentGraph.getVertices()).where(0).equalTo(new Id<>()).with(new LPVertexJoin(propertyKey));
+    // return labeled graph
+    return currentGraph.getFactory().fromDataSets(currentGraph.getGraphHead(), labeledVertices, currentGraph.getEdges());
+}

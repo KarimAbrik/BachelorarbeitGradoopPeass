@@ -1,0 +1,8 @@
+/**
+ * Creates a new instance of a HasVertexLabel aggregate function.
+ *
+ * @param label vertex label to check presence of
+ */
+public HasVertexLabel(String label) {
+    super(label, "hasVertexLabel_" + label);
+}

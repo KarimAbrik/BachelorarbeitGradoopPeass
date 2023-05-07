@@ -1,0 +1,16 @@
+/**
+ * Sets the given property. If a property with the same property key already
+ * exists, it will be replaced by the given property.
+ *
+ * @param key   property key
+ * @param value property value
+ */
+public void set(String key, Object value) {
+    PropertyValue propertyValue;
+    if (value instanceof PropertyValue) {
+        propertyValue = (PropertyValue) value;
+    } else {
+        propertyValue = PropertyValue.create(value);
+    }
+    set(key, propertyValue);
+}

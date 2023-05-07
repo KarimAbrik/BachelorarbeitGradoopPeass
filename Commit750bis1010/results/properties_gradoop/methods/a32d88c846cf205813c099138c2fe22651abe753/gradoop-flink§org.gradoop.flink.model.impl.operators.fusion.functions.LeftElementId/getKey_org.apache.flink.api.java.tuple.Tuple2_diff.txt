@@ -1,0 +1,4 @@
+@Override
+public GradoopId getKey(Tuple2<K, GradoopId> value) throws Exception {
+    return value.f0.getId();
+}

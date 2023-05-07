@@ -1,0 +1,8 @@
+@Test
+public void testSameGraph() throws Exception {
+    FlinkAsciiGraphLoader loader = getSocialNetworkLoader();
+    loader.appendToDatabaseFromString("expected:Community {interest:\"Databases\", vertexCount:3}[]");
+    LogicalGraph g0 = loader.getLogicalGraphByVariable("g0");
+    LogicalGraph expected = loader.getLogicalGraphByVariable("expected");
+    collectAndAssertTrue(g0.exclude(g0).equalsByData(expected));
+}

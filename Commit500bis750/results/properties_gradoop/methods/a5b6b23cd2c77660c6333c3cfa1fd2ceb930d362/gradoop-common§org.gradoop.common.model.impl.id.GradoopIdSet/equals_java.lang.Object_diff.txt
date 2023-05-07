@@ -1,0 +1,14 @@
+                                                                                                     | @Override                                                                                           
+                                                                                                     | public boolean equals(Object o) {                                                                   
+                                                                                                     | boolean equal = this == o;                                                                          
+                                                                                                     | if (!equal && o instanceof GradoopIdSet) {                                                          
+                                                                                                     | GradoopIdSet that = (GradoopIdSet) o;                                                               
+                                                                                                     | // same number of ids                                                                               
+                                                                                                     | equal = this.size() == that.size();                                                                 
+                                                                                                     | if (equal) {                                                                                        
+                                                                                                     | // same ids                                                                                         
+                                                                                                     | equal = this.ids.equals(that.ids);                                                                  
+                                                                                                     | }                                                                                                   
+                                                                                                     | }                                                                                                   
+                                                                                                     | return equal;                                                                                       
+                                                                                                     | }                                                                                                   

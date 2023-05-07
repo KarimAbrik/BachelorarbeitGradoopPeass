@@ -1,0 +1,11 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public LogicalGraph execute(LogicalGraph graph) {
+    DataSet<Edge> newEdges = graph.getEdges().filter(new RandomFilter<>(sampleSize, randomSeed));
+    DataSet<Vertex> newSourceVertices = graph.getVertices().join(newEdges).where(new Id<>()).equalTo(new SourceId<>()).with(new LeftSide<>()).distinct(new Id<>());
+    DataSet<Vertex> newTargetVertices = graph.getVertices().join(newEdges).where(new Id<>()).equalTo(new TargetId<>()).with(new LeftSide<>()).distinct(new Id<>());
+    DataSet<Vertex> newVertices = newSourceVertices.union(newTargetVertices).distinct(new Id<>());
+    return graph.getConfig().getLogicalGraphFactory().fromDataSets(newVertices, newEdges);
+}

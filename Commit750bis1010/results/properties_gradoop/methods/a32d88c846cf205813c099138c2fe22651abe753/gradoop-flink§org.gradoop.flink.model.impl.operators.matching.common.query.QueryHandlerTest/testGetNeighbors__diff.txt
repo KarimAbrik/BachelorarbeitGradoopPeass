@@ -1,0 +1,6 @@
+@Test
+public void testGetNeighbors() throws Exception {
+    List<Vertex> neighbors = Lists.newArrayList(QUERY_HANDLER.getNeighbors(GDL_HANDLER.getVertexCache().get("v2").getId()));
+    List<Vertex> expected = Lists.newArrayList(GDL_HANDLER.getVertexCache().get("v1"), GDL_HANDLER.getVertexCache().get("v3"));
+    assertTrue(elementsEqual(neighbors, expected));
+}

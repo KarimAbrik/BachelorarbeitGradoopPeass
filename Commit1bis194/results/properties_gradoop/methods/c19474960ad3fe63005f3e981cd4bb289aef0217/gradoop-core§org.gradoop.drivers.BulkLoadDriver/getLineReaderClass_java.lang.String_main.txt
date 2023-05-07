@@ -1,0 +1,10 @@
+/**
+ * Returns the class for the given class name parameter.
+ *
+ * @param readerClassName full qualified class name of the reader
+ * @return reader class instance
+ * @throws java.lang.ClassNotFoundException
+ */
+private Class<? extends VertexLineReader> getLineReaderClass(final String readerClassName) throws ClassNotFoundException {
+    return Class.forName(readerClassName).asSubclass(VertexLineReader.class);
+}

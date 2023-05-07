@@ -1,0 +1,10 @@
+@Test
+public void testProjectLoop() throws Exception {
+    GradoopId a = GradoopId.get();
+    EPGMEdge edge = new EPGMEdgeFactory().createEdge(a, a);
+    DataSet<EPGMEdge> edges = getExecutionEnvironment().fromElements(edge);
+    Embedding result = new ProjectEdges(edges, Collections.emptyList(), true).evaluate().collect().get(0);
+    assertEquals(result.size(), 2);
+    assertEquals(a, result.getId(0));
+    assertEquals(edge.getId(), result.getId(1));
+}

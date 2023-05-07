@@ -1,0 +1,5 @@
+@Override
+public L join(L left, R right) throws Exception {
+    left.getGraphIds().retainAll(right.getGraphIds());
+    return left;
+}

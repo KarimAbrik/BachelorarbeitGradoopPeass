@@ -1,0 +1,27 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public LogicalGraph execute(LogicalGraph graph) {
+    DataSet<Vertex> vertices;
+    switch(getDirection()) {
+        case IN:
+            // takes edges which target to the vertex and applies the aggregate function
+            vertices = graph.getEdges().join(graph.getVertices()).where(new TargetId<>()).equalTo(new Id<>()).groupBy(new IdInTuple<Tuple2<Edge, Vertex>>(1)).reduceGroup(new NeighborEdgeReduceFunction((EdgeAggregateFunction) getFunction()));
+            break;
+        case OUT:
+            // takes edges which start at the vertex and applies the aggregate function
+            vertices = graph.getEdges().join(graph.getVertices()).where(new SourceId<>()).equalTo(new Id<>()).groupBy(new IdInTuple<Tuple2<Edge, Vertex>>(1)).reduceGroup(new NeighborEdgeReduceFunction((EdgeAggregateFunction) getFunction()));
+            break;
+        case BOTH:
+            // takes edges which start at and target to the vertex and applies the aggregate function
+            vertices = graph.getEdges().// maps the source id to the edge and the target id to the edge
+            flatMap(new VertexIdsWithEdge()).map(new SwitchPair<GradoopId, Edge>()).join(graph.getVertices()).where(1).equalTo(new Id<>()).// replace id with the vertex
+            with(new VertexToFieldOne<Edge, GradoopId>()).// group by the vertex id
+            groupBy(new IdInTuple<Tuple2<Edge, Vertex>>(1)).reduceGroup(new NeighborEdgeReduceFunction((EdgeAggregateFunction) getFunction()));
+            break;
+        default:
+            vertices = null;
+    }
+    return graph.getConfig().getLogicalGraphFactory().fromDataSets(graph.getGraphHead(), vertices, graph.getEdges());
+}

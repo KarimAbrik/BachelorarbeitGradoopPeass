@@ -1,0 +1,10 @@
+/**
+ * Create an instance of the {@link AverageDuration} aggregate function.
+ *
+ * @param aggregatePropertyKey The aggregate property key.
+ * @param dimension the time dimension to consider
+ */
+public AverageDuration(String aggregatePropertyKey, TimeDimension dimension) {
+    super(aggregatePropertyKey, dimension);
+    this.dimension = Objects.requireNonNull(dimension);
+}

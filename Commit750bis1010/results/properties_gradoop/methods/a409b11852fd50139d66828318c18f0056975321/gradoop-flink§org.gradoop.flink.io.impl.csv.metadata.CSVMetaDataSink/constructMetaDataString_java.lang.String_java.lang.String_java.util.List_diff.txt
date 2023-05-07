@@ -1,0 +1,25 @@
+/**
+ * Construct a string representing the meta data of an entity, specified by its label.
+ *
+ * @param entityPrefix     entity prefix (g,v,e)
+ * @param label            label of the entity
+ * @param propertyMetaData list of property meta data
+ * @return string representing all the meta data
+ */
+private String constructMetaDataString(String entityPrefix, String label, List<PropertyMetaData> propertyMetaData) {
+    StringBuilder metaDataBuilder = new StringBuilder();
+    metaDataBuilder.append(entityPrefix);
+    metaDataBuilder.append(CSVConstants.TOKEN_DELIMITER);
+    metaDataBuilder.append(label);
+    metaDataBuilder.append(CSVConstants.TOKEN_DELIMITER);
+    for (int i = 0; i < propertyMetaData.size(); i++) {
+        PropertyMetaData property = propertyMetaData.get(i);
+        metaDataBuilder.append(property.getKey());
+        metaDataBuilder.append(PropertyMetaData.PROPERTY_TOKEN_DELIMITER);
+        metaDataBuilder.append(property.getTypeString());
+        if (i < propertyMetaData.size() - 1) {
+            metaDataBuilder.append(PropertyMetaData.PROPERTY_DELIMITER);
+        }
+    }
+    return metaDataBuilder.toString();
+}

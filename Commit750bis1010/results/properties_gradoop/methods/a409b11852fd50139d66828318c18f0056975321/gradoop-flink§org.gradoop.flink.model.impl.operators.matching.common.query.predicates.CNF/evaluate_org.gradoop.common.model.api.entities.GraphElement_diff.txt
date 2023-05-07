@@ -1,0 +1,9 @@
+@Override
+public boolean evaluate(GraphElement graphElement) {
+    for (CNFElement element : predicates) {
+        if (!element.evaluate(graphElement)) {
+            return false;
+        }
+    }
+    return true;
+}

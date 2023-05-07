@@ -1,0 +1,12 @@
+/**
+ * Initializes a new EmbeddingMetaData object from the given mappings
+ *
+ * @param entryMapping maps variables to embedding entries
+ * @param propertyMapping maps variable-propertyKey pairs to embedding property data entries
+ * @param directionMapping maps (path) variables to their direction
+ */
+public EmbeddingMetaData(Map<Pair<String, EntryType>, Integer> entryMapping, Map<Pair<String, String>, Integer> propertyMapping, Map<String, ExpandDirection> directionMapping) {
+    this.entryMapping = entryMapping;
+    this.propertyMapping = propertyMapping;
+    this.directionMapping = directionMapping;
+}

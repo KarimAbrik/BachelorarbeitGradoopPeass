@@ -1,0 +1,5 @@
+protected FlinkAsciiGraphLoader getLoaderFromFile(String fileName) throws IOException {
+    FlinkAsciiGraphLoader loader = getNewLoader();
+    loader.initDatabaseFromFile(fileName);
+    return loader;
+}

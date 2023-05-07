@@ -1,0 +1,10 @@
+/**                                                                                                    /**                                                                                                 
+* Reads the entity identifier from the json object.                                                    * Reads the entity identifier from the json object.                                                 
+*                                                                                                      *                                                                                                   
+* @param object json object                                                                            * @param object json object                                                                         
+* @return entity identifier                                                                            * @return entity identifier                                                                         
+* @throws JSONException                                                                                * @throws JSONException                                                                             
+*/                                                                                                     */                                                                                                  
+protected Long getID(JSONObject object) throws JSONException {                                       | protected GradoopId getID(JSONObject object) throws JSONException {                                 
+return object.getLong(IDENTIFIER);                                                                   | return GradoopId.fromLongString(object.getString(IDENTIFIER));                                      
+}                                                                                                      }                                                                                                   

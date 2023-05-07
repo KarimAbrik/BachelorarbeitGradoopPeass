@@ -1,0 +1,4 @@
+@Override
+public GraphCollectionLayout<EPGMGraphHead, EPGMVertex, EPGMEdge> fromGraphLayout(LogicalGraphLayout<EPGMGraphHead, EPGMVertex, EPGMEdge> graph) {
+    return fromDataSets(graph.getGraphHead(), graph.getVertices(), graph.getEdges());
+}

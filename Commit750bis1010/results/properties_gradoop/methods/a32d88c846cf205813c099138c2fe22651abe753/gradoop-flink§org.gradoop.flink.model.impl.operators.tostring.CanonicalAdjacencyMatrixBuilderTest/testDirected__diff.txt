@@ -1,0 +1,10 @@
+@Test
+public void testDirected() throws Exception {
+    FlinkAsciiGraphLoader loader = new FlinkAsciiGraphLoader(getConfig());
+    loader.initDatabaseFromFile(getFilePath("/data/gdl/cam_test.gdl"));
+    GraphCollection g = loader.getGraphCollection();
+    CanonicalAdjacencyMatrixBuilder<EPGMGraphHead, EPGMVertex, EPGMEdge, LogicalGraph, GraphCollection> cam = new CanonicalAdjacencyMatrixBuilder<>(new GraphHeadToDataString<>(), new VertexToDataString<>(), new EdgeToDataString<>(), true);
+    String result = cam.execute(g).collect().get(0);
+    String expectation = FileUtils.readFileToString(FileUtils.getFile(getFilePath("/data/expected/cam_test_directed")));
+    assertEquals(expectation, result);
+}

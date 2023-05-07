@@ -1,0 +1,4 @@
+@Override
+default GC execute(GC collection) {
+    return (collection.isTransactionalLayout()) ? executeForTxLayout(collection) : executeForGVELayout(collection);
+}

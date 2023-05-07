@@ -1,0 +1,6 @@
+@Override
+public IdWithLabel map(EL element) {
+    reuseTuple.setId(element.getId());
+    reuseTuple.setLabel(element.getLabel());
+    return reuseTuple;
+}

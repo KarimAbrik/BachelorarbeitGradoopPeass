@@ -1,0 +1,5 @@
+@Override
+public void setGradoopFlinkConfig(GradoopFlinkConfig config) {
+    Objects.requireNonNull(config);
+    this.config = config;
+}

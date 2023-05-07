@@ -1,0 +1,6 @@
+@Test
+public void testGetVertexByVariable() throws Exception {
+    Vertex expected = GDL_HANDLER.getVertexCache().get("v1");
+    assertEquals(QUERY_HANDLER.getVertexByVariable("v1"), expected);
+    assertNotEquals(QUERY_HANDLER.getVertexByVariable("v2"), expected);
+}

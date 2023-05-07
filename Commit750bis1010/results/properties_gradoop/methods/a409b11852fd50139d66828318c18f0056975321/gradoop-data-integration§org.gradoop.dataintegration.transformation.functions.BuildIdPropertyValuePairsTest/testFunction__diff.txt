@@ -1,0 +1,20 @@
+/**
+ * Test if the function selects the correct labels and properties.
+ *
+ * @throws Exception when the execution in Flink fails.
+ */
+@Test
+public void testFunction() throws Exception {
+    VertexFactory<EPGMVertex> vertexFactory = getConfig().getLogicalGraphFactory().getVertexFactory();
+    EPGMVertex v1 = vertexFactory.createVertex("a");
+    EPGMVertex v2 = vertexFactory.createVertex("a");
+    v2.setProperty("k1", 1L);
+    v2.setProperty("k2", 1L);
+    EPGMVertex v3 = vertexFactory.createVertex("b");
+    v3.setProperty("k1", 1L);
+    v3.setProperty("k2", 1L);
+    EPGMVertex v4 = vertexFactory.createVertex();
+    List<Tuple2<GradoopId, PropertyValue>> result = getExecutionEnvironment().fromElements(v1, v2, v3, v4).flatMap(new BuildIdPropertyValuePairs<>("a", "k1")).collect();
+    assertEquals(1, result.size());
+    assertEquals(Tuple2.of(v2.getId(), PropertyValue.create(1L)), result.get(0));
+}

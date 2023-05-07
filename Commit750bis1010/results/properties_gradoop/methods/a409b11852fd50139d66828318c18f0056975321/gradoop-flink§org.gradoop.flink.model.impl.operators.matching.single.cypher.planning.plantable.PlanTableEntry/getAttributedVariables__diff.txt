@@ -1,0 +1,8 @@
+/**
+ * Returns the query variables that are evaluable in a filter operator.
+ *
+ * @return query variables with assigned properties
+ */
+public Set<String> getAttributedVariables() {
+    return new HashSet<>(estimator.getQueryPlan().getRoot().getEmbeddingMetaData().getVariablesWithProperties());
+}

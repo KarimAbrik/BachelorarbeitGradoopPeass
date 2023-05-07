@@ -1,0 +1,9 @@
+/**
+ * Checks if a property with the given key is contained in the properties.
+ *
+ * @param key property key
+ * @return true, if there is a property with the given key
+ */
+public boolean containsKey(String key) {
+    return get(key) != null;
+}

@@ -1,0 +1,11 @@
+/**
+ * Adds a vertex label group which defines the grouping keys for a specific label.
+ * Note that a label may be used multiple times.
+ *
+ * @param label edge label
+ * @param groupingKeys keys used for grouping
+ * @return this builder
+ */
+public GroupingBuilder addEdgeLabelGroup(String label, List<String> groupingKeys) {
+    return addEdgeLabelGroup(label, label, groupingKeys);
+}

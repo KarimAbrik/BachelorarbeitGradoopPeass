@@ -1,0 +1,20 @@
+/**
+ * Creates a new AsciiGraphLoader.
+ *
+ * @param gdlHandler GDL Handler
+ * @param config Gradoop configuration
+ */
+private AsciiGraphLoader(GDLHandler gdlHandler, GradoopConfig<G, V, E> config) {
+    this.gdlHandler = gdlHandler;
+    this.config = config;
+    this.graphHeads = Maps.newHashMap();
+    this.vertices = Maps.newHashMap();
+    this.edges = Maps.newHashMap();
+    this.graphHeadIds = Maps.newHashMap();
+    this.vertexIds = Maps.newHashMap();
+    this.edgeIds = Maps.newHashMap();
+    this.graphHeadCache = Maps.newHashMap();
+    this.vertexCache = Maps.newHashMap();
+    this.edgeCache = Maps.newHashMap();
+    init();
+}

@@ -1,0 +1,68 @@
+{
+  "clazz" : "org.gradoop.model.impl.LogicalGraphAggregateTest",
+  "methods" : [ {
+    "method" : "aggregateEdgeCountTest",
+    "datacollectorResults" : [ {
+      "name" : "de.dagere.kopeme.datacollection.TimeDataCollectorNoGC",
+      "chunks" : [ ],
+      "results" : [ {
+        "value" : 4.447276618999999E8,
+        "deviation" : 0.5571297399787568,
+        "min" : 1.79524326E8,
+        "max" : 1.016920883E9,
+        "warmup" : 0,
+        "iterations" : 10,
+        "repetitions" : 2,
+        "commit" : null,
+        "vmRunConfiguration" : {
+          "showStart" : false,
+          "executeBeforeClassInMeasurement" : false,
+          "redirectToTemp" : false,
+          "redirectToNull" : true,
+          "useKieker" : false
+        },
+        "parameters" : {
+          "JUNIT_PARAMETERIZED" : "Execution mode = CLUSTER"
+        },
+        "javaVersion" : "1.8.0_362",
+        "cpu" : "model name : Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz",
+        "memory" : "MemTotal: 16280544 kB",
+        "date" : 1680979737224,
+        "fulldata" : {
+          "fileName" : null,
+          "values" : [ {
+            "startTime" : 1680979732575,
+            "value" : 1016920883
+          }, {
+            "startTime" : 1680979733592,
+            "value" : 551410878
+          }, {
+            "startTime" : 1680979734143,
+            "value" : 493805780
+          }, {
+            "startTime" : 1680979734637,
+            "value" : 615399409
+          }, {
+            "startTime" : 1680979735253,
+            "value" : 458978404
+          }, {
+            "startTime" : 1680979735712,
+            "value" : 345014641
+          }, {
+            "startTime" : 1680979736057,
+            "value" : 250871578
+          }, {
+            "startTime" : 1680979736308,
+            "value" : 294476029
+          }, {
+            "startTime" : 1680979736602,
+            "value" : 240874691
+          }, {
+            "startTime" : 1680979736843,
+            "value" : 179524326
+          } ]
+        }
+      } ]
+    } ]
+  } ]
+}

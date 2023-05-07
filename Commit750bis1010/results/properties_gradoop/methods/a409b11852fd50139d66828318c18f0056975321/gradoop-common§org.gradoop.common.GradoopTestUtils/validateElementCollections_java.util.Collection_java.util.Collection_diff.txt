@@ -1,0 +1,23 @@
+/**
+ * Checks if two collections contain the same EPGM elements in terms of data
+ * (i.e. label and properties).
+ *
+ * @param collection1 first collection
+ * @param collection2 second collection
+ */
+public static void validateElementCollections(Collection<? extends Element> collection1, Collection<? extends Element> collection2) {
+    assertNotNull("first collection was null", collection1);
+    assertNotNull("second collection was null", collection1);
+    assertEquals(String.format("collections of different size: %d and %d", collection1.size(), collection2.size()), collection1.size(), collection2.size());
+    List<? extends Element> list1 = Lists.newArrayList(collection1);
+    List<? extends Element> list2 = Lists.newArrayList(collection2);
+    Collections.sort(list1, ID_COMPARATOR);
+    Collections.sort(list2, ID_COMPARATOR);
+    Iterator<? extends Element> it1 = list1.iterator();
+    Iterator<? extends Element> it2 = list2.iterator();
+    while (it1.hasNext()) {
+        validateElements(it1.next(), it2.next());
+    }
+    assertFalse("too many elements in first collection", it1.hasNext());
+    assertFalse("too many elements in second collection", it2.hasNext());
+}

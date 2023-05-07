@@ -1,0 +1,4 @@
+@Test(expected = IllegalArgumentException.class)
+public void createWithEmptyLabelTest() {
+    new GraphHeadPojoFactory().createGraphHead(0L, "");
+}

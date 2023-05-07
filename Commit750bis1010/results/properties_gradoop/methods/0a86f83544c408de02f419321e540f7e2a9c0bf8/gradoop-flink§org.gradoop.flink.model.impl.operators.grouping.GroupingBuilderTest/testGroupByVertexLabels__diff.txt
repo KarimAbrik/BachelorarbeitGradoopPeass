@@ -1,0 +1,10 @@
+/**
+ * Tests successful call to {@link Grouping.GroupingBuilder#build()} when a strategy is set and
+ * when only grouping by vertex labels.
+ */
+@Test
+public void testGroupByVertexLabels() {
+    UnaryBaseGraphToBaseGraphOperator<LogicalGraph> grouping = new Grouping.GroupingBuilder().useVertexLabel(true).setStrategy(GroupingStrategy.GROUP_REDUCE).build();
+    assertTrue(grouping instanceof Grouping);
+    assertTrue(((Grouping) grouping).useVertexLabels());
+}

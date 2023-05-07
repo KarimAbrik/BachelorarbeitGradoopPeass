@@ -1,0 +1,5 @@
+@Override
+public K map(K value) throws Exception {
+    value.addGraphId(newGraphId);
+    return value;
+}

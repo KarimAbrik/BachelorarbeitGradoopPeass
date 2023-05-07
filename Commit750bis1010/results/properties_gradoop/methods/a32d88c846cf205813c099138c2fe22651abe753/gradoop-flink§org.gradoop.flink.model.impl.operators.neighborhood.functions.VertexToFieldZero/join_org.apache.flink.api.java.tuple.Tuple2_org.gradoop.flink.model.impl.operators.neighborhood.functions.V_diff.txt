@@ -1,0 +1,5 @@
+@Override
+public Tuple2<V, Q> join(Tuple2<P, Q> tuple, V vertex) throws Exception {
+    reuseTuple.setFields(vertex, tuple.f1);
+    return reuseTuple;
+}

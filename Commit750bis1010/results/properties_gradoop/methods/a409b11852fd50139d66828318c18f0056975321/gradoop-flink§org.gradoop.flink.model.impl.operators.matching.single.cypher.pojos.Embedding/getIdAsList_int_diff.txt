@@ -1,0 +1,9 @@
+/**
+ * Returns the ID or ID-List stored at the specified position
+ * @param column Index of the entry
+ * @return The ID or ID-List stored at the specified position
+ */
+public List<GradoopId> getIdAsList(int column) {
+    int offset = getIdOffset(column);
+    return idData[offset] == ID_LIST_FLAG ? getIdList(column) : Lists.newArrayList(getId(column));
+}

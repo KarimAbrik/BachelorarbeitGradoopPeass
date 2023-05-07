@@ -1,0 +1,13 @@
+/**
+ * Create a new RowToVertexMapper
+ *
+ * @param tokenDelimiter in the file is used
+ * @param propertyNames list of the property names
+ * @param checkReoccurringHeader should the row checked for a occurring of the column names?
+ */
+public CsvRowToProperties(String tokenDelimiter, List<String> propertyNames, boolean checkReoccurringHeader) {
+    this.tokenSeparator = Objects.requireNonNull(tokenDelimiter);
+    this.propertyNames = Objects.requireNonNull(propertyNames);
+    this.checkReoccurringHeader = checkReoccurringHeader;
+    this.reuseProperties = new Properties();
+}

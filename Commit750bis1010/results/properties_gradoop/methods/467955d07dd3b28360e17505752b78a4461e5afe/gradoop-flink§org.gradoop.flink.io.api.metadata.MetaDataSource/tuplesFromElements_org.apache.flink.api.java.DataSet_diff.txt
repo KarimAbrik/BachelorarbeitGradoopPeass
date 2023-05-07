@@ -1,0 +1,10 @@
+/**                                                                                                    /**                                                                                                 
+* Creates the meta data for the specified data set of EPGM elements.                                 | * Creates the meta data for the specified data set of elements.                                     
+*                                                                                                      *                                                                                                   
+* @param elements EPGM elements                                                                      | * @param elements elements                                                                          
+* @param &lt;E&gt;      EPGM element type                                                            | * @param &lt;E&gt;      element type                                                                
+* @return meta data information                                                                        * @return meta data information                                                                     
+*/                                                                                                     */                                                                                                  
+static &lt;E extends Element&gt; DataSet&lt;Tuple3&lt;String, String, String&gt;&gt; tuplesFromEleme   static &lt;E extends Element&gt; DataSet&lt;Tuple3&lt;String, String, String&gt;&gt; tuplesFromEleme
+return elements.map(new ElementToPropertyMetaData&lt;&gt;()).groupBy(0, 1).reduce(new ReduceProperty   return elements.map(new ElementToPropertyMetaData&lt;&gt;()).groupBy(0, 1).reduce(new ReduceProperty
+}                                                                                                      }                                                                                                   

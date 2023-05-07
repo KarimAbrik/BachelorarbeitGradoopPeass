@@ -1,0 +1,9 @@
+@Override
+public LogicalGraph executeInGelly(Graph<GradoopId, GradoopId, NullValue> graph) throws Exception {
+    DataSet<EPGMVertex> annotatedVertices = new org.apache.flink.graph.library.ConnectedComponents<GradoopId, GradoopId, NullValue>(maxIterations).run(graph).join(currentGraph.getVertices()).where(0).equalTo(new Id<>()).with(new GellyVertexValueToVertexPropertyJoin(propertyKey));
+    DataSet<EPGMEdge> edges = currentGraph.getEdges();
+    if (annotateEdges) {
+        edges = edges.join(annotatedVertices).where(new SourceId<>()).equalTo(new Id<>()).with(new VertexPropertyToEdgePropertyJoin(propertyKey)).join(annotatedVertices).where(new TargetId<>()).equalTo(new Id<>()).with(new VertexPropertyToEdgePropertyJoin(propertyKey));
+    }
+    return currentGraph.getFactory().fromDataSets(currentGraph.getGraphHead(), annotatedVertices, edges);
+}

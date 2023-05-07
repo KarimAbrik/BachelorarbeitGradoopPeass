@@ -1,0 +1,15 @@
+@Override
+public EPGMVertex cross(EPGMVertex vertex, EPGMGraphHead graphHead) {
+    double min = graphHead.getPropertyValue(SamplingConstants.MIN_PAGE_RANK_SCORE_PROPERTY_KEY).getDouble();
+    double max = graphHead.getPropertyValue(SamplingConstants.MAX_PAGE_RANK_SCORE_PROPERTY_KEY).getDouble();
+    double sum = graphHead.getPropertyValue(SamplingConstants.SUM_PAGE_RANK_SCORE_PROPERTY_KEY).getDouble();
+    vertex.setProperty(SamplingConstants.MIN_PAGE_RANK_SCORE_PROPERTY_KEY, min);
+    vertex.setProperty(SamplingConstants.MAX_PAGE_RANK_SCORE_PROPERTY_KEY, max);
+    vertex.setProperty(SamplingConstants.SUM_PAGE_RANK_SCORE_PROPERTY_KEY, sum);
+    vertex.setProperty("vertexCount", graphHead.getPropertyValue("vertexCount"));
+    if (min != max) {
+        double score = vertex.getPropertyValue(SamplingConstants.PAGE_RANK_SCORE_PROPERTY_KEY).getDouble();
+        vertex.setProperty(SamplingConstants.SCALED_PAGE_RANK_SCORE_PROPERTY_KEY, (score - min) / (max - min));
+    }
+    return vertex;
+}

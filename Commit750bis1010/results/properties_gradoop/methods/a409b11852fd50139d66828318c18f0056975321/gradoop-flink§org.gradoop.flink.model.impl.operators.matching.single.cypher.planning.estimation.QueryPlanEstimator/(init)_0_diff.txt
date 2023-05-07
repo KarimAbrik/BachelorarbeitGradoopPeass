@@ -1,0 +1,12 @@
+/**
+ * Creates a new plan estimator.
+ *
+ * @param queryPlan query plan
+ * @param queryHandler query handler
+ * @param graphStatistics graph statistics
+ */
+public QueryPlanEstimator(QueryPlan queryPlan, QueryHandler queryHandler, GraphStatistics graphStatistics) {
+    this.queryPlan = queryPlan;
+    this.joinEstimator = new JoinEstimator(queryHandler, graphStatistics);
+    this.filterEstimator = new FilterEstimator(queryHandler, graphStatistics);
+}

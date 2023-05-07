@@ -1,0 +1,10 @@
+@Override
+public TemporalGraphHead map(G value) throws Exception {
+    reuse.setId(value.getId());
+    reuse.setLabel(value.getLabel());
+    reuse.setProperties(value.getProperties());
+    if (timeIntervalExtractor != null) {
+        reuse.setValidTime(timeIntervalExtractor.map(value));
+    }
+    return reuse;
+}

@@ -1,0 +1,9 @@
+@Test
+public void extractVariablesTest() {
+    QueryHandler query = new QueryHandler("MATCH (a), (b) WHERE a=b OR a.name = \"Alice\"");
+    CNFElement cnfElement = query.getPredicates().getPredicates().get(0);
+    Set<String> reference = new HashSet<>();
+    reference.add("a");
+    reference.add("b");
+    assertEquals(reference, cnfElement.getVariables());
+}

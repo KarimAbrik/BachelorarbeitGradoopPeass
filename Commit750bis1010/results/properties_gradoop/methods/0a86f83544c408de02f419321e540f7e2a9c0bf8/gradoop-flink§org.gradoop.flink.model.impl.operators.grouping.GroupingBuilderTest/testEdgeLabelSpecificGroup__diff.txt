@@ -1,0 +1,16 @@
+/**
+ * Tests successful call to {@link Grouping.GroupingBuilder#build()} when using specific
+ * edge label grouping.
+ */
+@Test
+public void testEdgeLabelSpecificGroup() {
+    String testGroupLabel = "testGroup";
+    ImmutableList<String> testGroupingKeys = ImmutableList.of("a", "b");
+    UnaryBaseGraphToBaseGraphOperator<LogicalGraph> grouping = new Grouping.GroupingBuilder().setStrategy(GroupingStrategy.GROUP_REDUCE).addEdgeLabelGroup(testGroupLabel, testGroupingKeys).build();
+    List<LabelGroup> edgeLabelGroups = ((Grouping<EPGMGraphHead, EPGMVertex, EPGMEdge, LogicalGraph, GraphCollection>) grouping).getEdgeLabelGroups();
+    // first element of edgeLabelGroups is always the defaultEdgeLabelGroup, so the label
+    // specific group should be at index 1.
+    LabelGroup group = edgeLabelGroups.get(1);
+    assertEquals(group.getGroupLabel(), testGroupLabel);
+    assertEquals(testGroupingKeys, group.getPropertyKeys());
+}

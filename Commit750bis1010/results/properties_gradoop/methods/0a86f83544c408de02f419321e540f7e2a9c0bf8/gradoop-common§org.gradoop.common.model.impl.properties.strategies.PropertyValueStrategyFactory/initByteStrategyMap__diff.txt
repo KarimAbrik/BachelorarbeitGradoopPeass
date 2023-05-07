@@ -1,0 +1,13 @@
+/**
+ * Initializes byte-strategy mapping.
+ *
+ * @return Array containing PropertyValueStrategies with their respective type byte as index.
+ */
+private PropertyValueStrategy[] initByteStrategyMap() {
+    PropertyValueStrategy[] byteMapping = new PropertyValueStrategy[classStrategyMap.size() + 1];
+    for (PropertyValueStrategy strategy : classStrategyMap.values()) {
+        byteMapping[strategy.getRawType()] = strategy;
+    }
+    byteMapping[nullStrategy.getRawType()] = nullStrategy;
+    return byteMapping;
+}

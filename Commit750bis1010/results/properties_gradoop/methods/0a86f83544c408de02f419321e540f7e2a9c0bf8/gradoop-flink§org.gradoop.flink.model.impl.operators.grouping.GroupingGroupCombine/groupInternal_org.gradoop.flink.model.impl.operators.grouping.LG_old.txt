@@ -1,0 +1,22 @@
+@Override
+protected LG groupInternal(LG graph) {
+    // map vertex to vertex group item
+    DataSet<VertexGroupItem> verticesForGrouping = graph.getVertices().flatMap(new BuildVertexGroupItem<>(useVertexLabels(), getVertexLabelGroups()));
+    // group vertices by label / properties / both
+    DataSet<VertexGroupItem> combinedVertexGroupItems = groupVertices(verticesForGrouping).// apply aggregate function per combined partition
+    combineGroup(new CombineVertexGroupItems(useVertexLabels()));
+    // filter super vertex tuples (1..n per partition/group)
+    // group  super vertex tuples
+    // create super vertex tuple (1 per group) + previous super vertex ids
+    DataSet<Tuple2<VertexGroupItem, IdWithIdSet>> superVertexTuples = groupVertices(combinedVertexGroupItems.filter(new FilterSuperVertices())).reduceGroup(new TransposeVertexGroupItems(useVertexLabels()));
+    // build super vertices from super vertex tuples
+    DataSet<V> superVertices = superVertexTuples.map(new Value0Of2<>()).map(new BuildSuperVertex<>(useVertexLabels(), graph.getFactory().getVertexFactory()));
+    // extract mapping
+    DataSet<IdWithIdSet> mapping = superVertexTuples.map(new Value1Of2<>());
+    // filter non-candidates from combiner output
+    // update their vertex representative according to the mapping
+    DataSet<VertexWithSuperVertex> vertexToRepresentativeMap = combinedVertexGroupItems.filter(new FilterRegularVertices()).map(new BuildVertexWithSuperVertexBC()).withBroadcastSet(mapping, BuildVertexWithSuperVertexBC.BC_MAPPING);
+    // build super edges
+    DataSet<E> superEdges = buildSuperEdges(graph, vertexToRepresentativeMap);
+    return graph.getFactory().fromDataSets(superVertices, superEdges);
+}

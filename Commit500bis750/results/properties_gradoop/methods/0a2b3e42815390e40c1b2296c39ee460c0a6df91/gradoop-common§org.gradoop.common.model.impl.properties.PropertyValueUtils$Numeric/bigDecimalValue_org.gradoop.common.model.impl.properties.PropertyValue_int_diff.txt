@@ -1,0 +1,22 @@
+/**
+ * Converts a value of a lower domain numerical type to BigDecimal.
+ *
+ * @param value value
+ * @param type type
+ *
+ * @return converted value
+ */
+private static BigDecimal bigDecimalValue(PropertyValue value, int type) {
+    switch(type) {
+        case SHORT:
+            return BigDecimal.valueOf(value.getShort());
+        case INT:
+            return BigDecimal.valueOf(value.getInt());
+        case LONG:
+            return BigDecimal.valueOf(value.getLong());
+        case FLOAT:
+            return BigDecimal.valueOf(value.getFloat());
+        default:
+            return BigDecimal.valueOf(value.getDouble());
+    }
+}

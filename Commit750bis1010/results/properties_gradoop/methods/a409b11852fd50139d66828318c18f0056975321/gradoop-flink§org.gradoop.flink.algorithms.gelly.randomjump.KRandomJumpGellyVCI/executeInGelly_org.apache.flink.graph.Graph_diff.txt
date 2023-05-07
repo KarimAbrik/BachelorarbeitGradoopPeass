@@ -1,0 +1,35 @@
+@Override
+public LogicalGraph executeInGelly(Graph<Long, VCIVertexValue, Long> gellyGraph) throws Exception {
+    long vertexCount = gellyGraph.numberOfVertices();
+    //--------------------------------------------------------------------------
+    // pre compute
+    //--------------------------------------------------------------------------
+    // define start vertices
+    Set<Long> randomStartIndices = new HashSet<>();
+    while (randomStartIndices.size() < numberOfStartVertices) {
+        long randomLongInBounds = (long) (Math.random() * (vertexCount - 1L));
+        randomStartIndices.add(randomLongInBounds);
+    }
+    DataSet<Long> startIndices = currentGraph.getConfig().getExecutionEnvironment().fromCollection(randomStartIndices);
+    // define how many vertices to visit
+    long verticesToVisit = (long) Math.ceil((double) vertexCount * percentageToVisit);
+    // set compute parameters
+    VertexCentricConfiguration parameters = new VertexCentricConfiguration();
+    parameters.addBroadcastSet(VCIComputeFunction.START_INDICES_BROADCAST_SET, startIndices);
+    parameters.addBroadcastSet(VCIComputeFunction.VERTEX_INDICES_BROADCAST_SET, indexToVertexIdMap.map(new Value0Of2<>()));
+    parameters.registerAggregator(VCIComputeFunction.VISITED_VERTICES_AGGREGATOR_NAME, new LongSumAggregator());
+    // run gelly
+    Graph<Long, VCIVertexValue, Long> resultGraph = gellyGraph.runVertexCentricIteration(new VCIComputeFunction(jumpProbability, verticesToVisit), null, maxIterations, parameters);
+    //--------------------------------------------------------------------------
+    // post compute
+    //--------------------------------------------------------------------------
+    DataSet<GradoopId> visitedGellyEdgeIds = resultGraph.getVertices().flatMap(new GetVisitedGellyEdgeLongIdsFlatMap()).join(indexToEdgeIdMap).where("*").equalTo(0).with(new VisitedGellyEdgesWithLongIdToGradoopIdJoin());
+    // compute new visited edges
+    DataSet<EPGMEdge> visitedEdges = currentGraph.getEdges().leftOuterJoin(visitedGellyEdgeIds).where(new Id<>()).equalTo("*").with(new EPGMEdgeWithGellyEdgeIdJoin(SamplingConstants.PROPERTY_KEY_SAMPLED));
+    DataSet<GradoopId> visitedSourceTargetIds = visitedEdges.flatMap(new GetVisitedSourceTargetIdsFlatMap(SamplingConstants.PROPERTY_KEY_SAMPLED)).distinct();
+    // compute new visited vertices
+    DataSet<EPGMVertex> visitedVertices = resultGraph.getVertices().join(indexToVertexIdMap).where(0).equalTo(0).with(new GellyVertexWithLongIdToGradoopIdJoin()).join(currentGraph.getVertices()).where(0).equalTo(new Id<>()).with(new GellyVertexWithEPGMVertexJoin(SamplingConstants.PROPERTY_KEY_SAMPLED));
+    visitedVertices = visitedVertices.leftOuterJoin(visitedSourceTargetIds).where(new Id<>()).equalTo("*").with(new VertexWithVisitedSourceTargetIdJoin(SamplingConstants.PROPERTY_KEY_SAMPLED));
+    // return graph
+    return currentGraph.getFactory().fromDataSets(currentGraph.getGraphHead(), visitedVertices, visitedEdges);
+}

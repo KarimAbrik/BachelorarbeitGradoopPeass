@@ -1,0 +1,31 @@
+/**
+ * Finds all embeddings in the given graph and constructs a new graph
+ * collection consisting of these embeddings.
+ * @param collection input graph collection
+ * @param graphs graphs with candidates of their elements
+ * @return collection of found embeddings
+ */
+private GC findEmbeddings(GC collection, DataSet<GraphWithCandidates> graphs) {
+    //--------------------------------------------------------------------------
+    // run the matching algorithm
+    //--------------------------------------------------------------------------
+    DataSet<Tuple4<GradoopId, GradoopId, GradoopIdSet, GradoopIdSet>> embeddings = graphs.flatMap(new FindEmbeddings(algorithm, query));
+    //--------------------------------------------------------------------------
+    // create new graph heads
+    //--------------------------------------------------------------------------
+    DataSet<G> newHeads = embeddings.map(new Project4To0And1<>()).map(new InitGraphHeadWithLineage<>(collection.getFactory().getGraphHeadFactory()));
+    //--------------------------------------------------------------------------
+    // update vertex graphs
+    //--------------------------------------------------------------------------
+    DataSet<Tuple2<GradoopId, GradoopIdSet>> verticesWithGraphs = embeddings.map(new Project4To0And2AndSwitch<>()).flatMap(new ExpandFirstField<>()).groupBy(0).reduceGroup(new MergeSecondField<>());
+    DataSet<V> newVertices = verticesWithGraphs.join(collection.getVertices()).where(0).equalTo(new Id<>()).with(new AddGraphsToElements<>());
+    //--------------------------------------------------------------------------
+    // update edge graphs
+    //--------------------------------------------------------------------------
+    DataSet<Tuple2<GradoopId, GradoopIdSet>> edgesWithGraphs = embeddings.map(new Project4To0And3AndSwitch<>()).flatMap(new ExpandFirstField<>()).groupBy(0).reduceGroup(new MergeSecondField<>());
+    DataSet<E> newEdges = edgesWithGraphs.join(collection.getEdges()).where(0).equalTo(new Id<>()).with(new AddGraphsToElements<>());
+    //--------------------------------------------------------------------------
+    // return the embeddings
+    //--------------------------------------------------------------------------
+    return collection.getFactory().fromDataSets(newHeads, newVertices, newEdges);
+}

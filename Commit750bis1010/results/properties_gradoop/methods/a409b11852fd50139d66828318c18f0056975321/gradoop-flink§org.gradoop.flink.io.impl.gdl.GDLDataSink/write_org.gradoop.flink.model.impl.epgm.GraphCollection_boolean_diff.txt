@@ -1,0 +1,7 @@
+@Override
+public void write(GraphCollection graphCollection, boolean overwrite) throws IOException {
+    FileSystem.WriteMode writeMode = overwrite ? FileSystem.WriteMode.OVERWRITE : FileSystem.WriteMode.NO_OVERWRITE;
+    TextOutputFormat<String> textOutputFormat = new TextOutputFormat<>(new Path(path));
+    textOutputFormat.setWriteMode(writeMode);
+    graphCollection.getGraphTransactions().reduceGroup(new GraphTransactionsToGDL()).output(textOutputFormat).setParallelism(1);
+}

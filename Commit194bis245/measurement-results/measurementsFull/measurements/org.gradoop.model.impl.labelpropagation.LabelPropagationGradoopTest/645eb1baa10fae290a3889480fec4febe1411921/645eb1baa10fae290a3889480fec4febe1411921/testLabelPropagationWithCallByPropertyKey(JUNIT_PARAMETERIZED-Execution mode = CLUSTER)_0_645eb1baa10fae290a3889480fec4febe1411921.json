@@ -1,0 +1,68 @@
+{
+  "clazz" : "org.gradoop.model.impl.labelpropagation.LabelPropagationGradoopTest",
+  "methods" : [ {
+    "method" : "testLabelPropagationWithCallByPropertyKey",
+    "datacollectorResults" : [ {
+      "name" : "de.dagere.kopeme.datacollection.TimeDataCollectorNoGC",
+      "chunks" : [ ],
+      "results" : [ {
+        "value" : 4.4467587952E9,
+        "deviation" : 0.440550066677495,
+        "min" : 2.995681124E9,
+        "max" : 9.808099568E9,
+        "warmup" : 0,
+        "iterations" : 10,
+        "repetitions" : 2,
+        "commit" : null,
+        "vmRunConfiguration" : {
+          "showStart" : false,
+          "executeBeforeClassInMeasurement" : false,
+          "redirectToTemp" : false,
+          "redirectToNull" : true,
+          "useKieker" : false
+        },
+        "parameters" : {
+          "JUNIT_PARAMETERIZED" : "Execution mode = CLUSTER"
+        },
+        "javaVersion" : "1.8.0_362",
+        "cpu" : "model name : Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz",
+        "memory" : "MemTotal: 16280544 kB",
+        "date" : 1681001857064,
+        "fulldata" : {
+          "fileName" : null,
+          "values" : [ {
+            "startTime" : 1681001811970,
+            "value" : 9808099568
+          }, {
+            "startTime" : 1681001821778,
+            "value" : 5115593426
+          }, {
+            "startTime" : 1681001826894,
+            "value" : 3962411541
+          }, {
+            "startTime" : 1681001830856,
+            "value" : 3830754416
+          }, {
+            "startTime" : 1681001834687,
+            "value" : 3973013999
+          }, {
+            "startTime" : 1681001838660,
+            "value" : 3828280110
+          }, {
+            "startTime" : 1681001842488,
+            "value" : 3818873606
+          }, {
+            "startTime" : 1681001846307,
+            "value" : 3768987598
+          }, {
+            "startTime" : 1681001850076,
+            "value" : 2995681124
+          }, {
+            "startTime" : 1681001853072,
+            "value" : 3365892564
+          } ]
+        }
+      } ]
+    } ]
+  } ]
+}

@@ -1,0 +1,12 @@
+/**
+ * Create a new simple JSON importer.
+ *
+ * @param jsonPath The path of the JSON file(s).
+ * @param config   The config used to read the file(s) and create the graph.
+ */
+public MinimalJSONImporter(String jsonPath, GradoopFlinkConfig config) {
+    Objects.requireNonNull(jsonPath);
+    Objects.requireNonNull(config);
+    this.jsonPath = jsonPath;
+    this.config = config;
+}

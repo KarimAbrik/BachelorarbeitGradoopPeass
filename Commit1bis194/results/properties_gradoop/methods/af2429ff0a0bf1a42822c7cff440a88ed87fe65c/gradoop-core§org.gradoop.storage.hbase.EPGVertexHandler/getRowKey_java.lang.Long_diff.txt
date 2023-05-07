@@ -1,0 +1,10 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public byte[] getRowKey(final Long vertexID) {
+    if (vertexID == null) {
+        throw new IllegalArgumentException("vertexID must not be null");
+    }
+    return Bytes.toBytes(vertexID.toString());
+}

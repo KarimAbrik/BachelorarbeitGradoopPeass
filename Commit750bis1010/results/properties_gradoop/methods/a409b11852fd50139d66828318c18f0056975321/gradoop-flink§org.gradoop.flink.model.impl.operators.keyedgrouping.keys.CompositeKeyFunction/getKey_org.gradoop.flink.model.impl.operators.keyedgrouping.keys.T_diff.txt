@@ -1,0 +1,7 @@
+@Override
+public Tuple getKey(T element) {
+    for (int index = 0; index < componentFunctions.size(); index++) {
+        reuseTuple.setField(componentFunctions.get(index).getKey(element), index);
+    }
+    return reuseTuple;
+}

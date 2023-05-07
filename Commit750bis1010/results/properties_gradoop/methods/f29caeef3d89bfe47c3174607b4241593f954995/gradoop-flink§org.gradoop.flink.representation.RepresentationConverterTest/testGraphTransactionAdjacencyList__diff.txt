@@ -1,0 +1,9 @@
+@Test
+public void testGraphTransactionAdjacencyList() throws Exception {
+    GraphTransaction transaction = getGraphTransaction();
+    AdjacencyList<GradoopId, String, GradoopId, GradoopId> adjacencyList = RepresentationConverters.getAdjacencyList(transaction, new Id<>(), new Id<>());
+    GraphTransaction convertedTransaction = RepresentationConverters.getGraphTransaction(adjacencyList);
+    AdjacencyList<GradoopId, String, GradoopId, GradoopId> convertedAdjacencyList = RepresentationConverters.getAdjacencyList(convertedTransaction, new Id<>(), new Id<>());
+    GradoopFlinkTestUtils.assertEquals(transaction, convertedTransaction);
+    GradoopFlinkTestUtils.assertEquals(adjacencyList, convertedAdjacencyList);
+}

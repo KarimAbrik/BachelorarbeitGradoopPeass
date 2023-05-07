@@ -1,0 +1,4 @@
+@Test(expected = IllegalArgumentException.class)
+public void createWithEmptyLabelTest() {
+    new EdgePojoFactory().createEdge(0L, "", 23L, 42L);
+}

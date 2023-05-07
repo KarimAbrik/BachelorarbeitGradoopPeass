@@ -1,0 +1,13 @@
+/**
+ * Updates the distinct value list of a vertex with the given count.
+ *
+ * @param variable vertex variable
+ * @param count distinct count
+ */
+private void updateDistinctValues(String variable, long count) {
+    if (distinctValues.containsKey(variable)) {
+        distinctValues.get(variable).add(count);
+    } else {
+        distinctValues.put(variable, Lists.newArrayList(count));
+    }
+}

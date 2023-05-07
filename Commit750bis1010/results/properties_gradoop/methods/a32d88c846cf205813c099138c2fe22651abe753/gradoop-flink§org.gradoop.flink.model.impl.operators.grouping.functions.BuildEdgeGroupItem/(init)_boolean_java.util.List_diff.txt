@@ -1,0 +1,10 @@
+/**
+ * Creates map function.
+ *
+ * @param useLabel true, if vertex label shall be used
+ * @param edgeLabelGroups stores grouping properties for edge labels
+ */
+public BuildEdgeGroupItem(boolean useLabel, List<LabelGroup> edgeLabelGroups) {
+    super(useLabel, edgeLabelGroups);
+    this.reuseEdgeGroupItem = new EdgeGroupItem();
+}

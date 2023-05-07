@@ -1,0 +1,17 @@
+/**                                                                                                    /**                                                                                                 
+* Writes a single edge to a given put.                                                                 * Writes a single edge to a given put.                                                              
+*                                                                                                      *                                                                                                   
+* @param put          {@link org.apache.hadoop.hbase.client.Put} to                                    * @param put          {@link org.apache.hadoop.hbase.client.Put} to                                 
+*                     write the                                                                        *                     write the                                                                     
+*                     edge to                                                                          *                     edge to                                                                       
+* @param columnFamily CF where the edges shall be stored                                               * @param columnFamily CF where the edges shall be stored                                            
+* @param edge     edge to store                                                                        * @param edge     edge to store                                                                     
+* @param isOutgoing   true, if the edge is an outgoing edge, false if                                  * @param isOutgoing   true, if the edge is an outgoing edge, false if                               
+*                     incoming                                                                         *                     incoming                                                                      
+* @return the updated put                                                                              * @return the updated put                                                                           
+*/                                                                                                     */                                                                                                  
+private Put writeEdge(final Put put, final byte[] columnFamily, final EPGMEdge edge, boolean isOutgo | private Put writeEdge(final Put put, final byte[] columnFamily, final EPGMEdge edge, boolean isOutgo
+byte[] edgeKey = createEdgeIdentifier(edge, isOutgoing);                                               byte[] edgeKey = createEdgeIdentifier(edge, isOutgoing);                                            
+put.add(columnFamily, edgeKey, null);                                                                  put.add(columnFamily, edgeKey, null);                                                               
+return put;                                                                                            return put;                                                                                         
+}                                                                                                      }                                                                                                   

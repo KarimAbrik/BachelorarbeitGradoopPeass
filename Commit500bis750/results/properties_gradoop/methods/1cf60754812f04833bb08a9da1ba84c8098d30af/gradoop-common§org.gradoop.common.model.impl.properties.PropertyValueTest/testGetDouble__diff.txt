@@ -1,0 +1,5 @@
+@Test
+public void testGetDouble() throws Exception {
+    PropertyValue p = PropertyValue.create(DOUBLE_VAL_5);
+    assertEquals(DOUBLE_VAL_5, p.getDouble(), 0);
+}

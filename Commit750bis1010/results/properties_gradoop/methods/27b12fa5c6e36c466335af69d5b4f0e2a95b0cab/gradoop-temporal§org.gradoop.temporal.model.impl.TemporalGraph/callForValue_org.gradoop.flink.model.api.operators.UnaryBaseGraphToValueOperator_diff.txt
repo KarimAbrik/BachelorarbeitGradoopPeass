@@ -1,0 +1,7 @@
+//----------------------------------------------------------------------------
+// Auxiliary Operators
+//----------------------------------------------------------------------------
+@Override
+public <T> T callForValue(UnaryBaseGraphToValueOperator<TemporalGraph, T> operator) {
+    return operator.execute(this);
+}

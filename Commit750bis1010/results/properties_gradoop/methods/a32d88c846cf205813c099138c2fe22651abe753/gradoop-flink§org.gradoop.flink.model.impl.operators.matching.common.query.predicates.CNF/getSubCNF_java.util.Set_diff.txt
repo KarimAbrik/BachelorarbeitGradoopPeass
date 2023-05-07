@@ -1,0 +1,16 @@
+/**
+ * Filters all disjunctions that could be evaluated with the given set of variables and returns
+ * them in a new CNF.
+ * <p>
+ * Example:
+ * <br>
+ * Given {@code myFilter = CNF((a = b) And (b > 5 OR a > 10) AND (c = false) AND (a = c))}<br>
+ * {@code myFilter.getSubCNF(a,b) => CNF((a = b) And (b > 5 OR a > 10))}
+ *
+ * @param variables set of variables that must be included in the disjunction
+ * @return CNF containing only variables covered by the input list
+ */
+public CNF getSubCNF(Set<String> variables) {
+    List<CNFElement> filtered = predicates.stream().filter(p -> variables.containsAll(p.getVariables())).collect(Collectors.toList());
+    return new CNF(filtered);
+}

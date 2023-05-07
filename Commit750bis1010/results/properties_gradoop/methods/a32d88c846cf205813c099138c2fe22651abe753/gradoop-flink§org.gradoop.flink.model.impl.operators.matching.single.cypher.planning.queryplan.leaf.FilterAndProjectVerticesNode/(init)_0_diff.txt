@@ -1,0 +1,14 @@
+/**
+ * Creates a new node.
+ *
+ * @param vertices input vertices
+ * @param vertexVariable query variable of the vertex
+ * @param filterPredicate filter predicate to be applied on edges
+ * @param projectionKeys property keys whose associated values are projected to the output
+ */
+public FilterAndProjectVerticesNode(DataSet<V> vertices, String vertexVariable, CNF filterPredicate, Set<String> projectionKeys) {
+    this.vertices = vertices;
+    this.vertexVariable = vertexVariable;
+    this.filterPredicate = filterPredicate;
+    this.projectionKeys = new ArrayList<>(projectionKeys);
+}

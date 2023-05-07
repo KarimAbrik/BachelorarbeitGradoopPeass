@@ -1,0 +1,12 @@
+/**
+ * Creates a graph collection from the given arguments.
+ *
+ * @param vertices    vertices
+ * @param edges       edges
+ * @param graphHeads  graph heads
+ * @param config      Gradoop Flink configuration
+ */
+public GraphCollection(DataSet<VD> vertices, DataSet<ED> edges, DataSet<GD> graphHeads, GradoopFlinkConfig<VD, ED, GD> config) {
+    super(vertices, edges, config);
+    this.graphHeads = graphHeads;
+}

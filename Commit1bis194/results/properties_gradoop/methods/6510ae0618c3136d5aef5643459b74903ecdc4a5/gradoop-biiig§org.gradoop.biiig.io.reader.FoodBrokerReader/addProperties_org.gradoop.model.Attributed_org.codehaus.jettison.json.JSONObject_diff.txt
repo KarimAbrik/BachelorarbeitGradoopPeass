@@ -1,0 +1,10 @@
+/**
+ * Adds the META and DATA entries to the entity properties.
+ *
+ * @param attributed an entity with attributes
+ * @param object     json encoded vertex or edge
+ * @throws JSONException
+ */
+private void addProperties(final Attributed attributed, final JSONObject object) throws JSONException {
+    addProperties(attributed, object, "");
+}

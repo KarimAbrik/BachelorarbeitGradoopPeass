@@ -1,0 +1,10 @@
+/**
+ * Filters vertices based on the given graph identifiers.
+ *
+ * @param vertices  vertices
+ * @param ids       graph identifiers
+ * @return filtered vertices
+ */
+protected DataSet<V> getVertices(DataSet<V> vertices, DataSet<GradoopId> ids) {
+    return vertices.filter(new InAllGraphsBroadcast<>()).withBroadcastSet(ids, InAllGraphsBroadcast.GRAPH_IDS);
+}

@@ -1,0 +1,16 @@
+/**
+ * Checks if the given arguments make sense.
+ *
+ * @param cmd command line
+ */
+private static void performSanityCheck(final CommandLine cmd) {
+    if (!cmd.hasOption(OPTION_WORKERS)) {
+        throw new IllegalArgumentException("Chose the number of workers (-w)");
+    }
+    if (!cmd.hasOption(OPTION_GRAPH_INPUT_PATH)) {
+        throw new IllegalArgumentException("Chose the graph input path (-gip");
+    }
+    if (!cmd.hasOption(OPTION_GRAPH_OUTPUT_PATH)) {
+        throw new IllegalArgumentException("Chose the graph output path (-gop");
+    }
+}

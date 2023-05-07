@@ -1,0 +1,9 @@
+@Test
+public void testProject() {
+    Embedding embedding = new Embedding();
+    GradoopId id = GradoopId.get();
+    embedding.add(id, PropertyValue.create("a"), PropertyValue.create(42), PropertyValue.create("foobar"));
+    Embedding projection = embedding.project(Lists.newArrayList(0, 2));
+    assertEquals(PropertyValue.create("a"), projection.getProperty(0));
+    assertEquals(PropertyValue.create("foobar"), projection.getProperty(1));
+}

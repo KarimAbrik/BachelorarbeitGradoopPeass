@@ -1,0 +1,12 @@
+@Test
+public void testReadWithLabelAndProperties() throws Exception {
+    ExecutionEnvironment env = getExecutionEnvironment();
+    Map<String, Object> properties = Maps.newHashMap();
+    properties.put("foo", 42);
+    DataSet<ImportVertex<Long>> importVertices = env.fromElements(new ImportVertex<>(0L, "A", Properties.createFromMap(properties)), new ImportVertex<>(1L, "B", Properties.createFromMap(properties)));
+    DataSet<ImportEdge<Long>> importEdges = env.fromElements(new ImportEdge<>(0L, 0L, 1L, "a", Properties.createFromMap(properties)), new ImportEdge<>(1L, 1L, 0L, "b", Properties.createFromMap(properties)));
+    LogicalGraph expected = getLoaderFromString("expected[" + "(a:A {foo : 42})" + "(b:B {foo : 42})" + "(a)-[:a {foo : 42}]->(b)-[:b {foo : 42}]->(a)" + "]").getLogicalGraphByVariable("expected");
+    GraphDataSource<Long> dataSource = new GraphDataSource<>(importVertices, importEdges, getConfig());
+    LogicalGraph output = dataSource.getLogicalGraph();
+    collectAndAssertTrue(output.equalsByElementData(expected));
+}

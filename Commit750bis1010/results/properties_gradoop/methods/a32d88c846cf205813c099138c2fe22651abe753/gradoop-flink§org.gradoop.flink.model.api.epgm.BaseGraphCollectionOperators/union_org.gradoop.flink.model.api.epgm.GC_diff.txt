@@ -1,0 +1,13 @@
+//----------------------------------------------------------------------------
+// Binary Operators
+//----------------------------------------------------------------------------
+/**
+ * Returns a collection with all base graphs from two input collections.
+ * Graph equality is based on their identifiers.
+ *
+ * @param otherCollection collection to build union with
+ * @return union of both collections
+ */
+default GC union(GC otherCollection) {
+    return callForCollection(new Union<>(), otherCollection);
+}

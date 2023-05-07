@@ -1,0 +1,19 @@
+/**
+ * Draw a single vertex
+ *
+ * @param gfx The graphics-object to use for drawing
+ * @param v   The vertex to draw
+ */
+private void drawVertex(Graphics2D gfx, EPGMVertex v) {
+    int x = v.getPropertyValue(LayoutingAlgorithm.X_COORDINATE_PROPERTY).getInt();
+    int y = v.getPropertyValue(LayoutingAlgorithm.Y_COORDINATE_PROPERTY).getInt();
+    int size = plotter.vertexSize;
+    if (plotter.dynamicVertexSize && v.getPropertyValue("SIZE") != null) {
+        size *= Math.sqrt((double) v.getPropertyValue("SIZE").getInt());
+    }
+    gfx.fillOval(x - size / 2, y - size / 2, size, size);
+    if (plotter.vertexLabel != null) {
+        String label = v.getPropertyValue(plotter.vertexLabel).getString();
+        gfx.drawString(label, x, y + (plotter.vertexSize) + 10 + (plotter.vertexLabelSize / 2));
+    }
+}

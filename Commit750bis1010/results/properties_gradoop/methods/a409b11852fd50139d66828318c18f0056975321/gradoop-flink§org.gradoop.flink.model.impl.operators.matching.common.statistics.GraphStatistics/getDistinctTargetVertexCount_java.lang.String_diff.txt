@@ -1,0 +1,9 @@
+/**
+ * Returns the number of distinct target vertices incident to an edge with the specified label.
+ *
+ * @param edgeLabel edge label
+ * @return number of distinct target vertices incident to the labeled edge
+ */
+public long getDistinctTargetVertexCount(String edgeLabel) {
+    return distinctTargetVertexCountByEdgeLabel.getOrDefault(edgeLabel, 0L);
+}

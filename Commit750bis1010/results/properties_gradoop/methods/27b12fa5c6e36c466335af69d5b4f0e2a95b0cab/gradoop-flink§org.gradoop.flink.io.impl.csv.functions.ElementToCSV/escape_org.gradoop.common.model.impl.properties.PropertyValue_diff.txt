@@ -1,0 +1,12 @@
+/**
+ * Returns a escaped string representation of a property value.
+ *
+ * @param propertyValue property value to be escaped
+ * @return escaped string representation
+ */
+private static String escape(PropertyValue propertyValue) {
+    if (propertyValue.isString()) {
+        return StringEscaper.escape(propertyValue.toString(), CSVConstants.ESCAPED_CHARACTERS);
+    }
+    return propertyValue.toString();
+}

@@ -1,0 +1,12 @@
+/**
+ * Initialize this function.
+ *
+ * @param groupingKeys       The grouping key functions.
+ * @param aggregateFunctions The aggregate functions.
+ * @param vertexFactory      A factory used to create new vertices.
+ */
+public BuildSuperVertexFromTuple(List<KeyFunction<E, ?>> groupingKeys, List<AggregateFunction> aggregateFunctions, VertexFactory<E> vertexFactory) {
+    super(GroupingConstants.VERTEX_TUPLE_RESERVED, groupingKeys, aggregateFunctions);
+    reuse = Objects.requireNonNull(vertexFactory).createVertex();
+    vertexType = vertexFactory.getType();
+}

@@ -1,0 +1,11 @@
+/**
+ * Creates an instance of the TemporalGraphHeadFromNonTemporal map function. The temporal instance
+ * will have valid times extracted from the non-temporal instance by the given timeIntervalExtractor.
+ *
+ * @param elementFactory factory that is responsible for creating a temporal graph head instance
+ * @param timeIntervalExtractor the extractor instance fetches the validFrom and validTo values
+ */
+public GraphHeadToTemporalGraphHead(GraphHeadFactory<TemporalGraphHead> elementFactory, TimeIntervalExtractor<G> timeIntervalExtractor) {
+    this(elementFactory);
+    this.timeIntervalExtractor = timeIntervalExtractor;
+}

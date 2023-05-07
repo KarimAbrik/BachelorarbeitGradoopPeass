@@ -1,0 +1,6 @@
+@Test
+public void testGetCenterVertices() throws Exception {
+    List<Vertex> centerVertices = Lists.newArrayList(QUERY_HANDLER.getCenterVertices());
+    List<Vertex> expected = Lists.newArrayList(GDL_HANDLER.getVertexCache().get("v2"));
+    assertTrue(elementsEqual(centerVertices, expected));
+}

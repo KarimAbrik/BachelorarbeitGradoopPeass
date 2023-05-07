@@ -1,0 +1,22 @@
+/**
+ * Checks if the given arguments are valid.
+ *
+ * @param cmd command line
+ * @return true, iff the input is sane
+ */
+private static boolean performSanityCheck(final CommandLine cmd) {
+    boolean sane = true;
+    if (!cmd.hasOption(OPTION_VERTEX_LINE_READER)) {
+        LOG.error("Choose the vertex line reader (-vlr)");
+        sane = false;
+    }
+    if (!cmd.hasOption(OPTION_GRAPH_INPUT_PATH)) {
+        LOG.error("Choose the graph input path (-gip)");
+        sane = false;
+    }
+    if (!cmd.hasOption(OPTION_GRAPH_OUTPUT_PATH)) {
+        LOG.error("Choose the graph output path (-gop)");
+        sane = false;
+    }
+    return sane;
+}

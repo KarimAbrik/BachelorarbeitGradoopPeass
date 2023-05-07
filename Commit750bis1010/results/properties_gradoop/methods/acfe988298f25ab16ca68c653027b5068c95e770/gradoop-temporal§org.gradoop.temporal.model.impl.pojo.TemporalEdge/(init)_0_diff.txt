@@ -1,0 +1,17 @@
+/**
+ * Create a temporal edge instance with a time interval that implies its validity.
+ *
+ * @param id the Gradoop identifier of the edge
+ * @param label the label
+ * @param sourceId the Gradoop identifier of the source vertex
+ * @param targetId the Gradoop identifier of the target vertex
+ * @param properties the edge properties
+ * @param graphIds the Gradoop identifiers of the graph heads this edge is assigned to
+ * @param validFrom the start of the edge validity as timestamp represented as long
+ * @param validTo the end of the edge validity as timestamp represented as long
+ */
+public TemporalEdge(final GradoopId id, final String label, final GradoopId sourceId, final GradoopId targetId, final Properties properties, GradoopIdSet graphIds, Long validFrom, Long validTo) {
+    super(id, label, properties, graphIds, validFrom, validTo);
+    this.sourceId = sourceId;
+    this.targetId = targetId;
+}

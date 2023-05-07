@@ -1,0 +1,10 @@
+/**
+ * Reads the target vertex identifier from the json object.
+ *
+ * @param jsonEdge json string representation
+ * @return target vertex identifier
+ * @throws JSONException
+ */
+private GradoopId getTargetVertexID(JSONObject jsonEdge) throws JSONException {
+    return GradoopId.fromLongString(jsonEdge.getString(EDGE_TARGET));
+}

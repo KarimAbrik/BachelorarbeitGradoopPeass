@@ -1,0 +1,10 @@
+/**
+ * Creates a base graph from this graph and the input graph using the given binary operator.
+ *
+ * @param operator   binary graph to graph operator
+ * @param otherGraph other graph
+ * @return result of given operator
+ */
+default LG callForGraph(BinaryBaseGraphToBaseGraphOperator<LG> operator, LG otherGraph) {
+    return callForValue(operator, otherGraph);
+}

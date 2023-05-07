@@ -1,0 +1,21 @@
+/**                                                                                                    /**                                                                                                 
+* Initial step: initializations and reading the headline                                               * Initial step: initializations and reading the headline                                            
+*                                                                                                      *                                                                                                   
+* @param line line of sna input                                                                        * @param line line of sna input                                                                     
+*/                                                                                                     */                                                                                                  
+private void initialStep(String line) {                                                                private void initialStep(String line) {                                                             
+// Initialize Lists                                                                                  |                                                                                                     
+labels = Lists.newArrayList();                                                                       |                                                                                                     
+// Get properties (e.g. FirstName, LastName...)                                                        // Get properties (e.g. FirstName, LastName...)                                                     
+properties = getTokens(line);                                                                          properties = getTokens(line);                                                                       
+// Get MetaData (e.g. long, string, string...)                                                         // Get MetaData (e.g. long, string, string...)                                                      
+types = getTokens(conf.get(META_DATA));                                                                types = getTokens(conf.get(META_DATA));                                                             
+//readTypes(conf.get(META_DATA));                                                                      //readTypes(conf.get(META_DATA));                                                                   
+// Set Labels                                                                                        | // set label                                                                                        
+labels.add(conf.get(LABEL));                                                                         | label = conf.get(LABEL);                                                                            
+// getCSVType                                                                                          // getCSVType                                                                                       
+isNodeCSV = isNodeCSV();                                                                               isNodeCSV = isNodeCSV();                                                                            
+random = new Random();                                                                                 random = new Random();                                                                              
+// initialStep is over                                                                                 // initialStep is over                                                                              
+initialStep = false;                                                                                   initialStep = false;                                                                                
+}                                                                                                      }                                                                                                   

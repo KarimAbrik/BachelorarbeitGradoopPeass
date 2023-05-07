@@ -1,0 +1,9 @@
+/**
+ * Returns a list of variables that are contained in the embedding and refer to paths. The order
+ * of the variables is determined by their position within the embedding.
+ *
+ * @return a list of all path variables
+ */
+public List<String> getPathVariables() {
+    return getVariables(entry -> entry == EntryType.PATH);
+}

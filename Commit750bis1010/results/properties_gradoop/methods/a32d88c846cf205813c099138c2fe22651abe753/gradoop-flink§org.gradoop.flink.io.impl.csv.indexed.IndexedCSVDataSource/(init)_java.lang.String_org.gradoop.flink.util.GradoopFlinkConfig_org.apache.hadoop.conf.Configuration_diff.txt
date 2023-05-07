@@ -1,0 +1,12 @@
+/**
+ * Creates a new data source.
+ *
+ * @param csvPath  root path of csv files
+ * @param conf     gradoop configuration
+ * @param hdfsConf HDFS configuration
+ */
+public IndexedCSVDataSource(String csvPath, GradoopFlinkConfig conf, Configuration hdfsConf) {
+    super(csvPath, conf);
+    Objects.requireNonNull(hdfsConf);
+    this.hdfsConfig = hdfsConf;
+}

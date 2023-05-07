@@ -1,0 +1,11 @@
+@Override
+protected EmbeddingMetaData computeEmbeddingMetaData() {
+    EmbeddingMetaData embeddingMetaData = new EmbeddingMetaData();
+    embeddingMetaData.setEntryColumn(sourceVariable, EmbeddingMetaData.EntryType.VERTEX, 0);
+    embeddingMetaData.setEntryColumn(edgeVariable, EmbeddingMetaData.EntryType.EDGE, 1);
+    if (!isLoop()) {
+        embeddingMetaData.setEntryColumn(targetVariable, EmbeddingMetaData.EntryType.VERTEX, 2);
+    }
+    embeddingMetaData = setPropertyColumns(embeddingMetaData, edgeVariable, projectionKeys);
+    return embeddingMetaData;
+}

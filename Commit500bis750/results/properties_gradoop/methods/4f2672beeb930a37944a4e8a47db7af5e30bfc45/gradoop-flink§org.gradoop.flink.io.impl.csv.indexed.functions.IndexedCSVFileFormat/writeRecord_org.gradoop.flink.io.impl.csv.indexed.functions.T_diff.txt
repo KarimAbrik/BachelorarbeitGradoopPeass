@@ -1,0 +1,10 @@
+@Override
+public void writeRecord(T record) throws IOException {
+    if (record.getClass().equals(CSVVertex.class)) {
+        String label = ((CSVVertex) record).getLabel();
+        mapWriter(record, label);
+    } else if (record.getClass().equals(CSVEdge.class)) {
+        String label = ((CSVEdge) record).getLabel();
+        mapWriter(record, label);
+    }
+}

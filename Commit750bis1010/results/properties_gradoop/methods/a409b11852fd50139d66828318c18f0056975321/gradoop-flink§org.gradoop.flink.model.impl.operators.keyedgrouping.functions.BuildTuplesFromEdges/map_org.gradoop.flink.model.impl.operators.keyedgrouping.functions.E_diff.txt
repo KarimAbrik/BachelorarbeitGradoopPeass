@@ -1,0 +1,7 @@
+@Override
+public Tuple map(E element) throws Exception {
+    final Tuple result = super.map(element);
+    result.setField(element.getSourceId(), GroupingConstants.EDGE_TUPLE_SOURCEID);
+    result.setField(element.getTargetId(), GroupingConstants.EDGE_TUPLE_TARGETID);
+    return result;
+}

@@ -1,0 +1,10 @@
+/**
+ * Connects another CNF via AND. Duplicate predicates are removed.
+ *
+ * @param other a predicate in cnf
+ * @return this
+ */
+public CNF and(CNF other) {
+    other.getPredicates().stream().filter(predicate -> !this.predicates.contains(predicate)).forEach(this::addPredicate);
+    return this;
+}

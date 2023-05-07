@@ -1,0 +1,7 @@
+/**
+ * Returns the left hand side predicate
+ * @return the left hand side predicate
+ */
+public QueryPredicate getLhs() {
+    return QueryPredicate.createFrom(or.getArguments()[0]);
+}

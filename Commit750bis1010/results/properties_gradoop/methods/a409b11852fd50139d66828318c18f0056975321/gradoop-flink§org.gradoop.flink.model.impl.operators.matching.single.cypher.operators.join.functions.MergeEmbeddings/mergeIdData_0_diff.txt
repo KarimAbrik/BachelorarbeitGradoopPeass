@@ -1,0 +1,18 @@
+/**
+ * Merges the idData columns of left and right
+ * All entries of left are kept as well as all right entries which aren't join columns
+ *
+ * @param left the left hand side embedding
+ * @param right the right hand side embedding
+ * @return the merged data represented as byte array
+ */
+private byte[] mergeIdData(Embedding left, Embedding right) {
+    byte[] newIdData = new byte[left.getIdData().length + right.getIdData().length - (joinColumnsRightSize * (Embedding.ID_ENTRY_SIZE))];
+    int offset = left.getIdData().length;
+    System.arraycopy(left.getIdData(), 0, newIdData, 0, offset);
+    for (int i : nonJoinColumnsRight) {
+        System.arraycopy(right.getRawIdEntry(i), 0, newIdData, offset, Embedding.ID_ENTRY_SIZE);
+        offset += Embedding.ID_ENTRY_SIZE;
+    }
+    return newIdData;
+}

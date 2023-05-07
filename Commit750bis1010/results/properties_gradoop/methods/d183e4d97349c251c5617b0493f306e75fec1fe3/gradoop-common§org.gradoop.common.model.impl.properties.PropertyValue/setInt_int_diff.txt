@@ -1,0 +1,10 @@
+/**
+ * Sets the wrapped value as {@code int} value.
+ *
+ * @param intValue intValue
+ */
+public void setInt(int intValue) {
+    rawBytes = new byte[OFFSET + Bytes.SIZEOF_INT];
+    rawBytes[0] = TYPE_INTEGER;
+    Bytes.putInt(rawBytes, OFFSET, intValue);
+}

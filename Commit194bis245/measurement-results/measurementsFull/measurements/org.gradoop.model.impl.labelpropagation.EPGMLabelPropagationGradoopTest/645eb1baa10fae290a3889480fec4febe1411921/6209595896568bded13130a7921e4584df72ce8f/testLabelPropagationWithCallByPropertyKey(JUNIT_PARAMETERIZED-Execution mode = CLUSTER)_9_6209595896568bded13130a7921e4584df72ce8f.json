@@ -1,0 +1,68 @@
+{
+  "clazz" : "org.gradoop.model.impl.labelpropagation.EPGMLabelPropagationGradoopTest",
+  "methods" : [ {
+    "method" : "testLabelPropagationWithCallByPropertyKey",
+    "datacollectorResults" : [ {
+      "name" : "de.dagere.kopeme.datacollection.TimeDataCollectorNoGC",
+      "chunks" : [ ],
+      "results" : [ {
+        "value" : 3.0650585331000004E9,
+        "deviation" : 0.5754989759020802,
+        "min" : 2.029799228E9,
+        "max" : 7.887379688E9,
+        "warmup" : 0,
+        "iterations" : 10,
+        "repetitions" : 2,
+        "commit" : null,
+        "vmRunConfiguration" : {
+          "showStart" : false,
+          "executeBeforeClassInMeasurement" : false,
+          "redirectToTemp" : false,
+          "redirectToNull" : true,
+          "useKieker" : false
+        },
+        "parameters" : {
+          "JUNIT_PARAMETERIZED" : "Execution mode = CLUSTER"
+        },
+        "javaVersion" : "1.8.0_362",
+        "cpu" : "model name : Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz",
+        "memory" : "MemTotal: 16280544 kB",
+        "date" : 1681000722468,
+        "fulldata" : {
+          "fileName" : null,
+          "values" : [ {
+            "startTime" : 1681000691495,
+            "value" : 7887379688
+          }, {
+            "startTime" : 1681000699383,
+            "value" : 3514961509
+          }, {
+            "startTime" : 1681000702898,
+            "value" : 3017148919
+          }, {
+            "startTime" : 1681000705915,
+            "value" : 2243751807
+          }, {
+            "startTime" : 1681000708159,
+            "value" : 2917637213
+          }, {
+            "startTime" : 1681000711076,
+            "value" : 2029799228
+          }, {
+            "startTime" : 1681000713106,
+            "value" : 2042241285
+          }, {
+            "startTime" : 1681000715148,
+            "value" : 2613804084
+          }, {
+            "startTime" : 1681000717762,
+            "value" : 2166650713
+          }, {
+            "startTime" : 1681000719929,
+            "value" : 2217210885
+          } ]
+        }
+      } ]
+    } ]
+  } ]
+}

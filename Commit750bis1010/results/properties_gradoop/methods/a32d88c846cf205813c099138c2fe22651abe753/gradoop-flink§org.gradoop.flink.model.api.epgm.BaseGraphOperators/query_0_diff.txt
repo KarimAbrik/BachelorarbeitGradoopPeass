@@ -1,0 +1,14 @@
+/**
+ * Evaluates the given query using the Cypher query engine.
+ *
+ * @param query               Cypher query
+ * @param constructionPattern Construction pattern
+ * @param attachData          attach original vertex and edge data to the result
+ * @param vertexStrategy      morphism setting for vertex mapping
+ * @param edgeStrategy        morphism setting for edge mapping
+ * @param graphStatistics     statistics about the data graph
+ * @return graph collection containing matching subgraphs
+ */
+default GC query(String query, String constructionPattern, boolean attachData, MatchStrategy vertexStrategy, MatchStrategy edgeStrategy, GraphStatistics graphStatistics) {
+    return callForCollection(new CypherPatternMatching<>(query, constructionPattern, attachData, vertexStrategy, edgeStrategy, graphStatistics));
+}

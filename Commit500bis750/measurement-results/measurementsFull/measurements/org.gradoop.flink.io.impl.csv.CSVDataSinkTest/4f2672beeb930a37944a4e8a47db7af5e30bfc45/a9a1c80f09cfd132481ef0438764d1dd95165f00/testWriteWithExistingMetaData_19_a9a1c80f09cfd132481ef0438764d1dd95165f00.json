@@ -1,0 +1,65 @@
+{
+  "clazz" : "org.gradoop.flink.io.impl.csv.CSVDataSinkTest",
+  "methods" : [ {
+    "method" : "testWriteWithExistingMetaData",
+    "datacollectorResults" : [ {
+      "name" : "de.dagere.kopeme.datacollection.TimeDataCollectorNoGC",
+      "chunks" : [ ],
+      "results" : [ {
+        "value" : 4.797866007E9,
+        "deviation" : 0.2650860982072349,
+        "min" : 3.716564647E9,
+        "max" : 8.176174243E9,
+        "warmup" : 0,
+        "iterations" : 10,
+        "repetitions" : 12,
+        "commit" : null,
+        "vmRunConfiguration" : {
+          "showStart" : false,
+          "executeBeforeClassInMeasurement" : false,
+          "redirectToTemp" : false,
+          "redirectToNull" : true,
+          "useKieker" : false
+        },
+        "javaVersion" : "1.8.0_362",
+        "cpu" : "model name : Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz",
+        "memory" : "MemTotal: 16280544 kB",
+        "date" : 1679276291180,
+        "fulldata" : {
+          "fileName" : null,
+          "values" : [ {
+            "startTime" : 1679276242986,
+            "value" : 8176174243
+          }, {
+            "startTime" : 1679276251162,
+            "value" : 4912028731
+          }, {
+            "startTime" : 1679276256074,
+            "value" : 4574546424
+          }, {
+            "startTime" : 1679276260649,
+            "value" : 4645245271
+          }, {
+            "startTime" : 1679276265294,
+            "value" : 5253937637
+          }, {
+            "startTime" : 1679276270548,
+            "value" : 4215034950
+          }, {
+            "startTime" : 1679276274763,
+            "value" : 3716564647
+          }, {
+            "startTime" : 1679276278480,
+            "value" : 4246625733
+          }, {
+            "startTime" : 1679276282727,
+            "value" : 4361525947
+          }, {
+            "startTime" : 1679276287088,
+            "value" : 3876976487
+          } ]
+        }
+      } ]
+    } ]
+  } ]
+}

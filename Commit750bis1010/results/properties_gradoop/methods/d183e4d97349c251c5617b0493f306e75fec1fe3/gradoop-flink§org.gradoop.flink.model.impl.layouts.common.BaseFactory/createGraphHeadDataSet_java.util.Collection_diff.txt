@@ -1,0 +1,17 @@
+/**
+ * Creates a graph head dataset from a given collection.
+ * Encapsulates the workaround for dataset creation from an empty collection.
+ *
+ * @param graphHeads  graph heads
+ * @return graph head dataset
+ */
+protected DataSet<GraphHead> createGraphHeadDataSet(Collection<GraphHead> graphHeads) {
+    ExecutionEnvironment env = getConfig().getExecutionEnvironment();
+    DataSet<GraphHead> graphHeadSet;
+    if (graphHeads.isEmpty()) {
+        graphHeadSet = env.fromElements(getConfig().getGraphHeadFactory().createGraphHead()).filter(new False<>());
+    } else {
+        graphHeadSet = env.fromCollection(graphHeads);
+    }
+    return graphHeadSet;
+}

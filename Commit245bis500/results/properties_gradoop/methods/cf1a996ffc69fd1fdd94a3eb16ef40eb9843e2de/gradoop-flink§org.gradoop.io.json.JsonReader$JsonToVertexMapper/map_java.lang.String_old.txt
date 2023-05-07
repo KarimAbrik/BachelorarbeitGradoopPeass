@@ -1,0 +1,16 @@
+/**
+ * Constructs a vertex from a given JSON string representation.
+ *
+ * @param s json string
+ * @return Gelly vertex storing gradoop vertex data
+ * @throws Exception
+ */
+@Override
+public VD map(String s) throws Exception {
+    JSONObject jsonVertex = new JSONObject(s);
+    Long vertexID = getID(jsonVertex);
+    String label = getLabel(jsonVertex);
+    Map<String, Object> properties = getProperties(jsonVertex);
+    Set<Long> graphs = getGraphs(jsonVertex);
+    return vertexFactory.createVertex(vertexID, label, properties, graphs);
+}

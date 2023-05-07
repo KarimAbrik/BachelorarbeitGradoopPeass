@@ -1,0 +1,11 @@
+@Override
+public void join(EPGMEdge first, Tuple2<EPGMVertex, GradoopId> second, Collector<EPGMEdge> out) throws Exception {
+    if (second != null && !(second.f1.equals(GradoopId.NULL_VALUE))) {
+        if (isItSourceDoingNow) {
+            first.setSourceId(second.f1);
+        } else {
+            first.setTargetId(second.f1);
+        }
+    }
+    out.collect(first);
+}

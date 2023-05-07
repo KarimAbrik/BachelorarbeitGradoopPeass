@@ -1,0 +1,6 @@
+@Test
+public void testSetDateTime() throws Exception {
+    PropertyValue p = new PropertyValue();
+    p.setDateTime(DATETIME_VAL_d);
+    assertEquals(DATETIME_VAL_d, p.getDateTime());
+}

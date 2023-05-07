@@ -1,0 +1,10 @@
+                                                                                                     | /**                                                                                                 
+                                                                                                     | * {@inheritDoc}                                                                                     
+                                                                                                     | */                                                                                                  
+                                                                                                     | @Override                                                                                           
+                                                                                                     | public byte[] getRowKey(final GradoopId elementId) throws IOException {                             
+                                                                                                     | if (elementId == null) {                                                                            
+                                                                                                     | throw new IllegalArgumentException("elementId must not be null");                                   
+                                                                                                     | }                                                                                                   
+                                                                                                     | return Writables.getBytes(elementId);                                                               
+                                                                                                     | }                                                                                                   

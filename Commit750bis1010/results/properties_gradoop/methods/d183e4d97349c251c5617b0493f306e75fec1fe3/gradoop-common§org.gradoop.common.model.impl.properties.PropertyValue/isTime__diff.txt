@@ -1,0 +1,8 @@
+/**
+ * True, if the wrapped value is of type {@code LocalTime}.
+ *
+ * @return true, if {@code LocalTime} value
+ */
+public boolean isTime() {
+    return rawBytes[0] == TYPE_TIME;
+}

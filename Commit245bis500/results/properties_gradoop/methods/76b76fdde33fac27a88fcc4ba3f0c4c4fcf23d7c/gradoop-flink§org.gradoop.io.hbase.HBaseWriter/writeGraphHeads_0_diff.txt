@@ -1,0 +1,68 @@
+/**
+ * Converts runtime graph data to persistent graph data (including vertex
+ * and edge identifiers) and writes it to HBase.
+ *
+ * @param epgmDatabase               EPGM database instance
+ * @param graphHeadHandler           graph data handler
+ * @param persistentGraphHeadFactory persistent graph data factory
+ * @param graphDataTableName         HBase graph data table name
+ * @param <PGD>                      persistent graph data type
+ * @throws IOException
+ */
+public <PGD extends PersistentGraphHead> void writeGraphHeads(final EPGMDatabase<VD, ED, GD> epgmDatabase, final GraphHeadHandler<GD> graphHeadHandler, final PersistentGraphHeadFactory<GD, PGD> persistentGraphHeadFactory, final String graphDataTableName) throws IOException {
+    final LogicalGraph<VD, ED, GD> graph = epgmDatabase.getDatabaseGraph();
+    // build (graph-id, vertex-id) tuples from vertices
+    DataSet<Tuple2<GradoopId, GradoopId>> graphIdToVertexId = graph.getVertices().flatMap(new FlatMapFunction<VD, Tuple2<GradoopId, GradoopId>>() {
+
+        @Override
+        public void flatMap(VD vertex, Collector<Tuple2<GradoopId, GradoopId>> collector) throws Exception {
+            if (vertex.getGraphCount() > 0) {
+                for (GradoopId graphID : vertex.getGraphIds()) {
+                    collector.collect(new Tuple2<>(graphID, vertex.getId()));
+                }
+            }
+        }
+    });
+    // build (graph-id, edge-id) tuples from vertices
+    DataSet<Tuple2<GradoopId, GradoopId>> graphIdToEdgeId = graph.getEdges().flatMap(new FlatMapFunction<ED, Tuple2<GradoopId, GradoopId>>() {
+
+        @Override
+        public void flatMap(ED edge, Collector<Tuple2<GradoopId, GradoopId>> collector) throws Exception {
+            if (edge.getGraphCount() > 0) {
+                for (GradoopId graphId : edge.getGraphIds()) {
+                    collector.collect(new Tuple2<>(graphId, edge.getId()));
+                }
+            }
+        }
+    });
+    // co-group (graph-id, vertex-id) and (graph-id, edge-id) tuples to
+    // (graph-id, {vertex-id}, {edge-id}) triples
+    DataSet<Tuple3<GradoopId, GradoopIds, GradoopIds>> graphToVertexIdsAndEdgeIds = graphIdToVertexId.coGroup(graphIdToEdgeId).where(0).equalTo(0).with(new CoGroupFunction<Tuple2<GradoopId, GradoopId>, Tuple2<GradoopId, GradoopId>, Tuple3<GradoopId, GradoopIds, GradoopIds>>() {
+
+        @Override
+        public void coGroup(Iterable<Tuple2<GradoopId, GradoopId>> graphToVertexIds, Iterable<Tuple2<GradoopId, GradoopId>> graphToEdgeIds, Collector<Tuple3<GradoopId, GradoopIds, GradoopIds>> collector) throws Exception {
+            GradoopIds vertexIds = new GradoopIds();
+            GradoopIds edgeIds = new GradoopIds();
+            GradoopId graphId = null;
+            boolean initialized = false;
+            for (Tuple2<GradoopId, GradoopId> graphToVertexTuple : graphToVertexIds) {
+                if (!initialized) {
+                    graphId = graphToVertexTuple.f0;
+                    initialized = true;
+                }
+                vertexIds.add(graphToVertexTuple.f1);
+            }
+            for (Tuple2<GradoopId, GradoopId> graphToEdgeTuple : graphToEdgeIds) {
+                edgeIds.add(graphToEdgeTuple.f1);
+            }
+            collector.collect(new Tuple3<>(graphId, vertexIds, edgeIds));
+        }
+    });
+    // join (graph-id, {vertex-id}, {edge-id}) triples with
+    // (graph-id, graph-data) and build (persistent-graph-data)
+    DataSet<PersistentGraphHead> persistentGraphDataSet = graphToVertexIdsAndEdgeIds.join(epgmDatabase.getCollection().getGraphHeads()).where(0).equalTo("id").with(new PersistentGraphHeadJoinFunction<>(persistentGraphHeadFactory));
+    // write (persistent-graph-data) to HBase table
+    Job job = Job.getInstance();
+    job.getConfiguration().set(TableOutputFormat.OUTPUT_TABLE, graphDataTableName);
+    persistentGraphDataSet.map(new GraphHeadToHBaseMapper<>(graphHeadHandler)).output(new HadoopOutputFormat<>(new TableOutputFormat<GradoopId>(), job));
+}

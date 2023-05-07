@@ -1,0 +1,11 @@
+/**
+ * Returns the position of the embedding entry corresponding to the given variable.
+ * The method checks if the variable is mapped to a vertex or an edge entry.
+ *
+ * @param variable variable name
+ * @return the position of the corresponding embedding entry
+ * @throws NoSuchElementException if there is no column mapped to the specified variable
+ */
+public int getEntryColumn(String variable) {
+    return entryMapping.get(Pair.of(variable, getEntryType(variable)));
+}

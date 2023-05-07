@@ -1,0 +1,17 @@
+@Test
+public void testGraphEqualityByElementIds() throws Exception {
+    FlinkAsciiGraphLoader loader = getTestGraphLoader();
+    GraphEquality<EPGMGraphHead, EPGMVertex, EPGMEdge, LogicalGraph, GraphCollection> equality = new GraphEquality<>(new GraphHeadToEmptyString<>(), new VertexToIdString<>(), new EdgeToIdString<>(), true);
+    LogicalGraph gRef = loader.getLogicalGraphByVariable("gRef");
+    LogicalGraph gClone = loader.getLogicalGraphByVariable("gClone");
+    LogicalGraph gDiffId = loader.getLogicalGraphByVariable("gDiffId");
+    LogicalGraph gEmpty = loader.getLogicalGraphByVariable("gEmpty");
+    // direct operator call
+    collectAndAssertTrue(equality.execute(gRef, gClone));
+    collectAndAssertFalse(equality.execute(gRef, gDiffId));
+    collectAndAssertFalse(equality.execute(gRef, gEmpty));
+    // convenience method
+    collectAndAssertTrue(gRef.equalsByElementIds(gClone));
+    collectAndAssertFalse(gRef.equalsByElementIds(gDiffId));
+    collectAndAssertFalse(gRef.equalsByElementIds(gEmpty));
+}

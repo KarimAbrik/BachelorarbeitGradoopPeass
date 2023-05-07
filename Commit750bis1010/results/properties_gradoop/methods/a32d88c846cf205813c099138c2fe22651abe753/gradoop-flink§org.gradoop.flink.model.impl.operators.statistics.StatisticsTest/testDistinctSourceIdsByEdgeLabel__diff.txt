@@ -1,0 +1,13 @@
+@Test
+public void testDistinctSourceIdsByEdgeLabel() throws Exception {
+    LogicalGraph db = getSocialNetworkLoader().getLogicalGraph();
+    List<WithCount<String>> result = new DistinctSourceIdsByEdgeLabel().execute(db).collect();
+    assertThat(result.size(), is(5));
+    Map<String, Long> cache = new HashMap<>(5);
+    result.forEach(e -> cache.put(e.getObject(), e.getCount()));
+    assertThat(cache.get("hasInterest"), is(4L));
+    assertThat(cache.get("hasModerator"), is(2L));
+    assertThat(cache.get("knows"), is(6L));
+    assertThat(cache.get("hasTag"), is(2L));
+    assertThat(cache.get("hasMember"), is(2L));
+}

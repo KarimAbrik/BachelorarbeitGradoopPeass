@@ -1,0 +1,10 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public byte[] getRowKey(final Long elementId) {
+    if (elementId == null) {
+        throw new IllegalArgumentException("elementId must not be null");
+    }
+    return Bytes.toBytes(elementId.toString());
+}

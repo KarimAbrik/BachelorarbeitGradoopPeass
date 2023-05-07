@@ -1,0 +1,5 @@
+@Override
+public LogicalGraph execute(LogicalGraph graph) {
+    DataSet<EPGMGraphHead> newGraphHead = graph.aggregate(new VertexCount(), new EdgeCount()).getGraphHead().map(new CalculateDensity(SamplingEvaluationConstants.PROPERTY_KEY_DENSITY));
+    return graph.getFactory().fromDataSets(newGraphHead, graph.getVertices(), graph.getEdges());
+}

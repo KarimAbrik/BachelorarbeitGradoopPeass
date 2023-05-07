@@ -1,0 +1,12 @@
+@Test
+public void testIterator() throws Exception {
+    GradoopId id1 = GradoopId.get();
+    GradoopId id2 = GradoopId.get();
+    GradoopIdSet ids = GradoopIdSet.fromExisting(id1, id2);
+    Iterator<GradoopId> idsIterator = ids.iterator();
+    assertTrue(idsIterator.hasNext());
+    assertNotNull(idsIterator.next());
+    assertTrue(idsIterator.hasNext());
+    assertNotNull(idsIterator.next());
+    assertFalse(idsIterator.hasNext());
+}

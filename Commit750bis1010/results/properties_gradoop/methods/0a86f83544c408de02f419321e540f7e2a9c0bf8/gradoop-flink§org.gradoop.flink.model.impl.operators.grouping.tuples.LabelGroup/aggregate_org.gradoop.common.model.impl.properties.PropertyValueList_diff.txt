@@ -1,0 +1,26 @@
+/**
+ * Aggregates the aggregate values with {@code values} using the aggregate functions
+ *
+ * @param values values to aggregate with
+ */
+public void aggregate(PropertyValueList values) {
+    if (f4.isEmpty()) {
+        setAggregateValues(values);
+        return;
+    }
+    Iterator<PropertyValue> valueIt = values.iterator();
+    ListIterator<PropertyValue> aggregateIt = f4.listIterator();
+    PropertyValue value;
+    PropertyValue aggregate;
+    for (AggregateFunction valueAggregator : getAggregateFunctions()) {
+        value = valueIt.next();
+        if (!PropertyValue.NULL_VALUE.equals(value)) {
+            aggregate = aggregateIt.next();
+            if (!PropertyValue.NULL_VALUE.equals(aggregate)) {
+                aggregateIt.set(valueAggregator.aggregate(aggregate, value));
+            } else {
+                aggregateIt.set(value);
+            }
+        }
+    }
+}

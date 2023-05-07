@@ -1,0 +1,11 @@
+/**
+ * Returns the cardinality of the specified label according to the provided statistics.
+ *
+ * @param label label
+ * @param isVertex true, iff label maps to a vertex
+ * @return number of elements with the given label
+ */
+long getCardinality(String label, boolean isVertex) {
+    long cardinality = isVertex ? graphStatistics.getVertexCount(label) : graphStatistics.getEdgeCount(label);
+    return cardinality > 0 ? cardinality : isVertex ? graphStatistics.getVertexCount() : graphStatistics.getEdgeCount();
+}

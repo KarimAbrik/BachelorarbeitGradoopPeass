@@ -1,0 +1,9 @@
+/**                                                                                                  |                                                                                                     
+* Create a new LabelIn predicate                                                                     |                                                                                                     
+*                                                                                                    |                                                                                                     
+* @param labels label range                                                                          |                                                                                                     
+*/                                                                                                   |                                                                                                     
+protected LabelIn(String... labels) {                                                                |                                                                                                     
+assert labels.length &gt; 0;                                                                         |                                                                                                     
+Collections.addAll(this.labels, labels);                                                             |                                                                                                     
+}                                                                                                    |                                                                                                     

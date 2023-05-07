@@ -1,0 +1,11 @@
+/**
+ * Group by a property key.
+ *
+ * @param key The property key.
+ * @param <T> the type of the elements to group.
+ * @return The grouping key function extracting the property with that key.
+ * @see PropertyKeyFunction
+ */
+public static <T extends Attributed> KeyFunctionWithDefaultValue<T, byte[]> property(String key) {
+    return new PropertyKeyFunction<>(key);
+}

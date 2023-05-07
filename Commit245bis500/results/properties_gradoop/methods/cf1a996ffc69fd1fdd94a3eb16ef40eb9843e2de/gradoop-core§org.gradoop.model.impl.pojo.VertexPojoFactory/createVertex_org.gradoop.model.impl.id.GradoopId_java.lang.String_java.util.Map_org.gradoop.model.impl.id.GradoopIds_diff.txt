@@ -1,0 +1,9 @@
+                                                                                                     | /**                                                                                                 
+                                                                                                     | * {@inheritDoc}                                                                                     
+                                                                                                     | */                                                                                                  
+                                                                                                     | @Override                                                                                           
+                                                                                                     | public VertexPojo createVertex(final GradoopId id, final String label, final Map&lt;String, Object&g
+                                                                                                     | checkId(id);                                                                                        
+                                                                                                     | checkLabel(label);                                                                                  
+                                                                                                     | return new VertexPojo(id, label, properties, graphs);                                               
+                                                                                                     | }                                                                                                   

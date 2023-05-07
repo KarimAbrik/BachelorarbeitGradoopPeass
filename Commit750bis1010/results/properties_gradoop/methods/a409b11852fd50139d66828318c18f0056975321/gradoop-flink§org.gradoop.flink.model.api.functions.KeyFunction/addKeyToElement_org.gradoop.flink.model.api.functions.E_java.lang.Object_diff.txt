@@ -1,0 +1,11 @@
+/**
+ * Store a key on an element.<p>
+ * This is used to store the grouping key on the super element after grouping.<p>
+ * The default implementation of this function does not change the element.
+ *
+ * @param element The element where the key should be stored.
+ * @param key     The key to store on the element. The type of the key is expected to be the same as the
+ *                type of keys extracted by this key function.
+ */
+default void addKeyToElement(E element, Object key) {
+}

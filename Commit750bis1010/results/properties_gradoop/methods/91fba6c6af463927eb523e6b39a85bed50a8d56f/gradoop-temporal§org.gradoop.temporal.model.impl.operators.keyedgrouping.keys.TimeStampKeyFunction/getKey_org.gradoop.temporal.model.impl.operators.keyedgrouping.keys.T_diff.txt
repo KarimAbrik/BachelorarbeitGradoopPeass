@@ -1,0 +1,36 @@
+@Override                                                                                              @Override                                                                                           
+public Long getKey(T element) {                                                                        public Long getKey(T element) {                                                                     
+final Tuple2&lt;Long, Long&gt; interval;                                                               final Tuple2&lt;Long, Long&gt; interval;                                                            
+switch(timeDimension) {                                                                                switch(timeDimension) {                                                                             
+case TRANSACTION_TIME:                                                                                 case TRANSACTION_TIME:                                                                              
+interval = element.getTransactionTime();                                                               interval = element.getTransactionTime();                                                            
+break;                                                                                                 break;                                                                                              
+case VALID_TIME:                                                                                       case VALID_TIME:                                                                                    
+interval = element.getValidTime();                                                                     interval = element.getValidTime();                                                                  
+break;                                                                                                 break;                                                                                              
+default:                                                                                               default:                                                                                            
+throw new UnsupportedOperationException("Time interval not supported by this element: " + timeDimens   throw new UnsupportedOperationException("Time interval not supported by this element: " + timeDimens
+}                                                                                                      }                                                                                                   
+final Long fieldValue;                                                                                 final Long fieldValue;                                                                              
+switch(timeDimensionField) {                                                                           switch(timeDimensionField) {                                                                        
+case FROM:                                                                                             case FROM:                                                                                          
+fieldValue = interval.f0;                                                                              fieldValue = interval.f0;                                                                           
+                                                                                                     | if (fieldValue.equals(TemporalElement.DEFAULT_TIME_FROM) && (fieldOfTimeStamp != null)) {           
+                                                                                                     | return getDefaultKey();                                                                             
+                                                                                                     | }                                                                                                   
+break;                                                                                                 break;                                                                                              
+case TO:                                                                                               case TO:                                                                                            
+fieldValue = interval.f1;                                                                              fieldValue = interval.f1;                                                                           
+                                                                                                     | if (fieldValue.equals(TemporalElement.DEFAULT_TIME_TO) && (fieldOfTimeStamp != null)) {             
+                                                                                                     | return getDefaultKey();                                                                             
+                                                                                                     | }                                                                                                   
+break;                                                                                                 break;                                                                                              
+default:                                                                                               default:                                                                                            
+throw new UnsupportedOperationException("Field is not supported: " + timeDimensionField);              throw new UnsupportedOperationException("Field is not supported: " + timeDimensionField);           
+}                                                                                                      }                                                                                                   
+if (fieldOfTimeStamp == null) {                                                                        if (fieldOfTimeStamp == null) {                                                                     
+return fieldValue;                                                                                     return fieldValue;                                                                                  
+}                                                                                                      }                                                                                                   
+final LocalDateTime date = LocalDateTime.ofInstant(Instant.ofEpochMilli(fieldValue), UTC);             final LocalDateTime date = LocalDateTime.ofInstant(Instant.ofEpochMilli(fieldValue), UTC);          
+return fieldOfTimeStamp.getFrom(date);                                                                 return fieldOfTimeStamp.getFrom(date);                                                              
+}                                                                                                      }                                                                                                   

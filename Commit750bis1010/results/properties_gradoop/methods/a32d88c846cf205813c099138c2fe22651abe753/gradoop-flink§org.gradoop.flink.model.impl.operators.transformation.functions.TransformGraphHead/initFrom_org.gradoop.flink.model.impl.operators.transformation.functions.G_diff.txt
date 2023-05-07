@@ -1,0 +1,4 @@
+@Override
+protected G initFrom(G graphHead) {
+    return graphHeadFactory.initGraphHead(graphHead.getId(), GradoopConstants.DEFAULT_GRAPH_LABEL);
+}

@@ -1,0 +1,6 @@
+@Test
+public void testVertexCount() throws Exception {
+    LogicalGraph db = getSocialNetworkLoader().getLogicalGraph();
+    Long vertexCount = new VertexCount().execute(db).collect().get(0);
+    assertThat(vertexCount, is(11L));
+}

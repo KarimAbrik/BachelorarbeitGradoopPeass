@@ -1,0 +1,9 @@
+/**
+ * Creates the key selector
+ *
+ * @param columns columns to create hash code from
+ */
+public ExtractJoinColumns(List<Integer> columns) {
+    this.columns = columns;
+    this.sb = new StringBuilder();
+}

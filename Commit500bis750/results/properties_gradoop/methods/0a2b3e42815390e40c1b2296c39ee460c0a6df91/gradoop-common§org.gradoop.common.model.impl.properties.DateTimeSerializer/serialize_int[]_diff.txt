@@ -1,0 +1,15 @@
+/**
+ * Generalization of serialization methods.
+ *
+ * @param ints int array representation of {@code LocalDate, LocalTime, LocalDateTime}
+ *
+ * @return serialized value
+ */
+private static byte[] serialize(int[] ints) {
+    byte[] bytes = new byte[ints.length * SIZEOF_INT];
+    for (int i = 0; i < ints.length; i++) {
+        int offset = i * SIZEOF_INT;
+        Bytes.putInt(bytes, offset, ints[i]);
+    }
+    return bytes;
+}

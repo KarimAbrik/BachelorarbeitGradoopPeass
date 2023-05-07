@@ -1,0 +1,15 @@
+/**                                                                                                    /**                                                                                                 
+* Creates graph data from JSON string representation.                                                  * Creates graph data from JSON string representation.                                               
+*                                                                                                      *                                                                                                   
+* @param s json string representation                                                                  * @param s json string representation                                                               
+* @return Subgraph storing graph data                                                                  * @return Subgraph storing graph data                                                               
+* @throws Exception                                                                                    * @throws Exception                                                                                 
+*/                                                                                                     */                                                                                                  
+@Override                                                                                              @Override                                                                                           
+public GD map(String s) throws Exception {                                                             public GD map(String s) throws Exception {                                                          
+JSONObject jsonGraph = new JSONObject(s);                                                              JSONObject jsonGraph = new JSONObject(s);                                                           
+Long graphID = getID(jsonGraph);                                                                     | GradoopId graphID = getID(jsonGraph);                                                               
+String label = getLabel(jsonGraph);                                                                    String label = getLabel(jsonGraph);                                                                 
+Map&lt;String, Object&gt; properties = getProperties(jsonGraph);                                       Map&lt;String, Object&gt; properties = getProperties(jsonGraph);                                    
+return graphHeadFactory.createGraphHead(graphID, label, properties);                                   return graphHeadFactory.createGraphHead(graphID, label, properties);                                
+}                                                                                                      }                                                                                                   

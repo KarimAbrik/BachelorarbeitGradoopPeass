@@ -1,0 +1,14 @@
+@Override
+public void reduce(Iterable<Tuple2<GradoopId, GradoopId>> mappings, Collector<Tuple2<GradoopId, GradoopIdSet>> collector) throws Exception {
+    boolean first = true;
+    GradoopId vertexId = null;
+    GradoopIdSet btgIds = new GradoopIdSet();
+    for (Tuple2<GradoopId, GradoopId> pair : mappings) {
+        if (first) {
+            vertexId = pair.f0;
+            first = false;
+        }
+        btgIds.add(pair.f1);
+    }
+    collector.collect(new Tuple2<>(vertexId, btgIds));
+}

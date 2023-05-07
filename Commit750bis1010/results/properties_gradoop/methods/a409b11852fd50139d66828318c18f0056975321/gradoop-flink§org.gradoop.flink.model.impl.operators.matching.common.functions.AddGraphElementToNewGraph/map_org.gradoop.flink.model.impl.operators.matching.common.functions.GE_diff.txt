@@ -1,0 +1,11 @@
+@Override
+public Tuple2<GE, G> map(GE value) {
+    reuseVariableMapping.clear();
+    reuseVariableMapping.put(PropertyValue.create(this.variable), PropertyValue.create(value.getId()));
+    G graphHead = graphHeadFactory.createGraphHead();
+    graphHead.setProperty(PatternMatching.VARIABLE_MAPPING_KEY, reuseVariableMapping);
+    value.addGraphId(graphHead.getId());
+    reuseTuple.f0 = value;
+    reuseTuple.f1 = graphHead;
+    return reuseTuple;
+}

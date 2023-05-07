@@ -1,0 +1,13 @@
+/**                                                                                                    /**                                                                                                 
+* Returns all edges that belong to the given graph variables.                                          * Returns all edges that belong to the given graph variables.                                       
+*                                                                                                      *                                                                                                   
+* @param variables graph variables used in the GDL script                                              * @param variables graph variables used in the GDL script                                           
+* @return edges                                                                                        * @return edges                                                                                     
+*/                                                                                                     */                                                                                                  
+public Collection&lt;E&gt; getEdgesByGraphVariables(String... variables) {                             public Collection&lt;E&gt; getEdgesByGraphVariables(String... variables) {                          
+GradoopIds graphIds = new GradoopIds();                                                              | GradoopIdSet graphIds = new GradoopIdSet();                                                         
+for (G graphHead : getGraphHeadsByVariables(variables)) {                                              for (G graphHead : getGraphHeadsByVariables(variables)) {                                           
+graphIds.add(graphHead.getId());                                                                       graphIds.add(graphHead.getId());                                                                    
+}                                                                                                      }                                                                                                   
+return getEdgesByGraphIds(graphIds);                                                                   return getEdgesByGraphIds(graphIds);                                                                
+}                                                                                                      }                                                                                                   

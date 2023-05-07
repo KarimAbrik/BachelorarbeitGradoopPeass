@@ -1,0 +1,5 @@
+@Override
+public V join(V element, Tuple2<GradoopId, GradoopIdSet> mapping) throws Exception {
+    element.setGraphIds(mapping.f1);
+    return element;
+}

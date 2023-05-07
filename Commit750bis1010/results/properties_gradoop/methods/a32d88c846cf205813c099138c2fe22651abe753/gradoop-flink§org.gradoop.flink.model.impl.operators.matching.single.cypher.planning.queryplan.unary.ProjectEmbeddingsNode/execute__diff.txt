@@ -1,0 +1,6 @@
+@Override
+public DataSet<Embedding> execute() {
+    ProjectEmbeddings op = new ProjectEmbeddings(getChildNode().execute(), whiteListColumns);
+    op.setName(toString());
+    return op.evaluate();
+}

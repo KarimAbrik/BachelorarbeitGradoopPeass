@@ -1,0 +1,5 @@
+@Override
+public EPGMVertex join(PageRank.Result result, EPGMVertex vertex) {
+    vertex.setProperty(pageRankPropery, PropertyValue.create(result.getPageRankScore().getValue()));
+    return vertex;
+}

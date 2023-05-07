@@ -1,0 +1,7 @@
+@Override
+public GraphTransaction join(EPGMGraphHead graphHead, Tuple3<GradoopId, Set<EPGMVertex>, Set<EPGMEdge>> sets) throws Exception {
+    reuseTransaction.setGraphHead(graphHead);
+    reuseTransaction.setVertices(sets == null ? EMPTY_VERTEX_SET : sets.f1);
+    reuseTransaction.setEdges(sets == null ? EMPTY_EDGE_SET : sets.f2);
+    return reuseTransaction;
+}

@@ -1,0 +1,9 @@
+/**
+ * Returns a list of all variable that are contained in the embedding.
+ * The order of the variables is determined by their position within the embedding.
+ *
+ * @return a list of all variables
+ */
+public List<String> getVariables() {
+    return entryMapping.entrySet().stream().sorted(Comparator.comparingInt(Map.Entry::getValue)).map(entry -> entry.getKey().getLeft()).collect(Collectors.toList());
+}

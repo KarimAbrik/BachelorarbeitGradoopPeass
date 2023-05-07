@@ -1,0 +1,18 @@
+/**
+ * Creates an edge dataset from a given collection.
+ * Encapsulates the workaround for dataset creation from an empty collection.
+ *
+ * @param edges edge collection
+ * @return edge dataset
+ */
+protected DataSet<Edge> createEdgeDataSet(Collection<Edge> edges) {
+    ExecutionEnvironment env = getConfig().getExecutionEnvironment();
+    DataSet<Edge> edgeSet;
+    if (edges.isEmpty()) {
+        GradoopId dummyId = GradoopId.get();
+        edgeSet = env.fromElements(getConfig().getEdgeFactory().createEdge(dummyId, dummyId)).filter(new False<>());
+    } else {
+        edgeSet = env.fromCollection(edges);
+    }
+    return edgeSet;
+}

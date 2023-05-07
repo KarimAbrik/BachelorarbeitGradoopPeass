@@ -1,0 +1,68 @@
+{
+  "clazz" : "org.gradoop.model.impl.LogicalGraphOverlapTest",
+  "methods" : [ {
+    "method" : "testNonOverlappingGraphs",
+    "datacollectorResults" : [ {
+      "name" : "de.dagere.kopeme.datacollection.TimeDataCollectorNoGC",
+      "chunks" : [ ],
+      "results" : [ {
+        "value" : 9.505067982E8,
+        "deviation" : 0.7634873257799374,
+        "min" : 5.17351813E8,
+        "max" : 2.898287909E9,
+        "warmup" : 0,
+        "iterations" : 10,
+        "repetitions" : 2,
+        "commit" : null,
+        "vmRunConfiguration" : {
+          "showStart" : false,
+          "executeBeforeClassInMeasurement" : false,
+          "redirectToTemp" : false,
+          "redirectToNull" : true,
+          "useKieker" : false
+        },
+        "parameters" : {
+          "JUNIT_PARAMETERIZED" : "Execution mode = CLUSTER"
+        },
+        "javaVersion" : "1.8.0_362",
+        "cpu" : "model name : Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz",
+        "memory" : "MemTotal: 16280544 kB",
+        "date" : 1680987782367,
+        "fulldata" : {
+          "fileName" : null,
+          "values" : [ {
+            "startTime" : 1680987772701,
+            "value" : 2898287909
+          }, {
+            "startTime" : 1680987775599,
+            "value" : 1343710081
+          }, {
+            "startTime" : 1680987776943,
+            "value" : 833142997
+          }, {
+            "startTime" : 1680987777776,
+            "value" : 546407902
+          }, {
+            "startTime" : 1680987778323,
+            "value" : 517351813
+          }, {
+            "startTime" : 1680987778840,
+            "value" : 533933502
+          }, {
+            "startTime" : 1680987779374,
+            "value" : 604388231
+          }, {
+            "startTime" : 1680987779978,
+            "value" : 742927918
+          }, {
+            "startTime" : 1680987780721,
+            "value" : 699907502
+          }, {
+            "startTime" : 1680987781421,
+            "value" : 785010127
+          } ]
+        }
+      } ]
+    } ]
+  } ]
+}

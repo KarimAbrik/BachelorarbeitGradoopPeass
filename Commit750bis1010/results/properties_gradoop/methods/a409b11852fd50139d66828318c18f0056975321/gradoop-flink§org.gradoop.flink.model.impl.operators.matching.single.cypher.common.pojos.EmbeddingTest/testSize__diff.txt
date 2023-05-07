@@ -1,0 +1,10 @@
+@Test
+public void testSize() {
+    Embedding embedding = new Embedding();
+    assertEquals(0, embedding.size());
+    embedding.add(GradoopId.get());
+    assertEquals(1, embedding.size());
+    GradoopId[] idList = new GradoopId[] { GradoopId.get(), GradoopId.get() };
+    embedding.add(idList);
+    assertEquals(2, embedding.size());
+}

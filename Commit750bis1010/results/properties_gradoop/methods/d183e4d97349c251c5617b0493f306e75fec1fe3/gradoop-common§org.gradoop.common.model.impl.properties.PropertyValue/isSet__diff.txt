@@ -1,0 +1,8 @@
+/**
+ * True, if the wrapped value is of type {@code Set}.
+ *
+ * @return true, if {@code Set} value
+ */
+public boolean isSet() {
+    return rawBytes[0] == TYPE_SET;
+}

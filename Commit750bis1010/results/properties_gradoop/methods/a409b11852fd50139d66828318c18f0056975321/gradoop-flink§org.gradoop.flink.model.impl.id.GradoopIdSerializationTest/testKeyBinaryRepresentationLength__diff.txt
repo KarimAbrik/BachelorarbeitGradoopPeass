@@ -1,0 +1,13 @@
+/**
+ * Test if {@link GradoopId}s set their byte representation size correctly.
+ * The binary length and the normalized key length should be the same
+ * ({@value GradoopId#ID_SIZE}).
+ *
+ * @see GradoopId#ID_SIZE for the byte-size of the current implementation.
+ */
+@Test
+public void testKeyBinaryRepresentationLength() {
+    GradoopId inputId = GradoopId.get();
+    assertEquals(GradoopId.ID_SIZE, inputId.getBinaryLength());
+    assertEquals(GradoopId.ID_SIZE, inputId.getMaxNormalizedKeyLen());
+}

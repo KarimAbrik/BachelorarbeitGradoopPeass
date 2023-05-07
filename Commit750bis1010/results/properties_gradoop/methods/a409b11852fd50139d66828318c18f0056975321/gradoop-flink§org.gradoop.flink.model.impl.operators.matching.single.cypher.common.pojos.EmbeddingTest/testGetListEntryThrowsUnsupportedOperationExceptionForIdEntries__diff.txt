@@ -1,0 +1,6 @@
+@Test(expected = UnsupportedOperationException.class)
+public void testGetListEntryThrowsUnsupportedOperationExceptionForIdEntries() {
+    Embedding embedding = new Embedding();
+    embedding.add(GradoopId.get());
+    embedding.getIdList(0);
+}

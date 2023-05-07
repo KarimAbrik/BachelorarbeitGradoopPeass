@@ -1,0 +1,11 @@
+/**
+ * Constructor
+ *
+ * @param maxIterations Counter to define maximal iteration for the algorithm
+ * @param propertyKey   Property key to access the label value
+ */
+protected LabelPropagation(int maxIterations, String propertyKey) {
+    super(new VertexToGellyVertexWithPropertyValue(propertyKey), new EdgeToGellyEdgeWithNullValue());
+    this.maxIterations = maxIterations;
+    this.propertyKey = checkNotNull(propertyKey);
+}

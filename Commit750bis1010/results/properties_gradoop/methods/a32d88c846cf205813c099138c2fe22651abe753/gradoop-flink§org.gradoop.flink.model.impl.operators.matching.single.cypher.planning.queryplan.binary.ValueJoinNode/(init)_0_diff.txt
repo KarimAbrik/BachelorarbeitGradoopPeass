@@ -1,0 +1,13 @@
+/**
+ * Creates  a new node.
+ *
+ * @param leftChild left input plan node
+ * @param rightChild right right input plan node
+ * @param leftJoinProperties properties used for joining on the left side
+ * @param rightJoinProperties properties used for joining on the right side
+ * @param vertexStrategy morphism setting for vertices
+ * @param edgeStrategy morphism setting for edges
+ */
+public ValueJoinNode(PlanNode leftChild, PlanNode rightChild, List<Pair<String, String>> leftJoinProperties, List<Pair<String, String>> rightJoinProperties, MatchStrategy vertexStrategy, MatchStrategy edgeStrategy) {
+    this(leftChild, rightChild, leftJoinProperties, rightJoinProperties, vertexStrategy, edgeStrategy, JoinOperatorBase.JoinHint.OPTIMIZER_CHOOSES);
+}

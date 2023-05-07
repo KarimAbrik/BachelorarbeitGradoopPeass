@@ -1,0 +1,5 @@
+@Override
+public void open(Configuration parameters) throws Exception {
+    super.open(parameters);
+    vertexDictionary = getRuntimeContext().<HashMap<Integer, String>>getBroadcastVariable(TLFConstants.VERTEX_DICTIONARY).get(0);
+}

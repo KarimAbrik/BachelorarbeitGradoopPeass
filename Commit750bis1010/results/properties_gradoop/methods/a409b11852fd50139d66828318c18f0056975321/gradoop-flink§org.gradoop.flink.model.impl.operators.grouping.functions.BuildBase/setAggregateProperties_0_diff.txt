@@ -1,0 +1,17 @@
+//----------------------------------------------------------------------------
+// Aggregation properties
+//----------------------------------------------------------------------------
+/**
+ * Sets the given property values as new properties at the given element.
+ * @param element attributed element
+ * @param values aggregate values
+ * @param valueAggregators aggregate functions
+ */
+protected void setAggregateProperties(Attributed element, PropertyValueList values, List<AggregateFunction> valueAggregators) {
+    if (!valueAggregators.isEmpty()) {
+        Iterator<PropertyValue> valueIt = values.iterator();
+        for (AggregateFunction valueAggregator : valueAggregators) {
+            element.setProperty(valueAggregator.getAggregatePropertyKey(), valueAggregator.postAggregate(valueIt.next()));
+        }
+    }
+}

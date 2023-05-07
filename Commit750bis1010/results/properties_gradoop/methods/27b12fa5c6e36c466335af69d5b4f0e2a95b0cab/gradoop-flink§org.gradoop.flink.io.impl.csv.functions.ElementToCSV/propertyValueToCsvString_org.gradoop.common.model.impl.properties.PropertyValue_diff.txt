@@ -1,0 +1,15 @@
+/**
+ * Returns a CSV string representation of the property value.
+ *
+ * @param p property value
+ * @return CSV string
+ */
+private String propertyValueToCsvString(PropertyValue p) {
+    if (p.isList() || p.isSet()) {
+        return collectionToCsvString((Collection) p.getObject());
+    } else if (p.isMap()) {
+        return p.getMap().entrySet().stream().map(e -> escape(e.getKey()) + CSVConstants.MAP_SEPARATOR + escape(e.getValue())).collect(Collectors.joining(CSVConstants.LIST_DELIMITER, "{", "}"));
+    } else {
+        return escape(p);
+    }
+}

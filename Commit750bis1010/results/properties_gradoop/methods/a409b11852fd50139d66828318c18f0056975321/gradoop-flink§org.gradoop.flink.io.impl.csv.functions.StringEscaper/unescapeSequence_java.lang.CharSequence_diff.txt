@@ -1,0 +1,12 @@
+/**
+ * Returns the character of a given escape sequence.
+ *
+ * @param sequence escape sequence
+ * @return escaped character
+ */
+private static char unescapeSequence(CharSequence sequence) {
+    if (CUSTOM_ESCAPE_SEQUENCES.containsValue(sequence)) {
+        return CUSTOM_ESCAPE_SEQUENCES.inverse().get(sequence);
+    }
+    return sequence.charAt(1);
+}

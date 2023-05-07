@@ -1,0 +1,9 @@
+@Override
+public void write(DataOutputView out) throws IOException {
+    out.writeInt(idData.length);
+    out.write(idData);
+    out.writeInt(propertyData.length);
+    out.write(propertyData);
+    out.writeInt(idListData.length);
+    out.write(idListData);
+}

@@ -1,0 +1,8 @@
+/**
+ * Returns true if vertex properties shall be used for grouping.
+ *
+ * @return true iff vertex properties shall be used for grouping
+ */
+protected boolean useVertexProperties() {
+    return !vertexLabelGroups.isEmpty();
+}

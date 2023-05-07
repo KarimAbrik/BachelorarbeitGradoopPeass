@@ -1,0 +1,7 @@
+@Override
+public GraphCollection groupEdgesByRollUp(List<String> vertexGroupingKeys, List<AggregateFunction> vertexAggregateFunctions, List<String> edgeGroupingKeys, List<AggregateFunction> edgeAggregateFunctions) {
+    if (edgeGroupingKeys == null || edgeGroupingKeys.isEmpty()) {
+        throw new IllegalArgumentException("Missing edge grouping key(s).");
+    }
+    return callForCollection(new EdgeRollUp(vertexGroupingKeys, vertexAggregateFunctions, edgeGroupingKeys, edgeAggregateFunctions));
+}

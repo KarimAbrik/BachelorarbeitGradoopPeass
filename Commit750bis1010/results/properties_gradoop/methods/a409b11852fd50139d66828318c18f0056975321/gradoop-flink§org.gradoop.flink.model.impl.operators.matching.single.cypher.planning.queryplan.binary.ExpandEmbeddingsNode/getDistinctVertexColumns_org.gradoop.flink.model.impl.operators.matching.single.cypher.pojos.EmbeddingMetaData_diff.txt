@@ -1,0 +1,11 @@
+/**
+ * According to the specified {@link #vertexStrategy} and the specified
+ * {@link EmbeddingMetaData}, the method returns the columns that need to contain distinct
+ * entries.
+ *
+ * @param metaData meta data for the embedding
+ * @return distinct vertex columns
+ */
+private List<Integer> getDistinctVertexColumns(EmbeddingMetaData metaData) {
+    return this.vertexStrategy == MatchStrategy.ISOMORPHISM ? metaData.getVertexVariables().stream().map(metaData::getEntryColumn).collect(Collectors.toList()) : Collections.emptyList();
+}

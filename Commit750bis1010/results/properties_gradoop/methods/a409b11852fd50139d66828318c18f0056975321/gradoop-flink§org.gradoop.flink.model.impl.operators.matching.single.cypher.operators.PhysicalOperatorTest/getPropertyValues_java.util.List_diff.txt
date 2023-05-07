@@ -1,0 +1,8 @@
+protected PropertyValue[] getPropertyValues(List<String> propertyNames) {
+    PropertyValue[] propertyValues = new PropertyValue[propertyNames.size()];
+    int i = 0;
+    for (String propertyName : propertyNames) {
+        propertyValues[i++] = PropertyValue.create(propertyName);
+    }
+    return propertyValues;
+}

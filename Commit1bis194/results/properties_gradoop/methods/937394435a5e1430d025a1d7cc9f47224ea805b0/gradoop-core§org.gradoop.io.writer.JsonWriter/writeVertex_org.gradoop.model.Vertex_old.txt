@@ -1,0 +1,18 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public String writeVertex(Vertex vertex) {
+    JSONObject json = new JSONObject();
+    try {
+        json.put(VERTEX_ID, vertex.getID());
+        json = writeLabels(json, vertex);
+        json = writeProperties(json, vertex);
+        json = writeEdges(json, OUT_EDGES, vertex.getOutgoingEdges());
+        json = writeEdges(json, IN_EDGES, vertex.getIncomingEdges());
+        json = writeGraphs(json, vertex);
+    } catch (JSONException e) {
+        e.printStackTrace();
+    }
+    return json.toString();
+}

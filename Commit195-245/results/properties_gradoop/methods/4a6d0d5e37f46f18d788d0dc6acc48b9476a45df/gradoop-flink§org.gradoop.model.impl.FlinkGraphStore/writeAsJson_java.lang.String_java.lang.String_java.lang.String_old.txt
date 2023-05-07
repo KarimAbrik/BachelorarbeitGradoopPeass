@@ -1,6 +1,0 @@
-@Override
-public void writeAsJson(final String vertexFile, final String edgeFile, final String graphFile) throws Exception {
-    getDatabaseGraph().getGellyGraph().getVertices().writeAsFormattedText(vertexFile, new JsonWriter.VertexTextFormatter()).getDataSet().collect();
-    getDatabaseGraph().getGellyGraph().getEdges().writeAsFormattedText(edgeFile, new JsonWriter.EdgeTextFormatter()).getDataSet().collect();
-    getCollection().getSubgraphs().writeAsFormattedText(graphFile, new JsonWriter.GraphTextFormatter()).getDataSet().collect();
-}

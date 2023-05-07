@@ -1,0 +1,4 @@
+@Override
+public DataSet<WithCount<K>> execute(LogicalGraph graph) {
+    return extractValuePairs(graph).groupBy(0).reduceGroup(new CombinePropertyValueDistribution<>());
+}

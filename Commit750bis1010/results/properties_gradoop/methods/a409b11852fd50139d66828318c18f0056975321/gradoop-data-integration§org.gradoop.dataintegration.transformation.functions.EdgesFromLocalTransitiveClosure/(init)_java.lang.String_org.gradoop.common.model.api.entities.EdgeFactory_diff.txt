@@ -1,0 +1,10 @@
+/**
+ * The constructor of the CoGroup function to created new edges based on transitivity.
+ *
+ * @param newEdgeLabel The edge label of the newly created edge.
+ * @param factory The {@link EPGMEdgeFactory} new edges are created with.
+ */
+public EdgesFromLocalTransitiveClosure(String newEdgeLabel, EdgeFactory<E> factory) {
+    this.edgeType = Objects.requireNonNull(factory).getType();
+    this.reuse = factory.createEdge(Objects.requireNonNull(newEdgeLabel), GradoopId.NULL_VALUE, GradoopId.NULL_VALUE);
+}

@@ -1,0 +1,4 @@
+@Test(expected = IllegalArgumentException.class)
+public void testCompareToWithIncompatibleTypes() {
+    create(10).compareTo(create("10"));
+}

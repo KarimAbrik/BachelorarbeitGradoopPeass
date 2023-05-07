@@ -1,0 +1,68 @@
+{
+  "clazz" : "org.gradoop.model.impl.LogicalGraphOverlapTest",
+  "methods" : [ {
+    "method" : "testNonOverlappingGraphs",
+    "datacollectorResults" : [ {
+      "name" : "de.dagere.kopeme.datacollection.TimeDataCollectorNoGC",
+      "chunks" : [ ],
+      "results" : [ {
+        "value" : 9.475855429999999E8,
+        "deviation" : 0.8267903053658466,
+        "min" : 4.37186206E8,
+        "max" : 3.079411008E9,
+        "warmup" : 0,
+        "iterations" : 10,
+        "repetitions" : 2,
+        "commit" : null,
+        "vmRunConfiguration" : {
+          "showStart" : false,
+          "executeBeforeClassInMeasurement" : false,
+          "redirectToTemp" : false,
+          "redirectToNull" : true,
+          "useKieker" : false
+        },
+        "parameters" : {
+          "JUNIT_PARAMETERIZED" : "Execution mode = CLUSTER"
+        },
+        "javaVersion" : "1.8.0_362",
+        "cpu" : "model name : Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz",
+        "memory" : "MemTotal: 16280544 kB",
+        "date" : 1680987630240,
+        "fulldata" : {
+          "fileName" : null,
+          "values" : [ {
+            "startTime" : 1680987620549,
+            "value" : 3079411008
+          }, {
+            "startTime" : 1680987623628,
+            "value" : 1203658713
+          }, {
+            "startTime" : 1680987624832,
+            "value" : 873296630
+          }, {
+            "startTime" : 1680987625705,
+            "value" : 533301260
+          }, {
+            "startTime" : 1680987626239,
+            "value" : 547609973
+          }, {
+            "startTime" : 1680987626786,
+            "value" : 437186206
+          }, {
+            "startTime" : 1680987627223,
+            "value" : 614450185
+          }, {
+            "startTime" : 1680987627838,
+            "value" : 756284155
+          }, {
+            "startTime" : 1680987628594,
+            "value" : 540892838
+          }, {
+            "startTime" : 1680987629135,
+            "value" : 889764462
+          } ]
+        }
+      } ]
+    } ]
+  } ]
+}

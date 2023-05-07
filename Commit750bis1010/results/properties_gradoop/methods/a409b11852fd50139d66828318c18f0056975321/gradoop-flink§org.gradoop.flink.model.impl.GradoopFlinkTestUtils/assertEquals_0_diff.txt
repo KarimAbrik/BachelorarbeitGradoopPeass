@@ -1,0 +1,5 @@
+public static void assertEquals(GraphTransaction a, GraphTransaction b) {
+    GradoopTestUtils.validateElements(a.getGraphHead(), b.getGraphHead());
+    GradoopTestUtils.validateElementCollections(a.getVertices(), b.getVertices());
+    GradoopTestUtils.validateElementCollections(a.getEdges(), b.getEdges());
+}

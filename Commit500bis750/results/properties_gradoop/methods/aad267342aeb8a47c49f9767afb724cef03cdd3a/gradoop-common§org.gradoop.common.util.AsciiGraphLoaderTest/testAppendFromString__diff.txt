@@ -1,0 +1,9 @@
+@Test
+public void testAppendFromString() {
+    AsciiGraphLoader<GraphHead, Vertex, Edge> asciiGraphLoader = AsciiGraphLoader.fromString("[()-->()]", config);
+    validateCollections(asciiGraphLoader, 1, 2, 1);
+    validateCaches(asciiGraphLoader, 0, 0, 0);
+    asciiGraphLoader.appendFromString("[()-->()]");
+    validateCollections(asciiGraphLoader, 2, 4, 2);
+    validateCaches(asciiGraphLoader, 0, 0, 0);
+}

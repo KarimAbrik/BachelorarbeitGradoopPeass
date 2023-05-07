@@ -1,0 +1,7 @@
+@Test
+public void testGetIdBytesByColumn() {
+    GradoopId id = GradoopId.get();
+    Embedding embedding = new Embedding();
+    embedding.add(id);
+    assertArrayEquals(id.toByteArray(), embedding.getRawId(0));
+}

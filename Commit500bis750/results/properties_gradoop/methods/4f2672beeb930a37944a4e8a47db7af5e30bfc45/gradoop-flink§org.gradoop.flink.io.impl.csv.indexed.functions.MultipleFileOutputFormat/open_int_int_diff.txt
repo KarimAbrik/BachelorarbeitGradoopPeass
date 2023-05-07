@@ -1,0 +1,32 @@
+@Override
+public void open(int taskNumber, int numTasks) throws IOException {
+    if (taskNumber < 0 || numTasks < 1) {
+        throw new IllegalArgumentException("TaskNumber: " + taskNumber + ", numTasks: " + numTasks);
+    }
+    if (LOG.isDebugEnabled()) {
+        LOG.debug("Opening stream for output (" + (taskNumber + 1) + "/" + numTasks + "). WriteMode=" + writeMode + ", OutputDirectoryMode=" + outputDirectoryMode);
+    }
+    Path p = this.outputFilePath;
+    if (p == null) {
+        throw new IOException("The file path is null.");
+    }
+    fs = p.getFileSystem();
+    // if this is a local file system, we need to initialize the local output directory here
+    if (!fs.isDistributedFS()) {
+        if (numTasks == 1 && outputDirectoryMode == OutputDirectoryMode.PARONLY) {
+            // output should go to a single file
+            /* prepare local output path. checks for write mode and removes existing files
+          in case of OVERWRITE mode */
+            if (!fs.initOutPathLocalFS(p, writeMode, false)) {
+                // output preparation failed! Cancel task.
+                throw new IOException("Output path '" + p.toString() + "' could not be initialized. Canceling task...");
+            }
+        } else {
+            // numTasks > 1 || outDirMode == OutputDirectoryMode.ALWAYS
+            if (!fs.initOutPathLocalFS(p, writeMode, true)) {
+                // output preparation failed! Cancel task.
+                throw new IOException("Output directory '" + p.toString() + "' could not be created. Canceling task...");
+            }
+        }
+    }
+}

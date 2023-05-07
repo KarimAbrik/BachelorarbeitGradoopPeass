@@ -1,0 +1,11 @@
+@Override
+public int compare(AdjacencyListCell<ED, VD> a, AdjacencyListCell<ED, VD> b) {
+    int comparison = a.getVertexData().compareTo(b.getVertexData());
+    if (comparison == 0) {
+        comparison = a.getEdgeData().compareTo(b.getEdgeData());
+        if (comparison == 0) {
+            comparison = a.getVertexData().compareTo(b.getVertexData());
+        }
+    }
+    return comparison;
+}

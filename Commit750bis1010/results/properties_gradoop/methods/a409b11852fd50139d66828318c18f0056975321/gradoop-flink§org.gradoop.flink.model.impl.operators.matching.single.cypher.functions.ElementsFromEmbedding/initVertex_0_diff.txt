@@ -1,0 +1,10 @@
+/**
+ * Initializes an vertex using the specified parameters
+ *
+ * @param out flat map collector
+ * @param graphHead graph head to assign vertex to
+ * @param vertexId vertex identifier
+ */
+private void initVertex(Collector<Element> out, G graphHead, GradoopId vertexId) {
+    initVertexWithData(out, graphHead, vertexId, null);
+}

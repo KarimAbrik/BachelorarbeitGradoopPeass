@@ -1,0 +1,14 @@
+/**
+ * Create a new MinimalCSVImporter instance by the given parameters.
+ *
+ * @param path the path to the csv file
+ * @param tokenSeparator the token delimiter of the csv file
+ * @param config GradoopFlinkConfig configuration
+ * @param columnNames property identifiers for each column
+ * @param checkReoccurringHeader if each row of the file should be checked for reoccurring of
+ *                               the column property names
+ */
+public MinimalCSVImporter(String path, String tokenSeparator, GradoopFlinkConfig config, List<String> columnNames, boolean checkReoccurringHeader) {
+    this(path, tokenSeparator, config, checkReoccurringHeader);
+    this.columnNames = Objects.requireNonNull(columnNames);
+}

@@ -1,0 +1,68 @@
+{
+  "clazz" : "org.gradoop.model.impl.LogicalGraphAggregateTest",
+  "methods" : [ {
+    "method" : "aggregateEdgeCountTest",
+    "datacollectorResults" : [ {
+      "name" : "de.dagere.kopeme.datacollection.TimeDataCollectorNoGC",
+      "chunks" : [ ],
+      "results" : [ {
+        "value" : 4.4529790470000005E8,
+        "deviation" : 0.6455436102447474,
+        "min" : 1.88861251E8,
+        "max" : 1.169298928E9,
+        "warmup" : 0,
+        "iterations" : 10,
+        "repetitions" : 2,
+        "commit" : null,
+        "vmRunConfiguration" : {
+          "showStart" : false,
+          "executeBeforeClassInMeasurement" : false,
+          "redirectToTemp" : false,
+          "redirectToNull" : true,
+          "useKieker" : false
+        },
+        "parameters" : {
+          "JUNIT_PARAMETERIZED" : "Execution mode = CLUSTER"
+        },
+        "javaVersion" : "1.8.0_362",
+        "cpu" : "model name : Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz",
+        "memory" : "MemTotal: 16280544 kB",
+        "date" : 1680980371460,
+        "fulldata" : {
+          "fileName" : null,
+          "values" : [ {
+            "startTime" : 1680980366846,
+            "value" : 1169298928
+          }, {
+            "startTime" : 1680980368016,
+            "value" : 547606248
+          }, {
+            "startTime" : 1680980368564,
+            "value" : 470336154
+          }, {
+            "startTime" : 1680980369034,
+            "value" : 539144868
+          }, {
+            "startTime" : 1680980369573,
+            "value" : 445808503
+          }, {
+            "startTime" : 1680980370019,
+            "value" : 378082967
+          }, {
+            "startTime" : 1680980370397,
+            "value" : 253308882
+          }, {
+            "startTime" : 1680980370650,
+            "value" : 229506439
+          }, {
+            "startTime" : 1680980370880,
+            "value" : 231024807
+          }, {
+            "startTime" : 1680980371111,
+            "value" : 188861251
+          } ]
+        }
+      } ]
+    } ]
+  } ]
+}

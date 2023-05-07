@@ -1,0 +1,6 @@
+@Test
+public void testSetMap() throws Exception {
+    PropertyValue p = new PropertyValue();
+    p.setMap(MAP_VAL_9);
+    assertEquals(MAP_VAL_9, p.getMap());
+}

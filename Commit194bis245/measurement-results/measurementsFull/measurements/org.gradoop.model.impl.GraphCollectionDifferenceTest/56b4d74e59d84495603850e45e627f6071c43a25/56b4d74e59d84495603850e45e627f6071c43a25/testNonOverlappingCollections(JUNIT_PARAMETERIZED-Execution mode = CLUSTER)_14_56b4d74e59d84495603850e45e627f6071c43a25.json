@@ -1,0 +1,68 @@
+{
+  "clazz" : "org.gradoop.model.impl.GraphCollectionDifferenceTest",
+  "methods" : [ {
+    "method" : "testNonOverlappingCollections",
+    "datacollectorResults" : [ {
+      "name" : "de.dagere.kopeme.datacollection.TimeDataCollectorNoGC",
+      "chunks" : [ ],
+      "results" : [ {
+        "value" : 1.0584657119999999E9,
+        "deviation" : 0.8154956463493785,
+        "min" : 5.86147808E8,
+        "max" : 3.482672024E9,
+        "warmup" : 0,
+        "iterations" : 10,
+        "repetitions" : 2,
+        "commit" : null,
+        "vmRunConfiguration" : {
+          "showStart" : false,
+          "executeBeforeClassInMeasurement" : false,
+          "redirectToTemp" : false,
+          "redirectToNull" : true,
+          "useKieker" : false
+        },
+        "parameters" : {
+          "JUNIT_PARAMETERIZED" : "Execution mode = CLUSTER"
+        },
+        "javaVersion" : "1.8.0_362",
+        "cpu" : "model name : Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz",
+        "memory" : "MemTotal: 16280544 kB",
+        "date" : 1680979210802,
+        "fulldata" : {
+          "fileName" : null,
+          "values" : [ {
+            "startTime" : 1680979200053,
+            "value" : 3482672024
+          }, {
+            "startTime" : 1680979203535,
+            "value" : 1054800011
+          }, {
+            "startTime" : 1680979204590,
+            "value" : 830850079
+          }, {
+            "startTime" : 1680979205421,
+            "value" : 803380461
+          }, {
+            "startTime" : 1680979206225,
+            "value" : 681439139
+          }, {
+            "startTime" : 1680979206906,
+            "value" : 586147808
+          }, {
+            "startTime" : 1680979207492,
+            "value" : 611055686
+          }, {
+            "startTime" : 1680979208103,
+            "value" : 774354469
+          }, {
+            "startTime" : 1680979208878,
+            "value" : 912509950
+          }, {
+            "startTime" : 1680979209790,
+            "value" : 847447493
+          } ]
+        }
+      } ]
+    } ]
+  } ]
+}

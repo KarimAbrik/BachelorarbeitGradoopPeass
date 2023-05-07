@@ -1,0 +1,14 @@
+@Test
+public void testReverse() {
+    GradoopId a = GradoopId.get();
+    GradoopId b = GradoopId.get();
+    GradoopId c = GradoopId.get();
+    Embedding embedding = new Embedding();
+    embedding.add(a);
+    embedding.add(b);
+    embedding.add(c);
+    Embedding reversed = embedding.reverse();
+    assertEquals(c, reversed.getId(0));
+    assertEquals(b, reversed.getId(1));
+    assertEquals(a, reversed.getId(2));
+}

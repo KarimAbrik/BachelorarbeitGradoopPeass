@@ -1,0 +1,13 @@
+@Test
+public void filterMultipleOverlappingPatterns() throws Exception {
+    FlinkAsciiGraphLoader loader = getLoaderFromString("input:G {graph: \"inputgraph\"}[" + "(a:A {atype : \"avalue\"})-[beta:BetaEdge {betatype : \"betavalue\"}]->(b:B {btype : " + "\"bvalue\"})  " + "(a)-[beta2:BetaEdge {betatype : \"betavalue\"}]->(b2:B {btype : " + "\"bvalue\"})  " + "(a)-[f:foo]->(dummy:Foo)" + "] " + "pattern1:H {graph:\"pattern 1\"} [(a)-[beta]->(b)]" + "pattern2:H {graph:\"pattern 2\"} [(a)-[beta2]->(b2)]" + "result:G {graph: \"inputgraph\"} [(:H {graph:\"pattern 2\"})-[:foo]->(dummy) (:H {graph:\"pattern 1\"})-[:foo]->(dummy)]");
+    LogicalGraph searchGraph = loader.getLogicalGraphByVariable("input");
+    GraphCollection patternGraphs = loader.getGraphCollectionByVariables("pattern1", "pattern2");
+    VertexFusion f = new VertexFusion();
+    LogicalGraph output = f.execute(searchGraph, patternGraphs);
+    LogicalGraph expected = loader.getLogicalGraphByVariable("result");
+    collectAndAssertTrue(output.equalsByData(expected));
+    if (deepSearch) {
+        collectAndAssertTrue(VertexFusionUtils.myInducedEdgeSubgraphForFusion(searchGraph, expected).equalsByElementIds(VertexFusionUtils.myInducedEdgeSubgraphForFusion(expected, searchGraph)));
+    }
+}

@@ -1,0 +1,8 @@
+/**
+ * Returns the wrapped value as {@code long}.
+ *
+ * @return {@code long} value
+ */
+public long getLong() {
+    return Bytes.toLong(rawBytes, OFFSET);
+}

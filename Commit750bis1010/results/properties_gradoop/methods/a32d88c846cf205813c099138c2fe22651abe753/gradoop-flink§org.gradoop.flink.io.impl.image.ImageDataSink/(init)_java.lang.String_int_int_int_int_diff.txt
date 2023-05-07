@@ -1,0 +1,16 @@
+/**
+ * Create new plotter.
+ *
+ * @param path         Target-path for image
+ * @param layoutWidth  Width of the graph-layout
+ * @param layoutHeight Height of the graph-layout
+ * @param imageWidth   Wanted width of the output image
+ * @param imageHeight  Wanted height of the output image
+ */
+public ImageDataSink(String path, int layoutWidth, int layoutHeight, int imageWidth, int imageHeight) {
+    this.path = path;
+    this.layoutWidth = layoutWidth;
+    this.layoutHeight = layoutHeight;
+    this.imageWidth = imageWidth;
+    this.imageHeight = imageHeight;
+}

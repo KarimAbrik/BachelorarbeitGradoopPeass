@@ -1,0 +1,5 @@
+@Override
+public WithCount<T> join(WithCount<T> first, WithCount<T> second) throws Exception {
+    first.setCount(first.getCount() + second.getCount());
+    return first;
+}

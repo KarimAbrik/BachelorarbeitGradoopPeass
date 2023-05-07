@@ -1,0 +1,12 @@
+/**
+ * Constructor for connected components with property key and a maximum number of iterations.
+ *
+ * @param propertyKey   Property key to store the component id in.
+ * @param maxIterations The maximum number of iterations.
+ */
+public AnnotateWeaklyConnectedComponents(String propertyKey, int maxIterations) {
+    super(new VertexToGellyVertexWithGradoopId(), new EdgeToGellyEdgeWithNullValue());
+    this.propertyKey = propertyKey;
+    this.maxIterations = maxIterations;
+    this.annotateEdges = false;
+}

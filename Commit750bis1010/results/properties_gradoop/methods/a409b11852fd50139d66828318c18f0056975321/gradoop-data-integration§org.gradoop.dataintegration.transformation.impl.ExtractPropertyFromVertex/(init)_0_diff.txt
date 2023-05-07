@@ -1,0 +1,21 @@
+/**
+ * Constructs a new {@link UnaryGraphToGraphOperator} which extracts properties from vertices into
+ * newly created vertices and connects original and new vertex with each other.
+ *
+ * @param forVerticesOfLabel   The vertices the extraction is executed for.
+ * @param originalPropertyName The property key at the original vertex.
+ * @param newVertexLabel       The label of the extracted vertex.
+ * @param newPropertyName      The property name of the extracted property at the new vertex.
+ * @param edgeDirection        The direction of the created edge(s).
+ * @param edgeLabel            The label of the newly created edge.
+ */
+public ExtractPropertyFromVertex(String forVerticesOfLabel, String originalPropertyName, String newVertexLabel, String newPropertyName, EdgeDirection edgeDirection, String edgeLabel) {
+    this.forVerticesOfLabel = Preconditions.checkNotNull(forVerticesOfLabel);
+    this.originalPropertyName = Preconditions.checkNotNull(originalPropertyName);
+    this.newVertexLabel = Preconditions.checkNotNull(newVertexLabel);
+    this.newPropertyName = Preconditions.checkNotNull(newPropertyName);
+    this.edgeDirection = Preconditions.checkNotNull(edgeDirection);
+    if (!edgeDirection.equals(EdgeDirection.NONE)) {
+        this.edgeLabel = Preconditions.checkNotNull(edgeLabel);
+    }
+}

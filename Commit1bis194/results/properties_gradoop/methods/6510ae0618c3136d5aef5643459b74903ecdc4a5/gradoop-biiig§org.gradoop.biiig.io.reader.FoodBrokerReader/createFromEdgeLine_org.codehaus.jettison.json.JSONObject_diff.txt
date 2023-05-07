@@ -1,0 +1,24 @@
+/**
+ * Creates a vertex from an edge input line.
+ *
+ * @param edge json encoded edge object
+ * @return Vertex with id and single outgoing edge
+ * @throws JSONException
+ */
+private List<Vertex> createFromEdgeLine(JSONObject edge) throws JSONException {
+    List<Vertex> vList = Lists.newArrayListWithCapacity(2);
+    Long sourceID = edge.getLong(EDGE_SOURCE);
+    Long targetID = edge.getLong(EDGE_TARGET);
+    String edgeType = getType(edge);
+    // outgoing edge on source vertex
+    Edge edgeOut = EdgeFactory.createDefaultEdgeWithLabel(targetID, edgeType, RANDOM.nextLong());
+    addProperties(edgeOut, edge.getJSONObject(META), BIIIGConstants.META_PREFIX);
+    addProperties(edgeOut, edge.getJSONObject(DATA));
+    vList.add(VertexFactory.createDefaultVertexWithEdges(sourceID, Lists.newArrayList(edgeOut), null));
+    // incoming edge on target vertex
+    Edge edgeIn = EdgeFactory.createDefaultEdgeWithLabel(sourceID, edgeType, RANDOM.nextLong());
+    addProperties(edgeIn, edge.getJSONObject(META), BIIIGConstants.META_PREFIX);
+    addProperties(edgeIn, edge.getJSONObject(DATA));
+    vList.add(VertexFactory.createDefaultVertexWithEdges(targetID, null, Lists.newArrayList(edgeIn)));
+    return vList;
+}

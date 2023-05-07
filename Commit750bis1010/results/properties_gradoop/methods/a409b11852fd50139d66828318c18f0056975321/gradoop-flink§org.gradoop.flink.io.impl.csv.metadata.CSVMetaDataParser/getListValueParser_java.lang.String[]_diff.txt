@@ -1,0 +1,19 @@
+/**
+ * Creates a parsing function for list property type.
+ *
+ * @param listTypeTokens string tokens of the list type and its items type, e.g.
+ *                       ["list", "string"]
+ * @return parsing function
+ */
+private static Function<String, Object> getListValueParser(String[] listTypeTokens) {
+    // It's a list with one additional data type (type of list items).
+    if (listTypeTokens.length != 2) {
+        throw new IllegalArgumentException("Item type of List type is missing");
+    }
+    final String itemType = listTypeTokens[1];
+    // check the validity of the list item type
+    if (!SIMPLE_TYPE_PARSER_MAP.containsKey(itemType)) {
+        throw new TypeNotPresentException(itemType, null);
+    }
+    return s -> parseListProperty(s, SIMPLE_TYPE_PARSER_MAP.get(itemType));
+}

@@ -1,0 +1,7 @@
+@Test
+public void testGetIdBytesOfProjectionEntry() {
+    GradoopId id = GradoopId.get();
+    Embedding embedding = new Embedding();
+    embedding.add(id, PropertyValue.create("String"), PropertyValue.create(42));
+    assertArrayEquals(id.toByteArray(), embedding.getRawId(0));
+}

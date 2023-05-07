@@ -1,0 +1,6 @@
+@Test
+public void testWriteAndReadFields() throws Exception {
+    Properties propertiesIn = Properties.createFromMap(SUPPORTED_PROPERTIES);
+    Properties propertiesOut = writeAndReadFields(Properties.class, propertiesIn);
+    assertEquals(propertiesIn, propertiesOut);
+}

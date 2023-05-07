@@ -1,0 +1,4 @@
+@Override
+public GradoopId getKey(Tuple2<GD, C> pair) {
+    return pair.f0.getId();
+}

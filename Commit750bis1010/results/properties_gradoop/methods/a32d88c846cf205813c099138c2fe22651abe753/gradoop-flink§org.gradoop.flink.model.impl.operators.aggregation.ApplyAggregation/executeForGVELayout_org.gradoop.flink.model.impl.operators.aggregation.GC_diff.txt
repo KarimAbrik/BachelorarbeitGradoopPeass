@@ -1,0 +1,8 @@
+@Override
+public GC executeForGVELayout(GC collection) {
+    DataSet<G> graphHeads = collection.getGraphHeads();
+    DataSet<GradoopId> graphIds = graphHeads.map(new Id<>());
+    DataSet<Tuple2<GradoopId, Map<String, PropertyValue>>> aggregate = aggregateVertices(collection.getVertices(), graphIds).union(aggregateEdges(collection.getEdges(), graphIds)).groupBy(0).reduceGroup(new CombinePartitionApplyAggregates(aggregateFunctions));
+    graphHeads = graphHeads.coGroup(aggregate).where(new Id<>()).equalTo(0).with(new SetAggregateProperties<>(aggregateFunctions));
+    return collection.getFactory().fromDataSets(graphHeads, collection.getVertices(), collection.getEdges());
+}

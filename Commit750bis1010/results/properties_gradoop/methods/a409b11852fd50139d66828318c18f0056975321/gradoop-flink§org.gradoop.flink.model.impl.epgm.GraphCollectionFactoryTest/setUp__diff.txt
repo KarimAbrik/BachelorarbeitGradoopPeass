@@ -1,0 +1,5 @@
+@Before
+public void setUp() throws IOException {
+    loader = getSocialNetworkLoader();
+    factory = getConfig().getGraphCollectionFactory();
+}

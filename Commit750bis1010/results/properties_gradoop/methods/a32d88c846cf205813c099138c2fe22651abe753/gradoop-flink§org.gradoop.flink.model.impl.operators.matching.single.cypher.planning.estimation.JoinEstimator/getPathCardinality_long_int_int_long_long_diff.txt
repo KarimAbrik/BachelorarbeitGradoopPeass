@@ -1,0 +1,19 @@
+/**
+ * Estimated the total number of paths whose length is between the specified bounds.
+ *
+ * @param edgeCardinality cardinality of the traversed edge
+ * @param lowerBound minimum path length
+ * @param upperBound maximum path length
+ * @param distinctSourceCount number of distinct source vertices
+ * @param distinctTargetCount number of distinct target vertices
+ *
+ * @return estimated number of paths with a length in the given range
+ */
+private long getPathCardinality(long edgeCardinality, int lowerBound, int upperBound, long distinctSourceCount, long distinctTargetCount) {
+    double totalCardinality = 0L;
+    long probability = distinctSourceCount * distinctTargetCount;
+    for (int i = lowerBound; i <= upperBound; i++) {
+        totalCardinality += Math.pow(edgeCardinality, i) / Math.pow(probability, i - 1);
+    }
+    return Math.round(totalCardinality);
+}

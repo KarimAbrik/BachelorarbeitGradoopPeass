@@ -1,0 +1,6 @@
+@Test
+public void testSetDate() throws Exception {
+    PropertyValue p = new PropertyValue();
+    p.setDate(DATE_VAL_b);
+    assertEquals(DATE_VAL_b, p.getDate());
+}

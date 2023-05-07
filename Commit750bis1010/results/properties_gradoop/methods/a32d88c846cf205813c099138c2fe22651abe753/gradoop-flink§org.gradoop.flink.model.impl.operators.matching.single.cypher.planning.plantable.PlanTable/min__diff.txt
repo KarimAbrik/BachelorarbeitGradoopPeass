@@ -1,0 +1,9 @@
+/**
+ * Returns the entry that represents the query plan with the minimum among all plans stored in
+ * this table.
+ *
+ * @return query plan with minimum cost
+ */
+public PlanTableEntry min() {
+    return planTableEntries.stream().min(Comparator.comparingLong(PlanTableEntry::getEstimatedCardinality)).orElseThrow(NoSuchElementException::new);
+}

@@ -1,0 +1,4 @@
+@Override
+public GraphHeadString map(G graph) throws Exception {
+    return new GraphHeadString(graph.getId(), "|" + labelWithProperties(graph) + "|");
+}

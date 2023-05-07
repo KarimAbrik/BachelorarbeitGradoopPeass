@@ -1,0 +1,4 @@
+@Override
+public LogicalGraph execute(LogicalGraph graph) {
+    return new GellyLocalClusteringCoefficientDirected().execute(graph).aggregate(new AverageVertexProperty(ClusteringCoefficientBase.PROPERTY_KEY_LOCAL, PROPERTY_KEY_AVERAGE));
+}

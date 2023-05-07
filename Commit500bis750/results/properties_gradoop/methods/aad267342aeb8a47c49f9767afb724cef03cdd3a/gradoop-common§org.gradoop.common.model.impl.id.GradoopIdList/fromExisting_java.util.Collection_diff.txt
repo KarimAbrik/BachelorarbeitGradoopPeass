@@ -1,0 +1,15 @@
+/**                                                                                                  |                                                                                                     
+* Creates a new instance from multiple GradoopIDs.                                                   |                                                                                                     
+*                                                                                                    |                                                                                                     
+* @param ids given ids                                                                               |                                                                                                     
+* @return gradoop id set                                                                             |                                                                                                     
+*/                                                                                                   |                                                                                                     
+public static GradoopIdList fromExisting(Collection&lt;GradoopId&gt; ids) {                          |                                                                                                     
+byte[] bytes = new byte[ids.size() * GradoopId.ID_SIZE];                                             |                                                                                                     
+int i = 0;                                                                                           |                                                                                                     
+for (GradoopId id : ids) {                                                                           |                                                                                                     
+System.arraycopy(id.toByteArray(), 0, bytes, i * GradoopId.ID_SIZE, GradoopId.ID_SIZE);              |                                                                                                     
+i++;                                                                                                 |                                                                                                     
+}                                                                                                    |                                                                                                     
+return new GradoopIdList(bytes);                                                                     |                                                                                                     
+}                                                                                                    |                                                                                                     

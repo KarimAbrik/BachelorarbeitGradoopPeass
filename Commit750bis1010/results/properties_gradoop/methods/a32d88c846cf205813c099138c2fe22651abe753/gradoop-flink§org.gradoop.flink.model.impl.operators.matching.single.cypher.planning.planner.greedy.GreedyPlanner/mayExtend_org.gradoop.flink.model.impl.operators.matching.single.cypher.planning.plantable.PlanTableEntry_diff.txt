@@ -1,0 +1,10 @@
+/**
+ * Checks if the given entry may be extended. This is only the case for entries that represents
+ * either a vertex or a partial match graph.
+ *
+ * @param entry plan table entry
+ * @return true, iff the specified entry may be extended
+ */
+private boolean mayExtend(PlanTableEntry entry) {
+    return entry.getType() == VERTEX || entry.getType() == GRAPH;
+}

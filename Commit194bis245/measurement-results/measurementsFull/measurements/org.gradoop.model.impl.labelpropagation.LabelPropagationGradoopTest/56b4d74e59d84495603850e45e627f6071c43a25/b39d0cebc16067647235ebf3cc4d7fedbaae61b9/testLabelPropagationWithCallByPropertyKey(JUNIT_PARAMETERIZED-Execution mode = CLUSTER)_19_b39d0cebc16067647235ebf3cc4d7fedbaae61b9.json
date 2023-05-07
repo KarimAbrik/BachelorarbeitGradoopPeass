@@ -1,0 +1,68 @@
+{
+  "clazz" : "org.gradoop.model.impl.labelpropagation.LabelPropagationGradoopTest",
+  "methods" : [ {
+    "method" : "testLabelPropagationWithCallByPropertyKey",
+    "datacollectorResults" : [ {
+      "name" : "de.dagere.kopeme.datacollection.TimeDataCollectorNoGC",
+      "chunks" : [ ],
+      "results" : [ {
+        "value" : 4.5542573021E9,
+        "deviation" : 0.43331800713192115,
+        "min" : 3.371126886E9,
+        "max" : 9.991584834E9,
+        "warmup" : 0,
+        "iterations" : 10,
+        "repetitions" : 2,
+        "commit" : null,
+        "vmRunConfiguration" : {
+          "showStart" : false,
+          "executeBeforeClassInMeasurement" : false,
+          "redirectToTemp" : false,
+          "redirectToNull" : true,
+          "useKieker" : false
+        },
+        "parameters" : {
+          "JUNIT_PARAMETERIZED" : "Execution mode = CLUSTER"
+        },
+        "javaVersion" : "1.8.0_362",
+        "cpu" : "model name : Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz",
+        "memory" : "MemTotal: 16280544 kB",
+        "date" : 1680995256084,
+        "fulldata" : {
+          "fileName" : null,
+          "values" : [ {
+            "startTime" : 1680995209871,
+            "value" : 9991584834
+          }, {
+            "startTime" : 1680995219863,
+            "value" : 5194584824
+          }, {
+            "startTime" : 1680995225057,
+            "value" : 4184774883
+          }, {
+            "startTime" : 1680995229242,
+            "value" : 4054540192
+          }, {
+            "startTime" : 1680995233297,
+            "value" : 3885212448
+          }, {
+            "startTime" : 1680995237182,
+            "value" : 3585574458
+          }, {
+            "startTime" : 1680995240767,
+            "value" : 3711099427
+          }, {
+            "startTime" : 1680995244479,
+            "value" : 3773738198
+          }, {
+            "startTime" : 1680995248252,
+            "value" : 3371126886
+          }, {
+            "startTime" : 1680995251624,
+            "value" : 3790336871
+          } ]
+        }
+      } ]
+    } ]
+  } ]
+}

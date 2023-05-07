@@ -1,0 +1,14 @@
+/**
+ * Test HasEdgeLabel with a single edgeless graph.
+ *
+ * @throws Exception if the execution fails.
+ */
+@Test
+public void testEdgelessGraphHasEdgeLabel() throws Exception {
+    LogicalGraph graph = getLoaderFromString("g0[(v0)(v1)]").getLogicalGraphByVariable("g0");
+    HasEdgeLabel hasLabel = new HasEdgeLabel("anyLabel");
+    graph = graph.aggregate(hasLabel);
+    GraphHead graphHead = graph.getGraphHead().collect().get(0);
+    assertTrue("Property hasEdgeLabel_anyLabel not set", graphHead.hasProperty(hasLabel.getAggregatePropertyKey()));
+    assertNull("Property hasEdgeLabel_anyLabel is not NULL", graphHead.getPropertyValue(hasLabel.getAggregatePropertyKey()).getObject());
+}

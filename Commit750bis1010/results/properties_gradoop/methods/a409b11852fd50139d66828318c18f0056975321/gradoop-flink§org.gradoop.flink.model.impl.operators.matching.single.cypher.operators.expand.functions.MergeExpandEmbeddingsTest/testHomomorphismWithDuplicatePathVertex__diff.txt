@@ -1,0 +1,4 @@
+@Test
+public void testHomomorphismWithDuplicatePathVertex() throws Exception {
+    testJoin(buildEdge(a, e2, a), new ArrayList<>(), new ArrayList<>(), -1, true);
+}

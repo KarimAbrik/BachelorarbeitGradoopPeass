@@ -1,0 +1,7 @@
+/**                                                                                                  |                                                                                                     
+* {@inheritDoc}                                                                                      |                                                                                                     
+*/                                                                                                   |                                                                                                     
+@Override                                                                                            |                                                                                                     
+public EdgePojo createEdge(final Long id, final Long sourceVertexId, final Long targetVertexId) {    |                                                                                                     
+return createEdge(id, GConstants.DEFAULT_EDGE_LABEL, sourceVertexId, targetVertexId);                |                                                                                                     
+}                                                                                                    |                                                                                                     

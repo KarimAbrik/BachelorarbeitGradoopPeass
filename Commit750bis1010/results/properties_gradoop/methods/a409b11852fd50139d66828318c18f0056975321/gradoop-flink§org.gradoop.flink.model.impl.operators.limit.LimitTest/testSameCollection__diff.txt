@@ -1,0 +1,7 @@
+@Test
+public void testSameCollection() throws Exception {
+    FlinkAsciiGraphLoader loader = getSocialNetworkLoader();
+    int limit = 2;
+    GraphCollection input = loader.getGraphCollectionByVariables("g0", "g1");
+    collectAndAssertTrue(input.equalsByGraphElementData(input.limit(limit)));
+}

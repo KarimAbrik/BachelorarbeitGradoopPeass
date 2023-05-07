@@ -1,0 +1,12 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public String toString() {
+    final StringBuilder sb = new StringBuilder("HBaseGraphHead{");
+    sb.append("super=").append(super.toString());
+    sb.append(", vertexIds=").append(vertexIds);
+    sb.append(", edgeIds=").append(edgeIds);
+    sb.append('}');
+    return sb.toString();
+}

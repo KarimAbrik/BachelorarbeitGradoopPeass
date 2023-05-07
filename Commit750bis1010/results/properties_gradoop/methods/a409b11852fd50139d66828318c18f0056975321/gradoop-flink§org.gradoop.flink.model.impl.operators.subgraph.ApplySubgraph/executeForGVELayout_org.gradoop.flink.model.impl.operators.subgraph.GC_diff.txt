@@ -1,0 +1,21 @@
+@Override
+public GC executeForGVELayout(GC collection) {
+    GC result;
+    switch(strategy) {
+        case BOTH:
+            result = subgraph(collection);
+            break;
+        case VERTEX_INDUCED:
+            result = vertexInducedSubgraph(collection);
+            break;
+        case EDGE_INDUCED:
+            result = edgeInducedSubgraph(collection);
+            break;
+        case EDGE_INDUCED_PROJECT_FIRST:
+            result = edgeInducedSubgraphProjectFirst(collection);
+            break;
+        default:
+            throw new IllegalArgumentException("Strategy " + strategy + " is not supported");
+    }
+    return result;
+}

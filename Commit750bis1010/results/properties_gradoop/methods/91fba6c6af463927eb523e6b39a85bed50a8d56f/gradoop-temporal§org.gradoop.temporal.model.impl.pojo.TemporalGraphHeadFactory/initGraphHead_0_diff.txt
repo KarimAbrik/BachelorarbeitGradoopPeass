@@ -1,0 +1,4 @@
+@Override
+public TemporalGraphHead initGraphHead(GradoopId id, String label, Properties properties) {
+    return new TemporalGraphHead(Objects.requireNonNull(id, "Identifier is null."), Objects.requireNonNull(label, "Label is null."), properties, null, null);
+}

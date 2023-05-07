@@ -1,0 +1,9 @@
+/**                                                                                                  |                                                                                                     
+* Throw a runtime exception if this property value can't be represented                              |                                                                                                     
+* in {@link PropertyValue#MAX_BINARY_LENGTH} bytes.                                                  |                                                                                                     
+*/                                                                                                   |                                                                                                     
+private void validateBytesLength() {                                                                 |                                                                                                     
+if (rawBytes != null && rawBytes.length &gt; MAX_BINARY_LENGTH) {                                    |                                                                                                     
+throw new IllegalStateException("The binary representation of this property is too big: " + rawBytes |                                                                                                     
+}                                                                                                    |                                                                                                     
+}                                                                                                    |                                                                                                     

@@ -1,0 +1,4 @@
+@Override
+public MapOperator<Long, Tuple1<Long>> execute(LogicalGraph graph) {
+    return new DistinctSourceIds().execute(graph).map(new ObjectTo1<>());
+}

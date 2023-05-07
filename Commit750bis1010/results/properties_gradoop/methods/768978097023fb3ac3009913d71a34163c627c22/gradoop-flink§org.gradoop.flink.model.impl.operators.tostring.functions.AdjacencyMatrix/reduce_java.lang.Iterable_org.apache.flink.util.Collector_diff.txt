@@ -1,0 +1,15 @@
+@Override
+public void reduce(Iterable<VertexString> vertexLabels, Collector<GraphHeadString> collector) throws Exception {
+    Boolean first = true;
+    GradoopId graphId = null;
+    List<String> matrixRows = new ArrayList<>();
+    for (VertexString vertexString : vertexLabels) {
+        if (first) {
+            graphId = vertexString.getGraphId();
+            first = false;
+        }
+        matrixRows.add("\n " + vertexString.getLabel());
+    }
+    Collections.sort(matrixRows);
+    collector.collect(new GraphHeadString(graphId, StringUtils.join(matrixRows, "")));
+}

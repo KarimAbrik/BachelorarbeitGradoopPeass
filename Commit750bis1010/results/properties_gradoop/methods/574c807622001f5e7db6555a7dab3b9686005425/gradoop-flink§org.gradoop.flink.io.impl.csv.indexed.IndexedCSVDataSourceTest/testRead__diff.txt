@@ -1,0 +1,14 @@
+/**                                                                                                    /**                                                                                                 
+* Test reading an indexed csv graph collection.                                                        * Test reading an indexed csv graph collection.                                                     
+*                                                                                                      *                                                                                                   
+* @throws Exception on failure                                                                         * @throws Exception on failure                                                                      
+*/                                                                                                     */                                                                                                  
+@Test                                                                                                  @Test                                                                                               
+public void testRead() throws Exception {                                                              public void testRead() throws Exception {                                                           
+String csvPath = getFilePath("/data/csv/input_indexed");                                             | String csvPath = getFilePath("/data/csv/input_indexed_graph_collection");                           
+String gdlPath = getFilePath("/data/csv/expected/expected_graph_collection.gdl");                      String gdlPath = getFilePath("/data/csv/expected/expected_graph_collection.gdl");                   
+DataSource dataSource = new IndexedCSVDataSource(csvPath, getConfig());                                DataSource dataSource = new IndexedCSVDataSource(csvPath, getConfig());                             
+GraphCollection input = dataSource.getGraphCollection();                                               GraphCollection input = dataSource.getGraphCollection();                                            
+GraphCollection expected = getLoaderFromFile(gdlPath).getGraphCollectionByVariables("expected1", "ex   GraphCollection expected = getLoaderFromFile(gdlPath).getGraphCollectionByVariables("expected1", "ex
+collectAndAssertTrue(input.equalsByGraphElementData(expected));                                      | collectAndAssertTrue(input.equalsByGraphData(expected));                                            
+}                                                                                                      }                                                                                                   

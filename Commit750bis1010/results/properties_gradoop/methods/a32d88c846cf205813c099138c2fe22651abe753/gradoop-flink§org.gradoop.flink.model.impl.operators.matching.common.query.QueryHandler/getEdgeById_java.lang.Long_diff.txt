@@ -1,0 +1,13 @@
+/**
+ * Returns the edge associated with the given id or {@code null} if the
+ * edge does not exist.
+ *
+ * @param id edge id
+ * @return edge or {@code null}
+ */
+public Edge getEdgeById(Long id) {
+    if (idToEdgeCache == null) {
+        idToEdgeCache = initCache(getEdges(), Edge::getId, Function.identity());
+    }
+    return idToEdgeCache.get(id);
+}

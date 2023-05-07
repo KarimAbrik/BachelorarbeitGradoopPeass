@@ -1,0 +1,23 @@
+/**
+ * New FilterAndProjectTriples
+ * @param sourceVariable the source variable
+ * @param edgeVariable edge variabe
+ * @param targetVariable target variable
+ * @param predicates filter predicates
+ * @param projectionPropertyKeys property keys used for projection
+ * @param vertexMatchStrategy vertex match strategy
+ */
+public FilterAndProjectTriple(String sourceVariable, String edgeVariable, String targetVariable, CNF predicates, Map<String, List<String>> projectionPropertyKeys, MatchStrategy vertexMatchStrategy) {
+    this.predicates = predicates;
+    this.sourceVariable = sourceVariable;
+    this.targetVariable = targetVariable;
+    this.sourceProjectionPropertyKeys = projectionPropertyKeys.getOrDefault(sourceVariable, new ArrayList<>());
+    this.edgeProjectionPropertyKeys = projectionPropertyKeys.getOrDefault(edgeVariable, new ArrayList<>());
+    this.targetProjectionPropertyKeys = projectionPropertyKeys.getOrDefault(targetVariable, new ArrayList<>());
+    this.isLoop = sourceVariable.equals(targetVariable);
+    this.isVertexIso = vertexMatchStrategy.equals(MatchStrategy.ISOMORPHISM);
+    filterMetaData = createFilterMetaData(predicates, sourceVariable, edgeVariable, targetVariable);
+    sourceFilterPropertyKeys = filterMetaData.getPropertyKeys(sourceVariable);
+    edgeFilterPropertyKeys = filterMetaData.getPropertyKeys(edgeVariable);
+    targetFilterPropertyKeys = filterMetaData.getPropertyKeys(targetVariable);
+}

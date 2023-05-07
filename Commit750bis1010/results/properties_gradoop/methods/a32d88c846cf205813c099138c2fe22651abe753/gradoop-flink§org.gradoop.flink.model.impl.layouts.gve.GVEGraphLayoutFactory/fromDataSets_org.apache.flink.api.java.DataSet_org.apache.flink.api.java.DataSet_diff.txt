@@ -1,0 +1,11 @@
+@Override
+public GVELayout fromDataSets(DataSet<EPGMVertex> vertices, DataSet<EPGMEdge> edges) {
+    Objects.requireNonNull(vertices, "EPGMVertex DataSet was null");
+    Objects.requireNonNull(edges, "EPGMEdge DataSet was null");
+    EPGMGraphHead graphHead = getGraphHeadFactory().createGraphHead();
+    DataSet<EPGMGraphHead> graphHeadSet = getConfig().getExecutionEnvironment().fromElements(graphHead);
+    // update vertices and edges with new graph head id
+    vertices = vertices.map(new AddToGraph<>(graphHead)).withForwardedFields("id;label;properties");
+    edges = edges.map(new AddToGraph<>(graphHead)).withForwardedFields("id;sourceId;targetId;label;properties");
+    return new GVELayout(graphHeadSet, vertices, edges);
+}

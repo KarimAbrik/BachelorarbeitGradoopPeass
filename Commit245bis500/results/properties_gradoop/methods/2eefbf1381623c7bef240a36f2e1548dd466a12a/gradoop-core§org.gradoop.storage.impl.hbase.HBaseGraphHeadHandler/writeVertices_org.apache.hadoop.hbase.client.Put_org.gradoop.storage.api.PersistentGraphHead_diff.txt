@@ -1,0 +1,10 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public Put writeVertices(final Put put, final PersistentGraphHead graphData) throws IOException {
+    for (GradoopId vertexId : graphData.getVertexIds()) {
+        put.add(CF_VERTICES_BYTES, Writables.getBytes(vertexId), null);
+    }
+    return put;
+}

@@ -1,0 +1,15 @@
+/**
+ * Put a long value out to the specified byte array position (Unsafe).
+ *
+ * @param bytes the byte array
+ * @param offset position in the array
+ * @param val long to write out
+ * @return incremented offset
+ */
+private static int putLongUnsafe(byte[] bytes, int offset, long val) {
+    if (LexicographicalComparerHolder.UnsafeComparer.LITTLE_ENDIAN) {
+        val = Long.reverseBytes(val);
+    }
+    LexicographicalComparerHolder.UnsafeComparer.UNSAFE.putLong(bytes, (long) offset + LexicographicalComparerHolder.UnsafeComparer.BYTE_ARRAY_BASE_OFFSET, val);
+    return offset + SIZEOF_LONG;
+}

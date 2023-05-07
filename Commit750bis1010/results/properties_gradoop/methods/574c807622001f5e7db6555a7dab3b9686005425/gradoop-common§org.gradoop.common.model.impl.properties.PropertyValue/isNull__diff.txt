@@ -1,0 +1,8 @@
+/**
+ * True, if the value represents {@code null}.
+ *
+ * @return true, if {@code null} value
+ */
+public boolean isNull() {
+    return getRawBytes()[0] == Type.NULL.getTypeByte();
+}

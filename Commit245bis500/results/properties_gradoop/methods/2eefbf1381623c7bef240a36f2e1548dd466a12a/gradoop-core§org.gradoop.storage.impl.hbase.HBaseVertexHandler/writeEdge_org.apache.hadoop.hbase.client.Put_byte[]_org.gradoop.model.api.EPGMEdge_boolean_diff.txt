@@ -1,0 +1,17 @@
+/**
+ * Writes a single edge to a given put.
+ *
+ * @param put          {@link org.apache.hadoop.hbase.client.Put} to
+ *                     write the
+ *                     edge to
+ * @param columnFamily CF where the edges shall be stored
+ * @param edge     edge to store
+ * @param isOutgoing   true, if the edge is an outgoing edge, false if
+ *                     incoming
+ * @return the updated put
+ */
+private Put writeEdge(final Put put, final byte[] columnFamily, final EPGMEdge edge, boolean isOutgoing) throws IOException {
+    byte[] edgeKey = createEdgeIdentifier(edge, isOutgoing);
+    put.add(columnFamily, edgeKey, null);
+    return put;
+}

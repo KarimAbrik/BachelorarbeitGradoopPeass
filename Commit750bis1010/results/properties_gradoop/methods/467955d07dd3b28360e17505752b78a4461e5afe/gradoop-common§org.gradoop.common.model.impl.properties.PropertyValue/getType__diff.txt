@@ -1,0 +1,15 @@
+//----------------------------------------------------------------------------
+// Util
+//----------------------------------------------------------------------------
+/**
+ * Get the data type as class object according to the first position of the rawBytes[] array.
+ *
+ * @return Class object
+ */
+public Class<?> getType() {
+    Class<?> clazz = null;
+    if (value != null) {
+        clazz = PropertyValueStrategyFactory.get(value.getClass()).getType();
+    }
+    return clazz;
+}

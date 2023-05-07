@@ -1,0 +1,7 @@
+@Test                                                                                                  @Test                                                                                               
+public void createWithMissingLabelTest() {                                                             public void createWithMissingLabelTest() {                                                          
+EPGMVertex v = new VertexPojoFactory().createVertex(0L);                                             | GradoopIdGenerator idGen = new SequenceIdGenerator();                                               
+                                                                                                     | GradoopId vertexID = idGen.createId();                                                              
+                                                                                                     | EPGMVertex v = new VertexPojoFactory().createVertex(vertexID);                                      
+assertThat(v.getLabel(), is(GConstants.DEFAULT_VERTEX_LABEL));                                         assertThat(v.getLabel(), is(GConstants.DEFAULT_VERTEX_LABEL));                                      
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,8 @@
+/**
+ * Get the internal grouping keys used for grouping the edge tuples.
+ *
+ * @return The grouping keys, as tuple indices.
+ */
+private int[] getInternalEdgeGroupingKeys() {
+    return IntStream.range(0, GroupingConstants.EDGE_TUPLE_RESERVED + edgeGroupingKeys.size()).toArray();
+}

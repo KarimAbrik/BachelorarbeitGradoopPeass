@@ -1,0 +1,14 @@
+/**
+ * Deserializes a {@code LocalTime} value.
+ *
+ * @param bytes serialized value
+ *
+ * @return {@code LocalTime} value
+ */
+public static LocalTime deserializeTime(byte[] bytes) {
+    int hour = Bytes.toInt(bytes, 0, SIZEOF_INT);
+    int minute = Bytes.toInt(bytes, SIZEOF_INT, SIZEOF_INT);
+    int second = Bytes.toInt(bytes, 2 * SIZEOF_INT, SIZEOF_INT);
+    int nano = Bytes.toInt(bytes, 3 * SIZEOF_INT, SIZEOF_INT);
+    return LocalTime.of(hour, minute, second, nano);
+}

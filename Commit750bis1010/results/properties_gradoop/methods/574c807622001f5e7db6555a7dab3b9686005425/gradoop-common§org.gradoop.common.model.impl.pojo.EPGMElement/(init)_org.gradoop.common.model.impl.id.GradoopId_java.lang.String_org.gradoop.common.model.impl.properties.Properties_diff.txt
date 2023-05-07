@@ -1,0 +1,13 @@
+/**
+ * Creates an object from the given parameters. Can only be called by
+ * inheriting classes.
+ *
+ * @param id         entity identifier
+ * @param label      entity label
+ * @param properties key-value properties
+ */
+protected EPGMElement(GradoopId id, String label, Properties properties) {
+    this.id = id;
+    this.label = label;
+    this.properties = properties;
+}

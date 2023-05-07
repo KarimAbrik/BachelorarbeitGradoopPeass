@@ -1,0 +1,8 @@
+/**
+ * Returns all edges that are bound to a variable in the GDL script.
+ *
+ * @return variable to edge mapping
+ */
+public Map<String, E> getEdgeCache() {
+    return new ImmutableMap.Builder<String, E>().putAll(edgeCache).build();
+}

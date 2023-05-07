@@ -1,0 +1,46 @@
+/**
+ * Returns the type string for the specified property value.
+ *
+ * @param propertyValue property value
+ * @return property type string
+ */
+public static String getTypeString(PropertyValue propertyValue) {
+    if (propertyValue.isNull()) {
+        return Type.NULL.toString();
+    } else if (propertyValue.isShort()) {
+        return Type.SHORT.toString();
+    } else if (propertyValue.isInt()) {
+        return Type.INTEGER.toString();
+    } else if (propertyValue.isLong()) {
+        return Type.LONG.toString();
+    } else if (propertyValue.isFloat()) {
+        return Type.FLOAT.toString();
+    } else if (propertyValue.isDouble()) {
+        return Type.DOUBLE.toString();
+    } else if (propertyValue.isBoolean()) {
+        return Type.BOOLEAN.toString();
+    } else if (propertyValue.isString()) {
+        return Type.STRING.toString();
+    } else if (propertyValue.isBigDecimal()) {
+        return Type.BIG_DECIMAL.toString();
+    } else if (propertyValue.isGradoopId()) {
+        return Type.GRADOOP_ID.toString();
+    } else if (propertyValue.isMap()) {
+        // map type string is map:{keyType}:{valueType}
+        return Type.MAP.toString() + PROPERTY_TOKEN_DELIMITER + getTypeString(propertyValue.getMap().keySet().iterator().next()) + PROPERTY_TOKEN_DELIMITER + getTypeString(propertyValue.getMap().values().iterator().next());
+    } else if (propertyValue.isList()) {
+        // list type string is list:{itemType}
+        return Type.LIST.toString() + PROPERTY_TOKEN_DELIMITER + getTypeString(propertyValue.getList().get(0));
+    } else if (propertyValue.isDate()) {
+        return Type.DATE.toString();
+    } else if (propertyValue.isTime()) {
+        return Type.TIME.toString();
+    } else if (propertyValue.isDateTime()) {
+        return Type.DATE_TIME.toString();
+    } else if (propertyValue.isSet()) {
+        // set type string is set:{itemType}
+        return Type.SET.toString() + PROPERTY_TOKEN_DELIMITER + getTypeString(propertyValue.getSet().iterator().next());
+    } else {
+        throw new IllegalArgumentException("Type " + propertyValue.getType() + " is not supported");
+    }
+}

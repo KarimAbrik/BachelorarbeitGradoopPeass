@@ -1,0 +1,10 @@
+/**
+ * Returns a GDL formatted graph head string.
+ *
+ * @param graphhead graph head
+ * @param idToGraphHeadName mapping from graph head id to its GDL variable name
+ * @return GDL formatted string
+ */
+private String graphHeadToGDLString(G graphhead, Map<GradoopId, String> idToGraphHeadName) {
+    return String.format("%s:%s %s", idToGraphHeadName.get(graphhead.getId()), graphhead.getLabel(), propertiesToGDLString(graphhead.getProperties()));
+}

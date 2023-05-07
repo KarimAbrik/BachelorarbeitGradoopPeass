@@ -1,0 +1,5 @@
+@Test
+public void getGraphTransactions() throws Exception {
+    GraphTransaction tx0 = new GraphTransaction(g0, Sets.newHashSet(v0, v1), Sets.newHashSet(e0));
+    assertEquals(tx0, from(singletonList(g0), asList(v0, v1), singletonList(e0)).getGraphTransactions().collect().get(0));
+}

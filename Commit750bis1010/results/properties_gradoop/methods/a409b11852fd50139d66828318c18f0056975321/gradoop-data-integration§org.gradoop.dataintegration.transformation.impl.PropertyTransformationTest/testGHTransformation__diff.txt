@@ -1,0 +1,13 @@
+/**
+ * Executes a property transformation on graphHeads and checks if the result is correct.
+ *
+ * @throws Exception If the execution fails.
+ */
+@Test
+public void testGHTransformation() throws Exception {
+    FlinkAsciiGraphLoader loader = getLoaderFromString(TEST_GRAPH);
+    LogicalGraph original = loader.getLogicalGraphByVariable("g0");
+    LogicalGraph expected = loader.getLogicalGraphByVariable("g02");
+    LogicalGraph result = original.callForGraph(new PropertyTransformation<>("a", DIVISION, null, null, null, null, true));
+    collectAndAssertTrue(result.equalsByData(expected));
+}

@@ -1,0 +1,13 @@
+@Override
+public void flatMap(Tuple3<V, GradoopId, GradoopId> triple, Collector<E> out) {
+    reuse.setId(GradoopId.get());
+    reuse.setLabel(edgeLabelSourceToNew);
+    reuse.setSourceId(triple.f1);
+    reuse.setTargetId(triple.f0.getId());
+    out.collect(reuse);
+    reuse.setId(GradoopId.get());
+    reuse.setLabel(edgeLabelNewToTarget);
+    reuse.setSourceId(triple.f0.getId());
+    reuse.setTargetId(triple.f2);
+    out.collect(reuse);
+}

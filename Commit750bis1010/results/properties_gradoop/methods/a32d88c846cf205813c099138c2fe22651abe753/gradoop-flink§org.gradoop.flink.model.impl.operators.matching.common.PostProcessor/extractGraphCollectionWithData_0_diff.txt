@@ -1,0 +1,23 @@
+/**
+ * Extracts a {@link GraphCollection} from a set of {@link Element} and
+ * attaches the original data from the input {@link LogicalGraph}.
+ *
+ * @param elements      elements
+ * @param inputGraph    original input graph
+ * @param mayOverlap    true, if elements may be contained in multiple graphs
+ * @param <G> The graph head type.
+ * @param <V> The vertex type.
+ * @param <E> The edge type.
+ * @param <LG> The graph type.
+ * @param <GC> The graph collection type.
+ * @return Graph collection
+ */
+public static <G extends GraphHead, V extends Vertex, E extends Edge, LG extends BaseGraph<G, V, E, LG, GC>, GC extends BaseGraphCollection<G, V, E, LG, GC>> GC extractGraphCollectionWithData(DataSet<Element> elements, LG inputGraph, boolean mayOverlap) {
+    BaseGraphCollectionFactory<G, V, E, LG, GC> factory = inputGraph.getCollectionFactory();
+    // get result collection without data
+    GC collection = extractGraphCollection(elements, factory, mayOverlap);
+    // attach data by joining first and merging the graph head ids
+    DataSet<V> newVertices = inputGraph.getVertices().rightOuterJoin(collection.getVertices()).where(new Id<>()).equalTo(new Id<>()).with(new MergedGraphIds<>()).withForwardedFieldsFirst("id;label;properties;");
+    DataSet<E> newEdges = inputGraph.getEdges().rightOuterJoin(collection.getEdges()).where(new Id<>()).equalTo(new Id<>()).with(new MergedGraphIds<>()).withForwardedFieldsFirst("id;label;properties");
+    return factory.fromDataSets(collection.getGraphHeads(), newVertices, newEdges);
+}

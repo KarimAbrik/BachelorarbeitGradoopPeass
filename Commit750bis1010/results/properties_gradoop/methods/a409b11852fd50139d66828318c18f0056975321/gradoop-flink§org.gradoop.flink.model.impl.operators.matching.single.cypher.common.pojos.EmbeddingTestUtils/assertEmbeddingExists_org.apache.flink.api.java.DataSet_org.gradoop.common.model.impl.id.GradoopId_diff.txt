@@ -1,0 +1,11 @@
+/**
+ * Checks if the given data set contains at least one embedding that matches the given path.
+ *
+ * @param embeddings data set containing embedding
+ * @param path expected path
+ * @throws Exception on failure
+ */
+public static void assertEmbeddingExists(DataSet<Embedding> embeddings, GradoopId... path) throws Exception {
+    List<GradoopId> pathList = Lists.newArrayList(path);
+    assertTrue(embeddings.collect().stream().anyMatch(embedding -> pathList.equals(embeddingToIdList(embedding))));
+}

@@ -1,0 +1,9 @@
+/**
+ * Creates a graph collection from a given logical graph.
+ *
+ * @param logicalGraphLayout  input graph
+ * @return 1-element graph collection
+ */
+public GraphCollection fromGraph(LogicalGraph logicalGraphLayout) {
+    return new GraphCollection(layoutFactory.fromGraphLayout(logicalGraphLayout), config);
+}

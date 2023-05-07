@@ -1,0 +1,5 @@
+@Test
+public void testHomomorphismWithDuplicateBaseVertex() throws Exception {
+    testJoin(buildEdge(n, e1, m), new ArrayList<>(), new ArrayList<>(), -1, true);
+    testJoin(buildEdge(n, e1, n), new ArrayList<>(), new ArrayList<>(), -1, true);
+}

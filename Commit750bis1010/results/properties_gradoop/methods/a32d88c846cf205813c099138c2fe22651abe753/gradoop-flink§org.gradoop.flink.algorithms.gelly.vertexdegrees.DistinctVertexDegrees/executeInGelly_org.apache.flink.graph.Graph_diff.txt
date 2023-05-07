@@ -1,0 +1,5 @@
+@Override
+public LogicalGraph executeInGelly(Graph<GradoopId, NullValue, NullValue> graph) throws Exception {
+    DataSet<EPGMVertex> newVertices = new org.apache.flink.graph.asm.degree.annotate.directed.VertexDegrees<GradoopId, NullValue, NullValue>().setIncludeZeroDegreeVertices(includeZeroDegreeVertices).run(graph).join(currentGraph.getVertices()).where(0).equalTo(new Id<>()).with(new DistinctVertexDegreesToAttribute(propertyKey, propertyKeyIn, propertyKeyOut));
+    return currentGraph.getFactory().fromDataSets(currentGraph.getGraphHead(), newVertices, currentGraph.getEdges());
+}

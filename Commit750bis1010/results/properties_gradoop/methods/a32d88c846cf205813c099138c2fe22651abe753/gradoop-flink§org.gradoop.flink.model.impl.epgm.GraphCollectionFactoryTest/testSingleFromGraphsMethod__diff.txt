@@ -1,0 +1,6 @@
+@Test
+public void testSingleFromGraphsMethod() throws Exception {
+    GraphCollection expected = loader.getGraphCollectionByVariables("g0");
+    GraphCollection result = factory.fromGraphs(loader.getLogicalGraphByVariable("g0"));
+    collectAndAssertTrue(result.equalsByGraphElementData(expected));
+}

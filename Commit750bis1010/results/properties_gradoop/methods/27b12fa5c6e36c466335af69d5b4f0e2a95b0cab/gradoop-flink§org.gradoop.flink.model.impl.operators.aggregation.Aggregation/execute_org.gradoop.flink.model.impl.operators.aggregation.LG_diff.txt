@@ -1,0 +1,8 @@
+@Override
+public LG execute(LG graph) {
+    DataSet<V> vertices = graph.getVertices();
+    DataSet<E> edges = graph.getEdges();
+    DataSet<Map<String, PropertyValue>> aggregate = aggregateVertices(vertices).union(aggregateEdges(edges)).reduceGroup(new CombinePartitionAggregates(aggregateFunctions));
+    DataSet<G> graphHead = graph.getGraphHead().map(new SetAggregateProperty<>(aggregateFunctions)).withBroadcastSet(aggregate, SetAggregateProperty.VALUE);
+    return graph.getFactory().fromDataSets(graphHead, vertices, edges);
+}

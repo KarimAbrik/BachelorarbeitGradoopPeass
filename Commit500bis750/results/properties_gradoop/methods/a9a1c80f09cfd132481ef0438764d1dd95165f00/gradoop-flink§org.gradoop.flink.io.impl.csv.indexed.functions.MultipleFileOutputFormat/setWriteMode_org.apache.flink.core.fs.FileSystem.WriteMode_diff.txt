@@ -1,0 +1,10 @@
+/**
+ * Set the write mode of the file.
+ * @param mode The write mode.
+ */
+public void setWriteMode(WriteMode mode) {
+    if (mode == null) {
+        throw new NullPointerException();
+    }
+    this.writeMode = mode;
+}

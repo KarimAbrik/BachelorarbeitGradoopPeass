@@ -1,0 +1,8 @@
+/**
+ * Create new ImageGenerator
+ *
+ * @param p Contains all necessary parameters (cannot use non-static class du to flink-madness)
+ */
+public ImageGenerator(ImageDataSink p) {
+    this.plotter = p;
+}

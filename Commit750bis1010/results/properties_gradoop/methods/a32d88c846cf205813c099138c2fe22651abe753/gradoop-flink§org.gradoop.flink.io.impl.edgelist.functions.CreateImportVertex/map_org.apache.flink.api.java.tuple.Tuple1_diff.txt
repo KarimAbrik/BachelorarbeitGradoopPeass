@@ -1,0 +1,5 @@
+@Override
+public ImportVertex<K> map(Tuple1<K> value) throws Exception {
+    reuseVertex.f0 = value.f0;
+    return reuseVertex;
+}

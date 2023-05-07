@@ -1,0 +1,14 @@
+/**
+ * Set the transaction time tuple (tx-from, tx-to). Needed because of Flink's POJO rules.
+ *
+ * @param transactionTime a {@link Tuple2} representing the transaction time interval
+ */
+public void setTransactionTime(Tuple2<Long, Long> transactionTime) {
+    Objects.requireNonNull(transactionTime);
+    Objects.requireNonNull(transactionTime.f0);
+    Objects.requireNonNull(transactionTime.f1);
+    if (transactionTime.f0 > transactionTime.f1) {
+        throw new IllegalArgumentException("tx-from time can not be after tx-to time");
+    }
+    this.transactionTime = transactionTime;
+}

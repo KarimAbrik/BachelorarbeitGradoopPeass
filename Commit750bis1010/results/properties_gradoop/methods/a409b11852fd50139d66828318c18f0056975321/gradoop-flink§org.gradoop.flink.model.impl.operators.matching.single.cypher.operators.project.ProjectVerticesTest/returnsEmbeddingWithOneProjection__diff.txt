@@ -1,0 +1,13 @@
+@Test
+public void returnsEmbeddingWithOneProjection() throws Exception {
+    DataSet<EPGMVertex> edgeDataSet = createVerticesWithProperties(Lists.newArrayList("foo", "bar", "baz"));
+    ArrayList<String> extractedPropertyKeys = Lists.newArrayList("foo", "baz");
+    ProjectVertices operator = new ProjectVertices(edgeDataSet, extractedPropertyKeys);
+    DataSet<Embedding> results = operator.evaluate();
+    assertEquals(2, results.count());
+    assertEveryEmbedding(results, (embedding) -> {
+        assertEquals(1, embedding.size());
+        assertEquals(PropertyValue.create("foo"), embedding.getProperty(0));
+        assertEquals(PropertyValue.create("baz"), embedding.getProperty(1));
+    });
+}

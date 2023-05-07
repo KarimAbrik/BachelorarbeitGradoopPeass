@@ -1,0 +1,4 @@
+@Override
+public boolean filter(E e) throws Exception {
+    return ElementMatcher.matchAll(e, queryEdges, DEFAULT_EDGE_LABEL);
+}

@@ -1,0 +1,5 @@
+@Override
+public void setProperty(String key, Object value) {
+    initProperties();
+    this.properties.set(key, value);
+}

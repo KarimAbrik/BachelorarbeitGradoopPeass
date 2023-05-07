@@ -1,0 +1,20 @@
+/**
+ * Parses the given arguments.
+ *
+ * @param args command line arguments
+ * @return parsed command line
+ * @throws ParseException
+ */
+public static CommandLine parseArgs(final String[] args) throws ParseException {
+    if (args.length == 0) {
+        throw new IllegalArgumentException("No arguments were provided (try -h)");
+    }
+    CommandLineParser parser = new BasicParser();
+    CommandLine cmd = parser.parse(OPTIONS, args);
+    if (cmd.hasOption(OPTION_HELP)) {
+        printHelp();
+        return null;
+    }
+    performSanityCheck(cmd);
+    return cmd;
+}

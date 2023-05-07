@@ -1,0 +1,4 @@
+@Override
+public Iterator<PropertyValue> iterator() {
+    return new PropertyValueListIterator(bytes);
+}

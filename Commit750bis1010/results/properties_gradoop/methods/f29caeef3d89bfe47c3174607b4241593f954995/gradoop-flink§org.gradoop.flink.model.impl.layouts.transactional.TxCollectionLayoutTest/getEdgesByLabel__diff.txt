@@ -1,0 +1,5 @@
+@Test
+public void getEdgesByLabel() throws Exception {
+    TxCollectionLayout layout = new TxCollectionLayout(getExecutionEnvironment().fromElements(tx0, tx1));
+    GradoopTestUtils.validateGraphElementCollections(tx0.getEdges().stream().filter(e -> e.getLabel().equals("a")).collect(Collectors.toList()), layout.getEdgesByLabel("a").collect());
+}

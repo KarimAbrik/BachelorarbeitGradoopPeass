@@ -1,0 +1,12 @@
+/**
+ * Transforms the elements of the base graph using the given transformation functions.
+ * The identity of the elements is preserved.
+ *
+ * @param graphHeadTransformationFunction graph head transformation function
+ * @param vertexTransformationFunction    vertex transformation function
+ * @param edgeTransformationFunction      edge transformation function
+ * @return transformed base graph
+ */
+default LG transform(TransformationFunction<G> graphHeadTransformationFunction, TransformationFunction<V> vertexTransformationFunction, TransformationFunction<E> edgeTransformationFunction) {
+    return callForGraph(new Transformation<>(graphHeadTransformationFunction, vertexTransformationFunction, edgeTransformationFunction));
+}

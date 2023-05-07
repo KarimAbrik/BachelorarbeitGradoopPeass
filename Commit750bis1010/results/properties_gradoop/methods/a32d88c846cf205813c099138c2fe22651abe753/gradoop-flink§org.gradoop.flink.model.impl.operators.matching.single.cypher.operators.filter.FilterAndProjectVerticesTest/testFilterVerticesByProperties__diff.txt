@@ -1,0 +1,15 @@
+@Test
+public void testFilterVerticesByProperties() throws Exception {
+    CNF predicates = predicateFromQuery("MATCH (a) WHERE a.name = \"Alice\"");
+    EPGMVertexFactory vertexFactory = new EPGMVertexFactory();
+    Properties properties = Properties.create();
+    properties.set("name", "Alice");
+    EPGMVertex v1 = vertexFactory.createVertex("Person", properties);
+    properties = Properties.create();
+    properties.set("name", "Bob");
+    EPGMVertex v2 = vertexFactory.createVertex("Person", properties);
+    DataSet<EPGMVertex> vertices = getExecutionEnvironment().fromElements(v1, v2);
+    List<Embedding> result = new FilterAndProjectVertices<>(vertices, predicates, new ArrayList<>()).evaluate().collect();
+    assertEquals(1, result.size());
+    assertEquals(result.get(0).getId(0), v1.getId());
+}

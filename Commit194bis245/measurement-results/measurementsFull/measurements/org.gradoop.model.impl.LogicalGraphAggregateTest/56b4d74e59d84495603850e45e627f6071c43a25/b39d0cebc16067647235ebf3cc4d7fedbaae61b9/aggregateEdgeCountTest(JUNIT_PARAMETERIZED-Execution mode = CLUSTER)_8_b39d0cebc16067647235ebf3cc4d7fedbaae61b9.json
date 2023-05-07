@@ -1,0 +1,68 @@
+{
+  "clazz" : "org.gradoop.model.impl.LogicalGraphAggregateTest",
+  "methods" : [ {
+    "method" : "aggregateEdgeCountTest",
+    "datacollectorResults" : [ {
+      "name" : "de.dagere.kopeme.datacollection.TimeDataCollectorNoGC",
+      "chunks" : [ ],
+      "results" : [ {
+        "value" : 4.4300631209999996E8,
+        "deviation" : 0.7454614352125607,
+        "min" : 1.03918788E8,
+        "max" : 1.245238454E9,
+        "warmup" : 0,
+        "iterations" : 10,
+        "repetitions" : 2,
+        "commit" : null,
+        "vmRunConfiguration" : {
+          "showStart" : false,
+          "executeBeforeClassInMeasurement" : false,
+          "redirectToTemp" : false,
+          "redirectToNull" : true,
+          "useKieker" : false
+        },
+        "parameters" : {
+          "JUNIT_PARAMETERIZED" : "Execution mode = CLUSTER"
+        },
+        "javaVersion" : "1.8.0_362",
+        "cpu" : "model name : Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz",
+        "memory" : "MemTotal: 16280544 kB",
+        "date" : 1680979921726,
+        "fulldata" : {
+          "fileName" : null,
+          "values" : [ {
+            "startTime" : 1680979917140,
+            "value" : 1245238454
+          }, {
+            "startTime" : 1680979918385,
+            "value" : 554825683
+          }, {
+            "startTime" : 1680979918940,
+            "value" : 482162828
+          }, {
+            "startTime" : 1680979919422,
+            "value" : 608530258
+          }, {
+            "startTime" : 1680979920031,
+            "value" : 463380402
+          }, {
+            "startTime" : 1680979920494,
+            "value" : 346431754
+          }, {
+            "startTime" : 1680979920841,
+            "value" : 259108237
+          }, {
+            "startTime" : 1680979921100,
+            "value" : 222186222
+          }, {
+            "startTime" : 1680979921322,
+            "value" : 144280495
+          }, {
+            "startTime" : 1680979921467,
+            "value" : 103918788
+          } ]
+        }
+      } ]
+    } ]
+  } ]
+}

@@ -1,0 +1,18 @@
+/**
+ * Creates a new temporal graph element.
+ *
+ * @param id the element identifier
+ * @param label the element label
+ * @param properties the element properties
+ * @param validFrom the beginning of the elements validity as unix timestamp in milliseconds
+ * @param validTo the end of the elements validity as unix timestamp in milliseconds
+ */
+TemporalElement(GradoopId id, String label, Properties properties, Long validFrom, Long validTo) {
+    super(id, label, properties);
+    // Set transaction time beginning to the current system time
+    transactionTime = new Tuple2<>(System.currentTimeMillis(), DEFAULT_TIME_TO);
+    Tuple2<Long, Long> newValidTime = new Tuple2<>();
+    newValidTime.f0 = validFrom == null ? DEFAULT_TIME_FROM : validFrom;
+    newValidTime.f1 = validTo == null ? DEFAULT_TIME_TO : validTo;
+    setValidTime(newValidTime);
+}

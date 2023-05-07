@@ -1,0 +1,13 @@
+@Test
+public void convertVertex() throws Exception {
+    Properties properties = new Properties();
+    properties.set("foo", 1);
+    properties.set("bar", "42");
+    properties.set("baz", false);
+    EPGMVertex vertex = new EPGMVertexFactory().createVertex("TestVertex", properties);
+    Embedding embedding = EmbeddingFactory.fromVertex(vertex, Lists.newArrayList("foo", "bar"));
+    assertEquals(1, embedding.size());
+    assertEquals(vertex.getId(), embedding.getId(0));
+    assertEquals(PropertyValue.create(1), embedding.getProperty(0));
+    assertEquals(PropertyValue.create("42"), embedding.getProperty(1));
+}

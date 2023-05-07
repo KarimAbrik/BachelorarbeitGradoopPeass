@@ -1,0 +1,16 @@
+/**
+ * Creates a new import edge.
+ *
+ * @param edgeId      import edge id (i.e. identifier in source system)
+ * @param sourceId    import source vertex id
+ * @param targetId    import target vertex id
+ * @param label       edge label
+ * @param properties  edge properties
+ */
+public ImportEdge(K edgeId, K sourceId, K targetId, String label, Properties properties) {
+    setId(edgeId);
+    setSourceId(sourceId);
+    setTargetId(targetId);
+    setLabel(label);
+    setProperties(properties);
+}

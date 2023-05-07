@@ -1,0 +1,68 @@
+{
+  "clazz" : "org.gradoop.model.impl.labelpropagation.LabelPropagationGradoopTest",
+  "methods" : [ {
+    "method" : "testLabelPropagationWithCallByPropertyKey",
+    "datacollectorResults" : [ {
+      "name" : "de.dagere.kopeme.datacollection.TimeDataCollectorNoGC",
+      "chunks" : [ ],
+      "results" : [ {
+        "value" : 4.4428356508E9,
+        "deviation" : 0.4328940784913833,
+        "min" : 3.217157926E9,
+        "max" : 9.744413974E9,
+        "warmup" : 0,
+        "iterations" : 10,
+        "repetitions" : 2,
+        "commit" : null,
+        "vmRunConfiguration" : {
+          "showStart" : false,
+          "executeBeforeClassInMeasurement" : false,
+          "redirectToTemp" : false,
+          "redirectToNull" : true,
+          "useKieker" : false
+        },
+        "parameters" : {
+          "JUNIT_PARAMETERIZED" : "Execution mode = CLUSTER"
+        },
+        "javaVersion" : "1.8.0_362",
+        "cpu" : "model name : Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz",
+        "memory" : "MemTotal: 16280544 kB",
+        "date" : 1681002758083,
+        "fulldata" : {
+          "fileName" : null,
+          "values" : [ {
+            "startTime" : 1681002713110,
+            "value" : 9744413974
+          }, {
+            "startTime" : 1681002722855,
+            "value" : 4981217667
+          }, {
+            "startTime" : 1681002727836,
+            "value" : 4185311480
+          }, {
+            "startTime" : 1681002732021,
+            "value" : 4009567526
+          }, {
+            "startTime" : 1681002736031,
+            "value" : 3736344847
+          }, {
+            "startTime" : 1681002739767,
+            "value" : 3605910300
+          }, {
+            "startTime" : 1681002743373,
+            "value" : 3712481843
+          }, {
+            "startTime" : 1681002747086,
+            "value" : 3766746897
+          }, {
+            "startTime" : 1681002750852,
+            "value" : 3217157926
+          }, {
+            "startTime" : 1681002754070,
+            "value" : 3469204048
+          } ]
+        }
+      } ]
+    } ]
+  } ]
+}

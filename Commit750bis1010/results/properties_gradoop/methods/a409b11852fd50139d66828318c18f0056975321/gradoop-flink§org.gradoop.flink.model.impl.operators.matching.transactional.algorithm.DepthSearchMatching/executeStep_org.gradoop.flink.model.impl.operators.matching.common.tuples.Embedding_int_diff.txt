@@ -1,0 +1,97 @@
+/**
+ * Execute a step. A step corresponds to the position of the next vertex in
+ * the vertex mappings of the embedding that shall be matched.
+ *
+ * @param embedding the embedding that has been constructed so far
+ * @param step      number of the next vertex to be matched
+ * @return list of newly constructed embeddings
+ */
+private List<Embedding<GradoopId>> executeStep(Embedding<GradoopId> embedding, int step) {
+    // map containing the found matches for all pattern edges
+    // this is necessary to be able to construct all valid permutations of edges
+    Map<Long, Set<GradoopId>> edgeMatches = new HashMap<>();
+    List<Embedding<GradoopId>> results = new ArrayList<>();
+    // get the possible vertex matches
+    for (GradoopId id : getCandidates(step)) {
+        // flag to recognize failed vertex matchings
+        boolean failed = false;
+        // if the vertex is already in the embedding, skip it
+        if (Arrays.asList(embedding.getVertexMapping()).contains(id)) {
+            continue;
+        }
+        // get all outgoing edges of the next step vertex
+        Collection<Edge> edges = handler.getEdgesBySourceVertexId((long) step);
+        List<Edge> patternEdges = edges != null ? new ArrayList<>(edges) : new ArrayList<>();
+        // only keep those edges that have at least one vertex already in the
+        // embedding, or are direct loops
+        filterPatternEdges(patternEdges, embedding);
+        // find the matches for each pattern edge
+        for (Edge patternEdge : patternEdges) {
+            edgeMatches.put(patternEdge.getId(), new HashSet<>());
+            // find all edge candidates
+            Set<GradoopId> edgeCandidateIds = sourceDict.get(id) != null ? sourceDict.get(id) : new HashSet<>();
+            // for each candidate, check if it matches the pattern edge
+            for (GradoopId edgeCandidateId : edgeCandidateIds) {
+                Tuple3<GradoopId, GradoopId, boolean[]> edgeCandidate = edgeDict.get(edgeCandidateId);
+                // get the target vertex of the edge
+                GradoopId target = embedding.getVertexMapping()[Math.toIntExact(patternEdge.getTargetVertexId())];
+                // if the pattern edge and the edge candidate are both loops
+                // and the candidate matches, add it to the embedding
+                if (isLoop(patternEdge, edgeCandidate)) {
+                    edgeMatches.get(patternEdge.getId()).add(edgeCandidateId);
+                    // else, if the candidate matches the pattern edge,
+                    // add it to the embedding
+                } else if (matchOutgoingEdge(patternEdge, edgeCandidateId, target)) {
+                    edgeMatches.get(patternEdge.getId()).add(edgeCandidateId);
+                }
+            }
+            // if there was no matching edge for a pattern edge, the candidate can be discarded
+            if (edgeMatches.get(patternEdge.getId()).isEmpty()) {
+                failed = true;
+                break;
+            }
+        }
+        if (failed) {
+            continue;
+        }
+        // get all incoming edges of the next step vertex
+        edges = handler.getEdgesByTargetVertexId((long) step);
+        patternEdges = edges != null ? new ArrayList<>(edges) : new ArrayList<>();
+        // only keep those edges that have at least one vertex already in the
+        // embedding, or are direct loops
+        filterPatternEdges(patternEdges, embedding);
+        // find the matches for each pattern edge
+        for (Edge patternEdge : patternEdges) {
+            edgeMatches.put(patternEdge.getId(), new HashSet<>());
+            // find all edge candidates
+            Set<GradoopId> edgeCandidateIds = targetDict.get(id) != null ? targetDict.get(id) : new HashSet<>();
+            // for each candidate, check if it matches the pattern edge
+            for (GradoopId edgeCandidateId : edgeCandidateIds) {
+                Tuple3<GradoopId, GradoopId, boolean[]> edgeCandidate = edgeDict.get(edgeCandidateId);
+                // get the target vertex of the edge
+                GradoopId source = embedding.getVertexMapping()[Math.toIntExact(patternEdge.getSourceVertexId())];
+                // if the pattern edge and the edge candidate are both loops
+                // and the candidate matches, add it to the embedding
+                if (isLoop(patternEdge, edgeCandidate)) {
+                    edgeMatches.get(patternEdge.getId()).add(edgeCandidateId);
+                    // else, if the candidate matches the pattern edge,
+                    // add it to the embedding
+                } else if (matchIncomingEdge(patternEdge, edgeCandidateId, source)) {
+                    edgeMatches.get(patternEdge.getId()).add(edgeCandidateId);
+                }
+            }
+            // if there was no matching edge for a pattern edge, the candidate
+            // can be discarded
+            if (edgeMatches.get(patternEdge.getId()).isEmpty()) {
+                failed = true;
+                break;
+            }
+        }
+        if (failed) {
+            continue;
+        }
+        // add all grown embeddings to the results
+        results.addAll(buildNewEmbeddings(embedding, step, id, edgeMatches));
+    }
+    return results;
+}

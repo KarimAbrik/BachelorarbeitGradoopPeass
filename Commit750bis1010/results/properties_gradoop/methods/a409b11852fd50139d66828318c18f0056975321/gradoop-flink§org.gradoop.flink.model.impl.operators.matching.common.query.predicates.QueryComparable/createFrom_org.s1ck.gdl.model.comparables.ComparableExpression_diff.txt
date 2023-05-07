@@ -1,0 +1,17 @@
+/**
+ * Generic method to createFrom a comparable expression
+ *
+ * @param expression the expression to be wrapped
+ * @return wrapped expression
+ */
+public static QueryComparable createFrom(ComparableExpression expression) {
+    if (expression.getClass() == Literal.class) {
+        return new LiteralComparable((Literal) expression);
+    } else if (expression.getClass() == PropertySelector.class) {
+        return new PropertySelectorComparable((PropertySelector) expression);
+    } else if (expression.getClass() == ElementSelector.class) {
+        return new ElementSelectorComparable((ElementSelector) expression);
+    } else {
+        throw new IllegalArgumentException(expression.getClass() + " is not a GDL ComparableExpression");
+    }
+}

@@ -1,0 +1,10 @@
+/**
+ * Valued constructor.
+ *
+ * @param config gradoop flink config
+ */
+public GraphTransactionFromText(GradoopFlinkConfig config) {
+    this.graphHeadFactory = config.getLogicalGraphFactory().getGraphHeadFactory();
+    this.vertexFactory = config.getLogicalGraphFactory().getVertexFactory();
+    this.edgeFactory = config.getLogicalGraphFactory().getEdgeFactory();
+}

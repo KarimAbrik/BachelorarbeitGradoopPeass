@@ -1,0 +1,7 @@
+@Override
+public void flatMap(Tuple2<T, GradoopIdSet> pair, Collector<Tuple2<T, GradoopId>> collector) throws Exception {
+    T firstField = pair.f0;
+    for (GradoopId toId : pair.f1) {
+        collector.collect(new Tuple2<>(firstField, toId));
+    }
+}

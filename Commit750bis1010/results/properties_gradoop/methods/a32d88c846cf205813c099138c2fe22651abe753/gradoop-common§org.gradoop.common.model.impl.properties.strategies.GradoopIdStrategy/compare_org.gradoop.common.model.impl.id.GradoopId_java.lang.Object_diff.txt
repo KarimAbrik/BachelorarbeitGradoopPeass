@@ -1,0 +1,7 @@
+@Override
+public int compare(GradoopId value, Object other) {
+    if (other instanceof GradoopId) {
+        return value.compareTo((GradoopId) other);
+    }
+    throw new IllegalArgumentException(String.format("Incompatible types: %s, %s", value.getClass(), other.getClass()));
+}

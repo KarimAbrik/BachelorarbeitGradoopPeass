@@ -1,0 +1,10 @@
+/**
+ * Reads the source vertex identifier from the json object.
+ *
+ * @param jsonEdge json string representation
+ * @return source vertex identifier
+ * @throws JSONException
+ */
+private GradoopId getSourceVertexID(JSONObject jsonEdge) throws JSONException {
+    return GradoopId.fromLongString(jsonEdge.getString(EDGE_SOURCE));
+}

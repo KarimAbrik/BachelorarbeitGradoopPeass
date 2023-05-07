@@ -1,0 +1,41 @@
+/**
+ * Returns the type string for the specified property value.
+ *
+ * @param propertyValue property value
+ * @return property type string
+ */
+public static String getTypeString(PropertyValue propertyValue) {
+    if (propertyValue.isShort()) {
+        return TypeString.SHORT.getTypeString();
+    } else if (propertyValue.isInt()) {
+        return TypeString.INTEGER.getTypeString();
+    } else if (propertyValue.isLong()) {
+        return TypeString.LONG.getTypeString();
+    } else if (propertyValue.isFloat()) {
+        return TypeString.FLOAT.getTypeString();
+    } else if (propertyValue.isDouble()) {
+        return TypeString.DOUBLE.getTypeString();
+    } else if (propertyValue.isBoolean()) {
+        return TypeString.BOOLEAN.getTypeString();
+    } else if (propertyValue.isString()) {
+        return TypeString.STRING.getTypeString();
+    } else if (propertyValue.isBigDecimal()) {
+        return TypeString.BIGDECIMAL.getTypeString();
+    } else if (propertyValue.isGradoopId()) {
+        return TypeString.GRADOOPID.getTypeString();
+    } else if (propertyValue.isMap()) {
+        // map type string is map:{keyType}:{valueType}
+        return TypeString.MAP.getTypeString() + PROPERTY_TOKEN_DELIMITER + getTypeString(propertyValue.getMap().keySet().iterator().next()) + PROPERTY_TOKEN_DELIMITER + getTypeString(propertyValue.getMap().values().iterator().next());
+    } else if (propertyValue.isList()) {
+        // list type string is list:{itemType}
+        return TypeString.LIST.getTypeString() + PROPERTY_TOKEN_DELIMITER + getTypeString(propertyValue.getList().get(0));
+    } else if (propertyValue.isDate()) {
+        return TypeString.LOCALDATE.getTypeString();
+    } else if (propertyValue.isTime()) {
+        return TypeString.LOCALTIME.getTypeString();
+    } else if (propertyValue.isDateTime()) {
+        return TypeString.LOCALDATETIME.getTypeString();
+    } else {
+        throw new IllegalArgumentException("Type " + propertyValue.getType() + " is not supported");
+    }
+}

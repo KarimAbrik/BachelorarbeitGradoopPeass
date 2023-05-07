@@ -1,0 +1,5 @@
+@Test
+public void createWithMissingLabelTest() {
+    EPGMVertex v = new VertexPojoFactory().createVertex(0L);
+    assertThat(v.getLabel(), is(GConstants.DEFAULT_VERTEX_LABEL));
+}

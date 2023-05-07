@@ -1,0 +1,14 @@
+/**                                                                                                  |                                                                                                     
+* Serialize all ids into a byte array.                                                               |                                                                                                     
+* @param ids sequence of {@link GradoopId}s                                                          |                                                                                                     
+* @return a binary representation                                                                    |                                                                                                     
+*/                                                                                                   |                                                                                                     
+private byte[] writeIds(Collection&lt;GradoopId&gt; ids) {                                           |                                                                                                     
+byte[] bytes = new byte[ids.size() * GradoopId.ID_SIZE];                                             |                                                                                                     
+int i = 0;                                                                                           |                                                                                                     
+for (GradoopId id : ids) {                                                                           |                                                                                                     
+System.arraycopy(id.toByteArray(), 0, bytes, i * GradoopId.ID_SIZE, GradoopId.ID_SIZE);              |                                                                                                     
+i++;                                                                                                 |                                                                                                     
+}                                                                                                    |                                                                                                     
+return bytes;                                                                                        |                                                                                                     
+}                                                                                                    |                                                                                                     

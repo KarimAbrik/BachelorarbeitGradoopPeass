@@ -1,0 +1,9 @@
+/**
+ * Updates the edge cache.
+ *
+ * @param variable edge variable used in the GDL script
+ * @param e edge from GDL loader
+ */
+private void updateEdgeCache(String variable, Edge e) {
+    edgeCache.put(variable, edges.get(edgeIds.get(e.getId())));
+}

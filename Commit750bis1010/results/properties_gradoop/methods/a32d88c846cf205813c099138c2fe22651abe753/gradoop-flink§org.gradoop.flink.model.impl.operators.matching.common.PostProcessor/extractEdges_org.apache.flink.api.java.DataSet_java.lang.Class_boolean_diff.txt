@@ -1,0 +1,13 @@
+/**
+ * Filters and casts edges from a given set of {@link Element}
+ *
+ * @param elements      elements
+ * @param edgeType      edge type
+ * @param mayOverlap    edges may be contained in multiple graphs
+ * @param <E> The produced edge type.
+ * @return edges
+ */
+private static <E extends Edge> DataSet<E> extractEdges(DataSet<Element> elements, Class<E> edgeType, boolean mayOverlap) {
+    DataSet<E> result = elements.filter(new IsInstance<>(edgeType)).map(new Cast<>(edgeType)).returns(TypeExtractor.createTypeInfo(edgeType));
+    return mayOverlap ? result.groupBy(new Id<>()).combineGroup(new MergedGraphIds<>()).groupBy(new Id<>()).reduceGroup(new MergedGraphIds<>()) : result;
+}

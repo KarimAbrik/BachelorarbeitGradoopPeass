@@ -1,0 +1,9 @@
+@Override
+public boolean evaluate(Embedding embedding, EmbeddingMetaData metaData) {
+    for (ComparisonExpression comparisonExpression : predicates) {
+        if (comparisonExpression.evaluate(embedding, metaData)) {
+            return true;
+        }
+    }
+    return false;
+}

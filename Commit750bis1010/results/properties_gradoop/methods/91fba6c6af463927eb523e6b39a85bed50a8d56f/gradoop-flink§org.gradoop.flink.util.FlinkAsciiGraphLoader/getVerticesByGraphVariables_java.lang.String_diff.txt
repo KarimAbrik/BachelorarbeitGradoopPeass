@@ -1,0 +1,9 @@
+/**
+ * Returns all vertices that belong to the given graph variables.
+ *
+ * @param variables graph variables used in the GDL script
+ * @return vertices that are contained in the graphs
+ */
+public Collection<EPGMVertex> getVerticesByGraphVariables(String... variables) {
+    return loader.getVerticesByGraphVariables(variables);
+}

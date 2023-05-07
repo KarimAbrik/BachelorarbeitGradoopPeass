@@ -1,0 +1,19 @@
+/**
+ * Creates a new node.
+ *
+ * @param leftChild left input plan node
+ * @param rightChild right input plan node
+ * @param leftJoinProperties properties used for joining on the left side
+ * @param rightJoinProperties properties used for joining on the right side
+ * @param vertexStrategy morphism setting for vertices
+ * @param edgeStrategy morphism setting for edges
+ * @param joinHint Join hint for the Flink optimizer
+ */
+public ValueJoinNode(PlanNode leftChild, PlanNode rightChild, List<Pair<String, String>> leftJoinProperties, List<Pair<String, String>> rightJoinProperties, MatchStrategy vertexStrategy, MatchStrategy edgeStrategy, JoinOperatorBase.JoinHint joinHint) {
+    super(leftChild, rightChild);
+    this.leftJoinProperties = leftJoinProperties;
+    this.rightJoinProperties = rightJoinProperties;
+    this.vertexStrategy = vertexStrategy;
+    this.edgeStrategy = edgeStrategy;
+    this.joinHint = joinHint;
+}

@@ -1,0 +1,7 @@
+@Override
+public DataSet<GraphTransaction> getGraphTransactions() {
+    DataSet<Tuple2<GradoopId, EPGMGraphElement>> graphVertexTuples = getVertices().map(new Cast<>(EPGMGraphElement.class)).returns(TypeExtractor.getForClass(EPGMGraphElement.class)).flatMap(new GraphElementExpander<>());
+    DataSet<Tuple2<GradoopId, EPGMGraphElement>> graphEdgeTuples = getEdges().map(new Cast<>(EPGMGraphElement.class)).returns(TypeExtractor.getForClass(EPGMGraphElement.class)).flatMap(new GraphElementExpander<>());
+    DataSet<Tuple3<GradoopId, Set<EPGMVertex>, Set<EPGMEdge>>> transactions = graphVertexTuples.union(graphEdgeTuples).groupBy(0).combineGroup(new GraphVerticesEdges()).groupBy(0).reduceGroup(new GraphVerticesEdges());
+    return getGraphHeads().leftOuterJoin(transactions).where(new Id<>()).equalTo(0).with(new TransactionFromSets());
+}

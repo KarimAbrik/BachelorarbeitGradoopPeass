@@ -1,0 +1,11 @@
+@Test
+public void testVertexLabelDistribution() throws Exception {
+    LogicalGraph db = getSocialNetworkLoader().getLogicalGraph();
+    Map<String, Long> cache = new HashMap<>();
+    List<WithCount<String>> result = new VertexLabelDistribution().execute(db).collect();
+    assertEquals(3, result.size());
+    result.forEach(e -> cache.put(e.getObject(), e.getCount()));
+    assertThat(cache.get("Tag"), is(3L));
+    assertThat(cache.get("Forum"), is(2L));
+    assertThat(cache.get("Person"), is(6L));
+}

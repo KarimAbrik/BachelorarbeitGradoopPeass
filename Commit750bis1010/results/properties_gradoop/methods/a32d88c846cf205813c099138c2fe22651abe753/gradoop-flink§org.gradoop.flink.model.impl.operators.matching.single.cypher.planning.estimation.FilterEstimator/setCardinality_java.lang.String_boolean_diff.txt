@@ -1,0 +1,9 @@
+/**
+ * Updates the cardinality of the leaf node output.
+ *
+ * @param variable query variable
+ * @param isVertex true, iff the variable maps to a vertex
+ */
+private void setCardinality(String variable, boolean isVertex) {
+    cardinality = getCardinality(getLabel(variable, isVertex), isVertex);
+}

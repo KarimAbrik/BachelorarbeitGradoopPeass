@@ -1,0 +1,6 @@
+@Override
+public G map(GradoopId graphId) throws Exception {
+    G graphHead = graphHeadFactory.createGraphHead(BusinessTransactionGraphs.BTG_LABEL);
+    graphHead.setId(graphId);
+    return graphHead;
+}

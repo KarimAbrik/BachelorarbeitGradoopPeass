@@ -1,0 +1,19 @@
+@Override
+protected EmbeddingMetaData computeEmbeddingMetaData() {
+    EmbeddingMetaData leftInputMetaData = getLeftChild().getEmbeddingMetaData();
+    EmbeddingMetaData rightInputMetaData = getRightChild().getEmbeddingMetaData();
+    EmbeddingMetaData embeddingMetaData = new EmbeddingMetaData(leftInputMetaData);
+    int entryCount = leftInputMetaData.getEntryCount();
+    // append the non-join entry mappings from the right to the left side
+    for (String var : rightInputMetaData.getVariables()) {
+        embeddingMetaData.setEntryColumn(var, rightInputMetaData.getEntryType(var), entryCount++);
+    }
+    // append all property mappings from the right to the left side
+    int propertyCount = leftInputMetaData.getPropertyCount();
+    for (String var : rightInputMetaData.getVariables()) {
+        for (String key : rightInputMetaData.getPropertyKeys(var)) {
+            embeddingMetaData.setPropertyColumn(var, key, propertyCount++);
+        }
+    }
+    return embeddingMetaData;
+}

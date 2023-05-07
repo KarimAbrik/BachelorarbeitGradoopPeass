@@ -1,0 +1,9 @@
+@Test
+public void testGetVertices() throws Exception {
+    AsciiGraphLoader<GraphHead, Vertex, Edge> asciiGraphLoader = AsciiGraphLoader.fromString("[()]", config);
+    validateCollections(asciiGraphLoader, 1, 1, 0);
+    validateCaches(asciiGraphLoader, 0, 0, 0);
+    for (Vertex vertex : asciiGraphLoader.getVertices()) {
+        assertEquals("Vertex has wrong label", GradoopConstants.DEFAULT_VERTEX_LABEL, vertex.getLabel());
+    }
+}

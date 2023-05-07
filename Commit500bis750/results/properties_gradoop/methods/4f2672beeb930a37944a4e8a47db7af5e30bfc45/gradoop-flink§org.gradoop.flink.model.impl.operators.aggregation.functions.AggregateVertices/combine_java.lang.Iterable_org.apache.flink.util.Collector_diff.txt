@@ -1,0 +1,17 @@
+@Override
+public void combine(Iterable<Vertex> vertices, Collector<PropertyValue> out) throws Exception {
+    PropertyValue aggregate = null;
+    for (Vertex vertex : vertices) {
+        PropertyValue increment = aggFunc.getVertexIncrement(vertex);
+        if (increment != null) {
+            if (aggregate == null) {
+                aggregate = increment;
+            } else {
+                aggregate = aggFunc.aggregate(aggregate, increment);
+            }
+        }
+    }
+    if (aggregate != null) {
+        out.collect(aggregate);
+    }
+}

@@ -1,0 +1,4 @@
+@Override
+public <T> T callForValue(BinaryBaseGraphCollectionToValueOperator<GraphCollection, T> operator, GraphCollection otherCollection) {
+    return operator.execute(this, otherCollection);
+}

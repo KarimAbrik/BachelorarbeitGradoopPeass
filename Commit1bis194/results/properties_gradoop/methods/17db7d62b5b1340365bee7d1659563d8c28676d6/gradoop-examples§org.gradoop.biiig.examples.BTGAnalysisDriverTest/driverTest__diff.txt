@@ -1,0 +1,24 @@
+@Test                                                                                                  @Test                                                                                               
+public void driverTest() throws Exception {                                                            public void driverTest() throws Exception {                                                         
+Configuration conf = utility.getConfiguration();                                                       Configuration conf = utility.getConfiguration();                                                    
+String graphFile = "btg2.graph";                                                                       String graphFile = "btg2.graph";                                                                    
+String[] args = new String[] { "-" + ConfigurationUtils.OPTION_WORKERS, "1", "-" + ConfigurationUtil | String sortTable = "graphs_sorted";                                                                 
+                                                                                                     | String[] args = new String[] { "-" + ConfigurationUtils.OPTION_WORKERS, "1", "-" + ConfigurationUtil
+copyFromLocal(graphFile);                                                                              copyFromLocal(graphFile);                                                                           
+                                                                                                     | // create table for sort output                                                                     
+                                                                                                     | createTable(sortTable);                                                                             
+BTGAnalysisDriver btgAnalysisDriver = new BTGAnalysisDriver();                                         BTGAnalysisDriver btgAnalysisDriver = new BTGAnalysisDriver();                                      
+btgAnalysisDriver.setConf(conf);                                                                       btgAnalysisDriver.setConf(conf);                                                                    
+// run the pipeline                                                                                    // run the pipeline                                                                                 
+int exitCode = btgAnalysisDriver.run(args);                                                            int exitCode = btgAnalysisDriver.run(args);                                                         
+// tests                                                                                               // tests                                                                                            
+assertThat(exitCode, is(0));                                                                           assertThat(exitCode, is(0));                                                                        
+GraphStore graphStore = openGraphStore();                                                              GraphStore graphStore = openGraphStore();                                                           
+// BTG results                                                                                         // BTG results                                                                                      
+validateBTGComputation(graphStore);                                                                    validateBTGComputation(graphStore);                                                                 
+// Select and Aggregate results                                                                        // Select and Aggregate results                                                                     
+validateSelectAndAggregate(graphStore);                                                                validateSelectAndAggregate(graphStore);                                                             
+// sort results                                                                                        // sort results                                                                                     
+validateSort(conf);                                                                                    validateSort(conf);                                                                                 
+graphStore.close();                                                                                    graphStore.close();                                                                                 
+}                                                                                                      }                                                                                                   

@@ -1,0 +1,5 @@
+@Test
+public void testGetBigDecimal() throws Exception {
+    PropertyValue p = PropertyValue.create(BIG_DECIMAL_VAL_7);
+    assertEquals(BIG_DECIMAL_VAL_7, p.getBigDecimal());
+}

@@ -1,0 +1,13 @@
+/**
+ * Returns all edges that start at the given vertex id or {@code null} if the
+ * given vertex has no outgoing edges.
+ *
+ * @param vertexId vertex id
+ * @return outgoing edges or {@code null}
+ */
+public Collection<Edge> getEdgesBySourceVertexId(Long vertexId) {
+    if (sourceIdToEdgeCache == null) {
+        sourceIdToEdgeCache = initSetCache(getEdges(), Edge::getSourceVertexId, Function.identity());
+    }
+    return sourceIdToEdgeCache.get(vertexId);
+}

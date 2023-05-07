@@ -1,0 +1,8 @@
+/**
+ * Checks if the graph returns a single vertex and no edges (no loops).
+ *
+ * @return true, if single vertex graph
+ */
+public boolean isSingleVertexGraph() {
+    return getVertexCount() == 1 && getEdgeCount() == 0;
+}

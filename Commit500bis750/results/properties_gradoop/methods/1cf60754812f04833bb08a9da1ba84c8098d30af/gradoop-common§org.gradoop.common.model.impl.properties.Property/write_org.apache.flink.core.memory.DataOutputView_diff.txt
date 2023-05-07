@@ -1,0 +1,5 @@
+@Override
+public void write(DataOutputView outputView) throws IOException {
+    outputView.writeUTF(key);
+    value.write(outputView);
+}

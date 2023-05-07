@@ -1,0 +1,4 @@
+@Override
+public GVELayout fromDataSets(DataSet<EPGMVertex> vertices) {
+    return fromDataSets(vertices, createEdgeDataSet(Lists.newArrayListWithCapacity(0)));
+}

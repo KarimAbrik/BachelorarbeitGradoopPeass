@@ -1,0 +1,12 @@
+@Test
+public void testGetVertexCache() throws Exception {
+    AsciiGraphLoader<GraphHead, Vertex, Edge> asciiGraphLoader = AsciiGraphLoader.fromString("(a),(b),()", config);
+    validateCollections(asciiGraphLoader, 0, 3, 0);
+    validateCaches(asciiGraphLoader, 0, 2, 0);
+    Vertex a = asciiGraphLoader.getVertexByVariable("a");
+    Vertex b = asciiGraphLoader.getVertexByVariable("b");
+    Vertex aCache = asciiGraphLoader.getVertexCache().get("a");
+    Vertex bCache = asciiGraphLoader.getVertexCache().get("b");
+    assertEquals("Vertices were not equal", a, aCache);
+    assertEquals("Vertices were not equal", b, bCache);
+}

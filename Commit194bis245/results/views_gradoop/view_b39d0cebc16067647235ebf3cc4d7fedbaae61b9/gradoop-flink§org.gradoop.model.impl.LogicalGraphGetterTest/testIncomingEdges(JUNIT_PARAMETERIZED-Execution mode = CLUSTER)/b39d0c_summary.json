@@ -1,0 +1,32 @@
+{
+  "overallScore" : 0,
+  "selected" : false,
+  "testcase" : {
+    "clazz" : "org.gradoop.model.impl.LogicalGraphGetterTest",
+    "method" : "testIncomingEdges",
+    "module" : "gradoop-flink",
+    "params" : "JUNIT_PARAMETERIZED-Execution mode = CLUSTER"
+  },
+  "callCounts" : {
+    "gradoop-flink§org.gradoop.model.impl.GraphCollection#getGellyGraph" : 1,
+    "gradoop-core§org.gradoop.model.impl.DefaultEdgeData#getSourceVertexId" : 24,
+    "gradoop-flink§org.gradoop.model.impl.LogicalGraph#getIncomingEdges(java.lang.Long)" : 1,
+    "gradoop-core§org.gradoop.model.impl.DefaultElement#getId" : 1,
+    "gradoop-flink§org.gradoop.model.impl.LogicalGraph#fromGraph(org.apache.flink.graph.Graph,org.gradoop.model.impl.GD,org.gradoop.model.VertexDataFactory,org.gradoop.model.EdgeDataFactory,org.gradoop.model.GraphDataFactory)" : 1,
+    "gradoop-flink§org.gradoop.model.impl.EdgeDataCollection#<init>(org.apache.flink.api.java.DataSet)" : 1,
+    "gradoop-flink§org.gradoop.model.impl.LogicalGraphGetterTest#testIncomingEdges" : 1,
+    "gradoop-core§org.gradoop.model.impl.DefaultElement#toString" : 48,
+    "gradoop-core§org.gradoop.model.impl.DefaultEdgeData#getTargetVertexId" : 24,
+    "gradoop-flink§org.gradoop.model.FlinkTestBase#getGraphStore" : 1,
+    "gradoop-flink§org.gradoop.model.impl.EPGMDatabase#getDatabaseGraph" : 1,
+    "gradoop-core§org.gradoop.model.impl.DefaultGraphElement#<init>" : 72,
+    "gradoop-core§org.gradoop.model.impl.DefaultElement#<init>" : 72,
+    "gradoop-core§org.gradoop.model.impl.DefaultEdgeData#toString" : 48,
+    "gradoop-core§org.gradoop.model.impl.DefaultGraphElement#toString" : 48,
+    "gradoop-core§org.gradoop.model.impl.DefaultEdgeData#<init>" : 72,
+    "gradoop-flink§org.gradoop.model.impl.EdgeDataCollection#size" : 1,
+    "gradoop-flink§org.gradoop.model.impl.EPGMDatabase$EdgesConverter#map(org.gradoop.model.impl.ED)" : 24,
+    "gradoop-flink§org.gradoop.model.impl.LogicalGraph#<init>(org.apache.flink.graph.Graph,org.gradoop.model.impl.GD,org.gradoop.model.VertexDataFactory,org.gradoop.model.EdgeDataFactory,org.gradoop.model.GraphDataFactory,org.apache.flink.api.java.ExecutionEnvironment)" : 1
+  },
+  "selectedChanges" : [ ]
+}

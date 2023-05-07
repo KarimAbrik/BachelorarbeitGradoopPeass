@@ -1,0 +1,5 @@
+@Override
+public TemporalGraph getTemporalGraph() {
+    TemporalGraphCollection collection = getTemporalGraphCollection();
+    return getConfig().getTemporalGraphFactory().fromDataSets(collection.getGraphHeads().first(1), collection.getVertices(), collection.getEdges());
+}

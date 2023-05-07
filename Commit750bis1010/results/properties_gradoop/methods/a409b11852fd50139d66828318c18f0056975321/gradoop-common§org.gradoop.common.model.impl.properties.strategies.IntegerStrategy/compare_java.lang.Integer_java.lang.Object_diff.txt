@@ -1,0 +1,4 @@
+@Override
+public int compare(Integer value, Object other) {
+    return PropertyValueStrategyUtils.compareNumerical(value, other);
+}

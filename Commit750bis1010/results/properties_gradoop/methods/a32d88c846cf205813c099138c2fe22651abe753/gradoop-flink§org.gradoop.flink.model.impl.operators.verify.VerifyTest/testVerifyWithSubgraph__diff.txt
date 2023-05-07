@@ -1,0 +1,25 @@
+/**
+ * Test the verify operator with a subgraph operator.
+ *
+ * @throws Exception when the execution in Flink fails.
+ */
+@Test
+public void testVerifyWithSubgraph() throws Exception {
+    FlinkAsciiGraphLoader loader = getSocialNetworkLoader();
+    loader.appendToDatabaseFromString("expected[" + "(eve)-[ekb:knows {since : 2015}]->(bob)" + "]");
+    LogicalGraph input = loader.getLogicalGraphByVariable("g0");
+    // Apply a subgraph operator that would result in dangling edges.
+    LogicalGraph subgraph = input.subgraph(new ByProperty<EPGMVertex>("name", PropertyValue.create("Alice")).negate(), new True<>(), Subgraph.Strategy.BOTH);
+    // Make sure that the graph contains dangling edges.
+    List<EPGMEdge> danglingEdges = getDanglingEdges(subgraph);
+    List<EPGMEdge> expectedDanglingEdges = Arrays.asList(loader.getEdgeByVariable("eka"), loader.getEdgeByVariable("akb"), loader.getEdgeByVariable("bka"));
+    Comparator<EPGMEdge> comparator = Comparator.comparing(EPGMEdge::getId);
+    danglingEdges.sort(comparator);
+    expectedDanglingEdges.sort(comparator);
+    assertArrayEquals(expectedDanglingEdges.toArray(), danglingEdges.toArray());
+    // Now run verify and check if those edges were removed.
+    LogicalGraph verifiedSubgraph = subgraph.verify();
+    assertEquals("Verified graph contained dangling edges.", 0, getDanglingEdges(verifiedSubgraph).size());
+    // Check if nothing else has been removed (i.e. the result is correct)
+    collectAndAssertTrue(loader.getLogicalGraphByVariable("expected").equalsByElementData(verifiedSubgraph));
+}

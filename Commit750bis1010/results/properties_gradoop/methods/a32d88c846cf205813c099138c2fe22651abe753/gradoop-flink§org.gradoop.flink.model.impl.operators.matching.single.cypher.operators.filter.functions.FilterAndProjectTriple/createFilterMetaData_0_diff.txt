@@ -1,0 +1,21 @@
+/**
+ * Creates the {@code EmbeddingMetaData} of the embedding used for filtering
+ * @param predicates filter predicates
+ * @param sourceVariable source variable
+ * @param edgeVariable edge variable
+ * @param targetVariable target variable
+ * @return filter embedding meta data
+ */
+private static EmbeddingMetaData createFilterMetaData(CNF predicates, String sourceVariable, String edgeVariable, String targetVariable) {
+    EmbeddingMetaData metaData = new EmbeddingMetaData();
+    metaData.setEntryColumn(sourceVariable, EmbeddingMetaData.EntryType.VERTEX, 0);
+    metaData.setEntryColumn(edgeVariable, EmbeddingMetaData.EntryType.EDGE, 1);
+    metaData.setEntryColumn(targetVariable, EmbeddingMetaData.EntryType.VERTEX, 2);
+    int i = 0;
+    for (String variable : new String[] { sourceVariable, edgeVariable, targetVariable }) {
+        for (String propertyKey : predicates.getPropertyKeys(variable)) {
+            metaData.setPropertyColumn(variable, propertyKey, i++);
+        }
+    }
+    return metaData;
+}

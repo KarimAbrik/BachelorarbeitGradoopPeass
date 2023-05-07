@@ -1,0 +1,205 @@
+{
+  "measurementConfig" : {
+    "vms" : 30,
+    "earlyStop" : false,
+    "warmup" : 5,
+    "iterations" : 5,
+    "repetitions" : 2,
+    "logFullData" : true,
+    "useGC" : false,
+    "callSyncBetweenVMs" : true,
+    "waitTimeBetweenVMs" : 1000,
+    "maxLogSizeInMb" : 100,
+    "kiekerConfig" : {
+      "useKieker" : true,
+      "useSourceInstrumentation" : true,
+      "useSelectiveInstrumentation" : true,
+      "useAggregation" : true,
+      "useCircularQueue" : false,
+      "enableAdaptiveMonitoring" : false,
+      "adaptiveInstrumentation" : false,
+      "kiekerAggregationInterval" : 5000,
+      "record" : "DURATION",
+      "onlyOneCallRecording" : false,
+      "extractMethod" : false,
+      "traceSizeInMb" : 100,
+      "kiekerQueueSize" : 10000000,
+      "createDefaultConstructor" : true,
+      "kiekerWaitTime" : 5,
+      "writingType" : "BinaryAggregated",
+      "excludeForTracing" : [ "new org.eclipse.jetty.logging.JettyLevel.<init>(..)", "* org.eclipse.jetty.logging.JettyLevel.*(..)", "*[] org.eclipse.jetty.logging.JettyLevel.*(..)", "*.* org.eclipse.jetty.logging.JettyLevel.*(..)", "*.*.* org.eclipse.jetty.logging.JettyLevel.*(..)", "*.*.*.* org.eclipse.jetty.logging.JettyLevel.*(..)", "*.*.*.*.* org.eclipse.jetty.logging.JettyLevel.*(..)", "new org.eclipse.jetty.logging.JettyLoggerConfiguration.<init>(..)", "* org.eclipse.jetty.logging.JettyLoggerConfiguration.*(..)", "*[] org.eclipse.jetty.logging.JettyLoggerConfiguration.*(..)", "*.* org.eclipse.jetty.logging.JettyLoggerConfiguration.*(..)", "*.*.* org.eclipse.jetty.logging.JettyLoggerConfiguration.*(..)", "*.*.*.* org.eclipse.jetty.logging.JettyLoggerConfiguration.*(..)", "*.*.*.*.* org.eclipse.jetty.logging.JettyLoggerConfiguration.*(..)", "new org.eclipse.jetty.logging.JettyLoggingServiceProvider.<init>(..)", "* org.eclipse.jetty.logging.JettyLoggingServiceProvider.*(..)", "*[] org.eclipse.jetty.logging.JettyLoggingServiceProvider.*(..)", "*.* org.eclipse.jetty.logging.JettyLoggingServiceProvider.*(..)", "*.*.* org.eclipse.jetty.logging.JettyLoggingServiceProvider.*(..)", "*.*.*.* org.eclipse.jetty.logging.JettyLoggingServiceProvider.*(..)", "*.*.*.*.* org.eclipse.jetty.logging.JettyLoggingServiceProvider.*(..)", "new org.eclipse.jetty.logging.JettyLoggerFactory.<init>(..)", "* org.eclipse.jetty.logging.JettyLoggerFactory.*(..)", "*[] org.eclipse.jetty.logging.JettyLoggerFactory.*(..)", "*.* org.eclipse.jetty.logging.JettyLoggerFactory.*(..)", "*.*.* org.eclipse.jetty.logging.JettyLoggerFactory.*(..)", "*.*.*.* org.eclipse.jetty.logging.JettyLoggerFactory.*(..)", "*.*.*.*.* org.eclipse.jetty.logging.JettyLoggerFactory.*(..)", "new org.eclipse.jetty.logging.StdErrAppender.<init>(..)", "* org.eclipse.jetty.logging.StdErrAppender.*(..)", "*[] org.eclipse.jetty.logging.StdErrAppender.*(..)", "*.* org.eclipse.jetty.logging.StdErrAppender.*(..)", "*.*.* org.eclipse.jetty.logging.StdErrAppender.*(..)", "*.*.*.* org.eclipse.jetty.logging.StdErrAppender.*(..)", "*.*.*.*.* org.eclipse.jetty.logging.StdErrAppender.*(..)", "new org.eclipse.jetty.logging.Timestamp.<init>(..)", "* org.eclipse.jetty.logging.Timestamp.*(..)", "*[] org.eclipse.jetty.logging.Timestamp.*(..)", "*.* org.eclipse.jetty.logging.Timestamp.*(..)", "*.*.* org.eclipse.jetty.logging.Timestamp.*(..)", "*.*.*.* org.eclipse.jetty.logging.Timestamp.*(..)", "*.*.*.*.* org.eclipse.jetty.logging.Timestamp.*(..)", "new org.eclipse.jetty.logging.Timestamp$Tick.<init>(..)", "* org.eclipse.jetty.logging.Timestamp$Tick.*(..)", "*[] org.eclipse.jetty.logging.Timestamp$Tick.*(..)", "*.* org.eclipse.jetty.logging.Timestamp$Tick.*(..)", "*.*.* org.eclipse.jetty.logging.Timestamp$Tick.*(..)", "*.*.*.* org.eclipse.jetty.logging.Timestamp$Tick.*(..)", "*.*.*.*.* org.eclipse.jetty.logging.Timestamp$Tick.*(..)", "new org.eclipse.jetty.logging.JettyLogger.<init>(..)", "* org.eclipse.jetty.logging.JettyLogger.*(..)", "*[] org.eclipse.jetty.logging.JettyLogger.*(..)", "*.* org.eclipse.jetty.logging.JettyLogger.*(..)", "*.*.* org.eclipse.jetty.logging.JettyLogger.*(..)", "*.*.*.* org.eclipse.jetty.logging.JettyLogger.*(..)", "*.*.*.*.* org.eclipse.jetty.logging.JettyLogger.*(..)" ]
+    },
+    "saveAll" : true,
+    "javaVersion" : "1.8.0_362",
+    "measurementStrategy" : "PARALLEL",
+    "statisticsConfig" : {
+      "type1error" : 0.2,
+      "type2error" : 0.1,
+      "outlierFactor" : 3.29,
+      "statisticTest" : "MANN_WHITNEY_TEST"
+    },
+    "executionConfig" : {
+      "timeout" : 300000,
+      "linearizeHistory" : true,
+      "redirectSubprocessOutputToFile" : true,
+      "useTieredCompilation" : false,
+      "removeSnapshots" : false,
+      "useAlternativeBuildfile" : false,
+      "excludeLog4jSlf4jImpl" : false,
+      "excludeLog4jToSlf4j" : false,
+      "executeBeforeClassInMeasurement" : false,
+      "clearMockitoCaches" : false,
+      "onlyMeasureWorkload" : false,
+      "showStart" : false,
+      "redirectToNull" : true,
+      "createDetailDebugFiles" : true
+    },
+    "fixedCommitConfig" : {
+      "commit" : "645eb1baa10fae290a3889480fec4febe1411921",
+      "commitOld" : "6209595896568bded13130a7921e4584df72ce8f"
+    }
+  },
+  "causeConfig" : {
+    "splitAggregated" : true,
+    "minTime" : 0.1,
+    "ignoreEOIs" : true,
+    "rcaStrategy" : "UNTIL_SOURCE_CHANGE",
+    "levels" : 1,
+    "testCase" : {
+      "clazz" : "org.gradoop.model.impl.LogicalGraphProjectionTest",
+      "method" : "projectionTest",
+      "module" : "gradoop-flink",
+      "params" : "JUNIT_PARAMETERIZED-Execution mode = CLUSTER"
+    },
+    "propertyFolder" : "/home/abrik/peass/results/properties_gradoop"
+  },
+  "nodes" : {
+    "call" : "org.gradoop.model.impl.LogicalGraphProjectionTest#projectionTest",
+    "kiekerPattern" : "public void org.gradoop.model.impl.LogicalGraphProjectionTest.projectionTest()",
+    "otherKiekerPattern" : "public void org.gradoop.model.impl.LogicalGraphProjectionTest.projectionTest()",
+    "module" : "gradoop-flink",
+    "statistic" : {
+      "meanOld" : 4.244248006253333E9,
+      "meanCurrent" : 2.3172236747466674E9,
+      "deviationOld" : 5.680268569398884E7,
+      "deviationCurrent" : 6.0337778475157134E7,
+      "vms" : 30,
+      "callsOld" : 150,
+      "calls" : 150,
+      "tvalue" : 127.36737881747993
+    },
+    "childs" : [ {
+      "call" : "org.gradoop.model.impl.AbstractGraph#getGellyGraph",
+      "kiekerPattern" : "protected org.apache.flink.graph.Graph org.gradoop.model.impl.AbstractGraph.getGellyGraph()",
+      "otherKiekerPattern" : "public org.apache.flink.api.java.DataSet org.gradoop.model.impl.AbstractGraph.getVertexData()",
+      "module" : "gradoop-flink",
+      "statistic" : {
+        "meanOld" : 316.9133552271484,
+        "meanCurrent" : 793317.7375283447,
+        "deviationOld" : 24.37963190478196,
+        "deviationCurrent" : 58788.77231490362,
+        "vms" : 28,
+        "callsOld" : 1350,
+        "calls" : 450,
+        "tvalue" : -71.3769896334941
+      },
+      "childs" : [ ]
+    }, {
+      "call" : "org.gradoop.model.impl.DefaultElement#<init>",
+      "kiekerPattern" : "protected new org.gradoop.model.impl.DefaultElement.<init>()",
+      "otherKiekerPattern" : "protected org.apache.flink.api.java.ExecutionEnvironment org.gradoop.model.FlinkTestBase.getExecutionEnvironment()",
+      "module" : "gradoop-core",
+      "statistic" : {
+        "meanOld" : 187.0566286613448,
+        "meanCurrent" : 366.548275862069,
+        "deviationOld" : 23.78020503667852,
+        "deviationCurrent" : 53.296944867774954,
+        "vms" : 29,
+        "callsOld" : 217366,
+        "calls" : 150,
+        "tvalue" : -16.56215850553453
+      },
+      "childs" : [ ]
+    }, {
+      "call" : "org.gradoop.model.impl.DefaultGraphElement#<init>",
+      "kiekerPattern" : "protected new org.gradoop.model.impl.DefaultGraphElement.<init>()",
+      "otherKiekerPattern" : "private new org.gradoop.model.impl.LogicalGraphProjectionTest$EdgeComparator.<init>()",
+      "module" : "gradoop-core",
+      "statistic" : {
+        "meanOld" : 101.60506098510831,
+        "meanCurrent" : 287.6057471264367,
+        "deviationOld" : 6.386592737102448,
+        "deviationCurrent" : 143.9870147615247,
+        "vms" : 29,
+        "callsOld" : 211656,
+        "calls" : 450,
+        "tvalue" : -6.949885276000512
+      },
+      "childs" : [ ]
+    }, {
+      "call" : "org.gradoop.model.impl.DefaultVertexData#<init>",
+      "kiekerPattern" : "public new org.gradoop.model.impl.DefaultVertexData.<init>()",
+      "otherKiekerPattern" : "private new org.gradoop.model.impl.LogicalGraphProjectionTest$VertexComparator.<init>()",
+      "module" : "gradoop-core",
+      "statistic" : {
+        "meanOld" : 148.80249054922368,
+        "meanCurrent" : 1886.4937037037037,
+        "deviationOld" : 12.906056101836187,
+        "deviationCurrent" : 745.873895074513,
+        "vms" : 29,
+        "callsOld" : 107252,
+        "calls" : 450,
+        "tvalue" : -12.758528230167386
+      },
+      "childs" : [ ]
+    }, {
+      "call" : "org.gradoop.model.impl.DefaultEdgeData#<init>",
+      "kiekerPattern" : "public new org.gradoop.model.impl.DefaultEdgeData.<init>()",
+      "otherKiekerPattern" : "public int org.gradoop.model.impl.LogicalGraphProjectionTest$VertexComparator.compare(org.gradoop.model.impl.DefaultVertexData,org.gradoop.model.impl.DefaultVertexData)",
+      "module" : "gradoop-core",
+      "statistic" : {
+        "meanOld" : 155.85005172308527,
+        "meanCurrent" : 1815.432857142857,
+        "deviationOld" : 84.34224106831299,
+        "deviationCurrent" : 304.9816389990297,
+        "vms" : 29,
+        "callsOld" : 104251,
+        "calls" : 1050,
+        "tvalue" : -28.69139914285476
+      },
+      "childs" : [ ]
+    }, {
+      "call" : "org.gradoop.model.impl.AbstractGraph#getVertexCount",
+      "kiekerPattern" : "public long org.gradoop.model.impl.AbstractGraph.getVertexCount()",
+      "otherKiekerPattern" : "public int org.gradoop.model.impl.LogicalGraphProjectionTest$EdgeComparator.compare(org.gradoop.model.impl.DefaultEdgeData,org.gradoop.model.impl.DefaultEdgeData)",
+      "module" : "gradoop-flink",
+      "statistic" : {
+        "meanOld" : 1.5104991710888886E8,
+        "meanCurrent" : 1027.915381473175,
+        "deviationOld" : 5807399.200383959,
+        "deviationCurrent" : 699.2168116411484,
+        "vms" : 29,
+        "callsOld" : 450,
+        "calls" : 3159,
+        "tvalue" : 142.4611610123417
+      },
+      "childs" : [ ]
+    }, {
+      "call" : "org.gradoop.model.impl.AbstractGraph#getEdgeCount",
+      "kiekerPattern" : "public long org.gradoop.model.impl.AbstractGraph.getEdgeCount()",
+      "otherKiekerPattern" : "public org.apache.flink.api.java.DataSet org.gradoop.model.impl.AbstractGraph.getEdgeData()",
+      "module" : "gradoop-flink",
+      "statistic" : {
+        "meanOld" : 8.033781584488889E8,
+        "meanCurrent" : 2298851.905079365,
+        "deviationOld" : 1.237324390359943E7,
+        "deviationCurrent" : 1577962.4919831294,
+        "vms" : 30,
+        "callsOld" : 450,
+        "calls" : 450,
+        "tvalue" : 351.76231050154723
+      },
+      "childs" : [ ]
+    } ]
+  }
+}

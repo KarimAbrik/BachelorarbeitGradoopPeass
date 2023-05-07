@@ -1,0 +1,9 @@
+@Override
+public Tuple2<GradoopId, GradoopId> map(E edge) throws Exception {
+    if (switched) {
+        reuseTuple.setFields(edge.getTargetId(), edge.getSourceId());
+    } else {
+        reuseTuple.setFields(edge.getSourceId(), edge.getTargetId());
+    }
+    return reuseTuple;
+}

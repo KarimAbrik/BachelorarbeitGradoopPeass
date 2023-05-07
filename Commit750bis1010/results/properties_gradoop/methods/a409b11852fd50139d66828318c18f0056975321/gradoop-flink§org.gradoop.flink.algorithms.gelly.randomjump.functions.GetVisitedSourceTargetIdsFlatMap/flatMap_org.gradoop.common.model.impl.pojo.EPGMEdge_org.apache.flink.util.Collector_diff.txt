@@ -1,0 +1,7 @@
+@Override
+public void flatMap(EPGMEdge edge, Collector<GradoopId> out) throws Exception {
+    if (edge.getPropertyValue(propertyKey).getBoolean()) {
+        out.collect(edge.getSourceId());
+        out.collect(edge.getTargetId());
+    }
+}

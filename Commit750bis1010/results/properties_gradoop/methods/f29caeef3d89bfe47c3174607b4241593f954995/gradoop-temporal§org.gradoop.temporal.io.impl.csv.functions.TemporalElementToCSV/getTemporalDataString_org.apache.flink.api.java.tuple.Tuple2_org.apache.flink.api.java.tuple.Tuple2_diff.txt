@@ -1,0 +1,12 @@
+/**
+ * Returns a CSV string representation of the temporal attributes in format:
+ *
+ * {@code (tx-from,tx-to),(val-from,val-to)}
+ *
+ * @param transactionTime the transaction time
+ * @param validTime the valid time
+ * @return CSV string representation
+ */
+String getTemporalDataString(Tuple2<Long, Long> transactionTime, Tuple2<Long, Long> validTime) {
+    return String.format("(%d,%d),(%d,%d)", transactionTime.f0, transactionTime.f1, validTime.f0, validTime.f1);
+}

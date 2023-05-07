@@ -1,0 +1,6 @@
+@Override
+public DataSet<Embedding> execute() {
+    FilterAndProjectEdges<E> op = new FilterAndProjectEdges<>(edges, filterPredicate, projectionKeys, isLoop());
+    op.setName(toString());
+    return op.evaluate();
+}

@@ -1,0 +1,34 @@
+/**
+ * Creates the machine identifier from the network interface.
+ * <p>
+ * Note: Implementation taken from org.bson.types.ObjectId
+ *
+ * @return a short representing the process
+ */
+private static int createMachineIdentifier() {
+    int machinePiece;
+    try {
+        StringBuilder sb = new StringBuilder();
+        Enumeration<NetworkInterface> e = NetworkInterface.getNetworkInterfaces();
+        while (e.hasMoreElements()) {
+            NetworkInterface ni = e.nextElement();
+            sb.append(ni.toString());
+            byte[] mac = ni.getHardwareAddress();
+            if (mac != null) {
+                ByteBuffer bb = ByteBuffer.wrap(mac);
+                try {
+                    sb.append(bb.getChar());
+                    sb.append(bb.getChar());
+                    sb.append(bb.getChar());
+                } catch (BufferUnderflowException shortHardwareAddressException) {
+                    // mac with less than 6 bytes. continue
+                }
+            }
+        }
+        machinePiece = sb.toString().hashCode();
+    } catch (SocketException t) {
+        machinePiece = new SecureRandom().nextInt();
+    }
+    machinePiece = machinePiece & LOW_ORDER_THREE_BYTES;
+    return machinePiece;
+}

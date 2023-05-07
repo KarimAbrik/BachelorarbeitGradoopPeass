@@ -1,0 +1,4 @@
+@Override
+public DataSet<Embedding> evaluate() {
+    return left.join(right, joinHint).where(new ExtractJoinColumns(leftJoinColumns)).equalTo(new ExtractJoinColumns(rightJoinColumns)).with(new MergeEmbeddings(rightColumns, rightJoinColumns, distinctVertexColumnsLeft, distinctVertexColumnsRight, distinctEdgeColumnsLeft, distinctEdgeColumnsRight)).name(getName());
+}

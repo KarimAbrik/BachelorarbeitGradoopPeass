@@ -1,0 +1,17 @@
+/**
+ * Compares two PropertyValues and returns the smaller one
+ *
+ * @param v1 PropertyValue 1
+ * @param v2 PropertyValue 2
+ * @return returns the smaller PropertyValue
+ */
+private PropertyValue getMinimum(PropertyValue v1, PropertyValue v2) {
+    PropertyValue newValue;
+    int compare = v1.compareTo(v2);
+    if (compare <= 0) {
+        newValue = v1;
+    } else {
+        newValue = v2;
+    }
+    return newValue;
+}

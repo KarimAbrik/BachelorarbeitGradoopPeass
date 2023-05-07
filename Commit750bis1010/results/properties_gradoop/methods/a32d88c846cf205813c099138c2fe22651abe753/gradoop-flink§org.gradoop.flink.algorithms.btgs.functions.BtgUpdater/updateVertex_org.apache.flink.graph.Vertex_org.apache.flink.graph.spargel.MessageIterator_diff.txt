@@ -1,0 +1,13 @@
+@Override
+public void updateVertex(Vertex<GradoopId, GradoopId> vertex, MessageIterator<GradoopId> messageIterator) {
+    GradoopId lastComponent = vertex.getValue();
+    GradoopId newComponent = lastComponent;
+    for (GradoopId messageComponent : messageIterator) {
+        if (messageComponent.compareTo(newComponent) < 0) {
+            newComponent = messageComponent;
+        }
+    }
+    if (!lastComponent.equals(newComponent)) {
+        setNewVertexValue(newComponent);
+    }
+}

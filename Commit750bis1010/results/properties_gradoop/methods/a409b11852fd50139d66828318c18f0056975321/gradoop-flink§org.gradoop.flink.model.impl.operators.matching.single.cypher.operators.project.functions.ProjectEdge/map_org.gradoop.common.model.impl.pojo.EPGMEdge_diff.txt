@@ -1,0 +1,4 @@
+@Override
+public Embedding map(EPGMEdge edge) {
+    return EmbeddingFactory.fromEdge(edge, propertyKeys, isLoop);
+}

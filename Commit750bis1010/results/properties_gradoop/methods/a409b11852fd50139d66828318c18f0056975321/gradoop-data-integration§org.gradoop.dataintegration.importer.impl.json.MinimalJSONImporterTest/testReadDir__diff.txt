@@ -1,0 +1,14 @@
+/**
+ * Test reading from a directory containing multiple parts.
+ *
+ * @throws Exception when the execution in Flink fails.
+ */
+@Test
+public void testReadDir() throws Exception {
+    DataSource dataImport = new MinimalJSONImporter(dirPath, getConfig());
+    LogicalGraph read = dataImport.getLogicalGraph();
+    LogicalGraph expected = loader.getLogicalGraph();
+    GraphCollection expectedCollection = expected.getCollectionFactory().fromGraph(expected);
+    collectAndAssertTrue(expected.equalsByElementData(read));
+    collectAndAssertTrue(dataImport.getGraphCollection().equalsByGraphElementData(expectedCollection));
+}

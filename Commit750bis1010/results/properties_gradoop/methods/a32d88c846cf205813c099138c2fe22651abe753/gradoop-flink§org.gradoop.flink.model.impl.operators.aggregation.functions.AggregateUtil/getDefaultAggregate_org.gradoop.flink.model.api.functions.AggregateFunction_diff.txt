@@ -1,0 +1,14 @@
+/**
+ * Returns the default aggregate value for the given aggregate function
+ * or {@link PropertyValue#NULL_VALUE}, if it has no default.
+ *
+ * @param aggregateFunction aggregate function
+ * @return aggregate value
+ */
+public static PropertyValue getDefaultAggregate(AggregateFunction aggregateFunction) {
+    if (aggregateFunction instanceof AggregateDefaultValue) {
+        return ((AggregateDefaultValue) aggregateFunction).getDefaultValue();
+    } else {
+        return PropertyValue.NULL_VALUE;
+    }
+}

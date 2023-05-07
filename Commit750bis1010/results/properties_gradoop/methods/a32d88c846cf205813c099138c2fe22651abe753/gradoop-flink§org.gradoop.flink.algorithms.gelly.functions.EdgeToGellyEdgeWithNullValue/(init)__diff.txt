@@ -1,0 +1,7 @@
+/**
+ * Constructor.
+ */
+public EdgeToGellyEdgeWithNullValue() {
+    reuseEdge = new org.apache.flink.graph.Edge<>();
+    reuseEdge.setValue(NullValue.getInstance());
+}

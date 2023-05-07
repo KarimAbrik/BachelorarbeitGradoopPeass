@@ -1,0 +1,14 @@
+@Test
+public void testWithVertexLabels() throws Exception {
+    String query = "MATCH (n:Forum)-[e]->(m:Tag)";
+    QueryHandler queryHandler = new QueryHandler(query);
+    LeafNode nNode = new FilterAndProjectVerticesNode(null, "n", queryHandler.getPredicates().getSubCNF("n"), Sets.newHashSet());
+    LeafNode mNode = new FilterAndProjectVerticesNode(null, "m", queryHandler.getPredicates().getSubCNF("m"), Sets.newHashSet());
+    LeafNode eNode = new FilterAndProjectEdgesNode(null, "n", "e", "m", queryHandler.getPredicates().getSubCNF("e"), Sets.newHashSet(), false);
+    JoinEmbeddingsNode neJoin = new JoinEmbeddingsNode(nNode, eNode, Lists.newArrayList("n"), MatchStrategy.ISOMORPHISM, MatchStrategy.ISOMORPHISM);
+    JoinEmbeddingsNode nemJoin = new JoinEmbeddingsNode(neJoin, mNode, Lists.newArrayList("m"), MatchStrategy.ISOMORPHISM, MatchStrategy.ISOMORPHISM);
+    JoinEstimator estimator = new JoinEstimator(queryHandler, STATS);
+    estimator.visit(neJoin);
+    estimator.visit(nemJoin);
+    assertThat(estimator.getCardinality(), is(3L));
+}

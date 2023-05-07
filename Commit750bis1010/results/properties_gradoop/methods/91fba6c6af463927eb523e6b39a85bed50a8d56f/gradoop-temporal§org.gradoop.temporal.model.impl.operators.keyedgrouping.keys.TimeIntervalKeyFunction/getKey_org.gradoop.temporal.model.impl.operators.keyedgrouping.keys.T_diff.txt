@@ -1,0 +1,11 @@
+@Override
+public Tuple2<Long, Long> getKey(T element) {
+    switch(timeDimension) {
+        case VALID_TIME:
+            return element.getValidTime();
+        case TRANSACTION_TIME:
+            return element.getTransactionTime();
+        default:
+            throw new UnsupportedOperationException("Time dimension not supported by this element: " + timeDimension);
+    }
+}

@@ -1,0 +1,17 @@
+/**
+ * Based on the considered edge direction the neighbor id is returned.
+ *
+ * @param vertexId The vertex id the neighbor id is searched for.
+ * @param edge     The edge the neighbor id is taken from.
+ * @return The GradoopId of the neighbor vertex.
+ */
+private GradoopId getNeighborId(GradoopId vertexId, EPGMEdge edge) {
+    switch(edgeDirection) {
+        case INCOMING:
+            return edge.getSourceId();
+        case OUTGOING:
+            return edge.getTargetId();
+        default:
+            return vertexId.equals(edge.getSourceId()) ? edge.getTargetId() : edge.getSourceId();
+    }
+}

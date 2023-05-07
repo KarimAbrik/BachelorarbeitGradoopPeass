@@ -1,0 +1,11 @@
+@Test
+public void testCartesianProductVertices() throws Exception {
+    String query = "MATCH (a),(b)";
+    QueryHandler queryHandler = new QueryHandler(query);
+    LeafNode aNode = new FilterAndProjectVerticesNode(null, "a", queryHandler.getPredicates().getSubCNF("a"), Sets.newHashSet());
+    LeafNode bNode = new FilterAndProjectVerticesNode(null, "b", queryHandler.getPredicates().getSubCNF("b"), Sets.newHashSet());
+    CartesianProductNode crossNode = new CartesianProductNode(aNode, bNode, MatchStrategy.HOMOMORPHISM, MatchStrategy.ISOMORPHISM);
+    QueryPlan queryPlan = new QueryPlan(crossNode);
+    QueryPlanEstimator estimator = new QueryPlanEstimator(queryPlan, queryHandler, STATS);
+    assertThat(estimator.getCardinality(), is(STATS.getVertexCount() * STATS.getVertexCount()));
+}

@@ -1,0 +1,4 @@
+@Override
+public GraphCollection fromTransactions(DataSet<GraphTransaction> transactions, GroupReduceFunction<EPGMVertex, EPGMVertex> vertexMergeReducer, GroupReduceFunction<EPGMEdge, EPGMEdge> edgeMergeReducer) {
+    return new GraphCollection(layoutFactory.fromTransactions(transactions, vertexMergeReducer, edgeMergeReducer), config);
+}

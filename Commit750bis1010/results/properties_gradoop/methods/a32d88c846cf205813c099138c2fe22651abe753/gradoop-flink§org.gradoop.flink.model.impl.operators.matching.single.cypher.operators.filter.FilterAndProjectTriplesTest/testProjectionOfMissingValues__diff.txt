@@ -1,0 +1,16 @@
+@Test
+public void testProjectionOfMissingValues() throws Exception {
+    CNF predicates = predicateFromQuery("MATCH (a)-[e]->(b)");
+    EPGMVertex a = vertexFactory.createVertex("Person");
+    EPGMVertex b = vertexFactory.createVertex("Person");
+    EPGMEdge e = edgeFactory.createEdge("knows", a.getId(), b.getId());
+    DataSet<Triple> triples = getExecutionEnvironment().fromElements(new Triple(a, e, b));
+    HashMap<String, List<String>> propertyKeys = new HashMap<>();
+    propertyKeys.put("a", Lists.newArrayList("name"));
+    propertyKeys.put("e", Lists.newArrayList("since"));
+    propertyKeys.put("b", Lists.newArrayList("name"));
+    Embedding result = new FilterAndProjectTriples(triples, "a", "e", "b", predicates, propertyKeys, MatchStrategy.ISOMORPHISM).evaluate().collect().get(0);
+    assertEquals(result.getProperty(0), PropertyValue.NULL_VALUE);
+    assertEquals(result.getProperty(1), PropertyValue.NULL_VALUE);
+    assertEquals(result.getProperty(2), PropertyValue.NULL_VALUE);
+}

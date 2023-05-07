@@ -1,0 +1,12 @@
+/**
+ * Map function to create gelly vertices with long key and long value.
+ *
+ * @param tuple given unique vertex id
+ * @return gelly vertex
+ */
+@Override
+public Vertex<Long, Long> map(Tuple2<Long, GradoopId> tuple) {
+    vertex.setId(tuple.f0);
+    vertex.setValue(tuple.f0);
+    return vertex;
+}

@@ -1,0 +1,9 @@
+/**
+ * Initialize this test.
+ */
+@Before
+public void setUp() {
+    vertexFactory = getConfig().getLogicalGraphFactory().getVertexFactory();
+    expectedValue = vertexFactory.createVertex(MinimalJsonToVertex.JSON_VERTEX_LABEL);
+    function = new MinimalJsonToVertex(vertexFactory);
+}

@@ -1,0 +1,5 @@
+@Test
+public void testIsVertex() {
+    assertTrue(QUERY_HANDLER.isVertex("v1"));
+    assertFalse(QUERY_HANDLER.isVertex("e1"));
+}

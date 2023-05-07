@@ -1,0 +1,9 @@
+/**
+ * Returns the complete database represented by the loader.
+ *
+ * @return EPGM database
+ */
+@SuppressWarnings("unchecked")
+public EPGMDatabase getDatabase() {
+    return EPGMDatabase.fromCollections(loader.getGraphHeads(), loader.getVertices(), loader.getEdges(), config);
+}

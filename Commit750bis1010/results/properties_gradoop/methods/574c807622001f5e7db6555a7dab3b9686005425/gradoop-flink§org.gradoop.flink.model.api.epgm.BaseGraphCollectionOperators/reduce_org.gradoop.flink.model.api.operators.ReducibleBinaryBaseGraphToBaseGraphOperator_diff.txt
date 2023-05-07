@@ -1,0 +1,14 @@
+/**
+ * Transforms a graph collection into a graph by applying a
+ * {@link ReducibleBinaryBaseGraphToBaseGraphOperator} pairwise on the elements of the collection.
+ *
+ * @param operator reducible binary graph to graph operator
+ * @return base graph returned by the operator
+ *
+ * @see Exclusion
+ * @see Overlap
+ * @see Combination
+ */
+default LG reduce(ReducibleBinaryBaseGraphToBaseGraphOperator<GC, LG> operator) {
+    return callForValue(operator);
+}

@@ -1,0 +1,8 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public void setProperty(String key, PropertyValue value) {
+    initProperties();
+    this.properties.set(key, value);
+}

@@ -1,0 +1,7 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public Edge createEdge(GradoopId sourceVertexId, GradoopId targetVertexId) {
+    return initEdge(GradoopId.get(), sourceVertexId, targetVertexId);
+}

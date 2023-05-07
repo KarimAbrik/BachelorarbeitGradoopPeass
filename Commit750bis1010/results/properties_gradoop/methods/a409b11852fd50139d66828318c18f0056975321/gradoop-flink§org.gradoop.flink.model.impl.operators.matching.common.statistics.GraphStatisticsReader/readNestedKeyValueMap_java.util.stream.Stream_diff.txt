@@ -1,0 +1,23 @@
+/**
+ * Reads a key value mapped from the given file grouped by the first token in each line.
+ *
+ * @param lines stream of lines in the file
+ * @return nested key value map
+ * @throws IOException if an I/O error occurs opening the file
+ */
+static Map<String, Map<String, Long>> readNestedKeyValueMap(Stream<String> lines) throws IOException {
+    final Map<String, Map<String, Long>> mapping = new HashMap<>();
+    lines.map(line -> line.split(TOKEN_SEPARATOR)).forEach(tokens -> {
+        String vertexLabel = tokens[0];
+        String edgeLabel = tokens[1];
+        Long edgeCount = Long.parseLong(tokens[2]);
+        if (mapping.containsKey(vertexLabel)) {
+            mapping.get(vertexLabel).put(edgeLabel, edgeCount);
+        } else {
+            Map<String, Long> value = new HashMap<>();
+            value.put(edgeLabel, edgeCount);
+            mapping.put(vertexLabel, value);
+        }
+    });
+    return mapping;
+}

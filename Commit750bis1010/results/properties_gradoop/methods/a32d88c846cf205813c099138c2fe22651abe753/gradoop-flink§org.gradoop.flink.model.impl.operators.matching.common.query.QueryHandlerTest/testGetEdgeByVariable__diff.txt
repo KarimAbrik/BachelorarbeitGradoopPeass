@@ -1,0 +1,6 @@
+@Test
+public void testGetEdgeByVariable() throws Exception {
+    Edge expected = GDL_HANDLER.getEdgeCache().get("e1");
+    assertEquals(QUERY_HANDLER.getEdgeByVariable("e1"), expected);
+    assertNotEquals(QUERY_HANDLER.getEdgeByVariable("e2"), expected);
+}

@@ -1,0 +1,15 @@
+/**
+ * Put a short value out to the specified byte array position (Unsafe).
+ *
+ * @param bytes the byte array
+ * @param offset position in the array
+ * @param val short to write out
+ * @return incremented offset
+ */
+private static int putShortUnsafe(byte[] bytes, int offset, short val) {
+    if (LexicographicalComparerHolder.UnsafeComparer.LITTLE_ENDIAN) {
+        val = Short.reverseBytes(val);
+    }
+    LexicographicalComparerHolder.UnsafeComparer.UNSAFE.putShort(bytes, (long) offset + LexicographicalComparerHolder.UnsafeComparer.BYTE_ARRAY_BASE_OFFSET, val);
+    return offset + SIZEOF_SHORT;
+}

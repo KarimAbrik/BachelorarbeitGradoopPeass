@@ -1,0 +1,7 @@
+/**
+ * {@inheritDoc}
+ */
+@Override
+public Edge initEdge(final GradoopId id, final GradoopId sourceVertexId, final GradoopId targetVertexId) {
+    return initEdge(id, GradoopConstants.DEFAULT_EDGE_LABEL, sourceVertexId, targetVertexId);
+}

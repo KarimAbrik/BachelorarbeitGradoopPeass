@@ -1,0 +1,11 @@
+/**
+ * Test the {@link TemporalGraphCollection#getEdges()} method.
+ */
+@Test
+public void testGetEdges() throws Exception {
+    List<TemporalEdge> temporalEdges = new ArrayList<>();
+    testTemporalCollection.getEdges().output(new LocalCollectionOutputFormat<>(temporalEdges));
+    getExecutionEnvironment().execute();
+    assertEquals(8, temporalEdges.size());
+    temporalEdges.forEach(this::checkDefaultTemporalElement);
+}

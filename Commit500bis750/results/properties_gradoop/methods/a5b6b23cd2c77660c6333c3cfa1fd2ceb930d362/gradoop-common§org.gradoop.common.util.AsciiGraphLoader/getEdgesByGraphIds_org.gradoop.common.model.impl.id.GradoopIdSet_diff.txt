@@ -1,0 +1,15 @@
+                                                                                                     | /**                                                                                                 
+                                                                                                     | * Returns all edges that belong to the given graphs.                                                
+                                                                                                     | *                                                                                                   
+                                                                                                     | * @param graphIds Graph identifiers                                                                 
+                                                                                                     | * @return edges                                                                                     
+                                                                                                     | */                                                                                                  
+                                                                                                     | public Collection&lt;E&gt; getEdgesByGraphIds(GradoopIdSet graphIds) {                              
+                                                                                                     | Collection&lt;E&gt; result = Sets.newHashSetWithExpectedSize(graphIds.size());                      
+                                                                                                     | for (E edge : edges.values()) {                                                                     
+                                                                                                     | if (edge.getGraphIds().containsAny(graphIds)) {                                                     
+                                                                                                     | result.add(edge);                                                                                   
+                                                                                                     | }                                                                                                   
+                                                                                                     | }                                                                                                   
+                                                                                                     | return result;                                                                                      
+                                                                                                     | }                                                                                                   

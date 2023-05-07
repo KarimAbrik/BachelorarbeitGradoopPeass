@@ -1,0 +1,12 @@
+/**
+ * Creates persistent vertex data.
+ *
+ * @param vertex       encapsulated vertex data
+ * @param incomingEdges incoming edge data
+ * @param outgoingEdges outgoing edge data
+ */
+public HBaseVertex(EPGMVertex vertex, Set<EdgePojo> outgoingEdges, Set<EdgePojo> incomingEdges) {
+    super(vertex);
+    this.outgoingEdges = outgoingEdges;
+    this.incomingEdges = incomingEdges;
+}

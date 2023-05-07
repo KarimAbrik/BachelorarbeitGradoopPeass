@@ -1,0 +1,7 @@
+@Override
+protected TemporalGradoopConfig getConfig() {
+    if (config == null) {
+        config = TemporalGradoopConfig.createConfig(getExecutionEnvironment());
+    }
+    return config;
+}

@@ -1,0 +1,27 @@
+/**
+ * Returns the wrapped value as {@code BigDecimal}.
+ *
+ * @return {@code BigDecimal} value
+ * @see BigDecimal
+ */
+public BigDecimal getBigDecimal() {
+    BigDecimal decimal;
+    if (isBigDecimal()) {
+        decimal = Bytes.toBigDecimal(rawBytes, OFFSET, rawBytes.length - OFFSET);
+    } else if (isFloat()) {
+        decimal = BigDecimal.valueOf(getFloat());
+    } else if (isDouble()) {
+        decimal = BigDecimal.valueOf(getDouble());
+    } else if (isShort()) {
+        decimal = BigDecimal.valueOf(getShort());
+    } else if (isInt()) {
+        decimal = BigDecimal.valueOf(getInt());
+    } else if (isLong()) {
+        decimal = BigDecimal.valueOf(getLong());
+    } else if (isString()) {
+        decimal = new BigDecimal(getString());
+    } else {
+        throw new ClassCastException("Cannot covert " + this.getType().getSimpleName() + " to " + BigDecimal.class.getSimpleName());
+    }
+    return decimal;
+}

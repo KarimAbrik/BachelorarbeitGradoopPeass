@@ -1,0 +1,12 @@
+/**
+ * factory method to create gradoop ids from given numbers
+ * @param ids numbers
+ * @return gradoop ids
+ */
+public static GradoopIds fromLongs(Long... ids) {
+    GradoopIds gradoopIds = new GradoopIds();
+    for (Long id : ids) {
+        gradoopIds.add(GradoopId.fromLong(id));
+    }
+    return gradoopIds;
+}

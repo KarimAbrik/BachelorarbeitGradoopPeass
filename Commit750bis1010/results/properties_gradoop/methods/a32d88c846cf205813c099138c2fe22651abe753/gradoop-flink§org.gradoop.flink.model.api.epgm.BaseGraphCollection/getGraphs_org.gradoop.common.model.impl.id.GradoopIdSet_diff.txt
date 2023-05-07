@@ -1,0 +1,9 @@
+@Override
+default GC getGraphs(final GradoopIdSet identifiers) {
+    DataSet<G> newGraphHeads = this.getGraphHeads().filter((FilterFunction<G>) graphHead -> identifiers.contains(graphHead.getId()));
+    // build new vertex set
+    DataSet<V> vertices = getVertices().filter(new InAnyGraph<>(identifiers));
+    // build new edge set
+    DataSet<E> edges = getEdges().filter(new InAnyGraph<>(identifiers));
+    return getFactory().fromDataSets(newGraphHeads, vertices, edges);
+}

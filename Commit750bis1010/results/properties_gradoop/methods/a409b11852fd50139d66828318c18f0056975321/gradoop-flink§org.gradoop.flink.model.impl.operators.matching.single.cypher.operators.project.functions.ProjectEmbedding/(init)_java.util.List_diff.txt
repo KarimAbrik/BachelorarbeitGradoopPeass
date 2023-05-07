@@ -1,0 +1,7 @@
+/**
+ * Creates a new embedding projection operator
+ * @param propertyWhiteList includes all property indexes that whill be kept in the projection
+ */
+public ProjectEmbedding(List<Integer> propertyWhiteList) {
+    this.propertyWhiteList = propertyWhiteList;
+}

@@ -1,0 +1,4 @@
+@Override
+public Boolean read(DataInputView inputView, byte typeByte) throws IOException {
+    return inputView.readByte() == -1;
+}

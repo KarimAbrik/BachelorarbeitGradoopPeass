@@ -1,0 +1,9 @@
+/**
+ * Creates the meta data for the given graph.
+ *
+ * @param graph logical graph
+ * @return meta data information
+ */
+protected DataSet<Tuple3<String, String, String>> createMetaData(LogicalGraph graph) {
+    return createMetaData(graph.getVertices()).union(createMetaData(graph.getEdges()));
+}

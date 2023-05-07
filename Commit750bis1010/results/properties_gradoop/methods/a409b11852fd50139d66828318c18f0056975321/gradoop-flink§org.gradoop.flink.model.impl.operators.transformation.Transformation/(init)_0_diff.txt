@@ -1,0 +1,15 @@
+/**
+ * Creates a new operator instance.
+ *
+ * @param graphHeadTransFunc  graph head transformation function
+ * @param vertexTransFunc     vertex transformation function
+ * @param edgeTransFunc       edge transformation function
+ */
+public Transformation(TransformationFunction<G> graphHeadTransFunc, TransformationFunction<V> vertexTransFunc, TransformationFunction<E> edgeTransFunc) {
+    if (graphHeadTransFunc == null && vertexTransFunc == null && edgeTransFunc == null) {
+        throw new IllegalArgumentException("Provide at least one transformation function.");
+    }
+    this.graphHeadTransFunc = graphHeadTransFunc;
+    this.vertexTransFunc = vertexTransFunc;
+    this.edgeTransFunc = edgeTransFunc;
+}

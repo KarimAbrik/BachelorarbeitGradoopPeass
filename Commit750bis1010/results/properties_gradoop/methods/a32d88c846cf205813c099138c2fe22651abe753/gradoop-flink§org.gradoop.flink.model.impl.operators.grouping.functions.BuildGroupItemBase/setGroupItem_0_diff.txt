@@ -1,0 +1,32 @@
+/**
+ * Sets the basic values for either a vertex or an edge group item.
+ *
+ * @param groupItem the group item to be set
+ * @param element the epgm element
+ * @param labelGroup label group to be assigned
+ * @throws IOException on failure
+ */
+protected void setGroupItem(GroupItem groupItem, Element element, LabelGroup labelGroup) throws IOException {
+    // stores all, in the label group specified, grouping values of the element, if the element
+    // does not have a property a null property value is stored
+    for (String groupPropertyKey : labelGroup.getPropertyKeys()) {
+        if (element.hasProperty(groupPropertyKey)) {
+            groupingValues.add(element.getPropertyValue(groupPropertyKey));
+        } else {
+            groupingValues.add(PropertyValue.NULL_VALUE);
+        }
+    }
+    // If the label group is the default one and the labels shall be used for grouping the
+    // elements labels are kept, otherwise the label given by the group is taken. The default
+    // label groups label is empty and if the current label group is a manually specified one its
+    // label is also taken.
+    if (labelGroup.getGroupingLabel().equals(getDefaultLabelGroup().getGroupingLabel()) && useLabel()) {
+        groupItem.setGroupLabel(element.getLabel());
+    } else {
+        groupItem.setGroupLabel(labelGroup.getGroupLabel());
+    }
+    groupItem.setAggregateValues(labelGroup.getIncrementValues(element));
+    groupItem.setLabelGroup(labelGroup);
+    groupItem.setGroupingValues(PropertyValueList.fromPropertyValues(groupingValues));
+    groupingValues.clear();
+}

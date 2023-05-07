@@ -1,0 +1,15 @@
+/**                                                                                                  |                                                                                                     
+* Returns all vertices that belong to the given graphs.                                              |                                                                                                     
+*                                                                                                    |                                                                                                     
+* @param graphIds graph identifiers                                                                  |                                                                                                     
+* @return vertices that are contained in the graphs                                                  |                                                                                                     
+*/                                                                                                   |                                                                                                     
+public Collection&lt;V&gt; getVerticesByGraphIds(GradoopIds graphIds) {                              |                                                                                                     
+Collection&lt;V&gt; result = Sets.newHashSetWithExpectedSize(graphIds.size());                       |                                                                                                     
+for (V vertex : vertices.values()) {                                                                 |                                                                                                     
+if (vertex.getGraphIds().containsAny(graphIds)) {                                                    |                                                                                                     
+result.add(vertex);                                                                                  |                                                                                                     
+}                                                                                                    |                                                                                                     
+}                                                                                                    |                                                                                                     
+return result;                                                                                       |                                                                                                     
+}                                                                                                    |                                                                                                     

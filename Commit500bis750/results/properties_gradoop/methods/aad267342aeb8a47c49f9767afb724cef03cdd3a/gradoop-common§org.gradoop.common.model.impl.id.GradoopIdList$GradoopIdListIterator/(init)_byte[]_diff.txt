@@ -1,0 +1,10 @@
+/**                                                                                                  |                                                                                                     
+* Creates a new iterator.                                                                            |                                                                                                     
+*                                                                                                    |                                                                                                     
+* @param bytes byte representation of a {@link GradoopIdList}                                        |                                                                                                     
+*/                                                                                                   |                                                                                                     
+GradoopIdListIterator(byte[] bytes) {                                                                |                                                                                                     
+this.i = 0;                                                                                          |                                                                                                     
+this.bytes = bytes;                                                                                  |                                                                                                     
+this.size = this.bytes != null ? bytes.length / GradoopId.ID_SIZE : 0;                               |                                                                                                     
+}                                                                                                    |                                                                                                     

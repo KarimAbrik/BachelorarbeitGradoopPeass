@@ -1,0 +1,28 @@
+/**
+ * {@inheritDoc}
+ *
+ * Initially starts the first walk or jump from the given start vertices. Afterwards starts a
+ * walk or jump from a vertex, if it received messages from other vertices. Stops the
+ * computation and therefor the iteration if the number of currently visited vertices exceeds
+ * the number of vertices to visit.
+ *
+ * @param vertex The vertex this computation in a superstep is running for.
+ * @param messages Iterator over all incoming messages
+ */
+@Override
+public void compute(Vertex<Long, VCIVertexValue> vertex, MessageIterator<NullValue> messages) {
+    if (currentVisitedCount < verticesToVisit) {
+        List<Edge<Long, Long>> edgesList = Lists.newArrayList(getEdges());
+        Tuple2<VCIVertexValue, Boolean> valueWithHasChanged = Tuple2.of(vertex.getValue(), false);
+        if (startIndices.contains(vertex.getId()) && !valueWithHasChanged.f0.isVisited()) {
+            valueWithHasChanged = walkToRandomNeighbor(valueWithHasChanged, edgesList);
+        } else if (messages.hasNext()) {
+            for (NullValue msg : messages) {
+                valueWithHasChanged = walkToRandomNeighbor(valueWithHasChanged, edgesList);
+            }
+        }
+        if (valueWithHasChanged.f1) {
+            setNewVertexValue(valueWithHasChanged.f0);
+        }
+    }
+}

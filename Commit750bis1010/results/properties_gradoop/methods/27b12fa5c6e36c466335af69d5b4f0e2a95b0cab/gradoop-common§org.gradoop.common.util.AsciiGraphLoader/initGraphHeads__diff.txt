@@ -1,0 +1,13 @@
+/**
+ * Initializes GraphHeads and their cache.
+ */
+private void initGraphHeads() {
+    for (Graph g : gdlHandler.getGraphs()) {
+        if (!graphHeadIds.containsKey(g.getId())) {
+            initGraphHead(g);
+        }
+    }
+    for (Map.Entry<String, Graph> e : gdlHandler.getGraphCache().entrySet()) {
+        updateGraphCache(e.getKey(), e.getValue());
+    }
+}

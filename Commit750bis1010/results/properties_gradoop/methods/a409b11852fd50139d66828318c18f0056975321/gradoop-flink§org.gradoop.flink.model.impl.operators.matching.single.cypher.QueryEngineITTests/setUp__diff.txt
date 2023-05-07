@@ -1,0 +1,6 @@
+@Before
+public void setUp() throws Exception {
+    socialNetwork = getSocialNetworkLoader().getLogicalGraph();
+    String path = getFilePath("/data/json/sna/statistics");
+    socialNetworkStatistics = GraphStatisticsLocalFSReader.read(path);
+}

@@ -1,0 +1,24 @@
+/**
+ * Iterates the given edge group items and build a group representative item.
+ *
+ * @param edgeGroupItems edge group items
+ * @return group representative item
+ * @throws IOException on failure
+ */
+protected EdgeGroupItem reduceInternal(Iterable<EdgeGroupItem> edgeGroupItems) throws IOException {
+    EdgeGroupItem edgeGroupItem = new EdgeGroupItem();
+    boolean firstElement = true;
+    for (EdgeGroupItem edge : edgeGroupItems) {
+        if (firstElement) {
+            edgeGroupItem.setSourceId(edge.getSourceId());
+            edgeGroupItem.setTargetId(edge.getTargetId());
+            edgeGroupItem.setGroupLabel(edge.getGroupLabel());
+            edgeGroupItem.setGroupingValues(edge.getGroupingValues());
+            edgeGroupItem.setLabelGroup(edge.getLabelGroup());
+            firstElement = false;
+        }
+        edgeGroupItem.getLabelGroup().aggregate(edge.getAggregateValues());
+    }
+    edgeGroupItem.setAggregateValues(edgeGroupItem.getLabelGroup().getAggregateValueList());
+    return edgeGroupItem;
+}

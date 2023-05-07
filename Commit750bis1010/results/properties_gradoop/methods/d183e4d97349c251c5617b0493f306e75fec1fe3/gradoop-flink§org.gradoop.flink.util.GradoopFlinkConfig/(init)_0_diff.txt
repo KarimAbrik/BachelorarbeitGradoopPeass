@@ -1,0 +1,19 @@
+/**
+ * Creates a new Configuration.
+ *
+ * @param executionEnvironment Flink execution environment
+ * @param logicalGraphLayoutFactory Factory for creating logical graphs
+ * @param graphCollectionLayoutFactory Factory for creating graph collections
+ */
+protected GradoopFlinkConfig(ExecutionEnvironment executionEnvironment, LogicalGraphLayoutFactory logicalGraphLayoutFactory, GraphCollectionLayoutFactory graphCollectionLayoutFactory) {
+    super();
+    Objects.requireNonNull(executionEnvironment);
+    Objects.requireNonNull(logicalGraphLayoutFactory);
+    Objects.requireNonNull(graphCollectionLayoutFactory);
+    this.executionEnvironment = executionEnvironment;
+    // init with default layout factories
+    this.logicalGraphFactory = new LogicalGraphFactory(this);
+    this.logicalGraphFactory.setLayoutFactory(logicalGraphLayoutFactory);
+    this.graphCollectionFactory = new GraphCollectionFactory(this);
+    this.graphCollectionFactory.setLayoutFactory(graphCollectionLayoutFactory);
+}

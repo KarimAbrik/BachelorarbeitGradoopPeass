@@ -1,0 +1,4 @@
+@Override
+public LogicalGraph getLogicalGraph() throws IOException {
+    return getGraphCollection().reduce(new ReduceCombination<>());
+}
