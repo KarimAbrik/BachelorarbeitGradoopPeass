@@ -1,1 +1,1 @@
-Diese Repository enthält die Ergebnisse der Performanceanalyse der Commit-Historie von Gradoop. 
+Dieses Repository enthält die Ergebnisse der Performanceanalyse der Commit-Historie von Gradoop. 
