@@ -46,7 +46,7 @@ function getOverallCommits {
 getOverallCommits
 
 
-for project in Commit1-194 Commit195-245
+for project in Commit1bis194 Commit194bis245 Commit245bis500 Commit500bis750 Commit750bis1010
 do
 	echo "=============="
 	echo "$project"
@@ -56,7 +56,7 @@ done
 
 echo
 echo
-for project in Commit1-194 Commit195-245
+for project in Commit1bis194 Commit194bis245 Commit245bis500 Commit500bis750 Commit750bis1010
 do
 	echo "=============="
 	echo $project
