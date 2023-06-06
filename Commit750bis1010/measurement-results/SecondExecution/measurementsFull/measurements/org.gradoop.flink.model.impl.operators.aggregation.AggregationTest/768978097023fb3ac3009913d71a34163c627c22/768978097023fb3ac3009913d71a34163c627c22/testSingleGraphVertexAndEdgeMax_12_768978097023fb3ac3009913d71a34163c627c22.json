@@ -1,0 +1,65 @@
+{
+  "clazz" : "org.gradoop.flink.model.impl.operators.aggregation.AggregationTest",
+  "methods" : [ {
+    "method" : "testSingleGraphVertexAndEdgeMax",
+    "datacollectorResults" : [ {
+      "name" : "de.dagere.kopeme.datacollection.TimeDataCollectorNoGC",
+      "chunks" : [ ],
+      "results" : [ {
+        "value" : 2.84161972197E10,
+        "deviation" : 0.18095943258774688,
+        "min" : 2.2383507488E10,
+        "max" : 3.8622488152E10,
+        "warmup" : 0,
+        "iterations" : 10,
+        "repetitions" : 1600,
+        "commit" : null,
+        "vmRunConfiguration" : {
+          "showStart" : false,
+          "executeBeforeClassInMeasurement" : false,
+          "redirectToTemp" : false,
+          "redirectToNull" : true,
+          "useKieker" : false
+        },
+        "javaVersion" : "1.8.0_362",
+        "cpu" : "model name : Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz",
+        "memory" : "MemTotal: 16280544 kB",
+        "date" : 1679886033713,
+        "fulldata" : {
+          "fileName" : null,
+          "values" : [ {
+            "startTime" : 1679885748759,
+            "value" : 24285381501
+          }, {
+            "startTime" : 1679885773045,
+            "value" : 30157351731
+          }, {
+            "startTime" : 1679885803202,
+            "value" : 38622488152
+          }, {
+            "startTime" : 1679885841825,
+            "value" : 23006606059
+          }, {
+            "startTime" : 1679885864831,
+            "value" : 29226550611
+          }, {
+            "startTime" : 1679885894058,
+            "value" : 26147343152
+          }, {
+            "startTime" : 1679885920205,
+            "value" : 26374496776
+          }, {
+            "startTime" : 1679885946580,
+            "value" : 34498605981
+          }, {
+            "startTime" : 1679885981079,
+            "value" : 22383507488
+          }, {
+            "startTime" : 1679886003462,
+            "value" : 29459640746
+          } ]
+        }
+      } ]
+    } ]
+  } ]
+}

@@ -1,0 +1,42 @@
+{
+  "clazz" : "org.gradoop.flink.model.impl.operators.aggregation.AggregationTest",
+  "methods" : [ {
+    "method" : "testSingleGraphVertexAndEdgeSum",
+    "datacollectorResults" : [ {
+      "name" : "de.dagere.kopeme.datacollection.TimeDataCollectorNoGC",
+      "chunks" : [ ],
+      "results" : [ {
+        "value" : 9.14631642951E11,
+        "deviation" : 1.183294404950351,
+        "min" : 1.49345172442E11,
+        "max" : 1.67991811346E12,
+        "warmup" : 0,
+        "iterations" : 0,
+        "repetitions" : 8000,
+        "commit" : null,
+        "vmRunConfiguration" : {
+          "showStart" : false,
+          "executeBeforeClassInMeasurement" : false,
+          "redirectToTemp" : false,
+          "redirectToNull" : true,
+          "useKieker" : false
+        },
+        "javaVersion" : "1.8.0_362",
+        "cpu" : "model name : Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz",
+        "memory" : "MemTotal: 16280544 kB",
+        "date" : 1679918264388,
+        "error" : true,
+        "fulldata" : {
+          "fileName" : null,
+          "values" : [ {
+            "startTime" : 1679917964114,
+            "value" : 149345172442
+          }, {
+            "startTime" : 1679918113460,
+            "value" : 1679918113460
+          } ]
+        }
+      } ]
+    } ]
+  } ]
+}

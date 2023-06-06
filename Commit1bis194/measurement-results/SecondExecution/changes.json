@@ -1,0 +1,52 @@
+{
+  "commitCount" : 5,
+  "changeCount" : 53,
+  "testcaseCount" : 58,
+  "statisticsConfig" : {
+    "type1error" : 0.01,
+    "type2error" : 0.01,
+    "outlierFactor" : 3.29,
+    "statisticTest" : "T_TEST"
+  },
+  "commitChanges" : {
+    "d7f5ad1e253cecb9643136079899ea2652802c89" : {
+      "testcaseChanges" : {
+        "gradoop-examples§csv.io.reader.CSVReaderTest" : [ {
+          "diff" : "view_d7f5ad1e253cecb9643136079899ea2652802c89/diffs/CSVReaderTest#checkSimpleCSVInputTest.txt",
+          "method" : "checkSimpleCSVInputTest",
+          "oldTime" : 4.1341516832E7,
+          "changePercent" : -14716.903651514282,
+          "tvalue" : -1170.6536159600735,
+          "mannWhitneyUStatistic" : 1.332814294054071E-9,
+          "vms" : 25
+        } ]
+      }
+    },
+    "a270239794b7b89fff43f04ff300171a425f9a5d" : {
+      "testcaseChanges" : {
+        "gradoop-examples§csv.io.reader.CSVReaderTest" : [ {
+          "diff" : "view_a270239794b7b89fff43f04ff300171a425f9a5d/diffs/CSVReaderTest#checkSimpleCSVInputTest.txt",
+          "method" : "checkSimpleCSVInputTest",
+          "oldTime" : 6.128909151992E9,
+          "changePercent" : -36.52584766279992,
+          "tvalue" : -116.90703013319025,
+          "mannWhitneyUStatistic" : 1.332814294054071E-9,
+          "vms" : 25
+        } ]
+      }
+    },
+    "937394435a5e1430d025a1d7cc9f47224ea805b0" : {
+      "testcaseChanges" : {
+        "gradoop-core§org.gradoop.io.reader.RDFReaderTest" : [ {
+          "diff" : "view_937394435a5e1430d025a1d7cc9f47224ea805b0/diffs/RDFReaderTest#checkSimpleRDFNTripleInputTest.txt",
+          "method" : "checkSimpleRDFNTripleInputTest",
+          "oldTime" : 6.0222677338E9,
+          "changePercent" : 0.9095847352194311,
+          "tvalue" : 3.3716801596394137,
+          "mannWhitneyUStatistic" : 0.0026195732128427053,
+          "vms" : 29
+        } ]
+      }
+    }
+  }
+}

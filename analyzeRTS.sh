@@ -24,7 +24,7 @@ function getOverallCommits {
 	allCommitsWithChange=0
 	allCoveredCommits=0
 	allRuns=0
-	for project in Commit1-194 Commit195-245
+	for project in Commit1bis194 Commit194bis245 Commit245bis500 Commit500bis750 Commit750bis1010
 	do
 		selectionFile="$project/results/staticTestSelection_*.json"
 		commits=$(cat $selectionFile | jq ".commits | keys | length")
@@ -61,8 +61,9 @@ do
 	echo "=============="
 	echo $project
 	echo -n "Measured Commits "
-	cat $project/measurement-results/statistics.json | jq ".statistics | keys | length"
-	
+	var1 = "$(cat $project/measurement-results/FirstExecution/statistics.json | jq ".statistics | keys | length")"
+	var2 = "$(cat $project/measurement-results/SecondExecution/statistics.json | jq ".statistics | keys | length")"
+	var1 + var2
 	echo -n "Commits containing changes "
 	cat $project/measurement-results/changes.json | jq ".commitChanges | keys | length"
 done

@@ -1,0 +1,60 @@
+{
+  "clazz" : "org.gradoop.storage.hbase.HBaseGraphStoreTest",
+  "methods" : [ {
+    "method" : "writeCloseOpenReadTest",
+    "datacollectorResults" : [ {
+      "name" : "de.dagere.kopeme.datacollection.TimeDataCollectorNoGC",
+      "chunks" : [ ],
+      "results" : [ {
+        "value" : 2.44759870287125E11,
+        "deviation" : 2.3786613444770546,
+        "min" : 3.7945728307E10,
+        "max" : 1.685632944442E12,
+        "warmup" : 0,
+        "iterations" : 6,
+        "repetitions" : 12,
+        "commit" : null,
+        "vmRunConfiguration" : {
+          "showStart" : false,
+          "executeBeforeClassInMeasurement" : false,
+          "redirectToTemp" : false,
+          "redirectToNull" : true,
+          "useKieker" : false
+        },
+        "javaVersion" : "1.8.0_362",
+        "cpu" : "model name : Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz",
+        "memory" : "MemTotal: 16280544 kB",
+        "date" : 1685632972137,
+        "error" : true,
+        "fulldata" : {
+          "fileName" : null,
+          "values" : [ {
+            "startTime" : 1685632671995,
+            "value" : 37945728307
+          }, {
+            "startTime" : 1685632709941,
+            "value" : 38695987839
+          }, {
+            "startTime" : 1685632748637,
+            "value" : 38693202738
+          }, {
+            "startTime" : 1685632787330,
+            "value" : 39044472166
+          }, {
+            "startTime" : 1685632826375,
+            "value" : 39382695302
+          }, {
+            "startTime" : 1685632865758,
+            "value" : 39385206116
+          }, {
+            "startTime" : 1685632905143,
+            "value" : 39298725387
+          }, {
+            "startTime" : 1685632944442,
+            "value" : 1685632944442
+          } ]
+        }
+      } ]
+    } ]
+  } ]
+}
